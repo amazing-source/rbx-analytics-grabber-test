@@ -1,0 +1,171 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+body{font-family:'Segoe UI',Calibri,Arial,sans-serif;color:#1a1a2e;max-width:850px;margin:40px auto;padding:0 32px;line-height:1.55;font-size:15px}
+h1{font-size:26px;border-bottom:3px solid #335fff;padding-bottom:8px;margin-top:8px}
+h2{font-size:20px;color:#22357a;border-bottom:1px solid #d8dcee;padding-bottom:5px;margin-top:34px}
+h3{font-size:16px;color:#335fff;margin-top:24px}
+p{margin:10px 0}
+code{background:#f0f2f8;color:#b5308a;padding:1px 5px;border-radius:4px;font-family:Consolas,'Courier New',monospace;font-size:13px}
+pre{background:#1c1e2b;color:#e6e8f0;padding:14px 16px;border-radius:8px;overflow:auto;font-size:12.5px;line-height:1.4}
+pre code{background:none;color:inherit;padding:0}
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13.5px}
+th,td{border:1px solid #d3d8ea;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#eef1fb;color:#22357a;font-weight:600}
+tr:nth-child(even) td{background:#f7f8fc}
+hr{border:none;border-top:1px solid #e0e3f0;margin:26px 0}
+ul,ol{margin:10px 0;padding-left:26px}
+li{margin:4px 0}
+strong{color:#111}
+em{color:#555}
+</style></head><body><h1>Indigo LiveOps Analytics — Status, Contribution &amp; Roadmap</h1>
+<p><em>Companion doc to the demo video. Explains what the tool is for, what already works (Phase 1), where accuracy still needs hardening, and the proposed "raw data export for AI" feature. Grounded in the current codebase — file paths are cited so anything here can be checked.</em></p>
+<hr/>
+<h2>1. The goal (why this exists)</h2>
+<p>Roblox's Creator Dashboard shows a producer everything about their game — but one metric at a time, one CSV export at a time, with no memory of what changed between updates. For a LiveOps studio like Indigo that ships frequent updates and lives or dies on <strong>post-update decisions</strong>, that workflow is too slow and too manual.</p>
+<p>The tool exists to turn the dashboard into a <strong>decision instrument</strong>:</p>
+<ol><li><strong>Pull everything in one shot</strong> for an owned game and a date range, instead of</li></ol>
+<p>   exporting each chart by hand.</p>
+<ol><li><strong>Tag updates</strong> on the timeline (name + date, later: changelog/items/prices).</li><li><strong>Compare before/after</strong> an update — and do it <em>correctly</em>, distinguishing</li></ol>
+<p>   metrics that are safe to compare from ones that are confounded by growth.</p>
+<ol><li><strong>Diagnose</strong> the result in a producer-ready format (Phase 3, AI).</li></ol>
+<p>The north-star use case is a <strong>post-update LiveOps diagnosis</strong>: did this update move the hook (D1 retention), the return loop (D7/D30, stickiness), or the money (conversion, ARPPU, ARPDAU) — and is it above or below the genre benchmark? (See <code>CAHIER_DES_CHARGES.md</code> §1, §9 and <code>CLAUDE.md</code>.)</p>
+<h3>Who it's for</h3>
+<p>Indigo producers. v1 is internal, multi-producer: each producer installs the thin extension; everyone shares one web app. No public distribution, owned games only.</p>
+<h3>Non-negotiable security posture</h3>
+<ul><li><strong>Never</strong> reads, stores, logs, or transmits <code>.ROBLOSECURITY</code> or any auth cookie.</li><li>The extension only <strong>observes</strong> requests the dashboard already makes; in the</li></ul>
+<p>  active mode it replays the <em>same</em> request shapes inside the user's already-authed   session. It never asks for a cookie.</p>
+<ul><li>Owned games only. Anthropic API key (Phase 3) stays server-side.</li></ul>
+<hr/>
+<h2>2. Architecture at a glance</h2>
+<p>Two deliberately separated parts (<code>CAHIER_DES_CHARGES.md</code> §2):</p>
+<pre><code>  create.roblox.com (authed tab)                 localhost / web app
+  ┌───────────────────────────────┐              ┌────────────────────────────┐
+  │  Extension "grabber" (MV3)     │   captures   │  Next.js + Supabase "brain"│
+  │                                │  ──────────► │                            │
+  │  interceptor.js  (MAIN world)  │   /api/ingest│  parse → normalize → store │
+  │   • clones the Request body    │              │  charts, deltas, benchmarks│
+  │   • replays grab-plan requests │  grab-plan   │  update tagging            │
+  │  collector.js    (ISOLATED)    │  ◄────────── │  (Phase 2+: compare, AI)   │
+  │   • UI panel, send/download    │              │                            │
+  └───────────────────────────────┘              └────────────────────────────┘</code></pre>
+<p>The extension is intentionally dumb: <strong>capture + forward only</strong>. All value lives in the web app.</p>
+<hr/>
+<h2>3. What works today (Phase 1)</h2>
+<h3>3.1 Extension — two capture modes</h3>
+<ul><li><strong>Passive capture</strong> — as you browse the dashboard, <code>interceptor.js</code> (MAIN world)</li></ul>
+<p>  wraps <code>fetch</code>/XHR and, critically, <strong>clones <code>args[0]</code> when it's a <code>Request</code></strong> to   read the request body. That body carries the metric <em>name</em> — which the response   does not (the response only has a hash). This is what makes name↔hash mapping   automatic and durable (<code>CAHIER_DES_CHARGES.md</code> §3.5, §5.1). <strong>"Send captured"</strong>   ships whatever rendered to <code>/api/ingest</code>.</p>
+<ul><li><strong>Active grab</strong> — <strong>"Pull all metrics → web app"</strong> asks <code>/api/grab-plan</code> for the</li></ul>
+<p>  request templates harvested from past captures, replays each one in the authed   session (<code>collector.js</code> → <code>runActiveGrab</code>, concurrency 3), and forwards results.   One click pulls the whole known metric set for a <code>universeId</code> without clicking   through tabs.</p>
+<ul><li>Utility: download raw capture JSON (↓), clear buffer (×), configurable ingest URL.</li></ul>
+<h3>3.2 Ingest pipeline (<code>web/src/lib/parse-captures.ts</code>, <code>store.ts</code>)</h3>
+<p>Pure, unit-testable parser turns raw captures into normalized rows:</p>
+<ul><li><strong>Metric snapshots</strong> — one row per <code>(game, metric, granularity, series, ts)</code>.</li></ul>
+<p>  Breakdowns (<code>breakdownValue[]</code>) and request filters are folded into a   deterministic <code>series_key</code>, so retention-by-Platform, revenue-by-source, and   funnel-by-step never overwrite each other or the Total series.</p>
+<ul><li><strong>Name↔hash catalog</strong> — rebuilt on every ingest from the request body. No static</li></ul>
+<p>  hash table is ever shipped.</p>
+<ul><li><strong>Benchmarks</strong> — genre p50/p90 series.</li><li><strong>Freshness</strong> — <code>latestAvailableTime</code> per metric (from <code>metrics/metadata</code>).</li><li><strong>Grab templates</strong> — universe-independent request shapes for the active grabber.</li><li>De-dupe + last-write-wins on re-capture; chunked upserts to Supabase.</li></ul>
+<h3>3.3 Storage (<code>web/supabase/schema.sql</code>)</h3>
+<p>Seven tables: <code>games</code>, <code>metric_catalog</code>, <code>metric_snapshots</code>, <code>benchmarks</code>, <code>metric_freshness</code>, <code>grab_templates</code>, <code>updates</code>. Cascade deletes off <code>games</code>.</p>
+<h3>3.4 Web dashboard (<code>web/src/app/page.tsx</code>)</h3>
+<ul><li>Game selector; <strong>category tabs</strong> (Engagement / Retention / Monetization / Funnel)</li></ul>
+<p>  with live counts.</p>
+<ul><li><strong>Metric tiles</strong> — latest value (unit-formatted), a week-over-week delta chip</li></ul>
+<p>  colored by whether the move is <em>good</em> for that metric, and a sparkline.</p>
+<ul><li><strong>Detail chart</strong> (Recharts) — multi-series with per-breakdown toggles, genre</li></ul>
+<p>  benchmark overlay (dashed p50/p90), and <strong>update markers</strong> as vertical reference   lines across the timeline.</p>
+<ul><li><strong>Freshness</strong> — "Fresh through &lt;date&gt;" and an "estimated (unvalidated)" flag when</li></ul>
+<p>  points carry <code>DATA_STATUS_INVALID</code>.</p>
+<ul><li><strong>Rate vs volume legibility</strong> — every metric is tagged <code>rate</code> or <code>volume</code>, and the</li></ul>
+<p>  UI explains in-line that rate metrics are comparable across a growth window while   volume metrics should be read as a trend, not compared raw.</p>
+<ul><li><strong>Update tagging</strong> — inline form drops a marker (title + date) on every chart.</li></ul>
+<h3>3.5 Metric legibility layer (<code>web/src/lib/metric-info.ts</code>)</h3>
+<p>This is "which metric is for what," in one place: plain-language <strong>label</strong>, <strong>category</strong>, <strong>unit</strong>, <strong>kind (rate/volume)</strong>, <strong>higherIsBetter</strong>, and a one-line <strong>blurb</strong> per metric — plus unit-aware formatting (percent, Robux, minutes, hours, count). This is what turns raw metric IDs into something a producer can read.</p>
+<hr/>
+<h2>4. How it contributes</h2>
+<ul><li><strong>Speed:</strong> a full pull replaces dozens of manual CSV exports — minutes → one click.</li><li><strong>Correct comparisons:</strong> the rate/volume split (<code>CAHIER_DES_CHARGES.md</code> §5.2) stops</li></ul>
+<p>  the classic false win — <em>"revenue +300% after the update"</em> when the game simply   grew. Producers see the honest signal.</p>
+<ul><li><strong>Context on every number:</strong> genre benchmarks and freshness mean a value is read</li></ul>
+<p>  against "good for this genre" and "is this data even mature yet," not in a vacuum.</p>
+<ul><li><strong>Institutional memory:</strong> tagged updates on the timeline make "what did v1.4 do to</li></ul>
+<p>  D1?" answerable months later.</p>
+<ul><li><strong>Foundation for AI diagnosis:</strong> once the data is normalized, self-describing, and</li></ul>
+<p>  accurate, feeding it to Claude for a producer-format post-mortem (Phase 3) is a   small step — <em>if</em> the accuracy work below is done first.</p>
+<hr/>
+<h2>5. Accuracy — known gaps and how to close them</h2>
+<p>This is the area flagged for the showcase: <strong>better accuracy on the metrics and what they're for</strong>, and it's also the precondition for the AI-export feature (§6). The data pipeline is sound (dedupe, series identity, UTC dates); the gaps are in <strong>interpretation</strong> — deltas, maturity, units, and completeness.</p>
+<table><thead><tr><th>#</th><th>Gap</th><th>Where</th><th>Impact</th><th>Fix</th></tr></thead><tbody><tr><td>1</td><td><strong>Delta is index-based, not date-based</strong></td><td><code>store.ts</code> <code>buildOverviewMetric</code> uses <code>prevIdx = length-8</code> (8th-from-last point)</td><td>With missing days or mixed granularity, "prior" isn't actually 7 days ago → wrong week-over-week %</td><td>Compute prior by <strong>date arithmetic</strong> (find the point nearest <code>latestDate − 7d</code>), not by array index</td></tr><tr><td>2</td><td><strong>Volume deltas shown raw</strong></td><td>tiles show <code>deltaPct</code> for volume metrics too</td><td>Contradicts §5.2 — a raw "+120% DAU" during growth is a non-insight</td><td>For volume metrics, either suppress the raw delta or annotate it with <strong>"DAU grew X% over the same window"</strong> as the denominator</td></tr><tr><td>3</td><td><strong>Maturity not enforced</strong></td><td>freshness is displayed but deltas ignore it</td><td>A D7 delta on a 3-day-old cohort is meaningless but still rendered</td><td>Gate/flag deltas when the window isn't matured vs <code>latestAvailableTime</code> (this is a Phase-2 comparison-engine rule the spec already calls for, §9 fix #4)</td></tr><tr><td>4</td><td><strong>Estimated points blended in</strong></td><td><code>DATA_STATUS_INVALID</code> points are kept (correct) but counted in <code>latest</code>/<code>delta</code> without distinction</td><td>"Latest" can silently be an estimate</td><td>Keep the value, but mark per-point <code>isEstimated</code> and prefer the latest <strong>validated</strong> point for headline numbers</td></tr><tr><td>5</td><td><strong>Metric catalog completeness</strong></td><td><code>metric-info.ts</code> maps a curated set; unmapped metrics fall to <code>category: "Other"</code> and are <strong>hidden</strong></td><td>Newly-seen or renamed Roblox metrics silently disappear from the UI</td><td>Add a "coverage" surface (see §6) that lists captured-but-unmapped metrics so they get classified instead of dropped; audit the map against live captures</td></tr><tr><td>6</td><td><strong>No benchmark verdict</strong></td><td>p50/p90 are drawn but not evaluated</td><td>Producer still eyeballs "above/below"</td><td>Compute an automatic <strong>"above/below Nth percentile for genre"</strong> verdict per metric (spec §9 fix #5)</td></tr><tr><td>7</td><td><strong>Unit semantics are implicit</strong></td><td>percent metrics are stored as <strong>fractions</strong> (0.42 = 42%); Robux/minutes stored raw</td><td>Fine for the UI (which multiplies), but <strong>an AI or CSV consumer will misread 0.42 as 42% unless told</strong></td><td>Make units explicit in any export (§6) — this is the single most important accuracy item for AI feeding</td></tr></tbody></table>
+<p><strong>Also worth verifying for the "what they're for" concern:</strong> the <code>kind</code> (rate/volume), <code>higherIsBetter</code>, and <code>category</code> fields in <code>metric-info.ts</code> are hand-authored. A quick pass to confirm each against Roblox's own definitions (esp. the funnel metrics and the <code>L7Average*</code> smoothed variants) removes the risk of a mislabeled metric driving a wrong-colored delta or a wrong AI conclusion.</p>
+<hr/>
+<h2>6. Proposed feature — Raw data export for AI (accuracy-first)</h2>
+<p><strong>The ask:</strong> a way to download the raw data to feed to an AI — <em>but the data has to be accurate.</em> The right design is a <strong>self-describing export</strong>: the file carries not just numbers but everything needed to interpret them correctly, so the AI can't misread units, maturity, or coverage.</p>
+<h3>6.1 Endpoint</h3>
+<p><code>GET /api/export?game={universeId}&amp;from=…&amp;to=…&amp;format=json|csv</code></p>
+<p>Server-side (reuses <code>store.ts</code>), so no logic lives in the extension.</p>
+<h3>6.2 What makes it <em>accurate</em> (the whole point)</h3>
+<p>The export is a manifest + data, not a bare table:</p>
+<pre><code>{
+  "game":   { "universeId": "10192528661", "genre": "simulation" },
+  "window": { "from": "2026-06-05", "to": "2026-07-03", "timezone": "UTC",
+              "note": "points are stamped 08:00:00Z; date is the UTC day" },
+  "metrics": [
+    {
+      "id": "PayingUsersCVR",
+      "label": "Payer Conversion",
+      "category": "Monetization",
+      "unit": "percent",              // &lt;-- explicit
+      "valueEncoding": "fraction",    // &lt;-- 0.042 means 4.2%  (CRITICAL for AI)
+      "kind": "rate",                 // rate = comparable across growth
+      "higherIsBetter": true,
+      "freshThrough": "2026-07-01",   // maturity
+      "benchmark": { "p50": [...], "p90": [...] },
+      "series": [
+        { "label": "Total", "breakdown": {},
+          "points": [ { "dateUTC": "2026-06-05", "value": 0.041,
+                        "status": "OK", "isEstimated": false } ] },
+        { "label": "Platform: Phone", "breakdown": { "Platform": "Phone" },
+          "points": [ ... ] }
+      ]
+    }
+  ],
+  "updates": [ { "title": "v1.4 rebirth rework", "occurredAt": "2026-06-20" } ],
+  "coverage": {
+    "captured":  ["PayingUsersCVR", "ForwardD1Retention", ...],
+    "unmapped":  ["SomeNewMetric"],   // captured but not in metric-info — flag, don't hide
+    "missing":   ["ForwardD30Retention"], // in the LiveOps must-have set, not captured
+    "estimatedPointCount": 12
+  }
+}</code></pre>
+<p>Accuracy guarantees baked in:</p>
+<ul><li><strong>Explicit units + <code>valueEncoding</code></strong> — no AI ever has to guess whether <code>0.42</code> is</li></ul>
+<p>  42% or 0.42 Robux. (Fixes §5 gap #7.)</p>
+<ul><li><strong>UTC labeling</strong> — every point dated on the UTC day it's stamped; timezone stated</li></ul>
+<p>  once. No silent off-by-one.</p>
+<ul><li><strong>Per-point <code>isEstimated</code></strong> — <code>DATA_STATUS_INVALID</code> surfaced, not dropped or</li></ul>
+<p>  silently trusted. (Gap #4.)</p>
+<ul><li><strong>Freshness per metric</strong> — the AI knows which windows are mature. (Gap #3.)</li><li><strong><code>kind</code> on every metric</strong> — the AI is told which numbers are safe to compare</li></ul>
+<p>  across a growth window and which need DAU-normalization. (Gap #2.)</p>
+<ul><li><strong>Coverage manifest</strong> — the AI is told what's present, what's estimated, what's</li></ul>
+<p>  <em>absent</em>, so it never infers a trend from a gap. (Gap #5.)</p>
+<h3>6.3 Formats</h3>
+<ul><li><strong>JSON</strong> — for AI/programmatic use (the manifest above).</li><li><strong>CSV</strong> — one tidy long table `game,metric,label,unit,kind,series,dateUTC,value,</li></ul>
+<p>  isEstimated,status` for spreadsheets, with a companion header row explaining the   encoding. Same accuracy fields, flattened.</p>
+<h3>6.4 Where it plugs in</h3>
+<ul><li>Extension: a "Download for AI" button next to the existing ↓ (or leave export</li></ul>
+<p>  purely on the web app — cleaner, keeps the extension dumb).</p>
+<ul><li>Web app: a download button on the dashboard header, scoped to the selected game +</li></ul>
+<p>  visible date range.</p>
+<hr/>
+<h2>7. Roadmap (from the cahier)</h2>
+<ul><li><strong>Phase 1 — largely done.</strong> Capture (passive + active), ingest/normalize/store,</li></ul>
+<p>  single-game dashboard with tiles/charts/breakdowns/benchmarks/freshness, manual   update tagging.</p>
+<ul><li><strong>Phase 1.5 — accuracy hardening (this doc, §5) + AI export (§6).</strong> Highest</li></ul>
+<p>  leverage right now; unblocks trustworthy AI.</p>
+<ul><li><strong>Phase 2 — comparison engine.</strong> Before/after an update with the rate/volume rule</li></ul>
+<p>  enforced, maturity gating, and a warning when two updates fall in one window.</p>
+<ul><li><strong>Phase 3 — AI diagnosis.</strong> Deltas + changelog → Claude → producer-format</li></ul>
+<p>  post-update report. (The export from §6 is essentially its input contract.)</p>
+<ul><li><strong>Phase 4 — multi-producer + portfolio.</strong> Auth, RLS per producer, cross-game view.</li></ul>
+<hr/>
+<h2>8. Suggested order of attack</h2>
+<table><thead><tr><th>Priority</th><th>Item</th><th>Why now</th></tr></thead><tbody><tr><td>1</td><td>Fix delta (date-based, maturity-aware, volume-annotated) — §5 #1–#3</td><td>Wrong deltas are visible in the demo and poison any AI input</td></tr><tr><td>2</td><td>Explicit units / <code>valueEncoding</code> + per-point <code>isEstimated</code> — §5 #4,#7</td><td>Cheap, and the foundation of a trustworthy export</td></tr><tr><td>3</td><td><code>/api/export</code> JSON+CSV with coverage manifest — §6</td><td>The requested feature; near-free once #2 is done</td></tr><tr><td>4</td><td>Metric-map audit + coverage surface for unmapped — §5 #5</td><td>Stops metrics silently vanishing; improves "what they're for"</td></tr><tr><td>5</td><td>Automatic benchmark verdicts — §5 #6</td><td>Turns a chart into a judgment; big demo value</td></tr></tbody></table>
+<hr/>
+<p><em>Test universe: KameHameHa Walls For Brainrots = <code>10192528661</code>, genre <code>simulation</code>.</em></p></body></html>

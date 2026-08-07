@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* Roblox Creator Hub-inspired light theme. */
+:root {
+  --rbx-bg: #f5f6f8;          /* page */
+  --rbx-surface: #ffffff;     /* cards */
+  --rbx-surface-2: #f0f2f5;   /* subtle fills */
+  --rbx-border: #e3e6ea;
+  --rbx-border-strong: #d2d7dd;
+  --rbx-ink: #1b2129;         /* primary text */
+  --rbx-ink-2: #5b6470;       /* secondary text */
+  --rbx-ink-3: #8a929c;       /* tertiary / labels */
+  --rbx-blue: #335fff;        /* Roblox blue accent */
+  --rbx-blue-ink: #2547d6;
+  --rbx-blue-wash: #eef2ff;
+  --rbx-up: #00a36c;
+  --rbx-down: #e0341d;
+  --rbx-warn: #b7791f;
+  --rbx-warn-wash: #fdf6e3;
+}
+
+@theme inline {
+  --color-background: var(--rbx-bg);
+  --color-foreground: var(--rbx-ink);
+  --font-sans: var(--font-hanken);
+}
+
+html {
+  background: var(--rbx-bg);
+}
+
+body {
+  background: var(--rbx-bg);
+  color: var(--rbx-ink);
+  font-family: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "tnum" 1, "cv01" 1;
+}
+
+/* Tabular numbers for metric values. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Thin custom scrollbars to match the refined surface. */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: #d6dae0; border-radius: 999px; border: 2px solid var(--rbx-bg); }
+*::-webkit-scrollbar-thumb:hover { background: #c2c8d0; }
+
+@keyframes rbx-rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rbx-rise { animation: rbx-rise 0.34s cubic-bezier(0.22, 1, 0.36, 1) both; }

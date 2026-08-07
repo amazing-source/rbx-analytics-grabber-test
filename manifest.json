@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "RBX Analytics Grabber (Internal · Phase 1)",
+  "version": "0.4.0",
+  "description": "Pulls all analytics for an owned Roblox game by universeId — either passively (capturing what the dashboard loads) or actively (replaying the dashboard's own requests in your session, no tab browsing). Saves every grab to the project's data/ folder and forwards it to the Indigo LiveOps web app. Own-data only. No credentials are ever read or stored.",
+  "permissions": ["storage", "downloads"],
+  "host_permissions": [
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://create.roblox.com/*"],
+      "js": ["interceptor.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://create.roblox.com/*"],
+      "js": ["collector.js"],
+      "world": "ISOLATED",
+      "run_at": "document_start"
+    }
+  ]
+}
