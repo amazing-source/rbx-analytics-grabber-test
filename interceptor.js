@@ -119,8 +119,14 @@
     if (!body || typeof body !== "object") return true;
     if (body.operation) {
       if (body.operation.done === false) {
+        // done:false with a *Result payload is a resolved-enough answer.
+        // dimensionValuesResult matters: forgetting it made every funnel-name
+        // discovery look eternally pending, so no funnel was ever pulled on a
+        // game that has two of them.
         return !!(
-          body.operation.queryResult || body.operation.metricMetadataResult
+          body.operation.queryResult ||
+          body.operation.metricMetadataResult ||
+          body.operation.dimensionValuesResult
         );
       }
       return true;
@@ -195,8 +201,14 @@
   async function execOne(request) {
     if (request.kind === "reviews") return execReviews(request);
     const bodyStr = request.body === undefined ? null : JSON.stringify(request.body);
+    // Polling is by re-POSTing the same body — the gateway keys the operation
+    // on the query, so a re-POST returns the same operation's current state.
+    // Dimension lookups (errorReporting.* especially) are the slow ones and
+    // are also the ones a whole feature hangs off, so they get a bigger
+    // budget; the exec timeout in collector.js is 90s, stay under it.
+    const maxPolls = request.kind === "dimensions" ? 20 : 10;
     let last = await rawFetch(request.url, request.method, bodyStr);
-    for (let i = 0; i < 10 && isPending(last.status) && !isResolved(last.body); i++) {
+    for (let i = 0; i < maxPolls && isPending(last.status) && !isResolved(last.body); i++) {
       await sleep(Math.min(1000 + i * 500, 4000));
       last = await rawFetch(request.url, request.method, bodyStr);
     }

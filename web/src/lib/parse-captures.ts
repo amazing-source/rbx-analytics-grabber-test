@@ -43,9 +43,33 @@ export type BenchmarkPoint = {
   metric: string;
   percentile: string; // "50" | "90"
   genre: string | null;
+  // BENCHMARK_TYPE_GENRE or BENCHMARK_TYPE_SIMILARITY — some universes are
+  // served similarity cohorts with an EMPTY genre, and a verdict must say
+  // which population it compared against.
+  benchmarkType: string | null;
   ts: string;
   date: string;
   value: number | null;
+};
+
+// One timeline annotation, from analytics-annotations. The type space is
+// enumerated by the grab (only types 7 and 16 were ever observed from the
+// dashboard, both empty) — which type carries Roblox-side incident entries is
+// exactly what this capture exists to find out. Fields beyond the type are
+// unknown until one returns rows, so the raw entry is kept verbatim.
+export type Annotation = {
+  gameId: string;
+  annotationType: number;
+  raw: unknown;
+};
+
+// A discovered dimension value (FunnelName, MessageHash, …). For MessageHash
+// the entry is the hash→text mapping the error tables need.
+export type DimensionValue = {
+  gameId: string;
+  dimension: string;
+  value: string;
+  raw: unknown;
 };
 
 export type MetadataEntry = { gameId: string; metric: string; latestAvailableTime: string };
@@ -115,6 +139,8 @@ export type ParseResult = {
   templates: GrabTemplate[];
   placeVersions: PlaceVersion[];
   feedback: Feedback[];
+  annotations: Annotation[];
+  dimensionValues: DimensionValue[];
 };
 
 function asObject(body: unknown): any {
@@ -186,6 +212,8 @@ export function parseCaptures(captures: Capture[]): ParseResult {
   const templates = new Map<string, GrabTemplate>();
   const placeVersions = new Map<string, PlaceVersion>();
   const feedback = new Map<string, Feedback>();
+  const annotations: Annotation[] = [];
+  const dimensionValues = new Map<string, DimensionValue>();
 
   function addTemplate(kind: "metric" | "benchmark", req: any) {
     // metric bodies are { resourceType, resourceId, query:{metric,...} };
@@ -253,6 +281,38 @@ export function parseCaptures(captures: Capture[]): ParseResult {
           createdUtc: created,
           date: created ? utcDate(created) : "",
         });
+      }
+      continue;
+    }
+
+    // --- Timeline annotations: GET analytics-annotations/v1/universes/{id}/annotations
+    if (/analytics-annotations\/v1\/universes\/(\d+)\/annotations/.test(url)) {
+      const gameId = url.match(/universes\/(\d+)\//)?.[1] ?? "";
+      const typeMatch = url.match(/[?&]annotationType=(\d+)/);
+      const annotationType = typeMatch ? Number(typeMatch[1]) : -1;
+      for (const a of (body as any)?.annotations ?? []) {
+        annotations.push({ gameId, annotationType, raw: a });
+      }
+      continue;
+    }
+
+    // --- Dimension values: POST .../dimensions/resource/.../id/{universeId} ---
+    // FunnelName/FunnelStep discovery, and the MessageHash hash→text mapping.
+    if (/analytics-query-gateway\/v1\/dimensions\/resource/.test(url)) {
+      const gameId = String(universeIdFromUrl(url) ?? "");
+      const groups = (body as any)?.operation?.dimensionValuesResult?.values ?? [];
+      for (const g of groups) {
+        const dim = g?.dimension?.name;
+        if (!dim) continue;
+        for (const v of g.values ?? []) {
+          if (v?.value == null) continue;
+          dimensionValues.set(`${gameId}|${dim}|${v.value}`, {
+            gameId,
+            dimension: String(dim),
+            value: String(v.value),
+            raw: v,
+          });
+        }
       }
       continue;
     }
@@ -339,7 +399,10 @@ export function parseCaptures(captures: Capture[]): ParseResult {
             gameId,
             metric,
             percentile,
-            genre: dp.metadata?.genre ?? null,
+            // genre arrives as "" on universes served similarity cohorts —
+            // empty is "no genre benchmark", not a parse failure
+            genre: dp.metadata?.genre || null,
+            benchmarkType: dp.metadata?.benchmarkType ?? null,
             ts: dp.time,
             date: utcDate(dp.time),
             value: typeof dp.value === "number" ? dp.value : null,
@@ -378,5 +441,7 @@ export function parseCaptures(captures: Capture[]): ParseResult {
     templates: [...templates.values()],
     placeVersions: [...placeVersions.values()].sort((a, b) => b.version - a.version),
     feedback: [...feedback.values()].sort((a, b) => b.createdUtc.localeCompare(a.createdUtc)),
+    annotations,
+    dimensionValues: [...dimensionValues.values()],
   };
 }

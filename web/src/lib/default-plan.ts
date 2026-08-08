@@ -18,24 +18,43 @@
 
 import { templateKey, type GrabTemplate } from "./parse-captures";
 
+// Where a query shape's claim to validity comes from:
+//   observed — matched against a request the dashboard itself made (a capture
+//              in data/raw/). The gold standard; a failure here is a real bug.
+//   proven   — our own construction, but it has returned data on a real
+//              universe (see data/games/*/grab-report.json).
+//   inferred — neither. An inferred shape's failure or empty result says
+//              NOTHING about the game. `npm run audit-plan` checks these tags
+//              against the capture corpus and fails on untagged guesses.
+export type Provenance = "observed" | "proven" | "inferred";
+
 export type SeedTemplate = GrabTemplate & {
   optional?: boolean;
+  provenance?: Provenance;
 };
 
 const DAY = "METRIC_GRANULARITY_ONE_DAY";
 const HOUR = "METRIC_GRANULARITY_ONE_HOUR";
+const HALF = "METRIC_GRANULARITY_HALF_HOUR";
 const NONE = "METRIC_GRANULARITY_NONE";
 
 // Dimension VALUES are per-universe and must be discovered, never assumed.
 // Hardcoding `FUNNEL_TYPE_ONBOARDING` (lifted from a different game's capture)
 // made every funnel request return 200-with-no-rows on a game whose funnels are
 // developer-named — which reads exactly like "the feature isn't used". It isn't.
+// All of these are shapes the dashboard itself sends (observed 2026-08-07/08).
+// errorReporting.dimensions/MessageHash is the async hash→text lookup — the
+// response may arrive done:false and is polled by the replayer.
 export const DISCOVER_DIMENSIONS = [
   { namespace: "recommendedEvents.funnel.dimensions", name: "FunnelName" },
+  { namespace: "recommendedEvents.funnel.dimensions", name: "FunnelStep" },
   { namespace: "recommendedEvents.funnel.dimensions", name: "CustomField1" },
   { namespace: "recommendedEvents.funnel.dimensions", name: "CustomField2" },
   { namespace: "recommendedEvents.funnel.dimensions", name: "CustomField3" },
   { namespace: "creatorAnalytics.dimensions", name: "PlaceVersion" },
+  { namespace: "errorReporting.dimensions", name: "Place" },
+  { namespace: "errorReporting.dimensions", name: "FirstSeenPlaceVersion" },
+  { namespace: "errorReporting.dimensions", name: "MessageHash" },
 ];
 
 // Discovered dimension values, plus `__places` — the universe's place IDs,
@@ -58,6 +77,7 @@ type Spec = {
   filter?: { dimension: string; values: string[]; operation?: string }[];
   limit?: number;
   optional?: boolean;
+  provenance?: Provenance;
 };
 
 // Order = replay order, so the metrics that carry the diagnosis land first if a
@@ -86,7 +106,10 @@ const SPECS: Spec[] = [
   { metric: "ForwardD7Retention", granularity: DAY, breakdown: ["Platform"], optional: true },
   { metric: "ForwardD30Retention", granularity: DAY },
   { metric: "DauMauStickiness", granularity: DAY },
-  { metric: "DailyCohortRetention", granularity: DAY, breakdown: ["CohortDay"] },
+  // 400s on every universe tried — the query shape is wrong and the correct
+  // one has never been captured (browse the Retention tab once to learn it).
+  // Optional until then: its failure must not read as a problem with the game.
+  { metric: "DailyCohortRetention", granularity: DAY, breakdown: ["CohortDay"], optional: true },
   { metric: "WeeklyCohortRetention", granularity: DAY, breakdown: ["CohortDay"], optional: true },
   { metric: "L7AverageForwardD1Retention", granularity: DAY },
   { metric: "L7AverageForwardD1Retention", granularity: DAY, breakdown: ["AcquisitionSource"], filter: SOURCES },
@@ -179,7 +202,7 @@ const SPECS: Spec[] = [
 // `ClientCrashRate15m` is the rate to trend (crash COUNT tracks DAU, so it
 // falls when the game shrinks and looks like an improvement). `ClientFpsP10` is
 // the low-end tail — the players most likely to churn over performance.
-function perfSpecs(places: string[]): Spec[] {
+function perfSpecs(places: string[], firstSeenVersions: string[] = []): Spec[] {
   // No places discovered => emit nothing. An absent request is honest; a
   // request we know will 400 just refills the failure table with noise.
   if (!places.length) return [];
@@ -190,8 +213,9 @@ function perfSpecs(places: string[]): Spec[] {
     breakdown,
     filter: place,
     optional,
+    provenance: "observed",
   });
-  return [
+  const specs: Spec[] = [
     // Crashes / stability
     daily("ClientCrashRate15m"),
     daily("ClientCrashCount"),
@@ -217,6 +241,22 @@ function perfSpecs(places: string[]): Spec[] {
     daily("CpuTimeAvg", ["CpuTimeCategory"], true),
     daily("MemoryUsageAvg", ["MemoryUsageCategory"], true),
     daily("PeakConcurrentPlayers"),
+    // Observed on the dashboard's own perf tab (2026-08-08 capture) but long
+    // missing from this plan:
+    daily("ServerFrameRateP10"),
+    daily("SessionDurationSecondsAvg"),
+    daily("SessionDurationSecondsAvg", ["Platform"], true),
+    {
+      metric: "MemoryUsageAvg",
+      granularity: NONE,
+      breakdown: ["ServerAgeBucket"],
+      filter: place,
+      optional: true,
+      provenance: "observed",
+    },
+    // ClientFpsAvg is proven by the dashboard's CSV export ("Client frame
+    // rate"), but no captured request carries it yet — inferred until one does.
+    { metric: "ClientFpsAvg", granularity: DAY, filter: place, optional: true, provenance: "inferred" },
     // Error reporting. MessageHash — NOT "ErrorMessage", which was a guess and
     // 400'd — is what identifies an individual error. The NOT_CONTAINS "-1"
     // filter is the dashboard's way of dropping unhashed/unknown entries.
@@ -229,9 +269,67 @@ function perfSpecs(places: string[]): Spec[] {
         ...place,
       ],
       limit: 500,
+      provenance: "observed",
     },
     daily("ErrorCount"),
     daily("ErrorCount", ["LogSource"]),
+  ];
+  // "Errors this deploy introduced": ErrorCount filtered to versions >= the
+  // newest deploy that has reported errors. FirstSeenPlaceVersion is a FILTER
+  // with GTE (the breakdown form 400s); its values are per-universe and come
+  // from discovery — none discovered, no request.
+  const newest = firstSeenVersions
+    .map((v) => Number(v))
+    .filter((v) => Number.isFinite(v))
+    .sort((a, b) => b - a)[0];
+  if (newest != null) {
+    specs.push({
+      metric: "ErrorCount",
+      granularity: NONE,
+      filter: [
+        ...place,
+        {
+          dimension: "FirstSeenPlaceVersion",
+          values: [String(newest)],
+          operation: "FILTER_OPERATION_GTE",
+        },
+      ],
+      provenance: "observed",
+    });
+  }
+  return specs;
+}
+
+// The six metrics the dashboard demonstrably serves at 30-minute resolution
+// (proven by its own CSV exports in data/verify/), plus ServerCrashCount,
+// whose half-hour shape was captured directly. This is the "which hours are
+// spiking" view — the daily series structurally cannot answer that. The
+// window is clamped to the final 24h of the grab window in getGrabPlan: the
+// gateway silently truncates long sub-daily windows, and the dashboard itself
+// only ever asks for ~a day.
+function halfHourSpecs(places: string[]): Spec[] {
+  if (!places.length) return [];
+  const place = [{ dimension: "Place", values: places }];
+  const hh = (metric: string, provenance: Provenance, breakdown?: string[], optional?: boolean): Spec => ({
+    metric,
+    granularity: HALF,
+    breakdown,
+    filter: place,
+    optional,
+    provenance,
+  });
+  return [
+    hh("ErrorCount", "observed"),
+    hh("ErrorCount", "observed", ["LogSource"], true),
+    hh("ServerCrashCount", "observed"),
+    hh("ServerCrashCount", "observed", ["CrashType"], true),
+    // CSV-proven at half-hour; no captured request yet — optional so a 400
+    // reads "n/a", not a finding.
+    hh("ClientCrashRate15m", "inferred", undefined, true),
+    hh("ClientFpsAvg", "inferred", undefined, true),
+    hh("PeakConcurrentPlayers", "inferred", undefined, true),
+    hh("OomUnexpectedExits", "inferred", undefined, true),
+    hh("SessionDurationSecondsAvg", "inferred", undefined, true),
   ];
 }
 
@@ -263,17 +361,27 @@ export const DEFAULT_BENCHMARK_METRICS = [
 // requests reproduce the dashboard's table; the ONE_DAY ones are the reason
 // this matters — a step's churn over time is how you see a hook break on a
 // specific date rather than as a 28-day average.
-function funnelSpecs(names: string[]): Spec[] {
+function funnelSpecs(names: string[], steps: string[] = []): Spec[] {
   const out: Spec[] = [];
   for (const name of names) {
     const f = [{ dimension: "FunnelName", values: [name] }];
+    // The dashboard filters some funnel queries by FunnelName AND FunnelStep
+    // (all discovered steps listed). Where that is the observed shape, emit
+    // it exactly — the FunnelName-only variant of FunnelUserStepCompletionRate
+    // has never been seen and `npm run audit-plan` calls it a guess.
+    const fs_ = steps.length
+      ? [...f, { dimension: "FunnelStep", values: steps }]
+      : null;
+    const obs = "observed" as const;
     out.push(
-      { metric: "FunnelUserStepCompletionRate", granularity: NONE, breakdown: ["FunnelStep"], filter: f },
-      { metric: "FunnelUserChurnRate", granularity: NONE, breakdown: ["FunnelStep"], filter: f },
-      { metric: "FunnelUserTotalCount", granularity: NONE, breakdown: ["FunnelStep"], filter: f },
-      { metric: "FunnelUserTotalCount", granularity: NONE, filter: f },
-      { metric: "FunnelUserOverallCompletionRate", granularity: NONE, filter: f },
-      { metric: "FunnelStepTotalCount", granularity: NONE, breakdown: ["FunnelStep"], filter: f },
+      fs_
+        ? { metric: "FunnelUserStepCompletionRate", granularity: NONE, breakdown: ["FunnelStep"], filter: fs_, provenance: obs }
+        : { metric: "FunnelUserStepCompletionRate", granularity: NONE, breakdown: ["FunnelStep"], filter: f, optional: true },
+      { metric: "FunnelUserChurnRate", granularity: NONE, breakdown: ["FunnelStep"], filter: f, provenance: obs },
+      { metric: "FunnelUserTotalCount", granularity: NONE, breakdown: ["FunnelStep"], filter: f, provenance: obs },
+      { metric: "FunnelUserTotalCount", granularity: NONE, filter: f, provenance: obs },
+      { metric: "FunnelUserOverallCompletionRate", granularity: NONE, filter: f, provenance: obs },
+      { metric: "FunnelStepTotalCount", granularity: NONE, breakdown: ["FunnelStep"], filter: f, provenance: obs },
       // over time — the diagnostic pull
       { metric: "FunnelUserChurnRate", granularity: DAY, breakdown: ["FunnelStep"], filter: f, optional: true },
       { metric: "FunnelUserStepCompletionRate", granularity: DAY, breakdown: ["FunnelStep"], filter: f, optional: true },
@@ -281,13 +389,15 @@ function funnelSpecs(names: string[]): Spec[] {
       { metric: "FunnelUserTotalCount", granularity: DAY, breakdown: ["FunnelStep"], filter: f, optional: true },
       // The only funnel metrics Roblox itself serves as a daily series — this
       // is how you see a progression loop break on a date instead of as a
-      // 28-day average. Highest-value funnel pull there is.
-      { metric: "FunnelCohortCompletionRate", granularity: DAY, breakdown: ["FunnelStep"], filter: f },
-      { metric: "FunnelCohortSessionCompletionRate", granularity: DAY, breakdown: ["FunnelStep"], filter: f },
+      // 28-day average. The dashboard's own capture carries an extra
+      // FunnelStep filter; our FunnelName-only variant is unproven until a
+      // grab returns data, so it stays optional.
+      { metric: "FunnelCohortCompletionRate", granularity: DAY, breakdown: ["FunnelStep"], filter: f, optional: true },
+      { metric: "FunnelCohortSessionCompletionRate", granularity: DAY, breakdown: ["FunnelStep"], filter: f, optional: true },
       // event-counted variants
       { metric: "FunnelStepCompletionRate", granularity: NONE, breakdown: ["FunnelStep"], filter: f, optional: true },
-      { metric: "FunnelStepChurnRate", granularity: NONE, breakdown: ["FunnelStep"], filter: f, optional: true },
-      { metric: "FunnelStepOverallCompletionRate", granularity: NONE, filter: f, optional: true }
+      { metric: "FunnelStepChurnRate", granularity: NONE, breakdown: ["FunnelStep"], filter: f, optional: true, provenance: obs },
+      { metric: "FunnelStepOverallCompletionRate", granularity: NONE, filter: f, optional: true, provenance: obs }
     );
   }
   return out;
@@ -308,6 +418,9 @@ function toTemplate(s: Spec): SeedTemplate {
     resourceType: "RESOURCE_TYPE_UNIVERSE",
     query,
     optional: s.optional,
+    // Core specs have all returned data on real universes (grab reports);
+    // anything marked optional without an explicit tag is a guess.
+    provenance: s.provenance ?? (s.optional ? "inferred" : "proven"),
   };
 }
 
@@ -316,15 +429,21 @@ function toTemplate(s: Spec): SeedTemplate {
 // guessing a value and manufacturing a confident-looking empty result.
 export function buildSeedTemplates(discovered?: Discovered): SeedTemplate[] {
   const funnelNames = discovered?.FunnelName ?? [];
+  const funnelSteps = discovered?.FunnelStep ?? [];
   const places = discovered?.__places ?? [];
+  const firstSeen = discovered?.FirstSeenPlaceVersion ?? [];
   return [
     ...SPECS.map(toTemplate),
-    ...perfSpecs(places).map(toTemplate),
-    ...funnelSpecs(funnelNames).map(toTemplate),
+    ...perfSpecs(places, firstSeen).map(toTemplate),
+    ...halfHourSpecs(places).map(toTemplate),
+    ...funnelSpecs(funnelNames, funnelSteps).map(toTemplate),
     ...BENCHMARK_TEMPLATES,
   ];
 }
 
+// All optional: benchmarks are simply not published for every metric on every
+// universe — Stickiness came back empty on both games tried, and an empty
+// benchmark is an answer, not a failure.
 const BENCHMARK_TEMPLATES: SeedTemplate[] = [
   ...DEFAULT_BENCHMARK_METRICS.map((metric) => {
     const query = { metric, filter: [] as unknown[] };
@@ -334,6 +453,13 @@ const BENCHMARK_TEMPLATES: SeedTemplate[] = [
       metric,
       resourceType: "RESOURCE_TYPE_UNIVERSE",
       query,
+      optional: true,
+      provenance:
+        metric === "RFYL7PlayDays"
+          ? ("observed" as const)
+          : metric === "DauMauStickiness"
+          ? ("inferred" as const)
+          : ("proven" as const),
     };
   }),
 ];

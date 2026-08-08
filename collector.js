@@ -359,28 +359,49 @@
       // Funnel names are developer-defined; assuming them produced valid
       // queries that matched nothing, which is worse than no data at all.
       const discovery = plan.discovery || [];
+      const discoveryCaptures = [];
+      const discoveryAttempts = [];
       if (discovery.length) {
         setActive(`${u}: discovering dimensions…`);
         const discovered = {};
-        const discoveryCaptures = [];
         await runPool(discovery, 3, async (request) => {
           const r = await execViaMain(request);
+          // Every discovery attempt goes in the grab report too — a silent
+          // discovery failure reads as "this game has no funnels", which is
+          // exactly the class of false finding this tool must not produce.
+          const att = {
+            metric: null,
+            kind: request.kind,
+            granularity: "",
+            breakdown: request.dimension || "",
+            filter: "",
+            optional: true,
+            provenance: "observed",
+            status: r.status || 0,
+            ok: false,
+            points: 0,
+            error: r.error || null,
+          };
+          discoveryAttempts.push(att);
           if (!r.ok || !r.body) return;
           discoveryCaptures.push({ url: r.url, method: r.method || "POST", via: "active", ts: Date.now(), reqBody: r.reqBody, body: r.body });
           // the universe's places — needed to ask for version history
           if (request.kind === "places") {
             const ids = (r.body.data || []).map((p) => String(p.id ?? p.placeId ?? "")).filter(Boolean);
+            att.ok = Array.isArray(r.body.data);
+            att.points = ids.length;
             if (ids.length) discovered.__places = [...new Set([...(discovered.__places || []), ...ids])];
             return;
           }
           const groups = r.body?.operation?.dimensionValuesResult?.values || [];
+          att.ok = !!r.body?.operation?.dimensionValuesResult;
           for (const g of groups) {
             const name = g.dimension?.name || request.dimension;
             const vals = (g.values || []).map((v) => v.value).filter(Boolean);
+            att.points += vals.length;
             if (name && vals.length) discovered[name] = [...new Set([...(discovered[name] || []), ...vals])];
           }
         });
-        if (discoveryCaptures.length) captures.push(...discoveryCaptures);
         const found = Object.entries(discovered).map(([k, v]) => `${k.replace("__", "")}:${v.length}`).join(" ");
         setActive(`${u}: discovered ${found || "nothing"} — replanning…`);
         const re = await webappFetch(`${base}/api/grab-plan`, { universe: u, start, end, discovered }, 30000);
@@ -411,20 +432,38 @@
           breakdown: (q.breakdown || []).flatMap((b) => b.dimensions || []).join("+"),
           filter: (q.filter || []).map((f) => `${f.dimension}=${(f.values || []).join("/")}`).join(","),
           optional: !!request.optional,
+          provenance: request.provenance || null,
           status: r.status || 0,
           ok: false,
           points: 0,
           error: r.error || null,
         };
         if (r.ok && r.body) {
+          const b = r.body;
+          // Success detection must understand every body shape the plan can
+          // request. It once only knew the metrics-gateway shapes, so
+          // saved-versions responses with 100 rows were reported as FAILED
+          // while their data sat in the export — the report's one job,
+          // inverted.
           if (request.kind === "reviews") {
             // Feedback: the interceptor already merged every cursor page, so the
             // point count is just how many reviews came back.
-            attempt.points = Array.isArray(r.body.reviews) ? r.body.reviews.length : 0;
-            attempt.ok = Array.isArray(r.body.reviews);
+            attempt.points = Array.isArray(b.reviews) ? b.reviews.length : 0;
+            attempt.ok = Array.isArray(b.reviews);
+          } else if (Array.isArray(b.data)) {
+            // develop.roblox.com list bodies: places, saved-versions
+            attempt.points = b.data.length;
+            attempt.ok = true;
+          } else if (Array.isArray(b.annotations)) {
+            attempt.points = b.annotations.length;
+            attempt.ok = true;
+          } else if (b.operation && b.operation.dimensionValuesResult) {
+            attempt.points = (b.operation.dimensionValuesResult.values || [])
+              .reduce((s, g) => s + ((g.values || []).length), 0);
+            attempt.ok = true;
           } else {
-            const meta = r.body.operation?.metricMetadataResult?.metadata;
-            const values = r.body.operation?.queryResult?.values ?? r.body.result?.values ?? (meta ? [] : null);
+            const meta = b.operation?.metricMetadataResult?.metadata;
+            const values = b.operation?.queryResult?.values ?? b.result?.values ?? (meta ? [] : null);
             attempt.points = meta
               ? meta.length
               : (values || []).reduce((s, v) => s + ((v.dataPoints || []).length), 0);
@@ -448,20 +487,26 @@
         planSource: plan.source,
         discovered: plan.discovered || null,
         requested: reqs.length,
-        attempts,
+        // Discovery attempts lead the report — a failed discovery silently
+        // shrinks the whole plan (no funnel names = no funnel requests).
+        attempts: [...discoveryAttempts, ...attempts],
       };
 
-      if (!results.length) {
+      // Discovery captures ship with the grab: they are the provenance for
+      // which dimension values exist. They used to stay in the panel buffer,
+      // so no raw bundle contained the evidence discovery acted on.
+      const delivery = [...discoveryCaptures, ...results];
+      if (!delivery.length) {
         // Still deliver the report — knowing every request failed, and with
         // what status, is the whole point.
         await deliver([], u, report);
         setActive(`${u}: 0/${reqs.length} returned data — see data/games/${u}/grab-report.md`, "#ff7c7c");
         continue;
       }
-      captures.push(...results);
+      captures.push(...delivery);
       render();
 
-      const out = await deliver(results, u, report);
+      const out = await deliver(delivery, u, report);
       setActive(`${u}: ${out.msg}`, !out.ok ? "#ff7c7c" : out.degraded ? "#ffd27c" : "#7cd992");
     }
   }

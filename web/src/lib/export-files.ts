@@ -87,10 +87,21 @@ export type ExportMetric = {
 export type GameExport = {
   universeId: string;
   genre: string | null;
+  // BENCHMARK_TYPE_GENRE or BENCHMARK_TYPE_SIMILARITY — decides what a
+  // benchmark verdict may claim to compare against. Some universes get
+  // similarity cohorts with an empty genre; that is the API's answer, not a
+  // parse failure.
+  benchmarkType?: string | null;
   generatedAt: string;
   metrics: Record<string, ExportMetric>;
   benchmarks: Record<string, Record<string, ExportPoint[]>>; // metric -> percentile -> points
   quality?: QualityEntry[];
+  // Timeline annotations by type, raw — kept verbatim until a type is seen
+  // returning rows and its schema is known.
+  annotations?: { annotationType: number; raw: unknown }[];
+  // MessageHash -> human-readable error text (null until the async dimensions
+  // lookup has been captured for that hash).
+  messageHashes?: Record<string, string | null>;
 };
 
 // Series identity on disk includes granularity — the same breakdown pulled
@@ -142,7 +153,39 @@ function mergeGame(prev: GameExport | null, gameId: string, r: ParseResult): Gam
   out.generatedAt = new Date().toISOString();
   const quality: QualityEntry[] = [];
 
-  for (const b of r.benchmarks) if (b.gameId === gameId && b.genre) out.genre = b.genre;
+  for (const b of r.benchmarks) {
+    if (b.gameId !== gameId) continue;
+    if (b.genre) out.genre = b.genre;
+    if (b.benchmarkType) out.benchmarkType = b.benchmarkType;
+  }
+
+  // Annotations accumulate (deduped on their serialized form).
+  const annotationsIn = (r.annotations ?? []).filter((a) => a.gameId === gameId);
+  if (annotationsIn.length) {
+    const seen = new Set((out.annotations ?? []).map((a) => `${a.annotationType}|${JSON.stringify(a.raw)}`));
+    for (const a of annotationsIn) {
+      const k = `${a.annotationType}|${JSON.stringify(a.raw)}`;
+      if (!seen.has(k)) {
+        (out.annotations ??= []).push({ annotationType: a.annotationType, raw: a.raw });
+        seen.add(k);
+      }
+    }
+  }
+
+  // MessageHash -> text. Field names on the value entries are not yet known
+  // for every namespace, so take the first plausible text-bearing field.
+  for (const dv of r.dimensionValues ?? []) {
+    if (dv.gameId !== gameId || dv.dimension !== "MessageHash") continue;
+    const raw = dv.raw as Record<string, unknown> | null;
+    const text =
+      (raw &&
+        ((raw.displayValue as string) ||
+          (raw.displayName as string) ||
+          (raw.text as string) ||
+          (raw.description as string))) ||
+      null;
+    (out.messageHashes ??= {})[dv.value] = text ?? out.messageHashes?.[dv.value] ?? null;
+  }
 
   const hashes = new Map(r.catalog.filter((c) => c.gameId === gameId).map((c) => [c.metric, c.hash]));
   // metrics/metadata has no universeId in its URL — freshness is global per metric.
@@ -649,11 +692,20 @@ function benchmarkVerdict(g: GameExport, m: ExportMetric, latest: number | null)
     const pts = (b[pct] ?? []).filter((p) => p.value != null);
     return pts.length ? pts[pts.length - 1].value! : null;
   };
+  // Say what the benchmark actually compared against: a genre cohort, or a
+  // "similar experiences" cohort (served with an empty genre). Claiming
+  // "for genre" off a similarity benchmark is a false precision.
+  const cohort =
+    g.benchmarkType === "BENCHMARK_TYPE_SIMILARITY"
+      ? "similar games"
+      : g.genre
+      ? "genre"
+      : "peer cohort";
   const p50 = lastOf("50");
   const p90 = lastOf("90");
-  if (p90 != null && latest >= p90) return "top 10% for genre";
-  if (p50 != null && latest >= p50) return "above genre median";
-  if (p50 != null) return "below genre median";
+  if (p90 != null && latest >= p90) return `top 10% of ${cohort}`;
+  if (p50 != null && latest >= p50) return `above ${cohort} median`;
+  if (p50 != null) return `below ${cohort} median`;
   return "";
 }
 
@@ -780,6 +832,73 @@ function catalogJson(g: GameExport) {
   };
 }
 
+// Annotations by type. Until a type returns rows its schema is unknown, so
+// entries render as compact JSON — the point is (a) which types carry data at
+// all and (b) the authoritative "was it us or Roblox" record, verbatim.
+function annotationsMd(g: GameExport): string | null {
+  const anns = g.annotations ?? [];
+  if (!anns.length) return null;
+  const byType = new Map<number, unknown[]>();
+  for (const a of anns) (byType.get(a.annotationType) ?? byType.set(a.annotationType, []).get(a.annotationType)!).push(a.raw);
+  const out: string[] = [];
+  out.push(`# Timeline annotations — universe ${g.universeId}`);
+  out.push("");
+  out.push(
+    "Native Roblox annotations, by annotationType. This is the authoritative platform-side signal — cross-reference incident dates here BEFORE attributing a spike to a deploy or to Roblox. A type absent from this file returned no rows in the grabbed window."
+  );
+  out.push("");
+  for (const [type, rows] of [...byType.entries()].sort((a, b) => a[0] - b[0])) {
+    out.push(`## annotationType=${type} (${rows.length})`);
+    out.push("");
+    for (const rw of rows) out.push("- `" + JSON.stringify(rw) + "`");
+    out.push("");
+  }
+  return out.join("\n");
+}
+
+// Individual errors: ErrorCount broken down by MessageHash (window aggregate),
+// joined with whatever hash→text mappings have been captured. Errors are
+// heavily concentrated — one signature was 52% of 12.4M events — so even a
+// text-less top-20 is actionable.
+function errorsMd(g: GameExport): string | null {
+  const m = g.metrics["ErrorCount"];
+  if (!m) return null;
+  const hashSeries = m.series.filter(
+    (s) => s.granularity === "METRIC_GRANULARITY_NONE" && s.breakdown?.MessageHash
+  );
+  if (!hashSeries.length) return null;
+  const rows = hashSeries
+    .map((s) => {
+      const latest = [...s.points].reverse().find((p) => p.value != null);
+      return { hash: s.breakdown.MessageHash, value: latest?.value ?? 0 };
+    })
+    .filter((r) => r.value > 0)
+    .sort((a, b) => b.value - a.value);
+  if (!rows.length) return null;
+  const total = rows.reduce((s, r) => s + r.value, 0);
+  const out: string[] = [];
+  out.push(`# Error signatures — universe ${g.universeId}`);
+  out.push("");
+  out.push(
+    `${rows.length} distinct MessageHash signatures, ${total.toLocaleString("en-US")} events in the captured window. Text comes from the async dimensions lookup and is null until that capture succeeds for a hash.`
+  );
+  out.push("");
+  out.push("| # | Share | Events | MessageHash | Text |");
+  out.push("|---|---|---|---|---|");
+  rows.slice(0, 50).forEach((r, i) => {
+    const text = g.messageHashes?.[r.hash] ?? "—";
+    out.push(
+      `| ${i + 1} | ${((r.value / total) * 100).toFixed(1)}% | ${r.value.toLocaleString("en-US")} | \`${r.hash}\` | ${text} |`
+    );
+  });
+  if (rows.length > 50) {
+    out.push("");
+    out.push(`_${rows.length - 50} further signature(s) in \`metrics/ErrorCount.csv\`._`);
+  }
+  out.push("");
+  return out.join("\n");
+}
+
 const ROOT_README = `# data/ — the file mirror
 
 Every ingest writes here as well as to Supabase. Nothing in this folder needs
@@ -856,6 +975,7 @@ export type GrabAttempt = {
   breakdown: string;
   filter: string;
   optional: boolean;
+  provenance?: "observed" | "proven" | "inferred" | null;
   status: number;
   ok: boolean;
   points: number;
@@ -878,6 +998,12 @@ function grabReportMd(r: GrabReport): string {
   const ok = r.attempts.filter((a) => a.ok && a.points > 0);
   const empty = r.attempts.filter((a) => a.ok && a.points === 0);
   const failed = r.attempts.filter((a) => !a.ok);
+  // An inferred shape's failure is expected noise; an observed/proven shape's
+  // failure is a real problem (the dashboard sends this exact request, or it
+  // has returned data before). Mixing them is how 37 broken guesses once read
+  // as "this universe has no performance data".
+  const failedReal = failed.filter((a) => a.provenance === "observed" || a.provenance === "proven");
+  const failedInferred = failed.filter((a) => a.provenance !== "observed" && a.provenance !== "proven");
   const shape = (a: GrabAttempt) =>
     [a.granularity.replace("METRIC_GRANULARITY_", ""), a.breakdown && `by ${a.breakdown}`, a.filter && `where ${a.filter}`]
       .filter(Boolean).join(" · ");
@@ -893,18 +1019,29 @@ function grabReportMd(r: GrabReport): string {
       .map(([k, v]) => `**${k}**: ${v.join(", ")}`);
     out.push(`- Discovered dimension values: ${d.length ? d.join(" · ") : "_none_"}`);
   }
-  out.push(`- Requested ${r.requested} · **${ok.length} returned data** · ${empty.length} empty · ${failed.length} failed`);
-  out.push("");
-  out.push("`optional` requests are query shapes inferred rather than observed on a real dashboard — a failure there usually means the dimension isn't valid for this universe, not that something is broken.");
+  out.push(`- Requested ${r.requested} · **${ok.length} returned data** · ${empty.length} empty · ${failed.length} failed (${failedReal.length} on observed/proven shapes)`);
   out.push("");
 
-  if (failed.length) {
-    out.push("## Failed");
+  if (failedReal.length) {
+    out.push("## Failed — observed/proven shapes (real problems)");
     out.push("");
-    out.push("| Metric | Shape | HTTP | optional | Error |");
-    out.push("|---|---|---|---|---|");
-    for (const a of failed)
-      out.push(`| ${a.metric ?? "—"} | ${shape(a) || "—"} | ${a.status || "—"} | ${a.optional ? "yes" : "**no**"} | ${a.error ?? "—"} |`);
+    out.push("The dashboard itself sends these shapes (or they have returned data before). A failure here means capture is broken or the API changed — it is never evidence about the game.");
+    out.push("");
+    out.push("| Metric | Kind | Shape | HTTP | Provenance | Error |");
+    out.push("|---|---|---|---|---|---|");
+    for (const a of failedReal)
+      out.push(`| ${a.metric ?? "—"} | ${a.kind} | ${shape(a) || "—"} | ${a.status || "—"} | ${a.provenance} | ${a.error ?? "—"} |`);
+    out.push("");
+  }
+  if (failedInferred.length) {
+    out.push("## Failed — inferred shapes (probably not valid here)");
+    out.push("");
+    out.push("Query shapes we constructed without a captured example. A failure usually means the dimension isn't valid for this universe. **Never report these as findings about the game.**");
+    out.push("");
+    out.push("| Metric | Kind | Shape | HTTP | optional | Error |");
+    out.push("|---|---|---|---|---|---|");
+    for (const a of failedInferred)
+      out.push(`| ${a.metric ?? "—"} | ${a.kind} | ${shape(a) || "—"} | ${a.status || "—"} | ${a.optional ? "yes" : "**no**"} | ${a.error ?? "—"} |`);
     out.push("");
   }
   if (empty.length) {
@@ -1067,6 +1204,16 @@ export async function exportToFiles(r: ParseResult): Promise<ExportSummary> {
     const quality = dataQualityMd(merged);
     if (quality) {
       await fs.writeFile(path.join(gameDir, "data-quality.md"), quality, "utf8");
+      files++;
+    }
+    const anns = annotationsMd(merged);
+    if (anns) {
+      await fs.writeFile(path.join(gameDir, "annotations.md"), anns, "utf8");
+      files++;
+    }
+    const errs = errorsMd(merged);
+    if (errs) {
+      await fs.writeFile(path.join(gameDir, "errors.md"), errs, "utf8");
       files++;
     }
 

@@ -136,7 +136,15 @@ const API = "https://apis.roblox.com";
 
 export type GrabRequest = {
   id: string;
-  kind: "metric" | "benchmark" | "metadata" | "dimensions" | "places" | "placeVersions" | "reviews";
+  kind:
+    | "metric"
+    | "benchmark"
+    | "metadata"
+    | "dimensions"
+    | "places"
+    | "placeVersions"
+    | "reviews"
+    | "annotations";
   metric: string | null;
   dimension?: string;
   placeId?: string;
@@ -144,6 +152,10 @@ export type GrabRequest = {
   method: "POST" | "GET";
   body: unknown;
   optional?: boolean; // a non-200 here is expected, not a failure
+  // observed = the dashboard itself sends this shape; proven = ours but it
+  // has returned data on a real universe; inferred = a guess whose failure
+  // says nothing about the game. Flows into the grab report.
+  provenance?: "observed" | "proven" | "inferred";
 };
 
 export type GrabPlan = {
@@ -159,15 +171,25 @@ export type GrabPlan = {
 
 // The metrics gateway rejects a window that isn't aligned to its granularity,
 // and a 28-day window at minute granularity is both useless and enormous.
+// Half-hour windows are additionally clamped to the FINAL 24h of the request:
+// the gateway silently truncates long sub-daily windows (a 744-hour request
+// came back with ~240 hours), and the dashboard itself only asks for ~a day.
 function alignWindow(granularity: string | undefined, startTime: string, endTime: string) {
-  const snap = (iso: string, unit: "day" | "hour") => {
+  const snap = (iso: string, unit: "day" | "hour" | "half") => {
     const d = new Date(iso);
     if (unit === "day") d.setUTCHours(0, 0, 0, 0);
+    else if (unit === "half") d.setUTCMinutes(d.getUTCMinutes() >= 30 ? 30 : 0, 0, 0);
     else d.setUTCMinutes(0, 0, 0);
     return d.toISOString();
   };
   if (granularity === "METRIC_GRANULARITY_ONE_HOUR") {
     return { startTime: snap(startTime, "hour"), endTime: snap(endTime, "hour") };
+  }
+  if (granularity === "METRIC_GRANULARITY_HALF_HOUR") {
+    const end = snap(endTime, "half");
+    const dayBack = new Date(new Date(end).getTime() - 86_400_000).toISOString();
+    const start = snap(startTime, "half") > dayBack ? snap(startTime, "half") : dayBack;
+    return { startTime: start, endTime: end };
   }
   return { startTime: snap(startTime, "day"), endTime: snap(endTime, "day") };
 }
@@ -259,6 +281,31 @@ export function getReviewRequests(
   }));
 }
 
+// Update annotations — the authoritative "was it us or Roblox" feed. The
+// dashboard was only ever seen requesting types 7 (funnel) and 16, both empty
+// in their windows; which type carries platform-incident entries is unknown,
+// so enumerate the type space and let the report say which returned rows.
+// Same URL shape as the dashboard's own requests, one GET per type — cheap.
+const ANNOTATION_TYPE_MAX = 24;
+
+export function getAnnotationRequests(
+  universeId: string,
+  startTime: string,
+  endTime: string
+): GrabRequest[] {
+  const win = `inclusiveStartUtcTime=${encodeURIComponent(startTime)}&inclusiveEndUtcTime=${encodeURIComponent(endTime)}`;
+  return Array.from({ length: ANNOTATION_TYPE_MAX }, (_, i) => i + 1).map((n) => ({
+    id: `annotations:${n}`,
+    kind: "annotations" as const,
+    metric: null,
+    url: `${API}/analytics-annotations/v1/universes/${universeId}/annotations?annotationType=${n}&${win}&cursor=&reverse=false&resultsPerPage=500`,
+    method: "GET" as const,
+    body: undefined,
+    optional: true,
+    provenance: "observed" as const,
+  }));
+}
+
 export async function getGrabPlan(
   universeId: string,
   startTime: string,
@@ -291,6 +338,9 @@ export async function getGrabPlan(
         metric: t.metric as string,
         resourceType: (t.resource_type as string) ?? "RESOURCE_TYPE_UNIVERSE",
         query: q,
+        // learned templates are harvested from real captured requests —
+        // observed by definition
+        provenance: "observed",
       });
       learned++;
     }
@@ -302,6 +352,7 @@ export async function getGrabPlan(
   const requests: GrabRequest[] = [
     ...getPlaceVersionRequests(discovered?.__places ?? []),
     ...getReviewRequests(discovered?.__places ?? [], startTime, endTime),
+    ...getAnnotationRequests(universeId, startTime, endTime),
   ];
   const metricNames = new Set<string>();
 
@@ -319,6 +370,7 @@ export async function getGrabPlan(
         method: "POST",
         body: { metric: t.metric, ...w, filter: [] },
         optional: t.optional,
+        provenance: t.provenance,
       });
     } else {
       const w = alignWindow(t.query?.granularity, startTime, endTime);
@@ -331,6 +383,7 @@ export async function getGrabPlan(
         method: "POST",
         body: { resourceType: rt, resourceId: universeId, query: q },
         optional: t.optional,
+        provenance: t.provenance,
       });
     }
   }
