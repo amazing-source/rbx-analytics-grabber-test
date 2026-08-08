@@ -1,9 +1,16 @@
 # Indigo LiveOps Analytics — Status, Contribution & Roadmap
 
-*Companion doc to the demo video. Explains what the tool is for, what already works
-(Phase 1), where accuracy still needs hardening, and the proposed "raw data export
-for AI" feature. Grounded in the current codebase — file paths are cited so anything
-here can be checked.*
+*Companion doc to the demo video. Explains what the tool is for, what already works,
+what was done to make its numbers trustworthy, and the proposed "raw data export for
+AI" feature. Grounded in the current codebase — file paths are cited so anything here
+can be checked.*
+
+> **Updated 2026-08-08.** The accuracy section of this document used to be a list of
+> intentions. It is now a list of results: a full correctness overhaul landed, and
+> the tool's output is checked against Roblox's own CSV exports on every change.
+> Both production games have been re-grabbed with the fixed pipeline —
+> **Knife Farm** (`9610561918`) and **Become a Brainrot** (`9963622286`).
+> See `CORRECTNESS_PLAN.md` and `data/verify/COVERAGE.md` for the evidence.
 
 ---
 
@@ -135,28 +142,51 @@ count). This is what turns raw metric IDs into something a producer can read.
 
 ---
 
-## 5. Accuracy — known gaps and how to close them
+## 5. Accuracy — what was wrong, and what was done
 
-This is the area flagged for the showcase: **better accuracy on the metrics and what
-they're for**, and it's also the precondition for the AI-export feature (§6). The
-data pipeline is sound (dedupe, series identity, UTC dates); the gaps are in
-**interpretation** — deltas, maturity, units, and completeness.
+This was the area flagged for the showcase: **better accuracy on the metrics and
+what they're for**. An audit on 2026-08-08 found the pipeline's mechanics were sound
+(dedupe, series identity, UTC dates) but its *interpretation* was not — and that some
+printed numbers were simply wrong in ways indistinguishable from real findings.
 
-| # | Gap | Where | Impact | Fix |
-|---|-----|-------|--------|-----|
-| 1 | **Delta is index-based, not date-based** | `store.ts` `buildOverviewMetric` uses `prevIdx = length-8` (8th-from-last point) | With missing days or mixed granularity, "prior" isn't actually 7 days ago → wrong week-over-week % | Compute prior by **date arithmetic** (find the point nearest `latestDate − 7d`), not by array index |
-| 2 | **Volume deltas shown raw** | tiles show `deltaPct` for volume metrics too | Contradicts §5.2 — a raw "+120% DAU" during growth is a non-insight | For volume metrics, either suppress the raw delta or annotate it with **"DAU grew X% over the same window"** as the denominator |
-| 3 | **Maturity not enforced** | freshness is displayed but deltas ignore it | A D7 delta on a 3-day-old cohort is meaningless but still rendered | Gate/flag deltas when the window isn't matured vs `latestAvailableTime` (this is a Phase-2 comparison-engine rule the spec already calls for, §9 fix #4) |
-| 4 | **Estimated points blended in** | `DATA_STATUS_INVALID` points are kept (correct) but counted in `latest`/`delta` without distinction | "Latest" can silently be an estimate | Keep the value, but mark per-point `isEstimated` and prefer the latest **validated** point for headline numbers |
-| 5 | **Metric catalog completeness** | `metric-info.ts` maps a curated set; unmapped metrics fall to `category: "Other"` and are **hidden** | Newly-seen or renamed Roblox metrics silently disappear from the UI | Add a "coverage" surface (see §6) that lists captured-but-unmapped metrics so they get classified instead of dropped; audit the map against live captures |
-| 6 | **No benchmark verdict** | p50/p90 are drawn but not evaluated | Producer still eyeballs "above/below" | Compute an automatic **"above/below Nth percentile for genre"** verdict per metric (spec §9 fix #5) |
-| 7 | **Unit semantics are implicit** | percent metrics are stored as **fractions** (0.42 = 42%); Robux/minutes stored raw | Fine for the UI (which multiplies), but **an AI or CSV consumer will misread 0.42 as 42% unless told** | Make units explicit in any export (§6) — this is the single most important accuracy item for AI feeding |
+The worst case: `ServerCrashCount` had no series literally labelled "Total", so the
+summary fell back to the first series it found — an `OutOfMemory` slice — and
+reported **5 server crashes** on a day the game had **30,393**. The incident detector
+read the same wrong series and stayed silent.
 
-**Also worth verifying for the "what they're for" concern:** the `kind`
-(rate/volume), `higherIsBetter`, and `category` fields in `metric-info.ts` are
-hand-authored. A quick pass to confirm each against Roblox's own definitions (esp.
-the funnel metrics and the `L7Average*` smoothed variants) removes the risk of a
-mislabeled metric driving a wrong-colored delta or a wrong AI conclusion.
+All seven remediation phases have landed. The original gap list, with outcomes:
+
+| # | Gap | Status |
+|---|-----|--------|
+| 1 | **Delta is index-based, not date-based** | **Closed for the file mirror.** Headlines now compare settled points only and print the real span when it isn't ~7 days. The web-app tile path (`store.ts`) still uses the index and is unchanged — it reads from Supabase, which is offline. |
+| 2 | **Volume deltas shown raw** | **Closed.** Every volume row in `summary.md` carries a per-1,000-DAU value and the DAU delta over the same span. |
+| 3 | **Maturity not enforced** | **Closed.** A point whose interval hadn't elapsed when captured is flagged `partial` and excluded from headlines, deltas and incidents. |
+| 4 | **Estimated points blended in** | **Closed — and it was backwards.** `DATA_STATUS_INVALID` is the protobuf zero-value, not "estimated"; it fired on 56 of 56 rows and carried no information. The status that matters, `NOT_STATISTICALLY_SIGNIFICANT`, was being ignored and is now surfaced and excluded from conclusions. |
+| 5 | **Metric catalog completeness** | **Partially closed.** Units are now validated against plausibility ranges on every export. Unmapped metrics still fall to `Other`. |
+| 6 | **No benchmark verdict** | **Closed, with a correction.** Verdicts now name the cohort they compared against — these universes are served *similarity* benchmarks with an empty genre, so "above genre median" would have been false precision. |
+| 7 | **Unit semantics are implicit** | **Closed at the storage layer.** A "Session time" export is in minutes while the metric is in seconds; that class of trap is now handled explicitly and tested. The self-describing export manifest (§6) is still to build. |
+
+### 5.1 The verification layer (new)
+
+Accuracy claims are only worth what checks them. Three commands, all offline:
+
+| Command | What it proves |
+|---|---|
+| `npm run verify` | Diffs every stored cell against Roblox's own CSV exports. Fails on a value mismatch **or** a cell missing from a window we hold. |
+| `npm run audit-plan` | Every query shape is tagged `observed` / `proven` / `inferred` and checked against the capture corpus. A non-optional guess fails the build. |
+| `npm test` | 30 regression tests over real captured data. Each was verified to **fail** against the original buggy code, not merely pass against the fixed code. |
+
+That layer immediately earned its keep. When both games were re-grabbed, it caught
+four defects in the *fixes themselves*: a zero-fill that turned hours the dashboard
+shows as R$4,845 into R$0, and four half-hour query shapes returning numbers up to
+65% away from the dashboard's own export. Those four are no longer requested —
+shipping a number proven wrong is worse than shipping none.
+
+**The standing rule that produced most of the original defects:** an invented query
+shape that fails, or returns an empty result, tells you nothing about the game. Only
+the dashboard's own request shape is evidence. A live example: funnel discovery
+returns an empty result on Knife Farm, which has funnels configured — so that
+emptiness is a discovery problem, never a finding about the game.
 
 ---
 
@@ -239,16 +269,32 @@ Accuracy guarantees baked in:
 
 ## 7. Roadmap (from the cahier)
 
-- **Phase 1 — largely done.** Capture (passive + active), ingest/normalize/store,
-  single-game dashboard with tiles/charts/breakdowns/benchmarks/freshness, manual
-  update tagging.
-- **Phase 1.5 — accuracy hardening (this doc, §5) + AI export (§6).** Highest
-  leverage right now; unblocks trustworthy AI.
+- **Phase 1 — done.** Capture (passive + active), ingest/normalize/store, single-game
+  dashboard with tiles/charts/breakdowns/benchmarks/freshness, manual update tagging.
+- **Phase 1.5 — accuracy hardening — done (§5).** Seven phases landed 2026-08-08,
+  both production games re-grabbed and verified against the dashboard's own exports.
+  The AI export (§6) is the remaining piece of this phase.
 - **Phase 2 — comparison engine.** Before/after an update with the rate/volume rule
-  enforced, maturity gating, and a warning when two updates fall in one window.
+  enforced, maturity gating, and a warning when two updates fall in one window. Much
+  of the groundwork now exists: rate/volume classification, per-1k-DAU normalisation,
+  maturity guards and settled-point semantics are all in the export layer.
 - **Phase 3 — AI diagnosis.** Deltas + changelog → Claude → producer-format
   post-update report. (The export from §6 is essentially its input contract.)
 - **Phase 4 — multi-producer + portfolio.** Auth, RLS per producer, cross-game view.
+
+### Known blockers, carried forward
+
+- **Supabase is offline.** The project no longer resolves in DNS, so charts and the
+  learned-template store are dead. This does not block grabbing: the file mirror in
+  `data/` is written before the database is touched, and the seeded plan is
+  self-sufficient. Restoring it needs a new project and `web/supabase/schema.sql`.
+- **`MessageHash` → text returns HTTP 500**, so `errors.md` lists error signatures by
+  hash with volumes but no readable text. The volumes are still actionable: on Knife
+  Farm one signature is 52.3% of 12.4M events.
+- **Funnel discovery is unreliable per game.** It works on Become a Brainrot
+  (`BaseUpgrades`, `PlayerProgression`) but returns empty on Knife Farm, which has
+  funnels configured; `FunnelStep` discovery there returns 403. Treat an empty funnel
+  result as a discovery failure, not as an absence of funnels.
 
 ---
 
