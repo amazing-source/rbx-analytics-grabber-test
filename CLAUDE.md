@@ -181,17 +181,27 @@ are what the dashboard itself puts in the request body. Hashes are what rot.)
 - **A point whose interval had not elapsed when we captured it is `partial`**
   and is excluded from every headline, Δ and incident. This is what stopped
   `ClientCrashCount` printing "▼85.6%" off a 7-hour day.
-- **Settled points are frozen.** The gateway has been observed re-serving a
-  17-hour-old hour at a quarter of its dashboard-confirmed value (3092 → 747).
-  Last-write-wins kept the wrong number, so a divergent re-read of an already
-  settled point is now recorded in `data-quality.md` and NOT applied.
-- Several metrics are served at **`METRIC_GRANULARITY_HALF_HOUR`** —
-  `ErrorCount`, `ClientFpsAvg`, `ClientCrashRate15m`, `PeakConcurrentPlayers`,
-  `OomUnexpectedExits`, `SessionDurationSecondsAvg`, plus `ServerCrashCount`
-  (captured directly). This is the resolution that answers "which hours are
-  spiking". Proven by the dashboard CSV exports in `data/verify/`. The plan now
-  requests them, clamped to the **final 24h** of the window — the gateway
-  silently truncates long sub-daily windows.
+- **Settled points are frozen, and that policy is an open question.** The
+  gateway re-serves settled points with different values. Most of it is
+  harmless — measured across 587 re-reads, the median divergence is 0.0000%
+  and p90 is 0.78%, just Roblox recomputing its averages — so only material
+  (>1%) divergence is logged, or the log becomes another flag that fires on
+  everything. The material ones are large and go BOTH ways: 3,092 → 747 (the
+  dashboard confirmed 3,092) but also 353 → 21,835, which looks like back-fill.
+  We keep the first settled read; for anything labelled *Realtime* treat a
+  revision row as "this hour is disputed" rather than trusting either value.
+- The dashboard serves several charts at **`METRIC_GRANULARITY_HALF_HOUR`** —
+  that is the resolution that answers "which hours are spiking", and the CSV
+  exports in `data/verify/` prove the charts exist. **But the chart label does
+  not tell you the metric.** Verified 2026-08-08 against a real grab:
+  `ErrorCount`, `ServerCrashCount` and `PeakConcurrentPlayers` match the export
+  cell-for-cell at half-hour; `ClientCrashRate15m` (65% off), `ClientFpsAvg`
+  (52% off), `SessionDurationSecondsAvg` and `OomUnexpectedExits` **do not**,
+  and are deliberately not requested at that granularity. Their daily versions
+  are fine. Re-add one only when a captured dashboard request proves the shape.
+  Half-hour windows are clamped to the **final 24h** — the gateway silently
+  truncates long sub-daily windows (a 768-hour ask returned 240 hours), and
+  absence outside the served span is NOT zero.
 - Comparison engine: split metrics into RATE (conversion, ARPPU, ARPDAU,
   retention %, funnel completion %) vs VOLUME (revenue, DAU, paying users,
   sessions). Only rate metrics are safe to compare across a growth window;

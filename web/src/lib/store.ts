@@ -281,12 +281,41 @@ export function getReviewRequests(
   }));
 }
 
-// Update annotations — the authoritative "was it us or Roblox" feed. The
-// dashboard was only ever seen requesting types 7 (funnel) and 16, both empty
-// in their windows; which type carries platform-incident entries is unknown,
-// so enumerate the type space and let the report say which returned rows.
-// Same URL shape as the dashboard's own requests, one GET per type — cheap.
-const ANNOTATION_TYPE_MAX = 24;
+// Update annotations — the authoritative "was it us or Roblox" feed.
+//
+// The type space was enumerated on 2026-08-08 against two universes, and the
+// responses name themselves. Types 1..17 are valid; 18..24 return 400, so
+// asking for them only fills the failure table with noise. The one that
+// answers "was it Roblox" is ENGINE_RELEASE — RCC entries are server-engine
+// rollouts, which is what a ServerCrashCount spike must be read against.
+//
+// Types with an empty name were valid (HTTP 200) but returned no rows on
+// either universe, so their meaning is still unknown — that is honest, and
+// they stay in the plan because a row from one is exactly what we are missing.
+const ANNOTATION_TYPES: { type: number; name: string }[] = [
+  { type: 1, name: "PLACE_ICON" },
+  { type: 2, name: "" },
+  { type: 3, name: "" },
+  { type: 4, name: "PLACE_THUMBNAIL" },
+  { type: 6, name: "" },
+  { type: 7, name: "FUNNEL" }, // observed: the dashboard's own funnel request
+  { type: 8, name: "EXPERIENCE_EVENT_STATE" },
+  { type: 9, name: "" },
+  { type: 10, name: "ENGINE_RELEASE" },
+  { type: 11, name: "" },
+  { type: 12, name: "" },
+  { type: 13, name: "" },
+  { type: 14, name: "" },
+  { type: 15, name: "" },
+  { type: 16, name: "CREATOR_REGEX_CHANGE" }, // observed: the dashboard requests this one
+  { type: 17, name: "" },
+];
+
+// Only types the dashboard itself was captured requesting are `observed`; the
+// rest are ours. They returned data, so they are `proven` — but tagging them
+// all `observed` (as the first cut did) would have been a false claim, and
+// audit-plan exists to catch exactly that.
+const OBSERVED_ANNOTATION_TYPES = new Set([7, 16]);
 
 export function getAnnotationRequests(
   universeId: string,
@@ -294,15 +323,17 @@ export function getAnnotationRequests(
   endTime: string
 ): GrabRequest[] {
   const win = `inclusiveStartUtcTime=${encodeURIComponent(startTime)}&inclusiveEndUtcTime=${encodeURIComponent(endTime)}`;
-  return Array.from({ length: ANNOTATION_TYPE_MAX }, (_, i) => i + 1).map((n) => ({
-    id: `annotations:${n}`,
+  return ANNOTATION_TYPES.map(({ type, name }) => ({
+    id: `annotations:${type}`,
     kind: "annotations" as const,
-    metric: null,
-    url: `${API}/analytics-annotations/v1/universes/${universeId}/annotations?annotationType=${n}&${win}&cursor=&reverse=false&resultsPerPage=500`,
+    metric: name ? `annotation:${name}` : null,
+    url: `${API}/analytics-annotations/v1/universes/${universeId}/annotations?annotationType=${type}&${win}&cursor=&reverse=false&resultsPerPage=500`,
     method: "GET" as const,
     body: undefined,
     optional: true,
-    provenance: "observed" as const,
+    provenance: OBSERVED_ANNOTATION_TYPES.has(type)
+      ? ("observed" as const)
+      : ("proven" as const),
   }));
 }
 

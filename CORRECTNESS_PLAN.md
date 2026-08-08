@@ -4,11 +4,19 @@ Status: **Phases 1–7 landed 2026-08-08.** Written the same day after an audit 
 the two universes in `data/games/`; executed immediately after. Read this
 together with `CLAUDE.md` and `data/verify/COVERAGE.md`.
 
-**What is still open:** verification item 6 — neither universe has had an
-active grab since the fixes. Every perf/half-hour shape was corrected against
-captured evidence but never replayed, and 9963622286's crash history (peak
-~1.06M) is still absent from `data/`. That grab needs a browser, so it is the
-one step that could not be done from here.
+**Verification item 6 is now closed.** Both universes were re-grabbed on
+2026-08-08 with the fixed pipeline. Become a Brainrot's outage is captured
+(`ServerCrashCount` peak **1,060,617** on 2026-08-01), funnel discovery works,
+and returned-data counts rose from 80/120 to 127/156 and 82/119 to 155/186.
+
+That grab also audited the audit — see **G1–G7 in `data/verify/COVERAGE.md`**.
+It disproved things this document and CLAUDE.md asserted: four inferred
+half-hour shapes return wrong numbers and were removed, the
+"Client frame rate" → `ClientFpsAvg` mapping is false, my zero-fill overreached
+past what the gateway actually served, and the revision log had become the very
+fires-on-every-row flag D3 warns about. **One item remains open by nature
+rather than by omission:** a single disputed realtime-revenue hour (G5), where
+which read is authoritative is genuinely unresolved.
 
 **Where the work landed:** `git log` from `Commit the ground-truth corpus`
 onward, one commit per phase. The measured results that supersede the defect

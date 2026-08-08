@@ -266,10 +266,21 @@ function mergeGame(prev: GameExport | null, gameId: string, r: ParseResult): Gam
         ? settledAtCapture(existing.ts, s.granularity, existing.capturedAt)
         : false;
     if (existing && existingSettled === true) {
-      const changed =
-        existing.value !== incoming.value &&
-        !(existing.value == null && incoming.value == null);
-      if (changed) {
+      // Only MATERIAL divergence is worth a human's attention. Measured over
+      // 587 re-reads on two universes: the median divergence is 0.0000% and
+      // p90 is 0.78% — Roblox continuously recomputes averaged metrics
+      // (CpuTimeAvg, the L7 rolling averages, FPS percentiles) by fractions of
+      // a percent. Logging those buries the real events, which is the same
+      // mistake as the "latest point is an estimate" flag that fired on every
+      // row. Above the threshold sit genuine restatements, and they are large:
+      // ItemMonetizationRevenue has been seen going 353 -> 21,835.
+      const a = existing.value;
+      const b = incoming.value;
+      const material =
+        a == null || b == null
+          ? a !== b
+          : Math.abs(a - b) > Math.max(1e-9, 0.01 * Math.abs(a));
+      if (material) {
         quality.push({
           kind: "revision",
           metric: s.metric,
@@ -377,11 +388,22 @@ function fillOmittedZeros(m: ExportMetric): void {
     const latestAvailMs = m.latestAvailableTime
       ? Math.max(new Date(m.latestAvailableTime).getTime(), lastRealMs)
       : null;
+    // Sub-daily fill is bounded by the points the gateway actually SERVED, at
+    // both ends. It truncates long sub-daily windows without saying so — a
+    // 768-hour request came back with 240 hours — so absence outside the
+    // served span means "never served", not zero. Filling past the last real
+    // point overwrote hours the dashboard shows as R$4,845 with 0. Inside the
+    // span an absent granule is still a genuine zero (the dashboard prints
+    // those explicitly). Daily series are not truncated this way and DO carry
+    // meaningful trailing zeros — ServerCrashCount's quiet days after an
+    // outage are real — so they fill to the availability cap.
     const daily = s.granularity === "METRIC_GRANULARITY_ONE_DAY";
     const startBase = daily
       ? new Date(s.windowStart).getTime()
       : new Date(real[0].ts).getTime();
-    const endBase = new Date(s.windowEnd).getTime();
+    const endBase = daily
+      ? new Date(s.windowEnd).getTime()
+      : Math.min(new Date(s.windowEnd).getTime(), lastRealMs + ms);
     const have = new Set(s.points.map((p) => new Date(p.ts).getTime()));
     const filledAt = new Date(capMs).toISOString();
     let added = false;
@@ -490,7 +512,15 @@ function dataQualityMd(g: GameExport): string | null {
   out.push(`# Data quality — universe ${g.universeId}`);
   out.push("");
   out.push(
-    "Events that make a stored number less trustworthy than it looks. `revision` = the gateway re-served an already-settled point with a different value; the FIRST settled read is kept (a re-grab once replaced a dashboard-confirmed hourly revenue value with a quarter of it) and the divergent read is recorded here. `implausible` = a value outside its unit's plausible range, kept but flagged."
+    "Events that make a stored number less trustworthy than it looks. `implausible` = a value outside its unit's plausible range, kept but flagged."
+  );
+  out.push("");
+  out.push(
+    "`revision` = the gateway re-served an already-settled point with a **materially** different value (>1%; sub-1% recomputation drift on averaged metrics is normal and is not logged). The FIRST settled read is kept and the later one recorded here."
+  );
+  out.push("");
+  out.push(
+    "> **Open question — do not assume the kept value is the right one.** Keeping the first read was chosen after a re-grab replaced a dashboard-confirmed R$3,092 hour with R$747 seven minutes later. Wider evidence complicates that: the largest divergences run the other way (`ItemMonetizationRevenue` 353 → 21,835), which looks like back-fill, and against the dashboard's own export our kept value is sometimes the low one. For any metric labelled *Realtime*, treat a revision row as \"this hour is disputed\", check the dashboard, and do not build a conclusion on it either way."
   );
   out.push("");
   out.push("| Kind | Metric | Series | Point | Detail | Observed |");

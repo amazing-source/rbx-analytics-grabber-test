@@ -61,7 +61,13 @@ export const LABEL_TO_METRIC: Record<string, string> = {
   "Average revenue per paying user (ARPPU)": "AverageRevenuePerPayingUser",
   "Average session time": "AverageSessionLengthMinutes",
   "Client crash rate": "ClientCrashRate15m",
-  "Client frame rate": "ClientFpsAvg",
+  // "Client frame rate" is deliberately NOT mapped. CLAUDE.md assumed it was
+  // ClientFpsAvg, but the 2026-08-08 grab disproved it: at the same half-hours
+  // the dashboard exports ~30.7 fps where ClientFpsAvg returns ~46.7 — a 52%
+  // gap, far outside any rounding. Whatever the chart plots, it is not the
+  // metric we pull under that name. Leaving it unmapped makes verify SKIP the
+  // file loudly instead of comparing two different things; restore the mapping
+  // only when a captured dashboard request proves which metric it is.
   "Daily active users": "DailyActiveUsers",
   "Day 1 retention": "ForwardD1Retention",
   "Day 7 retention": "ForwardD7Retention",
@@ -236,8 +242,29 @@ export type FileReport = {
 
 const OVERLAY = /^Benchmark \(|\(previous\)$/;
 
-function relEq(a: number, b: number): boolean {
-  return Math.abs(a - b) <= Math.max(1e-9, 1e-6 * Math.max(Math.abs(a), Math.abs(b)));
+// How close is "equal"?
+//
+// A count is a count: an integer we hold must equal the integer the dashboard
+// exports, exactly. But Roblox continuously recomputes its AVERAGED metrics —
+// measured across 587 re-reads, half-hour averages drift up to ~0.8% between
+// one read and the next — so an export taken at a different minute than our
+// grab legitimately differs in the third decimal. Comparing those at 1e-6
+// measures the gateway's own churn, not our correctness.
+//
+// So: exact for counts and money, 1% for computed averages and rates. Widening
+// this further would start hiding real defects; it is set just above the
+// measured drift, not at a comfortable round number.
+// Classified by metric NAME, deliberately not by importing metric-info.ts:
+// this harness verifies that module's output, so borrowing its opinion about
+// units would let one wrong mapping excuse itself.
+const DRIFTY = /Avg$|^Average|Rate15m|Retention|CVR|Stickiness|Ratio|P10$|Percentage|Concurrent|PerUser|PerDAU|^L7Average/;
+
+function toleranceFor(metric: string): number {
+  return DRIFTY.test(metric) ? 0.01 : 1e-6;
+}
+
+function relEq(a: number, b: number, tol: number): boolean {
+  return Math.abs(a - b) <= Math.max(1e-9, tol * Math.max(Math.abs(a), Math.abs(b)));
 }
 
 // A metric's held window: how far our data extends. A CSV cell outside every
@@ -293,7 +320,8 @@ function compareSeries(
   stored: StoredSeries,
   gran: string,
   scale: number,
-  completeThrough: string | null
+  completeThrough: string | null,
+  tol: number
 ): SeriesReport {
   const daily = gran === "ONE_DAY" || gran === "NONE";
   const key = (ts: string) => (daily ? ts.slice(0, 10) : new Date(ts).toISOString());
@@ -333,7 +361,7 @@ function compareSeries(
       continue;
     }
     rep.cellsCompared++;
-    if (!relEq(held.value, csvVal)) rep.mismatches.push({ at: k, csv: csvVal, ours: held.value });
+    if (!relEq(held.value, csvVal, tol)) rep.mismatches.push({ at: k, csv: csvVal, ours: held.value });
   }
   rep.oursOnly = [...ours.keys()].filter((k) => !matched.has(k)).length;
   rep.verdict = rep.mismatches.length
@@ -430,7 +458,7 @@ export function verifyFile(
       });
       continue;
     }
-    const rep = compareSeries(rows, found.series, parsed.granularity, scale, completeThrough);
+    const rep = compareSeries(rows, found.series, parsed.granularity, scale, completeThrough, toleranceFor(metric));
     rep.csvSeries = name;
     if (rep.cellsCompared > 0 || rep.missingInWindow.length > 0) anyCompared = true;
     series.push(rep);
@@ -447,7 +475,7 @@ export function verifyFile(
     );
     if (total) {
       const rows: CsvRow[] = [...sums].map(([d, v]) => ({ series: "Σ vote types", ts: `${d}T00:00:00.000Z`, value: v }));
-      const rep = compareSeries(rows, total, "ONE_DAY", 1, completeThrough);
+      const rep = compareSeries(rows, total, "ONE_DAY", 1, completeThrough, toleranceFor(metric));
       rep.csvSeries = "Upvotes+Downvotes vs Total";
       if (rep.cellsCompared > 0) anyCompared = true;
       series.push(rep);

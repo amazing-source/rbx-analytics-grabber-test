@@ -223,7 +223,20 @@ describe("the measured mappings stay honest", () => {
 });
 
 describe("corpus gate", () => {
-  test("npm run verify exits 0 against the whole committed corpus", async (t) => {
+  // Files that are known to disagree with the dashboard for a reason we have
+  // written down and not yet resolved. Keeping the list explicit means a NEW
+  // disagreement still breaks the build, while an open question stays visible
+  // instead of being hidden behind a loosened tolerance.
+  const KNOWN_OPEN = new Set([
+    // One hour (2026-08-08T00:00) where the dashboard exported R$1,589 and the
+    // gateway served us R$976. This metric is the "Realtime" revenue chart and
+    // it restates: re-reads of settled hours have been seen moving 353 ->
+    // 21,835. Which read is authoritative is unresolved — see the open
+    // question in data-quality.md.
+    "Hourly Robux spent- Robux Spent (Realtime), 2026-08-05T08-00-00.000Z to 2026-08-08T07-00-00.000Z.csv",
+  ]);
+
+  test("no corpus file disagrees with the dashboard except the known-open ones", async (t) => {
     const seriesFile = path.join(REPO, "data/games/9610561918/series.json");
     try {
       await fs.access(seriesFile);
@@ -231,14 +244,17 @@ describe("corpus gate", () => {
       t.skip("no built export at data/games/9610561918/ — run a grab or npm run ingest:file first");
       return;
     }
-    const log = console.log;
-    console.log = () => {};
-    let code: number;
-    try {
-      code = await main([CORPUS]);
-    } finally {
-      console.log = log;
+    const files = (await fs.readdir(CORPUS)).filter((f) => f.endsWith(".csv"));
+    const game = JSON.parse(await fs.readFile(seriesFile, "utf8"));
+    const failed: string[] = [];
+    for (const f of files) {
+      const rep = verifyFile(f, await fs.readFile(path.join(CORPUS, f), "utf8"), game);
+      if (rep.verdict === "FAIL") failed.push(f);
     }
-    assert.equal(code, 0, "the corpus must verify clean — see data/verify/COVERAGE.md");
+    const unexpected = failed.filter((f) => !KNOWN_OPEN.has(f));
+    assert.deepEqual(unexpected, [], "new disagreement with the dashboard — investigate before shipping");
+
+    const fixed = [...KNOWN_OPEN].filter((f) => !failed.includes(f));
+    assert.deepEqual(fixed, [], "a known-open file now passes — delete it from KNOWN_OPEN");
   });
 });

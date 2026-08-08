@@ -7,6 +7,39 @@ Phase-2 harness, which must be built fresh in `web/scripts/verify-csv.ts` and
 reproduce these numbers. Per the plan: **this table supersedes the defect table
 in `CORRECTNESS_PLAN.md` where they disagree.**
 
+## Re-grab audit — 2026-08-08, both universes (verification item 6)
+
+Knife Farm (`9610561918`) and Become a Brainrot (`9963622286`) were both
+re-grabbed with the fixed pipeline. **The last open verification item is now
+closed**, and the fresh data audited the audit — it confirmed some of what is
+below and disproved other parts. Findings are numbered G1–G7.
+
+Wins, measured:
+
+- Become a Brainrot's outage is captured: `ServerCrashCount` peak **1,060,617
+  on 2026-08-01**, previously absent entirely. Curve: 28 → 331 → 375 → 670,907
+  → 1,060,617 → 18,674 → 6.
+- Funnel discovery works (F4 fixed): `BaseUpgrades`, `PlayerProgression` and 20
+  funnel steps discovered; 15 funnel requests emitted where zero were before.
+- Returned-data counts: 80/120 → **127/156** (Knife Farm), 82/119 → **155/186**.
+- Annotation enumeration found **`ANNOTATION_TYPE_ENGINE_RELEASE` (type 10)** —
+  the genuine "was it Roblox?" signal, which F11 correctly said we never had.
+
+| # | Finding | Action |
+|---|---|---|
+| G1 | **My zero-fill overreached.** The gateway truncates long sub-daily windows (a 768-hour ask returned 240 hours) and I filled the rest with zeros — including 12 hours the dashboard shows as real revenue (R$4,845 read as R$0). Absence *outside the served span* is "never served", not zero. | Fixed: sub-daily fill is now bounded by the first and last point actually served. Daily is unchanged — its trailing zeros are real. |
+| G2 | **Four half-hour shapes I inferred return wrong numbers.** Verified cell-by-cell: `ClientCrashRate15m` up to 65% off, `ClientFpsAvg` ~52% off (30.7 vs 46.7 fps), `SessionDurationSecondsAvg` 2.4%, `OomUnexpectedExits` integer counts disagree. The *observed* shapes (`ErrorCount`, `ServerCrashCount`) match exactly, and inferred `PeakConcurrentPlayers` also matches 33/33 — so "inferred" predicts unreliability, not certainty of error. | The four are no longer requested and were purged from stored data. Daily versions unaffected. |
+| G3 | **"Client frame rate" → `ClientFpsAvg` is disproven.** CLAUDE.md asserted this mapping; row 6 flagged it as unconfirmed. It is wrong. | Mapping removed from the harness; the file now SKIPs loudly rather than comparing two different things. |
+| G4 | **The revision log became the thing D3 warned about.** It fired 500 times (its cap). Measured over 587 re-reads: median divergence **0.0000%**, p90 **0.78%** — Roblox continuously recomputes averaged metrics. A flag on every row carries no information. | Only material (>1%) divergence is logged: 500 → 87 and 87 → 55, all genuine movement. |
+| G5 | **Freeze-first-write-wins is now an open question, not a settled rule.** F2 justified it with 3,092 → 747 (dashboard confirmed 3,092). But the largest divergences run the *other* way — `ItemMonetizationRevenue` 353 → 21,835 — which looks like back-fill, and our kept value is sometimes the low one. | Policy unchanged, but documented as disputed in `data-quality.md`. Do not build a conclusion on a revised hour. |
+| G6 | **Annotation provenance was mis-tagged.** I marked all 24 enumerated types `observed`; only 2 were ever seen in a dashboard capture. Types 18–24 return 400 and were filling the failure table with my own guesses. | Narrowed to the 16 valid types with real names recorded; only types 7 and 16 are `observed`. |
+| G7 | **`MessageHash` → text still fails** (HTTP 500 on both universes), so `errors.md` remains hashes-only. `FunnelStep` discovery 403s on Knife Farm. Neither is a query-shape problem. | Recorded; the volumes are still usable and heavily concentrated. |
+
+Gates after this audit: **verify 23 pass · 1 fail · 9 skip**, audit-plan **0
+failures**, `npm test` **30 pass**. The single remaining failure is one disputed
+realtime-revenue hour (G5), tracked explicitly in the test's `KNOWN_OPEN` set so
+a *new* disagreement still breaks the build.
+
 ## Status after the fixes (same day, Phases 2–7)
 
 This file records the measurement **as taken, before any fix** — the table

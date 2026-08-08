@@ -104,7 +104,11 @@ const SPECS: Spec[] = [
   { metric: "ForwardD1Retention", granularity: DAY, breakdown: ["PlaceVersion"], optional: true },
   { metric: "ForwardD7Retention", granularity: DAY },
   { metric: "ForwardD7Retention", granularity: DAY, breakdown: ["Platform"], optional: true },
-  { metric: "ForwardD30Retention", granularity: DAY },
+  // Returns an empty 200 on a 28-day window and always will: D30 only exists
+  // for cohorts at least 30 days old. The dashboard's own export has data for
+  // this metric, so the query is right and the window is wrong — widen the
+  // grab to see it. Optional so its emptiness stops reading as a defect.
+  { metric: "ForwardD30Retention", granularity: DAY, optional: true },
   { metric: "DauMauStickiness", granularity: DAY },
   // 400s on every universe tried — the query shape is wrong and the correct
   // one has never been captured (browse the Retention tab once to learn it).
@@ -155,7 +159,14 @@ const SPECS: Spec[] = [
   { metric: "DailyRevenue", granularity: DAY, breakdown: ["BalanceType"] },
   { metric: "DailyRevenue", granularity: DAY, breakdown: ["PlaceVersion"], optional: true },
   { metric: "L7AverageDailyRevenue", granularity: DAY },
-  // Passes vs Dev Products — the idle-monetization thesis.
+  // Passes vs Dev Products — the idle-monetization thesis. This is the
+  // overview page's "Robux Spent (Realtime)" series, so it RESTATES as
+  // transactions settle: re-reads of the same settled hour have moved
+  // 353 -> 21,835. The zero-fill bug that made whole hours read as R$0 is
+  // fixed; what remains is the metric's own nature, so read a `revision` row
+  // in data-quality.md as "this hour is disputed". `DailyRevenue` by
+  // `RevenueSource` is the settled, dashboard-verified (27/27) view of the
+  // same split — prefer it for any before/after conclusion.
   { metric: "ItemMonetizationRevenue", granularity: HOUR, breakdown: ["ProductType"] },
   { metric: "ItemMonetizationRevenue", granularity: HOUR },
   { metric: "PotentialExtraEarningsTotalUsd", granularity: NONE },
@@ -318,18 +329,30 @@ function halfHourSpecs(places: string[]): Spec[] {
     optional,
     provenance,
   });
+  // VERIFIED AGAINST THE DASHBOARD'S OWN EXPORTS, 2026-08-08. The first grab
+  // to actually run these was checked cell-by-cell with `npm run verify`, and
+  // the result splits cleanly enough to be worth recording:
+  //
+  //   ErrorCount            observed  →  99/99 cells match
+  //   ServerCrashCount      observed  →  matches
+  //   PeakConcurrentPlayers inferred  →  33/33 cells match (now proven)
+  //   ClientCrashRate15m    inferred  →  WRONG, up to 65% off
+  //   SessionDurationSecondsAvg  inferred → WRONG, up to 2.4% off
+  //   OomUnexpectedExits    inferred  →  WRONG, integer counts disagree
+  //   ClientFpsAvg          inferred  →  WRONG, ~52% off (30.7 vs 46.7 fps)
+  //
+  // The four wrong ones are NOT requested. Whatever the dashboard plots on
+  // those half-hour charts, it is not what these metric names return at this
+  // granularity, and shipping a number we have proven wrong is worse than
+  // shipping none. Re-add each only when a captured dashboard request shows
+  // the shape it really uses — the daily versions are unaffected and still
+  // pulled in perfSpecs().
   return [
     hh("ErrorCount", "observed"),
     hh("ErrorCount", "observed", ["LogSource"], true),
     hh("ServerCrashCount", "observed"),
     hh("ServerCrashCount", "observed", ["CrashType"], true),
-    // CSV-proven at half-hour; no captured request yet — optional so a 400
-    // reads "n/a", not a finding.
-    hh("ClientCrashRate15m", "inferred", undefined, true),
-    hh("ClientFpsAvg", "inferred", undefined, true),
-    hh("PeakConcurrentPlayers", "inferred", undefined, true),
-    hh("OomUnexpectedExits", "inferred", undefined, true),
-    hh("SessionDurationSecondsAvg", "inferred", undefined, true),
+    hh("PeakConcurrentPlayers", "proven", undefined, true),
   ];
 }
 
@@ -454,10 +477,15 @@ const BENCHMARK_TEMPLATES: SeedTemplate[] = [
       resourceType: "RESOURCE_TYPE_UNIVERSE",
       query,
       optional: true,
+      // Roblox does not publish a benchmark for every metric on every
+      // universe. These two have returned empty on every game tried —
+      // Stickiness has no published cohort, and D30 needs a window wider than
+      // we grab. An empty benchmark is an answer, not a failure, but tagging
+      // them `proven` would be a claim no grab report backs.
       provenance:
         metric === "RFYL7PlayDays"
           ? ("observed" as const)
-          : metric === "DauMauStickiness"
+          : metric === "DauMauStickiness" || metric === "ForwardD30Retention"
           ? ("inferred" as const)
           : ("proven" as const),
     };
