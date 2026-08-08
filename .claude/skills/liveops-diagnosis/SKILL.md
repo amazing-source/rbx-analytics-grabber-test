@@ -118,14 +118,29 @@ run **$8–30 revenue per CCU per month**, while games under 5% run **$0.3–0.9
 It also correlates with age (r ≈ 0.6) and scale (r ≈ 0.5 vs log CCU) — partly
 survivorship, so do not read "older ⇒ better QPTR" as causal.
 
-### We capture QPTR — it is `EndToEndCVR`
+### Measuring QPTR — close proxies, not an exact match
 
-Established 2026-08-08 against both universes. `EndToEndCVR` is Roblox's
-impression → play conversion, and it tracks unique plays ÷ unique impressions
-with **r = 0.998** on Become a Brainrot (r = 0.74 on Knife Farm; the small
-level offset is Roblox's attributed calculation versus a crude same-day ratio).
-Measured ranges: **Knife Farm 3.0–4.1%, Become a Brainrot 4.8–7.1%** — both
-above the playbook's >3% floor, which corroborates the mapping.
+Indigo defines QPTR as **"Click-to-Play Rate: the % of Roblox home page
+impressions that result in a click"**. Nothing we capture is definitionally
+that, because every Roblox metric we hold counts **play sessions, not clicks**.
+Two good proxies, established 2026-08-08 across both universes:
+
+| Proxy | What it is | Knife Farm | Brainrot |
+|---|---|---|---|
+| `EndToEndCVR` | Roblox's impression → play conversion, **all surfaces** | 3.0–4.1% | 4.8–7.1% |
+| home-surface conversion | `DailyActiveUsers[HomeRecommendation]` ÷ `UniqueUsersWithImpressions[HomeRecommendation]` | 3.2–5.4% | 5.2–6.4% |
+
+`EndToEndCVR` matches unique plays ÷ unique impressions at **r = 0.998** on
+Brainrot, so it is genuinely the impression→play conversion. The home-surface
+ratio is **definitionally closer** to Indigo's wording (right surface) and runs
+slightly higher, as expected — home is the highest-intent surface.
+
+**Both are play-based and therefore lower bounds on a click-based QPTR** (some
+clicks never become a session). Use `EndToEndCVR` as the default operational
+number, quote the home-surface ratio when the question is specifically about
+home-page performance, and say which one you used. Still worth confirming with
+whoever runs QPTR optimisation whether their number is clicks or plays — the
+levels shift, though the direction never does.
 
 **`RFYQualifiedPTR` is NOT QPTR.** It reads ~0.5%, roughly five times smaller,
 and measures the Recommended-For-You qualification gate specifically. Never
@@ -156,8 +171,14 @@ Useful for "what kind of game is this" and for choosing the right comparison.
 - **Escape genre is the only one with a documented curve:** peaks at **6–8
   weeks**, then loses **60–70% of revenue in the following 2 weeks**. Indigo's
   extension to 4–5 months comes from cadence + thumbnails + cross-network
-  funnel. **Do not apply this curve to idle/simulator titles** — the playbook
-  does not state one for them, and inventing one would be a fabricated prior.
+  funnel.
+- **Indigo's portfolio is mostly simulators and brainrot-style games, and no
+  lifecycle curve exists for them.** Searched the whole playbook — the only
+  decline curve stated is the escape one above. **Do not apply it to a
+  simulator**, and do not invent a substitute: say the expected curve is
+  unknown and judge the decline on its own shape (step vs smooth) instead.
+  Building this prior is a real gap — it needs several titles' full histories,
+  which the grabber can now collect.
 - **Post-peak decline of ~15–20% per month** is the general figure used at
   LARGE tier valuation. A decline matching it is expected, not a defect.
 - **Content cadence resets the algorithm signal:** updates every **2–3 weeks**.
