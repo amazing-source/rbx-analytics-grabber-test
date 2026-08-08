@@ -118,8 +118,33 @@ run **$8–30 revenue per CCU per month**, while games under 5% run **$0.3–0.9
 It also correlates with age (r ≈ 0.6) and scale (r ≈ 0.5 vs log CCU) — partly
 survivorship, so do not read "older ⇒ better QPTR" as causal.
 
-Our closest captured metric is `RFYQualifiedPTR`, which is **related but not
-identical** to QPTR. Say which one you mean, and never quote one as the other.
+### We capture QPTR — it is `EndToEndCVR`
+
+Established 2026-08-08 against both universes. `EndToEndCVR` is Roblox's
+impression → play conversion, and it tracks unique plays ÷ unique impressions
+with **r = 0.998** on Become a Brainrot (r = 0.74 on Knife Farm; the small
+level offset is Roblox's attributed calculation versus a crude same-day ratio).
+Measured ranges: **Knife Farm 3.0–4.1%, Become a Brainrot 4.8–7.1%** — both
+above the playbook's >3% floor, which corroborates the mapping.
+
+**`RFYQualifiedPTR` is NOT QPTR.** It reads ~0.5%, roughly five times smaller,
+and measures the Recommended-For-You qualification gate specifically. Never
+quote it as QPTR.
+
+**Read QPTR against impressions, always.** They separate the two causes of a
+reach collapse, and the answer changes the fix completely:
+
+| Impressions | QPTR | Meaning | Lever |
+|---|---|---|---|
+| ↓ | flat | Roblox cut distribution; the listing still converts | Content cadence, re-qualify, paid — *not* QPTR work |
+| flat | ↓ | The listing lost appeal | Thumbnail/title/icon A/B |
+| ↓ | ↓ | Both — usually a demotion following an appeal drop | Fix appeal first, then re-qualify |
+
+*Worked example:* Knife Farm's July cut ran impressions 3.09M → 1.16M (−63%)
+while QPTR held at 3.37% → 3.29%. Distribution was withdrawn; click-appeal was
+untouched. So QPTR optimisation would not have restored it — though at 3.3%
+the game does sit far below the 8%+ band, so QPTR remains real *upside*, just
+not the *cause*.
 
 ### Tier bands (by CCU, from the scenario set)
 
