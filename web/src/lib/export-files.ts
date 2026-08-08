@@ -709,9 +709,42 @@ function benchmarkVerdict(g: GameExport, m: ExportMetric, latest: number | null)
   return "";
 }
 
-function summaryMd(g: GameExport): string {
+// DAU total by date, for normalizing volume metrics. A volume delta without
+// the DAU delta next to it is a non-insight — "+40% revenue" during +40%
+// growth says nothing about the update.
+function dauByDate(g: GameExport): Map<string, number> {
+  const out = new Map<string, number>();
+  const dau = g.metrics["DailyActiveUsers"];
+  if (!dau) return out;
+  const total = totalSeries(dau);
+  if (!total) return out;
+  for (const p of total.points) if (p.value != null && !p.partial) out.set(p.date, p.value);
+  return out;
+}
+
+// The nearest publish at-or-before a date, if it is close enough to matter.
+// This states an ASSOCIATION — "spike began Nh after v546" — never a cause,
+// and never infers a platform-side incident: the annotation feed is the only
+// authority on that.
+function nearbyPublish(versions: PlaceVersion[], date: string): string {
+  if (!versions.length) return "—";
+  const t = new Date(`${date}T00:00:00Z`).getTime();
+  let best: PlaceVersion | null = null;
+  for (const v of versions) {
+    const vt = new Date(v.created).getTime();
+    if (vt <= t + 86_400_000 && (!best || vt > new Date(best.created).getTime())) best = v;
+  }
+  if (!best) return "—";
+  const hours = Math.round((t - new Date(best.created).getTime()) / 3_600_000);
+  if (hours > 72) return `none within 72h (last: v${best.version}, ${Math.round(hours / 24)}d before)`;
+  if (hours < 0) return `v${best.version} published ${-hours}h into the day`;
+  return `v${best.version} published ${hours}h before`;
+}
+
+function summaryMd(g: GameExport, placeVersions: PlaceVersion[] = []): string {
   const order: Category[] = ["Discovery", "Retention", "Monetization", "Engagement", "Funnel", "Performance", "Other"];
   const byCat = new Map<Category, ExportMetric[]>();
+  const dau = dauByDate(g);
   for (const m of Object.values(g.metrics)) {
     const arr = byCat.get(m.category) ?? [];
     arr.push(m);
@@ -739,16 +772,16 @@ function summaryMd(g: GameExport): string {
     out.push("## ⚠ Incidents");
     out.push("");
     out.push(
-      "Excursions in metrics where high is bad, found by comparing each point to the series median. **Δ cannot show these** — it compares two endpoints, and an incident that spiked and recovered lives between them. Cross-reference `place-versions.md`: a spike starting hours after a publish is that deploy."
+      "Excursions in metrics where high is bad, found by comparing each point to the series median. **Δ cannot show these** — it compares two endpoints, and an incident that spiked and recovered lives between them. The publish column states an association, not a cause; whether a spike was Roblox-side is answered only by `annotations.md`, never by inference."
     );
     out.push("");
-    out.push("| Metric | When | Peak | Typical | vs typical |");
-    out.push("|---|---|---|---|---|");
+    out.push("| Metric | When | Peak | Typical | vs typical | Nearby publish |");
+    out.push("|---|---|---|---|---|---|");
     for (const i of incidents.slice(0, 12)) {
       const when = i.from === i.to ? i.from : `${i.from} → ${i.to}`;
       const mult = i.ratio === Infinity ? "∞ (typically ~0)" : `${i.ratio.toFixed(0)}×`;
       out.push(
-        `| ${i.label} | ${when} | **${formatValue(i.metric, i.peak)}** | ${formatValue(i.metric, i.median)} | ${mult} |`
+        `| ${i.label} | ${when} | **${formatValue(i.metric, i.peak)}** | ${formatValue(i.metric, i.median)} | ${mult} | ${nearbyPublish(placeVersions, i.from)} |`
       );
     }
     if (incidents.length > 12) out.push("");
@@ -778,8 +811,28 @@ function summaryMd(g: GameExport): string {
       const material = h.deltaPct != null && Math.abs(h.deltaPct) >= 2;
       const arrow = h.deltaPct == null ? "—" : `${h.deltaPct > 0 ? "▲" : "▼"} ${Math.abs(h.deltaPct).toFixed(1)}%${good === false && material ? " ⚠" : ""}`;
       const notSig = notSignificantLabels(m);
+      // Volume metrics get their DAU context inline: the per-1k-DAU value and
+      // how DAU itself moved over the same Δ span. A raw volume Δ during
+      // growth is the classic false win.
+      let dauNote = "";
+      if (m.kind === "volume" && m.metric !== "DailyActiveUsers" && h.value != null) {
+        const dauNow = dau.get(h.date);
+        if (dauNow) {
+          const per1k = (h.value / dauNow) * 1000;
+          const prevDate = new Date(new Date(h.date).getTime() - h.deltaSpanDays * 86_400_000)
+            .toISOString()
+            .slice(0, 10);
+          const dauPrev = dau.get(prevDate);
+          const dauDelta =
+            h.deltaPct != null && dauPrev
+              ? `, DAU ${dauNow >= dauPrev ? "▲" : "▼"} ${Math.abs(((dauNow - dauPrev) / dauPrev) * 100).toFixed(1)}% over same span`
+              : "";
+          dauNote = `${formatValue(m.metric, per1k)}/1k DAU${dauDelta}`;
+        }
+      }
       const notes = [
         h.seriesLabel !== "Total" ? `shown: ${h.seriesLabel}` : "",
+        dauNote,
         h.deltaPct != null && (h.deltaSpanDays < 5 || h.deltaSpanDays > 9)
           ? `Δ spans ${h.deltaSpanDays}d`
           : "",
@@ -1192,8 +1245,33 @@ export async function exportToFiles(r: ParseResult): Promise<ExportSummary> {
     const seriesFile = path.join(gameDir, "series.json");
     const merged = mergeGame(await readExisting(seriesFile), gameId, r);
 
+    // Publish timestamps for the incident table: this batch's, or the ones
+    // already exported for this game.
+    let versions: PlaceVersion[] = r.placeVersions ?? [];
+    if (!versions.length) {
+      try {
+        versions = (await fs.readFile(path.join(gameDir, "place-versions.csv"), "utf8"))
+          .trim()
+          .split("\n")
+          .slice(1)
+          .map((l) => {
+            const [version, created, date, placeId, isPublished] = l.split(",");
+            return {
+              version: Number(version),
+              created,
+              date,
+              placeId,
+              isPublished: isPublished !== "false",
+            };
+          })
+          .filter((v) => Number.isFinite(v.version) && !!v.created);
+      } catch {
+        versions = [];
+      }
+    }
+
     await fs.writeFile(seriesFile, JSON.stringify(merged, null, 2), "utf8");
-    await fs.writeFile(path.join(gameDir, "summary.md"), summaryMd(merged), "utf8");
+    await fs.writeFile(path.join(gameDir, "summary.md"), summaryMd(merged, versions), "utf8");
     await fs.writeFile(
       path.join(gameDir, "catalog.json"),
       JSON.stringify(catalogJson(merged), null, 2),
