@@ -149,6 +149,54 @@ Useful for "what kind of game is this" and for choosing the right comparison.
 Benchmarks in `series.json` are **similarity cohorts, not genre** on these
 universes (check `benchmarkType`), so say "peer cohort", not "genre median".
 
+## 4b. Sizing the prize — what a fix is actually worth
+
+LiveOps and acquisition run on the same arithmetic, which is how a diagnosis
+becomes a business case. From Indigo's own deal model (`game-utils.ts`
+`computeOfferGrade`, and the owner-valuation logic in `game-engine.tsx`):
+
+- **Robux → USD: × 0.0035** (the DevEx rate used throughout the playbook).
+- **An owner's asking price sits around 6× monthly revenue**, with their
+  private acceptable zone roughly **4–8×**.
+- **Indigo's target buy is 50–80% of that ask — about 3–4.8× monthly.** Below
+  ~3× is a "Lowball" that rarely closes. **Above the ask is not a win; the
+  playbook models the owner reacting with suspicion, not enthusiasm.**
+
+So a sustained change in monthly revenue moves the asset's value by roughly
+**6× that change** at owner-ask, or 3–4.8× at Indigo's buy range. That converts
+"retention broke" into a number a producer can act on.
+
+*Worked example — Become a Brainrot's July 30 break.* Daily revenue fell
+R$239,898 → R$101,072. At ×30 days and the DevEx rate that is about
+**$25,200 → $10,600 per month**, a **−$14,600/month** swing. Capitalised at the
+6× owner-ask multiple, the defect is worth roughly **$87,000 of asset value**
+(≈$44k–$70k at Indigo's 3–4.8× buy band).
+
+Two caveats, and state them when you use this: ×30 on a single day's revenue is
+a simplification — use a settled multi-day average where you have one; and
+0.0035 is the developer payout rate, which is the right unit for "what the
+owner earns", not necessarily for every valuation context.
+
+## 4c. Keep your own projections credible
+
+The playbook models an owner growing *suspicious* at overpromising, and it
+names the thresholds. Hold your own recommendations to the same bar:
+
+**Believable without special justification**
+- QPTR improvement of **20–50%** (e.g. 3.0% → 4.2%)
+- CCU growth of **30–80% over 2–3 months** with real services behind it
+- Revenue uplift **tied to a specific change** (a VIP pass, thumbnail A/B)
+
+**Requires a named mechanism, or don't say it**
+- Anything beyond **2×** those figures
+- Any projection needing 3–5× better performance than the game has ever shown
+- "Explode", "skyrocket", "massively" — vague magnitude with no timeline
+- Any number without a timeline, a mechanism, and a comparable
+
+A projection is only as good as the mechanism attached to it. If you cannot
+name the lever, the expected size, the timeline and how it will be measured,
+you are guessing — say so plainly instead.
+
 ## 5. From diagnosis to a precise fix
 
 Name the lever, the expected size, and how you will know it worked.
