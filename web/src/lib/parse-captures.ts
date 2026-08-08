@@ -78,6 +78,23 @@ export type PlaceVersion = {
   isPublished: boolean;
 };
 
+// A single player-feedback entry (an up/down-vote with an optional comment),
+// from the player-generated-reviews-service. `assetVersion` is the place version
+// the reviewer was on — so a complaint can be pinned to a deploy, exactly like a
+// metric step change. Universe-independent: keyed on placeId, works for any game.
+export type Feedback = {
+  placeId: string;
+  reviewId: string;
+  assetVersion: number | null;
+  category: string; // "Downvote" | "Upvote" | ...
+  options: string[]; // category_option_ids — the reason tags the player picked
+  comment: string;
+  os: string | null;
+  device: string | null;
+  createdUtc: string;
+  date: string;
+};
+
 export type ParseResult = {
   games: string[];
   snapshots: Snapshot[];
@@ -86,6 +103,7 @@ export type ParseResult = {
   metadata: MetadataEntry[];
   templates: GrabTemplate[];
   placeVersions: PlaceVersion[];
+  feedback: Feedback[];
 };
 
 function asObject(body: unknown): any {
@@ -107,6 +125,18 @@ function universeIdFromUrl(url: string): string | null {
 
 function utcDate(iso: string): string {
   return iso.slice(0, 10); // points are stamped in UTC, so the date prefix is safe
+}
+
+// Metric points arrive as ISO strings; feedback timestamps arrive as epoch
+// milliseconds (occasionally seconds). Normalize either to an ISO string.
+function toIso(v: unknown): string {
+  if (v == null || v === "") return "";
+  if (typeof v === "number" || /^\d+$/.test(String(v))) {
+    const n = Number(v);
+    const d = new Date(n > 1e12 ? n : n * 1000);
+    return isNaN(d.getTime()) ? "" : d.toISOString();
+  }
+  return String(v);
 }
 
 // Stable, order-independent key for a series identity.
@@ -144,6 +174,7 @@ export function parseCaptures(captures: Capture[]): ParseResult {
   const metadata = new Map<string, MetadataEntry>();
   const templates = new Map<string, GrabTemplate>();
   const placeVersions = new Map<string, PlaceVersion>();
+  const feedback = new Map<string, Feedback>();
 
   function addTemplate(kind: "metric" | "benchmark", req: any) {
     // metric bodies are { resourceType, resourceId, query:{metric,...} };
@@ -186,6 +217,30 @@ export function parseCaptures(captures: Capture[]): ParseResult {
           created: String(created),
           date: utcDate(String(created)),
           isPublished: v?.isPublished !== false,
+        });
+      }
+      continue;
+    }
+
+    // --- Player feedback: GET player-generated-reviews-service/.../assets/{placeId}/reviews
+    // Cursor-paginated; the active grabber merges every page into one body before
+    // this runs, so body.reviews is the whole set. De-duped on the review id.
+    if (/player-generated-reviews-service\/v1\/channels\/[^/]+\/assets\/(\d+)\/reviews/.test(url)) {
+      const placeId = url.match(/assets\/(\d+)\/reviews/)?.[1] ?? "";
+      for (const rv of body?.reviews ?? []) {
+        if (!rv?.id) continue;
+        const created = toIso(rv.created_utc ?? rv.createdUtc ?? "");
+        feedback.set(String(rv.id), {
+          placeId: String(rv.asset_id ?? placeId),
+          reviewId: String(rv.id),
+          assetVersion: rv.asset_version != null ? Number(rv.asset_version) : null,
+          category: String(rv.category_type ?? ""),
+          options: Array.isArray(rv.category_option_ids) ? rv.category_option_ids.map(String) : [],
+          comment: String(rv.comment ?? ""),
+          os: rv.metadata?.operating_system_type ?? null,
+          device: rv.metadata?.device_type ?? null,
+          createdUtc: created,
+          date: created ? utcDate(created) : "",
         });
       }
       continue;
@@ -305,5 +360,6 @@ export function parseCaptures(captures: Capture[]): ParseResult {
     metadata: [...metadata.values()],
     templates: [...templates.values()],
     placeVersions: [...placeVersions.values()].sort((a, b) => b.version - a.version),
+    feedback: [...feedback.values()].sort((a, b) => b.createdUtc.localeCompare(a.createdUtc)),
   };
 }

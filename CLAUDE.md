@@ -3,6 +3,23 @@
 Working agreement for Claude Code on this repo. Read `CAHIER_DES_CHARGES.md` for
 the full spec; this file is the day-to-day reference.
 
+> **START HERE: `CORRECTNESS_PLAN.md`.** An audit on 2026-08-08 found 11 verified
+> defects that make the tool's output untrustworthy — including one that hid a
+> 30,393-crash incident behind an arbitrary breakdown slice. That plan is the
+> current priority and is **not started**. Do not build new analysis on top of
+> these numbers until Phase 3 (the CSV verification harness) is landed. Start at
+> Phase 1 — a read-only pass over the whole project — not at the code.
+>
+> **Scope:** the grabber only — what we pull, whether it is accurate, and the
+> files it writes. The architecture is NOT in scope: the web app, the
+> Node/localhost setup and Supabase all stay as they are. Deleting or porting
+> them was considered on 2026-08-08 and explicitly dropped.
+>
+> Standing rule that produced most of those defects: **an invented query shape
+> that 400s, or returns an empty 200, tells you nothing about the game.** Only
+> the dashboard's own captured request shape is evidence. Verify which series a
+> number came from before stating any finding.
+
 ## What this is
 Internal tool for Indigo: pull ALL Creator Dashboard metrics for an owned Roblox
 game in one shot, tag updates, and compare metrics pre/post update. Two parts:
@@ -103,9 +120,26 @@ mapping, updated on ingest. (Metric *names* in `default-plan.ts` are fine — th
 are what the dashboard itself puts in the request body. Hashes are what rot.)
 
 ## Data semantics gotchas
-- Timestamps are UTC, points stamped at 08:00:00Z. Align on UTC.
-- `status: DATA_STATUS_INVALID` means unvalidated/estimated, NOT wrong. Keep the
-  value, surface the status as a flag.
+- Timestamps are UTC. `ONE_DAY` points are stamped `00:00:00Z` (verified across
+  5,571 points). Sub-daily series are stamped at the interval boundary. Align on
+  UTC.
+- `status: DATA_STATUS_INVALID` is **99.5% of all points returned by the API** —
+  it is almost certainly the protobuf zero-value ("unset"), NOT "estimated".
+  Do not surface it as a per-row warning; a flag that fires on every row carries
+  no information. The status that actually matters is
+  `DATA_STATUS_NOT_STATISTICALLY_SIGNIFICANT` — on universe 9610561918 it fires
+  on exactly one series (crash rate on Platform=TV, a tiny sample). Surface that
+  one and exclude it from conclusions.
+- **The API omits zero rows.** A missing day is absent, not `0`. For counts that
+  almost always means zero (`ServerCrashCount` returned 10 days of a 27-day
+  window); for rates a missing day is genuinely unknown. Gap-fill counts, never
+  rates — and note that "Δ vs ~7 points earlier" silently spans non-adjacent
+  dates on a sparse series.
+- Several metrics are served at **`METRIC_GRANULARITY_HALF_HOUR`** —
+  `ErrorCount`, `ClientFpsAvg`, `ClientCrashRate15m`, `PeakConcurrentPlayers`,
+  `OomUnexpectedExits`, `SessionDurationSecondsAvg`. This is the resolution that
+  answers "which hours are spiking". Proven by the dashboard CSV exports in
+  `data/verify/`.
 - Comparison engine: split metrics into RATE (conversion, ARPPU, ARPDAU,
   retention %, funnel completion %) vs VOLUME (revenue, DAU, paying users,
   sessions). Only rate metrics are safe to compare across a growth window;
@@ -142,11 +176,28 @@ contextualize with DAU growth, don't compare raw.)
 - Funnel: `FunnelUserStepCompletionRate`, `FunnelUserChurnRate` (rate),
   `FunnelUserTotalCount` (volume).
 - Performance / technical health (captured and surfaced — its own dashboard tab):
-  `ClientCrashRate15m`, `ClientFpsAvg`, `MemoryUsageAvg` (hourly, plus a daily
-  rollup), and `OomUnexpectedExits` where the game exposes it. This is the
-  "did the update break something?" rung — rule it out before blaming design.
-  Roblox queries these hourly only, so the exporter rolls them up: mean for
-  rates, sum for volumes, max for concurrents.
+  `ClientCrashRate15m`, `ClientFpsP10`, `ClientMemoryUsagePercentageAvg`,
+  `OomUnexpectedExits`, `ClientCrashCount`, `ServerCrashCount`, `CpuTimeAvg`,
+  `CpuCoreUtilization`. This is the "did the update break something?" rung —
+  rule it out before blaming design.
+  **Every one of these requires `filter:[{dimension:"Place",values:[placeId]}]`
+  and is queried at ONE_DAY.** Without the Place filter the gateway returns 400,
+  and `metrics/metadata` reports the metric with NO `latestAvailableTime` — so
+  both signals say "this universe has no performance data" when the dashboard is
+  showing it in full. That combination cost a whole investigation: the July 2026
+  9610561918 grab reported 37 perf failures and the summary carried one
+  `ErrorCount` line. Read crash RATE, not crash COUNT — count tracks DAU and
+  falls when the game shrinks, which reads as an improvement.
+- Individual errors break down by **`MessageHash`**, never `ErrorMessage` (a
+  guessed name that 400s): `granularity: NONE`, `breakdown:[MessageHash]`,
+  `filter:[MessageHash NOT_CONTAINS "-1", Place]`, `limit: 500`. Errors are
+  heavily concentrated — on 9610561918 one signature was 52% of 12.4M events.
+  The hash→text mapping comes from the **async** dimensions endpoint
+  (`errorReporting.dimensions/MessageHash`), which returns `done:false` and must
+  be polled; the grabber does not poll yet, so we get volumes without text.
+- `FirstSeenPlaceVersion` is a **filter** (with `FILTER_OPERATION_GTE`), not a
+  breakdown — `ErrorCount` at NONE filtered to `>= <version>` is "errors this
+  deploy introduced".
 
 Required fixes to capture this set cleanly:
 1. **BLOCKER — capture the request body** (clone `args[0]` when it's a `Request`).

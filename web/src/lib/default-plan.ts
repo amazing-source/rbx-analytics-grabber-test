@@ -116,8 +116,10 @@ const SPECS: Spec[] = [
   { metric: "UniqueUsersWithPlaySessions", granularity: DAY, filter: NEW },
   { metric: "L7AverageUniqueUsersWithPlaySessions", granularity: DAY, breakdown: ["AcquisitionSource"], filter: NEW },
   { metric: "TotalSessionsEndedInBucket", granularity: NONE, breakdown: ["SessionTimeBucket"] },
-  { metric: "PeakConcurrentPlayers", granularity: HOUR },
-  { metric: "ConcurrentPlayers", granularity: HOUR },
+  // PeakConcurrentPlayers moved to perfSpecs() — it needs a Place filter and
+  // ONE_DAY. At HOUR with no filter it 400s. `ConcurrentPlayers` is a live
+  // tile the dashboard only ever queries at ONE_MINUTE over ~1 day; replaying
+  // it across a 28-day window is meaningless, so it is not seeded at all.
 
   // ---- Monetization -------------------------------------------------------
   { metric: "PayingUsersCVR", granularity: DAY },
@@ -136,15 +138,10 @@ const SPECS: Spec[] = [
   { metric: "PotentialExtraEarningsTotalUsd", granularity: NONE },
 
   // ---- Errors / deploy tracking -------------------------------------------
-  // ErrorCount broken down by FirstSeenPlaceVersion is the closest thing to a
-  // deploy timeline the analytics API exposes: a version appearing = a ship.
+  // These two work without a Place filter. Everything else in error-reporting
+  // does NOT — see perfSpecs() below.
   { metric: "ErrorCount", granularity: DAY },
-  { metric: "ErrorCount", granularity: DAY, breakdown: ["FirstSeenPlaceVersion"] },
   { metric: "ErrorCount", granularity: DAY, breakdown: ["LogSource"] },
-  { metric: "ErrorCount", granularity: DAY, breakdown: ["ErrorMessage"], limit: 50, optional: true },
-  { metric: "ClientCrashCount", granularity: DAY },
-  { metric: "ClientCrashCount", granularity: DAY, breakdown: ["Platform"], optional: true },
-  { metric: "ServerCrashCount", granularity: DAY, optional: true },
 
   // ---- Live-ops events -----------------------------------------------------
   // Whether a scheduled event ran, and what it was worth.
@@ -160,32 +157,83 @@ const SPECS: Spec[] = [
   { metric: "AttributionD7RetentionRatio", granularity: DAY, optional: true },
 
   // ---- Performance / technical health -------------------------------------
-  { metric: "ClientFpsP10", granularity: DAY },
-  { metric: "ClientMemoryUsageAvg", granularity: DAY },
-  { metric: "ClientMemoryUsagePercentageAvg", granularity: DAY },
-  { metric: "ClientCpuTimeAvg", granularity: DAY },
-  { metric: "ClientFpsP10", granularity: DAY, breakdown: ["Platform"], optional: true },
-  { metric: "ClientMemoryUsageAvg", granularity: DAY, breakdown: ["Platform"], optional: true },
-  // Roblox queries these hourly; the exporter rolls them up to daily. The
-  // Platform and PlaceVersion breakdowns are the ones that turn "FPS is bad"
-  // into "FPS is bad on phones since version N".
-  { metric: "ClientCrashRate15m", granularity: HOUR },
-  { metric: "ClientFpsAvg", granularity: HOUR },
-  { metric: "MemoryUsageAvg", granularity: HOUR },
-  { metric: "SessionDurationSecondsAvg", granularity: HOUR },
-  { metric: "OomUnexpectedExits", granularity: HOUR },
-  { metric: "ClientCrashRate15m", granularity: DAY, optional: true },
-  { metric: "ClientFpsAvg", granularity: DAY, optional: true },
-  { metric: "MemoryUsageAvg", granularity: DAY, optional: true },
-  { metric: "OomUnexpectedExits", granularity: DAY, optional: true },
-  { metric: "SessionDurationSecondsAvg", granularity: DAY, optional: true },
-  { metric: "ClientCrashRate15m", granularity: HOUR, breakdown: ["Platform"], optional: true },
-  { metric: "ClientFpsAvg", granularity: HOUR, breakdown: ["Platform"], optional: true },
-  { metric: "MemoryUsageAvg", granularity: HOUR, breakdown: ["Platform"], optional: true },
-  { metric: "OomUnexpectedExits", granularity: HOUR, breakdown: ["Platform"], optional: true },
-  { metric: "ClientCrashRate15m", granularity: HOUR, breakdown: ["PlaceVersion"], optional: true },
-  { metric: "ClientFpsAvg", granularity: HOUR, breakdown: ["PlaceVersion"], optional: true },
+  // Deliberately empty: every performance metric requires a Place filter and is
+  // therefore generated per-universe in perfSpecs() below.
 ];
+
+// PERFORMANCE + ERROR REPORTING — the Place filter is MANDATORY.
+//
+// This whole block used to sit in SPECS with no filter and at HOUR granularity.
+// Every request 400'd, which the grab report faithfully recorded as "failed",
+// and the metrics/metadata call returned these names with no
+// `latestAvailableTime` — so the evidence pointed at "this universe doesn't
+// serve performance data". It serves all of it. The dashboard's own requests
+// (captured 2026-08-08 on universe 9610561918) carry
+// `filter:[{dimension:"Place",values:[placeId]}]` on every single one, and
+// query them at ONE_DAY, not ONE_HOUR.
+//
+// The lesson matching CLAUDE.md's rule about dimension VALUES: a 400 on a query
+// shape we invented is not evidence about the game. Only the dashboard's own
+// request shape is evidence.
+//
+// `ClientCrashRate15m` is the rate to trend (crash COUNT tracks DAU, so it
+// falls when the game shrinks and looks like an improvement). `ClientFpsP10` is
+// the low-end tail — the players most likely to churn over performance.
+function perfSpecs(places: string[]): Spec[] {
+  // No places discovered => emit nothing. An absent request is honest; a
+  // request we know will 400 just refills the failure table with noise.
+  if (!places.length) return [];
+  const place = [{ dimension: "Place", values: places }];
+  const daily = (metric: string, breakdown?: string[], optional?: boolean): Spec => ({
+    metric,
+    granularity: DAY,
+    breakdown,
+    filter: place,
+    optional,
+  });
+  return [
+    // Crashes / stability
+    daily("ClientCrashRate15m"),
+    daily("ClientCrashCount"),
+    daily("OomUnexpectedExits"),
+    daily("ServerCrashCount"),
+    daily("ClientCrashRate15m", ["Platform"], true),
+    daily("ClientCrashCount", ["Platform"], true),
+    daily("OomUnexpectedExits", ["Platform"], true),
+    daily("ServerCrashCount", ["CrashType"], true),
+    // Frame rate / memory / CPU
+    daily("ClientFpsP10"),
+    daily("ClientMemoryUsageAvg"),
+    daily("ClientMemoryUsagePercentageAvg"),
+    daily("ClientCpuTimeAvg"),
+    daily("MemoryUsageAvg"),
+    daily("CpuTimeAvg"),
+    daily("CpuCoreUtilization"),
+    daily("ClientFpsP10", ["Platform"], true),
+    daily("ClientMemoryUsageAvg", ["Platform"], true),
+    daily("ClientMemoryUsagePercentageAvg", ["Platform"], true),
+    daily("PeakConcurrentPlayers", ["Platform"], true),
+    daily("ClientCpuTimeAvg", ["ClientCpuTimeCategory"], true),
+    daily("CpuTimeAvg", ["CpuTimeCategory"], true),
+    daily("MemoryUsageAvg", ["MemoryUsageCategory"], true),
+    daily("PeakConcurrentPlayers"),
+    // Error reporting. MessageHash — NOT "ErrorMessage", which was a guess and
+    // 400'd — is what identifies an individual error. The NOT_CONTAINS "-1"
+    // filter is the dashboard's way of dropping unhashed/unknown entries.
+    {
+      metric: "ErrorCount",
+      granularity: NONE,
+      breakdown: ["MessageHash"],
+      filter: [
+        { dimension: "MessageHash", values: ["-1"], operation: "FILTER_OPERATION_NOT_CONTAINS" },
+        ...place,
+      ],
+      limit: 500,
+    },
+    daily("ErrorCount"),
+    daily("ErrorCount", ["LogSource"]),
+  ];
+}
 
 // Benchmarks only exist for the metrics Roblox publishes genre percentiles for.
 // Asking outside this set returns an empty result, so keep it tight.
@@ -268,8 +316,10 @@ function toTemplate(s: Spec): SeedTemplate {
 // guessing a value and manufacturing a confident-looking empty result.
 export function buildSeedTemplates(discovered?: Discovered): SeedTemplate[] {
   const funnelNames = discovered?.FunnelName ?? [];
+  const places = discovered?.__places ?? [];
   return [
     ...SPECS.map(toTemplate),
+    ...perfSpecs(places).map(toTemplate),
     ...funnelSpecs(funnelNames).map(toTemplate),
     ...BENCHMARK_TEMPLATES,
   ];

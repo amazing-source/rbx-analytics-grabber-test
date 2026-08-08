@@ -9,7 +9,7 @@
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import type { ParseResult, Snapshot, PlaceVersion } from "./parse-captures";
+import type { ParseResult, Snapshot, PlaceVersion, Feedback } from "./parse-captures";
 import { metricInfo, formatValue, deltaIsGood, type Category } from "./metric-info";
 
 // ---------------------------------------------------------------- file layout
@@ -281,6 +281,77 @@ function headline(m: ExportMetric) {
   };
 }
 
+// INCIDENTS — the spike the Δ column structurally cannot show.
+//
+// Δ compares the latest point to ~7 points earlier, so anything that spiked and
+// recovered *between* those two endpoints is invisible. Real case: "Become a
+// Brainrot" server crashes ran 375 → 670,907 → 1,060,617 → 18,674 → ~0 over
+// 2026-07-30..08-07. Δ on the last point reads −99.9995% — "massively
+// improved" — and the million-crash day never appears anywhere in the summary.
+//
+// So scan for excursions directly. Only metrics where high is BAD (crashes,
+// errors, OOM, memory) can have an "incident"; a DAU spike is a good day.
+// Median, not mean, because the spike would drag a mean up and mask itself.
+type Incident = {
+  metric: string;
+  label: string;
+  from: string;
+  to: string;
+  peak: number;
+  median: number;
+  ratio: number;
+};
+
+export function detectIncidents(g: GameExport): Incident[] {
+  const found: Incident[] = [];
+  for (const m of Object.values(g.metrics)) {
+    if (m.higherIsBetter !== false) continue;
+    const total = m.series.find((s) => s.label === "Total") ?? m.series[0];
+    if (!total) continue;
+    const pts = isHourly(total.granularity)
+      ? rollupToDaily(total.points, rollupRule(m))
+      : total.points;
+    const vals = pts.filter((p) => p.value != null) as (ExportPoint & { value: number })[];
+    if (vals.length < 5) continue;
+
+    const sorted = [...vals].map((p) => p.value).sort((a, b) => a - b);
+    const median = sorted[Math.floor(sorted.length / 2)];
+    // A rate tripling is already an emergency; a count needs a bigger multiple
+    // plus an absolute floor, or 0→3 crashes reads as "infinite increase".
+    // Thresholds are deliberately loose: a false positive costs one table row,
+    // a false negative hides an outage. 9610561918's 3.0M-error day sits at
+    // 7.4× its median — an 8× cut silently dropped it.
+    const minRatio = m.kind === "rate" ? 3 : 6;
+    const floor = m.kind === "rate" ? 0 : 25;
+
+    // Group consecutive flagged days into one incident — a 3-day outage is one
+    // event, not three rows competing for the top of the table.
+    let run: (ExportPoint & { value: number })[] = [];
+    const flush = () => {
+      if (!run.length) return;
+      const peak = Math.max(...run.map((p) => p.value));
+      found.push({
+        metric: m.metric,
+        label: m.label,
+        from: run[0].date,
+        to: run[run.length - 1].date,
+        peak,
+        median,
+        ratio: median > 0 ? peak / median : Infinity,
+      });
+      run = [];
+    };
+    for (const p of vals) {
+      const ratio = median > 0 ? p.value / median : Infinity;
+      const isSpike = p.value >= floor && ratio >= minRatio;
+      if (isSpike) run.push(p);
+      else flush();
+    }
+    flush();
+  }
+  return found.sort((a, b) => b.ratio - a.ratio || b.peak - a.peak);
+}
+
 function benchmarkVerdict(g: GameExport, m: ExportMetric, latest: number | null): string {
   if (latest == null) return "";
   const b = g.benchmarks[m.metric];
@@ -320,6 +391,30 @@ function summaryMd(g: GameExport): string {
   );
   out.push("");
 
+  // Incidents go ABOVE every category table. A spike that has already recovered
+  // shows up nowhere else in this file — Δ reads it as an improvement.
+  const incidents = detectIncidents(g);
+  if (incidents.length) {
+    out.push("## ⚠ Incidents");
+    out.push("");
+    out.push(
+      "Excursions in metrics where high is bad, found by comparing each point to the series median. **Δ cannot show these** — it compares two endpoints, and an incident that spiked and recovered lives between them. Cross-reference `place-versions.md`: a spike starting hours after a publish is that deploy."
+    );
+    out.push("");
+    out.push("| Metric | When | Peak | Typical | vs typical |");
+    out.push("|---|---|---|---|---|");
+    for (const i of incidents.slice(0, 12)) {
+      const when = i.from === i.to ? i.from : `${i.from} → ${i.to}`;
+      const mult = i.ratio === Infinity ? "∞ (typically ~0)" : `${i.ratio.toFixed(0)}×`;
+      out.push(
+        `| ${i.label} | ${when} | **${formatValue(i.metric, i.peak)}** | ${formatValue(i.metric, i.median)} | ${mult} |`
+      );
+    }
+    if (incidents.length > 12) out.push("");
+    if (incidents.length > 12) out.push(`_${incidents.length - 12} further excursion(s) not shown._`);
+    out.push("");
+  }
+
   for (const cat of order) {
     const metrics = (byCat.get(cat) ?? []).sort((a, b) => a.label.localeCompare(b.label));
     if (!metrics.length) continue;
@@ -356,6 +451,7 @@ function summaryMd(g: GameExport): string {
   out.push("- `metrics/<Metric>.csv` — one long-format CSV per metric (`date,ts,granularity,series,value,status`).");
   out.push("- `metrics/<Metric>.daily.csv` — daily rollup of hourly metrics; `agg` says how (mean for rates, sum for volumes, max for concurrents) and `samples` how many hours fed the day — anything under 24 is a partial day.");
   out.push("- `catalog.json` — metric → response-path hash, freshness, and the series inventory.");
+  out.push("- `feedback.csv` / `feedback.md` — raw player reviews (up/down-votes + comments) with the `asset_version` each landed on, plus counts by category and version. Present only when feedback was captured.");
   out.push("");
   return out.join("\n");
 }
@@ -403,6 +499,9 @@ the web app or a database to read.
         catalog.json      metric inventory: hash, freshness, series counts
         metrics/*.csv     one long-format CSV per metric
         metrics/*.daily.csv  daily rollup of the hourly metrics
+        place-versions.md deploy log (version -> publish time), when captured
+        feedback.csv      raw player reviews w/ asset_version, when captured
+        feedback.md       feedback counts by category and version
 
 ## Reading the numbers
 
@@ -557,6 +656,67 @@ function placeVersionsMd(versions: PlaceVersion[]): string {
   return out.join("\n");
 }
 
+// Raw player feedback, one row per review, with the place version the reviewer
+// was on — so `feedback.csv` joins straight onto place-versions.md / the deploy
+// log. Generic: no per-game keyword classification, just the facts.
+function feedbackCsv(rows: Feedback[]): string {
+  const out = ["created_utc,date,place_id,asset_version,category,options,os,device,comment"];
+  for (const f of rows)
+    out.push(
+      [
+        f.createdUtc,
+        f.date,
+        f.placeId,
+        f.assetVersion ?? "",
+        csvEscape(f.category),
+        csvEscape(f.options.join("|")),
+        f.os ?? "",
+        f.device ?? "",
+        csvEscape(f.comment),
+      ].join(",")
+    );
+  return out.join("\n") + "\n";
+}
+
+// A compact, game-agnostic view: how much feedback, split by category and by the
+// version it landed on. The version split is the useful part — it lines up with
+// the deploy log, so a spike of downvotes on one version points at that deploy.
+function feedbackMd(rows: Feedback[]): string {
+  const byCat = new Map<string, number>();
+  const byVer = new Map<string, number>();
+  for (const f of rows) {
+    byCat.set(f.category || "?", (byCat.get(f.category || "?") ?? 0) + 1);
+    const v = f.assetVersion != null ? `v${f.assetVersion}` : "unknown";
+    byVer.set(v, (byVer.get(v) ?? 0) + 1);
+  }
+  const dates = rows.map((r) => r.date).filter(Boolean).sort();
+  const out: string[] = [];
+  out.push("# Player feedback");
+  out.push("");
+  out.push(`- Entries: **${rows.length}**${dates.length ? ` (${dates[0]} → ${dates[dates.length - 1]})` : ""}`);
+  out.push(`- Full text with the version each landed on: \`feedback.csv\` (\`asset_version\` column).`);
+  out.push("");
+  out.push("## By category");
+  out.push("");
+  out.push("| Category | Count |");
+  out.push("|---|---|");
+  for (const [c, n] of [...byCat.entries()].sort((a, b) => b[1] - a[1])) out.push(`| ${c} | ${n} |`);
+  out.push("");
+  out.push("## By place version");
+  out.push("");
+  out.push("Cross-reference `place-versions.md` — a category clustering on one version dates it to that deploy.");
+  out.push("");
+  out.push("| Version | Feedback count |");
+  out.push("|---|---|");
+  for (const [v, n] of [...byVer.entries()].sort((a, b) => {
+    const na = Number(a[0].replace("v", "")) || -1, nb = Number(b[0].replace("v", "")) || -1;
+    return nb - na;
+  }))
+    out.push(`| ${v} | ${n} |`);
+  out.push("");
+  return out.join("\n");
+}
+
 export type ExportSummary = { dataDir: string; games: string[]; files: number };
 
 // Mirror a parsed capture set to disk. Never throws — a broken export must not
@@ -596,6 +756,12 @@ export async function exportToFiles(r: ParseResult): Promise<ExportSummary> {
           "\n",
         "utf8"
       );
+      files += 2;
+    }
+
+    if (r.feedback?.length) {
+      await fs.writeFile(path.join(gameDir, "feedback.csv"), feedbackCsv(r.feedback), "utf8");
+      await fs.writeFile(path.join(gameDir, "feedback.md"), feedbackMd(r.feedback), "utf8");
       files += 2;
     }
 

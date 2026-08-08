@@ -136,7 +136,7 @@ const API = "https://apis.roblox.com";
 
 export type GrabRequest = {
   id: string;
-  kind: "metric" | "benchmark" | "metadata" | "dimensions" | "places" | "placeVersions";
+  kind: "metric" | "benchmark" | "metadata" | "dimensions" | "places" | "placeVersions" | "reviews";
   metric: string | null;
   dimension?: string;
   placeId?: string;
@@ -235,6 +235,30 @@ export function getPlaceVersionRequests(placeIds: string[]): GrabRequest[] {
   }));
 }
 
+// Player feedback (up/down-votes + comments) per place. Cursor-paginated; the
+// interceptor walks every page (`has_more`/`next_cursor`) and merges them, so
+// one request here pulls the whole set. Channel + service are Roblox-wide, not
+// per-game — the only universe-specific input is the discovered placeId.
+export function getReviewRequests(
+  placeIds: string[],
+  startTime: string,
+  endTime: string
+): GrabRequest[] {
+  const win =
+    (startTime ? `&startTime=${encodeURIComponent(startTime)}` : "") +
+    (endTime ? `&endTime=${encodeURIComponent(endTime)}` : "");
+  return placeIds.map((placeId) => ({
+    id: `reviews:${placeId}`,
+    kind: "reviews" as const,
+    metric: null,
+    placeId,
+    url: `${API}/player-generated-reviews-service/v1/channels/experience-discovery-page/assets/${placeId}/reviews?limit=100${win}`,
+    method: "GET" as const,
+    body: undefined,
+    optional: true,
+  }));
+}
+
 export async function getGrabPlan(
   universeId: string,
   startTime: string,
@@ -277,6 +301,7 @@ export async function getGrabPlan(
 
   const requests: GrabRequest[] = [
     ...getPlaceVersionRequests(discovered?.__places ?? []),
+    ...getReviewRequests(discovered?.__places ?? [], startTime, endTime),
   ];
   const metricNames = new Set<string>();
 

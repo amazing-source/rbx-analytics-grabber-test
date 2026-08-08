@@ -2,7 +2,7 @@
 // it belongs to (the LiveOps diagnostic rungs), its unit, whether higher is
 // better, and a one-line explanation. This is what makes the dashboard legible.
 
-export type Unit = "percent" | "robux" | "minutes" | "hours" | "seconds" | "count" | "fps" | "mb";
+export type Unit = "percent" | "robux" | "minutes" | "hours" | "seconds" | "count" | "fps" | "mb" | "bytes";
 export type Category = "Discovery" | "Engagement" | "Retention" | "Monetization" | "Funnel" | "Performance" | "Other";
 export type MetricKind = "rate" | "volume";
 
@@ -95,18 +95,23 @@ const M: Record<string, MetricInfo> = {
   ClientCrashRate15m: { label: "Crash Rate (15m)", category: "Performance", unit: "percent", kind: "rate", higherIsBetter: false, blurb: "% of sessions crashing within 15 min. A jump right after an update is the first thing to rule out." },
   ClientFpsAvg: { label: "Avg FPS", category: "Performance", unit: "fps", kind: "rate", higherIsBetter: true, blurb: "Average client frame rate. Falling FPS shows up as shorter sessions before it shows up as churn." },
   MemoryUsageAvg: { label: "Avg Memory", category: "Performance", unit: "mb", kind: "rate", higherIsBetter: false, blurb: "Average client memory use — lower is safer on low-end mobile, where most of the audience is." },
-  ClientMemoryUsageAvg: { label: "Avg Client Memory", category: "Performance", unit: "mb", kind: "rate", higherIsBetter: false, blurb: "Average client memory use (alternate metric name)." },
+  // Reported in BYTES, unlike MemoryUsageAvg which is genuinely MB.
+  ClientMemoryUsageAvg: { label: "Avg Client Memory", category: "Performance", unit: "bytes", kind: "rate", higherIsBetter: false, blurb: "Average client memory use. Read next to Memory Used % — the percentage is what predicts OOM kills, since the budget differs per device." },
   OomUnexpectedExits: { label: "Out-of-Memory Exits", category: "Performance", unit: "count", kind: "volume", higherIsBetter: false, blurb: "Sessions killed by running out of memory — the low-end-device tax." },
   ServerFpsAvg: { label: "Server FPS", category: "Performance", unit: "fps", kind: "rate", higherIsBetter: true, blurb: "Average server frame rate — server-side lag." },
+  ServerFrameRateP10: { label: "Server FPS (10th pct)", category: "Performance", unit: "fps", kind: "rate", higherIsBetter: true, blurb: "Server frame rate on the worst-off 10% of servers. Roblox caps at 60 — a drop here is server-side lag hitting real sessions, not an average smoothing it away." },
   ServerMemoryUsageAvg: { label: "Server Memory", category: "Performance", unit: "mb", kind: "rate", higherIsBetter: false, blurb: "Average server memory use." },
   ClientFpsP10: { label: "FPS (10th pct)", category: "Performance", unit: "fps", kind: "rate", higherIsBetter: true, blurb: "Frame rate for the worst-off 10% of sessions — the low-end-device reality, not the average." },
   ClientMemoryUsagePercentageAvg: { label: "Memory Used %", category: "Performance", unit: "percent", kind: "rate", higherIsBetter: false, blurb: "Share of the device's memory budget consumed — closer to 100% means OOM kills." },
   ClientCpuTimeAvg: { label: "Client CPU Time", category: "Performance", unit: "count", kind: "rate", higherIsBetter: false, blurb: "Average client CPU time per frame — where render-submission cost shows up." },
+  CpuTimeAvg: { label: "Server CPU Time", category: "Performance", unit: "count", kind: "rate", higherIsBetter: false, blurb: "Average server CPU time per frame. Break down by CpuTimeCategory to see which subsystem is eating it." },
+  CpuCoreUtilization: { label: "CPU Core Utilization", category: "Performance", unit: "percent", kind: "rate", higherIsBetter: false, blurb: "How saturated the server's cores are — sustained highs mean the server is the bottleneck, not the client." },
   ClientCrashCount: { label: "Crash Count", category: "Performance", unit: "count", kind: "volume", higherIsBetter: false, blurb: "Absolute client crashes. Read next to crash RATE — volume falls when players leave." },
   ServerCrashCount: { label: "Server Crashes", category: "Performance", unit: "count", kind: "volume", higherIsBetter: false, blurb: "Server-side crashes." },
-  // ErrorCount broken down by FirstSeenPlaceVersion doubles as a deploy log:
-  // a version appearing for the first time is a ship, dated.
-  ErrorCount: { label: "Script Errors", category: "Performance", unit: "count", kind: "volume", higherIsBetter: false, blurb: "Logged script errors. Break down by FirstSeenPlaceVersion for a de facto deploy timeline, or by ErrorMessage to find the bug." },
+  // The dimension that identifies an individual error is `MessageHash`, NOT
+  // `ErrorMessage` — that name was a guess and 400s. FirstSeenPlaceVersion is a
+  // filter (with FILTER_OPERATION_GTE), not a breakdown.
+  ErrorCount: { label: "Script Errors", category: "Performance", unit: "count", kind: "volume", higherIsBetter: false, blurb: "Logged script errors — a VOLUME metric, so it falls when players leave. Normalise per DAU before calling a drop an improvement. Break down by MessageHash to find the individual bug." },
 
   // ---- Live-ops events ----
   EventAvgDailyActiveUsers: { label: "Event DAU", category: "Engagement", unit: "count", kind: "volume", higherIsBetter: true, blurb: "Average DAU during a scheduled event." },
@@ -192,6 +197,12 @@ export function formatValue(metric: string, v: number | null | undefined): strin
       return `${v.toFixed(0)} fps`;
     case "mb":
       return `${compact.format(v)} MB`;
+    // Roblox reports client memory in raw bytes (1.3e9), which rendered as
+    // "1.3B MB". Scale to the unit a human reads.
+    case "bytes": {
+      const mb = v / 1024 / 1024;
+      return mb >= 1024 ? `${(mb / 1024).toFixed(2)} GB` : `${mb.toFixed(0)} MB`;
+    }
     default:
       return compact.format(v);
   }

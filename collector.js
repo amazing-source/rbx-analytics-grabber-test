@@ -15,6 +15,7 @@
   const EXEC_RESULT = "__RBX_EXEC_RESULT__";
   const INGEST_URL_KEY = "rbx_ingest_url";
   const DOWNLOAD_DIR_KEY = "rbx_download_dir";
+  const UI_STATE_KEY = "rbx_ui_state"; // "open" | "collapsed" | "closed"
   const DEFAULT_INGEST_URL = "http://localhost:3000/api/ingest";
   // Relative to the browser's Downloads folder — the repo lives there.
   const DEFAULT_DOWNLOAD_DIR = "rbx-analytics-grabber/data/raw";
@@ -42,7 +43,7 @@
     }
   });
 
-  let panel, countEl, listEl, statusEl, activeEl, uniInput, startInput, endInput;
+  let panel, launcher, countEl, listEl, statusEl, activeEl, uniInput, startInput, endInput;
 
   async function getIngestUrl() {
     try {
@@ -114,11 +115,16 @@
       "box-shadow:0 8px 30px rgba(0,0,0,.5)", "overflow:hidden"
     ].join(";");
     panel.innerHTML = `
-      <div style="padding:10px 12px;background:#1d1a2b;display:flex;justify-content:space-between;align-items:center">
+      <div style="padding:10px 12px;background:#1d1a2b;display:flex;justify-content:space-between;align-items:center;gap:8px">
         <strong style="color:#b9a6ff">RBX Grab · Phase 1</strong>
-        <span id="rbx-count" style="background:#332d4d;border-radius:99px;padding:2px 8px">0</span>
+        <span style="display:flex;align-items:center;gap:6px">
+          <span id="rbx-count" style="background:#332d4d;border-radius:99px;padding:2px 8px">0</span>
+          <button id="rbx-min" title="Collapse" style="cursor:pointer;background:#332d4d;border:0;color:#cfc9e0;border-radius:6px;padding:1px 8px 3px;font-size:15px;line-height:1">–</button>
+          <button id="rbx-close" title="Hide panel" style="cursor:pointer;background:#332d4d;border:0;color:#cfc9e0;border-radius:6px;padding:1px 8px 3px;font-size:15px;line-height:1">×</button>
+        </span>
       </div>
 
+      <div id="rbx-body">
       <div style="padding:8px 12px;background:#181527;border-bottom:1px solid #221f30">
         <div style="font-size:11px;color:#b9a6ff;margin-bottom:6px">Active grab (by universeId)</div>
         <input id="rbx-uni" placeholder="universeId(s), comma-separated"
@@ -143,8 +149,23 @@
       <div style="padding:6px 12px 10px;background:#1d1a2b;font-size:10px;color:#6e6885">
         ingest: <a id="rbx-cfg" href="#" style="color:#9a93b3;text-decoration:underline">change…</a>
         · folder: <a id="rbx-dir" href="#" style="color:#9a93b3;text-decoration:underline">change…</a>
+      </div>
       </div>`;
     document.documentElement.appendChild(panel);
+
+    // A little launcher pill so a hidden panel is always recoverable without
+    // reloading the tab. Shown only while the panel is fully closed.
+    launcher = document.createElement("button");
+    launcher.id = "rbx-launch";
+    launcher.textContent = "RBX Grab";
+    launcher.style.cssText = [
+      "position:fixed", "bottom:16px", "right:16px", "z-index:2147483647", "display:none",
+      "cursor:pointer", "background:#7c5cff", "border:0", "color:#fff", "border-radius:99px",
+      "padding:8px 14px", "font:12px system-ui,-apple-system,sans-serif",
+      "box-shadow:0 8px 30px rgba(0,0,0,.5)"
+    ].join(";");
+    launcher.onclick = () => setUiState("open");
+    document.documentElement.appendChild(launcher);
     countEl  = panel.querySelector("#rbx-count");
     listEl   = panel.querySelector("#rbx-list");
     statusEl = panel.querySelector("#rbx-status");
@@ -153,6 +174,18 @@
     startInput = panel.querySelector("#rbx-start");
     endInput = panel.querySelector("#rbx-end");
     uniInput.value = guessUniverse();
+    panel.querySelector("#rbx-min").onclick = () => {
+      const collapsed = panel.querySelector("#rbx-body").style.display === "none";
+      setUiState(collapsed ? "open" : "collapsed");
+    };
+    panel.querySelector("#rbx-close").onclick = () => setUiState("closed");
+    // Restore the last chosen visibility so it stays out of the way across
+    // page navigations (this content script re-runs on every full load).
+    (async () => {
+      let state = "open";
+      try { const s = await chrome.storage.local.get(UI_STATE_KEY); state = s[UI_STATE_KEY] || "open"; } catch {}
+      applyUiState(state);
+    })();
     panel.querySelector("#rbx-pull").onclick = runActiveGrab;
     panel.querySelector("#rbx-send").onclick = send;
     panel.querySelector("#rbx-save").onclick = () => saveToFolder(captures, guessUniverse(), true);
@@ -180,6 +213,27 @@
     if (!activeEl) return;
     activeEl.textContent = msg;
     activeEl.style.color = color || "#9a93b3";
+  }
+
+  // open = full panel · collapsed = header bar only · closed = hidden, launcher shown
+  function applyUiState(state) {
+    if (!panel) return;
+    const body = panel.querySelector("#rbx-body");
+    const min = panel.querySelector("#rbx-min");
+    if (state === "closed") {
+      panel.style.display = "none";
+      if (launcher) launcher.style.display = "block";
+      return;
+    }
+    panel.style.display = "";
+    if (launcher) launcher.style.display = "none";
+    const collapsed = state === "collapsed";
+    if (body) body.style.display = collapsed ? "none" : "";
+    if (min) { min.textContent = collapsed ? "+" : "–"; min.title = collapsed ? "Expand" : "Collapse"; }
+  }
+  async function setUiState(state) {
+    applyUiState(state);
+    try { await chrome.storage.local.set({ [UI_STATE_KEY]: state }); } catch {}
   }
 
   // ---- folder sink -----------------------------------------------------------
@@ -363,14 +417,21 @@
           error: r.error || null,
         };
         if (r.ok && r.body) {
-          const meta = r.body.operation?.metricMetadataResult?.metadata;
-          const values = r.body.operation?.queryResult?.values ?? r.body.result?.values ?? (meta ? [] : null);
-          attempt.points = meta
-            ? meta.length
-            : (values || []).reduce((s, v) => s + ((v.dataPoints || []).length), 0);
-          // A 200 with zero points is not a success — that distinction is what
-          // tells you "not enabled for this game" vs "no data in this window".
-          attempt.ok = !!values || !!meta;
+          if (request.kind === "reviews") {
+            // Feedback: the interceptor already merged every cursor page, so the
+            // point count is just how many reviews came back.
+            attempt.points = Array.isArray(r.body.reviews) ? r.body.reviews.length : 0;
+            attempt.ok = Array.isArray(r.body.reviews);
+          } else {
+            const meta = r.body.operation?.metricMetadataResult?.metadata;
+            const values = r.body.operation?.queryResult?.values ?? r.body.result?.values ?? (meta ? [] : null);
+            attempt.points = meta
+              ? meta.length
+              : (values || []).reduce((s, v) => s + ((v.dataPoints || []).length), 0);
+            // A 200 with zero points is not a success — that distinction is what
+            // tells you "not enabled for this game" vs "no data in this window".
+            attempt.ok = !!values || !!meta;
+          }
           results.push({ url: r.url, method: r.method || "POST", via: "active", ts: Date.now(), reqBody: r.reqBody, body: r.body });
           ok++;
         } else if (request.optional) {

@@ -7,10 +7,13 @@
 (() => {
   const TAG = "__RBX_GRAB__";
 
-  // "analytics" = only metric calls (recommended).  "all" = every roblox JSON call.
+  // "analytics" = only metric/feedback calls (recommended).  "all" = every roblox JSON call.
   const CAPTURE_MODE = "analytics";
 
-  const ANALYTICS_RE = /analytics|insights|metric|retention|engagement|monetization|economy|funnel|kpi/i;
+  // Metrics + the feedback/review endpoints (downvotes, ratings, sentiment). The
+  // raw player-feedback comments live behind one of the feedback/* routes, which
+  // don't carry an "analytics" token — without these they were silently skipped.
+  const ANALYTICS_RE = /analytics|insights|metric|retention|engagement|monetization|economy|funnel|kpi|feedback|sentiment|review|downvote|thumb|rating|survey/i;
 
   const post = (payload) => {
     try { window.postMessage({ [TAG]: true, ...payload }, "*"); } catch (_) {}
@@ -161,7 +164,36 @@
   // poll on any 2xx and back off — slow queries just need longer than fast ones.
   const isPending = (status) => status >= 200 && status < 300;
 
+  // Replace/add a query param on a URL, preserving the rest — used to page the
+  // reviews endpoint by swapping the cursor each round.
+  function setQueryParam(url, key, value) {
+    const [base, qs = ""] = url.split("?");
+    const params = new URLSearchParams(qs);
+    params.set(key, value);
+    return base + "?" + params.toString();
+  }
+
+  // Cursor pagination for player feedback: the response is
+  // { reviews:[...], next_cursor, has_more }. Follow next_cursor until has_more
+  // is false (or a page cap), then merge every page into one body so the parser
+  // sees the whole set from a single capture. Universe-independent.
+  async function execReviews(request) {
+    const all = [];
+    let url = request.url;
+    let last = { status: 0, body: null };
+    for (let page = 0; page < 60; page++) {
+      last = await rawFetch(url, request.method, null);
+      const b = last.body;
+      if (!isPending(last.status) || !b || typeof b !== "object") break;
+      if (Array.isArray(b.reviews)) all.push(...b.reviews);
+      if (!b.has_more || !b.next_cursor) break;
+      url = setQueryParam(request.url, "cursor", b.next_cursor);
+    }
+    return { status: last.status, reqBody: null, body: { reviews: all, has_more: false, next_cursor: null } };
+  }
+
   async function execOne(request) {
+    if (request.kind === "reviews") return execReviews(request);
     const bodyStr = request.body === undefined ? null : JSON.stringify(request.body);
     let last = await rawFetch(request.url, request.method, bodyStr);
     for (let i = 0; i < 10 && isPending(last.status) && !isResolved(last.body); i++) {
