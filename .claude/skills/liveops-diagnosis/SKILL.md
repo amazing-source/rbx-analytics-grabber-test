@@ -1,0 +1,141 @@
+---
+name: liveops-diagnosis
+description: Diagnose a Roblox game's metrics — why DAU/revenue/retention moved, what caused it, and what to do about it. Use whenever reading data/games/<id>/, writing a decline or post-update report, answering "why did X drop", or proposing a fix based on analytics. Covers the diagnostic ladder, Indigo's benchmarks and levers, and the discrimination tests that separate cause from coincidence.
+---
+
+# LiveOps diagnosis
+
+A producer acts on what you write: kills a feature, ships a fix, or misses an
+outage. The cost of a confident wrong answer is higher than the cost of "I
+don't know yet". This skill is the method that keeps the difference visible.
+
+## 0. Earn the right to quote a number
+
+Do this before any analysis. It takes a minute and it has already caught a
+30,393-crash incident being reported as "5".
+
+1. **Is the data trustworthy?** From `web/`: `npm run verify -- ../data/verify/<id>/`,
+   `npm run audit-plan`, `npm test`. A red gate means numbers may be wrong.
+2. **Did the metric actually arrive?** `data/games/<id>/grab-report.md` →
+   *Failed — observed/proven shapes*. A metric that 400'd is missing, not zero.
+   **An empty result or a failed request is never evidence about the game.**
+3. **Is this specific point disputed?** `data/games/<id>/data-quality.md`. A
+   `revision` row means the gateway served two different values for that point.
+4. **Which series is this?** The headline is the series with an **empty
+   breakdown**. A `Place=` filter still counts as the whole; `IsNewUser=New` or
+   `AcquisitionSource=` is a slice. Quoting a slice as the total is the single
+   most damaging error this pipeline has made.
+5. **Is the point settled?** Never quote a point flagged `partial` (interval
+   unfinished at capture). `FILLED_ZERO` is a synthesized zero, not a reading.
+
+## 1. Diagnose bottom-up, not by what looks interesting
+
+Check rungs in order. A break high on the ladder is usually caused by a break
+lower down, and the lowest broken rung is the diagnosis.
+
+| # | Rung | Metrics | Question |
+|---|---|---|---|
+| 1 | **Reach** | `UniqueUsersWithImpressions`, `RFYQualifiedPTR`, DAU by `AcquisitionSource` | Is Roblox still showing the game to people? |
+| 2 | **Hook** | `ForwardD1Retention` (+ by `Platform`), `AverageSessionLengthMinutes` | Do arrivals stay? |
+| 3 | **Return loop** | `ForwardD7Retention`, `ForwardD30Retention`, `DauMauStickiness` | Do they come back? |
+| 4 | **Money** | `PayingUsersCVR`, `AverageRevenuePerPayingUser`, `AverageRevenuePerUser`, `DailyRevenue` by `RevenueSource` | Do they pay, and how? |
+| 5 | **Technical** | `ServerCrashCount`, `ClientCrashRate15m`, `ClientFpsP10`, `OomUnexpectedExits`, `ErrorCount` | Is it breaking underneath? |
+| 6 | **Funnel** | `FunnelUserChurnRate`, `FunnelUserStepCompletionRate` | Where exactly do they quit? (only where instrumented) |
+
+Rung 5 is a **rule-out**, not a starting point. Check it early so you can
+exclude it, but a crash spike is only the story if the timing survives §3.
+
+## 2. Read the signature, not the single metric
+
+Each cause has a fingerprint across rungs. Match the whole pattern.
+
+| Cause | Reach | Retention | Session | Shape |
+|---|---|---|---|---|
+| **Discovery/algorithm cut** | ↓↓ | **flat** | flat | Step change on one day; new users fall hardest |
+| **Product/update break** | flat at first | **↓** | ↓ | Starts at a publish; sustained; funnel breaks at one step |
+| **Technical/outage** | flat | ↓ during only | ↓ during only | Recovers when the fault clears |
+| **Monetization change** | flat | flat | flat | Only rung 4 moves |
+| **Lifecycle decay** | ↓ gradual | slow ↓ | flat | Smooth curve, no step, matches genre decline |
+
+**Retention flat while reach collapses = discovery, not product.** That single
+contrast has carried more diagnoses here than any other.
+
+## 3. Discrimination — the step that makes it a diagnosis
+
+For every candidate cause, name the test that could falsify it, then run it.
+A hypothesis that survives nothing is not a finding.
+
+- **Does the effect outlive the cause?** If X stopped and the metric kept
+  falling, X is not the cause. *Become a Brainrot: crashes ended 2 Aug, DAU
+  kept falling 492K → 277K through 5 Aug → crashes were a confound, and the
+  30 July deploy remained the answer.*
+- **Did the metric break before or after the publish?** `place-versions.csv`
+  has publish timestamps to the minute. Break-before-publish exonerates it.
+  *Check the full deploy list — a report here once exonerated updates by
+  citing Jul 20 while deploys on Jul 14 and Jul 17 existed.*
+- **Is it platform-side?** `annotations.md` → `ANNOTATION_TYPE_ENGINE_RELEASE`
+  (RCC = server engine). Then check whether an unrelated game moved the same
+  way on the same days. *Both games crashed 28 Jul–1 Aug after RCC v732.*
+  An engine release preceding a fault is an association, never proof of a
+  faulty release.
+- **Is it really performance?** A render/perf regression hits weak devices
+  hardest. **If desktop fell more than phone, it is not a render regression.**
+- **Is it growth confounding?** Volume metrics move with audience size. Use the
+  per-1k-DAU column in `summary.md`, never a raw volume delta.
+- **Is it just the weekend?** Roblox audiences normally *rise* Fri–Sun. A
+  weekend fall is anomalous; a weekend rise is not a win.
+
+## 4. Priors — what "good" looks like
+
+Without these a number is just a number. Sources: Indigo's own playbook
+(`indigodev`), plus values measured from our own grabs.
+
+- **QPTR (click-to-play rate)** is Indigo's #1 algorithm lever and its primary
+  technical value-add. Target **above 3%**; 8% → 18% roughly doubles organic
+  traffic. Higher QPTR → more home recommendations → compounding reach.
+  Our closest captured proxy is `RFYQualifiedPTR` — related, not identical;
+  say which one you mean.
+- **Content cadence resets the algorithm signal.** Updates every **2–3 weeks**
+  (new chapter/mechanic) is the standard intervention for decaying reach.
+- **Thumbnail A/B testing weekly/bi-weekly** is the other primary reach lever.
+- **Escape/horror genre lifecycle:** peaks at **6–8 weeks**, then loses
+  **60–70% of revenue in the following 2 weeks**. Indigo's stated extension to
+  4–5 months comes from cadence + thumbnails + cross-network funnel. A decline
+  matching this curve is *expected*, not a defect.
+- **Post-peak decline** of ~**15–20% per month** is normal for a genre leader.
+- **Low ARPDAU alongside healthy CCU = undertapped monetization**, not a
+  problem — it is the upside case.
+- **Measured on our two games:** D1 retention sits ~16–20% when healthy;
+  Brainrot's break took it to ~10–12% and held there. Treat a sustained
+  sub-13% D1 on these titles as broken, not noisy.
+
+Benchmarks in `series.json` are **similarity cohorts, not genre** on these
+universes (`benchmarkType`), so say "peer cohort", not "genre median".
+
+## 5. From diagnosis to a precise fix
+
+Name the lever, the expected size, and how you will know it worked.
+
+| Diagnosis | Lever | Measure |
+|---|---|---|
+| Reach cut, product healthy | Content update (resets algorithm signal); thumbnail A/B; cross-network funnel; paid acquisition to rebuild top of funnel | Impressions and `RFYQualifiedPTR` within 1–2 weeks |
+| Hook broken | Fix the first-session experience; onboarding funnel step that broke | `ForwardD1Retention`, session length |
+| Return loop broken | Progression/economy gate that blocks repeat play | `ForwardD7Retention`, `DauMauStickiness` |
+| Monetization gap | Close ARPDAU to cohort; rebalance Passes vs Dev Products | `PayingUsersCVR`, ARPPU, `DailyRevenue` by `RevenueSource` |
+| Technical | The specific defect, cited by file and line where code was read | Crash **rate** (not count — count tracks DAU) |
+
+Always state the **measurement window and what to exclude**. If a platform
+event contaminated days, say so, or the fix will look bigger than it was.
+
+## 6. What you hand over
+
+1. **The claim** — one sentence: which rung broke, on which date.
+2. **The evidence** — metric, series label, dates, values. Traceable.
+3. **What you ruled out** — each candidate and the test that killed it.
+4. **Confidence, and what would change it** — name the observation that would
+   overturn your conclusion. If nothing could, it is not a finding.
+5. **The action** — specific, with expected magnitude and how it gets measured.
+
+Separate **confirmed** (code read, or cell-verified against the dashboard) from
+**likely** (consistent with the pattern) from **unknown**. Never let the reader
+guess which one they are reading.
