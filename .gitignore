@@ -4,14 +4,21 @@
 .env.local
 .env*.local
 
-# Client analytics. data/ holds real revenue, DAU and retention figures for
-# Indigo's games plus raw capture bundles. Regrab on a new machine instead —
-# the grab plan is seeded, so a full pull takes a couple of minutes.
-# EXCEPTION: data/verify/ is the ground-truth corpus (dashboard CSV exports +
-# the coverage/inventory measurements) — the verification harness is useless
-# without it, so it IS committed. Internal repo; contains real metric values.
+# Client analytics — real revenue, DAU and retention for Indigo's games.
+# Internal private repo, so the irreplaceable parts are committed and only the
+# regenerable ones are ignored:
+#
+#   data/raw/     COMMITTED. The untouched capture bundles. These cannot be
+#                 re-created: Roblox drops performance/error data after a few
+#                 months (Climb Up Mountain's is already unrecoverable), and a
+#                 delisted game takes everything with it. 8MB, worth it.
+#   data/verify/  COMMITTED. Ground-truth dashboard exports + the coverage and
+#                 inventory measurements. The harness is useless without them.
+#   data/games/   IGNORED. Fully regenerable — see HANDOFF.md, one command per
+#                 bundle in data/raw/. 21MB of derived output, no need to ship.
 /data/*
 !/data/verify/
+!/data/raw/
 
 # Raw capture dumps at the repo root (same reason)
 rbx-grab-*.json

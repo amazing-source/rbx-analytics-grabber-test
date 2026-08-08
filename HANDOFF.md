@@ -24,8 +24,30 @@ reload the extension **and** hard-reload the Roblox tab (Ctrl+Shift+R). Reloadin
 the extension alone does nothing to an already-open page — this cost us two
 debugging rounds.
 
-`data/` is gitignored (client analytics). Regrab instead — the plan is seeded so
-a full pull needs no setup.
+### Restoring the data on a new machine
+
+`data/raw/` and `data/verify/` **are committed** — the raw capture bundles
+cannot be re-created (Roblox expires performance data after a few months, and
+a delisted game takes the rest with it). `data/games/` is ignored because it is
+fully derived. Rebuild it after cloning:
+
+```bash
+cd web && npm install
+for f in ../data/raw/*.json; do npm run ingest:file -- "$f"; done
+```
+
+Ingest in filename order — the timestamps are the capture order, and the
+freeze-when-settled rule means order affects which reading of a disputed point
+is kept. Then confirm the three gates:
+
+```bash
+npm run verify -- ../data/verify/9610561918/   # 23 pass · 1 fail · 9 skip, exit 0
+npm run audit-plan                             # 0 failures
+npm test                                       # 30 pass
+```
+
+The one expected `verify` failure is a documented disputed hour of realtime
+revenue, tracked in the test's `KNOWN_OPEN` set.
 
 ---
 
