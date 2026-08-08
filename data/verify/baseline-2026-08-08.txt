@@ -1,0 +1,81 @@
+
+> web@0.1.0 verify
+> node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-csv.ts ../data/verify/9610561918/
+
+SKIP  30D revenue per user, Source, 2026-06-12T00-00-00.000Z.csv  [Attribution30DRobuxPerUser]
+      no comparable series (breakdown/slice not pulled or disjoint window)
+PASS  Average Robux spent per daily user- Average revenue per DAU (ARPDAU), 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [AverageRevenuePerUser] 27 cells
+PASS  Average Robux spent per paying user- Average revenue per paying user (ARPPU), 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [AverageRevenuePerPayingUser] 27 cells
+PASS  Average playtime- Average playtime, 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [AveragePlayTimeMinutesPerDAU] 27 cells
+PASS  Average session time- Average session time, 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [AverageSessionLengthMinutes] 27 cells
+SKIP  Client frame rate- Client frame rate, 2026-08-07T08-00-00.000Z to 2026-08-08T08-00-00.000Z.csv  [ClientFpsAvg]
+      metric not pulled at any granularity
+PASS  Daily Robux spent- Revenue, 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [DailyRevenue] 27 cells
+PASS  Daily active users- Daily active users, 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [DailyActiveUsers] 27 cells
+PASS  Day 1 retention- Day 1 retention, 2026-06-12T00-00-00.000Z to 2026-08-05T00-00-00.000Z.csv  [ForwardD1Retention] 29 cells
+SKIP  Day 30 retention- Day 30 retention, 2026-06-12T00-00-00.000Z to 2026-07-07T00-00-00.000Z.csv  [ForwardD30Retention]
+      metric not pulled at any granularity
+PASS  Day 7 retention- Day 7 retention, 2026-06-12T00-00-00.000Z to 2026-07-30T00-00-00.000Z.csv  [ForwardD7Retention] 23 cells
+SKIP  Errors and warnings- Errors and warnings, 2026-08-07T08-00-00.000Z to 2026-08-08T08-00-00.000Z.csv  [ErrorCount]
+      dashboard granularity not held (re-grab needed — D5)
+FAIL  Hourly Robux spent- Robux Spent (Realtime), 2026-08-05T08-00-00.000Z to 2026-08-08T07-00-00.000Z.csv  [ItemMonetizationRevenue] 251 cells
+      ✗ [Total] 2026-08-07T00:00:00.000Z: csv 3092 vs ours 747
+      ✗ [Total] 2026-08-07T17:00:00.000Z: csv 1474 vs ours 367
+      ✗ [Developer Products] 2026-08-07T00:00:00.000Z: csv 2406 vs ours 490
+      ✗ [Developer Products] 2026-08-07T17:00:00.000Z: csv 1129 vs ours 354
+      ✗ [Passes] 2026-08-07T00:00:00.000Z: csv 686 vs ours 257
+      ✗ [Passes] 2026-08-07T17:00:00.000Z: csv 345 vs ours 13
+      ✗ [Third-party avatar item commissions] 2026-08-05T08:00:00.000Z: csv has 0, we hold nothing (in held window)
+      ✗ [Third-party avatar item commissions] 2026-08-05T09:00:00.000Z: csv has 0, we hold nothing (in held window)
+      ✗ [Third-party avatar item commissions] 2026-08-05T10:00:00.000Z: csv has 0, we hold nothing (in held window)
+      ✗ [Third-party avatar item commissions] 2026-08-05T11:00:00.000Z: csv has 0, we hold nothing (in held window)
+      ✗ [Third-party avatar item commissions] 2026-08-05T13:00:00.000Z: csv has 0, we hold nothing (in held window)
+      ✗ [Private Servers] 2026-08-07T18:00:00.000Z: csv has 0, we hold nothing (in held window)
+      ✗ [Private Servers] 2026-08-07T19:00:00.000Z: csv has 0, we hold nothing (in held window)
+      ✗ [Private Servers] 2026-08-07T20:00:00.000Z: csv has 0, we hold nothing (in held window)
+      ✗ [Private Servers] 2026-08-07T21:00:00.000Z: csv has 0, we hold nothing (in held window)
+      ✗ [Private Servers] 2026-08-07T22:00:00.000Z: csv has 0, we hold nothing (in held window)
+PASS  Monthly active users by day- Monthly active users, 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [MonthlyActiveUsers] 27 cells
+SKIP  New user first session retention, 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv
+      session-survival curve (Seconds Since Start axis) — no comparable metric
+PASS  Not interested rate per million impressions- Not interested rate per million impressions, 2026-06-12T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [RFYUniqueNotInterestedUsersPerMillionImpressions] 30 cells
+PASS  Payer conversion rate- Payer conversion rate, 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [PayingUsersCVR] 27 cells
+PASS  Paying users- Paying users, 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [PayingUsers] 27 cells
+SKIP  Peak concurrent players- Peak concurrent players, 2026-08-07T08-00-00.000Z to 2026-08-08T08-00-00.000Z.csv  [PeakConcurrentPlayers]
+      dashboard granularity not held (re-grab needed — D5)
+FAIL  Robux sources- Revenue, 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [DailyRevenue] 112 cells
+      ✗ [Third-party avatar item commissions] 2026-07-10: csv has 0, we hold nothing (in held window)
+      ✗ [Third-party avatar item commissions] 2026-07-11: csv has 0, we hold nothing (in held window)
+      ✗ [Third-party avatar item commissions] 2026-07-12: csv has 0, we hold nothing (in held window)
+      ✗ [Third-party avatar item commissions] 2026-07-14: csv has 0, we hold nothing (in held window)
+      ✗ [Third-party avatar item commissions] 2026-07-15: csv has 0, we hold nothing (in held window)
+PASS  Server crashes- Server crashes, 2026-08-02T00-00-00.000Z to 2026-08-08T00-00-00.000Z.csv  [ServerCrashCount] 5 cells
+SKIP  Session time by place- Session time, 2026-08-07T08-00-00.000Z to 2026-08-08T08-00-00.000Z.csv  [SessionDurationSecondsAvg]
+      dashboard granularity not held (re-grab needed — D5)
+PASS  Sessions- Sessions, 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [Visits] 27 cells
+PASS  Stickiness (DAU-MAU)- Stickiness (DAU-MAU), 2026-06-12T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [DauMauStickiness] 30 cells
+PASS  Total playtime- Playtime, 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [TotalPlayTimeHours] 27 cells
+SKIP  Unexpected out of memory exits- Unexpected out of memory exits, 2026-08-07T08-00-00.000Z to 2026-08-08T08-00-00.000Z.csv  [OomUnexpectedExits]
+      dashboard granularity not held (re-grab needed — D5)
+SKIP  Unique users with plays, Source, 2026-06-12T00-00-00.000Z.csv  [UniqueUsersWithPlaySessions]
+      no comparable series (breakdown/slice not pulled or disjoint window)
+PASS  Universe-9610561918- Average session time, 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [AverageSessionLengthMinutes] 27 cells
+SKIP  Universe-9610561918- Client crash rate, 2026-08-07T08-00-00.000Z to 2026-08-08T08-00-00.000Z.csv  [ClientCrashRate15m]
+      dashboard granularity not held (re-grab needed — D5)
+PASS  Universe-9610561918- Daily active users, 2026-07-10T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [DailyActiveUsers] 27 cells
+SKIP  Universe-9610561918- Unique users with impressions, 2026-06-12T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [UniqueUsersWithImpressions]
+      no comparable series (breakdown/slice not pulled or disjoint window)
+PASS  Universe-9610561918- Unique users with plays, 2026-06-12T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [UniqueUsersWithPlaySessions] 30 cells
+      · [Home Recommendation] skipped: breakdown "Home Recommendation" not pulled
+      · [Search] skipped: breakdown "Search" not pulled
+      · [Friends] skipped: breakdown "Friends" not pulled
+      · [Teleport] skipped: breakdown "Teleport" not pulled
+      · [Sponsored Ads] skipped: breakdown "Sponsored Ads" not pulled
+      · [Charts] skipped: breakdown "Charts" not pulled
+      · [Other] skipped: breakdown "Other" not pulled
+PASS  User ratings- Player Feedback Votes Count, 2026-08-02T00-00-00.000Z to 2026-08-06T00-00-00.000Z.csv  [PlayerFeedbackVotesCount] 5 cells
+      · [Upvotes] skipped: breakdown "Upvotes" not pulled
+      · [Downvotes] skipped: breakdown "Downvotes" not pulled
+
+20 pass · 2 fail · 11 skip (universe 9610561918, 33 files)
+skips are gaps, not proofs — see data/verify/COVERAGE.md; --strict makes them fail

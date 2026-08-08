@@ -7,7 +7,11 @@
 # Client analytics. data/ holds real revenue, DAU and retention figures for
 # Indigo's games plus raw capture bundles. Regrab on a new machine instead —
 # the grab plan is seeded, so a full pull takes a couple of minutes.
-/data/
+# EXCEPTION: data/verify/ is the ground-truth corpus (dashboard CSV exports +
+# the coverage/inventory measurements) — the verification harness is useless
+# without it, so it IS committed. Internal repo; contains real metric values.
+/data/*
+!/data/verify/
 
 # Raw capture dumps at the repo root (same reason)
 rbx-grab-*.json
