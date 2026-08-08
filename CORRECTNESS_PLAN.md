@@ -1,7 +1,19 @@
 # Correctness plan — making the grabber trustworthy
 
-Status: **not started.** Written 2026-08-08 after an audit of the two universes
-in `data/games/`. Read this together with `CLAUDE.md`.
+Status: **Phases 1–7 landed 2026-08-08.** Written the same day after an audit of
+the two universes in `data/games/`; executed immediately after. Read this
+together with `CLAUDE.md` and `data/verify/COVERAGE.md`.
+
+**What is still open:** verification item 6 — neither universe has had an
+active grab since the fixes. Every perf/half-hour shape was corrected against
+captured evidence but never replayed, and 9963622286's crash history (peak
+~1.06M) is still absent from `data/`. That grab needs a browser, so it is the
+one step that could not be done from here.
+
+**Where the work landed:** `git log` from `Commit the ground-truth corpus`
+onward, one commit per phase. The measured results that supersede the defect
+table below are in `data/verify/COVERAGE.md`; the per-shape plan inventory is
+in `data/verify/INVENTORY.md`.
 
 ## Why this exists
 
@@ -69,13 +81,18 @@ rate/volume classification. It is standalone — nothing in it imports from
 
 ## Ground truth: `data/verify/`
 
-34 Creator Dashboard CSV exports for universe **9610561918** are committed under
-`data/verify/9610561918/`. **Formats and units are game-independent** — only
-values change per game — so this corpus validates the parser and unit handling
-for every universe. Per-value verification is only possible for a game whose
-CSVs you hold.
+Creator Dashboard CSV exports are committed under `data/verify/`. **Formats and
+units are game-independent** — only values change per game — so this corpus
+validates the parser and unit handling for every universe. Per-value
+verification is only possible for a game whose CSVs you hold.
 
-Two format variants, both must parse:
+*Corrected during Phase 1:* it is **33 files for 9610561918 plus one that
+belongs to 9963622286** (its 1.06M-crash outage export, since moved to
+`data/verify/9963622286/`), and there are **three** formats, not two — see
+COVERAGE.md F1 and F5. The corpus also was not actually committed until Phase 1
+un-ignored it (F8).
+
+Format variants, all of which must parse:
 
 **A. Standard time series** — the common case. First column is the breakdown
 dimension and its name *varies* (`Breakdown`, `Platform`, `Revenue Source`,
@@ -108,7 +125,7 @@ part of this corpus.
 Orient, cut scope, then build verification **before** any fix — so every later
 change is provable rather than asserted.
 
-### Phase 1 — Orient (read-only, do this first)
+### Phase 1 — Orient (read-only, do this first) ✅ DONE
 
 Do not write code in this phase. Build an accurate picture of what exists, or
 you will fix the wrong thing.
@@ -133,7 +150,7 @@ you will fix the wrong thing.
 4. **Only then** start Phase 2. If Phase 1 contradicts a defect listed above,
    trust Phase 1 — it is measured, the table above was an audit.
 
-### Phase 2 — Verification harness
+### Phase 2 — Verification harness ✅ DONE (`web/scripts/verify-csv.ts`)
 
 New `web/scripts/verify-csv.ts`, wired as `npm run verify -- <csv|dir>`.
 
@@ -145,7 +162,7 @@ New `web/scripts/verify-csv.ts`, wired as `npm run verify -- <csv|dir>`.
 - Run it against the whole corpus before changing anything, and record the
   baseline failures — that list is the real defect inventory.
 
-### Phase 3 — Series identity and point semantics (D1, D2, D4)
+### Phase 3 — Series identity and point semantics (D1, D2, D4) ✅ DONE
 
 Core rule: **a metric's headline series is the one with an empty `breakdown`.**
 Filters (`Place=…`) do not disqualify it; breakdown dimensions do.
@@ -161,7 +178,7 @@ Filters (`Place=…`) do not disqualify it; breakdown dimensions do.
   `min(latestAvailableTime, last fully-elapsed UTC day)`. Exclude later points
   from headline, Δ and incidents; keep them in `series.json`/CSVs, flagged.
 
-### Phase 4 — Status semantics and units (D3, D9)
+### Phase 4 — Status semantics and units (D3, D9) ✅ DONE
 
 - Invert status handling: treat `DATA_STATUS_INVALID` as ordinary (drop the
   blanket "estimate" note); surface `DATA_STATUS_NOT_STATISTICALLY_SIGNIFICANT`
@@ -172,7 +189,7 @@ Filters (`Place=…`) do not disqualify it; breakdown dimensions do.
 - **Correct CLAUDE.md's "Data semantics gotchas" section** — its current claim
   about `DATA_STATUS_INVALID` is wrong and would reproduce the bug.
 
-### Phase 5 — Capture completeness (D5, D6, D7, D8, D11)
+### Phase 5 — Capture completeness (D5, D6, D7, D8, D11) ✅ DONE (needs a re-grab to exercise)
 
 - **Half-hour granularity**: add `METRIC_GRANULARITY_HALF_HOUR` templates for the
   six metrics proven above, with the mandatory `Place` filter. Window must be
@@ -193,7 +210,7 @@ Filters (`Place=…`) do not disqualify it; breakdown dimensions do.
   empty result may never be reported as a finding about the game.**
 - Capture `genre` from benchmark response metadata.
 
-### Phase 6 — Analysis quality (D10)
+### Phase 6 — Analysis quality (D10) ✅ DONE
 
 - Volume rows gain a DAU-normalised companion (per-1k-DAU) and the DAU delta over
   the same window.
@@ -205,7 +222,7 @@ Filters (`Place=…`) do not disqualify it; breakdown dimensions do.
   pattern as readily as a Roblox-side event. The annotation feed (D7) is the
   authoritative answer; until it is captured, report the correlation and stop.
 
-### Phase 7 — Regression fixtures
+### Phase 7 — Regression fixtures ✅ DONE (`npm test`, 30 tests)
 
 - Freeze current captures as fixtures under `web/src/lib/__fixtures__/`.
 - Encode today's bugs as assertions so they cannot return: crash incident
@@ -213,20 +230,36 @@ Filters (`Place=…`) do not disqualify it; breakdown dimensions do.
   gap-filled; verify corpus passes.
 - Wire into `npm test`.
 
-## Verification
+## Verification — results as of 2026-08-08
 
-1. `data/verify/COVERAGE.md` exists and classifies all 34 CSVs as pulled/not
-   pulled, verified/unverified, matching/mismatching (Phase 1).
-2. `npm run verify -- data/verify/9610561918/` exits 0 across all 34 files.
-3. `9610561918/summary.md` shows a **Server Crashes** incident peaking 30,393 on
-   2026-07-31, and `PeakConcurrentPlayers` ≈ 728, not 0.5.
-4. No row reads "latest point is an estimate"; the TV crash-rate series is marked
-   not-significant.
-5. `npm run audit-plan` reports zero `inferred` shapes among non-optional
-   templates.
-6. Re-grab both universes: zero failures for observed shapes, and 9963622286's
-   crash history appears with its 1.06M peak.
-7. `npm test` green.
+Run from `web/`. Items 1–5 and 7 pass; item 6 needs a browser.
+
+1. ✅ `data/verify/COVERAGE.md` classifies all 34 CSVs. It also found things
+   this document missed — F1–F11 — including that one corpus file belongs to
+   the *other* universe, and that the corpus was never actually committed.
+2. ✅ `npm run verify -- ../data/verify/9610561918/` **exits 0**: 22 pass ·
+   0 fail · 11 skip. Not "all 34 verified" — 11 files have no comparable
+   series (6 half-hour exports we cannot pull until a re-grab, 5 breakdowns or
+   windows we do not hold). Every skip is printed with its reason; `--strict`
+   turns them into failures. The two baseline failures are fixed: the hourly
+   revenue regression (F2) and the omitted zero rows (D2).
+3. ✅ Incident row: `Server Crashes | 2026-07-28 → 2026-08-02 | 30.4K | 2 |
+   15197× | none within 72h (last: v3823, 3d before)`. Peak concurrents read
+   **713.2**, not 0.5 — the plan's "≈728" was the half-hour CSV peak at
+   08:00 UTC; 713.2 is the same day's ONE_DAY value, which is what we hold
+   until half-hour is grabbed.
+4. ✅ Zero occurrences of "estimate" in either summary; the TV crash-rate
+   series is marked `not statistically significant` and excluded from
+   incidents.
+5. ✅ `npm run audit-plan`: 144 templates, 0 failures, 0 upgradable tags. It
+   caught a false `observed` claim on `FunnelUserStepCompletionRate` and a
+   never-proven `DauMauStickiness` benchmark while being written.
+6. ⬜ **Open — re-grab both universes.** Expect: the perf and half-hour shapes
+   to return data instead of 400ing, funnel requests to be emitted at all (the
+   async-polling fix), and 9963622286's crash history to appear with its ~1.06M
+   peak. Until then `data/games/9963622286/` has no `ServerCrashCount` at all.
+7. ✅ `npm test`: 30 pass, 0 fail. Each assertion was checked to FAIL against
+   the original buggy code, not merely to pass against the fixed code.
 
 ## Standing rules for whoever picks this up
 

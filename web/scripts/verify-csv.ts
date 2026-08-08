@@ -356,7 +356,7 @@ export function verifyFile(
     return { file: fileName, metric: null, verdict: "SKIP", reason: parsed.note, series: [] };
   }
 
-  let label = parsed.label;
+  const label = parsed.label;
   let metric = LABEL_TO_METRIC[label];
   if (!metric) {
     for (const [re, m] of FILENAME_TO_METRIC) if (re.test(fileName)) metric = m;

@@ -7,6 +7,26 @@ Phase-2 harness, which must be built fresh in `web/scripts/verify-csv.ts` and
 reproduce these numbers. Per the plan: **this table supersedes the defect table
 in `CORRECTNESS_PLAN.md` where they disagree.**
 
+## Status after the fixes (same day, Phases 2–7)
+
+This file records the measurement **as taken, before any fix** — the table
+below is the baseline, and it stays that way so the fixes remain falsifiable.
+What changed since:
+
+| Finding | Now |
+|---|---|
+| Row 13 (2 mismatched cells) | **Fixed** — settled points are frozen; the divergent re-read is in `data-quality.md` |
+| Rows 20/22 (omitted zero rows) | **Fixed** — count/robux volumes gap-filled as `FILLED_ZERO` |
+| F1 misfiled CSV | **Moved** to `data/verify/9963622286/` — it is that game's only crash ground truth |
+| F8 corpus not committed | **Fixed** — `.gitignore` now un-ignores `data/verify/` |
+| F9 rescue bundle outside the repo | **Copied** into `data/raw/`; the crash series is reproducible |
+| F3, F4, F11, D5, D7 | **Code fixed**, but only a live re-grab can exercise them |
+| Rows 6/12/19/23/27/31 (half-hour) | Still SKIP — the templates exist now; they need that re-grab |
+
+Current harness result: **22 pass · 0 fail · 11 skip**, `npm run verify` exits
+0. (21 → 22 pass because a lone midnight timestamp is now correctly treated as
+a daily point instead of being skipped.)
+
 ## Verdict summary
 
 | Class | Files | Meaning |

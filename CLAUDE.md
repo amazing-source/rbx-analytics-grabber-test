@@ -3,12 +3,22 @@
 Working agreement for Claude Code on this repo. Read `CAHIER_DES_CHARGES.md` for
 the full spec; this file is the day-to-day reference.
 
-> **START HERE: `CORRECTNESS_PLAN.md`.** An audit on 2026-08-08 found 11 verified
-> defects that make the tool's output untrustworthy — including one that hid a
-> 30,393-crash incident behind an arbitrary breakdown slice. That plan is the
-> current priority and is **not started**. Do not build new analysis on top of
-> these numbers until Phase 2 (the CSV verification harness) is landed. Start at
-> Phase 1 — a read-only pass over the whole project — not at the code.
+> **START HERE: `CORRECTNESS_PLAN.md` + `data/verify/COVERAGE.md`.** An audit on
+> 2026-08-08 found 11 defects that made the tool's output untrustworthy —
+> including one that hid a 30,393-crash incident behind an arbitrary breakdown
+> slice. **All seven phases landed the same day**; the code changes are in
+> `git log` from `Commit the ground-truth corpus` onward. What matters now:
+>
+> - **Three gates, all green — run them before and after any change.**
+>   `npm run verify -- ../data/verify/9610561918/` (22 pass · 0 fail · 11 skip),
+>   `npm run audit-plan` (0 failures), `npm test` (30 pass). A change that
+>   moves a number without moving these is unproven.
+> - **The one thing still open: neither universe has had a post-fix active
+>   grab.** Every perf shape was fixed against captured evidence but has never
+>   been replayed, and 9963622286's crash history (peak ~1.06M) is still absent
+>   from `data/`. Re-grab both — that is the last verification item.
+> - `data/verify/COVERAGE.md` is the measurement that supersedes the audit's
+>   defect table, and carries findings F1–F11 (things the audit missed).
 >
 > **Scope:** the grabber only — what we pull, whether it is accurate, and the
 > files it writes. The architecture is NOT in scope: the web app, the
@@ -18,7 +28,10 @@ the full spec; this file is the day-to-day reference.
 > Standing rule that produced most of those defects: **an invented query shape
 > that 400s, or returns an empty 200, tells you nothing about the game.** Only
 > the dashboard's own captured request shape is evidence. Verify which series a
-> number came from before stating any finding.
+> number came from before stating any finding. `npm run audit-plan` now enforces
+> this on the plan itself: every template is tagged `observed` / `proven` /
+> `inferred`, and an inferred shape's failure may never be reported as a
+> finding about a game.
 
 ## What this is
 Internal tool for Indigo: pull ALL Creator Dashboard metrics for an owned Roblox
@@ -33,10 +46,32 @@ reached Roblox must not be lost to a database being down (it has been).
 - `data/raw/<universe>-<ts>.json` — untouched capture bundle, re-parseable.
 - `data/games/<universe>/summary.md` — headline table per category. Start here.
 - `data/games/<universe>/series.json` — full record; merges across grabs.
-- `data/games/<universe>/metrics/*.csv` — long format per metric; hourly metrics
-  also get `*.daily.csv` with `agg` + `samples` (samples < 24 = partial day).
-- `data/README.md` — the semantics (UTC, estimated points, rate vs volume).
+- `data/games/<universe>/metrics/*.csv` — long format per metric
+  (`…,status,captured_at,partial`); sub-daily metrics also get `*.daily.csv`
+  with `agg` + `samples` + `partial`.
+- `data/games/<universe>/data-quality.md` — settled points the gateway
+  re-served differently (first read kept), and implausible units. **Read it
+  before quoting a sub-daily number.**
+- `data/games/<universe>/annotations.md` / `errors.md` — Roblox timeline
+  annotations by type; error signatures by `MessageHash` with volumes.
+- `data/README.md` — the semantics (UTC, `FILLED_ZERO`, `partial`, rate vs
+  volume). Regenerated on every export from `export-files.ts`.
+- `data/verify/` — the ground-truth corpus + `COVERAGE.md` / `INVENTORY.md`.
+  The only part of `data/` that is committed.
 Offline path, no server or DB: `cd web && npm run ingest:file -- <raw.json>`.
+
+## The three gates
+Run from `web/`. Any change to what the numbers say must keep all three green,
+and a change that fixes a number should move one of them.
+- `npm run verify -- ../data/verify/<id>/` — diffs every dashboard-CSV cell
+  against `series.json`. FAILs on a value mismatch **or** a cell missing from
+  inside a window we hold (that is how omitted zero rows get caught). SKIPs are
+  printed, never silent.
+- `npm run audit-plan` — checks every seed template's `observed`/`proven`/
+  `inferred` tag against the capture corpus and the grab reports. Fails on a
+  non-optional guess or a false `observed` claim.
+- `npm test` — regression fixtures built from real captures; every audit defect
+  is encoded so it cannot return.
 
 ## Stack
 - Web: Next.js (App Router) + TypeScript + Tailwind + shadcn/ui
@@ -120,6 +155,13 @@ mapping, updated on ingest. (Metric *names* in `default-plan.ts` are fine — th
 are what the dashboard itself puts in the request body. Hashes are what rot.)
 
 ## Data semantics gotchas
+- **A metric's headline series is the one with an EMPTY breakdown.** A `Place`
+  filter still counts as the whole (the entire Performance tab is Place-scoped);
+  a population filter (`IsNewUser`, `AcquisitionSource`) does not — that is a
+  slice. If no unbroken-down series exists, there is NO headline: print `—` and
+  `breakdown only`. Never fall back to `series[0]`. That fallback is what
+  printed a 30,393-crash incident as "5" and peak concurrents as "0.5".
+  `totalSeries()` in `export-files.ts` is the single implementation; use it.
 - Timestamps are UTC. `ONE_DAY` points are stamped `00:00:00Z` (verified across
   5,571 points). Sub-daily series are stamped at the interval boundary. Align on
   UTC.
@@ -132,14 +174,24 @@ are what the dashboard itself puts in the request body. Hashes are what rot.)
   one and exclude it from conclusions.
 - **The API omits zero rows.** A missing day is absent, not `0`. For counts that
   almost always means zero (`ServerCrashCount` returned 10 days of a 27-day
-  window); for rates a missing day is genuinely unknown. Gap-fill counts, never
-  rates — and note that "Δ vs ~7 points earlier" silently spans non-adjacent
-  dates on a sparse series.
+  window); for rates a missing day is genuinely unknown. The exporter now
+  gap-fills count/robux volumes inside the requested window and marks them
+  `status: FILLED_ZERO`; rates are never filled. Δ carries its real span, so a
+  comparison that silently reaches further than 7 days says so.
+- **A point whose interval had not elapsed when we captured it is `partial`**
+  and is excluded from every headline, Δ and incident. This is what stopped
+  `ClientCrashCount` printing "▼85.6%" off a 7-hour day.
+- **Settled points are frozen.** The gateway has been observed re-serving a
+  17-hour-old hour at a quarter of its dashboard-confirmed value (3092 → 747).
+  Last-write-wins kept the wrong number, so a divergent re-read of an already
+  settled point is now recorded in `data-quality.md` and NOT applied.
 - Several metrics are served at **`METRIC_GRANULARITY_HALF_HOUR`** —
   `ErrorCount`, `ClientFpsAvg`, `ClientCrashRate15m`, `PeakConcurrentPlayers`,
-  `OomUnexpectedExits`, `SessionDurationSecondsAvg`. This is the resolution that
-  answers "which hours are spiking". Proven by the dashboard CSV exports in
-  `data/verify/`.
+  `OomUnexpectedExits`, `SessionDurationSecondsAvg`, plus `ServerCrashCount`
+  (captured directly). This is the resolution that answers "which hours are
+  spiking". Proven by the dashboard CSV exports in `data/verify/`. The plan now
+  requests them, clamped to the **final 24h** of the window — the gateway
+  silently truncates long sub-daily windows.
 - Comparison engine: split metrics into RATE (conversion, ARPPU, ARPDAU,
   retention %, funnel completion %) vs VOLUME (revenue, DAU, paying users,
   sessions). Only rate metrics are safe to compare across a growth window;

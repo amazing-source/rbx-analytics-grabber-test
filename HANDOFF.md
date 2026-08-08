@@ -95,7 +95,12 @@ Offline path, no server or DB:
 - `PlaceVersion` as a **breakdown** → 400 on every metric. It's a valid
   dimension for *discovery*, not for breaking down metrics.
 - `DailyCohortRetention` → 400. Query shape still wrong; copy the dashboard's.
-- `ForwardD30Retention` → 200 empty. Possibly genuine (young cohorts).
+  Marked `optional` on 2026-08-08 so its failure stops reading as a problem
+  with the game.
+- ~~`ForwardD30Retention` → 200 empty. Possibly genuine (young cohorts).~~
+  **Answered 2026-08-08: not genuine.** The dashboard's own CSV export has D30
+  data for Jun 12 → Jul 7. Our 28-day window simply contains no cohort old
+  enough. Widen the window instead of concluding anything. (COVERAGE.md row 10.)
 
 ---
 
@@ -141,12 +146,28 @@ no API exposes a diff.
 
 ## 6. Next steps
 
-1. **Pull `Jun 1 → Aug 7`** on the new machine. Discovery handles places, version
-   history and funnel names automatically.
-2. **Read `place-versions.md`** — confirms v546's exact publish timestamp.
-3. **Check `ErrorCount` broken down by `ErrorMessage`** (in the plan, never yet
-   returned). If a progress-loss bug shipped in v546, the error text should
-   appear or spike on Jul 30. That would move this from "v546 did it" to
-   "*this line* did it".
-4. Optional: a passive pass over Retention/Acquisition tabs to learn the correct
+> Updated 2026-08-08 after the correctness overhaul (`CORRECTNESS_PLAN.md`).
+> The numbers below were produced by the **pre-fix** pipeline. The conclusion
+> about v546 rests on retention, session length and funnel completion — all
+> rate metrics on unbroken-down series, none of which the D1/D2/D4 defects
+> touched — so it still stands. Re-grab before extending it, though.
+
+1. **Re-grab both universes** (`Jun 1 → Aug 7`). This is the open verification
+   item: the perf/half-hour shapes and the async-polling fix have never been
+   exercised live. Expect 9963622286's crash history to appear for the first
+   time, with its ~1.06M peak.
+2. **Read `place-versions.md`** — confirms v546's exact publish timestamp, and
+   `summary.md`'s incident table now names the nearest publish itself.
+3. **Read `errors.md`**, not `ErrorCount` by `ErrorMessage` — that dimension
+   name was a guess that 400s. The real one is `MessageHash`, and errors are
+   heavily concentrated (one signature is 52.3% of 12.4M events on
+   9610561918). If a progress-loss bug shipped in v546, its signature should
+   appear or spike on Jul 30 — which moves this from "v546 did it" to "*this
+   line* did it". Hash→text needs the async dimensions lookup, which the
+   re-grab now polls for.
+4. **Read `annotations.md`** before blaming or exonerating Roblox. Both
+   universes spiked 2026-07-31→08-01, which is Fri–Sat and fits a weekly-update
+   pattern as readily as a platform event. The annotation feed is the authority;
+   correlation is not.
+5. Optional: a passive pass over Retention/Acquisition tabs to learn the correct
    `DailyCohortRetention` query shape.

@@ -65,6 +65,19 @@ cd web
 npm run ingest:file -- ../data/raw/<file>.json
 ```
 
+## Checking the numbers are right
+
+Three commands, all offline. Keep them green — they are what make the output trustworthy
+rather than merely confident. See [`CORRECTNESS_PLAN.md`](CORRECTNESS_PLAN.md) and
+[`data/verify/COVERAGE.md`](data/verify/COVERAGE.md).
+
+```
+cd web
+npm run verify -- ../data/verify/9610561918/   # diff every stored cell against Roblox's own CSV exports
+npm run audit-plan                             # every query shape is observed/proven, never a guess
+npm test                                       # regression fixtures for every known defect
+```
+
 ## Layout
 
 - `interceptor.js` — MAIN world. Sees the page's own fetch/XHR (including request bodies,

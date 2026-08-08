@@ -290,7 +290,7 @@ export function parseCaptures(captures: Capture[]): ParseResult {
       const gameId = url.match(/universes\/(\d+)\//)?.[1] ?? "";
       const typeMatch = url.match(/[?&]annotationType=(\d+)/);
       const annotationType = typeMatch ? Number(typeMatch[1]) : -1;
-      for (const a of (body as any)?.annotations ?? []) {
+      for (const a of body?.annotations ?? []) {
         annotations.push({ gameId, annotationType, raw: a });
       }
       continue;
@@ -300,7 +300,7 @@ export function parseCaptures(captures: Capture[]): ParseResult {
     // FunnelName/FunnelStep discovery, and the MessageHash hash→text mapping.
     if (/analytics-query-gateway\/v1\/dimensions\/resource/.test(url)) {
       const gameId = String(universeIdFromUrl(url) ?? "");
-      const groups = (body as any)?.operation?.dimensionValuesResult?.values ?? [];
+      const groups = body?.operation?.dimensionValuesResult?.values ?? [];
       for (const g of groups) {
         const dim = g?.dimension?.name;
         if (!dim) continue;
