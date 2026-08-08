@@ -23,6 +23,17 @@ export type Snapshot = {
   value: number | null;
   stringValues: string[];
   status: string | null;
+  // When the capture that carried this point was made. A point whose interval
+  // had not fully elapsed at capture time is an in-progress partial — quoting
+  // it as the day's value is how "Crash Count ▼85.6%" got printed off a
+  // 7-hour day. Absent on captures that predate this field.
+  capturedAt: string | null;
+  // The request's own startTime/endTime. The API omits zero rows, so "which
+  // dates did we ask about" cannot be reconstructed from the points that came
+  // back — and without it, a count's missing day cannot be told apart from a
+  // day outside the query.
+  windowStart: string | null;
+  windowEnd: string | null;
 };
 
 export type CatalogEntry = { metric: string; hash: string; gameId: string };
@@ -268,6 +279,9 @@ export function parseCaptures(captures: Capture[]): ParseResult {
         values: f.values ?? [],
         operation: f.operation,
       }));
+      const capturedAt = typeof c.ts === "number" ? new Date(c.ts).toISOString() : null;
+      const windowStart = req.query?.startTime ? String(req.query.startTime) : null;
+      const windowEnd = req.query?.endTime ? String(req.query.endTime) : null;
 
       if (op.path && metric) {
         catalog.set(`${gameId}:${metric}`, { metric, hash: op.path, gameId });
@@ -291,6 +305,9 @@ export function parseCaptures(captures: Capture[]): ParseResult {
             value: typeof dp.value === "number" ? dp.value : null,
             stringValues: dp.stringValues ?? [],
             status: dp.status ?? null,
+            capturedAt,
+            windowStart,
+            windowEnd,
           };
           const dedupe = `${gameId}|${metric}|${granularity}|${seriesKey}|${ts}`;
           if (snapSeen.has(dedupe)) {

@@ -36,14 +36,41 @@ export async function resolveDataDir(): Promise<string> {
 
 // ---------------------------------------------------------------- on-disk shape
 
-export type ExportPoint = { date: string; ts: string; value: number | null; status: string | null };
+export type ExportPoint = {
+  date: string;
+  ts: string;
+  value: number | null;
+  // "FILLED_ZERO" marks a zero synthesized for a row the API omitted — the
+  // gateway drops zero rows entirely, so for count/robux volume metrics an
+  // absent granule inside the requested window IS a zero (proven against the
+  // dashboard's own CSV exports, which print those zeros explicitly).
+  status: string | null;
+  capturedAt?: string; // when the capture carrying this point was made
+  partial?: boolean; // the interval had not fully elapsed at capturedAt
+};
 export type ExportSeries = {
   key: string;
   label: string;
   granularity: string;
   breakdown: Record<string, string>;
   filters: Snapshot["filters"];
+  // Union of the request windows that fed this series — what we actually
+  // asked about. The API omits zero rows, so this cannot be reconstructed
+  // from the points themselves.
+  windowStart?: string;
+  windowEnd?: string;
   points: ExportPoint[];
+};
+
+// A data-quality event worth a human's attention, persisted in series.json so
+// it survives re-ingests and renders into data-quality.md.
+export type QualityEntry = {
+  kind: "revision" | "implausible";
+  metric: string;
+  series: string;
+  ts: string;
+  detail: string;
+  observedAt: string;
 };
 export type ExportMetric = {
   metric: string;
@@ -63,11 +90,29 @@ export type GameExport = {
   generatedAt: string;
   metrics: Record<string, ExportMetric>;
   benchmarks: Record<string, Record<string, ExportPoint[]>>; // metric -> percentile -> points
+  quality?: QualityEntry[];
 };
 
 // Series identity on disk includes granularity — the same breakdown pulled
 // hourly and daily are two different series, not one that overwrites the other.
 const seriesId = (granularity: string, seriesKey: string) => `${granularity}::${seriesKey}`;
+
+// ---------------------------------------------------------------- intervals
+
+const GRAN_MS: Record<string, number> = {
+  METRIC_GRANULARITY_ONE_DAY: 86_400_000,
+  METRIC_GRANULARITY_ONE_HOUR: 3_600_000,
+  METRIC_GRANULARITY_HALF_HOUR: 1_800_000,
+  METRIC_GRANULARITY_ONE_MINUTE: 60_000,
+};
+
+// Had this point's interval fully elapsed when we captured it? A settled
+// point is final enough to freeze; an in-progress one is expected to change.
+function settledAtCapture(ts: string, granularity: string, capturedAt: string | null | undefined): boolean | null {
+  const ms = GRAN_MS[granularity];
+  if (!ms || !capturedAt) return null; // NONE-aggregates / legacy points: unknown
+  return new Date(ts).getTime() + ms <= new Date(capturedAt).getTime();
+}
 
 function labelFor(breakdown: Record<string, string>, filters: Snapshot["filters"]): string {
   const bd = Object.entries(breakdown).map(([k, v]) => `${k}: ${v}`).join(", ");
@@ -95,6 +140,7 @@ function mergeGame(prev: GameExport | null, gameId: string, r: ParseResult): Gam
   };
   out.universeId = gameId;
   out.generatedAt = new Date().toISOString();
+  const quality: QualityEntry[] = [];
 
   for (const b of r.benchmarks) if (b.gameId === gameId && b.genre) out.genre = b.genre;
 
@@ -149,8 +195,50 @@ function mergeGame(prev: GameExport | null, gameId: string, r: ParseResult): Gam
       };
       m.series.push(series);
     }
+    // Track the union of request windows so absent rows can be classified.
+    if (s.windowStart && (!series.windowStart || s.windowStart < series.windowStart))
+      series.windowStart = s.windowStart;
+    if (s.windowEnd && (!series.windowEnd || s.windowEnd > series.windowEnd))
+      series.windowEnd = s.windowEnd;
+
     const bucket = index.get(`${s.metric}|${sid}`) ?? new Map<string, ExportPoint>();
-    bucket.set(s.ts, { date: s.date, ts: s.ts, value: s.value, status: s.status });
+    const incoming: ExportPoint = {
+      date: s.date,
+      ts: s.ts,
+      value: s.value,
+      status: s.status,
+      capturedAt: s.capturedAt ?? undefined,
+      partial: settledAtCapture(s.ts, s.granularity, s.capturedAt) === false || undefined,
+    };
+    const existing = bucket.get(s.ts);
+    // Freeze-when-settled: once a point's interval had fully elapsed at
+    // capture time, a later capture may NOT silently replace it. The gateway
+    // has been observed re-serving a 17-hour-old hour at a quarter of its
+    // (dashboard-confirmed) value seven minutes after serving it correctly —
+    // blind last-write-wins kept the wrong number. Divergent re-reads of a
+    // settled point are logged to data-quality.md instead of applied.
+    // Filled zeros and unsettled/unknown points always yield to real data.
+    const existingSettled =
+      existing && existing.status !== "FILLED_ZERO"
+        ? settledAtCapture(existing.ts, s.granularity, existing.capturedAt)
+        : false;
+    if (existing && existingSettled === true) {
+      const changed =
+        existing.value !== incoming.value &&
+        !(existing.value == null && incoming.value == null);
+      if (changed) {
+        quality.push({
+          kind: "revision",
+          metric: s.metric,
+          series: series.label,
+          ts: s.ts,
+          detail: `settled point re-served as ${incoming.value} (captured ${incoming.capturedAt ?? "?"}); kept ${existing.value} (captured ${existing.capturedAt ?? "?"})`,
+          observedAt: new Date().toISOString(),
+        });
+      }
+    } else {
+      bucket.set(s.ts, incoming);
+    }
     index.set(`${s.metric}|${sid}`, bucket);
   }
 
@@ -163,6 +251,18 @@ function mergeGame(prev: GameExport | null, gameId: string, r: ParseResult): Gam
       if (bucket) s.points = [...bucket.values()].sort((a, b) => a.ts.localeCompare(b.ts));
     }
     m.series.sort((a, b) => (a.label === "Total" ? -1 : b.label === "Total" ? 1 : a.label.localeCompare(b.label)));
+    fillOmittedZeros(m);
+  }
+
+  // persist quality findings (deduped, capped — newest kept)
+  if (quality.length) {
+    const seen = new Set(
+      (out.quality ?? []).map((q) => `${q.kind}|${q.metric}|${q.series}|${q.ts}|${q.detail}`)
+    );
+    const fresh_ = quality.filter(
+      (q) => !seen.has(`${q.kind}|${q.metric}|${q.series}|${q.ts}|${q.detail}`)
+    );
+    out.quality = [...(out.quality ?? []), ...fresh_].slice(-500);
   }
 
   for (const b of r.benchmarks) {
@@ -180,9 +280,63 @@ function mergeGame(prev: GameExport | null, gameId: string, r: ParseResult): Gam
   return out;
 }
 
+// ---------------------------------------------------------------- zero fill
+
+// The API omits zero rows. For count/robux VOLUME metrics an absent granule
+// inside the requested window is a zero — the dashboard's own CSV exports
+// print those zeros explicitly (Server crashes Aug 4–8 = 0; per-source revenue
+// hours = 0), and computing a median or Δ over only the non-zero days is how
+// a 30,393-crash day sat next to a "typical" that ignored three quiet weeks.
+// NEVER filled: rates (a missing retention day is unknown, not 0%), and
+// anything beyond what had both fully elapsed and become available when we
+// last looked. Sub-daily series are only filled between their first real
+// point and the caps — the gateway truncates long sub-daily windows (a 744-
+// hour request came back with ~240 hours), so a leading absence there means
+// "outside the effective window", not zero.
+function fillOmittedZeros(m: ExportMetric): void {
+  const info = metricInfo(m.metric);
+  if (info.kind !== "volume" || !["count", "robux"].includes(info.unit)) return;
+  for (const s of m.series) {
+    const ms = GRAN_MS[s.granularity];
+    if (!ms || s.granularity === "METRIC_GRANULARITY_ONE_MINUTE") continue;
+    const real = s.points.filter((p) => p.status !== "FILLED_ZERO");
+    if (!real.length || !s.windowStart || !s.windowEnd) continue;
+    const captured = real.map((p) => p.capturedAt).filter(Boolean) as string[];
+    if (!captured.length) continue;
+    const capMs = Math.max(...captured.map((c) => new Date(c).getTime()));
+    const lastRealMs = new Date(real[real.length - 1].ts).getTime();
+    const latestAvailMs = m.latestAvailableTime
+      ? Math.max(new Date(m.latestAvailableTime).getTime(), lastRealMs)
+      : null;
+    const daily = s.granularity === "METRIC_GRANULARITY_ONE_DAY";
+    const startBase = daily
+      ? new Date(s.windowStart).getTime()
+      : new Date(real[0].ts).getTime();
+    const endBase = new Date(s.windowEnd).getTime();
+    const have = new Set(s.points.map((p) => new Date(p.ts).getTime()));
+    const filledAt = new Date(capMs).toISOString();
+    let added = false;
+    for (let t = Math.ceil(startBase / ms) * ms; t < endBase; t += ms) {
+      if (t + ms > capMs) break; // interval had not fully elapsed at last capture
+      if (latestAvailMs != null && t > latestAvailMs) break; // beyond server-side availability
+      if (have.has(t)) continue;
+      const iso = new Date(t).toISOString().replace(".000Z", "Z");
+      s.points.push({
+        date: iso.slice(0, 10),
+        ts: iso,
+        value: 0,
+        status: "FILLED_ZERO",
+        capturedAt: filledAt,
+      });
+      added = true;
+    }
+    if (added) s.points.sort((a, b) => new Date(a.ts).getTime() - new Date(b.ts).getTime());
+  }
+}
+
 // ---------------------------------------------------------------- rollup
 
-// Hourly metrics (the whole Performance tab, peak CCU, item revenue) need a
+// Sub-daily metrics (the whole Performance tab, peak CCU, item revenue) need a
 // daily view to line up with the rest of the comparison window.
 const ROLLUP: Record<string, "max" | "sum" | "mean"> = {
   PeakConcurrentPlayers: "max",
@@ -195,21 +349,28 @@ function rollupRule(m: ExportMetric): "max" | "sum" | "mean" {
   return ROLLUP[m.metric] ?? (m.kind === "rate" ? "mean" : "sum");
 }
 
-// `samples` is how many hourly points fed the day — a day with fewer than 24 is
-// partial, which matters a lot for `sum` rollups and not at all for `mean`.
+// `samples` is how many sub-daily points fed the day; `partial` means the day
+// cannot be quoted as a whole — a contributing point was still in progress at
+// capture, or fewer samples arrived than the granularity has slots.
 type DailyPoint = ExportPoint & { samples: number };
 
-function rollupToDaily(points: ExportPoint[], rule: "max" | "sum" | "mean"): DailyPoint[] {
-  const byDate = new Map<string, number[]>();
+function rollupToDaily(
+  points: ExportPoint[],
+  rule: "max" | "sum" | "mean",
+  granularity: string
+): DailyPoint[] {
+  const slots = GRAN_MS[granularity] ? 86_400_000 / GRAN_MS[granularity] : null;
+  const byDate = new Map<string, { vals: number[]; partial: boolean }>();
   for (const p of points) {
     if (p.value == null) continue;
-    const arr = byDate.get(p.date) ?? [];
-    arr.push(p.value);
-    byDate.set(p.date, arr);
+    const e = byDate.get(p.date) ?? { vals: [], partial: false };
+    e.vals.push(p.value);
+    if (p.partial) e.partial = true;
+    byDate.set(p.date, e);
   }
   return [...byDate.entries()]
     .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(([date, vals]) => ({
+    .map(([date, { vals, partial }]) => ({
       date,
       ts: `${date}T00:00:00.000Z`,
       value:
@@ -218,10 +379,12 @@ function rollupToDaily(points: ExportPoint[], rule: "max" | "sum" | "mean"): Dai
         : vals.reduce((s, v) => s + v, 0) / vals.length,
       status: null,
       samples: vals.length,
+      partial: partial || (slots != null && vals.length < slots) || undefined,
     }));
 }
 
-const isHourly = (g: string) => g === "METRIC_GRANULARITY_ONE_HOUR";
+const isSubDaily = (g: string) =>
+  g === "METRIC_GRANULARITY_ONE_HOUR" || g === "METRIC_GRANULARITY_HALF_HOUR";
 
 // ---------------------------------------------------------------- rendering
 
@@ -230,54 +393,133 @@ function csvEscape(v: string): string {
 }
 
 function metricCsv(m: ExportMetric): string {
-  const rows = ["date,ts,granularity,series,value,status"];
+  const rows = ["date,ts,granularity,series,value,status,captured_at,partial"];
   for (const s of m.series)
     for (const p of s.points)
       rows.push(
-        [p.date, p.ts, s.granularity, csvEscape(s.label), p.value ?? "", p.status ?? ""].join(",")
+        [
+          p.date,
+          p.ts,
+          s.granularity,
+          csvEscape(s.label),
+          p.value ?? "",
+          p.status ?? "",
+          p.capturedAt ?? "",
+          p.partial ? "true" : "",
+        ].join(",")
       );
   return rows.join("\n") + "\n";
 }
 
+// Human rendering of the persisted quality entries — settled points the
+// gateway re-served with different values, and values outside their unit's
+// plausible range. An empty file is not written.
+function dataQualityMd(g: GameExport): string | null {
+  const entries = g.quality ?? [];
+  if (!entries.length) return null;
+  const out: string[] = [];
+  out.push(`# Data quality — universe ${g.universeId}`);
+  out.push("");
+  out.push(
+    "Events that make a stored number less trustworthy than it looks. `revision` = the gateway re-served an already-settled point with a different value; the FIRST settled read is kept (a re-grab once replaced a dashboard-confirmed hourly revenue value with a quarter of it) and the divergent read is recorded here. `implausible` = a value outside its unit's plausible range, kept but flagged."
+  );
+  out.push("");
+  out.push("| Kind | Metric | Series | Point | Detail | Observed |");
+  out.push("|---|---|---|---|---|---|");
+  for (const q of entries)
+    out.push(
+      `| ${q.kind} | ${q.metric} | ${q.series} | ${q.ts} | ${q.detail} | ${q.observedAt.slice(0, 16)}Z |`
+    );
+  out.push("");
+  return out.join("\n");
+}
+
 function dailyCsv(m: ExportMetric): string | null {
-  const hourly = m.series.filter((s) => isHourly(s.granularity));
-  if (!hourly.length) return null;
+  const subDaily = m.series.filter((s) => isSubDaily(s.granularity));
+  if (!subDaily.length) return null;
   const rule = rollupRule(m);
-  const rows = [`date,series,value,agg,samples`];
-  for (const s of hourly)
-    for (const p of rollupToDaily(s.points, rule))
-      rows.push([p.date, csvEscape(s.label), p.value ?? "", rule, p.samples].join(","));
+  const rows = [`date,series,value,agg,samples,partial`];
+  for (const s of subDaily)
+    for (const p of rollupToDaily(s.points, rule, s.granularity))
+      rows.push([p.date, csvEscape(s.label), p.value ?? "", rule, p.samples, p.partial ? "true" : ""].join(","));
   return rows.join("\n") + "\n";
 }
 
-// Latest value + a like-for-like comparison ~7 points back, which is the same
+// ---------------------------------------------------------------- headline
+
+// A metric's headline series is the one with an EMPTY breakdown. A filter that
+// scopes the query to the game's place(s) does not disqualify it — the whole
+// Performance tab only exists Place-filtered — but a filter that restricts the
+// population (IsNewUser=New, AcquisitionSource=…) is a slice, and a slice
+// presented as the whole is how a 30,393-crash incident printed as "5".
+// If no such series exists, there is NO headline. Never fall back to series[0].
+export function totalSeries(m: ExportMetric): ExportSeries | null {
+  const rank = (g: string) =>
+    g === "METRIC_GRANULARITY_ONE_DAY" ? 0
+    : isSubDaily(g) ? 1
+    : g === "METRIC_GRANULARITY_NONE" ? 2
+    : 3;
+  const pick = (list: ExportSeries[]) =>
+    list.length
+      ? [...list].sort((a, b) => rank(a.granularity) - rank(b.granularity) || b.points.length - a.points.length)[0]
+      : null;
+  const candidates = m.series.filter(
+    (s) =>
+      Object.keys(s.breakdown ?? {}).length === 0 &&
+      s.granularity !== "METRIC_GRANULARITY_ONE_MINUTE"
+  );
+  const unfiltered = candidates.filter((s) => !(s.filters ?? []).length);
+  const placeScoped = candidates.filter(
+    (s) => (s.filters ?? []).length > 0 && (s.filters ?? []).every((f) => f.dimension === "Place")
+  );
+  return pick(unfiltered) ?? pick(placeScoped);
+}
+
+// Points that may feed a headline, Δ, or incident: value present, interval
+// fully elapsed at capture, and no later than the metric's own
+// latestAvailableTime (a day the server has not finished computing is not a
+// result — quoting it produced "Crash Count ▼85.6%" off a 7-hour day).
+function settledPoints(m: ExportMetric, s: ExportSeries): (ExportPoint | DailyPoint)[] {
+  const pts = isSubDaily(s.granularity)
+    ? rollupToDaily(s.points, rollupRule(m), s.granularity)
+    : s.points;
+  const completeDay = m.latestAvailableTime ? m.latestAvailableTime.slice(0, 10) : null;
+  const lastSettledReal = [...s.points].reverse().find((p) => p.value != null && !p.partial);
+  // Freshness metadata can lag data that demonstrably exists — never let it
+  // exclude settled points we actually hold.
+  const effComplete =
+    completeDay && lastSettledReal && lastSettledReal.date > completeDay
+      ? lastSettledReal.date
+      : completeDay;
+  return pts.filter((p) => p.value != null && !p.partial && (!effComplete || p.date <= effComplete));
+}
+
+// Latest settled value + a like-for-like comparison ~7 points back, the same
 // week-over-week read the dashboard tiles show.
 function headline(m: ExportMetric) {
-  const total = m.series.find((s) => s.label === "Total") ?? m.series[0];
+  const total = totalSeries(m);
   if (!total) return null;
-  const pts = isHourly(total.granularity)
-    ? rollupToDaily(total.points, rollupRule(m))
-    : total.points;
-  const withValues = pts.filter((p) => p.value != null);
-  if (!withValues.length) return null;
-  const last = withValues[withValues.length - 1];
-  const prev = withValues.length > 7 ? withValues[withValues.length - 8] : withValues[0];
+  const usable = settledPoints(m, total);
+  if (!usable.length) return null;
+  const last = usable[usable.length - 1];
+  const prev = usable.length > 7 ? usable[usable.length - 8] : usable[0];
   const deltaPct =
     prev && prev.value != null && prev.value !== 0 && last.value != null && prev !== last
       ? ((last.value - prev.value) / Math.abs(prev.value)) * 100
       : null;
-  // Nearly every series has an unvalidated tail, so flagging "contains an
-  // estimate" would flag everything. What actually changes a read is whether
-  // the number being quoted is itself an estimate.
-  const latestRaw = total.points.filter((p) => p.value != null).pop();
+  const gapDays =
+    prev !== last
+      ? Math.round((new Date(last.date).getTime() - new Date(prev.date).getTime()) / 86_400_000)
+      : 0;
   return {
     seriesLabel: total.label,
     date: last.date,
     value: last.value,
     deltaPct,
-    latestIsEstimate: latestRaw?.status === "DATA_STATUS_INVALID",
-    partialDay: isHourly(total.granularity) && (last as DailyPoint).samples < 24,
-    points: withValues.length,
+    // Δ is only a week-over-week read when the compared points are actually
+    // ~7 days apart — on a sparse series it can silently span far more.
+    deltaSpanDays: gapDays,
+    points: usable.length,
   };
 }
 
@@ -306,12 +548,14 @@ export function detectIncidents(g: GameExport): Incident[] {
   const found: Incident[] = [];
   for (const m of Object.values(g.metrics)) {
     if (m.higherIsBetter !== false) continue;
-    const total = m.series.find((s) => s.label === "Total") ?? m.series[0];
+    // Same identity rule as the headline: only an unbroken-down series may
+    // represent the metric. Scanning `series[0]` here is what hid a
+    // 30,393-crash incident behind its OutOfMemory slice.
+    const total = totalSeries(m);
     if (!total) continue;
-    const pts = isHourly(total.granularity)
-      ? rollupToDaily(total.points, rollupRule(m))
-      : total.points;
-    const vals = pts.filter((p) => p.value != null) as (ExportPoint & { value: number })[];
+    const vals = settledPoints(m, total).filter((p) => p.value != null) as (ExportPoint & {
+      value: number;
+    })[];
     if (vals.length < 5) continue;
 
     const sorted = [...vals].map((p) => p.value).sort((a, b) => a - b);
@@ -425,7 +669,10 @@ function summaryMd(g: GameExport): string {
     for (const m of metrics) {
       const h = headline(m);
       if (!h) {
-        out.push(`| ${m.label} | ${m.kind} | — | — | — | — | ${m.series.length} | no values |`);
+        // Never invent a headline. A metric with only breakdown/sliced series
+        // has no "the" value — say so instead of quoting a slice.
+        const why = totalSeries(m) ? "no settled values" : `breakdown only (${m.series.length} series)`;
+        out.push(`| ${m.label} | ${m.kind} | — | — | — | — | ${m.series.length} | ${why} |`);
         continue;
       }
       const good = deltaIsGood(m.metric, h.deltaPct);
@@ -435,8 +682,9 @@ function summaryMd(g: GameExport): string {
       const arrow = h.deltaPct == null ? "—" : `${h.deltaPct > 0 ? "▲" : "▼"} ${Math.abs(h.deltaPct).toFixed(1)}%${good === false && material ? " ⚠" : ""}`;
       const notes = [
         h.seriesLabel !== "Total" ? `shown: ${h.seriesLabel}` : "",
-        h.latestIsEstimate ? "latest point is an estimate" : "",
-        h.partialDay ? "last day partial" : "",
+        h.deltaPct != null && (h.deltaSpanDays < 5 || h.deltaSpanDays > 9)
+          ? `Δ spans ${h.deltaSpanDays}d`
+          : "",
       ].filter(Boolean).join("; ");
       out.push(
         `| ${m.label} | ${m.kind} | ${formatValue(m.metric, h.value)} | ${h.date} | ${arrow} | ${benchmarkVerdict(g, m, h.value) || "—"} | ${m.series.length} | ${notes || "—"} |`
@@ -746,6 +994,12 @@ export async function exportToFiles(r: ParseResult): Promise<ExportSummary> {
       "utf8"
     );
     files += 3;
+
+    const quality = dataQualityMd(merged);
+    if (quality) {
+      await fs.writeFile(path.join(gameDir, "data-quality.md"), quality, "utf8");
+      files++;
+    }
 
     if (r.placeVersions?.length) {
       await fs.writeFile(path.join(gameDir, "place-versions.md"), placeVersionsMd(r.placeVersions), "utf8");
