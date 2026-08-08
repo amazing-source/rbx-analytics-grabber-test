@@ -87,30 +87,67 @@ A hypothesis that survives nothing is not a finding.
 
 ## 4. Priors — what "good" looks like
 
-Without these a number is just a number. Sources: Indigo's own playbook
-(`indigodev`), plus values measured from our own grabs.
+Without these a number is just a number. Source for the Indigo figures is its
+own AE playbook (`indigodev` repo, `src/data/game-data.ts`): a canonical
+knowledge base plus 20 worked deal scenarios spanning 20 genres — Race, Obby,
+Escape, Runner, Roleplay, Tower Defense, Action/Combat, Social RPG, and a large
+idle/incremental cluster (Idle/Viral, Mining/Idle, Fishing/Idle,
+Idle/Incremental, Incremental, Viral/Casual, Sports/Viral).
 
-- **QPTR (click-to-play rate)** is Indigo's #1 algorithm lever and its primary
-  technical value-add. Target **above 3%**; 8% → 18% roughly doubles organic
-  traffic. Higher QPTR → more home recommendations → compounding reach.
-  Our closest captured proxy is `RFYQualifiedPTR` — related, not identical;
-  say which one you mean.
-- **Content cadence resets the algorithm signal.** Updates every **2–3 weeks**
-  (new chapter/mechanic) is the standard intervention for decaying reach.
+**Treat these as Indigo's own calibration, not sampled telemetry.** The
+scenarios are authored teaching cases. Use them to judge whether a number is
+in a sane band; do not quote them to a producer as measured benchmarks.
+
+### QPTR — the master lever
+
+QPTR (click-to-play rate) is Indigo's #1 algorithm signal and its stated
+primary technical value-add: higher QPTR → more home recommendations →
+compounding organic reach. The playbook's canonical target is **above 3%**,
+and the scenarios calibrate the full ladder explicitly in their coaching hints:
+
+| QPTR | Read |
+|---|---|
+| < 2% | "very low" — the core Indigo opportunity |
+| 2–3% | below target; explicitly *caps the valuation* |
+| 3–5% | at or above target for most genres |
+| 8%+ | strong (8% → 18% roughly doubles organic traffic) |
+| 13–22% | exceptional — in the playbook these are the $8k–280k/month games |
+
+QPTR rises with revenue efficiency: in the scenario set, games at 13–22% QPTR
+run **$8–30 revenue per CCU per month**, while games under 5% run **$0.3–0.9**.
+It also correlates with age (r ≈ 0.6) and scale (r ≈ 0.5 vs log CCU) — partly
+survivorship, so do not read "older ⇒ better QPTR" as causal.
+
+Our closest captured metric is `RFYQualifiedPTR`, which is **related but not
+identical** to QPTR. Say which one you mean, and never quote one as the other.
+
+### Tier bands (by CCU, from the scenario set)
+
+`small` 180–340 · `mid` 380–1,400 · `large` 1,200–2,100 · `mega` 5,200–12,000.
+Useful for "what kind of game is this" and for choosing the right comparison.
+
+### Lifecycle
+
+- **Escape genre is the only one with a documented curve:** peaks at **6–8
+  weeks**, then loses **60–70% of revenue in the following 2 weeks**. Indigo's
+  extension to 4–5 months comes from cadence + thumbnails + cross-network
+  funnel. **Do not apply this curve to idle/simulator titles** — the playbook
+  does not state one for them, and inventing one would be a fabricated prior.
+- **Post-peak decline of ~15–20% per month** is the general figure used at
+  LARGE tier valuation. A decline matching it is expected, not a defect.
+- **Content cadence resets the algorithm signal:** updates every **2–3 weeks**.
 - **Thumbnail A/B testing weekly/bi-weekly** is the other primary reach lever.
-- **Escape/horror genre lifecycle:** peaks at **6–8 weeks**, then loses
-  **60–70% of revenue in the following 2 weeks**. Indigo's stated extension to
-  4–5 months comes from cadence + thumbnails + cross-network funnel. A decline
-  matching this curve is *expected*, not a defect.
-- **Post-peak decline** of ~**15–20% per month** is normal for a genre leader.
-- **Low ARPDAU alongside healthy CCU = undertapped monetization**, not a
-  problem — it is the upside case.
-- **Measured on our two games:** D1 retention sits ~16–20% when healthy;
-  Brainrot's break took it to ~10–12% and held there. Treat a sustained
-  sub-13% D1 on these titles as broken, not noisy.
+
+### Monetization
+
+- **Low ARPDAU alongside healthy CCU = undertapped monetization**, which is the
+  upside case, not a fault.
+- **Measured on our own games:** D1 retention ~16–20% when healthy; Brainrot's
+  break took it to ~10–12% and held. Treat sustained sub-13% D1 on these titles
+  as broken, not noisy.
 
 Benchmarks in `series.json` are **similarity cohorts, not genre** on these
-universes (`benchmarkType`), so say "peer cohort", not "genre median".
+universes (check `benchmarkType`), so say "peer cohort", not "genre median".
 
 ## 5. From diagnosis to a precise fix
 
