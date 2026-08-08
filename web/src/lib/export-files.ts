@@ -108,6 +108,22 @@ export type GameExport = {
 // hourly and daily are two different series, not one that overwrites the other.
 const seriesId = (granularity: string, seriesKey: string) => `${granularity}::${seriesKey}`;
 
+// Shapes proven WRONG against the dashboard's own CSV exports (2026-08-08).
+// The plan no longer requests them, but raw bundles captured before that fix
+// still contain them, so a rebuild from data/raw/ would silently re-import
+// numbers we know are false. Dropping them here — at the point data becomes
+// published output — is what makes a rebuild reproduce the verified state.
+// Measured errors: ClientCrashRate15m 65%, ClientFpsAvg 52%,
+// SessionDurationSecondsAvg 2.4%, OomUnexpectedExits integer disagreement.
+// Their ONE_DAY series are fine and unaffected; only half-hour is disproven.
+const DISPROVEN = new Set(
+  ["ClientCrashRate15m", "ClientFpsAvg", "SessionDurationSecondsAvg", "OomUnexpectedExits"].map(
+    (m) => `${m}::METRIC_GRANULARITY_HALF_HOUR`
+  )
+);
+const isDisproven = (metric: string, granularity: string) =>
+  DISPROVEN.has(`${metric}::${granularity}`);
+
 // ---------------------------------------------------------------- intervals
 
 const GRAN_MS: Record<string, number> = {
@@ -204,6 +220,7 @@ function mergeGame(prev: GameExport | null, gameId: string, r: ParseResult): Gam
 
   for (const s of r.snapshots) {
     if (s.gameId !== gameId) continue;
+    if (isDisproven(s.metric, s.granularity)) continue;
     const info = metricInfo(s.metric);
     const m = (out.metrics[s.metric] ??= {
       metric: s.metric,
@@ -294,6 +311,12 @@ function mergeGame(prev: GameExport | null, gameId: string, r: ParseResult): Gam
       bucket.set(s.ts, incoming);
     }
     index.set(`${s.metric}|${sid}`, bucket);
+  }
+
+  // Purge disproven shapes that a previous export may already have written,
+  // so an existing series.json converges to the verified state too.
+  for (const m of Object.values(out.metrics)) {
+    m.series = m.series.filter((s) => !isDisproven(m.metric, s.granularity));
   }
 
   // write merged points back, sorted

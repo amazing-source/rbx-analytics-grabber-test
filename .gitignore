@@ -19,6 +19,13 @@
 /data/*
 !/data/verify/
 !/data/raw/
+# grab-report.json records what each grab ASKED for and what came back. It is
+# not derivable from the raw bundles (a request that failed left no capture),
+# and `npm run audit-plan` reads it to tell a proven query shape from a guess.
+# Without it a fresh clone reports false "stale claim" failures.
+!/data/games/
+/data/games/*/*
+!/data/games/*/grab-report.json
 
 # Raw capture dumps at the repo root (same reason)
 rbx-grab-*.json
