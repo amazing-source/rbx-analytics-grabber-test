@@ -7,7 +7,7 @@ the full spec; this file is the day-to-day reference.
 > defects that make the tool's output untrustworthy — including one that hid a
 > 30,393-crash incident behind an arbitrary breakdown slice. That plan is the
 > current priority and is **not started**. Do not build new analysis on top of
-> these numbers until Phase 3 (the CSV verification harness) is landed. Start at
+> these numbers until Phase 2 (the CSV verification harness) is landed. Start at
 > Phase 1 — a read-only pass over the whole project — not at the code.
 >
 > **Scope:** the grabber only — what we pull, whether it is accurate, and the
