@@ -175,6 +175,20 @@ export function metricKind(metric: string): MetricKind {
   return metricInfo(metric).kind;
 }
 
+// Plausible value ranges per unit. Three unit bugs shipped and were only ever
+// caught by eye ("1.3B MB", "5988.2% fps") — this is the systematic check.
+// Values outside the range are kept but reported to data-quality.md; a range
+// violation usually means the METRIC->UNIT MAPPING is wrong, not the data.
+// percent values are fractions (0.42 = 42%); >1.5 means someone stored a
+// pre-multiplied percentage. bytes below 1e6 means the value is probably
+// actually MB; an "mb" value above 1e5 is probably actually bytes.
+export const UNIT_RANGE: Partial<Record<Unit, { min?: number; max?: number }>> = {
+  fps: { min: 0, max: 240 },
+  percent: { min: 0, max: 1.5 },
+  bytes: { min: 1e6 },
+  mb: { max: 1e5 },
+};
+
 const compact = new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 });
 
 export function formatValue(metric: string, v: number | null | undefined): string {

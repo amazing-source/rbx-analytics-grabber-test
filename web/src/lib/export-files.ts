@@ -10,7 +10,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import type { ParseResult, Snapshot, PlaceVersion, Feedback } from "./parse-captures";
-import { metricInfo, formatValue, deltaIsGood, type Category } from "./metric-info";
+import { metricInfo, formatValue, deltaIsGood, UNIT_RANGE, type Category } from "./metric-info";
 
 // ---------------------------------------------------------------- file layout
 
@@ -252,6 +252,32 @@ function mergeGame(prev: GameExport | null, gameId: string, r: ParseResult): Gam
     }
     m.series.sort((a, b) => (a.label === "Total" ? -1 : b.label === "Total" ? 1 : a.label.localeCompare(b.label)));
     fillOmittedZeros(m);
+
+    // Unit plausibility (D9): values outside their unit's plausible range are
+    // kept but reported — a violation usually means the metric->unit mapping
+    // is wrong, which no per-value check downstream would ever catch.
+    const range = UNIT_RANGE[metricInfo(m.metric).unit];
+    if (range) {
+      for (const s of m.series) {
+        const bad = s.points.filter(
+          (p) =>
+            p.value != null &&
+            p.status !== "FILLED_ZERO" &&
+            ((range.min !== undefined && p.value < range.min) ||
+              (range.max !== undefined && p.value > range.max))
+        );
+        if (bad.length) {
+          quality.push({
+            kind: "implausible",
+            metric: m.metric,
+            series: s.label,
+            ts: bad[0].ts,
+            detail: `${bad.length} point(s) outside plausible ${metricInfo(m.metric).unit} range (e.g. ${bad[0].value}) — check the metric's unit mapping`,
+            observedAt: new Date().toISOString(),
+          });
+        }
+      }
+    }
   }
 
   // persist quality findings (deduped, capped — newest kept)
@@ -475,6 +501,22 @@ export function totalSeries(m: ExportMetric): ExportSeries | null {
   return pick(unfiltered) ?? pick(placeScoped);
 }
 
+// The status that actually matters. DATA_STATUS_INVALID is 99.5% of all raw
+// points — the protobuf zero-value ("unset"), carrying no information — but
+// NOT_STATISTICALLY_SIGNIFICANT marks a series Roblox itself does not trust
+// (tiny sample). Surface those loudly and keep them out of conclusions.
+const NOT_SIG = "DATA_STATUS_NOT_STATISTICALLY_SIGNIFICANT";
+
+function isNotSignificant(s: ExportSeries): boolean {
+  const valued = s.points.filter((p) => p.value != null);
+  if (!valued.length) return false;
+  return valued.filter((p) => p.status === NOT_SIG).length * 2 >= valued.length;
+}
+
+function notSignificantLabels(m: ExportMetric): string[] {
+  return m.series.filter(isNotSignificant).map((s) => s.label);
+}
+
 // Points that may feed a headline, Δ, or incident: value present, interval
 // fully elapsed at capture, and no later than the metric's own
 // latestAvailableTime (a day the server has not finished computing is not a
@@ -553,6 +595,9 @@ export function detectIncidents(g: GameExport): Incident[] {
     // 30,393-crash incident behind its OutOfMemory slice.
     const total = totalSeries(m);
     if (!total) continue;
+    // A series Roblox marks not-statistically-significant cannot carry an
+    // incident — its excursions are sampling noise on a tiny population.
+    if (isNotSignificant(total)) continue;
     const vals = settledPoints(m, total).filter((p) => p.value != null) as (ExportPoint & {
       value: number;
     })[];
@@ -680,11 +725,13 @@ function summaryMd(g: GameExport): string {
       // marked ⚠ trains you to ignore the column.
       const material = h.deltaPct != null && Math.abs(h.deltaPct) >= 2;
       const arrow = h.deltaPct == null ? "—" : `${h.deltaPct > 0 ? "▲" : "▼"} ${Math.abs(h.deltaPct).toFixed(1)}%${good === false && material ? " ⚠" : ""}`;
+      const notSig = notSignificantLabels(m);
       const notes = [
         h.seriesLabel !== "Total" ? `shown: ${h.seriesLabel}` : "",
         h.deltaPct != null && (h.deltaSpanDays < 5 || h.deltaSpanDays > 9)
           ? `Δ spans ${h.deltaSpanDays}d`
           : "",
+        notSig.length ? `⚠ not statistically significant: ${notSig.join(", ")}` : "",
       ].filter(Boolean).join("; ");
       out.push(
         `| ${m.label} | ${m.kind} | ${formatValue(m.metric, h.value)} | ${h.date} | ${arrow} | ${benchmarkVerdict(g, m, h.value) || "—"} | ${m.series.length} | ${notes || "—"} |`
@@ -696,9 +743,10 @@ function summaryMd(g: GameExport): string {
   out.push("## Files");
   out.push("");
   out.push("- `series.json` — every metric, every breakdown, every point. The full record.");
-  out.push("- `metrics/<Metric>.csv` — one long-format CSV per metric (`date,ts,granularity,series,value,status`).");
-  out.push("- `metrics/<Metric>.daily.csv` — daily rollup of hourly metrics; `agg` says how (mean for rates, sum for volumes, max for concurrents) and `samples` how many hours fed the day — anything under 24 is a partial day.");
+  out.push("- `metrics/<Metric>.csv` — one long-format CSV per metric (`date,ts,granularity,series,value,status,captured_at,partial`). `FILLED_ZERO` status marks zeros the API omitted; `partial` marks in-progress captures excluded from headlines.");
+  out.push("- `metrics/<Metric>.daily.csv` — daily rollup of sub-daily metrics; `agg` says how (mean for rates, sum for volumes, max for concurrents), `samples` how many points fed the day, `partial` which days cannot be quoted whole.");
   out.push("- `catalog.json` — metric → response-path hash, freshness, and the series inventory.");
+  out.push("- `data-quality.md` — settled points the gateway re-served with different values (first settled read kept) and values outside their unit's plausible range. Present only when something was found.");
   out.push("- `feedback.csv` / `feedback.md` — raw player reviews (up/down-votes + comments) with the `asset_version` each landed on, plus counts by category and version. Present only when feedback was captured.");
   out.push("");
   return out.join("\n");
@@ -741,33 +789,54 @@ the web app or a database to read.
 
     data/
       raw/<universeId>-<timestamp>.json   raw capture bundles from the extension
+      verify/           ground-truth dashboard CSV exports + coverage docs (committed)
       games/<universeId>/
         summary.md        headline table per category — start here
         series.json       full structured record (all metrics, breakdowns, points)
         catalog.json      metric inventory: hash, freshness, series counts
+        data-quality.md   settled-point revisions + implausible values, when any
         metrics/*.csv     one long-format CSV per metric
-        metrics/*.daily.csv  daily rollup of the hourly metrics
+        metrics/*.daily.csv  daily rollup of the sub-daily metrics
         place-versions.md deploy log (version -> publish time), when captured
         feedback.csv      raw player reviews w/ asset_version, when captured
         feedback.md       feedback counts by category and version
 
 ## Reading the numbers
 
-- **All timestamps are UTC.** Daily points are stamped at 08:00:00Z; the \`date\`
-  column is the UTC date and is what you should join on.
-- **\`status: DATA_STATUS_INVALID\` means unvalidated/estimated, not wrong.**
-  Keep the value; treat it as a confidence flag.
+- **All timestamps are UTC.** Daily points are stamped at 00:00:00Z (measured
+  across every stored point); sub-daily points at their interval boundary.
+  The \`date\` column is the UTC date and is what you should join on.
+- **\`status: DATA_STATUS_INVALID\` carries no information.** It is ~99.5% of
+  all raw points — the protobuf zero-value ("unset"), not "estimated". The
+  status that matters is \`DATA_STATUS_NOT_STATISTICALLY_SIGNIFICANT\`: Roblox
+  itself does not trust that series (tiny sample). summary.md surfaces those
+  and they are excluded from incident detection.
+- **\`status: FILLED_ZERO\` is a synthesized zero.** The API omits zero rows,
+  so for count/robux volume metrics an absent granule inside the requested
+  window is a zero — confirmed against the dashboard's own CSV exports, which
+  print those zeros explicitly. Rates are NEVER filled: a missing retention
+  day is unknown, not 0%.
+- **\`captured_at\` / \`partial\` columns.** \`captured_at\` is when the grab that
+  carried the point ran. \`partial: true\` means the point's interval had not
+  fully elapsed at capture — the value is an in-progress undercount and is
+  excluded from headlines, Δ and incidents. Once a point was captured settled
+  it is FROZEN: a later grab re-serving a different value is logged to
+  \`data-quality.md\` instead of applied (the gateway has been observed
+  re-serving a settled hour at a quarter of its dashboard-confirmed value).
 - **rate vs volume.** Rate metrics (retention %, conversion, ARPPU, ARPDAU,
   average session length, crash rate, FPS) are comparable before/after an update
   even while the game grows. Volume metrics (DAU, revenue, paying users,
   sessions) are not — a +40% revenue delta means nothing without the DAU delta
   next to it.
-- **Empty breakdown = the "Total" series.** A metric with only broken-down
-  series (funnels, always per-step) has no Total row.
-- **Hourly metrics** (Performance tab, peak CCU, item revenue) also get a
+- **Empty breakdown = the "Total" series** — a Place filter still counts as
+  Total (the Performance tab only exists Place-scoped), a population filter
+  (IsNewUser, AcquisitionSource) does not. A metric with only broken-down
+  series (funnels, always per-step) has NO Total row, and summary.md says
+  "breakdown only" rather than quoting a slice.
+- **Sub-daily metrics** (Performance tab, peak CCU, item revenue) also get a
   \`.daily.csv\` rollup so they line up with the daily metrics. \`agg\` records
-  the aggregation used and \`samples\` how many hourly points fed the day —
-  fewer than 24 means a partial day, which understates any \`sum\` rollup.
+  the aggregation used, \`samples\` how many points fed the day, and
+  \`partial\` marks days that cannot be quoted as a whole.
 - **Freshness matters.** \`catalog.json\` carries \`latestAvailableTime\` per
   metric. Don't read a D7 retention number for a cohort younger than 7 days.
 
