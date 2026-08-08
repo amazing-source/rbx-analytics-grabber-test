@@ -5,44 +5,8 @@
 //   npm run ingest:file -- ../data/raw/10192528661-2026-08-07T....json
 //   npm run ingest:file -- ../rbx-grab-2026-06-23-14-59-29.json
 
+import "./loader-hooks.mjs";
 import { readFileSync } from "node:fs";
-import nodeModule from "node:module";
-import path from "node:path";
-import { pathToFileURL } from "node:url";
-
-// The app source is written for a bundler: extensionless relative imports and
-// the "@/" alias. Node's ESM resolver understands neither, so teach it both
-// rather than contorting the source for a script's benefit.
-// (registerHooks is Node >=22.15; @types/node here is v20, hence the cast.)
-type ResolveCtx = { parentURL?: string; conditions: string[]; importAttributes: object };
-type ResolveResult = { url: string; format?: string | null; shortCircuit?: boolean };
-type Next = (specifier: string, context: ResolveCtx) => ResolveResult;
-const { registerHooks } = nodeModule as unknown as {
-  registerHooks: (hooks: {
-    resolve: (specifier: string, context: ResolveCtx, next: Next) => ResolveResult;
-  }) => void;
-};
-
-const SRC = pathToFileURL(path.resolve(import.meta.dirname, "../src/")).href + "/";
-registerHooks({
-  resolve(specifier, context, next) {
-    const spec = specifier.startsWith("@/") ? SRC + specifier.slice(2) : specifier;
-    try {
-      return next(spec, context);
-    } catch (e) {
-      if (/^[./]/.test(spec) || spec.startsWith(SRC)) {
-        for (const ext of [".ts", ".tsx", "/index.ts"]) {
-          try {
-            return next(spec + ext, context);
-          } catch {
-            // try the next extension
-          }
-        }
-      }
-      throw e;
-    }
-  },
-});
 
 const { parseCaptures } = await import("../src/lib/parse-captures.ts");
 const { exportToFiles } = await import("../src/lib/export-files.ts");

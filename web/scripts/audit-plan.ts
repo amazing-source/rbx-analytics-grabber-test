@@ -13,39 +13,9 @@
 // Exit 1 when a non-optional template is inferred-in-fact, or when a template
 // CLAIMS observed but no capture backs it. Both are how false findings start.
 
+import "./loader-hooks.mjs";
 import { readFileSync, readdirSync } from "node:fs";
-import nodeModule from "node:module";
 import path from "node:path";
-import { pathToFileURL } from "node:url";
-
-type ResolveCtx = { parentURL?: string; conditions: string[]; importAttributes: object };
-type ResolveResult = { url: string; format?: string | null; shortCircuit?: boolean };
-type Next = (specifier: string, context: ResolveCtx) => ResolveResult;
-const { registerHooks } = nodeModule as unknown as {
-  registerHooks: (hooks: {
-    resolve: (specifier: string, context: ResolveCtx, next: Next) => ResolveResult;
-  }) => void;
-};
-const SRC = pathToFileURL(path.resolve(import.meta.dirname, "../src/")).href + "/";
-registerHooks({
-  resolve(specifier, context, next) {
-    const spec = specifier.startsWith("@/") ? SRC + specifier.slice(2) : specifier;
-    try {
-      return next(spec, context);
-    } catch (e) {
-      if (/^[./]/.test(spec) || spec.startsWith(SRC)) {
-        for (const ext of [".ts", ".tsx", "/index.ts"]) {
-          try {
-            return next(spec + ext, context);
-          } catch {
-            // try the next extension
-          }
-        }
-      }
-      throw e;
-    }
-  },
-});
 
 const { buildSeedTemplates } = await import("../src/lib/default-plan.ts");
 

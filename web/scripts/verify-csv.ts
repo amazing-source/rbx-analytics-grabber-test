@@ -149,7 +149,14 @@ function splitCsvLine(line: string): string[] {
 
 function inferGranularity(tss: string[]): string {
   const uniq = [...new Set(tss)].sort();
-  if (uniq.length < 2) return "NONE";
+  // One instant carries no interval. A midnight stamp is a daily point (that
+  // is how every daily export in the corpus is stamped) and joins by date, so
+  // it is still comparable; anything else we refuse to guess at, because
+  // comparing an hourly cell against a daily one would be a false result.
+  if (uniq.length < 2) {
+    if (!uniq.length) return "UNKNOWN";
+    return /T00:00:00(\.000)?Z$/.test(uniq[0]) ? "ONE_DAY" : "UNKNOWN";
+  }
   let min = Infinity;
   for (let i = 1; i < uniq.length; i++) {
     const d = (new Date(uniq[i]).getTime() - new Date(uniq[i - 1]).getTime()) / 1000;
@@ -270,6 +277,11 @@ function findSeries(
         : `breakdown "${csvSeriesName}" not pulled`,
     };
   }
+  if (gran === "UNKNOWN")
+    return {
+      granMatch: false,
+      reason: "single sub-daily timestamp — interval cannot be inferred, refusing to guess",
+    };
   const exact = candidates.find((s) => s.granularity === `METRIC_GRANULARITY_${gran}`);
   if (exact) return { series: exact, granMatch: true };
   const best = [...candidates].sort((a, b) => b.points.length - a.points.length)[0];

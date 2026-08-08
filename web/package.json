@@ -9,7 +9,8 @@
     "lint": "eslint",
     "ingest:file": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/ingest-file.ts",
     "verify": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-csv.ts",
-    "audit-plan": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/audit-plan.ts"
+    "audit-plan": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/audit-plan.ts",
+    "test": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/loader-hooks.mjs --test \"src/lib/__tests__/*.test.ts\""
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
