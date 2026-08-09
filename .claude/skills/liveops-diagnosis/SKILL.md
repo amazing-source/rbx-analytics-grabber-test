@@ -116,6 +116,55 @@ A hypothesis that survives nothing is not a finding.
   lags — so it generates a hypothesis and never proves causation. Corroborate
   with the §2 signature before it reaches a producer.
 
+## 3b. The algorithm is the mediator — and it changed on 2026-06-15
+
+Everything below comes from Roblox's own documentation and announcements, not
+from inference. Read this before blaming or crediting anything for a reach move.
+
+**Official RFY ranking signals** (`create.roblox.com/docs/discovery`): play
+through rate; **first play bounce rate** (<60s and 61–180s); **play days per
+user across D1, D2–7, D8–28**; playtime per user (capped 60 min/day/user).
+Secondary: intentional co-play days, qualified play sessions, spend days, Robux
+per user. Signals are **per-user averages, not totals**, so a small game with
+engaged users is not disadvantaged.
+
+**On 2026-06-15 Roblox re-weighted RFY to value long-term retention**
+("Recommended For You Algorithm Improvements That Better Value Long-Term
+Retention"): the signal window went from 7 days to **28 days** (D1, D2–7,
+D8–28), and **QPTR was removed from ranking**, replaced by play-through rate
+and first-play bounce rate. Roblox warned of "fluctuations in your
+distribution". A 28-day signal window means the change reaches full effect
+about four weeks after rollout — **~2026-07-13**.
+
+Three consequences, and they are load-bearing:
+
+1. **Retention buys distribution, with a ~4-week lag.** A same-day correlation
+   between DAU and D1 is the WRONG test and will read ≈ 0 (measured −0.011 on
+   9963622286 over 130 days). The causal path is
+   retention → ranking → impressions → DAU. Do not conclude "retention doesn't
+   matter here" from a flat contemporaneous correlation.
+2. **A game with weak D8–28 was structurally demoted by this change.** On
+   9963622286 (D7 ≈ 3%, D30 ≈ 1%) the 7-day-mean impressions peaked 2026-07-09
+   and fell 59% by 08-07; on 9610561918 they peaked 07-17 and fell 62%. Two
+   unrelated games, same window, same magnitude — consistent with a platform
+   cause. (n=2, same studio and genre, so not proof.)
+3. **Indigo's "QPTR is the #1 lever" playbook predates this.** QPTR is still a
+   real *health* signal — it is what the store listing does to a viewer — but
+   as of 2026-06-15 it is **not what the recommender ranks on**. Say that
+   plainly rather than selling QPTR work as distribution work.
+
+**Roblox counts only organically-discovered users in the ranking stage** — the
+engagement, monetization and retention of users first acquired from ads,
+curation, friends, search or social are excluded. So a DAU breakdown by
+`AcquisitionSource` is not a curiosity; growth from non-recommendation sources
+does not buy ranking.
+
+**Roblox publishes NO retention benchmarks.** Its docs give definitions and
+improvement advice, no numbers. The "simulators get 45–60% D1" figures that
+circulate on SEO blogs (bloxg, rolearn, lensblox) are unsourced — do not quote
+them. Use the benchmark series in `series.json` (a similar-experience cohort)
+or say the bar is unknown.
+
 ## 4. Priors — what "good" looks like
 
 Without these a number is just a number. Source for the Indigo figures is its
