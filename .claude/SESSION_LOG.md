@@ -13,6 +13,68 @@ trusting it**. Entries describe the moment they were written.
 
 ---
 
+## 2026-08-09 (b) — Long-window grabs landed; three gates are RED and honestly so
+
+**State:** branch `grabber-correctness` · pushed through `cacde14` · dirty:
+`.claude/settings.local.json` only
+**Gates — all three red, measured now, not fixed to look green:**
+- `verify` **23 pass · 2 fail · 8 skip** (was 23/1/9). The new fail is
+  `ErrorCount` at `2026-08-08T08:00`, csv 3137 vs ours 3710. **Unexplained.**
+- `audit-plan` **2 failures** (was 0), both `PotentialExtraEarningsTotalUsd ·
+  NONE`: tagged `proven` but it 400s on a long window, so the tag is now a
+  stale claim.
+- `npm test` **34/35**. The one fail is the corpus gate catching the same
+  `ErrorCount` disagreement. It is doing its job.
+
+**Landed:** window chunking for the technical rung (`bc7e8cb`), retention
+horizon measured (`4972e9c`), Roblox algorithm research (`ac1d984`), the
+window-selection method (`33d6a4f`), today's three capture bundles (`cacde14`),
+and a rewritten Knife Farm client doc with charts.
+
+**Learned → routed:**
+- Official RFY ranking signals + the 2026-06-15 algorithm change + QPTR removed
+  from ranking + Roblox publishes no retention benchmarks → `liveops-diagnosis` §3b.
+- **Long history first, then the 28-day zoom** → `liveops-diagnosis` §0b. This
+  is the fix for the error below.
+- Retention horizons: technical ~30 days, `ErrorCount` ~56, behavioural ~4
+  months → `CLAUDE.md`.
+- Knife Farm is three reach cycles, not one July decline → memory
+  `rbx-games-and-findings`.
+- User wants client-facing writing in their voice, no em dashes → memory
+  `write-in-users-voice-not-ai-voice`.
+
+**Disproved:**
+- **"Knife Farm declined on 19 July because of the 2026-06-15 algorithm
+  change."** Wrong, and it was in a doc. On 129 days the biggest collapse ran
+  31 May → 12 Jun, before the change existed. A real, correctly-dated external
+  cause that fits a short window is the most dangerous kind of wrong.
+- "QPTR is Indigo's #1 distribution lever" — Roblox removed it from ranking on
+  2026-06-15 (verbatim: *"Removing qualified play-through rate"*).
+- "Retention doesn't drive DAU here" (r = −0.011) — wrong test. The path is
+  retention → ranking → impressions → DAU with a ~4-week lag.
+
+**Open:**
+- `ErrorCount` 2026-08-08T08:00 disagreement. Next action: find which capture
+  supplied 3710 and whether freeze-first-write was bypassed; do NOT add it to
+  `KNOWN_OPEN` until the cause is known.
+- **Chunk windows overlap at boundaries** — confirmed, 147 duplicate points in
+  the Knife Farm bundle (chunk N ends at T, chunk N+1 starts at T, gateway is
+  inclusive both ends). Merge dedupes so totals are correct, but it wastes
+  requests and creates spurious revision candidates. Next action: end chunk N
+  one interval before T.
+- **`NONE`-granularity metrics are being chunked**, which splits one aggregate
+  into N aggregates over different windows and changes what `errors.md` means.
+  Next action: clamp `NONE` to the final N days instead of chunking it.
+- `PotentialExtraEarningsTotalUsd` 400s on a long window. Next action: give it
+  a 28-day clamp (proven to work) or drop the `proven` tag.
+- Still unused: the peer-cohort benchmark series already in `series.json`.
+  Roblox publishes no benchmarks, so this is the only real bar we have.
+
+**Next:** fix the three chunking defects above together (boundary overlap,
+`NONE` clamping, `PotentialExtraEarningsTotalUsd`), then re-run all three gates.
+
+---
+
 ## 2026-08-09 — Session continuity: `checkpoint` skill, and the repo is not backed up
 
 **State:** branch `grabber-correctness` · **pushed to `origin` for the first
