@@ -234,6 +234,19 @@ describe("corpus gate", () => {
     // 21,835. Which read is authoritative is unresolved — see the open
     // question in data-quality.md.
     "Hourly Robux spent- Robux Spent (Realtime), 2026-08-05T08-00-00.000Z to 2026-08-08T07-00-00.000Z.csv",
+
+    // 144 of this file's 147 cells match exactly. The three that do not are all
+    // the SAME half-hour bucket, 2026-08-08T08:00 (Total 3137 vs 3710, Client
+    // 3112 vs 3682, Server 25 vs 28), and that bucket is stamped at the export
+    // window's own end — it covers 08:00-08:30, which lies outside the window
+    // the dashboard exported. So the CSV holds a partial bucket and our later
+    // read (captured 2026-08-09T10:03) holds the settled one; ours is higher on
+    // all three series, which is the direction that implies.
+    // Listed rather than fixed by skipping every window-edge cell, because that
+    // would drop real coverage across the corpus on a hypothesis this one file
+    // cannot confirm. Resolve by re-exporting this chart with a later end time
+    // and checking whether the dashboard then agrees with 3710.
+    "Errors and warnings- Errors and warnings, 2026-08-07T08-00-00.000Z to 2026-08-08T08-00-00.000Z.csv",
   ]);
 
   test("no corpus file disagrees with the dashboard except the known-open ones", async (t) => {

@@ -343,12 +343,17 @@ describe("G8 — the technical rung is chunked into legal windows", () => {
       const windows = ws.sort((a, b) => a.startTime.localeCompare(b.startTime));
       assert.equal(windows[0].startTime, LONG_START, `${base}: first chunk must start at the grab start`);
       assert.equal(windows.at(-1)!.endTime, LONG_END, `${base}: last chunk must reach the grab end`);
-      for (let i = 1; i < windows.length; i++)
+      for (let i = 1; i < windows.length; i++) {
+        const gap = Date.parse(windows[i].startTime) - Date.parse(windows[i - 1].endTime);
+        // Exactly one day: the gateway is inclusive on both ends, so sharing a
+        // boundary instant refetches that day in both chunks (147 duplicate
+        // points, measured 2026-08-09). More than one day would drop days.
         assert.equal(
-          windows[i].startTime,
-          windows[i - 1].endTime,
-          `${base}: chunks must be contiguous — a gap silently drops days`,
+          gap,
+          86_400_000,
+          `${base}: chunk ${i} must start exactly one interval after chunk ${i - 1} ends`,
         );
+      }
     }
   });
 
@@ -356,6 +361,20 @@ describe("G8 — the technical rung is chunked into legal windows", () => {
     const plan = await planFor(LONG_START, LONG_END);
     const ids = plan.requests.filter((r) => r.metric === "ServerCrashCount").map((r) => (r as { id: string }).id);
     assert.equal(new Set(ids).size, ids.length, "colliding ids hide attempts from grab-report.md");
+  });
+
+  test("a NONE-granularity metric is clamped, never split into several aggregates", async () => {
+    const plan = await planFor(LONG_START, LONG_END);
+    const reqs = (plan.requests as { metric: string | null; body: unknown }[]).filter(
+      (r) => r.metric === "PotentialExtraEarningsTotalUsd",
+    );
+    assert.equal(reqs.length, 1, "NONE means one aggregate; chunking it changes the question");
+    const q = (reqs[0].body as { query: { startTime: string; endTime: string } }).query;
+    assert.ok(
+      spanDays(q) <= 28,
+      `clamped window is ${spanDays(q)}d; it 400s on a long span and 28d is proven to work`,
+    );
+    assert.equal(q.endTime, LONG_END, "the clamp must keep the most RECENT window, not the oldest");
   });
 
   test("behavioural metrics are NOT chunked — one request, full span", async () => {

@@ -231,8 +231,18 @@ const CRASH_METRICS = new Set([
   "OomUnexpectedExits",
 ]);
 
-/** Max window in days for a template, or null when the span needs no chunking. */
+// Metrics with their own short window that are NOT Place-scoped, so the filter
+// test below cannot find them. `PotentialExtraEarningsTotalUsd` returned data on
+// a 28-day grab (2026-08-07) and 400s on a 139-day one (2026-08-09), which is
+// why 28 rather than a guess.
+const SHORT_WINDOW_METRICS = new Map<string, number>([
+  ["PotentialExtraEarningsTotalUsd", MAX_PERF_WINDOW_DAYS],
+]);
+
+/** Max window in days for a template, or null when the span needs no limiting. */
 function maxWindowDays(metric: string, query: unknown): number | null {
+  const explicit = SHORT_WINDOW_METRICS.get(metric);
+  if (explicit) return explicit;
   const filter = (query as { filter?: unknown })?.filter;
   const placeScoped =
     Array.isArray(filter) &&
@@ -241,10 +251,30 @@ function maxWindowDays(metric: string, query: unknown): number | null {
   return CRASH_METRICS.has(metric) ? MAX_CRASH_WINDOW_DAYS : MAX_PERF_WINDOW_DAYS;
 }
 
-/** Split [start, end) into consecutive windows of at most `maxDays`. */
-function chunkWindow(startTime: string, endTime: string, maxDays: number) {
+/** One interval of the given granularity, in ms. Daily is the safe default. */
+function intervalMs(granularity: string | undefined) {
+  if (granularity === "METRIC_GRANULARITY_HALF_HOUR") return 1_800_000;
+  if (granularity === "METRIC_GRANULARITY_ONE_HOUR") return 3_600_000;
+  if (granularity === "METRIC_GRANULARITY_ONE_MINUTE") return 60_000;
+  return 86_400_000;
+}
+
+/**
+ * Split [start, end] into windows of at most `maxDays` that tile it without
+ * overlapping. The gateway is **inclusive on both ends** — verified 2026-08-09,
+ * where adjacent chunks sharing a boundary each returned the boundary day and
+ * produced 147 duplicate points in one bundle — so the next chunk must start one
+ * interval AFTER the previous one ended, not at the same instant.
+ */
+function chunkWindow(
+  startTime: string,
+  endTime: string,
+  maxDays: number,
+  granularity: string | undefined
+) {
   const end = Date.parse(endTime);
   const step = maxDays * 86_400_000;
+  const unit = intervalMs(granularity);
   const out: { startTime: string; endTime: string }[] = [];
   let cur = Date.parse(startTime);
   if (!Number.isFinite(cur) || !Number.isFinite(end) || cur >= end) {
@@ -253,9 +283,23 @@ function chunkWindow(startTime: string, endTime: string, maxDays: number) {
   while (cur < end) {
     const stop = Math.min(cur + step, end);
     out.push({ startTime: new Date(cur).toISOString(), endTime: new Date(stop).toISOString() });
-    cur = stop;
+    cur = stop + unit;
   }
   return out;
+}
+
+/**
+ * Keep the most recent `maxDays` of a window. Used instead of chunking for
+ * `NONE`, where the whole point of the query is ONE aggregate over the window:
+ * chunking it would silently turn a single number into N numbers over N
+ * different spans, which is a different question with the same metric name.
+ */
+function clampToRecent(win: { startTime: string; endTime: string }, maxDays: number) {
+  const end = Date.parse(win.endTime);
+  const earliest = end - maxDays * 86_400_000;
+  const start = Date.parse(win.startTime);
+  if (!Number.isFinite(start) || !Number.isFinite(end) || start >= earliest) return win;
+  return { startTime: new Date(earliest).toISOString(), endTime: win.endTime };
 }
 
 // Build the universe-specific request list the extension replays. Templates are
@@ -469,13 +513,16 @@ export async function getGrabPlan(
         provenance: t.provenance,
       });
     } else {
-      const aligned = alignWindow(t.query?.granularity, startTime, endTime);
+      const gran = t.query?.granularity;
+      const aligned = alignWindow(gran, startTime, endTime);
       const cap = maxWindowDays(t.metric, t.query);
       // Sub-daily templates are already clamped by alignWindow (half-hour to the
       // final 24h), so chunking them yields exactly one window.
-      const windows = cap
-        ? chunkWindow(aligned.startTime, aligned.endTime, cap)
-        : [aligned];
+      const windows = !cap
+        ? [aligned]
+        : gran === "METRIC_GRANULARITY_NONE" || !gran
+        ? [clampToRecent(aligned, cap)]   // one aggregate stays one aggregate
+        : chunkWindow(aligned.startTime, aligned.endTime, cap, gran);
       if (windows.length > 1) chunked += windows.length - 1;
       for (const w of windows) {
         const q = { ...(t.query as Record<string, unknown>), ...w };
