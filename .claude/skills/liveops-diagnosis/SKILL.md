@@ -28,6 +28,42 @@ Do this before any analysis. It takes a minute and it has already caught a
 5. **Is the point settled?** Never quote a point flagged `partial` (interval
    unfinished at capture). `FILLED_ZERO` is a synthesized zero, not a reading.
 
+## 0b. Pick the window before you pick the cause
+
+Two windows answer two different questions, and mixing them up is how a
+coincidence gets written up as a finding.
+
+| Window | Answers | Fails at |
+|---|---|---|
+| **~28 days** | *What changed, and when.* Day-level resolution: a step on one date, a deploy, a crash spike | No base rate. Every event looks causal because there is nothing to compare it to |
+| **Full history** | *Is this event actually the story.* Shape, cadence, how often this已 happened | Smooths away the day a thing broke. A weekly mean would never show D1 stepping 16.8% → 14.3% overnight |
+
+**Run them in this order. The order is the method:**
+
+1. **Full history first.** What shape is this — a slide, an oscillation, a
+   single step, a plateau? How many times has this already happened?
+2. **If the recent move is unlike anything before it**, it is a real event.
+   Zoom to ~28 days and find the day and the cause.
+3. **If it looks like the previous three**, do not explain the event. Explain
+   the **pattern**. The cause is structural and the "event" is the latest
+   instance of it.
+
+*Worked both ways, 2026-08-09.* Knife Farm was case 3 and I diagnosed it as
+case 2: three collapses in four months, and I explained only the last one.
+Become a Brainrot is genuinely case 2 — it was climbing to an all-time peak on
+2026-06-28 and then turned, which resembles nothing earlier in its life — so a
+dated cause is worth hunting there.
+
+**Do not let Roblox's storage limits choose your window.** Crash and
+performance data exists for ~30 days, so the technical rung is always short
+whether you like it or not; behavioural data runs months. Diagnosing off 28
+days because that is what the perf tab holds means the retention horizon picked
+your analysis window.
+
+Rough mapping from question to window: *"did our update break something"* is a
+short-window question; *"why is this game bleeding"* and *"should we buy this"*
+are long-window questions, and most acquisition and LiveOps work is the latter.
+
 ## 1. Diagnose bottom-up, not by what looks interesting
 
 Check rungs in order. A break high on the ladder is usually caused by a break
