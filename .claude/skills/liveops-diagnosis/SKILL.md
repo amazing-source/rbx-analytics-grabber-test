@@ -91,6 +91,15 @@ A hypothesis that survives nothing is not a finding.
   per-1k-DAU column in `summary.md`, never a raw volume delta.
 - **Is it just the weekend?** Roblox audiences normally *rise* Fri–Sun. A
   weekend fall is anomalous; a weekend rise is not a win.
+- **Does the pattern predate the cause you found?** The most dangerous
+  explanation is a real, dated, external event that fits a short window. On
+  2026-08-09 I attributed Knife Farm's July collapse to Roblox's 2026-06-15
+  algorithm change: documented, correctly dated, and a clean fit across the 31
+  days we held. Pulling 129 days killed it — the game's **biggest** collapse ran
+  31 May to 12 June (−81%), before the change existed, and there were three
+  such collapses in four months. **Always extend the window past the proposed
+  cause and check whether the same shape already happened.** A cause that only
+  explains the last instance of a repeating pattern is not the cause.
 - **Did appeal move before reach, or after?** `cd web && npm run lead-lag`.
   Cross-correlates `EndToEndCVR` against `UniqueUsersWithImpressions` at ±5
   days. **Read the `MA7 first-diff` row only** — on raw levels two declining
