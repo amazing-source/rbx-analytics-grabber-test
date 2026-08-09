@@ -53,25 +53,37 @@ and a rewritten Knife Farm client doc with charts.
 - "Retention doesn't drive DAU here" (r = −0.011) — wrong test. The path is
   retention → ranking → impressions → DAU with a ~4-week lag.
 
+**All four resolved in `cab8e85`, same day.** Gates after: `npm test` **36/36**,
+`verify` 23/2/8 with both fails documented in `KNOWN_OPEN`, `audit-plan` still
+2 — see below.
+- `ErrorCount` 2026-08-08T08:00: **explained.** 144 of 147 cells match; the
+  three that do not are one half-hour bucket stamped at the export window's own
+  end, covering 08:00–08:30 which is outside the exported window. The dashboard
+  wrote a partial bucket, our 2026-08-09 read has the settled one, ours higher
+  on all three series. In `KNOWN_OPEN` with the reasoning and a way to resolve
+  (re-export that chart with a later end time and see if it then reads 3710).
+- Chunk boundary overlap: fixed, chunks now start one interval after the
+  previous ends. Verified live — Apr 1→8, Apr 9→16, Apr 17→24. Plan for
+  9610561918 went 395 → 363 requests purely from removed duplicates.
+- `NONE` chunking: fixed, `NONE` is clamped to the most recent legal window
+  instead of split into N aggregates.
+- `PotentialExtraEarningsTotalUsd`: given an explicit 28-day cap. Live plan
+  emits one request, 2026-07-12 → 2026-08-09.
+
 **Open:**
-- `ErrorCount` 2026-08-08T08:00 disagreement. Next action: find which capture
-  supplied 3710 and whether freeze-first-write was bypassed; do NOT add it to
-  `KNOWN_OPEN` until the cause is known.
-- **Chunk windows overlap at boundaries** — confirmed, 147 duplicate points in
-  the Knife Farm bundle (chunk N ends at T, chunk N+1 starts at T, gateway is
-  inclusive both ends). Merge dedupes so totals are correct, but it wastes
-  requests and creates spurious revision candidates. Next action: end chunk N
-  one interval before T.
-- **`NONE`-granularity metrics are being chunked**, which splits one aggregate
-  into N aggregates over different windows and changes what `errors.md` means.
-  Next action: clamp `NONE` to the final N days instead of chunking it.
-- `PotentialExtraEarningsTotalUsd` 400s on a long window. Next action: give it
-  a 28-day clamp (proven to work) or drop the `proven` tag.
+- `audit-plan` reports 2 failures and **will until the next grab**. It proves
+  templates from `data/games/*/grab-report.json`, which is overwritten each
+  grab, so the 2026-08-07 report that earned the `proven` tag is gone and the
+  current one records the 400. The clamp above should make the next grab return
+  data and clear it. Next action: re-grab either universe, then re-run
+  `npm run audit-plan`. If it still fails, the tag is genuinely wrong and
+  should drop to `optional`.
 - Still unused: the peer-cohort benchmark series already in `series.json`.
   Roblox publishes no benchmarks, so this is the only real bar we have.
+  Next action: surface it in `summary.md` alongside each rate metric.
 
-**Next:** fix the three chunking defects above together (boundary overlap,
-`NONE` clamping, `PotentialExtraEarningsTotalUsd`), then re-run all three gates.
+**Next:** re-grab one universe to clear `audit-plan` and confirm the clamp
+returns data end-to-end.
 
 ---
 
