@@ -56,6 +56,13 @@ Each cause has a fingerprint across rungs. Match the whole pattern.
 | **Technical/outage** | flat | ↓ during only | ↓ during only | Recovers when the fault clears |
 | **Monetization change** | flat | flat | flat | Only rung 4 moves |
 | **Lifecycle decay** | ↓ gradual | slow ↓ | flat | Smooth curve, no step, matches genre decline |
+| **Audience exhaustion** | ↓↓ **and QPTR ↓** | flat or **improving** | flat or improving | Smooth; and new creative stops working — early thumbnail swaps moved QPTR, late ones did nothing |
+
+**Improving quality metrics during a collapse is not a contradiction — it is a
+diagnosis.** Climb Up Mountain died with retention, session length and paying
+conversion all rising while QPTR halved (7.33% → 3.65%) and impressions fell
+82%: the remaining players were the enthusiasts, and there was nobody new left
+to reach. Do not "fix" the product in that state.
 
 **Retention flat while reach collapses = discovery, not product.** That single
 contrast has carried more diagnoses here than any other.
@@ -84,6 +91,30 @@ A hypothesis that survives nothing is not a finding.
   per-1k-DAU column in `summary.md`, never a raw volume delta.
 - **Is it just the weekend?** Roblox audiences normally *rise* Fri–Sun. A
   weekend fall is anomalous; a weekend rise is not a win.
+- **Did appeal move before reach, or after?** `cd web && npm run lead-lag`.
+  Cross-correlates `EndToEndCVR` against `UniqueUsersWithImpressions` at ±5
+  days. **Read the `MA7 first-diff` row only** — on raw levels two declining
+  series correlate at every lag, which is trend, not lead.
+
+  | Peak lag | Reading | Lever |
+  |---|---|---|
+  | **Positive — appeal leads** | The listing lost its pull *before* Roblox cut reach | Creative: thumbnail/title/icon A/B, then audience expansion |
+  | **Negative — reach leads** | The platform moved first; conversion drifted after | Cadence + re-qualify. QPTR work will not restore it |
+
+  **The direction is not universal, and that is exactly why it is worth
+  running.** Measured 2026-08-09 on all three universes: Climb Up Mountain
+  (dead) **+4d, r=0.78**, with a clean sign flip to −0.71 at −4d — appeal
+  decayed first, the signature of exhaustion. Knife Farm +3d but only r=0.39,
+  too weak to lean on. Become a Brainrot runs the **other way** on the trend
+  transforms (−5d, r=0.71): distribution was withdrawn first. An earlier note
+  in this repo generalised the dead game's result into "QPTR is a 3-day leading
+  indicator". **It is not** — treating it as one would have inverted the story
+  on Brainrot.
+
+  State the caveats whenever you quote it: n=3 games, 31–37 day windows, ~25
+  usable points after the 7-day mean, and the peak is chosen by scanning 11
+  lags — so it generates a hypothesis and never proves causation. Corroborate
+  with the §2 signature before it reaches a producer.
 
 ## 4. Priors — what "good" looks like
 
@@ -146,6 +177,30 @@ levels shift, though the direction never does.
 and measures the Recommended-For-You qualification gate specifically. Never
 quote it as QPTR.
 
+**Trend, measured 2026-08-09** — `cd web && npm run lead-lag` prints both
+proxies, so a claim that holds on only one is visible as such:
+
+| Game | `EndToEndCVR` | home-surface | Read |
+|---|---|---|---|
+| Knife Farm | 3.42% mean, **+0.4%/wk** | 3.80% mean, **+3.0%/wk** | Appeal healthy and improving. The low *level* is upside, not decay |
+| Become a Brainrot | 5.88% mean, **−2.1%/wk** | 5.93% mean, **+0.3%/wk** | Mild to flat, from the highest level of the three |
+| Climb Up Mountain (dead) | 5.10% mean, **−11.8%/wk** | 4.80% mean, **−14.2%/wk** | What a dying listing actually looks like |
+
+**A withdrawn claim, kept here as the warning.** This repo previously recorded
+"Become a Brainrot QPTR **−0.72%/week — steeper than the dead game's final
+fortnight**" and queued it to go to the producer as a second, independent reach
+problem. It reproduces on **neither** proxy: Brainrot is −0.124 pp/wk on
+`EndToEndCVR` and flat-to-positive on home-surface, while the dead game's final
+fortnight ran −0.463 and −0.488 pp/wk — about **4× steeper, and from a falling
+level**. The −0.72 figure sits suspiciously close to the dead game's own
+full-window home-surface slope (−0.683 pp/wk), so the likeliest explanation is
+a number attached to the wrong game.
+
+Two rules out of that: **recompute a slope before quoting it**, and **state the
+metric, window and units every time** — here "−0.72%/week" as percentage points
+and as percent-of-level differ by more than 5×, and the two readings support
+opposite recommendations.
+
 **Read QPTR against impressions, always.** They separate the two causes of a
 reach collapse, and the answer changes the fix completely:
 
@@ -177,8 +232,13 @@ Useful for "what kind of game is this" and for choosing the right comparison.
   decline curve stated is the escape one above. **Do not apply it to a
   simulator**, and do not invent a substitute: say the expected curve is
   unknown and judge the decline on its own shape (step vs smooth) instead.
-  Building this prior is a real gap — it needs several titles' full histories,
-  which the grabber can now collect.
+  Building this prior is a real gap, and **checked 2026-08-09 it cannot be
+  closed with what we hold**: every universe in `data/games/` carries only
+  31–37 days of daily headline data (Knife Farm Jul 7 → Aug 6, Brainrot Jul 2 →
+  Aug 6, Climb Up Mountain Mar 25 → Apr 30). A lifecycle curve needs launch-to-
+  present windows — 6+ months, several titles. The grabber can request them;
+  nobody has. Until then, "expected for the genre" is a sentence you may not
+  write about a simulator.
 - **Post-peak decline of ~15–20% per month** is the general figure used at
   LARGE tier valuation. A decline matching it is expected, not a defect.
 - **Content cadence resets the algorithm signal:** updates every **2–3 weeks**.
