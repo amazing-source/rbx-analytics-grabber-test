@@ -1,8 +1,13 @@
-# Handoff — state as of 2026-08-07
+# Handoff — state as of 2026-08-09
 
 Written for picking this up on another machine. Read `CLAUDE.md` for the working
 agreement and `README.md` for setup. This file is what's true *right now*: what
 works, what's broken, what was found, and what to do next.
+
+**For the running thread — what the last session did and what to do next —
+read `.claude/SESSION_LOG.md` (newest entry first).** This file holds the
+durable state; the log holds the sequence. Both are maintained by the
+`checkpoint` skill.
 
 ---
 
@@ -41,13 +46,16 @@ freeze-when-settled rule means order affects which reading of a disputed point
 is kept. Then confirm the three gates:
 
 ```bash
-npm run verify -- ../data/verify/9610561918/   # 23 pass · 1 fail · 9 skip, exit 0
-npm run audit-plan                             # 0 failures
+npm run verify -- ../data/verify/9610561918/   # 23 pass · 1 fail · 9 skip, EXITS 1
+npm run audit-plan                             # 140 templates, 0 failures
 npm test                                       # 30 pass
 ```
 
 The one expected `verify` failure is a documented disputed hour of realtime
-revenue, tracked in the test's `KNOWN_OPEN` set.
+revenue, tracked in the test's `KNOWN_OPEN` set. **It makes `verify` exit 1**,
+so that gate is currently "green" by its printed counts, not by its exit code —
+do not wire it into CI as a pass/fail without deciding that first
+(measured 2026-08-09).
 
 ---
 
@@ -174,10 +182,13 @@ no API exposes a diff.
 > rate metrics on unbroken-down series, none of which the D1/D2/D4 defects
 > touched — so it still stands. Re-grab before extending it, though.
 
-1. **Re-grab both universes** (`Jun 1 → Aug 7`). This is the open verification
-   item: the perf/half-hour shapes and the async-polling fix have never been
-   exercised live. Expect 9963622286's crash history to appear for the first
-   time, with its ~1.06M peak.
+1. ~~**Re-grab both universes.**~~ **Done 2026-08-08** — this verification item
+   is closed. 9963622286's crash history is now in `data/`
+   (`ServerCrashCount` peak **1,060,617** on 2026-08-01), funnel discovery
+   found `BaseUpgrades` + `PlayerProgression` + 20 steps, and returned-data
+   counts rose to 127/156 and 155/186. The fresh data also disproved four of
+   the audit's own findings — read **G1–G7 in `data/verify/COVERAGE.md`**
+   before quoting anything from before that date.
 2. **Read `place-versions.md`** — confirms v546's exact publish timestamp, and
    `summary.md`'s incident table now names the nearest publish itself.
 3. **Read `errors.md`**, not `ErrorCount` by `ErrorMessage` — that dimension

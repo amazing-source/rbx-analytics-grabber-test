@@ -9,14 +9,22 @@ the full spec; this file is the day-to-day reference.
 > slice. **All seven phases landed the same day**; the code changes are in
 > `git log` from `Commit the ground-truth corpus` onward. What matters now:
 >
-> - **Three gates, all green — run them before and after any change.**
->   `npm run verify -- ../data/verify/9610561918/` (22 pass · 0 fail · 11 skip),
->   `npm run audit-plan` (0 failures), `npm test` (30 pass). A change that
->   moves a number without moving these is unproven.
-> - **The one thing still open: neither universe has had a post-fix active
->   grab.** Every perf shape was fixed against captured evidence but has never
->   been replayed, and 9963622286's crash history (peak ~1.06M) is still absent
->   from `data/`. Re-grab both — that is the last verification item.
+> - **Resuming after a break, or on another machine? Read
+>   `.claude/SESSION_LOG.md` first** (newest entry), then verify it against the
+>   gates before trusting it — that is `checkpoint resume`. The log is written
+>   by the `checkpoint` skill; run it whenever you stop or switch devices.
+> - **Three gates — run them before and after any change** (measured
+>   2026-08-09, not copied):
+>   `npm run verify -- ../data/verify/9610561918/` → 23 pass · 1 fail · 9 skip
+>   and **exits 1**; the single fail is one documented disputed realtime-revenue
+>   hour, held in the test's `KNOWN_OPEN`. `npm run audit-plan` → 140 templates,
+>   0 failures. `npm test` → 30 pass. A change that moves a number without
+>   moving these is unproven.
+> - **Both universes were re-grabbed post-fix on 2026-08-08** — that closed the
+>   last verification item. 9963622286's crash history is now present
+>   (`ServerCrashCount` peak 1,060,617 on 2026-08-01). The re-grab then
+>   disproved four of the audit's own findings; they are G1–G7 in
+>   `data/verify/COVERAGE.md`.
 > - `data/verify/COVERAGE.md` is the measurement that supersedes the audit's
 >   defect table, and carries findings F1–F11 (things the audit missed).
 >
