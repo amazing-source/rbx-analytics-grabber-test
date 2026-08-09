@@ -263,8 +263,29 @@ contextualize with DAU growth, don't compare raw.)
   Cost: a 139-day plan is ~395 requests instead of ~143. Encoded as G8 in the
   test suite. **Do not "solve" a 400 here by shortening the grab** — that
   silently produces a game with no technical history, which reads exactly like
-  a game that never crashed. This also resolves an old confound: the dead
-  game's perf 400s were the **window**, not delisting and not data ageing out.
+  a game that never crashed.
+
+  **RETENTION HORIZON — the harder limit, measured 2026-08-09 by a chunked
+  430-request grab of 9963622286 back to 2026-03-23.** Chunking legalises the
+  *shape* of the ask; it cannot conjure data Roblox no longer stores. What came
+  back, with 242 of the 245 failures being 400s on chunks older than the
+  horizon:
+
+  | Metric class | Oldest data served | Horizon |
+  |---|---|---|
+  | Crash + performance (FPS, memory, CPU, PCU, session) | 2026-07-11 | **~30 days** |
+  | `ErrorCount` | 2026-06-15 | **~56 days** (a chunk boundary, so true horizon is 56–84d) |
+  | Behavioural, retention, monetization, reach | 2026-03-23 (launch) | none found — full life |
+
+  So a game's technical history **only exists for roughly the last month, and
+  is gone forever after that**. Chunking still earned its keep — `ErrorCount`
+  went 38 → 56 days and the recent month of perf now survives a long grab
+  instead of 400ing wholesale — but March–June crash history for this universe
+  does not exist and never will. **Corrects an earlier claim in this file:** the
+  dead game's perf 400s WERE data ageing out, not the window. Any technical
+  question about a period more than ~30 days before the grab is unanswerable —
+  say so rather than reading absence as health. Grab often; the alternative is
+  losing it.
 
   **Every one of these requires `filter:[{dimension:"Place",values:[placeId]}]`
   and is queried at ONE_DAY.** Without the Place filter the gateway returns 400,
