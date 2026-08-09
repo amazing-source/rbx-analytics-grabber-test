@@ -275,3 +275,103 @@ describe("D9 — unit plausibility", () => {
       );
   });
 });
+
+// G8 — a long grab must still retrieve the technical rung.
+// Roblox caps the window on crash/perf/error metrics and 400s a longer ask
+// instead of truncating it. Measured 2026-08-09: a 139-day grab returned every
+// behavioural metric and lost all 19 perf/error shapes that had worked at 28
+// days. The fix is to chunk the span into legal windows, so the data is pulled
+// wherever it exists rather than abandoned.
+describe("G8 — the technical rung is chunked into legal windows", () => {
+  const LONG_START = "2026-03-23T00:00:00.000Z";
+  const LONG_END = "2026-08-09T00:00:00.000Z"; // 139 days
+
+  const planFor = async (start: string, end: string) => {
+    // store.ts pulls in the Supabase client at module load. The plan itself
+    // never needs it — the learned-template lookup fails soft and falls back to
+    // the seed — but the import throws without these, so stub them.
+    process.env.SUPABASE_URL ||= "http://localhost:54321";
+    process.env.SUPABASE_SECRET_KEY ||= "test-not-a-real-key";
+    const { getGrabPlan } = await import("../store");
+    return getGrabPlan("9963622286", start, end, { __places: ["99255447043899"] });
+  };
+
+  const windowsFor = (plan: { requests: { metric: string | null; body: unknown }[] }, metric: string) =>
+    plan.requests
+      .filter((r) => r.metric === metric)
+      .map((r) => (r.body as { query?: { startTime?: string; endTime?: string } })?.query)
+      .filter((q): q is { startTime: string; endTime: string } => !!q?.startTime && !!q?.endTime);
+
+  const spanDays = (w: { startTime: string; endTime: string }) =>
+    (Date.parse(w.endTime) - Date.parse(w.startTime)) / 86_400_000;
+
+  test("no crash request asks for more than 7 days", async () => {
+    const plan = await planFor(LONG_START, LONG_END);
+    const windows = windowsFor(plan, "ServerCrashCount");
+    assert.ok(windows.length > 1, "a 139-day span must produce multiple crash requests");
+    for (const w of windows)
+      assert.ok(
+        spanDays(w) <= 7,
+        `crash window of ${spanDays(w)}d exceeds the 7-day cap — the gateway 400s this`,
+      );
+  });
+
+  test("the chunks tile the full span with no hole", async () => {
+    const plan = await planFor(LONG_START, LONG_END);
+    // ServerCrashCount has several templates (plain, by Platform, by CrashType)
+    // and each tiles the span independently — group by template, not by metric,
+    // or three correct tilings look like one broken one.
+    const byTemplate = new Map<string, { startTime: string; endTime: string }[]>();
+    for (const r of plan.requests as { id: string; metric: string | null; body: unknown }[]) {
+      if (r.metric !== "ServerCrashCount") continue;
+      const q = (r.body as {
+        query?: { startTime?: string; endTime?: string; granularity?: string };
+      })?.query;
+      if (!q?.startTime || !q.endTime) continue;
+      // Sub-daily templates are deliberately clamped to the final 24h by
+      // alignWindow (the gateway truncates long sub-daily windows), so they
+      // are not expected to tile the span.
+      if (q.granularity !== "METRIC_GRANULARITY_ONE_DAY") continue;
+      const base = r.id.split("@")[0];
+      (byTemplate.get(base) ?? byTemplate.set(base, []).get(base)!).push({
+        startTime: q.startTime,
+        endTime: q.endTime,
+      });
+    }
+    assert.ok(byTemplate.size > 0, "expected at least one ServerCrashCount template");
+    for (const [base, ws] of byTemplate) {
+      const windows = ws.sort((a, b) => a.startTime.localeCompare(b.startTime));
+      assert.equal(windows[0].startTime, LONG_START, `${base}: first chunk must start at the grab start`);
+      assert.equal(windows.at(-1)!.endTime, LONG_END, `${base}: last chunk must reach the grab end`);
+      for (let i = 1; i < windows.length; i++)
+        assert.equal(
+          windows[i].startTime,
+          windows[i - 1].endTime,
+          `${base}: chunks must be contiguous — a gap silently drops days`,
+        );
+    }
+  });
+
+  test("chunk requests carry distinct ids", async () => {
+    const plan = await planFor(LONG_START, LONG_END);
+    const ids = plan.requests.filter((r) => r.metric === "ServerCrashCount").map((r) => (r as { id: string }).id);
+    assert.equal(new Set(ids).size, ids.length, "colliding ids hide attempts from grab-report.md");
+  });
+
+  test("behavioural metrics are NOT chunked — one request, full span", async () => {
+    const plan = await planFor(LONG_START, LONG_END);
+    const windows = windowsFor(plan, "DailyActiveUsers");
+    assert.ok(windows.length >= 1);
+    assert.ok(
+      windows.some((w) => spanDays(w) > 100),
+      "DAU served 138 days in one request; chunking it would multiply requests for nothing",
+    );
+  });
+
+  test("a short grab is unaffected — no extra requests", async () => {
+    const short = await planFor("2026-07-12T00:00:00.000Z", "2026-08-09T00:00:00.000Z");
+    const windows = windowsFor(short, "ServerCrashCount");
+    assert.ok(windows.length >= 1);
+    for (const w of windows) assert.ok(spanDays(w) <= 7);
+  });
+});

@@ -250,6 +250,22 @@ contextualize with DAU growth, don't compare raw.)
   `OomUnexpectedExits`, `ClientCrashCount`, `ServerCrashCount`, `CpuTimeAvg`,
   `CpuCoreUtilization`. This is the "did the update break something?" rung —
   rule it out before blaming design.
+  **The technical rung has a HARD MAXIMUM WINDOW and the gateway 400s rather
+  than truncating: ~1 month for performance metrics, 7 days for crashes.**
+  Confirmed by the producer 2026-08-09 and visible in a 139-day grab of
+  9963622286 that returned 38 behavioural metrics at full span while 400'ing
+  every one of the 19 perf/error shapes that had worked on a 28-day window two
+  days earlier. **The data still exists across the whole span — it just has to
+  be asked for one legal window at a time.** `getGrabPlan` now CHUNKS
+  automatically (`maxWindowDays` / `chunkWindow` in `store.ts`): a 139-day ask
+  becomes 20 crash requests of 7 days and 5 perf requests of 28, tiled
+  contiguously, each with its own id so `grab-report.md` shows every attempt.
+  Cost: a 139-day plan is ~395 requests instead of ~143. Encoded as G8 in the
+  test suite. **Do not "solve" a 400 here by shortening the grab** — that
+  silently produces a game with no technical history, which reads exactly like
+  a game that never crashed. This also resolves an old confound: the dead
+  game's perf 400s were the **window**, not delisting and not data ageing out.
+
   **Every one of these requires `filter:[{dimension:"Place",values:[placeId]}]`
   and is queried at ONE_DAY.** Without the Place filter the gateway returns 400,
   and `metrics/metadata` reports the metric with NO `latestAvailableTime` — so

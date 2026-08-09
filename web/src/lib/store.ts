@@ -194,6 +194,70 @@ function alignWindow(granularity: string | undefined, startTime: string, endTime
   return { startTime: snap(startTime, "day"), endTime: snap(endTime, "day") };
 }
 
+// ---------------------------------------------------------------------------
+// The technical rung has a HARD MAXIMUM WINDOW, and the gateway 400s rather
+// than truncating. Measured 2026-08-09: a 139-day grab of 9963622286 returned
+// 38 behavioural metrics at full span and 400'd every one of the 19 perf/error
+// shapes that had returned data on a 28-day window two days earlier — same
+// shapes, same universe, same account.
+//
+// The limit is Roblox's; asking for a shorter overall grab is NOT the fix,
+// because the data exists across the whole span and is retrievable one legal
+// window at a time. So we CHUNK: a 139-day ask becomes 20 crash requests of 7
+// days, or 5 perf requests of 28. One request per template is what silently
+// produced "this game has no crash history" for a game with a 1,060,617 peak.
+//
+// Identification uses the invariant the codebase already enforces: every
+// technical metric requires a `Place` filter (without it the gateway 400s).
+// `ErrorCount` is included by name because it is also served unfiltered.
+// Both figures come from the producer's own platform knowledge (2026-08-09):
+// "for everything performance related the maximum window is a month, for
+// crashes it's 7 days even."
+//
+// One caveat recorded rather than silently ignored: our 2026-08-08 grab used a
+// 28-day window and `ServerCrashCount` came back with 28 days of daily points
+// (Jul 11 → Aug 7), so a 28-day *daily* crash ask demonstrably worked. The
+// 7-day cap may apply to a sub-daily granularity or to the dashboard UI. 7 is
+// kept because a smaller window always succeeds where a larger one does — the
+// only cost is request count. Raise it to 28 only after a grab report shows a
+// 28-day crash chunk returning data across a long span.
+const MAX_CRASH_WINDOW_DAYS = 7;
+const MAX_PERF_WINDOW_DAYS = 28;
+
+const CRASH_METRICS = new Set([
+  "ServerCrashCount",
+  "ClientCrashCount",
+  "ClientCrashRate15m",
+  "OomUnexpectedExits",
+]);
+
+/** Max window in days for a template, or null when the span needs no chunking. */
+function maxWindowDays(metric: string, query: unknown): number | null {
+  const filter = (query as { filter?: unknown })?.filter;
+  const placeScoped =
+    Array.isArray(filter) &&
+    filter.some((f) => (f as { dimension?: string })?.dimension === "Place");
+  if (!placeScoped && metric !== "ErrorCount") return null;
+  return CRASH_METRICS.has(metric) ? MAX_CRASH_WINDOW_DAYS : MAX_PERF_WINDOW_DAYS;
+}
+
+/** Split [start, end) into consecutive windows of at most `maxDays`. */
+function chunkWindow(startTime: string, endTime: string, maxDays: number) {
+  const end = Date.parse(endTime);
+  const step = maxDays * 86_400_000;
+  const out: { startTime: string; endTime: string }[] = [];
+  let cur = Date.parse(startTime);
+  if (!Number.isFinite(cur) || !Number.isFinite(end) || cur >= end) {
+    return [{ startTime, endTime }];
+  }
+  while (cur < end) {
+    const stop = Math.min(cur + step, end);
+    out.push({ startTime: new Date(cur).toISOString(), endTime: new Date(stop).toISOString() });
+    cur = stop;
+  }
+  return out;
+}
+
 // Build the universe-specific request list the extension replays. Templates are
 // universe-independent; we inject resourceId + the chosen time window here.
 // The seeded plan (default-plan.ts) always applies, so a fresh install can pull
@@ -386,6 +450,7 @@ export async function getGrabPlan(
     ...getAnnotationRequests(universeId, startTime, endTime),
   ];
   const metricNames = new Set<string>();
+  let chunked = 0;
 
   for (const t of merged.values()) {
     const rt = t.resourceType;
@@ -404,19 +469,41 @@ export async function getGrabPlan(
         provenance: t.provenance,
       });
     } else {
-      const w = alignWindow(t.query?.granularity, startTime, endTime);
-      const q = { ...(t.query as Record<string, unknown>), ...w };
-      requests.push({
-        id: `${t.kind}:${t.key}`,
-        kind: "metric",
-        metric: t.metric,
-        url: `${API}/analytics-query-gateway/v1/metrics/resource/${rt}/id/${universeId}`,
-        method: "POST",
-        body: { resourceType: rt, resourceId: universeId, query: q },
-        optional: t.optional,
-        provenance: t.provenance,
-      });
+      const aligned = alignWindow(t.query?.granularity, startTime, endTime);
+      const cap = maxWindowDays(t.metric, t.query);
+      // Sub-daily templates are already clamped by alignWindow (half-hour to the
+      // final 24h), so chunking them yields exactly one window.
+      const windows = cap
+        ? chunkWindow(aligned.startTime, aligned.endTime, cap)
+        : [aligned];
+      if (windows.length > 1) chunked += windows.length - 1;
+      for (const w of windows) {
+        const q = { ...(t.query as Record<string, unknown>), ...w };
+        requests.push({
+          // The window is part of the id: without it, N chunks of one template
+          // collide and the grab report shows a single attempt.
+          id: windows.length > 1
+            ? `${t.kind}:${t.key}@${w.startTime.slice(0, 10)}`
+            : `${t.kind}:${t.key}`,
+          kind: "metric",
+          metric: t.metric,
+          url: `${API}/analytics-query-gateway/v1/metrics/resource/${rt}/id/${universeId}`,
+          method: "POST",
+          body: { resourceType: rt, resourceId: universeId, query: q },
+          optional: t.optional,
+          provenance: t.provenance,
+        });
+      }
     }
+  }
+
+  if (chunked) {
+    warnings.push(
+      `technical rung split into legal windows: +${chunked} extra requests ` +
+        `(crash ≤${MAX_CRASH_WINDOW_DAYS}d, other perf/error ≤${MAX_PERF_WINDOW_DAYS}d). ` +
+        `The gateway 400s a longer ask instead of truncating it, so this is how ` +
+        `crash and error history is retrieved across a long span.`
+    );
   }
 
   // One freshness request for all metrics (no resourceId on this endpoint).
