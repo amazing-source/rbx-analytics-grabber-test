@@ -174,6 +174,65 @@ no API exposes a diff.
 
 ---
 
+### Re-diagnosed 2026-08-10 — three causes, only one is the studio's
+
+A grab covering 2026-08-07 → 08-10 (174 requests, 139 returned data) plus the
+merged history. **The July 30 break still stands**; what is new is that the
+current decline is its *reach* phase, not a second event.
+
+| Phase | Daily revenue mean | Cause |
+|---|---|---|
+| Plateau, Jun 22 – Jul 8 | R$428,036 | — |
+| Slide, Jul 9 – 20 | R$356,291 | **Platform.** No deploy behind it; matches the 15 June RFY re-weighting reaching full effect ~13 July |
+| Model swap, Jul 21 – 26 | R$206,604 | Forced (`CREATOR_REGEX_CHANGE` annotation + deploys 514/516 on **Jul 22 — there is no Jul 21 deploy**) |
+| Recovery, Jul 27 – 31 | R$239,722 | — |
+| Deploy break, Aug 1 – 8 | R$136,167 | **Studio, preventable** |
+
+- **Hook (the acute break).** D1 16.8% → trough **9.7% on Aug 2** → recovering to
+  12.4% by Aug 7. Funnel damage is concentrated at **BaseUpgrade2 churn +62%
+  (8.42% → 13.67%) and BaseUpgrade3 +49%**, decaying by step 5, while the *late*
+  funnel improved. That is the signature of the unchecked-`pcall` inventory-load
+  defect (P0, still unfixed): a player whose inventory fails to load stalls at
+  the first upgrades. Veterans are unaffected.
+- **Reach (why it is still falling).** Impressions 9.97M (Jul 31) → **4.31M
+  (Aug 8), −57%**, still falling on the last held day. Downstream of the D1
+  break on the documented 28-day signal window, so it keeps suppressing
+  distribution to roughly **27 August** even if the code were fixed today.
+- **Ruled out.** Crashes (1,060,617 peak Aug 1 → 0–6/day from Aug 3, decline ran
+  past it). The Aug 3/4/7 deploys (573, 574, 575–577) — D1 was *rising* across
+  them. Appeal: `EndToEndCVR` recovered to **6.33%** while impressions fell 57%,
+  so thumbnail/title work is wasted effort.
+- **THE STRUCTURAL FINDING — biggest lever in the game.** `PlayerProgression`
+  step 4 is **`Rebirth1`**, and its churn is **61.4%**, unchanged pre/post break
+  (0.6144 full-life vs 0.6137 post-break). Churn collapses once a player
+  rebirths once: **61.4% → 28.0% → 10.4% → 7.5%**. That gate is why D7 ≈ 3% and
+  D30 ≈ 1%, i.e. why every reach shock is permanent.
+- **Fix order:** inventory `pcall` first (stops the bleed), Rebirth1 gate second
+  (fixes why bleeding is fatal).
+
+### Knife Farm (`9610561918`) — it is the return loop, not appeal
+
+Producer: Nina. Asked 2026-08-10 whether the decline is "the algo or bugs".
+**Neither.** Evidence, all from the merged 129-day record:
+
+- **Still acquiring fine.** 2026-08-07: **13,209 new users, 36% of DAU**
+  (`DailyActiveUsers` by `IsNewUser`). Roblox has not stopped delivering people.
+- **The hook works.** D1 17–20%, above peer cohort. Session profile stable
+  (median ~10 min; bounce <60s 7.6% → 8.7% via `TotalSessionsEndedInBucket`).
+  `AveragePlayTimeMinutesPerDAU` flat ~22 min.
+- **The loop does not.** D7 2.5% → 1.2%, D30 1.2% → 0.2%.
+  **`RFYL7PlayDays` ≈ 1.4 and flat all year** — that is the ranking input, and
+  the ceiling on distribution.
+- **Structure explains it exactly.** The game has offline earnings and daily
+  rewards (so D1 holds) but **no rebirth, only finite upgrades** (so D7/D30
+  die). Confirmed by the producer 2026-08-10.
+- **`UsersJoinedFromNotifications` is a cumulative lifetime counter** (129 days,
+  strictly monotonic, zero decreases) reading **2,073 total** against 476M
+  sessions. Experience Notifications is effectively switched off. *Verify in the
+  dashboard before pitching it — single counter, not yet cross-checked.*
+- **Do not** attribute this to the 15 June RFY change: Knife Farm's biggest
+  collapse ran 31 May → 12 June (−81%), before that change existed.
+
 ## 6. Next steps
 
 > Updated 2026-08-08 after the correctness overhaul (`CORRECTNESS_PLAN.md`).
@@ -196,8 +255,13 @@ no API exposes a diff.
    heavily concentrated (one signature is 52.3% of 12.4M events on
    9610561918). If a progress-loss bug shipped in v546, its signature should
    appear or spike on Jul 30 — which moves this from "v546 did it" to "*this
-   line* did it". Hash→text needs the async dimensions lookup, which the
-   re-grab now polls for.
+   line* did it". ~~Hash→text needs the async dimensions lookup, which the
+   re-grab now polls for.~~ **Wrong on both counts, corrected 2026-08-10:** the
+   grabber does NOT poll it, and the lookup returns HTTP 500 on both universes.
+   **Closed as won't-fix** — the producer's judgement is that Roblox error
+   volumes are near-meaningless (a signature firing 75M times is one benign call
+   per player per session). Do not re-open it, and never cite missing error text
+   as a limit on a diagnosis. See G7 in `COVERAGE.md`.
 4. **Read `annotations.md`** before blaming or exonerating Roblox. Both
    universes spiked 2026-07-31→08-01, which is Fri–Sat and fits a weekly-update
    pattern as readily as a platform event. The annotation feed is the authority;

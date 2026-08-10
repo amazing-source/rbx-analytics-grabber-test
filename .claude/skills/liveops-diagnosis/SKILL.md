@@ -27,6 +27,24 @@ Do this before any analysis. It takes a minute and it has already caught a
    most damaging error this pipeline has made.
 5. **Is the point settled?** Never quote a point flagged `partial` (interval
    unfinished at capture). `FILLED_ZERO` is a synthesized zero, not a reading.
+6. **Is the comparison like-for-like on day of week?** Several metrics carry a
+   hard weekly shape. On 9963622286 `PeakConcurrentPlayers` spiked 3–5× on
+   **all five Saturdays** in the window — that is the game's rhythm, not an
+   artifact and not an event. Compare Monday to Monday, or use a 7-day mean.
+
+**The most common false alarm, and it will arrive as an urgent message.**
+"We just dropped 50%" is usually today's partial point. On 2026-08-10 a grab
+captured at 07:39 UTC put `PeakConcurrentPlayers` at 1,660 against 3,626 the day
+before — read as "another 50% gone". It was **7.6 hours of a day whose peak lands
+at ~12:30 UTC**, so the day had not reached its peak yet; 134 rows in that grab
+carried `partial`. The last *settled* day was flat against the week.
+
+So, before answering any "it just fell off a cliff" question, in this order:
+**(a)** is the latest point `partial`; **(b)** is the comparison same-weekday;
+**(c)** what does the last settled full day say. Only then look for a cause.
+Getting this wrong sends a producer to fix something that did not happen — and
+the real finding underneath (a genuine −62% week-over-week on weekdays) gets
+buried under a number that falls apart on inspection.
 
 ## 0b. Pick the window before you pick the cause
 
@@ -81,6 +99,22 @@ lower down, and the lowest broken rung is the diagnosis.
 Rung 5 is a **rule-out**, not a starting point. Check it early so you can
 exclude it, but a crash spike is only the story if the timing survives §3.
 
+**Funnel step values carry names — use them.** `FunnelStep` comes back as an
+integer with a `displayValue` beside it (`4` → `Rebirth1`). "61% never reach
+step 4" is a curiosity; "61% never reach their first rebirth" is a diagnosis.
+If a label looks like a bare integer, the name is in `data/raw/` — see G9 in
+`COVERAGE.md`. Funnel data is served at `NONE` granularity (the `ONE_DAY ·
+by FunnelStep` shape 400s), so you get **levels, not trends**: a funnel change
+can be bracketed by comparing window aggregates but never dated to a day.
+
+**No funnels instrumented? Use `TotalSessionsEndedInBucket`.** Broken down by
+`SessionTimeBucket` it gives the session-length distribution, which is the
+closest substitute for "where do they quit" — and the <60s and 61–180s bands
+are themselves official RFY bounce signals. *Knife Farm: median session ~10 min,
+bounce under 60s only 7.6% → 8.7%, i.e. within-session engagement was never the
+problem.* A stable bucket profile alongside collapsing D7 is strong evidence the
+break is between sessions, not inside them.
+
 ## 2. Read the signature, not the single metric
 
 Each cause has a fingerprint across rungs. Match the whole pattern.
@@ -112,6 +146,20 @@ A hypothesis that survives nothing is not a finding.
   falling, X is not the cause. *Become a Brainrot: crashes ended 2 Aug, DAU
   kept falling 492K → 277K through 5 Aug → crashes were a confound, and the
   30 July deploy remained the answer.*
+- **Is it acquisition or retention? Split DAU by `IsNewUser`.** This is the
+  fastest test there is and it kills the most expensive wrong answer, "let's
+  make the game more appealing to new players". *Knife Farm on 2026-08-07 was
+  still taking **13,209 brand-new players a day, 36% of DAU**, while D7 sat at
+  1.2%. Roblox had not stopped delivering new players; the game was failing to
+  convert them.* New users still arriving in volume + weak D7 ⇒ the problem is
+  the return loop, and creative/appeal work is wasted effort. Read it against
+  D1: **D1 healthy while D7 dies means they liked it and ran out of game.**
+- **Read the ranking signal directly — `RFYL7PlayDays`.** Since 2026-06-15 RFY
+  ranks on play days per user, so this metric *is* the input, not a proxy for
+  it. *Knife Farm: ~1.4 play days per 7, flat all year — the average player
+  plays once or twice a week and never more. That number is the ceiling on
+  distribution, and no amount of reach work moves it.* Quote it before
+  theorising about the algorithm.
 - **Did the metric break before or after the publish?** `place-versions.csv`
   has publish timestamps to the minute. Break-before-publish exonerates it.
   *Check the full deploy list — a report here once exonerated updates by
@@ -349,6 +397,29 @@ Useful for "what kind of game is this" and for choosing the right comparison.
 Benchmarks in `series.json` are **similarity cohorts, not genre** on these
 universes (check `benchmarkType`), so say "peer cohort", not "genre median".
 
+### Idle/simulator structure — which mechanic holds which day
+
+For this portfolio's genre, the retention curve maps onto game structure
+cleanly enough to diagnose a *missing mechanic* from the numbers alone:
+
+| Mechanic | The day it holds | Absent ⇒ |
+|---|---|---|
+| Offline earnings, daily reward, streak | **D1 → D2** | D1 sags |
+| Finite upgrade track | D2 → D5, then exhausted | D7 collapses once bought out |
+| **Prestige / rebirth loop** | **D7 → D30** | D30 goes to ~0 |
+
+*Worked, 2026-08-10.* Knife Farm has offline earnings and daily rewards but **no
+rebirth** — only upgrades. Measured: D1 healthy at 17–20% (the daily mechanics
+work), D7 1.2%, D30 0.2% (nothing to chase once upgrades are bought). Become a
+Brainrot, same studio, **has** a rebirth ladder and runs D7 ≈ 3%. The absent
+mechanic was readable straight off the curve.
+
+**Content is not the same lever as structure.** A new world is consumed once and
+buys one cycle — which is exactly the pattern Knife Farm already ran three times
+since May, each peak smaller. A prestige loop regenerates the goal indefinitely
+from content that already exists. When both are on the table, ship the loop and
+use the content as its reward.
+
 ## 4b. Sizing the prize — what a fix is actually worth
 
 LiveOps and acquisition run on the same arithmetic, which is how a diagnosis
@@ -376,6 +447,39 @@ Two caveats, and state them when you use this: ×30 on a single day's revenue is
 a simplification — use a settled multi-day average where you have one; and
 0.0035 is the developer payout rate, which is the right unit for "what the
 owner earns", not necessarily for every valuation context.
+
+### "How much did we lose?" — the baseline is the whole answer
+
+A cumulative-loss figure is a **counterfactual**, so the baseline dominates the
+result and is the first thing a sceptical reader attacks. Always compute a
+range, name the baseline, and subtract expected decay.
+
+*Worked, 2026-08-10, Become a Brainrot since 21 July (19 settled days,
+R$3,527,576 actually earned):*
+
+| Baseline | at 15%/mo decay | at 0% decay |
+|---|---|---|
+| Last 7d before the event | **$7,370** | $8,346 |
+| 14d before | $11,261 | $12,430 |
+| Peak week | $16,346 | $17,767 |
+
+Three rules out of that spread:
+
+1. **Subtract expected decay.** ~15–20%/month post-peak is *normal*, so only the
+   excess is a loss. Reporting the 0% column inflates the number by ~13%.
+2. **Never baseline on the peak week** if the metric was already sliding when
+   the event hit — it more than doubles the figure and the case dies on
+   inspection. Prefer the last settled week before the event.
+3. **A cumulative loss is usually the weaker number anyway.** The **ongoing
+   run-rate gap** ($21,392/month here) and the **capitalised value** (6× ⇒
+   $128,352) argue far better than a historical total, because they describe
+   what is still bleeding rather than what is already spent.
+
+And decompose before attributing: of Brainrot's drop, ~R$71,744/day traced to a
+platform change (not the studio's doing), ~R$149,687/day to a forced model swap,
+and ~R$103,555/day to a preventable deploy break. **Only the third is anyone's
+fault, and only the third is worth a fix.** A single blended "we lost $X" hides
+that distinction and invites the wrong response.
 
 ## 4c. Keep your own projections credible
 

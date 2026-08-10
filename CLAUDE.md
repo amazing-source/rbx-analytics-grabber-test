@@ -14,12 +14,16 @@ the full spec; this file is the day-to-day reference.
 >   gates before trusting it — that is `checkpoint resume`. The log is written
 >   by the `checkpoint` skill; run it whenever you stop or switch devices.
 > - **Three gates — run them before and after any change** (measured
->   2026-08-09, not copied):
->   `npm run verify -- ../data/verify/9610561918/` → 23 pass · 1 fail · 9 skip
->   and **exits 1**; the single fail is one documented disputed realtime-revenue
->   hour, held in the test's `KNOWN_OPEN`. `npm run audit-plan` → 140 templates,
->   0 failures. `npm test` → 30 pass. A change that moves a number without
->   moving these is unproven.
+>   2026-08-10, not copied):
+>   `npm run verify -- ../data/verify/9610561918/` → 23 pass · **2 fail** · 8 skip
+>   and **exits 1**. BOTH fails are documented and held in the test's
+>   `KNOWN_OPEN`, so `npm test` stays green while `verify` exits 1 — that is the
+>   expected state, not a regression: (1) the disputed realtime-revenue hour
+>   2026-08-08T00:00, and (2) `ErrorCount` half-hour, where 144 of 147 cells
+>   match and the 3 that don't are all the 08:00 bucket at the export window's
+>   own edge — the CSV holds a partial bucket, our later read holds the settled
+>   one. `npm run audit-plan` → 140 templates, 0 failures. `npm test` → 41 pass.
+>   A change that moves a number without moving these is unproven.
 > - **Both universes were re-grabbed post-fix on 2026-08-08** — that closed the
 >   last verification item. 9963622286's crash history is now present
 >   (`ServerCrashCount` peak 1,060,617 on 2026-08-01). The re-grab then
@@ -67,6 +71,21 @@ reached Roblox must not be lost to a database being down (it has been).
 - `data/verify/` — the ground-truth corpus + `COVERAGE.md` / `INVENTORY.md`.
   The only part of `data/` that is committed.
 Offline path, no server or DB: `cd web && npm run ingest:file -- <raw.json>`.
+
+## Running the app — one command, and Supabase is meant to be dead
+`cd web && npm run dev` → http://localhost:3000. That is the whole procedure.
+Deps are installed and `web/.env.local` is already correct, so there is nothing
+to discover first: no run-skill to hunt for, no route listing, no API smoke
+test. **Supabase is a deliberate placeholder** (`https://placeholder.supabase.co`)
+and there is no project behind it, so every DB-backed route (`/api/games`,
+`/api/overview`, `/api/series`, …) answers `TypeError: fetch failed` / 500.
+**That is the steady state, not a bug** — the file mirror above is the real
+sink, and the architecture is out of scope. The var must *exist* but may point
+nowhere: `src/lib/supabase.ts` throws at module-import time when it is unset,
+while a dead URL imports fine and only fails on an actual query. So never empty
+it and never "fix" it by provisioning a project. `/` renders the dashboard shell
+with empty tiles and a red error line, because the client chains every fetch off
+`/api/games`. That is a running app.
 
 ## The three gates
 Run from `web/`. Any change to what the numbers say must keep all three green,
@@ -170,6 +189,17 @@ are what the dashboard itself puts in the request body. Hashes are what rot.)
   `breakdown only`. Never fall back to `series[0]`. That fallback is what
   printed a 30,393-crash incident as "5" and peak concurrents as "0.5".
   `totalSeries()` in `export-files.ts` is the single implementation; use it.
+- **A breakdown value ships with a human name — use it, don't re-derive it.**
+  `breakdownValue[]` carries `displayValue` next to `value`: `FunnelStep` "4" is
+  `Rebirth1`, not step four. The exporter used to drop it, which turned a funnel
+  into twenty anonymous integers and downgraded a confirmed finding to a guess.
+  `breakdownLabels` now carries it into `series.json`, the CSVs and every label,
+  and is refreshed on merge so series stored before the fix pick names up on the
+  next ingest. **The raw `value` remains the series identity** — display names
+  are cosmetic and a shifting key would silently fork every merged series.
+  Roblox sometimes sends `displayValue: ""` (PlayerProgression step 2); falling
+  back to the integer is correct, and a later grab that does carry the name
+  fills it in. Encoded as G9 in the test suite.
 - Timestamps are UTC. `ONE_DAY` points are stamped `00:00:00Z` (verified across
   5,571 points). Sub-daily series are stamped at the interval boundary. Align on
   UTC.

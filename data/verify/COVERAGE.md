@@ -33,12 +33,22 @@ Wins, measured:
 | G4 | **The revision log became the thing D3 warned about.** It fired 500 times (its cap). Measured over 587 re-reads: median divergence **0.0000%**, p90 **0.78%** — Roblox continuously recomputes averaged metrics. A flag on every row carries no information. | Only material (>1%) divergence is logged: 500 → 87 and 87 → 55, all genuine movement. |
 | G5 | **Freeze-first-write-wins is now an open question, not a settled rule.** F2 justified it with 3,092 → 747 (dashboard confirmed 3,092). But the largest divergences run the *other* way — `ItemMonetizationRevenue` 353 → 21,835 — which looks like back-fill, and our kept value is sometimes the low one. | Policy unchanged, but documented as disputed in `data-quality.md`. Do not build a conclusion on a revised hour. |
 | G6 | **Annotation provenance was mis-tagged.** I marked all 24 enumerated types `observed`; only 2 were ever seen in a dashboard capture. Types 18–24 return 400 and were filling the failure table with my own guesses. | Narrowed to the 16 valid types with real names recorded; only types 7 and 16 are `observed`. |
-| G7 | **`MessageHash` → text still fails** (HTTP 500 on both universes), so `errors.md` remains hashes-only. `FunnelStep` discovery 403s on Knife Farm. Neither is a query-shape problem. | Recorded; the volumes are still usable and heavily concentrated. |
+| G7 | **`MessageHash` → text still fails** (HTTP 500 on both universes), so `errors.md` remains hashes-only. `FunnelStep` discovery 403s on Knife Farm. Neither is a query-shape problem. | Recorded; the volumes are still usable and heavily concentrated. **CLOSED 2026-08-10 as won't-fix** — the producer's judgement is that Roblox error volumes are near-meaningless (a signature firing 75M times is one benign call per player per session). Stop treating absent error text as a limit on a diagnosis. |
+| G9 | **We dropped the human name on every dimension value.** `breakdownValue[]` ships `displayValue` next to `value` — `FunnelStep` "4" is `Rebirth1` — and `breakdownToMap` kept only `value`. Effect: a 20-step funnel exported as anonymous integers, and the single largest leak in Become a Brainrot ("61.4% never reach step 4") could not be read as "61.4% never reach their first rebirth". The names were in `data/raw/` the entire time; this was never an API limit. Measured 2026-08-10 on the 08-10 grab of 9963622286. | Fixed: `breakdownLabels` carries dimension → display name into `Snapshot`, `series.json`, every CSV and every label, and is **refreshed on merge** so series stored before the fix pick names up on the next ingest. The raw `value` stays the series identity — a display name in the key would silently fork every merged series. Roblox sometimes sends `displayValue: ""` (PlayerProgression step 2); falling back to the integer is correct, and a later grab carrying the name fills it in (verified: re-ingesting the 08-09 bundle produced `FirstUpgrade`). 5 regression tests, fixture `funnel-step-displayvalue-0810.json`. |
 
 Gates after this audit: **verify 23 pass · 1 fail · 9 skip**, audit-plan **0
 failures**, `npm test` **30 pass**. The single remaining failure is one disputed
 realtime-revenue hour (G5), tracked explicitly in the test's `KNOWN_OPEN` set so
 a *new* disagreement still breaks the build.
+
+> **Those gate numbers are the 2026-08-08 reading and are kept as history — do
+> not quote them as current.** Measured 2026-08-10: **verify 23 pass · 2 fail ·
+> 8 skip (exit 1)**, audit-plan **0 failures**, `npm test` **41 pass**. The
+> second verify failure is NOT a regression: it is `ErrorCount` half-hour, where
+> 144 of 147 cells match and the 3 that differ are all the 08:00 bucket sitting
+> at the export window's own edge — the dashboard CSV holds a partial bucket and
+> our later read holds the settled one. Both failures are in the test's
+> `KNOWN_OPEN`, which is why `npm test` is green while `verify` exits 1.
 
 ## Status after the fixes (same day, Phases 2–7)
 

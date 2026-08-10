@@ -13,7 +13,53 @@ trusting it**. Entries describe the moment they were written.
 
 ---
 
-## 2026-08-09 (b) — Long-window grabs landed; three gates are RED and honestly so
+## 2026-08-10 — Rebirth1 named the biggest leak; the "50% drop today" was a partial
+
+**State:** branch `grabber-correctness` · 31 ahead of `main` · pushed through
+HEAD · **all of today's work is UNCOMMITTED** (6 modified, 2 untracked incl.
+`data/raw/9963622286-2026-08-10T07-39-21-953Z.json`, which must be committed —
+raw bundles cannot be re-created)
+**Gates (measured now):** verify **23/2/8 exit 1** · audit-plan **0 failures** ·
+test **41/41**. Both verify fails are in `KNOWN_OPEN`; this is the expected
+state, not a regression.
+
+**Landed:** G9 — `displayValue` was being dropped from every dimension value.
+`breakdownLabels` now carries dimension → human name into `series.json`, CSVs
+and labels, refreshed on merge; raw `value` stays the series identity. 5
+regression tests (36 → 41), fixture `funnel-step-displayvalue-0810.json`.
+Re-ingested both bundles, so `data/` now reads `Rebirth1` not `4`.
+
+**Learned → routed:**
+- Partial-point false alarm, same-weekday rule, `IsNewUser` acquisition-vs-
+  retention test, `RFYL7PlayDays` as the ranking input, session buckets as a
+  funnel substitute, idle-mechanic→retention-day map, loss-baseline discipline
+  → `.claude/skills/liveops-diagnosis/SKILL.md` (§0, §1, §3, §4, §4b)
+- Brainrot 3-cause split + `Rebirth1` 61.4% gate; Knife Farm return-loop
+  diagnosis → `HANDOFF.md` §5
+- G9 + current gate reading → `data/verify/COVERAGE.md`
+- `displayValue` rule, app-launch, corrected gate baseline → `CLAUDE.md`
+
+**Disproved:**
+- *"The 2nd verify failure is a new regression"* (mine, this session) — it is
+  `ErrorCount` half-hour, already in `KNOWN_OPEN` since `cab8e85` (2026-08-09).
+  `CLAUDE.md` was stale at 23/1/9 + 30 pass; fixed.
+- *"The API only gives funnel step numbers"* (mine) — the names were in
+  `data/raw/` all along. The user was right; it cost a round trip.
+- *"Brainrot dropped another 50% on Aug 10"* — that was a `partial` point
+  captured 07:39 UTC before the ~12:30 daily peak. Real move is −62% weekday
+  PCU week-over-week, dating to Aug 1–2.
+- G7 hash→text — **closed as won't-fix**, not a blocker. `HANDOFF.md` §6.3 also
+  wrongly claimed the re-grab polls for it; corrected.
+
+**Open:**
+- Uncommitted work — next action: commit (see resume line).
+- `UsersJoinedFromNotifications` = 2,073 lifetime on Knife Farm looks like a
+  switched-off channel. Next action: confirm in the dashboard it isn't a narrow
+  subtype before Ren pitches it.
+- Matthew (Indigo CEO) asked what the tool does, awaiting Ren's reply. Next
+  action: send findings-only answer + the QPTR clicks-vs-plays question.
+
+**Next:** commit today's work, then send Matthew the reply.
 
 **State:** branch `grabber-correctness` · pushed through `cacde14` · dirty:
 `.claude/settings.local.json` only
