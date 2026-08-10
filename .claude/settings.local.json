@@ -94,7 +94,10 @@
       "Bash(awk '{printf \"%8.0fKB  %s\\\\n\", $1/1024, $2}')",
       "Bash(grep -nE \"^\\(export |const |// ={3,}|// -{3,}\\)\" src/data/game-data.ts)",
       "Bash(awk -F'|' '{print $2, $3, $5}')",
-      "Bash(awk 'NR>1{printf \"%7.1fMB %s\\\\n\", $5/1048576, $9}')"
+      "Bash(awk 'NR>1{printf \"%7.1fMB %s\\\\n\", $5/1048576, $9}')",
+      "Bash(rm -rf /c/rbxtest)",
+      "Bash(git clone *)",
+      "Bash(awk '{print length, $0}')"
     ],
     "defaultMode": "bypassPermissions"
   },

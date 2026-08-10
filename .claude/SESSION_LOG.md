@@ -13,6 +13,60 @@ trusting it**. Entries describe the moment they were written.
 
 ---
 
+## 2026-08-10 (evening) — Four of my findings killed by someone who plays the game
+
+**State:** branch `grabber-correctness` · 33 ahead of `main` · **2 commits
+unpushed** · dirty: `.claude/settings.local.json`, `liveops-diagnosis/SKILL.md`,
+`HANDOFF.md`, `data/games/9963622286/grab-report.json`, untracked
+`data/raw/9963622286-2026-08-10T14-28-47-177Z.json` (**must commit, cannot be
+re-created**)
+**Gates (measured now):** verify **23 pass · 2 fail · 8 skip, exit 1** ·
+audit-plan 140 templates / **0 failures** · test **41/41**. Documented state.
+
+**Landed:** `FunnelCohortCompletionRate` is served **`ONE_DAY` per named step**
+with full history, so funnel moves can be dated to a day — the skill said they
+could not. Studio source read of dev place `115476892057345`. Time-to-first-
+rebirth modelled from shipped constants. Three dashboard exports ingested
+(error text, feedback split, 164 player comments).
+
+**Learned → routed:**
+- Retention lags ~2 days; a `NONE` window aggregate can hide a series that
+  doubled → `liveops-diagnosis` §0
+- Returning-share regression as the mix control (r = 0.718 on 9963622286);
+  "big error count, test it against ARPDAU before reporting" → §3
+- **Metrics date changes, they cannot judge levels**; the three export-only
+  sources; half-hour PCU vs daily peak → new §5b
+- Brainrot 30 Jul shape, 7 Aug fix confirmed, 8-day gap cost, rebirth timing
+  → `HANDOFF.md` §5
+- Series-name traps and export locations → memory `rbx-where-to-find-each-metric`
+- Chat register ≠ doc register → memory `write-in-users-voice-not-ai-voice`
+
+**Disproved — all mine, all within hours, all by the producer playing the game:**
+- *"Rebirth1 61.4% churn unchanged pre/post = immovable structural gate"* —
+  aggregation artifact. Daily series runs 24-33% → 44-48% → 34-37%.
+- *"First rebirth is 6.58× too hard, flip `new_speed_mechanic`"* — the whole
+  treadmill loop is gated on that flag. Flipping it disables the core loop.
+- *"A fresh player can't train"* — the tutorial grants and equips the treadmill.
+- *"The unchecked `pcall` at `OnPlayerAdded:2963` causes the wipes"* — zero
+  DataStore signatures in the error export, floor 7,875 lifetime.
+- *"Backpack items aren't saved"* — `OnPlayerAdded:584-586` saves them.
+- *"PCU isn't in the grab"* — it is, series `Place=<id>`, never `Total`.
+
+**Open:**
+- **What shipped in v546 (30 Jul 11:54 UTC)?** Everything after the tutorial
+  dropped, nothing inside it moved. Next action: ask the studio. Lead: a 30 Jul
+  player comment that getting speed "takes too long".
+- Data loss is real (comments 14-27 Jul), mechanism unfound. Next action: ask
+  whether two brainrots can share a UID — the save dedupes at `:554` silently.
+- Artifact `claude.ai/code/artifact/f51e905e-72b4-4621-8708-d1ee200cc05b`
+  carries the withdrawn 6.58× claim. Next action: redeploy corrected or delete.
+- `VoteType` breakdown missing for 7-9 Aug in the grab. Next action: confirm the
+  plan requests it.
+
+**Next:** commit and push (raw bundle first), then chase v546.
+
+---
+
 ## 2026-08-10 — Rebirth1 named the biggest leak; the "50% drop today" was a partial
 
 **State:** branch `grabber-correctness` · 31 ahead of `main` · pushed through

@@ -46,6 +46,25 @@ Getting this wrong sends a producer to fix something that did not happen — and
 the real finding underneath (a genuine −62% week-over-week on weekdays) gets
 buried under a number that falls apart on inspection.
 
+**Retention lags ~2 days and the chart's right edge is always falling.** D1 for
+day D cannot settle until D+1 is over, and Roblox's retention pipeline adds
+about another day: a grab at 2026-08-10 14:28 UTC returned **no D1 past
+2026-08-07**. So the last one or two points of any retention chart read low
+every day, on every game, regardless of what is happening. This arrives as
+"D1 is still dropping" from someone reading the dashboard. Check the newest
+*settled* point before answering. Related: a deploy at 17:14 UTC means that
+day's cohort is mostly pre-fix, so the first day that tests a fix is the day
+*after* it ships.
+
+**A window aggregate can hide a series that doubled.** `NONE`-granularity
+metrics return one number per requested window, so comparing two windows and
+finding them equal proves nothing — both may average the same swing. On
+9963622286 the `Rebirth1` churn aggregate read 0.6144 full-life vs 0.6137
+post-break, which was written up as an immovable structural gate; the daily
+series ran **24% → 48% → 35%** underneath it. **Before calling anything
+structural, plot it daily.** If no daily series exists, say "level unknown over
+time" rather than inferring stability from two aggregates agreeing.
+
 ## 0b. Pick the window before you pick the cause
 
 Two windows answer two different questions, and mixing them up is how a
@@ -103,9 +122,23 @@ exclude it, but a crash spike is only the story if the timing survives §3.
 integer with a `displayValue` beside it (`4` → `Rebirth1`). "61% never reach
 step 4" is a curiosity; "61% never reach their first rebirth" is a diagnosis.
 If a label looks like a bare integer, the name is in `data/raw/` — see G9 in
-`COVERAGE.md`. Funnel data is served at `NONE` granularity (the `ONE_DAY ·
-by FunnelStep` shape 400s), so you get **levels, not trends**: a funnel change
-can be bracketed by comparing window aggregates but never dated to a day.
+`COVERAGE.md`.
+
+**Funnels CAN be dated to a day — use `FunnelCohortCompletionRate`.** Corrected
+2026-08-10. It is true that `FunnelUserChurnRate` / `FunnelUserStepCompletionRate`
+`ONE_DAY · by FunnelStep` 400s, so those give **levels, not trends**. But
+`FunnelCohortCompletionRate` and `FunnelCohortSessionCompletionRate` *are*
+served at `ONE_DAY` per named step, and they carry the full history (94 days on
+9963622286). That is the series that dates a funnel break. This file previously
+said no funnel could be dated to a day, which would have made the 7 Aug deploy
+effect on Become a Brainrot unmeasurable.
+
+**Two traps on the NONE-granularity funnel series.** The date column is the
+**window start**, not a day — a row stamped `2026-08-07` on a 7→10 Aug grab is
+the aggregate over all four days. And moving the window changes the number with
+no day changing: PlayerProgression `FunnelUserOverallCompletionRate` read 26.73%
+from an 11 Jul window and 23.09% from a 7 Aug one. A producer comparing two
+screenshots taken with different ranges will report a drop that did not happen.
 
 **No funnels instrumented? Use `TotalSessionsEndedInBucket`.** Broken down by
 `SessionTimeBucket` it gives the session-length distribution, which is the
@@ -173,6 +206,26 @@ A hypothesis that survives nothing is not a finding.
   hardest. **If desktop fell more than phone, it is not a render regression.**
 - **Is it growth confounding?** Volume metrics move with audience size. Use the
   per-1k-DAU column in `summary.md`, never a raw volume delta.
+- **Is the rate move just a change in who showed up? Regress it on the
+  returning share.** Returning players complete funnels far better than new
+  ones, so any shift in the new/returning mix moves every rate with it. On
+  9963622286 returning share correlates with `Rebirth1` completion at
+  **r = 0.718 over 93 days**. Test: fit `rate ~ returning-share` on the days
+  *before* the change, predict forward, read the residual. Worked 2026-08-10 —
+  the 7 Aug deploy still beat its mix-only prediction by **+3.9pp on Rebirth1
+  (3.6 sd)** and +2.3–3.6pp on every other step, so the gain was real and not
+  composition. Without this the same numbers are indistinguishable from a
+  weekend skew toward veterans.
+- **A huge error count is not a huge problem. Test it against a rate.**
+  9963622286 shipped ~35M client warnings on 2026-07-31 (`[OddsController]
+  Unknown rarity`, broken season pass and shop UI, ~3M each). All three are
+  monetization or aspiration surfaces, so if they cost anything **ARPDAU** would
+  step. It did not — 0.368 (29 Jul) → **0.433 (31 Jul)** → 0.438 (8 Aug), the
+  highest of the window. Revenue fell purely with DAU. Warnings are often
+  guarded paths firing per-item per-frame; convert count to *affected players*
+  or to a rate move before reporting one. Inverted here: the signature that
+  mattered was **8,249** (`TrainedSpeed is not a valid member of Player`, a race
+  on the line that fires the tutorial), four hundred times smaller.
 - **Is it just the weekend?** Roblox audiences normally *rise* Fri–Sun. A
   weekend fall is anomalous; a weekend rise is not a win.
 - **Does the pattern predate the cause you found?** The most dangerous
@@ -515,6 +568,53 @@ Name the lever, the expected size, and how you will know it worked.
 
 Always state the **measurement window and what to exclude**. If a platform
 event contaminated days, say so, or the fix will look bigger than it was.
+
+## 5b. Know which half of the job this is
+
+**Metrics date and rank changes. They cannot tell you whether a level is bad.**
+Learned expensively on 2026-08-10: four separate claims about 9963622286 were
+produced from correct readings of the code and the data, and all four were
+killed within minutes by the producer, who had played the game.
+
+| Claimed | Killed by |
+|---|---|
+| First rebirth is 6.58× too hard (`NewRebirths` 5,000 vs `Rebiths` 760) | The whole treadmill loop is gated behind the same flag, so the ladders are denominated in currencies earned by different mechanics. "Flip the flag" would have disabled the core loop |
+| A fresh player cannot train (`OwnedTreadmills` = `"{}"`) | The tutorial grants and equips it |
+| The unchecked `pcall` load defect caused the D1 break | Error export: zero DataStore signatures, floor 7,875 lifetime |
+| Backpack items are not saved | `OnPlayerAdded:584-586` saves them |
+
+The pattern in every one: **a level asserted as bad without knowing how the game
+plays.** The half that does travel is the other one — the daily funnel dated a
+tutorial replacement to 27–28 June off `FirstMorph` stepping 87% → 99.98% and
+staying, later confirmed by the producer as a 26/27 June ship. Nobody gets that
+from playing.
+
+So: date it, rank it, quantify it, and hand the "is this bad" question to
+someone who plays. **Never publish a level judgement that has not survived one.**
+
+### Sources the grabber does not have
+
+Three things only a dashboard export gives, and on 2026-08-10 they beat every
+metric in the pipeline. Locations and gotchas in the `rbx-where-to-find-each-
+metric` memory; the short version:
+
+- **Player comment text** (`Report_<epochMillis>.csv`). ~160/month on this
+  title. It named the mechanism twice when the metrics could not: *"I get stuck
+  at the very beginning"*, *"why did you make the brain rods have collision"*,
+  and on the break day itself *"its so hard to get speed and it takes too long"*
+  — the only direct hint at what shipped in v546. **Read these before
+  theorising about a cause.**
+- **Error message text + `First seen version`**, which dates what a deploy
+  introduced. Capped at top 25 by count, so absence is never evidence.
+- **Feedback: use the downvote RATE**, `down / (up + down)`. The `Total` series
+  is upvotes *minus* downvotes and is useless alone. On 9963622286: 13.4%
+  pre-break → 21.8% during the bleed → 28.1% on the fix day → 10.2% the day
+  after. It moved before any retention metric could.
+
+**And read PCU at half-hour before quoting a daily peak.** 9963622286's Saturday
+PCU of 17,572 was a 90-minute giveaway: 5,284 → **19,593** → 3,784, settling
+*below* the pre-event baseline. The daily number reads as a recovery; the shape
+says the game can still buy attention and cannot hold it.
 
 ## 6. What you hand over
 

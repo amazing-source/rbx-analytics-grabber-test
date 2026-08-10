@@ -202,13 +202,69 @@ current decline is its *reach* phase, not a second event.
   past it). The Aug 3/4/7 deploys (573, 574, 575–577) — D1 was *rising* across
   them. Appeal: `EndToEndCVR` recovered to **6.33%** while impressions fell 57%,
   so thumbnail/title work is wasted effort.
-- **THE STRUCTURAL FINDING — biggest lever in the game.** `PlayerProgression`
-  step 4 is **`Rebirth1`**, and its churn is **61.4%**, unchanged pre/post break
-  (0.6144 full-life vs 0.6137 post-break). Churn collapses once a player
-  rebirths once: **61.4% → 28.0% → 10.4% → 7.5%**. That gate is why D7 ≈ 3% and
-  D30 ≈ 1%, i.e. why every reach shock is permanent.
-- **Fix order:** inventory `pcall` first (stops the bleed), Rebirth1 gate second
-  (fixes why bleeding is fatal).
+- ~~**THE STRUCTURAL FINDING — biggest lever in the game.** `PlayerProgression`
+  step 4 is `Rebirth1`, churn **61.4%**, unchanged pre/post break (0.6144
+  full-life vs 0.6137 post-break).~~ **WITHDRAWN 2026-08-10. The "unchanged"
+  half was an aggregation artifact and the "structural" reading with it.** Both
+  figures are `NONE`-granularity *window aggregates*; two windows agreeing means
+  only that they averaged the same swing. The daily series
+  (`FunnelCohortCompletionRate`, `FunnelStep: Rebirth1`, 94 days from
+  2026-05-08) shows completion **24–33% in May–June → 44–48% across July →
+  34–37% now**. The gate nearly doubled in effectiveness and then partly
+  reverted. It does not sit still, and today is *better* than May and June.
+  Churn still collapses after the first rebirth (61% → 28% → 10% → 7.5%
+  lifetime), so the ladder shape stands; the "immovable structural gate" framing
+  does not.
+- ~~**Fix order:** inventory `pcall` first, Rebirth1 gate second.~~
+  **Withdrawn** — see *Disproved* in `.claude/SESSION_LOG.md` 2026-08-10. The
+  `pcall` is not firing, and the rebirth requirement is not the constraint
+  (producer cleared it twice in 5–10 min; modelled at 16m40 naive / 5–10 min
+  informed). Current best fix order is **funnel instrumentation → extend the
+  tutorial through the first rebirth → only then touch the number.**
+
+### Re-diagnosed again 2026-08-10 (evening) — the 8-day detection gap is the story
+
+Source read of the **dev place `115476892057345`** over the roblox-studio MCP
+(live place is `99255447043899`), plus a 7→10 Aug grab and three dashboard
+exports. Supersedes the "structural gate" framing above.
+
+- **The 30 July break has a precise shape: everything after the tutorial
+  dropped, nothing inside it moved.** `OnboardingComplete` / `FirstUpgrade` /
+  `FirstMorph` flat at 99–100% across the break; `BaseUpgrade2` −4.9pp,
+  `BaseUpgrade3` −7.0pp, `BaseUpgrade5` −7.8pp, `Rebirth1` −10.3pp (29 Jul → 2
+  Aug), damage compounding down the chain. D1 16.8% → 9.72% same day. **Cause
+  still unknown** — the question is "what shipped in v546, 30 Jul 11:54 UTC".
+- **The 7 Aug fix (v575–577, 17:14 UTC) worked.** All four pre-fix days
+  (34.72/35.14/34.79/34.61) sit below all three post-fix days
+  (37.18/39.57/36.54) on `Rebirth1`; survives the returning-share control at
+  **+3.9pp, 3.6 sd**. D1 9.72% (2 Aug) → 12.44% (7 Aug), up 5 of 6 days.
+- **Eight days with nobody watching, and that is the finding.** Deploys went out
+  3 Aug (v569) and 4 Aug (v574) and the metric did not move (34.72 → 35.14 →
+  34.79 → 34.61). The 7 Aug deploy moved it +5.0pp in 24h. Downvote rate 13.4%
+  → 21.8% → **28.1% on 7 Aug** → 10.2% on 9 Aug. Cost of the gap, baselined on
+  25–29 Jul mean R$239,761/day: **~R$700k, ~R$650k after 15%/mo decay ≈
+  $2,275–2,450 USD**, plus reach damage running to late August.
+- **Volume has not recovered and will not for weeks.** PCU same-weekday WoW:
+  −62% (5 Aug), −61% (7 Aug), −47% (9 Aug); daily trough deepening 2,539 →
+  1,842 → 1,315 across 7–9 Aug. Rates lead, reach lags on the 28-day window.
+  Do **not** cite the 8 Aug uptick, it is the weekly giveaway.
+- **Time to first rebirth, modelled from shipped constants:** training ticks
+  1/s at `speedGain × multiplier`, tap bonus `×2` on a 2.5s cooldown. Default
+  treadmill (5/s, free) = **16m40 naive**, 9m16 tapping; Neon (10/s, 1,500) =
+  8m20; PurpleCrystal (35/s, 10,000) = 2m23. 10 stands at ~7 cash/s each in the
+  Basic zone pay for the upgrades in parallel. Producer clears it in **5–10 min**
+  twice. Mean session is **9.7 min** — the first rebirth costs roughly one whole
+  average session, so it only fits if you already know the loop.
+- **The funnel cannot see any of that.** `MAIN_STEPS` is OnboardingComplete /
+  FirstUpgrade / FirstMorph / Rebirth1–4; the entire treadmill loop sits in the
+  uninstrumented 99.3% → 39.6% gap. `funnelSessionId` is a hardcoded constant
+  (`"MainProgression"`), so every player has one lifelong funnel session.
+  **Highest-value cheap fix: add steps between FirstMorph and Rebirth1.**
+- **Data loss is real and the mechanism is NOT found.** Player comments 14–27
+  Jul repeatedly and specifically report inventory loss. Two proposed causes are
+  dead (see the log's *Disproved*). Open question for the studio: *can two
+  brainrots ever share a UID?* — the save dedupes on it at `OnPlayerAdded:554`
+  and drops silently.
 
 ### Knife Farm (`9610561918`) — it is the return loop, not appeal
 
