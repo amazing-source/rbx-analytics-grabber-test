@@ -394,3 +394,135 @@ describe("G8 — the technical rung is chunked into legal windows", () => {
     for (const w of windows) assert.ok(spanDays(w) <= 7);
   });
 });
+
+// ---------------------------------------------------------------------------
+// G9 — the gateway ships a human name for a dimension value and we dropped it.
+// FunnelStep came out as bare integers 1..20, so "61% of players never reach
+// step 4" could not be read as "61% never reach Rebirth1". The names were in
+// data/raw the whole time; only the exporter threw them away. Fixture is a
+// trimmed excerpt of the real 2026-08-10 grab of 9963622286.
+// ---------------------------------------------------------------------------
+describe("G9 — dimension display names survive into what a human reads", () => {
+  const FUNNEL_GAME = "9963622286";
+  const FUNNEL_FIXTURE = "funnel-step-displayvalue-0810.json";
+
+  async function ingestFunnel() {
+    const dir = path.join(tmpRoot, `funnel${dirs.length}`);
+    dirs.push(dir);
+    await fs.mkdir(dir, { recursive: true });
+    process.env.RBX_DATA_DIR = dir;
+    const captures: Capture[] = JSON.parse(
+      await fs.readFile(path.join(FIXTURES, FUNNEL_FIXTURE), "utf8"),
+    );
+    await exportToFiles(parseCaptures(captures));
+    const gameDir = path.join(dir, "games", FUNNEL_GAME);
+    return {
+      game: JSON.parse(await fs.readFile(path.join(gameDir, "series.json"), "utf8")) as GameExport,
+      gameDir,
+    };
+  }
+
+  test("parseCaptures keeps displayValue alongside the raw value", async () => {
+    const captures: Capture[] = JSON.parse(
+      await fs.readFile(path.join(FIXTURES, FUNNEL_FIXTURE), "utf8"),
+    );
+    const { snapshots } = parseCaptures(captures);
+    const withStep = snapshots.filter((s) => s.breakdown.FunnelStep != null);
+    assert.ok(withStep.length, "fixture should carry FunnelStep-broken-down points");
+    const named = withStep.filter((s) => s.breakdownLabels?.FunnelStep);
+    assert.ok(named.length, "displayValue must not be dropped by breakdownToMap");
+    // identity stays on the raw value — a display name must never move the key
+    for (const s of named) {
+      assert.ok(
+        s.seriesKey.includes(`FunnelStep=${s.breakdown.FunnelStep}`),
+        `seriesKey must key on the raw value, got ${s.seriesKey}`,
+      );
+    }
+  });
+
+  test("step 4 of PlayerProgression reads Rebirth1, not 4", async () => {
+    const { game } = await ingestFunnel();
+    const labels = Object.values(game.metrics)
+      .flatMap((m) => m.series)
+      .map((s) => s.label);
+    for (const name of ["OnboardingComplete", "FirstMorph", "Rebirth1", "Rebirth4"]) {
+      assert.ok(
+        labels.some((l) => l.includes(name)),
+        `a series should be labelled ${name}; got e.g. ${labels.slice(0, 4).join(" | ")}`,
+      );
+    }
+    // The gateway ships displayValue:"" for PlayerProgression step 2, so a bare
+    // integer there is correct fallback, not the bug. What must never happen is
+    // a step falling back while a name WAS supplied.
+    const bare = labels.filter((l) => /^FunnelStep: \d+(?: ·|$)/.test(l));
+    assert.equal(
+      bare.length,
+      1,
+      `only the step Roblox left unnamed may stay numeric; got ${bare.join(" | ")}`,
+    );
+    assert.match(bare[0], /^FunnelStep: 2 · FunnelName=PlayerProgression/);
+  });
+
+  test("the raw value is still what identifies the series", async () => {
+    const { game } = await ingestFunnel();
+    const named = Object.values(game.metrics)
+      .flatMap((m) => m.series)
+      .filter((s) => s.breakdownLabels?.FunnelStep);
+    assert.ok(named.length, "series should carry breakdownLabels");
+    for (const s of named) {
+      assert.match(s.breakdown.FunnelStep, /^\d+$/, "breakdown keeps the raw integer");
+      assert.ok(s.key.includes(`FunnelStep=${s.breakdown.FunnelStep}`), "key uses the raw value");
+    }
+  });
+
+  test("the CSV export carries the name, so a reader never sees a bare integer", async () => {
+    const { gameDir } = await ingestFunnel();
+    const csv = await fs.readFile(
+      path.join(gameDir, "metrics", "FunnelUserChurnRate.csv"),
+      "utf8",
+    );
+    assert.ok(csv.includes("Rebirth1"), "FunnelUserChurnRate.csv should name the step");
+  });
+
+  test("a series stored before names existed is re-labelled once they arrive", async () => {
+    // Ingest twice: the first pass simulates already-merged data, the second
+    // must refresh the label rather than leave the original in place forever.
+    const dir = path.join(tmpRoot, `relabel${dirs.length}`);
+    dirs.push(dir);
+    await fs.mkdir(dir, { recursive: true });
+    process.env.RBX_DATA_DIR = dir;
+    const raw = await fs.readFile(path.join(FIXTURES, FUNNEL_FIXTURE), "utf8");
+
+    // blank every displayValue on the first pass -> bare integers land on disk,
+    // reproducing series.json as it existed before names were carried through
+    const stripped: Capture[] = JSON.parse(raw.replace(/("displayValue":\s*)"[^"]*"/g, '$1""'));
+    await exportToFiles(parseCaptures(stripped));
+    const file = path.join(dir, "games", FUNNEL_GAME, "series.json");
+    const before = JSON.parse(await fs.readFile(file, "utf8")) as GameExport;
+    const bareBefore = Object.values(before.metrics)
+      .flatMap((m) => m.series)
+      .filter((s) => /^FunnelStep: \d+(?: ·|$)/.test(s.label));
+    assert.ok(bareBefore.length, "first pass should produce bare integer labels");
+
+    await exportToFiles(parseCaptures(JSON.parse(raw)));
+    const after = JSON.parse(await fs.readFile(file, "utf8")) as GameExport;
+    const series = Object.values(after.metrics).flatMap((m) => m.series);
+    const bareAfter = series.filter((s) => /^FunnelStep: \d+(?: ·|$)/.test(s.label));
+    assert.ok(
+      bareAfter.length < bareBefore.length,
+      `re-ingest must re-label existing series: ${bareBefore.length} bare before, ${bareAfter.length} after`,
+    );
+    assert.ok(
+      series.some((s) => s.label.includes("Rebirth1")),
+      "the name must reach an already-merged series, not only newly created ones",
+    );
+    // and the points survive the re-label — this must not fork the series
+    const relabelled = series.find((s) => s.label.includes("Rebirth1"))!;
+    assert.ok(relabelled.points.length, "re-labelled series keeps its points");
+    assert.equal(
+      series.filter((s) => s.breakdown.FunnelStep === "4" && s.label.includes("Rebirth")).length,
+      1,
+      "re-labelling must not create a second series for the same step",
+    );
+  });
+});

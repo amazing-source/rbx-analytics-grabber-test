@@ -53,6 +53,9 @@ export type ExportSeries = {
   label: string;
   granularity: string;
   breakdown: Record<string, string>;
+  // dimension -> the gateway's human name for that value, when it ships one
+  // (FunnelStep "4" -> "Rebirth1"). Feeds `label`; never feeds `key`.
+  breakdownLabels?: Record<string, string>;
   filters: Snapshot["filters"];
   // Union of the request windows that fed this series — what we actually
   // asked about. The API omits zero rows, so this cannot be reconstructed
@@ -141,8 +144,17 @@ function settledAtCapture(ts: string, granularity: string, capturedAt: string | 
   return new Date(ts).getTime() + ms <= new Date(capturedAt).getTime();
 }
 
-function labelFor(breakdown: Record<string, string>, filters: Snapshot["filters"]): string {
-  const bd = Object.entries(breakdown).map(([k, v]) => `${k}: ${v}`).join(", ");
+// Prefers the gateway's human name for a dimension value where it shipped one
+// ("FunnelStep: Rebirth1" beats "FunnelStep: 4"). The raw value is kept in
+// series.breakdown and in the key, so this only ever changes what a human reads.
+function labelFor(
+  breakdown: Record<string, string>,
+  filters: Snapshot["filters"],
+  breakdownLabels?: Record<string, string>
+): string {
+  const bd = Object.entries(breakdown)
+    .map(([k, v]) => `${k}: ${breakdownLabels?.[k] || v}`)
+    .join(", ");
   const fl = (filters ?? []).map((f) => `${f.dimension}=${f.values.join("/")}`).join(", ");
   return [bd, fl].filter(Boolean).join(" · ") || "Total";
 }
@@ -247,13 +259,20 @@ function mergeGame(prev: GameExport | null, gameId: string, r: ParseResult): Gam
     if (!series) {
       series = {
         key: s.seriesKey,
-        label: labelFor(s.breakdown, s.filters),
+        label: labelFor(s.breakdown, s.filters, s.breakdownLabels),
         granularity: s.granularity,
         breakdown: s.breakdown,
+        breakdownLabels: s.breakdownLabels,
         filters: s.filters,
         points: [],
       };
       m.series.push(series);
+    } else if (s.breakdownLabels && Object.keys(s.breakdownLabels).length) {
+      // Re-label an already-merged series once names arrive. Without this, every
+      // series stored before display names were carried keeps its bare integers
+      // forever, because labels are otherwise only set at creation.
+      series.breakdownLabels = { ...series.breakdownLabels, ...s.breakdownLabels };
+      series.label = labelFor(series.breakdown, series.filters, series.breakdownLabels);
     }
     // Track the union of request windows so absent rows can be classified.
     if (s.windowStart && (!series.windowStart || s.windowStart < series.windowStart))

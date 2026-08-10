@@ -18,6 +18,10 @@ export type Snapshot = {
   date: string; // UTC yyyy-mm-dd derived from ts
   granularity: string;
   breakdown: Record<string, string>; // dimension -> value ({} = Total series)
+  // dimension -> the gateway's human name for that value, when it ships one and
+  // it differs from the raw value (FunnelStep "4" -> "Rebirth1"). Cosmetic only:
+  // never part of seriesKey. Absent on captures that predate this field.
+  breakdownLabels: Record<string, string>;
   filters: { dimension: string; values: string[]; operation?: string }[];
   seriesKey: string; // deterministic id for (breakdown + filters)
   value: number | null;
@@ -202,6 +206,24 @@ function breakdownToMap(
   return out;
 }
 
+// The gateway ships a human name alongside the raw dimension value —
+// FunnelStep 4 is "Rebirth1", not just "4". Dropping it made a funnel read as
+// twenty anonymous integers and turned a confirmed finding into a guess. This
+// is deliberately kept SEPARATE from breakdownToMap: the raw `value` stays the
+// series identity (see makeSeriesKey), because display names are cosmetic and
+// can change, while a shifting key would silently fork every merged series.
+function breakdownLabelsToMap(
+  arr: { dimension?: string; value?: string; displayValue?: string }[] | undefined
+): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const x of arr ?? []) {
+    if (!x || x.dimension == null) continue;
+    const display = x.displayValue == null ? "" : String(x.displayValue);
+    if (display && display !== String(x.value ?? "")) out[x.dimension] = display;
+  }
+  return out;
+}
+
 export function parseCaptures(captures: Capture[]): ParseResult {
   const games = new Set<string>();
   const snapshots: Snapshot[] = [];
@@ -349,6 +371,7 @@ export function parseCaptures(captures: Capture[]): ParseResult {
 
       for (const v of values) {
         const breakdown = breakdownToMap(v.breakdownValue);
+        const breakdownLabels = breakdownLabelsToMap(v.breakdownValue);
         const seriesKey = makeSeriesKey(breakdown, filters);
         for (const dp of v.dataPoints ?? []) {
           const ts: string = dp.time;
@@ -360,6 +383,7 @@ export function parseCaptures(captures: Capture[]): ParseResult {
             date: utcDate(ts),
             granularity,
             breakdown,
+            breakdownLabels,
             filters,
             seriesKey,
             value: typeof dp.value === "number" ? dp.value : null,

@@ -1,0 +1,528 @@
+[
+ {
+  "url": "https://apis.roblox.com/analytics-query-gateway/v1/metrics/resource/RESOURCE_TYPE_UNIVERSE/id/9963622286",
+  "method": "POST",
+  "via": "active",
+  "ts": 1786347553468,
+  "reqBody": "{\"resourceType\":\"RESOURCE_TYPE_UNIVERSE\",\"resourceId\":\"9963622286\",\"query\":{\"metric\":\"FunnelUserChurnRate\",\"granularity\":\"METRIC_GRANULARITY_NONE\",\"breakdown\":[{\"dimensions\":[\"FunnelStep\"]}],\"filter\":[{\"dimension\":\"FunnelName\",\"values\":[\"PlayerProgression\"]}],\"startTime\":\"2026-08-07T00:00:00.000Z\",\"endTime\":\"2026-08-10T00:00:00.000Z\"}}",
+  "body": {
+   "operation": {
+    "path": "72c35f6e0aa1f664aa26bc2c3632f9c44153b9a1961f56d9b29e74adb3b087f4",
+    "metadata": {
+     "createdTime": "2026-08-10T07:39:11.813019600Z"
+    },
+    "done": true,
+    "queryResult": {
+     "values": [
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "4",
+         "displayValue": "Rebirth1",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.6136981844902039,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "5",
+         "displayValue": "Rebirth2",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.2801600396633148,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "6",
+         "displayValue": "Rebirth3",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.10440482199192047,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "7",
+         "displayValue": "Rebirth4",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.07468235492706299,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "2",
+         "displayValue": "",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.006468670908361673,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "1",
+         "displayValue": "OnboardingComplete",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "3",
+         "displayValue": "FirstMorph",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "url": "https://apis.roblox.com/analytics-query-gateway/v1/metrics/resource/RESOURCE_TYPE_UNIVERSE/id/9963622286",
+  "method": "POST",
+  "via": "active",
+  "ts": 1786347548820,
+  "reqBody": "{\"resourceType\":\"RESOURCE_TYPE_UNIVERSE\",\"resourceId\":\"9963622286\",\"query\":{\"metric\":\"FunnelUserChurnRate\",\"granularity\":\"METRIC_GRANULARITY_NONE\",\"breakdown\":[{\"dimensions\":[\"FunnelStep\"]}],\"filter\":[{\"dimension\":\"FunnelName\",\"values\":[\"BaseUpgrades\"]}],\"startTime\":\"2026-08-07T00:00:00.000Z\",\"endTime\":\"2026-08-10T00:00:00.000Z\"}}",
+  "body": {
+   "operation": {
+    "path": "89e471a399195ac3f45862bb30401386687e8aefc71078463a64951d2f933582",
+    "metadata": {
+     "createdTime": "2026-08-10T07:39:08.374543300Z"
+    },
+    "done": true,
+    "queryResult": {
+     "values": [
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "2",
+         "displayValue": "BaseUpgrade2",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.13673970103263855,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "20",
+         "displayValue": "BaseUpgrade20",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.13045009970664978,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "19",
+         "displayValue": "BaseUpgrade19",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.1241658627986908,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "18",
+         "displayValue": "BaseUpgrade18",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.11852708458900452,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "17",
+         "displayValue": "BaseUpgrade17",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.09986533969640732,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "16",
+         "displayValue": "BaseUpgrade16",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.09675457328557968,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "3",
+         "displayValue": "BaseUpgrade3",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.09501427412033081,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "14",
+         "displayValue": "BaseUpgrade14",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.09396284073591232,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "15",
+         "displayValue": "BaseUpgrade15",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.07507031410932541,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "4",
+         "displayValue": "BaseUpgrade4",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.0709010511636734,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "11",
+         "displayValue": "BaseUpgrade11",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.07038557529449463,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "12",
+         "displayValue": "BaseUpgrade12",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.06795176863670349,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "13",
+         "displayValue": "BaseUpgrade13",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.06615611165761948,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "7",
+         "displayValue": "BaseUpgrade7",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.06172334402799606,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "10",
+         "displayValue": "BaseUpgrade10",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.05670486018061638,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "6",
+         "displayValue": "BaseUpgrade6",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.051842059940099716,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "5",
+         "displayValue": "BaseUpgrade5",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.05110165849328041,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "8",
+         "displayValue": "BaseUpgrade8",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.047516755759716034,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "9",
+         "displayValue": "BaseUpgrade9",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0.040984857827425,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      },
+      {
+       "breakdownValue": [
+        {
+         "dimension": "FunnelStep",
+         "value": "1",
+         "displayValue": "BaseUpgrade1",
+         "variantKey": ""
+        }
+       ],
+       "dataPoints": [
+        {
+         "time": "2026-08-07T00:00:00Z",
+         "value": 0,
+         "stringValues": [],
+         "status": "DATA_STATUS_INVALID"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  }
+ }
+]
