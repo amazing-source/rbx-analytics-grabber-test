@@ -132,6 +132,14 @@ and a change that fixes a number should move one of them.
   `PlaceVersion=546` into "shipped 2026-07-30 14:23 UTC" — the single most
   useful non-analytics endpoint, because it dates every metric step change.
   Exported to `data/games/<id>/place-versions.{md,csv}`.
+  **It is per-place and a 500 on one place drops it silently.** On 10030829154
+  the ROOT place's call failed, so the file topped out at a sub-place's `v437`
+  and read as complete while the root ran `v1698` — and every "did the metric
+  break before or after the publish" test runs off this file. **Check the place
+  list against the `Place` filter values in the metric templates before trusting
+  it.** Fallback that worked: group `feedback.csv` by `asset_version` and take
+  min/max date — it dated all six root publishes to the right hour. F12 in
+  `data/verify/COVERAGE.md`.
 - `ErrorCount` broken down by `FirstSeenPlaceVersion` is a fallback deploy log
   (a version appearing = a ship) and by `ErrorMessage` is bug discovery.
 - IGNORE as noise: `translations-cdn.roblox.com`, `barista-feature-flags`,

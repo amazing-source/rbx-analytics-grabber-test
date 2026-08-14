@@ -238,6 +238,21 @@ rows where the API omits the day entirely (D2, proven in rows 20/22).
   ones are dropped. D7's fix is "add annotation requests + parsing", not
   "change a hardcoded 16".
 
+- **F12 — the deploy log silently drops a place when its `saved-versions` call
+  fails, and the file gives no sign.** Measured 2026-08-14 on universe
+  `10030829154`: the root place `139617346573330` is absent from
+  `place-versions.csv` (0 rows) because `placeVersions` returned **500**, which
+  `grab-report.md` files under *inferred shapes / probably not valid here* since
+  the template is `optional: true`. Result: `place-versions.md` reads "373
+  versions across 24 days", tops out at a sub-place's `v437`, and looks
+  complete — while the root place was at `v1698`. **Every date-the-deploy test
+  in the diagnosis skill runs off this file.** Two fixes, both cheap: mark a
+  place with zero returned versions explicitly in `place-versions.md`, and
+  cross-check the place list against the `Place` filter values the metric
+  templates already carry (they had all six). Workaround until then:
+  reconstruct from `feedback.csv`'s `asset_version` column — it dated all six
+  root publishes to the correct hour.
+
 ## What this means for the phases
 
 - Phase 2 (harness): everything needed is above — three formats, label map,

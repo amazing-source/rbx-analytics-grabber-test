@@ -216,6 +216,27 @@ A hypothesis that survives nothing is not a finding.
   (3.6 sd)** and +2.3–3.6pp on every other step, so the gain was real and not
   composition. Without this the same numbers are indistinguishable from a
   weekend skew toward veterans.
+
+  **But check the fit before you control with it — r is per-game, not a
+  constant.** Measured 2026-08-14: the same regression on 10030829154 gives
+  **r = 0.198** (D1 on returning share, 14 days), against 0.718 on 9963622286.
+  At that strength the "prediction" is just the fit window's mean, and calling
+  the result mix-controlled would be a lie. Say so and use a different test.
+- **The better dilution test: split the rate by `AcquisitionSource`.** "Our
+  rate fell because a viral push brought low-intent traffic" predicts the fall
+  is concentrated in `HomeRecommendation` and that `Friends` and `Search` are
+  untouched. If it fell on *those* too, it is the game holding fewer players,
+  not the traffic. *Worked 2026-08-14 on 10030829154: D1 fell 13–14% on Home,
+  Search and Others and **9% on Friends** — so the −2.0pp step survived the
+  push ending and is a product finding, not composition.* This is cheaper and
+  far more direct than the regression, and it needs no baseline window.
+- **A metric that spikes on exactly the publish days is a publish-path
+  signature, not a defect.** Check the deploy dates before reading a spike as
+  breakage. *On 10030829154, `ErrorCount` `LogSource: Server` runs 70–215K/day
+  and hit 2.0–5.9M on **4 of 4** deploy days and no other day, returning to
+  baseline within 24h each time.* Worth reporting as its own finding — a
+  20–50× publish spike is real — but it is not "the update broke something",
+  and a grab taken the day after a deploy will read it as one.
 - **A huge error count is not a huge problem. Test it against a rate.**
   9963622286 shipped ~35M client warnings on 2026-07-31 (`[OddsController]
   Unknown rarity`, broken season pass and shop UI, ~3M each). All three are
@@ -606,6 +627,20 @@ metric` memory; the short version:
   theorising about a cause.**
 - **Error message text + `First seen version`**, which dates what a deploy
   introduced. Capped at top 25 by count, so absence is never evidence.
+  **And the counts understate whenever the message embeds a per-player value.**
+  Signatures are the message *text*, so `SavePlayerData failed: 11467090262 …`
+  and `… : 8686261280 …` are two rows of 6 and 5, not one row of 11 — and with
+  ~26 rows of headroom the long tail never appears at all. Treat any count on a
+  userId-bearing message as a **floor**, and size the real thing against a
+  volume series (`ErrorCount` `LogSource: Server` per DAU) before quoting it.
+- **`feedback.csv`'s `asset_version` column is a second deploy log, and
+  sometimes the only one for the root place.** The `saved-versions` call is
+  per-place and can 500 (it did for `139617346573330` on 2026-08-14), leaving
+  `place-versions.*` topped out at a sub-place's `v437` while the root ran
+  `v1698`. Grouping feedback rows by `asset_version` and taking min/max date
+  reconstructs the root's publish sequence, and each boundary lands in the same
+  hour as a sub-place publish. Also gives the **downvote rate per version**
+  free — which is the first signal to move after a bad ship.
 - **Feedback: use the downvote RATE**, `down / (up + down)`. The `Total` series
   is upvotes *minus* downvotes and is useless alone. On 9963622286: 13.4%
   pre-break → 21.8% during the bleed → 28.1% on the fix day → 10.2% the day

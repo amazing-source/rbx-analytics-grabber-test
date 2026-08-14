@@ -13,6 +13,56 @@ trusting it**. Entries describe the moment they were written.
 
 ---
 
+## 2026-08-14 — Waterslide is the fourth universe, and this is its *before* half
+
+**State:** branch `grabber-correctness` · 34 ahead of main · **3 unpushed** ·
+dirty: 7 new `data/raw/` bundles + `data/games/9963622286/grab-report.json`
+**Gates:** verify 23 pass/2 fail/8 skip (**exit 1**, both fails are the
+documented `KNOWN_OPEN` pair) · audit-plan 140 templates/0 failures ·
+test 41/41 — all measured 2026-08-14, not copied.
+
+**Landed:** first grab of **`10030829154` Waterslide** (2026-08-14T17:43:53Z,
+30 days, 2026-07-15 → 08-13 settled) + full pre-update baseline.
+
+**The timing is the point:** the update (root place **`V1698`**) published
+17:29:41–17:30:55 UTC and the grab ran **13 minutes later**, so this bundle is
+the *before* half of a pre/post comparison and holds ~zero post-update data.
+
+**Learned → routed:**
+- Whole diagnosis + the "what broken looks like" diff table →
+  `HANDOFF.md` §5 *Waterslide (`10030829154`)*.
+- Dilution is better tested by splitting the rate by `AcquisitionSource` than
+  by the returning-share regression; the regression's r is per-game (0.198 here
+  vs 0.718 on Brainrot); a metric spiking on exactly the publish days is a
+  publish-path signature; error-export counts on userId-bearing messages are a
+  floor; `feedback.csv`'s `asset_version` is a second deploy log →
+  `.claude/skills/liveops-diagnosis/SKILL.md` §3 and §5b.
+- The deploy log drops a place whose `saved-versions` 500s and looks complete →
+  **F12** in `data/verify/COVERAGE.md`, standing rule in `CLAUDE.md`.
+- Irreplaceable dashboard export copied into
+  `data/verify/10030829154/` (Downloads does not travel).
+
+**Disproved:** "D1 fell because the viral push brought low-intent traffic" —
+it fell 9% on `Friends` and 14% on `Search` too, so it is the game holding
+fewer players (−2.0pp, 15 straight days below baseline). Also: the 31 Jul–2 Aug
+483,029-crash wave was **not** the 31 Jul deploy — it cleared with no deploy in
+between. Also: the raw `−34% DAU` in `summary.md` is the back half of a spike;
+the game is **+24% DAU and +28% revenue** versus mid-July.
+
+**Open:**
+- Two level judgements need someone who plays it (§5b): the 1-hour `X2 EVENT!`
+  on 14 Aug (July's ran 7 days), and whether "money not updating after a slide"
+  is a bug or a rebalance. → ask the studio.
+- Save-loss path confirmed in text on v1691, **volume unknown** (export counts
+  split per userId). → size it against `ErrorCount LogSource: Server` per DAU
+  on the next grab.
+- 12 Aug one-day reach crater (DAU 147,770, lowest of the window) unattributed.
+  → check whether it repeats.
+
+**Next:** re-grab `10030829154` on 2026-08-15 so 15 Aug is a full settled day,
+and re-pull the error export **without** the V1691 filter so v1698 signatures
+are not excluded. Then diff against the HANDOFF table.
+
 ## 2026-08-10 (evening) — Four of my findings killed by someone who plays the game
 
 **State:** branch `grabber-correctness` · 33 ahead of `main` · **2 commits

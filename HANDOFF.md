@@ -289,6 +289,107 @@ Producer: Nina. Asked 2026-08-10 whether the decline is "the algo or bugs".
 - **Do not** attribute this to the 15 June RFY change: Knife Farm's biggest
   collapse ran 31 May → 12 June (−81%), before that change existed.
 
+### Waterslide (`10030829154`) — pre-update baseline, measured 2026-08-14
+
+Fourth universe, first grabbed **2026-08-14T17:43:53Z** (30 days, 2026-07-15 →
+2026-08-13 settled). Six places; root is `139617346573330`. Purpose of the grab
+is a **pre/post comparison for the update that shipped the same afternoon**, so
+this section is the *before* half — read it with §"What broken looks like".
+
+**The update: root place `V1698`, sub-places published 17:29:41 → 17:30:55 UTC.
+The grab ran 13 minutes later, so this bundle holds ~zero post-update data.**
+Previous live build was `V1691` (8 Aug 10:45 UTC, the "NEW WORLD" event).
+
+**`place-versions.*` is missing the root place — the `saved-versions` call for
+`139617346573330` 500'd** (`grab-report.md` → *Failed — inferred shapes*), so the
+file tops out at `v437` on a sub-place while the root is at `v1698`. Root-place
+publish dates were reconstructed from `feedback.csv`'s `asset_version` column:
+v1679 (→24 Jul) · v1681 (24 Jul) · v1683 (28 Jul) · v1685 (31 Jul) · v1691
+(8 Aug) · v1698 (14 Aug). Each lines up with a sub-place publish the same hour.
+
+**The window is one viral run, peaking 2 August.** DAU 177K (15 Jul) → **688K
+(2 Aug)** → 220K (13 Aug); impressions 3.97M → 11.45M → 4.50M. Every raw Δ in
+`summary.md` is measuring the back half of that spike. The correct frame is that
+the game came out **structurally bigger**: DAU +24% and daily revenue R$83.6K →
+R$107.2K (+28%, ≈$11.3K/mo at DevEx) versus mid-July.
+
+- **Reach — withdrawn, and Charts is gone.** Home-rec impressions 10.35M (2 Aug)
+  → 3.86M (−63%). **Charts impressions 84,474 (3 Aug) → 605 (−99.3%)**, dead
+  since ~4 Aug. Search untouched (135K → 119K). `npm run lead-lag -- 10030829154`
+  MA7 first-diff peaks at **0d, r=0.47** — appeal and reach moved together,
+  neither leads. `EndToEndCVR` trend −0.195 pp/wk but **ends above where it
+  started** (3.97% → 4.36%, mean 4.91%): mean reversion after the push, not
+  appeal decay.
+- **Hook — the one finding that is not the spike.** D1 mean **15.81%
+  (15–28 Jul) → 13.80% (29 Jul–12 Aug)**, −2.0pp, 15 consecutive days below
+  baseline (sign test p≈3e-5). It fell on **every acquisition source including
+  Friends (19.8→18.1%) and Search (15.5→13.3%)** and on every platform equally,
+  which kills the "low-intent viral traffic" explanation. Corroborated by
+  `AveragePlayTimeMinutesPerDAU` 25.2 → 20.7 min (−18%) and session length −9%
+  for new *and* returning alike. **Two candidates remain and this window cannot
+  separate them**: the 31 Jul–2 Aug crash wave, and a content/economy change.
+- **Return loop.** D7 0.86–1.2%, below peer cohort — the familiar portfolio
+  shape (D1 fine, D7 dead), same as Knife Farm. Bounce <60s is **7.4%** and 48%
+  of sessions run 10+ min (`TotalSessionsEndedInBucket`, one NONE aggregate over
+  the window — level only, no trend).
+- **Money — clean, and the cleanest rung here.** ARPDAU R$0.472 → R$0.488,
+  ARPPU R$18.60 → R$19.01, payer CVR 2.54% → 2.57%, all flat across the whole
+  window *including* the spike. Revenue falls purely with DAU. Nothing to fix.
+- **Technical — rate flat, two real signals.** `ClientCrashRate15m` sat at
+  0.343–0.397% for 30 days. But: **(a) every publish day spikes server errors
+  20–50×** — baseline 70–215K/day, then 07-24 → 5.04M, 07-28 → 5.85M, 07-31 →
+  2.03M, 08-08 → 2.84M; **4 deploy days in the window, 4 spikes, no non-deploy
+  day spikes**, back to baseline the next day each time. **(b) 483,029
+  `ServerCrashCount CrashType: Runtime` over 31 Jul–2 Aug** (peak 299,187 on
+  1 Aug) that **cleared with no deploy in between** (last publish 31 Jul 18:25,
+  next 8 Aug) — which exonerates the deploy. Third universe to crash in that
+  window; RCC v732 landed 27–28 Jul. Association, not proof.
+- **12 August is a one-day reach crater, not a product event.** DAU 147,770 —
+  the lowest of the window, below the pre-push floor — impressions −58%, payers
+  −49%, visits −45%, while session length, playtime/DAU and CVR all rose.
+  Wed-on-Wed −54% vs 5 Aug; partial recovery 13 Aug. Nothing of ours shipped.
+  Windows player engine 734 rolled out 16:00 UTC that day, RCC 734 the day
+  before — association only. The cross-game check is **unusable**: Brainrot's
+  11 Aug is `FILLED_ZERO`. **Watch for a repeat.**
+- **Feedback is the loudest pre-update signal.** Downvote rate by version
+  (`down/(up+down)`): 43.1% (v1679) → 37.0% → 18.2% → **14.7% (v1685) → 46.7%
+  (v1691)**. 5/34 → 7/15, z≈2.40, p≈0.016 — small n but significant, and it
+  moved before any retention metric. The v1691 comments name mechanisms:
+  *"I just spent over 100 robux and my game got reset"*, *"my panda pet
+  gone????"*, *"Money function is bugged and not updating after a slide"*,
+  *"no me deja comprar ni una balsa"*.
+- **A save-loss path is confirmed in code text, volume unknown.**
+  `data/verify/10030829154/Errors and warnings by count, 1 day to 2026-08-14,
+  V1691.csv`: `[SaveLoadDataMgr] SavePlayerData failed: <userId>
+  ReplicatedStorage.ToolScripts.CopyTableScript:5: invalid argument #1 to
+  'pairs' (table expected, got nil)` (6+5 events, 13 Aug) and `[PlayerData] Load
+  failed … READ_FAILED`. **Those counts are a floor, not a total** — the userId
+  is inside the message, so each affected player gets its own signature row and
+  the export caps at ~26 rows. Against that, server errors per DAU are flat
+  (0.33–0.50 all window, **no step at v1691**), so this is a tail, not a mass
+  event — but a tail that permanently destroys saves.
+
+**What broken looks like on the post-update grab** (diff against these):
+
+| Signal | Pre-update (v1691) | Broken if |
+|---|---|---|
+| D1, settled (~2d lag) | 13.80% mean since 29 Jul | < 12.5% for 2+ settled days |
+| `AverageSessionLengthMinutes` | 15.1 min | < 14 min |
+| `ClientCrashRate15m` | 0.36% | > 0.5% |
+| `ErrorCount` LogSource: Server | 70–215K/day baseline | **still > 1M on 15 Aug** (the publish spike must clear in one day) |
+| `PetBag:484 index nil with 'Get'` | 3 events, first 13 min on v1698 | any real volume |
+| Downvote rate | 46.7% on v1691 | > 50% on v1698 |
+| ARPDAU | R$0.49 | **any** move — it has not moved in 30 days |
+
+**Open, needs someone who plays the game** (§5b of the skill — never publish a
+level judgement that has not survived one):
+
+1. The `X2 EVENT!` annotation started **16:00:59 UTC and ended 17:00:59 UTC on
+   14 Aug** — one hour, against 7 days for the July X2. Reschedule around the
+   publish, or did a week-long event run for an hour?
+2. Is "money not updating after a slide" a known bug or an intended rebalance?
+   It is the only named mechanism that would explain playtime/DAU −18%.
+
 ## 6. Next steps
 
 > Updated 2026-08-08 after the correctness overhaul (`CORRECTNESS_PLAN.md`).
