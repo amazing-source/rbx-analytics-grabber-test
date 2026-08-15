@@ -253,6 +253,25 @@ rows where the API omits the day entirely (D2, proven in rows 20/22).
   reconstruct from `feedback.csv`'s `asset_version` column — it dated all six
   root publishes to the correct hour.
 
+- **F13 — the `*.daily.csv` roll-up aggregates `FILLED_ZERO` rows, and printed
+  the update day as zero.** Measured 2026-08-15 on universe `9963622286`.
+  `PeakConcurrentPlayers.daily.csv` and `ErrorCount.daily.csv` both read **0 for
+  2026-08-14**, the day `v586`/`v587` shipped, while the genuine `ONE_DAY`
+  series in the same CSV reads **PCU 3,139.57** and **11,197,283 client
+  errors**. Cause: half-hour windows are clamped to the final 24h (a documented
+  gateway behaviour), the exporter gap-fills the unserved span with
+  `FILLED_ZERO`, and the daily roll-up then sums/maxes those filled zeros into a
+  daily value. Confirmed by status counts: 144 of 2026-08-14's `ErrorCount`
+  half-hour rows are `FILLED_ZERO` against 6 real, and 48 of 48 `PCU` rows are
+  `FILLED_ZERO`. **Anyone reading the daily file concludes the game had zero
+  players and zero errors on launch day.** Two sibling artifacts from the same
+  roll-up: `SessionDurationSecondsAvg` reports **3,949 s for 2026-08-16**, a day
+  that has not happened, and PCU / `ClientCrashRate15m` duplicate 08-15's value
+  onto 08-16. **Fix: never roll a daily value off half-hour rows outside the
+  served span — prefer the real `ONE_DAY` series when one exists, and emit `—`
+  rather than `0` when it does not.** Until fixed, read `ONE_DAY` rows directly
+  and treat every `*.daily.csv` as suspect. Not yet encoded as a test.
+
 ## What this means for the phases
 
 - Phase 2 (harness): everything needed is above — three formats, label map,

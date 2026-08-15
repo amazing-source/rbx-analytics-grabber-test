@@ -651,6 +651,76 @@ PCU of 17,572 was a 90-minute giveaway: 5,284 → **19,593** → 3,784, settling
 *below* the pre-event baseline. The daily number reads as a recovery; the shape
 says the game can still buy attention and cannot hold it.
 
+## 5c. Post-update error triage — the loop that works
+
+Established 2026-08-15 tracking `9963622286` `v587` through its first 22 hours.
+The two sources answer different halves and neither is enough alone:
+**the dashboard error export gives volume, severity and first-seen version;
+reading the live place gives mechanism and blast radius.** Run them together.
+
+**Always establish blast radius before you claim impact.** Walk *up* from the
+error line to the enclosing connection or thread, because that is what bounds
+the damage:
+
+- Throw inside an **event handler** (`X.OnServerEvent:Connect`) → kills that one
+  invocation. Find the statement it skipped; that is the real impact. On `v587`
+  an unguarded index at `OnPlayerAdded:1778` skipped the
+  `PromptProductPurchase:FireClient` 15 lines below it — **1,844 purchase
+  prompts that never appeared**, invisible in every metric.
+- Throw in the **join thread** → kills everything after it for that player.
+  This is the shape that produced the July inventory wipe.
+- Throw inside `task.spawn` → kills only that thread, **and escapes any
+  enclosing `pcall`**. `GuardClient:299-322` wraps the body in a `pcall` and
+  then hands the work to `task.spawn`, so the protection never applies.
+
+**Check whether cash moves before or after the throw.** Same defect is a dead
+button or a theft depending on line order. `AnimalModule:547` throws at
+`OnPlayerAdded:1392`, the deduction is at 1401, so nothing was stolen — the
+upgrade just silently does nothing. Say which it is; producers hear "error" and
+assume the worst.
+
+**Two recurring shapes, both worth grepping for directly:**
+
+1. **The guard written then bypassed.** `FindFirstChild` used to allow nil, then
+   the nil passed straight into something that cannot take it
+   (`FuseClient:147-149`, 36k events). Or a safe default assigned and then
+   overwritten by a lookup that can miss (`AnimalModule:541` vs `544`). Or a
+   `pcall` that the real path spawns out of. The author knew the hazard; the
+   code just doesn't act on it.
+2. **Check, yield, use.** `if player.Character then` … `task.wait(300)` … use it
+   unchecked (`OnPlayerAdded:4460-4466`). Any yield invalidates the check. The
+   longer the wait, the higher the count.
+
+**The class that dominates content updates: new content shipped without the
+entry another system looks it up by.** On `v587`, four unrelated systems broke
+from one cause — the rarity table, `Animations.Animals[x].Idle`,
+`Models.Animals[name]` and `TraitMultiplier[trait]` each lacked an entry for
+newly added animals, traits or rarities. **Report the class, not the four
+lines** — fixing the lines alone guarantees the same four on the next world.
+Ask for a publish-time check that fails when a new asset has no matching row in
+every table that indexes it.
+
+**Rate-limit warnings are a capacity finding, not a bug.** `502 … request rate
+exceeds the allowed maximum for the key` means a shared DataStore key is being
+hammered by every server. Count the stores the update added before blaming the
+code; `v587` added a fuse store alongside weather and ascension, all flushing on
+interaction.
+
+### An event contaminates the window — say so before anyone reads the numbers
+
+An admin event, a giveaway or a raid inflates everything and **breaks
+per-player normalisation specifically**, because peak PCU is a terrible
+denominator on a spike day (it is a max, not an average, so it understates
+per-player rates in exactly the direction that reads as "improved"). On
+2026-08-15 PCU hit 14,932 against 1,940 two days earlier; raw errors were up
+4–5× and no ratio built on that was worth quoting.
+
+What survives contamination: **metrics that are already rates**
+(`ClientCrashRate15m`). What does not: every volume, and every ratio you build
+from one. Name the contaminated day, exclude it, and give the next clean date.
+Then record what the event was and when it ran — otherwise the spike becomes an
+unexplained anomaly in the series that somebody re-investigates in a fortnight.
+
 ## 6. What you hand over
 
 1. **The claim** — one sentence: which rung broke, on which date.

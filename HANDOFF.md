@@ -266,6 +266,49 @@ exports. Supersedes the "structural gate" framing above.
   brainrots ever share a UID?* — the save dedupes on it at `OnPlayerAdded:554`
   and drops silently.
 
+### World 3 update (`v586`/`v587`) — tracked live 2026-08-15
+
+First update tracked under Nina's new mandate (ship, then watch for hours).
+`v586` published **2026-08-14 20:13 UTC**, `v587` at **20:20**; `v588`–`v590`
+followed **2026-08-15 11:28–14:17**. Two grabs (11:24 and 18:19 UTC on the
+15th) plus two dashboard error exports. Delivered as
+`Brainrot - World 3 update check (15 Aug).docx` in the repo root.
+
+**Pre/post, 13 Aug vs 14 Aug** (the update owned only the last 3.8h of the
+14th, so this understates it): DAU 123,316 → **180,466** (+46.3%), revenue
+R$73,107 → **102,274** (+39.9%), session 9.66 → 10.10 min, PCU 1,940 → 3,140.
+Client errors 6,795,121 → 11,197,283; server 425,293 → 684,499.
+**Unexplained:** +46% DAU in under 4 hours of exposure is more than the update
+can account for. Something else ran that day. → find it before crediting v587.
+
+**2026-08-15 is unusable as a post baseline** — an admin event took PCU to
+**14,932** (vs 1,940 on the 13th). Volume ratios are meaningless against a
+peak-PCU denominator on a spike day. The first clean day is **2026-08-16**.
+The one rate that survives: `ClientCrashRate15m` **1.53% → 1.87% → 3.68%**
+(13th/14th/15th) — more than doubled, still climbing, and a 15k-concurrent
+event strains servers on its own, so it is a watch item and not yet a finding.
+
+**Eight issues, all first seen on `V587`+.** Volumes at the 18:17 UTC export.
+Four of them are **one bug class: new content shipped without the entry another
+system looks it up by** (see the skill's §5c).
+
+| Issue | Events | Where | Impact |
+|---|---|---|---|
+| Upgrade does nothing | 2,281 | `AnimalModule:547` via `OnPlayerAdded:1392` | `TraitMultiplier[trait]` nil kills a safe default set 6 lines above. Throws **before** the cash deduct at 1401, so no money lost — the button is just dead. **Arrived with `v588`–`v590`.** |
+| Purchase prompt never fires | 1,844 | `OnPlayerAdded:1778` | Data says `Conetto Morsetto`, folder holds **`Conetto Mosteretto`** (verified in Studio). Inside `InteractStand.OnServerEvent` (opens 1684), **not** the join thread, so it kills only line 1793's `PromptProductPurchase`. Costs revenue; one word. |
+| Fuse preview empty | 36,297 | `FuseClient:149` | 147/148 guard for nil, 149 passes it in anyway. Throws before `SetModel` at 156; `updateUI:253` has no pcall so the refresh dies too. |
+| Fuse save refused | 12,874 | `FuseModule:718` | **Mostly the guard working** — 362/538/612 check the return and roll back (cash restored, tombstones dropped, player notified). Gap: `PlayerRemoving:815` ignores the return, then 819 drops the state anyway. |
+| Limited stock lies | 2,010 | `LimitedTreadmill` load | DataStore **rate limit** on one shared key. Failure path only warns, so the replicated value stays at its init of `LIMITED_TREADMILL_MAX_STOCK` = 1000. Purchase does its own `UpdateAsync` with `if data.stock <= 0`, so **no overselling**. |
+| Trail never turns off | 1,561 | `OnPlayerAdded:4466` | `if player.Character` checked at 4460, then `task.wait(300)` and re-read unguarded. Timed cosmetic becomes permanent. |
+| Odds UI skips new rarities | ~339k each | `OddsController` | Genesis / Anomaly / Stellar absent from the rarity table. Warnings only. |
+| Guard stays awake | 445 | `GuardClient:307` | See §5c — the `task.spawn` at 320 escapes the `pcall` at 300. |
+
+**Open:** (1) `v588`–`v590` fixed neither one-liner — Conetto 1,049 → 1,844 and
+FuseClient 20,269 → 36,297 in under six hours; the export can't split counts by
+version, so this is "kept accumulating", not "still firing on v590". → confirm
+off a fresh export after a fix ships. (2) The +46% DAU attribution. (3) Whether
+crash rate holds above 2% on the 16th with normal traffic.
+
 ### Knife Farm (`9610561918`) — it is the return loop, not appeal
 
 Producer: Nina. Asked 2026-08-10 whether the decline is "the algo or bugs".

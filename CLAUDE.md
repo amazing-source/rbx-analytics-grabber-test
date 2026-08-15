@@ -224,6 +224,14 @@ are what the dashboard itself puts in the request body. Hashes are what rot.)
   gap-fills count/robux volumes inside the requested window and marks them
   `status: FILLED_ZERO`; rates are never filled. Δ carries its real span, so a
   comparison that silently reaches further than 7 days says so.
+- **`*.daily.csv` is currently WRONG where a day falls outside the half-hour
+  served span — read the `ONE_DAY` rows instead.** The roll-up sums/maxes
+  `FILLED_ZERO` rows, so on universe 9963622286 both `PeakConcurrentPlayers.
+  daily.csv` and `ErrorCount.daily.csv` print **0 for 2026-08-14, the day the
+  update shipped**, while the genuine `ONE_DAY` series in the same file says PCU
+  3,139.57 and 11.2M client errors. Same roll-up invents a 2026-08-16 row on a
+  day that has not happened. Measured 2026-08-15, F13 in
+  `data/verify/COVERAGE.md`, **not yet fixed and not yet encoded as a test**.
 - **A point whose interval had not elapsed when we captured it is `partial`**
   and is excluded from every headline, Δ and incident. This is what stopped
   `ClientCrashCount` printing "▼85.6%" off a 7-hour day.

@@ -13,6 +13,45 @@ trusting it**. Entries describe the moment they were written.
 
 ---
 
+## 2026-08-15 — World 3 tracked live: engagement up, and four systems broke on one missing table
+
+**State:** branch `grabber-correctness` · 35 ahead of main · pushed · dirty:
+2 new `data/raw/` bundles, `9963622286/grab-report.json`, the new `.docx`,
++ edits to `CLAUDE.md`, `HANDOFF.md`, `COVERAGE.md`, `liveops-diagnosis/SKILL.md`
+**Gates:** verify 23 pass/2 fail/8 skip (**exit 1**, the documented `KNOWN_OPEN`
+pair) · audit-plan 140 templates/0 failures · test 41/41 — measured 2026-08-15.
+**Landed:** first update tracked end-to-end under Nina's watch-after-ship
+mandate. `v586`/`v587` (2026-08-14 20:13/20:20 UTC), two grabs on the 15th
+(11:24, 18:19 UTC), two dashboard error exports. Delivered as
+`Brainrot - World 3 update check (15 Aug).docx` (repo root, 4pp).
+**The read:** 13→14 Aug DAU +46.3% (123,316 → 180,466), revenue +39.9%, session
++4.6% — off only 3.8h of exposure, so something else also ran that day.
+8 issues, **4 of them one bug class**: new content with no entry in the table
+another system indexes it by. Highest value are two one-liners —
+`OnPlayerAdded:1778` (`Conetto Morsetto` vs the folder's `Conetto Mosteretto`,
+1,844 purchase prompts never fired) and `AnimalModule:547` (dead upgrade button,
+arrived with `v588`–`v590`).
+**Learned → routed:**
+- Blast-radius walk-up, the two recurring guard shapes, `task.spawn` escaping an
+  enclosing `pcall`, the missing-lookup-entry class, and event contamination
+  breaking peak-PCU normalisation → `liveops-diagnosis/SKILL.md` **§5c** (new).
+- Everything specific to this update → `HANDOFF.md` §5 *World 3 update*.
+- **F13** — `*.daily.csv` rolls up `FILLED_ZERO` rows and printed PCU 0 and
+  ErrorCount 0 for **2026-08-14, the update day**, while `ONE_DAY` in the same
+  file says 3,139.57 and 11.2M → `data/verify/COVERAGE.md` + standing warning in
+  `CLAUDE.md`. **Not fixed, not yet a test.**
+**Disproved:** "12,874 `FuseModule` DataStore flush failures are the July wipe
+returning" — mine, killed by reading `FuseModule:362/538/612`, which check the
+return and roll back (cash restored, tombstones dropped, player notified). The
+real gaps are `PlayerRemoving:815` ignoring the return, and DataStore *capacity*
+(`LimitedTreadmill` 502s: rate limit on one shared key).
+**Open:** (1) the +46% DAU on 3.8h of exposure is unattributed → find the other
+thing that ran on 14 Aug. (2) `v588`–`v590` fixed neither one-liner (counts kept
+climbing) → confirm off a fresh export once a fix ships. (3) `ClientCrashRate15m`
+1.53% → 1.87% → 3.68% → re-read on the 16th; above 2% on normal traffic is real.
+**Next:** grab `9963622286` on **2026-08-16** — first clean post-update day, the
+15th is unusable (admin event took PCU to 14,932 vs 1,940 on the 13th).
+
 ## 2026-08-14 — Waterslide is the fourth universe, and this is its *before* half
 
 **State:** branch `grabber-correctness` · 34 ahead of main · **3 unpushed** ·
