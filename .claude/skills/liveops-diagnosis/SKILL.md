@@ -283,6 +283,35 @@ A hypothesis that survives nothing is not a finding.
   lags — so it generates a hypothesis and never proves causation. Corroborate
   with the §2 signature before it reaches a producer.
 
+- **Never call a step on a rate without looking at the numerator.** Measured
+  2026-08-16 on Knife Farm: `PayingUsersCVR` fell 1.075% → 0.860% on 12 Aug and
+  read as a one-day break. It was not. **Paying users were 355 on the 11th and
+  356 on the 12th** — flat — while DAU rose 24% (33,544 → 41,527). The rate moved
+  because the denominator moved. I reported the step before checking, and had to
+  retract it in the same session.
+
+  The fix is a **matched-DAU comparison**: find days on either side with similar
+  DAU and compare the raw count. At ~36K DAU on 1–3 Aug the game converted
+  561/634/669 payers; at ~34K DAU on 13–15 Aug, 276/265/291. Half the payers at
+  the same size, which is the claim that actually survives.
+- **The new-vs-returning mix control is a two-way test, and it is worth running
+  precisely because it can come back negative.** On Brainrot it *explained* the
+  funnel recovery (returning share 64% → 78%, so the headline rose while the
+  underlying rate did not). On Knife Farm the same test **ruled composition out**:
+  returning share was 56.3% on 3 Aug and 56.0–57.3% on 13–15 Aug, with
+  near-identical new-user volume, and conversion still halved. Same instrument,
+  opposite verdict. Do not assume the veteran-mix story applies just because it
+  applied last time.
+- **When every split says the same thing, the cause is global to the game.**
+  Knife Farm's conversion fell on every platform (Phone 1.38→0.58, Computer
+  2.55→1.13, Tablet 1.84→0.79, Console 2.48→1.36), on both product types
+  (DevProduct and GamePass both −66%), with ARPPU flat. That combination kills
+  mix, kills "one broken product", and kills "whales left" in one pass.
+- **Eliminating every candidate is a result. Report it as one.** If the shape is
+  a gradual decline and each named event lands before or after the bulk of it,
+  say the cause is not identified and name the measurement that would find it.
+  Inventing an attribution that fits the vibe is how a report loses its warrant.
+
 ## 3b. The algorithm is the mediator — and it changed on 2026-06-15
 
 Everything below comes from Roblox's own documentation and announcements, not
@@ -706,6 +735,42 @@ hammered by every server. Count the stores the update added before blaming the
 code; `v587` added a fuse store alongside weather and ascension, all flushing on
 interaction.
 
+**The export's row cap understates breadth, and only the code read gives the
+real count.** Measured 2026-08-16 on Brainrot: the error export showed 9 animals
+missing a rarity-table entry. Reading the live place showed **19**, across five
+tiers. All 38 signatures sat inside a 550,338–550,356 band, so the ~26-row cap
+cut arbitrarily among equals rather than dropping the small ones. **When
+several signatures share a near-identical count, treat the list as truncated and
+census the source of truth in Studio.** Corollary: you cannot date the entries
+the cap hid, so do not.
+
+**Severity inverts. Rank by mechanism, never by volume.** Same session, same
+game: `Vanish` VFX at 2,927 events looked alarming and was cosmetic (both call
+sites `Destroy()` on the line before, so only the effect is lost), while
+`AnimalModule:547` at 4,303 killed the upgrade button outright, and a *warning*
+class hid 94.7% of the roster's earning power from the odds screen. The loudest
+row is routinely the cheapest. Read the call site before you rank anything.
+
+**Split client from server to tell "the update is heavy" from "the update is
+broken".** Brainrot's World 3: OOM exits 610–746/day → **5,213**, client memory
++21%, `ClientFpsP10` −23%, while `ServerFrameRateP10` sat dead flat at 59.6–59.7.
+That pattern is content weight crushing low-end devices, not a defect, and the
+fix is an optimisation budget rather than a patch. Waterslide's update in the
+same week showed no memory or OOM step at all, which is what a light update
+looks like. An OOM exit is a lost session, so this is never "just performance".
+
+**A registry loop with no `pcall` turns one player's bad state into a partial
+server outage.** Waterslide's `ServerInit` runs
+`for _, module in shared["Service"] do module.Update(dt) end` inside a Heartbeat
+with no protection anywhere. When `PlayerService.Update` threw on one player
+(`pairs(nil)` via an uninitialised manager), **every service after it in the
+iteration was skipped for that tick**, and the line clearing the dirty flag sat
+after the throw, so it repeated at 10 Hz for that player's whole session. Look
+for this shape explicitly: an unprotected iteration over a module registry, or
+over players, where any single element can throw. The guard usually already
+exists elsewhere in the same file — Waterslide's `IsHavePass` checked the exact
+field that `GetData` did not.
+
 ### An event contaminates the window — say so before anyone reads the numbers
 
 An admin event, a giveaway or a raid inflates everything and **breaks
@@ -720,6 +785,27 @@ What survives contamination: **metrics that are already rates**
 from one. Name the contaminated day, exclude it, and give the next clean date.
 Then record what the event was and when it ran — otherwise the spike becomes an
 unexplained anomaly in the series that somebody re-investigates in a fortnight.
+
+**You do not have to ask anyone when an event ran — the grab already knows.**
+`annotations.md` carries `ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE`, one row per
+event with `eventName` and a `START`/`END` pair stamped to the second. On Knife
+Farm it dated `ADMIN ABUSE` to `2026-08-15T17:00:25Z → 18:00:25Z`, which
+**eliminated it as a cause** for a break three days earlier, and it printed the
+whole calendar back to June (a weekly `NEW UPDATE` → `x5 LUCK` rhythm, with
+three new event types appearing only in August). Read this before theorising
+about any spike. Times are UTC and the dashboard shows local, so a one-hour
+event a user remembers as 19:00 is 17:00Z in CEST.
+
+**A quest that pays for coming back contaminates retention for its whole run.**
+Knife Farm's `StellarQuest` (`ServerScriptService.StellarQuest`, read at v3829)
+hardcodes `QUEST_START`, `QUEST_DURATION` and `REQUIRED_DAYS = 7`, so from
+13 Aug to 23 Aug D1/D3/D7 partly measure reward-claiming rather than engagement.
+**Grep the place for a quest/login-reward module before quoting any retention
+number**, and state the window. This matters most on a game whose diagnosis *is*
+retention: a rise during the quest is not a fix, and it will revert when the
+quest ends. Note also that a quest can cut the other way on the same game —
+its task list included "Buy 20 Knife Crates", which pushes purchases up, so
+never assume the direction without reading the tasks.
 
 ## 6. What you hand over
 

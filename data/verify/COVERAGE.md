@@ -253,6 +253,19 @@ rows where the API omits the day entirely (D2, proven in rows 20/22).
   reconstruct from `feedback.csv`'s `asset_version` column — it dated all six
   root publishes to the correct hour.
 
+  **Reproduced on a second universe 2026-08-16, and it blocked a live
+  investigation.** On `9610561918` `place-versions.md` tops out at **v3747,
+  dated 10 May**, while the place open in Studio reads **v3829**. So the deploy
+  log is not just incomplete there, it is ~3 months and ~80 versions stale and
+  still reads as a finished file. This is no longer a one-universe quirk: it is
+  the default failure whenever the root place's call fails, and on that game it
+  made "what shipped between 3 and 13 Aug" unanswerable while payer conversion
+  halved. **Raise the priority — the two cheap fixes above are now blocking
+  diagnosis, not just cosmetics.** Interim fallback that works on any universe:
+  the error export's `First seen version` column dates a deploy to the hour
+  (V3826 → 7 Aug, V3829 → 13 Aug), and `ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE`
+  in `annotations.md` dates every named event to the second.
+
 - **F13 — the `*.daily.csv` roll-up aggregates `FILLED_ZERO` rows, and printed
   the update day as zero.** Measured 2026-08-15 on universe `9963622286`.
   `PeakConcurrentPlayers.daily.csv` and `ErrorCount.daily.csv` both read **0 for

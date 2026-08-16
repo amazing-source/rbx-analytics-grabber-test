@@ -13,6 +13,45 @@ trusting it**. Entries describe the moment they were written.
 
 ---
 
+## 2026-08-16 — Three games re-read in one pass, and the position doc is written
+
+**State:** branch `grabber-correctness` · 37 ahead of main · pushed · clean
+**Gates:** verify 23 pass/2 fail/8 skip (**exit 1**, the documented `KNOWN_OPEN`
+pair) · audit-plan 140 templates/0 failures · test 41/41 — measured 2026-08-16.
+**Landed:** four new grabs (2× `9963622286`, `10030829154`, `9610561918`), three
+dashboard error exports, code read against all three live places
+(v590 / v1702 / v3829). Deliverables: `LiveOps Analytics - the case for a
+full-time role.docx` (7pp) + `Dilan Djematene - motivation letter.docx` (1pp),
+both committed, sources in `docs-src/`.
+**Learned → routed:**
+- Never call a step on a rate without checking the numerator; matched-DAU
+  comparison; the mix control as a two-way test; "eliminated everything" is a
+  result → `liveops-diagnosis/SKILL.md` **§3**.
+- Export row-cap truncation, severity inversion, client-vs-server split for
+  "heavy vs broken", unprotected registry loops → **§5c**.
+- `ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE` dates every event to the second;
+  retention-paying quests contaminate D1/D3/D7 → **§5c** event block.
+- Per-game facts → `HANDOFF.md` §5 (three new dated blocks).
+- **UI/visual defects are out of reporting scope** (Ren, 2026-08-16) →
+  `CLAUDE.md` START HERE, because the memory dir does not travel.
+- **F12 reproduced on `9610561918`** — `place-versions.md` stuck at v3747/10 May
+  while live is v3829, and it blocked a live investigation → `COVERAGE.md`,
+  priority raised from cosmetic to blocking.
+**Disproved:** mine, twice on Knife Farm in one session. "Conversion slid from
+3 Aug" then "conversion stepped on 12 Aug" — the second was a denominator
+artifact (payers 355→356 flat, DAU +24%). What survives is matched-DAU: half the
+payers at the same size, cause **not identified**, every named candidate
+eliminated by date or by test.
+**Open:** (1) Knife Farm cause — blocked on F12; fix the deploy log first.
+(2) Waterslide save-loss path: the baseline's `SaveLoadDataMgr` signature is
+absent from the unfiltered export, cap or genuinely stopped — re-pull narrower.
+(3) Brainrot 14 Aug +46.3% DAU on 3.8h exposure still unattributed.
+(4) Coverage number for the doc — needs Nina's real game count; the doc says
+"far larger than four" rather than guessing.
+**Next:** fix F12 (root-place `saved-versions` 500 handling + cross-check the
+place list against `Place` filter values), then re-read Knife Farm's 3–13 Aug
+deploys.
+
 ## 2026-08-15 — World 3 tracked live: engagement up, and four systems broke on one missing table
 
 **State:** branch `grabber-correctness` · 35 ahead of main · pushed · dirty:

@@ -309,6 +309,52 @@ version, so this is "kept accumulating", not "still firing on v590". → confirm
 off a fresh export after a fix ships. (2) The +46% DAU attribution. (3) Whether
 crash rate holds above 2% on the 16th with normal traffic.
 
+### Brainrot re-read 2026-08-16 (grab 09:36Z, 15 Jul → 17 Aug, place at v590)
+
+**The 22 vs 30 July discrimination, settled.** The first forced model swap
+dipped one day and recovered completely; the second one never did. This is the
+evidence that the call made at the time ("the models are not the issue") was
+correct on the data then available.
+
+| | 19 Jul | 22 Jul swap | 25 Jul | 30 Jul `v546` | 2 Aug |
+|---|---|---|---|---|---|
+| DAU | 855,710 | 361,151 | **776,393** | 625,437 | 492,074 |
+| `ForwardD1Retention` | 15.1% | 16.4% | 16.5% | 14.26% | **9.72%** |
+| Session length | 12.4 min | 10.9 min | 12.3 min | 11.66 | 10.59 |
+
+D1 was 16.77% on 29 Jul and fell every day to 2 Aug. Session length broke the
+same day and still sits ~10 min. Revenue R$239,898 (29 Jul) → R$59,319 (12 Aug).
+
+**The wipe guard is holding, with a number.** `OnPlayerAdded:530-538`
+`performSaveData` refuses to write unless `sessionLoadCompleted` *and*
+`sessionSaveAllowed` are true — `[PlayerData] BLOCKED SAVE because this session
+did not load safely`, **4,229 events in 7 days**, first seen V582. Phrase as
+"saves refused", not "wipes prevented".
+
+**World 3 cost the low end its sessions.** OOM exits 610–746/day → 1,385 (14th)
+→ **5,213 (15th)**; client memory +21%; `ClientFpsP10` −23% and still falling;
+`ClientCrashRate15m` 0.89% → 3.60%. `ServerFrameRateP10` flat 59.6–59.7 all
+through. Content weight, not a defect. 16 Aug is partial so its counts are a floor.
+
+**Two one-liners still live at v590** (so `v588`–`v590` did not fix them):
+`OnPlayerAdded:1778` `Conetto Morsetto` vs the folder's `Conetto Mosteretto`,
+**3,030 events and climbing** (was 1,844), purchase prompt never fires; and
+`AnimalModule:547`, **4,303 events**, `multiplier` nil because L543 guards
+`~= ""` and nil passes — upgrade button silently dead, no cash taken, no data
+written back (thread dies at `OnPlayerAdded:1392` before the save). The correct
+pattern is 40 lines above at L498/L506.
+
+**Dropped as out of scope 2026-08-16** (verified, then dropped as visual): the
+odds screen omits 19 of 139 animals across five rarity tiers absent from
+`OddsControl`'s hardcoded 15-entry table, and those 19 are the top 15 by
+MoneyPerSecond (94.7% of roster earning power); `FuseClient:149` LoadAnimation
+on nil, 53,800 events, same `ActualName` typo; `Vanish` VFX missing, 2,927,
+cosmetic.
+
+**Open:** the 14 Aug +46.3% DAU on 3.8h exposure is still unattributed.
+`FuseModule.saveState:718` DataStore flush failures now 19,905 (was 12,874),
+benign but growing — likely capacity on a shared key.
+
 ### Knife Farm (`9610561918`) — it is the return loop, not appeal
 
 Producer: Nina. Asked 2026-08-10 whether the decline is "the algo or bugs".
@@ -331,6 +377,47 @@ Producer: Nina. Asked 2026-08-10 whether the decline is "the algo or bugs".
   dashboard before pitching it — single counter, not yet cross-checked.*
 - **Do not** attribute this to the 15 June RFY change: Knife Farm's biggest
   collapse ran 31 May → 12 June (−81%), before that change existed.
+
+#### Knife Farm 2026-08-16 — payer conversion has halved and the cause is NOT identified
+
+Grab 13:15Z, 1 month, merged over the series back to April. Place read at
+**v3829**.
+
+**The claim that survives is matched-DAU:** at ~36K DAU on 1–3 Aug the game
+converted **561 / 634 / 669** payers; at ~34K DAU on 13–15 Aug, **276 / 265 /
+291**. ARPPU is flat and normal (R$127 → R$107, band R$89–140). DevProduct
+−66% and GamePass −66% together. `PayingUsersCVR` ends at 0.78–0.85%, **below
+anything in the preceding two months** (previous floor 1.02%, 16 Jun).
+
+**Ruled out:** platform (fell on all four), acquisition mix (stable),
+new-vs-returning mix (56.3% returning on 3 Aug vs 56.0–57.3% on 13–15 Aug, with
+matching new-user volume), spend depth, one broken product. Also ruled out by
+date: `ADMIN ABUSE` (15 Aug 17:00–18:00Z, three days after), `StellarQuest`
+(13 Aug 09:00Z, after most of the fall, and its tasks push crate buying up),
+Windows engine 734 (12 Aug 16:00Z, mid-decline). Event-fatigue is unsupported on
+timing — August roughly doubled the free-value cadence and added three new event
+types, but the steepest part of the fall precedes the first of them.
+
+**Retract if you see it repeated:** an earlier read in this session called a
+one-day step on 12 Aug. That was a denominator artifact — payers 355 → 356 flat
+while DAU rose 24%. The decline is gradual across ~10 days.
+
+**`StellarQuest` contaminates retention 13 → 23 Aug** (`REQUIRED_DAYS = 7`).
+D1 rose 14.45% (7 Aug) → ~19–20% from 10 Aug, which is *before* the quest and
+therefore real; everything after 13 Aug is not comparable. Given this game's
+whole diagnosis is structural retention, do not let a D7 rise read as a fix.
+
+**Blocked by F12:** `place-versions.md` tops out at **v3747, 10 May**, while live
+is **V3829** — the root place's `saved-versions` 500'd. So "what shipped between
+3 and 13 Aug" is unanswerable from the repo, and that is the largest place a
+cause could still be hiding. **Fixing the deploy log is the next action here.**
+
+**Code:** `MainModule` grants the case at L798, then runs ~15 unguarded
+`BadgeService:UserHasBadgeAsync` calls (L810–936), then fires
+`GameEvents.CaseSpawn:FireClient` at L940. `UserHasBadgeAsync: Internal error`
+3,069 at :897 + 1,796 at :905, first seen 13–14 Aug V3829. The case is **not
+lost** (798 already ran); the client notification is. Only the rare rarities run
+the badge chain, so the failure lands exclusively on the good moments.
 
 ### Waterslide (`10030829154`) — pre-update baseline, measured 2026-08-14
 
@@ -432,6 +519,61 @@ level judgement that has not survived one):
    publish, or did a week-long event run for an hour?
 2. Is "money not updating after a slide" a known bug or an intended rebalance?
    It is the only named mechanism that would explain playtime/DAU −18%.
+
+#### Waterslide post-update, 2026-08-16 — healthy, every gate passed
+
+Grab 12:21Z, place read at **v1702** (4 publishes past the baseline). Diffed
+against the "what broken looks like" table above:
+
+| Signal | Broken if | Actual | |
+|---|---|---|---|
+| D1, settled | < 12.5% for 2+ days | 14.73 / 14.27 / 14.12% | pass, above the 13.80% baseline |
+| Session length | < 14 min | 15.10–15.47 | pass |
+| `ClientCrashRate15m` | > 0.5% | 0.361 → 0.351 → 0.292% | pass |
+| `ErrorCount` Server | > 1M on 15 Aug | 96,314 / 127,000 | pass, inside 70–215K |
+| `PetBag:484` | any volume | absent | pass |
+| ARPDAU | any move | R$0.482 → R$0.444 | dilution, see below |
+
+DAU 219,574 → 256,677 → **295,154**; revenue R$107,236 → R$123,686 → R$131,194.
+ARPDAU's move is explained: `PayingUsersCVR` **rose** to 2.76% (from 2.55%),
+payers 6,537 → 8,145, ARPPU R$18.92 → R$16.11. More payers each spending less on
+a day DAU rose 15%.
+
+**Two absences worth as much as the passes.** (1) **No publish-day error spike** —
+the baseline documented 4 of 4 publishes spiking server errors 20–50× (up to
+5.85M); `v1698` produced 96,314, flat. Ask the studio what changed in the publish
+path. (2) **No memory or OOM step** (OOM 372/517 against a 289–441 baseline,
+client memory flat 1.09–1.13 GB), the direct contrast with Brainrot's World 3.
+
+**Still open:** downvote rate by version needs the dashboard User ratings export;
+the API grab carries only a `Total` series with no up/down breakdown.
+
+**The save-loss volume question from the baseline is answered, but not the way it
+was asked.** The unfiltered 7-day export **does not contain** the baseline's
+`[SaveLoadDataMgr] SavePlayerData failed: <userId> … CopyTableScript:5`
+signature at all. What it does carry is `CopyTableScript:5` at **4,565 events**
+on a *different* stack (`GamePassMgr:57 GetData` → `PlayerData:353 ToDictionary`
+→ `PlayerService:201 Update` → `ServerInit:97`), which is the client-sync path
+above, not a save. Two readings and this export cannot separate them: the
+SaveLoadDataMgr path stopped firing, or it is below the ~26-row cap. **Do not
+report the save-loss path as resolved.** Re-pull with a narrower filter to settle it.
+
+**Code, functional only:**
+- `GamePassMgr:57 GetData` → `DeepCopy(self.pass)`, `pairs(nil)` when `GetData`
+  beats `Init`. Reached from `PlayerData:356` ← `PlayerService.Update:201` ←
+  `ServerInit:97`, an unprotected registry loop in a Heartbeat. Skips every
+  service after it that tick, repeats at 10 Hz (`sendMsgCd = 0.1`) because
+  `isChanged` is cleared after the throwing call. **4,565 events, a floor.**
+  `IsHavePass:41` already guards the same field.
+- `Tutorial:262` indexes `shared["Char"].HumanoidRootPart` directly, which throws
+  on respawn before parts replicate. Aborts the `tutorialKeys` loop, so remaining
+  steps never update and `OnTutorialCompleted` never fires. **9,473 events, first
+  seen 24 Jul.** L88's guard is written as the same direct index, so it throws too.
+  **Not date-matched to the D1 drop** (24 Jul vs 29 Jul); a candidate, not a cause.
+- `WorldService.RequestTeleportWorld` has no debounce before
+  `TeleportService:Teleport`, 549,959 events. **Does not double-charge** — the
+  unlock block is gated by `table.find(unlockWorlds, worldId)` at L37. Low severity.
+- Teleport errors are universe-wide across 6 places; only the root was open.
 
 ## 6. Next steps
 

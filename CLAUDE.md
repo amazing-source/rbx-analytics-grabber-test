@@ -44,6 +44,16 @@ the full spec; this file is the day-to-day reference.
 > this on the plan itself: every template is tagged `observed` / `proven` /
 > `inferred`, and an inferred shape's failure may never be reported as a
 > finding about a game.
+>
+> **Reporting scope, set 2026-08-16: UI / visual / cosmetic defects are not
+> material and do not go in a report.** Verify them if they fall out of a code
+> read, then drop them. What counts is functional, revenue, or player-loss — a
+> purchase prompt that never fires, a dead progression sink, a save overwritten,
+> a session lost to an OOM exit. A missing effect or an unrendered preview does
+> not. **Check that a defect is really only visual before dropping it:** on
+> 9963622286 one typo killed both a viewport preview (cosmetic, dropped) and a
+> purchase prompt (revenue, kept). Rank by mechanism, never by event count — the
+> loudest signature in an export is routinely the cheapest one.
 
 ## What this is
 Internal tool for Indigo: pull ALL Creator Dashboard metrics for an owned Roblox
