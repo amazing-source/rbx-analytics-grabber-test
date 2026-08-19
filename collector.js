@@ -139,6 +139,29 @@
         <div id="rbx-active" style="font-size:11px;color:#9a93b3;min-height:14px;margin-top:6px"></div>
       </div>
 
+      <div style="padding:8px 12px;background:#181527;border-bottom:1px solid #221f30">
+        <div style="font-size:11px;color:#b9a6ff;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">
+          <span>Scheduled grabs</span>
+          <label style="display:flex;align-items:center;gap:4px;cursor:pointer;color:#9a93b3;font-size:11px">
+            <input id="rbx-sch-on" type="checkbox" style="cursor:pointer;margin:0"/> on
+          </label>
+        </div>
+        <input id="rbx-sch-uni" placeholder="universeId(s) to grab on a timer"
+          style="width:100%;box-sizing:border-box;background:#15131f;border:1px solid #2d2a3d;color:#e8e8ef;border-radius:6px;padding:5px 7px;margin-bottom:6px;font-size:11px"/>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="font-size:11px;color:#6e6885">every</span>
+          <select id="rbx-sch-int" style="flex:1;min-width:0;background:#15131f;border:1px solid #2d2a3d;color:#e8e8ef;border-radius:6px;padding:4px 6px;font-size:11px">
+            <option value="60">1 hour</option>
+            <option value="180">3 hours</option>
+            <option value="360">6 hours</option>
+            <option value="720">12 hours</option>
+            <option value="1440">24 hours</option>
+          </select>
+          <button id="rbx-sch-now" style="cursor:pointer;background:#2d2a3d;border:0;color:#cfc9e0;border-radius:6px;padding:5px 9px;font-size:11px">Run now</button>
+        </div>
+        <div id="rbx-sch-info" style="font-size:10px;color:#6e6885;margin-top:6px;min-height:12px"></div>
+      </div>
+
       <div id="rbx-list" style="max-height:120px;overflow:auto;padding:6px 12px;font-size:11px;color:#9a93b3"></div>
       <div id="rbx-status" style="padding:0 12px 6px;font-size:11px;color:#9a93b3;min-height:14px"></div>
       <div style="display:flex;gap:6px;padding:8px 12px;background:#1d1a2b">
@@ -186,7 +209,9 @@
       try { const s = await chrome.storage.local.get(UI_STATE_KEY); state = s[UI_STATE_KEY] || "open"; } catch {}
       applyUiState(state);
     })();
-    panel.querySelector("#rbx-pull").onclick = runActiveGrab;
+    // Wrapped, not passed directly: onclick hands the listener a MouseEvent,
+    // which would arrive as runActiveGrab's options object.
+    panel.querySelector("#rbx-pull").onclick = () => runActiveGrab();
     panel.querySelector("#rbx-send").onclick = send;
     panel.querySelector("#rbx-save").onclick = () => saveToFolder(captures, guessUniverse(), true);
     panel.querySelector("#rbx-clr").onclick  = () => { captures.length = 0; setStatus(""); render(); };
@@ -202,7 +227,73 @@
         try { await chrome.storage.local.set({ [DOWNLOAD_DIR_KEY]: next }); setStatus("folder saved"); } catch {}
       }
     };
+
+    // ---- scheduled grabs ------------------------------------------------
+    // The config lives in the service worker's storage, not here: this content
+    // script dies on every navigation, and a schedule that forgets itself when
+    // you click a link is not a schedule.
+    const schOn = panel.querySelector("#rbx-sch-on");
+    const schUni = panel.querySelector("#rbx-sch-uni");
+    const schInt = panel.querySelector("#rbx-sch-int");
+    const schInfo = panel.querySelector("#rbx-sch-info");
+
+    const fmtMins = (m) => (m >= 60 ? `${Math.round(m / 60)}h` : `${m}m`);
+
+    function describeSchedule(cfg) {
+      if (!cfg || cfg.error) return cfg && cfg.error ? `scheduler unreachable: ${cfg.error}` : "";
+      const ids = String(cfg.universes || "").split(/[\s,]+/).filter((x) => /^\d+$/.test(x));
+      const bits = [];
+      if (!cfg.enabled) bits.push("off");
+      else if (!ids.length) bits.push("on, but no universeId set — nothing will fire");
+      else bits.push(`on · ${ids.length} universe(s) · every ${fmtMins(Number(cfg.everyMinutes) || 360)}`);
+      if (cfg.lastRunAt) bits.push(`last ${new Date(cfg.lastRunAt).toLocaleString()}`);
+      if (cfg.lastResult) bits.push(cfg.lastResult);
+      return bits.join(" · ");
+    }
+
+    async function loadSchedule() {
+      const cfg = await bg({ type: "schedule:get" }, 15000);
+      if (!cfg || cfg.error) { schInfo.textContent = describeSchedule(cfg); return; }
+      schOn.checked = !!cfg.enabled;
+      schUni.value = cfg.universes || "";
+      schInt.value = String(Number(cfg.everyMinutes) || 360);
+      schInfo.textContent = describeSchedule(cfg);
+    }
+
+    async function saveSchedule() {
+      const cfg = await bg({ type: "schedule:set", patch: {
+        enabled: schOn.checked,
+        universes: schUni.value,
+        everyMinutes: Number(schInt.value) || 360,
+      } }, 15000);
+      schInfo.textContent = describeSchedule(cfg);
+    }
+
+    schOn.onchange = saveSchedule;
+    schInt.onchange = saveSchedule;
+    schUni.onchange = saveSchedule;
+    panel.querySelector("#rbx-sch-now").onclick = async () => {
+      schInfo.textContent = "starting…";
+      const r = await bg({ type: "schedule:runNow" }, 60000);
+      if (r && r.error) schInfo.textContent = `could not start: ${r.error}`;
+      else setTimeout(loadSchedule, 2000);
+    };
+    loadSchedule();
   }
+
+  // The scheduler lives in the service worker, which deliberately cannot reach
+  // Roblox: it drives this page instead, so every request still leaves from the
+  // session the browser already holds. Answer "started" straight away and report
+  // the outcome separately — a full grab far outlives the message channel.
+  chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
+    if (!msg || msg.type !== "scheduled-grab") return;
+    ensurePanel();
+    setActive("scheduled grab starting…");
+    runActiveGrab({ universes: msg.universes, start: msg.start || "", end: msg.end || "" })
+      .then((r) => bg({ type: "schedule:result", summary: (r && r.summary) || "finished" }, 15000))
+      .catch((e) => bg({ type: "schedule:result", summary: "failed: " + String((e && e.message) || e) }, 15000));
+    sendResponse({ ok: true, started: true });
+  });
 
   function setStatus(msg, color) {
     if (!statusEl) return;
@@ -326,9 +417,18 @@
     return dateStr ? new Date(dateStr + "T00:00:00Z").toISOString() : "";
   }
 
-  async function runActiveGrab() {
-    const ids = (uniInput.value || "").split(/[\s,]+/).filter((x) => /^\d+$/.test(x));
-    if (!ids.length) { setActive("enter at least one numeric universeId", "#ff7c7c"); return; }
+  // `opts` lets the scheduler drive this exact function rather than a parallel
+  // copy of it. A timed grab and a clicked grab must be the same grab, or only
+  // one of the two is the one the three gates were ever run against.
+  async function runActiveGrab(opts) {
+    const o = opts || {};
+    const rawIds = o.universes != null ? o.universes : (uniInput.value || "");
+    const ids = String(rawIds).split(/[\s,]+/).filter((x) => /^\d+$/.test(x));
+    const summaries = [];
+    if (!ids.length) {
+      setActive("enter at least one numeric universeId", "#ff7c7c");
+      return { ok: false, summary: "no valid universeId" };
+    }
 
     // An active grab is a clean pull. Drop whatever the dashboard happened to
     // load while browsing, so a half-empty passive buffer can never be mistaken
@@ -342,8 +442,8 @@
 
     const ingestUrl = await getIngestUrl();
     const base = baseFrom(ingestUrl);
-    const start = toISO(startInput.value);
-    const end = toISO(endInput.value);
+    const start = toISO(o.start != null ? o.start : startInput.value);
+    const end = toISO(o.end != null ? o.end : endInput.value);
 
     for (const u of ids) {
       setActive(`planning ${u}…`);
@@ -351,6 +451,7 @@
       const planRes = await webappFetch(`${base}/api/grab-plan?${qs}`, null, 30000);
       if (!planRes.ok) {
         setActive(`plan failed for ${u}: ${explain(planRes.error, base) || ("HTTP " + planRes.status)}`, "#ff7c7c");
+        summaries.push(`${u}: plan failed (${planRes.status || "no response"})`);
         continue;
       }
       let plan = planRes.data || {};
@@ -501,6 +602,7 @@
         // what status, is the whole point.
         await deliver([], u, report);
         setActive(`${u}: 0/${reqs.length} returned data — see data/games/${u}/grab-report.md`, "#ff7c7c");
+        summaries.push(`${u}: 0/${reqs.length} returned data`);
         continue;
       }
       captures.push(...delivery);
@@ -508,7 +610,9 @@
 
       const out = await deliver(delivery, u, report);
       setActive(`${u}: ${out.msg}`, !out.ok ? "#ff7c7c" : out.degraded ? "#ffd27c" : "#7cd992");
+      summaries.push(`${u}: ${out.msg}`);
     }
+    return { ok: true, summary: summaries.join(" · ") || "nothing ran" };
   }
 
   async function send() {

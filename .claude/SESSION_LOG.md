@@ -412,3 +412,56 @@ and now logs only >1%.
 `PlayerProgression` and 20 steps; returned-data counts 80/120 → 127/156 and
 82/119 → 155/186; annotation enumeration found
 `ANNOTATION_TYPE_ENGINE_RELEASE`, the genuine "was it Roblox?" signal.
+
+## 2026-08-19 — Open Cloud is a verified drop-in for the metrics half
+
+**State:** ALL of today's work is in a SECOND CLONE,
+`C:\Users\bfhdh\Downloads\rbx-analytics-grabber-test` (private GitHub repo
+`amazing-source/rbx-analytics-grabber-test`, `origin` = test, `upstream` = real
+with push disabled). Nothing committed anywhere. **The main repo is still
+`behind 2` and dirty** (`SKILL.md`, `data/games/10030829154/grab-report.json`)
+— and both incoming commits rewrite those same two files.
+**Gates** (test repo, measured 2026-08-19): verify 23 pass / 2 fail / 8 skip
+(exit 1, the documented state) · audit-plan 140 templates 0 failures 125 proven
+· test 41/41.
+
+**Landed (uncommitted):** `chrome.alarms` scheduler in the extension
+(`background.js` +208, `collector.js` +116, manifest 0.5.0 — scheduler drives a
+real tab so the session cookie is still never touched); four Open Cloud probes
+in `web/scripts/` (`probe-opencloud`, `compare-opencloud`, `coverage-opencloud`,
+`probe-dimensions`, `probe-granularity`), key read from gitignored
+`web/.opencloud-key`; `liveops-diagnosis` skill 827 → 966 lines.
+
+**Learned → routed:**
+- Open Cloud parity + shapes + the granularity-column trap → `CLAUDE.md`
+- The 726-cell measurement and its two self-inflicted false alarms →
+  `data/verify/COVERAGE.md` **F13**
+- Retention-by-acquisition-source as a discrimination test; platform DAU floors;
+  Roblox's published perf targets; funnel back-fill/repeat/filter rules; Configs
+  API as the rollback lever and Notifications as re-engagement →
+  `SKILL.md` §3c, §3d, §4 technical targets, §5d, §5e
+
+**Disproved (all mine):**
+- "The perf half is unproven — local Place-scope vs cloud universe-scope" —
+  `breakdown:["Place"]` returns ONE series identical to the total; Become a
+  Brainrot is single-place ("[WORLD 3]" is the update name, not a place).
+- "ServerCrashCount's fractional 4.010101010101 is an anomaly to resolve" —
+  both sources return it; normal at daily granularity.
+- "PeakConcurrentPlayers disagrees by 87%" — `compare-opencloud.ts` was not
+  filtering the `granularity` column.
+- "The robocopy preserved everything not in the copy" — it reverted six files
+  from the two newer commits; restored via `git checkout`.
+
+**Open:**
+- `filter` needs an `operation` enum; `"Equals"` rejected — probe for legal
+  values, it blocks Place-scoped queries.
+- Only 9963622286 tested, and it is single-place — run the probes on Waterslide
+  (multi-place) and Knife Farm before generalising.
+- Contract §4.2 makes all work product Indigo's — unresolved, and it decides
+  whether any of this is sellable. Raise with the rate conversation.
+- Extension scheduler is written but never run against Chrome.
+
+**Next:** reconcile the main repo — `git fetch && git merge` (behind 2, two
+dirty files the incoming commits rewrite), then port `SKILL.md`, the `CLAUDE.md`
+Open Cloud block and COVERAGE F13 across. Until that happens today's knowledge
+exists ONLY in the test clone, which is exactly the failure this log prevents.

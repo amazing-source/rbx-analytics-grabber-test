@@ -11,7 +11,12 @@
     "verify": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-csv.ts",
     "audit-plan": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/audit-plan.ts",
     "lead-lag": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/lead-lag.ts",
-    "test": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/loader-hooks.mjs --test \"src/lib/__tests__/*.test.ts\""
+    "test": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/loader-hooks.mjs --test \"src/lib/__tests__/*.test.ts\"",
+    "probe-opencloud": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/probe-opencloud.ts",
+    "compare-opencloud": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/compare-opencloud.ts",
+    "probe-dimensions": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/probe-dimensions.ts",
+    "coverage-opencloud": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/coverage-opencloud.ts",
+    "probe-granularity": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/probe-granularity.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",

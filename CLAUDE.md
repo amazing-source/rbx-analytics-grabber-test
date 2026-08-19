@@ -156,6 +156,52 @@ and a change that fixes a number should move one of them.
   `product-experimentation-platform`.
 - Test universe: KameHameHa Walls For Brainrots = `10192528661`, genre `simulation`.
 
+## Open Cloud serves the same numbers — verified 2026-08-19, do not re-derive
+Roblox shipped an official, key-authenticated analytics READ API (beta). It is
+not a workaround for the gateway; it is the same data with a supported door.
+
+    POST https://apis.roblox.com/analytics-query-api/v1/universes/{id}/metrics
+    x-api-key: <key>   scope: universe-analytics / universe.analytics:read
+    { metric, granularity, startTime, endTime, breakdown?, filter?, limit? }
+
+**Measured on 9963622286, not assumed** (`npm run coverage-opencloud`,
+`npm run compare-opencloud` in the test repo):
+- **71/71 metrics served** — everything `default-plan.ts` pulls.
+- Granularities: `None`, `OneMinute`, `HalfHour`, `OneHour`, `OneDay`,
+  `OneWeek`, `OneMonth`. HalfHour IS served; no gap versus the gateway.
+- **Values identical.** 717/726 cells matched and all 9 apparent differences
+  were OUR freeze policy, not a source disagreement: `data-quality.md` records
+  the gateway re-serving ClientCrashCount 2026-08-07 as **3213**, which is
+  exactly Open Cloud's value, while the CSV keeps the first read of 3170.
+- No `Place` filter needed — the gateway 400s perf metrics without one, this
+  does not. Errors are explicit and name the fix ("Granularity OneDay is not
+  supported for metric X", "exceeds the maximum allowed range of 10.0 days").
+- Async: may answer `done:false` + `path` to poll. Limits **30 query POSTs/min,
+  3000 polls/min** — the binding constraint at portfolio scale (~2.5 min per
+  game per full pass).
+
+**Shapes that are NOT OneDay** (all 10 "failures" in the first run were us
+asking wrong, never missing data): the 8 funnel metrics and
+`WeeklyCohortRetention` need `granularity:"None"`; `DailyCohortRetention` is
+`OneDay` but caps at a **10-day window**.
+
+**It replaces the METRICS half only.** Update annotations, genre benchmarks and
+the place-versions deploy log come from `analytics-annotations`,
+`analytics-benchmark` and `develop.roblox.com` — still the existing path.
+
+**Still open:** `filter` requires an `operation` enum whose legal values are
+unknown (`"Equals"` is rejected). `breakdown` works and returns `displayValue`.
+
+**Switching sources switches READ POLICY.** The corpus keeps the *first*
+settled read; Open Cloud serves the *current* one. Adopting it silently changes
+published crash numbers. That is a decision to make, not to inherit.
+
+**Any script reading `data/games/<id>/metrics/*.csv` MUST filter on the
+`granularity` column.** One file holds ONE_MINUTE, HALF_HOUR and ONE_DAY rows
+keyed by the same date; ignoring it lets a half-hour bucket overwrite the daily
+value. That bug produced a fake "87% disagreement" on PeakConcurrentPlayers and
+a fake "fractional crash count" anomaly, both of which cost an hour.
+
 ## The grab plan is seeded, not discovered
 `web/src/lib/default-plan.ts` holds all 49 metrics Roblox serves, as query
 shapes (metric name + granularity + breakdown + filter). The metric list was

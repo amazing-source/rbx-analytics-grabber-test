@@ -294,3 +294,34 @@ rows where the API omits the day entirely (D2, proven in rows 20/22).
 - Phase 3: F2 makes "last-write-wins" part of the point-semantics work.
 - Phase 5: F3, F4, F9, plus INVENTORY.md's gap table (the dashboard shapes we
   never ask for, including everything `HALF_HOUR`).
+
+## F13 — Open Cloud returns the same values as the gateway (2026-08-19)
+
+**Claim:** the official Open Cloud Analytics Query API is value-identical to the
+dashboard gateway we replay, and covers every metric in the plan.
+
+**Measured**, universe 9963622286, `npm run compare-opencloud -- 9963622286`
+and `npm run coverage-opencloud -- 9963622286` (scripts in the test repo):
+
+| | result |
+|---|---|
+| Metrics served | **71/71** |
+| Cells compared | 726 |
+| Identical | **717** |
+| Differing | 9 — all explained, none a source disagreement |
+
+The 9: six `ClientCrashCount` cells (0.89-1.94%), two `ErrorCount` (0.05/0.08%),
+one `ClientFpsAvg` (1e-4 %, float precision). `data-quality.md` lines 437-438
+record the gateway re-serving ClientCrashCount 2026-08-07 as 3213 — Open
+Cloud's exact value — while the corpus holds the frozen first read of 3170. The
+sub-1% ones have no revision row because the materiality threshold is 1%.
+
+**Two false alarms this measurement produced and then killed**, both ours:
+1. "PeakConcurrentPlayers is 87% off" — `compare-opencloud.ts` was not filtering
+   the `granularity` column, so HALF_HOUR rows overwrote ONE_DAY values for the
+   same date. Fixed; PCU is 27/27 exact.
+2. "ServerCrashCount returns a fractional 4.010101010101, treat as suspect" —
+   both sources return the same fractional daily value. Normal, not an anomaly.
+
+**Not measured:** only universe 9963622286, which is single-place. Waterslide is
+genuinely multi-place and the Place-scoping question is untested there.

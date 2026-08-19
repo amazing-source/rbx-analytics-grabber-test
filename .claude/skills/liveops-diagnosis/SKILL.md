@@ -9,6 +9,12 @@ A producer acts on what you write: kills a feature, ships a fix, or misses an
 outage. The cost of a confident wrong answer is higher than the cost of "I
 don't know yet". This skill is the method that keeps the difference visible.
 
+> This file answers **why did a metric move**. For the routine that runs on
+> every update whether or not anything moved — the grab cadence around a
+> publish, what is readable at which stage, and the report a producer
+> receives — use the **`update-watch`** skill, and come back here when
+> something has actually moved.
+
 ## 0. Earn the right to quote a number
 
 Do this before any analysis. It takes a minute and it has already caught a
@@ -361,6 +367,50 @@ circulate on SEO blogs (bloxg, rolearn, lensblox) are unsourced — do not quote
 them. Use the benchmark series in `series.json` (a similar-experience cohort)
 or say the bar is unknown.
 
+## 3c. Traffic mix vs gameplay — the test Roblox shipped for exactly this
+
+**Shipped 2025-10-16** ("Analytics: View retention by acquisition source and
+select your benchmark set"). D1/D7/D30 now break down by `Source`, and Roblox
+states the purpose plainly: to identify whether a retention change comes from
+**a shift in traffic mix rather than a gameplay problem**.
+
+That is a discrimination test, and it belongs before any "the update hurt
+retention" conclusion. Sources retain very differently. A week where sponsored
+or teleport traffic grows drags *blended* D1 down while every individual source
+holds flat — the blend moved and nothing about the game did.
+
+**How to run it:** pull `ForwardD1Retention` broken down by `AcquisitionSource`
+across the window.
+- Per-source flat, blend down → **mix**. The fix is an acquisition
+  conversation, not a design one.
+- One source dropped → that source's audience or its landing surface changed.
+- Every source dropped together → now you may blame the build.
+
+Roblox clarified in the same announcement that **"running ads should not harm
+your organic distribution."** Ads-acquired users are excluded from ranking
+signals: they neither help nor hurt. Producers routinely fear paid traffic
+poisons the algorithm — say plainly that it does not. What it does is dilute
+blended averages, which is a reporting problem, not a ranking one.
+
+## 3d. Platform floors — "no data" usually means "too small"
+
+Roblox gates analytics behind size thresholds. Below them charts are empty, and
+an empty chart reads exactly like a healthy one.
+
+| Feature | Floor |
+|---|---|
+| Dashboard KPIs at all | >10 DAU **and** 10 play hours, 7 consecutive days |
+| Client/server performance charts | **100+ DAU** |
+| Benchmarks (similar-experience or genre) | 100+ DAU |
+| Insights | 100+ DAU |
+| AI analytics reports | **1,000+ DAU** |
+| Player-feedback reports | 20+ comments |
+
+Before writing "no crash data, so the technical rung is clear" — check DAU
+against 100. On a small game the performance tab is empty *by policy*. Combined
+with the ~28-day perf retention horizon there are now two distinct reasons a
+performance chart is blank, and neither of them is "nothing is wrong".
+
 ## 4. Priors — what "good" looks like
 
 Without these a number is just a number. Source for the Indigo figures is its
@@ -522,6 +572,35 @@ buys one cycle — which is exactly the pattern Knife Farm already ran three tim
 since May, each peak smaller. A prestige loop regenerates the goal indefinitely
 from content that already exists. When both are on the table, ship the loop and
 use the content as its reward.
+
+### Technical targets — the only numbers Roblox actually publishes
+
+From `docs/production/analytics/performance`. Use these instead of inventing a
+bar; they are the rare case where Roblox does give hard figures:
+
+| Metric | Target |
+|---|---|
+| Client / server frame rate | **60 FPS** |
+| Client / server CPU time | **<16 ms per frame** — this is what 60 FPS costs |
+| Server memory | **<50% of total, or <3 GB** |
+| Compute efficiency | >100% (better than the Roblox average) |
+
+Three definitions that change how the charts read:
+
+- **`ClientCrashRate` = crashes ÷ ENDED sessions.** A day with many sessions
+  that never cleanly end moves the denominator, not the game's stability.
+- **Roblox draws the crash-rate line DASHED when the sample is small** and
+  advises reading crash COUNT instead in that regime. That is the dashboard's
+  own version of `DATA_STATUS_NOT_STATISTICALLY_SIGNIFICANT` — same meaning,
+  same response: exclude it from conclusions.
+- **`OomUnexpectedExits` undercounts by design** — "does not cover all
+  out-of-memory crashes due to telemetry limitations". Directionally valid,
+  never quotable as an absolute. Write "OOM exits rose ~40%", never "there were
+  943 OOM crashes".
+
+**Client memory percentage approaching 100% on Android is a crash predictor**,
+not a performance note. Memory% climbing together with OOM exits is a leak with
+a known ending — that pairing is a finding on its own.
 
 ## 4b. Sizing the prize — what a fix is actually worth
 
@@ -806,6 +885,72 @@ retention: a rise during the quest is not a fix, and it will revert when the
 quest ends. Note also that a quest can cut the other way on the same game —
 its task list included "Buy 20 Knife Crates", which pushes purchases up, so
 never assume the direction without reading the tasks.
+
+## 5d. Funnel semantics — three rules that change what a funnel means
+
+From `docs/production/analytics/funnel-events`. Each of these can make a funnel
+say something it does not mean:
+
+1. **Skipped steps are back-filled.** *"If you log step 3 without logging steps
+   1 or 2, the funnel considers steps 1 and 2 as completed."* A game that logs
+   out of order therefore shows completion that never happened, and real
+   drop-off at intermediate steps becomes structurally invisible. Before
+   diagnosing "users sail through 2-3 and die at 4", confirm the game logs every
+   step in order. A suspiciously flat middle is this bug's signature.
+2. **A repeated step counts once.** Only the first instance per user (or per
+   `funnelSessionId`) counts, so a retry loop is invisible in the funnel and has
+   to be found elsewhere.
+3. **Filters apply to the FIRST STEP ONLY** — deliberately, to avoid
+   double-counting users whose status changes mid-funnel. So a filtered funnel
+   describes "users who *entered* as X", not "users who were X at that step".
+
+One-time funnels (onboarding) take no `funnelSessionId`; recurring funnels
+(shop, progression loops) require one, and without it every visit collapses
+into a single funnel run.
+
+**Quotas that silently cap what exists:** 10 funnels per experience, 100 steps
+per funnel, 3 custom fields per event, and **8,000 unique custom-field value
+combinations before the rest is bucketed as "Other"**. A funnel with a huge
+"Other" segment has hit that ceiling — an instrumentation fact, not player
+behaviour. Events stay visible **90 days** from last receipt, and the logging
+budget is **120 + (20 x CCU) requests/minute**: a game that outgrows its event
+budget starts dropping events, which looks exactly like a metric decline.
+
+## 5e. Levers you can actually pull through Open Cloud
+
+Diagnosis without a remedy is half the job (see 5b). These close the loop, and
+all are key-authenticated and scriptable.
+
+**Configs API — change live balance WITHOUT publishing.** Item availability,
+damage, cooldowns, UTC-scheduled releases. Scopes `universe:read` /
+`universe:write`, callable from inside an experience via HttpService since
+March 2026, propagation up to ~5 minutes, full version history.
+**This is the rollback mechanism**, and Roblox names that use case explicitly:
+revert to a previous config version if metrics spike negatively. A watch that
+detects a regression plus a config that undoes it without a republish is the
+entire loop — detection is only worth what the speed of the fix makes it worth.
+
+**Experience Notifications — re-engagement.**
+`POST https://apis.roblox.com/cloud/v2/users/{userId}/notifications` with
+`source.universe`, `payload.message_id`, `type: "MOMENT"`. Constraints that
+shape the design: **one per user per day per experience**, recipients must be
+opted in and 13+, the experience needs 100+ visits, and the message string must
+be pre-created in the Creator Dashboard — there is no API for the text.
+Opt-in via `ExperienceNotificationService:PromptOptIn()`, which will not re-show
+within 30 days. **Delivery is not guaranteed and scales with engagement**:
+better-engaging experiences get more of their notifications delivered, so
+notification reach is itself a downstream health metric rather than a fixed
+channel. A worked example from the field: notifying offline users after two
+hours that idle earnings are ready to claim.
+
+**Experience Events** — max 10 upcoming/ongoing, update announcements once per
+3 days (60 chars), 7 days' lead time for off-platform featuring, and the
+"Trending Events" sort needs **1,000+ RSVPs**. `RSVPCount` is already in the
+grab plan, so an event's pull is measurable before it starts.
+
+**When proposing a fix, prefer the lever that ships without a republish.** A
+config change is minutes and reversible. A build is a deploy, a review, and a
+fresh set of `PlaceVersion` steps to disentangle from every metric afterwards.
 
 ## 6. What you hand over
 
