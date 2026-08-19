@@ -9,7 +9,7 @@
 // Verified working 2026-08-19 against the three Indigo universes.
 
 export type RbxUser = { userId: number; name: string; displayName: string; avatarUrl: string | null };
-export type RbxGroup = { id: number; name: string; role: string; memberCount: number; emblemUrl: string | null };
+export type RbxGroup = { id: number; name: string; role: string; memberCount: number; emblemUrl: string | null; known?: boolean };
 export type RbxGame = { universeId: number; name: string; rootPlaceId: number | null; playing: number | null; iconUrl: string | null };
 
 const UA = { "user-agent": "indigo-liveops-dashboard/1.0" };
@@ -111,4 +111,21 @@ export async function groupsOwningUniverses(universeIds: number[]): Promise<RbxG
     for (const r of rows) r.emblemUrl = t.get(r.id) ?? null;
   }
   return rows.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/** Group ids that own a universe we already hold data for.
+ *
+ *  This is the only cheap, automatic signal for "a studio you actually work in"
+ *  versus "a fan group you joined once". Measured on a real account: 42 group
+ *  memberships, 3 of which are studios. Role does not discriminate — the two
+ *  studios both read "Member". Ownership of a universe in data/games/ does.
+ */
+export async function knownGroupIds(universeIds: number[]): Promise<Set<number>> {
+  const out = new Set<number>();
+  if (!universeIds.length) return out;
+  const j = await get<{ data?: { creator?: { id: number; type: string } }[] }>(
+    `https://games.roblox.com/v1/games?universeIds=${universeIds.slice(0, 100).join(",")}`
+  );
+  for (const g of j?.data ?? []) if (g.creator?.type === "Group" && g.creator.id) out.add(g.creator.id);
+  return out;
 }

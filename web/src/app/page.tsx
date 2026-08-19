@@ -10,7 +10,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type RbxUser = { userId: number; name: string; displayName: string; avatarUrl: string | null };
-type RbxGroup = { id: number; name: string; role: string; memberCount: number; emblemUrl: string | null };
+type RbxGroup = { id: number; name: string; role: string; memberCount: number; emblemUrl: string | null; known?: boolean };
 type RbxGame = { universeId: number; name: string; rootPlaceId: number | null; playing: number | null; iconUrl: string | null };
 type GameConfig = {
   dailyGrab?: boolean; intervalHours?: number | null; liveopsDiagnosis?: boolean;
@@ -108,6 +108,7 @@ export default function Dashboard() {
   const [games, setGames] = useState<RbxGame[]>([]);
   const [access, setAccess] = useState<Record<string, string>>({});
   const [selected, setSelected] = useState<RbxGame | null>(null);
+  const [groupQuery, setGroupQuery] = useState("");
   const ddRef = useRef<HTMLDivElement>(null);
 
   /* boot: load config, and re-identify if we already know who you are */
@@ -296,31 +297,75 @@ export default function Dashboard() {
             <span className="min-w-0 flex-1">
               <span className="block truncate text-[14px] font-medium">{group ? group.name : "Select a group"}</span>
               <span className="block text-[11px]" style={{ color: "var(--rbx-ink-3)" }}>
-                {group ? (group.role || `${group.memberCount.toLocaleString()} members`) : `${groups.length} available`}
+                {group
+                  ? (group.known ? "Studio · " : "") + (group.role || `${group.memberCount.toLocaleString()} members`)
+                  : `${groups.filter((g) => g.known).length} studios · ${groups.length} groups`}
               </span>
             </span>
             <span style={{ color: "var(--rbx-ink-3)" }}>▾</span>
           </button>
 
           {groupOpen && (
-            <Card className="rbx-rise absolute z-30 mt-2 max-h-[340px] w-80 overflow-auto p-1.5 shadow-xl">
-              {groups.length === 0 && <div className="p-3 text-[13px]" style={{ color: "var(--rbx-ink-3)" }}>No groups found.</div>}
-              {groups.map((g) => (
-                <button
-                  key={g.id}
-                  onClick={() => { setGroup(g); setGroupOpen(false); setSelected(null); }}
-                  className="flex w-full items-center gap-3 rounded-lg px-2.5 py-2 text-left hover:bg-[var(--rbx-surface-2)]"
-                >
-                  {g.emblemUrl
-                    // eslint-disable-next-line @next/next/no-img-element
-                    ? <img src={g.emblemUrl} alt="" className="h-8 w-8 rounded-lg" />
-                    : <div className="h-8 w-8 rounded-lg" style={{ background: "var(--rbx-surface-2)" }} />}
-                  <span className="min-w-0">
-                    <span className="block truncate text-[13.5px] font-medium">{g.name}</span>
-                    <span className="block text-[11px]" style={{ color: "var(--rbx-ink-3)" }}>{g.role || `${g.memberCount.toLocaleString()} members`}</span>
-                  </span>
-                </button>
-              ))}
+            <Card className="rbx-rise absolute z-30 mt-2 w-[22rem] overflow-hidden p-0 shadow-xl">
+              <div className="p-2" style={{ borderBottom: "1px solid var(--rbx-border)" }}>
+                <input
+                  autoFocus
+                  value={groupQuery}
+                  onChange={(e) => setGroupQuery(e.target.value)}
+                  placeholder={`Search ${groups.length} groups…`}
+                  className="h-9 w-full rounded-lg px-3 text-[13px] outline-none"
+                  style={{ background: "var(--rbx-surface-2)", border: "1px solid var(--rbx-border)" }}
+                />
+              </div>
+              <div className="max-h-[320px] overflow-auto p-1.5">
+                {(() => {
+                  const q = groupQuery.trim().toLowerCase();
+                  const match = (g: RbxGroup) => !q || g.name.toLowerCase().includes(q) || String(g.id).includes(q);
+                  const studios = groups.filter((g) => g.known && match(g));
+                  const others = groups.filter((g) => !g.known && match(g));
+                  const row = (g: RbxGroup) => (
+                    <button
+                      key={g.id}
+                      onClick={() => { setGroup(g); setGroupOpen(false); setGroupQuery(""); setSelected(null); }}
+                      className="flex w-full items-center gap-3 rounded-lg px-2.5 py-2 text-left hover:bg-[var(--rbx-surface-2)]"
+                    >
+                      {g.emblemUrl
+                        // eslint-disable-next-line @next/next/no-img-element
+                        ? <img src={g.emblemUrl} alt="" className="h-8 w-8 shrink-0 rounded-lg" />
+                        : <div className="h-8 w-8 shrink-0 rounded-lg" style={{ background: "var(--rbx-surface-2)" }} />}
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-[13.5px] font-medium">{g.name}</span>
+                        <span className="block truncate text-[11px]" style={{ color: "var(--rbx-ink-3)" }}>
+                          {g.role || `${g.memberCount.toLocaleString()} members`}
+                        </span>
+                      </span>
+                    </button>
+                  );
+                  if (!studios.length && !others.length) {
+                    return <div className="p-3 text-[13px]" style={{ color: "var(--rbx-ink-3)" }}>No groups match “{groupQuery}”.</div>;
+                  }
+                  return (
+                    <>
+                      {studios.length > 0 && (
+                        <>
+                          <div className="px-2.5 pb-1 pt-1.5 text-[10px] font-semibold uppercase tracking-[0.08em]" style={{ color: "var(--rbx-ink-3)" }}>
+                            Your studios
+                          </div>
+                          {studios.map(row)}
+                        </>
+                      )}
+                      {others.length > 0 && (
+                        <>
+                          <div className="mt-1 px-2.5 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.08em]" style={{ color: "var(--rbx-ink-3)", borderTop: studios.length ? "1px solid var(--rbx-border)" : undefined }}>
+                            Other groups · {others.length}
+                          </div>
+                          {others.map(row)}
+                        </>
+                      )}
+                    </>
+                  );
+                })()}
+              </div>
             </Card>
           )}
         </div>
