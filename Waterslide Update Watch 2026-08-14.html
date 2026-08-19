@@ -1,0 +1,216 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+body{font-family:'Segoe UI',Calibri,Arial,sans-serif;color:#1a1a2e;max-width:880px;margin:20px auto;padding:0 20px;line-height:1.38;font-size:13.5px}
+h1{font-size:22px;border-bottom:3px solid #335fff;padding-bottom:6px;margin-top:2px;margin-bottom:5px}
+h2{font-size:17px;color:#22357a;border-bottom:1px solid #d8dcee;padding-bottom:4px;margin-top:20px;margin-bottom:6px}
+h3{font-size:14px;color:#335fff;margin-top:12px;margin-bottom:3px}
+p{margin:7px 0}
+.sub{color:#555;font-size:13px;margin-top:0}
+code{background:#f0f2f8;color:#b5308a;padding:1px 4px;border-radius:4px;font-family:Consolas,'Courier New',monospace;font-size:12px}
+table{border-collapse:collapse;width:100%;margin:8px 0;font-size:12px}
+th,td{border:1px solid #d3d8ea;padding:3px 7px;text-align:left;vertical-align:top}
+th{background:#eef1fb;color:#22357a;font-weight:600}
+tr:nth-child(even) td{background:#f7f8fc}
+blockquote{border-left:4px solid #335fff;background:#f4f6ff;margin:10px 0;padding:8px 14px;color:#22357a}
+blockquote p{margin:4px 0}
+hr{border:none;border-top:1px solid #e0e3f0;margin:18px 0}
+ul,ol{margin:6px 0;padding-left:22px}
+li{margin:2px 0}
+strong{color:#111}
+em{color:#555}
+.ok{background:#e3f5e8;color:#1a6b33;font-weight:600;padding:1px 6px;border-radius:4px;white-space:nowrap}
+.watch{background:#fff3d6;color:#8a5a00;font-weight:600;padding:1px 6px;border-radius:4px;white-space:nowrap}
+.fix{background:#fde4e4;color:#a11b1b;font-weight:600;padding:1px 6px;border-radius:4px;white-space:nowrap}
+.na{background:#eceef4;color:#555;font-weight:600;padding:1px 6px;border-radius:4px;white-space:nowrap}
+.note{font-size:12px;color:#666}
+</style></head><body>
+
+<h1>Climb Waterslide and Slide — update watch, V1698</h1>
+<p class="sub">Universe <code>10030829154</code> · published <strong>14 Aug 2026, 17:29 UTC</strong> · report written 19:15 UTC, <strong>1 h 44 after the publish</strong>. All times UTC.</p>
+
+<table>
+<tr><th>Update</th><td>Root place <strong>V1698</strong>; sub-places published 17:29:41 → 17:30:55</td></tr>
+<tr><th>Previous build</th><td><strong>V1691</strong> — 8 Aug, 10:45 (the "NEW WORLD" event)</td></tr>
+<tr><th>Grabs held</th><td><strong>17:43</strong> (13 min after publish — the baseline, all metrics settled to 13 Aug) · <strong>19:13</strong> (1 h 44 after — errors, crashes, concurrents)</td></tr>
+<tr><th>Also</th><td>Studio error export pulled 19:12, filtered to V1698</td></tr>
+<tr><th>Next grab due</th><td><strong>15 Aug</strong>, after 00:00 UTC — that is the first one that can speak to DAU, revenue and session length</td></tr>
+</table>
+
+<h2>Bottom line</h2>
+<ul>
+<li><strong>Nothing is broken at the level we can currently see.</strong> The failure this game usually has on a publish — server errors 20–50× for a day — did not happen this time. Crashes, memory and out-of-memory exits are all at or below baseline.</li>
+<li><strong>One item to send to the devs: a new client-side error cluster in the pet bag / coach bag UI</strong>, five signatures that do not exist on V1691, growing. Detail in §4.</li>
+<li><strong>Most of the update cannot be judged yet.</strong> Retention, session length, revenue and downvote rate are daily metrics — first honest read is <strong>15–16 Aug</strong>. This report is the "before" on paper plus the two hours of evidence that exist.</li>
+</ul>
+
+<h2>1. All metrics, before the update</h2>
+<p class="note">Every metric the grab holds, at its latest <strong>settled</strong> value — no partial days. <em>Δ</em> is that value against roughly 7 points earlier <em>on the same series</em>. The 30-day window contains one large viral run (see §2), so <strong>volume deltas are not readable as performance</strong> — they mostly measure where in the spike each endpoint falls. Rate metrics are the comparable ones. "Peer cohort" is Roblox's similar-experience benchmark, not a genre median.</p>
+
+<h3>Discovery</h3>
+<table><tr><th>Metric</th><th>Kind</th><th>Latest (settled)</th><th>As of</th><th>Δ vs ~7 pts</th><th>vs peer cohort</th></tr>
+<tr><td>"Not Interested" Rate</td><td>rate</td><td><strong>69.8</strong></td><td>08-13</td><td>+ 64.8%</td><td></td></tr>
+<tr><td>Attributed 30d Robux/User</td><td>rate</td><td><strong>R$ 0.67</strong></td><td>07-15</td><td>&minus; 16.9%</td><td></td></tr>
+<tr><td>Attributed 7d Conversion</td><td>rate</td><td><strong>2.66%</strong></td><td>08-07</td><td>+ 32.5%</td><td></td></tr>
+<tr><td>Attributed 7d Playtime</td><td>rate</td><td><strong>29.3 min</strong></td><td>08-07</td><td>+ 2.6%</td><td></td></tr>
+<tr><td>Attributed 7d Robux/User</td><td>rate</td><td><strong>R$ 0.56</strong></td><td>08-07</td><td>+ 36.3%</td><td></td></tr>
+<tr><td>Attributed D1 Retention</td><td>rate</td><td><strong>14.6%</strong></td><td>08-12</td><td>+ 2.7%</td><td></td></tr>
+<tr><td>Attributed D7 Retention</td><td>rate</td><td><strong>0.86%</strong></td><td>08-06</td><td>&minus; 16.6%</td><td></td></tr>
+<tr><td>End-to-End Conversion</td><td>rate</td><td><strong>4.36%</strong></td><td>08-13</td><td>&minus; 6.7%</td><td></td></tr>
+<tr><td>Event RSVPs</td><td>vol</td><td><strong>696K</strong></td><td>08-13</td><td>+ 0.3%</td><td></td></tr>
+<tr><td>Feedback Votes</td><td>vol</td><td><strong>466</strong></td><td>08-13</td><td>&minus; 27.1%</td><td></td></tr>
+<tr><td>Impressions (unique users)</td><td>vol</td><td><strong>4.5M</strong></td><td>08-13</td><td>&minus; 30.4%</td><td></td></tr>
+<tr><td>Joins from Notifications</td><td>vol</td><td><strong>10.9K</strong></td><td>08-13</td><td>+ 0.2%</td><td></td></tr>
+<tr><td>RFY Play Days (L7)</td><td>rate</td><td><strong>1.3</strong></td><td>08-13</td><td>+ 0.2%</td><td>below median</td></tr>
+<tr><td>RFY Qualified PTR</td><td>rate</td><td><strong>1.27%</strong></td><td>08-13</td><td>&minus; 1.3%</td><td></td></tr>
+</table>
+
+<h3>Retention</h3>
+<table><tr><th>Metric</th><th>Kind</th><th>Latest (settled)</th><th>As of</th><th>Δ vs ~7 pts</th><th>vs peer cohort</th></tr>
+<tr><td>Day 1 Retention</td><td>rate</td><td><strong>14.7%</strong></td><td>08-12</td><td>+ 1.6%</td><td>above median</td></tr>
+<tr><td>Day 1 Retention (7-day avg)</td><td>rate</td><td><strong>13.8%</strong></td><td>08-12</td><td>+ 1.0%</td><td></td></tr>
+<tr><td>Day 30 Retention</td><td>rate</td><td><strong>0.18%</strong></td><td>07-14</td><td>—</td><td>below median</td></tr>
+<tr><td>Day 7 Retention</td><td>rate</td><td><strong>0.86%</strong></td><td>08-06</td><td>&minus; 15.7%</td><td>below median</td></tr>
+<tr><td>Stickiness (DAU/MAU)</td><td>rate</td><td><strong>2.87%</strong></td><td>08-13</td><td>&minus; 33.9%</td><td></td></tr>
+</table>
+
+<h3>Monetization</h3>
+<table><tr><th>Metric</th><th>Kind</th><th>Latest (settled)</th><th>As of</th><th>Δ vs ~7 pts</th><th>vs peer cohort</th></tr>
+<tr><td>ARPDAU</td><td>rate</td><td><strong>R$ 0.49</strong></td><td>08-13</td><td>+ 44.3%</td><td>below median</td></tr>
+<tr><td>ARPPU</td><td>rate</td><td><strong>R$ 19.01</strong></td><td>08-13</td><td>+ 5.0%</td><td>below median</td></tr>
+<tr><td>Daily Revenue</td><td>vol</td><td><strong>R$ 107.2K</strong></td><td>08-13</td><td>&minus; 5.0%</td><td></td></tr>
+<tr><td>Daily Revenue (7-day avg)</td><td>vol</td><td><strong>R$ 111.4K</strong></td><td>08-13</td><td>&minus; 25.7%</td><td></td></tr>
+<tr><td>Event ARPDAU</td><td>rate</td><td><strong>R$ 0.43</strong></td><td>08-13</td><td>+ 0.9%</td><td></td></tr>
+<tr><td>Event Revenue</td><td>vol</td><td><strong>R$ 92.9K</strong></td><td>08-13</td><td>+ 5.0%</td><td></td></tr>
+<tr><td>Item Revenue</td><td>vol</td><td><strong>R$ 106.9K</strong></td><td>08-13</td><td>&minus; 4.8%</td><td></td></tr>
+<tr><td>Payer Conversion</td><td>rate</td><td><strong>2.57%</strong></td><td>08-13</td><td>+ 37.5%</td><td>above median</td></tr>
+<tr><td>Paying Users</td><td>vol</td><td><strong>5.6K</strong></td><td>08-13</td><td>&minus; 9.5%</td><td></td></tr>
+<tr><td>Potential Extra Earnings</td><td>vol</td><td><strong>0</strong></td><td>07-18</td><td>—</td><td></td></tr>
+</table>
+
+<h3>Engagement</h3>
+<table><tr><th>Metric</th><th>Kind</th><th>Latest (settled)</th><th>As of</th><th>Δ vs ~7 pts</th><th>vs peer cohort</th></tr>
+<tr><td>Avg Session Duration</td><td>rate</td><td><strong>11m 3s</strong></td><td>08-13</td><td>+ 4.9%</td><td></td></tr>
+<tr><td>Avg Session Length</td><td>rate</td><td><strong>15.1 min</strong></td><td>08-13</td><td>&minus; 0.7%</td><td>above median</td></tr>
+<tr><td>Daily Active Users</td><td>vol</td><td><strong>219.6K</strong></td><td>08-13</td><td>&minus; 34.2%</td><td></td></tr>
+<tr><td>DAU (7-day avg)</td><td>vol</td><td><strong>240.3K</strong></td><td>08-13</td><td>&minus; 43.8%</td><td></td></tr>
+<tr><td>Event DAU</td><td>vol</td><td><strong>207.6K</strong></td><td>08-13</td><td>+ 5.3%</td><td></td></tr>
+<tr><td>Event Playtime</td><td>rate</td><td><strong>23.0 min</strong></td><td>08-13</td><td>&minus; 0.9%</td><td></td></tr>
+<tr><td>Monthly Active Users</td><td>vol</td><td><strong>7.6M</strong></td><td>08-13</td><td>&minus; 0.5%</td><td></td></tr>
+<tr><td>Peak Concurrent</td><td>vol</td><td><strong>5.3K</strong></td><td>08-13</td><td>+ 54.0%</td><td></td></tr>
+<tr><td>Playtime per Player</td><td>rate</td><td><strong>20.7 min</strong></td><td>08-13</td><td>&minus; 4.1%</td><td>above median</td></tr>
+<tr><td>Playtime/Player (7-day avg)</td><td>rate</td><td><strong>22.1 min</strong></td><td>08-13</td><td>+ 2.2%</td><td>above median</td></tr>
+<tr><td>Sessions Ended</td><td>vol</td><td><strong>—</strong></td><td>—</td><td>—</td><td><em>61 breakdown series only</em></td></tr>
+<tr><td>Total Playtime</td><td>vol</td><td><strong>75.6K h</strong></td><td>08-13</td><td>&minus; 36.9%</td><td></td></tr>
+<tr><td>Unique Players</td><td>vol</td><td><strong>218.8K</strong></td><td>08-13</td><td>&minus; 34.2%</td><td></td></tr>
+<tr><td>Unique Players (7-day avg)</td><td>vol</td><td><strong>—</strong></td><td>—</td><td>—</td><td><em>7 breakdown series only</em></td></tr>
+<tr><td>Visits</td><td>vol</td><td><strong>300.5K</strong></td><td>08-13</td><td>&minus; 36.4%</td><td></td></tr>
+</table>
+
+<h3>Performance</h3>
+<table><tr><th>Metric</th><th>Kind</th><th>Latest (settled)</th><th>As of</th><th>Δ vs ~7 pts</th><th>vs peer cohort</th></tr>
+<tr><td>Avg Client Memory</td><td>rate</td><td><strong>1.04 GB</strong></td><td>08-13</td><td>+ 1.0%</td><td></td></tr>
+<tr><td>Avg FPS</td><td>rate</td><td><strong>42 fps</strong></td><td>08-13</td><td>+ 0.0%</td><td></td></tr>
+<tr><td>Avg Memory</td><td>rate</td><td><strong>890 MB</strong></td><td>08-13</td><td>+ 58.2%</td><td></td></tr>
+<tr><td>Client CPU Time</td><td>rate</td><td><strong>11.3</strong></td><td>08-13</td><td>&minus; 3.8%</td><td></td></tr>
+<tr><td>CPU Core Utilization</td><td>rate</td><td><strong>17.8%</strong></td><td>08-13</td><td>&minus; 3.0%</td><td></td></tr>
+<tr><td>Crash Count</td><td>vol</td><td><strong>1.3K</strong></td><td>08-13</td><td>&minus; 35.8%</td><td></td></tr>
+<tr><td>Crash Rate (15m)</td><td>rate</td><td><strong>0.36%</strong></td><td>08-13</td><td>&minus; 1.5%</td><td></td></tr>
+<tr><td>FPS (10th pct)</td><td>rate</td><td><strong>31 fps</strong></td><td>08-13</td><td>&minus; 0.5%</td><td></td></tr>
+<tr><td>Memory Used %</td><td>rate</td><td><strong>22.6%</strong></td><td>08-13</td><td>+ 0.9%</td><td></td></tr>
+<tr><td>Out-of-Memory Exits</td><td>vol</td><td><strong>302</strong></td><td>08-13</td><td>&minus; 40.7%</td><td></td></tr>
+<tr><td>Script Errors</td><td>vol</td><td><strong>1.6M</strong></td><td>08-13</td><td>&minus; 26.5%</td><td></td></tr>
+<tr><td>Server CPU Time</td><td>rate</td><td><strong>2</strong></td><td>08-13</td><td>+ 3.6%</td><td></td></tr>
+<tr><td>Server Crashes</td><td>vol</td><td><strong>0</strong></td><td>08-13</td><td>—</td><td></td></tr>
+<tr><td>Server FPS (10th pct)</td><td>rate</td><td><strong>56 fps</strong></td><td>08-13</td><td>&minus; 0.1%</td><td></td></tr>
+</table>
+
+<h3>Other</h3>
+<table><tr><th>Metric</th><th>Kind</th><th>Latest (settled)</th><th>As of</th><th>Δ vs ~7 pts</th><th>vs peer cohort</th></tr>
+<tr><td>D1 Retention</td><td>rate</td><td><strong>14.7%</strong></td><td>08-13</td><td>+ 1.6%</td><td></td></tr>
+</table>
+
+<h2>2. How to read that table — the five things that matter</h2>
+
+<table>
+<tr><th>Rung</th><th>Reading</th><th></th></tr>
+<tr><td><strong>Scale</strong></td><td>The window is <strong>one viral run</strong>: DAU 177K (15 Jul) → <strong>688K (2 Aug)</strong> → 220K (13 Aug). Every "&minus;34%" and "&minus;44%" above is the back half of that spike, not decline. Against mid-July the game is <strong>+24% DAU and +28% daily revenue</strong> — it came out of the run structurally bigger.</td><td><span class="ok">GOOD</span></td></tr>
+<tr><td><strong>Hook</strong></td><td>D1 stepped down <strong>15.81% → 13.80%</strong> (&minus;2.0 pp) on 29 Jul and stayed there, 15 consecutive days below baseline. It fell on <em>every</em> traffic source including Friends (19.8 → 18.1%) and Search (15.5 → 13.3%), which rules out "the viral push brought low-intent players" — the game is holding fewer of them. Playtime per player <strong>25.2 → 20.7 min (&minus;18%)</strong>.</td><td><span class="fix">THE PROBLEM</span></td></tr>
+<tr><td><strong>Return loop</strong></td><td>D7 0.86%, D30 0.18%, both below peer cohort. The portfolio's familiar shape — D1 fine, D7 dead. Structural, not caused by this update.</td><td><span class="watch">WEAK</span></td></tr>
+<tr><td><strong>Money</strong></td><td>Healthy, and the <strong>+44% ARPDAU above is not a win — it is the spike unwinding.</strong> ARPDAU ran 0.47–0.63 in mid-July, fell to 0.32–0.42 while the viral audience was in (29 Jul – 9 Aug), and is back to 0.46–0.61 now. Payer conversion did the same (2.5–3.2% → 1.7–2.1% → 2.3–2.6%). Mass audiences monetize worse; this is the tourists leaving, exactly as it should look.</td><td><span class="ok">CLEAN</span></td></tr>
+<tr><td><strong>Reception of V1691</strong></td><td>Downvote rate by version: 14.7% (V1685) → <strong>46.7% (V1691)</strong>. Comments named mechanisms: <em>"I just spent over 100 robux and my game got reset"</em>, <em>"my panda pet gone????"</em>, <em>"Money function is bugged and not updating after a slide"</em>. Only 15 entries, but it moved before any retention metric did.</td><td><span class="fix">BAD</span></td></tr>
+</table>
+
+<p class="note"><strong>Correction to the pre-update baseline.</strong> That baseline listed ARPDAU as "flat for 30 days — any move is a signal". It is not flat: it moves inversely with audience size across a 2× range, as above. The endpoints happen to match (R$0.472 on 15 Jul, R$0.488 on 13 Aug), which is what made it look flat. The valid post-update test is <strong>ARPDAU at a comparable DAU level</strong>, not any move at all.</p>
+
+<h2>3. After the update — the first 1 h 44</h2>
+
+<table>
+<tr><th>Check</th><th>Before</th><th>After publish</th><th></th></tr>
+<tr><td>Server errors, per half hour</td><td>1,530–2,824 (today, pre-publish)</td><td>2,488 · 2,636 · 2,390</td><td><span class="ok">OK</span></td></tr>
+<tr><td>Server errors, day total</td><td>2.0M–5.9M on the last four publish days; 71K–197K on normal days</td><td><strong>76,912</strong> so far today</td><td><span class="ok">OK</span></td></tr>
+<tr><td>Client script errors per player</td><td>9.1 per peak-concurrent</td><td>6.0</td><td><span class="ok">OK</span></td></tr>
+<tr><td>Server errors per player</td><td>0.45 per peak-concurrent</td><td>0.74 — <strong>up ~1.6×</strong></td><td><span class="watch">WATCH</span></td></tr>
+<tr><td>New error signatures on V1698</td><td>—</td><td><strong>5 new script errors — see §4</strong></td><td><span class="fix">FIX</span></td></tr>
+<tr><td>Client crash rate (15 min)</td><td>0.343–0.397% over 5–13 Aug</td><td>0.287% day-to-date</td><td><span class="ok">OK</span></td></tr>
+<tr><td>Server crashes</td><td>0–3 per day</td><td>1 today, at 13:00 — <em>before</em> the publish</td><td><span class="ok">OK</span></td></tr>
+<tr><td>Out-of-memory exits</td><td>289–441/day</td><td>211 day-to-date</td><td><span class="ok">OK</span></td></tr>
+<tr><td>Concurrent players</td><td>4,109 at 17:00, sliding ~5%/30 min all afternoon</td><td>3,397 → 3,473 — ~13% under the afternoon trend, flat since</td><td><span class="watch">WATCH</span></td></tr>
+<tr><td>DAU, revenue, session length, playtime</td><td><em>see §1</em></td><td>daily metrics — <strong>first read 15 Aug</strong></td><td><span class="na">NO DATA</span></td></tr>
+<tr><td>D1 retention</td><td>13.80% mean</td><td>~2-day lag — <strong>first read 16 Aug</strong></td><td><span class="na">NO DATA</span></td></tr>
+<tr><td>Downvote rate on V1698</td><td>46.7% on V1691</td><td>no V1698 feedback in the export yet</td><td><span class="na">NO DATA</span></td></tr>
+</table>
+
+<p><strong>The good news is worth stating plainly.</strong> Each of the last four publishes on this game blew server errors up to <strong>2.0–5.9 million</strong> for the day against a 71–197K baseline, clearing within 24 h. This publish did not: the three half-hours after it went live sit <em>inside</em> the same day's pre-publish range. On the evidence so far it is the cleanest deploy of the last month. <em>Caveat: we hold half-hour detail only for today, so we cannot check whether the old spikes hit instantly or built through the day. Re-confirm on the 15 Aug grab.</em></p>
+
+<p><strong>Two things that are not the update but will move tomorrow's numbers:</strong> a <strong>"NEW UPDATE" experience event started 19:00:49</strong> (notification push — do not read the resulting bump as organic update lift), and the <strong>"X2 EVENT!" ran 16:00:59 → 17:00:59, exactly one hour</strong>, ending 29 minutes before the publish. July's X2 ran seven days.</p>
+
+<h2>4. Errors — how many, and what they are</h2>
+
+<p>Five script-error signatures appeared that <strong>do not exist on V1691</strong>. Roblox stamps each with the version it was first seen on; all five say V1698. Three are the same shape: <em>a script asking for a UI element that isn't there.</em> All are client-side — <strong>no new server-side signature has appeared at all</strong>, and the export is not truncated (8 rows against a 25-row cap), so that absence is real.</p>
+
+<h3>New on V1698</h3>
+<table>
+<tr><th>Count</th><th>Error</th><th>Where</th><th>First seen</th></tr>
+<tr><td><strong>33</strong></td><td><code>attempt to index nil with 'Get'</code></td><td><code>PetBag:484</code> — <code>UpdateView</code>, reached from <code>UIMgr.Open</code> → <code>OnOpen</code></td><td>17:43</td></tr>
+<tr><td><strong>19</strong></td><td><code>Pet is not a valid member of Frame "PetInfo"</code></td><td><code>PetBag:150</code> — <code>RefreshPetInfo</code>, from <code>UpdateView</code></td><td>18:12</td></tr>
+<tr><td>3</td><td><code>Frame is not a valid member of ScreenGui "CoachBag"</code></td><td><code>CoachBag:24</code> — <code>RefreshCoachBag</code></td><td>18:05</td></tr>
+<tr><td>1</td><td><code>attempt to index nil with 'OnImmerse'</code></td><td><code>UIMgr:100</code>, via <code>TradeMgr.OnReceiveTradeInvite</code></td><td>18:11</td></tr>
+<tr><td>1</td><td><code>attempt to index nil with 'Get'</code></td><td><code>Spin:307</code> — <code>RefreshSpinCounts</code></td><td>18:40</td></tr>
+<tr><td>1</td><td><em>Warning</em> — <code>script has run for over 34 seconds and may timeout</code></td><td><code>UIAnimUtils:493</code></td><td>18:57</td></tr>
+<tr><td>2</td><td><code>MeshContentProvider failed … Error reading mesh data: unknown version</code></td><td>Asset-side, two asset IDs — not script</td><td>17:44 / 18:45</td></tr>
+</table>
+
+<p><strong>Why the top one matters:</strong> it fires inside <code>UpdateView</code>, the function that draws the pet bag when a player opens it, so that draw aborts partway. The pre-update baseline named this exact signature as the thing to watch — it stood at <strong>3 events</strong> 13 minutes after the publish. <strong>Ninety minutes later it was at 33.</strong></p>
+
+<p><strong>Two caveats before anyone panics.</strong></p>
+<ul>
+<li>Servers pick up a new build as they cycle, so part of 3 → 33 is simply <em>more players on V1698</em>, not the bug worsening per player.</li>
+<li>Studio's export counts are <strong>not</strong> comparable to the analytics API's. The export tallied ~335 events across all signatures in 24 h on V1691; the API counted 1.4–2.8 <em>million</em> client script errors per day over the same period. So "33" ranks and dates a signature — it is <strong>not</strong> a count of affected players, and it cannot be converted into one: the lookup that joins error text to the API's volumes returns a 500 on this game.</li>
+</ul>
+
+<h3>Pre-existing on V1691 — for contrast, not action</h3>
+<p>Top signatures on the previous build over 24 h: 181 <code>Player:Move called, but player currently has no humanoid</code> (warning) · 52 <code>Multiple StyleLinks under Children</code> (warning) · 46 Roblox CoreGui re-entrancy (not our code) · 8 mesh decode failures · ~18 script timeouts in the <code>GoShop</code> raft UI · <strong>11 <code>SavePlayerData failed … invalid argument #1 to 'pairs'</code></strong> across two players, plus one <code>PlayerData Load failed … READ_FAILED</code>.</p>
+<p>That last group is the open one: <strong>a save-failure path that permanently destroys a player's data.</strong> The counts are a <em>floor</em> — the message embeds the userId, so every affected player gets their own row and the export caps out. Server errors per player were flat across V1691, so it is a tail rather than a mass event, but it is the mechanism players described in the V1691 downvotes ("my game got reset", "my panda pet gone").</p>
+
+<h2>5. Watchlist</h2>
+<table>
+<tr><th>When</th><th>What</th><th>Act if</th></tr>
+<tr><td><strong>Tonight</strong></td><td>Pet-bag error cluster</td><td>Still climbing once server cycling is done (~2–3 h post-publish)</td></tr>
+<tr><td><strong>15 Aug</strong></td><td>Server errors, full day</td><td>Above 1M — the publish spike is meant to clear within 24 h</td></tr>
+<tr><td><strong>15 Aug</strong></td><td>DAU, revenue, peak concurrents</td><td>DAU below ~200K, or revenue per player below R$0.40 at comparable DAU</td></tr>
+<tr><td><strong>15 Aug</strong></td><td>Downvote rate on V1698</td><td>Above 46.7% (V1691's rate)</td></tr>
+<tr><td><strong>16 Aug</strong></td><td>D1, first settled post-update cohort</td><td>Below 12.5% for two settled days</td></tr>
+<tr><td><strong>16 Aug</strong></td><td>Session length / playtime per player</td><td>Session below 14 min (was 15.1)</td></tr>
+<tr><td><strong>Ongoing</strong></td><td>Client crash rate</td><td>Above 0.5% (baseline 0.36%)</td></tr>
+</table>
+
+<h2>6. Questions for the studio</h2>
+<ol>
+<li><strong>Did V1698 touch the pet bag / coach bag UI?</strong> Three of the five new errors are "the script expected a UI element that isn't there" — usually a renamed or moved element the script wasn't updated for, or an asset that didn't ship with the build.</li>
+<li><strong>The X2 event ran one hour</strong> (16:00–17:00) against seven days in July, and ended half an hour before the publish. Intended?</li>
+<li>Open from before this update: <strong>is "money not updating after a slide" a bug or a rebalance?</strong> It is the only named mechanism that would explain playtime per player falling 18%.</li>
+</ol>
+
+<hr/>
+<p class="note"><strong>How to read this.</strong> Everything is measured from the two grabs plus the Studio export — nothing estimated. Partial (in-progress) points are excluded from every comparison and labelled wherever quoted. Where a number does not exist yet the row says <em>NO DATA</em> rather than guessing: an absent measurement is not a clean bill of health. The tool's three accuracy gates were re-run before this report — 23 pass / 2 known-open fails against the dashboard-cell corpus, 140 plan templates with 0 failures, 41/41 regression tests.</p>
+
+</body></html>
