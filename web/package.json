@@ -17,7 +17,11 @@
     "probe-dimensions": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/probe-dimensions.ts",
     "coverage-opencloud": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/coverage-opencloud.ts",
     "probe-granularity": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/probe-granularity.ts",
-    "probe-filter": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/probe-filter.ts"
+    "probe-filter": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/probe-filter.ts",
+    "ladder": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/ladder.ts",
+    "splits": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/splits.ts",
+    "anomaly": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/anomaly.ts",
+    "anomaly-places": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/anomaly-places.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
