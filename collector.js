@@ -130,6 +130,11 @@
       </div>
 
       <div id="rbx-body">
+      <div style="padding:11px 14px;border-bottom:1px solid #211e30">
+        <button id="rbx-dash" style="width:100%;cursor:pointer;background:#221e38;border:1px solid #332f4d;color:#cfc9e0;border-radius:9px;padding:9px;font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:7px">
+          <span style="font-size:13px">▦</span> Open portfolio dashboard
+        </button>
+      </div>
       <div style="padding:12px 14px;border-bottom:1px solid #211e30">
         <div style="font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#7a7291;margin-bottom:8px">Active grab</div>
         <input id="rbx-uni" placeholder="universeId(s), comma-separated"
@@ -219,6 +224,7 @@
     // Wrapped, not passed directly: onclick hands the listener a MouseEvent,
     // which would arrive as runActiveGrab's options object.
     panel.querySelector("#rbx-pull").onclick = () => runActiveGrab();
+    panel.querySelector("#rbx-dash").onclick = () => bg({ type: "open-dashboard" }, 15000);
     panel.querySelector("#rbx-send").onclick = send;
     panel.querySelector("#rbx-save").onclick = () => saveToFolder(captures, guessUniverse(), true);
     panel.querySelector("#rbx-clr").onclick  = () => { captures.length = 0; setStatus(""); render(); };

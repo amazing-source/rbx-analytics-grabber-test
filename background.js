@@ -252,12 +252,14 @@ async function handleScheduleResult(msg) {
 
 // Toolbar click opens the dashboard as a full tab. A popup is too small for a
 // game grid, and this page is the extension's primary surface now.
-chrome.action.onClicked.addListener(async () => {
+async function openDashboard() {
   const url = chrome.runtime.getURL("dashboard.html");
   const open = await chrome.tabs.query({ url });
-  if (open.length) chrome.tabs.update(open[0].id, { active: true });
-  else chrome.tabs.create({ url });
-});
+  if (open.length) await chrome.tabs.update(open[0].id, { active: true });
+  else await chrome.tabs.create({ url });
+  return { ok: true };
+}
+chrome.action.onClicked.addListener(() => { openDashboard(); });
 
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === ALARM_NAME) runScheduledGrab("timer");
@@ -279,6 +281,9 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   else if (msg.type === "schedule:runNow") work = runScheduledGrab("manual");
   else if (msg.type === "grab:now" && msg.universes) work = runScheduledGrab("dashboard", msg.universes);
   else if (msg.type === "grab:status") work = getSchedule();
+  // The panel needs this: a content script cannot call chrome.tabs itself, and
+  // an unpinned extension with no icon is effectively unreachable otherwise.
+  else if (msg.type === "open-dashboard") work = openDashboard();
   else if (msg.type === "schedule:result") work = handleScheduleResult(msg);
   else return;
 
