@@ -435,7 +435,7 @@ in `web/scripts/` (`probe-opencloud`, `compare-opencloud`, `coverage-opencloud`,
 **Learned → routed:**
 - Open Cloud parity + shapes + the granularity-column trap → `CLAUDE.md`
 - The 726-cell measurement and its two self-inflicted false alarms →
-  `data/verify/COVERAGE.md` **F13**
+  `data/verify/COVERAGE.md` **F14**
 - Retention-by-acquisition-source as a discrimination test; platform DAU floors;
   Roblox's published perf targets; funnel back-fill/repeat/filter rules; Configs
   API as the rollback lever and Notifications as re-engagement →
@@ -463,5 +463,5 @@ in `web/scripts/` (`probe-opencloud`, `compare-opencloud`, `coverage-opencloud`,
 
 **Next:** reconcile the main repo — `git fetch && git merge` (behind 2, two
 dirty files the incoming commits rewrite), then port `SKILL.md`, the `CLAUDE.md`
-Open Cloud block and COVERAGE F13 across. Until that happens today's knowledge
+Open Cloud block and COVERAGE F14 across. Until that happens today's knowledge
 exists ONLY in the test clone, which is exactly the failure this log prevents.

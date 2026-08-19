@@ -295,7 +295,7 @@ rows where the API omits the day entirely (D2, proven in rows 20/22).
 - Phase 5: F3, F4, F9, plus INVENTORY.md's gap table (the dashboard shapes we
   never ask for, including everything `HALF_HOUR`).
 
-## F13 — Open Cloud returns the same values as the gateway (2026-08-19)
+## F14 — Open Cloud returns the same values as the gateway (2026-08-19)
 
 **Claim:** the official Open Cloud Analytics Query API is value-identical to the
 dashboard gateway we replay, and covers every metric in the plan.
