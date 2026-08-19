@@ -160,17 +160,36 @@ async function ensureDashboardTab() {
   return { tabId: tab.id, created: true };
 }
 
+// Reloading an unpacked extension ORPHANS the content scripts already running
+// in open tabs: the page keeps the old script, but its link to the new extension
+// context is gone, and every message fails with "Receiving end does not exist".
+// The scheduler hit exactly this — it fired on time and could not reach anyone.
+// Re-inject rather than ask the user to remember to refresh the tab.
+async function reinject(tabId) {
+  try {
+    await chrome.scripting.executeScript({ target: { tabId }, files: ["interceptor.js"], world: "MAIN" });
+    await chrome.scripting.executeScript({ target: { tabId }, files: ["collector.js"], world: "ISOLATED" });
+    return true;
+  } catch { return false; }
+}
+
 // The content script is injected at document_start but its listener is only
 // registered once the script body has run, and a freshly created tab loses that
 // race. Retry rather than assume.
 async function sendToCollector(tabId, msg, attempts = 12) {
   let lastErr = "";
+  let healed = false;
   for (let i = 0; i < attempts; i++) {
     try {
       const resp = await chrome.tabs.sendMessage(tabId, msg);
       if (resp) return resp;
     } catch (e) {
       lastErr = String((e && e.message) || e);
+      // One heal attempt, then keep retrying normally.
+      if (!healed && /Receiving end does not exist|Could not establish connection/i.test(lastErr)) {
+        healed = true;
+        if (await reinject(tabId)) await sleep(900);
+      }
     }
     await sleep(1500);
   }

@@ -1,13 +1,14 @@
 {
   "manifest_version": 3,
   "name": "RBX Analytics Grabber (Internal \u00b7 Phase 1)",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Portfolio dashboard + grabber for owned Roblox experiences. Browse your groups and games, toggle scheduled grabs, and pull all analytics for a universeId by replaying the dashboard's own requests in your session. Own-data only. No credentials are ever read or stored.",
   "permissions": [
     "storage",
     "downloads",
     "alarms",
-    "tabs"
+    "tabs",
+    "scripting"
   ],
   "host_permissions": [
     "http://localhost/*",

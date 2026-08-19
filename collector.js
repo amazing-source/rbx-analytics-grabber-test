@@ -10,6 +10,10 @@
 // The extension stays dumb: the web app decides WHAT to pull; we just execute.
 
 (() => {
+  // Re-injection after an extension reload must not double-register listeners.
+  if (window.__RBX_COLLECTOR_LOADED__) return;
+  window.__RBX_COLLECTOR_LOADED__ = true;
+
   const TAG = "__RBX_GRAB__";
   const EXEC = "__RBX_EXEC__";
   const EXEC_RESULT = "__RBX_EXEC_RESULT__";
@@ -58,7 +62,7 @@
     }
   });
 
-  let panel, launcher, countEl, listEl, statusEl, activeEl, uniInput, startInput, endInput;
+  let panel, launcher, countEl, statusEl, activeEl;
 
   async function getIngestUrl() {
     try {
@@ -145,6 +149,15 @@
   let overlay = null;
 
   function toggleOverlay(show) {
+    // Built once and hidden, never torn down. Rebuilding meant reloading the
+    // whole dashboard document on every open — the frame is cheap to keep and
+    // the second open should be instant.
+    if (overlay) {
+      overlay.style.display = show ? "flex" : "none";
+      if (show) document.addEventListener("keydown", onOverlayKey, true);
+      else document.removeEventListener("keydown", onOverlayKey, true);
+      return;
+    }
     if (show && !overlay) {
       overlay = document.createElement("div");
       overlay.id = "rbx-overlay";
@@ -182,10 +195,6 @@
       overlay.addEventListener("mousedown", (e) => { if (e.target === overlay) toggleOverlay(false); });
       document.documentElement.appendChild(overlay);
       document.addEventListener("keydown", onOverlayKey, true);
-    } else if (!show && overlay) {
-      document.removeEventListener("keydown", onOverlayKey, true);
-      overlay.remove();
-      overlay = null;
     }
   }
 
@@ -204,74 +213,23 @@
       "overflow:hidden", "backdrop-filter:saturate(1.2)"
     ].join(";");
     panel.innerHTML = `
-      <div style="padding:12px 14px;background:linear-gradient(180deg,#1e1b2e,#1a1828);display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px solid #272438">
+      <div style="padding:11px 13px;background:linear-gradient(180deg,#1e1b2e,#1a1828);display:flex;justify-content:space-between;align-items:center;gap:8px">
         <span style="display:flex;align-items:center;gap:8px;min-width:0">
           <span style="width:7px;height:7px;border-radius:99px;background:#7c5cff;box-shadow:0 0 0 3px rgba(124,92,255,.18);flex:none"></span>
           <strong style="color:#efeaff;font-size:13px;letter-spacing:.2px">RBX Grab</strong>
-          <span style="color:#6e6885;font-size:11px">Phase 1</span>
         </span>
         <span style="display:flex;align-items:center;gap:6px;flex:none">
           <span id="rbx-count" title="captures buffered" style="background:#2a2540;color:#cfc9e0;border-radius:99px;padding:2px 9px;font-size:11px;font-variant-numeric:tabular-nums">0</span>
-          <button id="rbx-min" title="Collapse" style="cursor:pointer;background:transparent;border:0;color:#8f88a8;border-radius:7px;padding:2px 7px;font-size:16px;line-height:1">–</button>
-          <button id="rbx-close" title="Hide" style="cursor:pointer;background:transparent;border:0;color:#8f88a8;border-radius:7px;padding:2px 7px;font-size:16px;line-height:1">×</button>
+          <button id="rbx-min" title="Collapse" style="cursor:pointer;background:transparent;border:0;color:#8f88a8;border-radius:7px;padding:2px 7px;font-size:16px;line-height:1">\u2013</button>
+          <button id="rbx-close" title="Hide" style="cursor:pointer;background:transparent;border:0;color:#8f88a8;border-radius:7px;padding:2px 7px;font-size:16px;line-height:1">\u00d7</button>
         </span>
       </div>
-
-      <div id="rbx-body">
-      <div style="padding:11px 14px;border-bottom:1px solid #211e30">
-        <button id="rbx-dash" style="width:100%;cursor:pointer;background:#221e38;border:1px solid #332f4d;color:#cfc9e0;border-radius:9px;padding:9px;font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:7px">
-          <span style="font-size:13px">▦</span> Open portfolio dashboard
+      <div id="rbx-body" style="padding:11px 13px">
+        <button id="rbx-dash" style="width:100%;cursor:pointer;background:linear-gradient(180deg,#8468ff,#6d4ff5);border:0;color:#fff;border-radius:9px;padding:10px;font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:7px">
+          <span style="font-size:13px">\u25a6</span> Open dashboard
         </button>
-      </div>
-      <div style="padding:12px 14px;border-bottom:1px solid #211e30">
-        <div style="font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#7a7291;margin-bottom:8px">Active grab</div>
-        <input id="rbx-uni" placeholder="universeId(s), comma-separated"
-          style="width:100%;box-sizing:border-box;background:#0f0e18;border:1px solid #2b2740;color:#e9e9f2;border-radius:9px;padding:8px 10px;margin-bottom:7px;font-size:12px;outline:none"/>
-        <div style="display:flex;gap:7px;margin-bottom:9px">
-          <input id="rbx-start" type="date" title="start (optional)"
-            style="flex:1;min-width:0;background:#0f0e18;border:1px solid #2b2740;color:#9a93b3;border-radius:9px;padding:6px 8px;font-size:11.5px;outline:none"/>
-          <input id="rbx-end" type="date" title="end (optional)"
-            style="flex:1;min-width:0;background:#0f0e18;border:1px solid #2b2740;color:#9a93b3;border-radius:9px;padding:6px 8px;font-size:11.5px;outline:none"/>
-        </div>
-        <button id="rbx-pull" style="width:100%;cursor:pointer;background:linear-gradient(180deg,#8468ff,#6d4ff5);border:0;color:#fff;border-radius:9px;padding:9px;font-size:12.5px;font-weight:600;letter-spacing:.2px">Pull all metrics</button>
-        <div id="rbx-active" style="font-size:11px;color:#9a93b3;min-height:15px;margin-top:8px;line-height:1.4"></div>
-      </div>
-
-      <div style="padding:12px 14px;border-bottom:1px solid #211e30">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <span style="font-size:10px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#7a7291">Scheduled</span>
-          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;color:#9a93b3;font-size:11px">
-            <input id="rbx-sch-on" type="checkbox" style="cursor:pointer;margin:0;accent-color:#7c5cff"/> enabled
-          </label>
-        </div>
-        <input id="rbx-sch-uni" placeholder="universeId(s) to grab on a timer"
-          style="width:100%;box-sizing:border-box;background:#0f0e18;border:1px solid #2b2740;color:#e9e9f2;border-radius:9px;padding:8px 10px;margin-bottom:7px;font-size:12px;outline:none"/>
-        <div style="display:flex;gap:7px;align-items:center">
-          <span style="font-size:11px;color:#6e6885;flex:none">every</span>
-          <select id="rbx-sch-int" style="flex:1;min-width:0;background:#0f0e18;border:1px solid #2b2740;color:#e9e9f2;border-radius:9px;padding:6px 8px;font-size:11.5px;outline:none">
-            <option value="60">1 hour</option>
-            <option value="180">3 hours</option>
-            <option value="360">6 hours</option>
-            <option value="720">12 hours</option>
-            <option value="1440">24 hours</option>
-          </select>
-          <button id="rbx-sch-now" style="cursor:pointer;background:#2a2540;border:0;color:#cfc9e0;border-radius:9px;padding:6px 11px;font-size:11.5px;font-weight:600;flex:none">Run now</button>
-        </div>
-        <div id="rbx-sch-info" style="font-size:10.5px;color:#6e6885;margin-top:8px;min-height:13px;line-height:1.45"></div>
-      </div>
-
-      <div id="rbx-list" style="max-height:118px;overflow:auto;padding:8px 14px;font-size:11px;color:#8f88a8"></div>
-      <div id="rbx-status" style="padding:0 14px 8px;font-size:11px;color:#9a93b3;min-height:15px"></div>
-
-      <div style="display:flex;gap:7px;padding:10px 14px;background:#171525;border-top:1px solid #211e30">
-        <button id="rbx-send" style="flex:1;cursor:pointer;background:#2a2540;border:0;color:#cfc9e0;border-radius:9px;padding:8px;font-size:12px;font-weight:500">Send captured</button>
-        <button id="rbx-save" title="Save to data/raw" style="cursor:pointer;background:#2a2540;border:0;color:#cfc9e0;border-radius:9px;padding:8px 11px;font-size:12px">⤓</button>
-        <button id="rbx-clr" title="Clear buffer" style="cursor:pointer;background:#2a2540;border:0;color:#cfc9e0;border-radius:9px;padding:8px 11px;font-size:12px">×</button>
-      </div>
-      <div style="padding:8px 14px 11px;background:#171525;font-size:10px;color:#5f5a76;display:flex;gap:10px">
-        <a id="rbx-cfg" href="#" style="color:#8f88a8;text-decoration:none;border-bottom:1px dotted #4a4460">ingest URL</a>
-        <a id="rbx-dir" href="#" style="color:#8f88a8;text-decoration:none;border-bottom:1px dotted #4a4460">save folder</a>
-      </div>
+        <div id="rbx-active" style="font-size:11px;color:#9a93b3;min-height:0;margin-top:8px;line-height:1.4"></div>
+        <div id="rbx-status" style="font-size:11px;color:#6e6885;min-height:0;margin-top:4px"></div>
       </div>`;
     document.documentElement.appendChild(panel);
 
@@ -290,13 +248,8 @@
     launcher.onclick = () => setUiState("open");
     document.documentElement.appendChild(launcher);
     countEl  = panel.querySelector("#rbx-count");
-    listEl   = panel.querySelector("#rbx-list");
     statusEl = panel.querySelector("#rbx-status");
     activeEl = panel.querySelector("#rbx-active");
-    uniInput = panel.querySelector("#rbx-uni");
-    startInput = panel.querySelector("#rbx-start");
-    endInput = panel.querySelector("#rbx-end");
-    uniInput.value = guessUniverse();
     panel.querySelector("#rbx-min").onclick = () => {
       const collapsed = panel.querySelector("#rbx-body").style.display === "none";
       setUiState(collapsed ? "open" : "collapsed");
@@ -309,77 +262,9 @@
       try { const s = await chrome.storage.local.get(UI_STATE_KEY); state = s[UI_STATE_KEY] || "open"; } catch {}
       applyUiState(state);
     })();
-    // Wrapped, not passed directly: onclick hands the listener a MouseEvent,
     // which would arrive as runActiveGrab's options object.
-    panel.querySelector("#rbx-pull").onclick = () => runActiveGrab();
     panel.querySelector("#rbx-dash").onclick = () => toggleOverlay(true);
-    panel.querySelector("#rbx-send").onclick = send;
-    panel.querySelector("#rbx-save").onclick = () => saveToFolder(captures, guessUniverse(), true);
-    panel.querySelector("#rbx-clr").onclick  = () => { captures.length = 0; setStatus(""); render(); };
-    panel.querySelector("#rbx-cfg").onclick  = async (e) => {
-      e.preventDefault();
-      const next = prompt("Ingest URL:", await getIngestUrl());
-      if (next) { await setIngestUrl(next); setStatus("ingest URL saved"); }
-    };
-    panel.querySelector("#rbx-dir").onclick  = async (e) => {
-      e.preventDefault();
-      const next = prompt("Save folder (relative to your Downloads directory):", await getDownloadDir());
-      if (next) {
-        try { await chrome.storage.local.set({ [DOWNLOAD_DIR_KEY]: next }); setStatus("folder saved"); } catch {}
-      }
-    };
 
-    // ---- scheduled grabs ------------------------------------------------
-    // The config lives in the service worker's storage, not here: this content
-    // script dies on every navigation, and a schedule that forgets itself when
-    // you click a link is not a schedule.
-    const schOn = panel.querySelector("#rbx-sch-on");
-    const schUni = panel.querySelector("#rbx-sch-uni");
-    const schInt = panel.querySelector("#rbx-sch-int");
-    const schInfo = panel.querySelector("#rbx-sch-info");
-
-    const fmtMins = (m) => (m >= 60 ? `${Math.round(m / 60)}h` : `${m}m`);
-
-    function describeSchedule(cfg) {
-      if (!cfg || cfg.error) return cfg && cfg.error ? `scheduler unreachable: ${cfg.error}` : "";
-      const ids = String(cfg.universes || "").split(/[\s,]+/).filter((x) => /^\d+$/.test(x));
-      const bits = [];
-      if (!cfg.enabled) bits.push("off");
-      else if (!ids.length) bits.push("on, but no universeId set — nothing will fire");
-      else bits.push(`on · ${ids.length} universe(s) · every ${fmtMins(Number(cfg.everyMinutes) || 360)}`);
-      if (cfg.lastRunAt) bits.push(`last ${new Date(cfg.lastRunAt).toLocaleString()}`);
-      if (cfg.lastResult) bits.push(cfg.lastResult);
-      return bits.join(" · ");
-    }
-
-    async function loadSchedule() {
-      const cfg = await bg({ type: "schedule:get" }, 15000);
-      if (!cfg || cfg.error) { schInfo.textContent = describeSchedule(cfg); return; }
-      schOn.checked = !!cfg.enabled;
-      schUni.value = cfg.universes || "";
-      schInt.value = String(Number(cfg.everyMinutes) || 360);
-      schInfo.textContent = describeSchedule(cfg);
-    }
-
-    async function saveSchedule() {
-      const cfg = await bg({ type: "schedule:set", patch: {
-        enabled: schOn.checked,
-        universes: schUni.value,
-        everyMinutes: Number(schInt.value) || 360,
-      } }, 15000);
-      schInfo.textContent = describeSchedule(cfg);
-    }
-
-    schOn.onchange = saveSchedule;
-    schInt.onchange = saveSchedule;
-    schUni.onchange = saveSchedule;
-    panel.querySelector("#rbx-sch-now").onclick = async () => {
-      schInfo.textContent = "starting…";
-      const r = await bg({ type: "schedule:runNow" }, 60000);
-      if (r && r.error) schInfo.textContent = `could not start: ${r.error}`;
-      else setTimeout(loadSchedule, 2000);
-    };
-    loadSchedule();
   }
 
   // The scheduler lives in the service worker, which deliberately cannot reach
@@ -554,7 +439,7 @@
   // one of the two is the one the three gates were ever run against.
   async function runActiveGrab(opts) {
     const o = opts || {};
-    const rawIds = o.universes != null ? o.universes : (uniInput.value || "");
+    const rawIds = o.universes != null ? o.universes : (uniInput ? uniInput.value : "");
     const ids = String(rawIds).split(/[\s,]+/).filter((x) => /^\d+$/.test(x));
     const summaries = [];
     if (!ids.length) {
@@ -574,8 +459,8 @@
 
     const ingestUrl = await getIngestUrl();
     const base = baseFrom(ingestUrl);
-    const start = toISO(o.start != null ? o.start : startInput.value);
-    const end = toISO(o.end != null ? o.end : endInput.value);
+    const start = toISO(o.start != null ? o.start : "");
+    const end = toISO(o.end != null ? o.end : "");
 
     for (const u of ids) {
       setActive(`planning ${u}…`);
@@ -777,10 +662,10 @@
 
   function renderNow() {
     ensurePanel();
-    countEl.textContent = String(captures.length);
-    listEl.innerHTML = captures.slice(-15).reverse()
-      .map((c) => `<div title="${c.url}" style="padding:3px 0;border-bottom:1px solid #221f30;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><span style="color:#7c5cff">${c.via || c.method}</span> ${shortUrl(c.url)}</div>`)
-      .join("") || `<div style="opacity:.5">passive captures appear here · or use Active grab above</div>`;
+    // The capture LIST lives in the dashboard now. All this has to do is keep
+    // the counter honest, which is one textContent write instead of rebuilding
+    // a list on every captured response.
+    if (countEl) countEl.textContent = String(captures.length);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderNow);
