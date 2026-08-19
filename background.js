@@ -252,6 +252,17 @@ async function handleScheduleResult(msg) {
 
 // Toolbar click opens the dashboard as a full tab. A popup is too small for a
 // game grid, and this page is the extension's primary surface now.
+// The dashboard runs on the extension origin; the capture buffer and the Roblox
+// session live in the content script. Anything the dashboard wants done to that
+// buffer is forwarded here, because only the worker can reach a tab.
+async function collectorCmd(msg) {
+  let tab;
+  try { tab = await ensureDashboardTab(); }
+  catch (e) { return { ok: false, error: "no create.roblox.com tab: " + String((e && e.message) || e) }; }
+  const r = await sendToCollector(tab.tabId, { type: "collector-cmd", cmd: msg.cmd, payload: msg.payload || null }, 6);
+  return r || { ok: false, error: "collector did not answer" };
+}
+
 async function openDashboard() {
   const url = chrome.runtime.getURL("dashboard.html");
   const open = await chrome.tabs.query({ url });
@@ -284,6 +295,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   // The panel needs this: a content script cannot call chrome.tabs itself, and
   // an unpinned extension with no icon is effectively unreachable otherwise.
   else if (msg.type === "open-dashboard") work = openDashboard();
+  else if (msg.type === "collector:cmd") work = collectorCmd(msg);
   else if (msg.type === "schedule:result") work = handleScheduleResult(msg);
   else return;
 

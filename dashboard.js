@@ -13,6 +13,18 @@
 // a silent console error cost an afternoon; it must not be possible again.
 
 const CFG_KEY = "rbx_dash_cfg";
+const CAPTURES_MIRROR_KEY = "rbx_captures_mirror";
+// Families a grab can skip. Excluding one drops every template carrying it —
+// that is how a long grab gets cheaper without shortening its window.
+const METRIC_GROUPS = [
+  { id: "perf", label: "Performance and crashes", hint: "FPS, memory, CPU, crash counts. Only ~28 days of this exists, so anything skipped today is gone for good." },
+  { id: "errors", label: "Errors", hint: "ErrorCount and message hashes. Large, and the horizon is ~56 days." },
+  { id: "funnels", label: "Funnels", hint: "Only meaningful where the game instruments them." },
+  { id: "benchmarks", label: "Genre benchmarks", hint: "Peer percentiles. Rarely move day to day." },
+  { id: "ads", label: "Ads and notifications", hint: "RFY, impressions, notification reach." },
+];
+
+const collector = (cmd, payload) => bg({ type: "collector:cmd", cmd, payload }, 180000);
 const INGEST_URL_KEY = "rbx_ingest_url";
 const DEFAULT_INGEST = "http://localhost:3000/api/ingest";
 const EMBEDDED = window.top !== window.self;
@@ -21,6 +33,8 @@ const state = {
   cfg: { username: "", userId: 0, games: {} },
   user: null, groups: [], group: null, games: [], access: {},
   serverUp: false, hasKey: false, query: "", menuOpen: false, selected: null, loading: "",
+  view: "games", captures: { count: 0, recent: [] }, sched: null, selectedIds: "",
+  ingestUrl: "", downloadDir: "",
 };
 
 /* ---------------------------------------------------------------- plumbing */
@@ -171,8 +185,17 @@ function renderRail() {
         ${mO.length ? `<div class="sect">Other groups · ${mO.length}</div>${mO.map(row).join("")}` : ""}
       </div></div>` : ""}`;
 
-  // No Analytics/Updates/Settings tabs: they were decoration that did nothing,
-  // and a control that does not work is worse than one that is absent.
+  const views = [["games", "Experiences", "\u25a6"], ["grab", "Grab", "\u2913"], ["settings", "Settings", "\u2699"]];
+  $("nav").innerHTML = views.map(function (v) {
+    return '<button class="nav ' + (state.view === v[0] ? "on" : "") + '" data-view="' + v[0] + '"><span class="ic">' + v[2] + "</span>" + v[1] + "</button>";
+  }).join("");
+  document.querySelectorAll("[data-view]").forEach(function (b) {
+    b.onclick = function () {
+      state.view = b.dataset.view;
+      renderRail(); renderStage();
+      if (state.view === "grab") refreshGrabState();
+    };
+  });
 
   $("foot").innerHTML = state.user
     ? `<div class="me">${state.user.avatarUrl ? `<img src="${esc(state.user.avatarUrl)}" alt="">` : `<div class="emb" style="border-radius:99px"></div>`}
@@ -254,8 +277,178 @@ function gameCard(g) {
   </button>`;
 }
 
+
+async function refreshGrabState() {
+  const m = await storageGet(CAPTURES_MIRROR_KEY, { count: 0, recent: [] });
+  state.captures = m || { count: 0, recent: [] };
+  const st = await bg({ type: "schedule:get" }, 15000);
+  if (st && !st.error) state.sched = st;
+  if (state.view === "grab") renderStage();
+}
+
+function shortUrl(u) {
+  try { const x = new URL(u); return x.host.replace("www.", "") + x.pathname; }
+  catch { return String(u).slice(0, 60); }
+}
+
+function schedLine(sc) {
+  if (!sc || !sc.enabled) return "off";
+  const ids = String(sc.universes || "").split(/[\s,]+/).filter(Boolean);
+  if (!ids.length) return "on, but no universeId set - nothing will fire";
+  let out = "on \u00b7 " + ids.length + " universe(s) \u00b7 every " + Math.round((sc.everyMinutes || 360) / 60) + "h";
+  if (sc.lastRunAt) out += " \u00b7 last " + new Date(sc.lastRunAt).toLocaleString();
+  if (sc.lastResult) out += " \u00b7 " + sc.lastResult;
+  return out;
+}
+
+function renderGrab() {
+  $("title").textContent = "Grab";
+  $("subtitle").textContent = "Pull now, or leave it on a timer. Runs in your logged-in Roblox session.";
+  const sc = state.sched || {};
+  const ids = state.games.map((g) => g.universeId).join(", ");
+  const intOpts = [[60, "1 hour"], [180, "3 hours"], [360, "6 hours"], [720, "12 hours"], [1440, "24 hours"]]
+    .map((o) => `<option value="${o[0]}" ${Number(sc.everyMinutes || 360) === o[0] ? "selected" : ""}>${o[1]}</option>`).join("");
+  const rows = (state.captures.recent || []).slice().reverse()
+    .map((c) => `<div><span class="m">${esc(c.via || c.method || "")}</span>${esc(shortUrl(c.url))}</div>`).join("");
+
+  $("stage").innerHTML = `
+    <div class="box">
+      <h3>Active grab</h3>
+      <div class="hint">Every metric for these universes. Leave the dates empty for the default 28-day window.</div>
+      <input id="ag-uni" placeholder="universeId(s), comma-separated" value="${esc(state.selectedIds || "")}">
+      <div class="panelrow" style="margin-top:9px">
+        <input id="ag-start" type="date" style="width:auto;flex:1;min-width:132px">
+        <input id="ag-end" type="date" style="width:auto;flex:1;min-width:132px">
+      </div>
+      <div class="panelrow" style="margin-top:11px">
+        <button class="btn" id="ag-go" ${state.serverUp ? "" : "disabled"}>Pull all metrics</button>
+        <button class="btn-ghost" id="ag-fill">Use this group (${state.games.length})</button>
+        <span class="muted" id="ag-msg">${state.serverUp ? "" : "Needs the local app running."}</span>
+      </div>
+    </div>
+
+    <div class="box">
+      <h3>Scheduled</h3>
+      <div class="hint">Fires while Chrome is open. One hour minimum, because a full grab is minutes of requests.</div>
+      <label class="chk" style="display:inline-flex;margin-bottom:10px">
+        <input type="checkbox" id="sc-on" ${sc.enabled ? "checked" : ""}> enabled
+      </label>
+      <input id="sc-uni" placeholder="universeId(s) to grab on a timer" value="${esc(sc.universes || "")}">
+      <div class="panelrow" style="margin-top:9px">
+        <span class="muted">every</span>
+        <select id="sc-int" style="width:auto">${intOpts}</select>
+        <button class="btn-ghost" id="sc-now">Run now</button>
+      </div>
+      <div class="muted" style="margin-top:10px;font-size:11.5px">${esc(schedLine(sc))}</div>
+    </div>
+
+    <div class="box">
+      <h3>Captured <span class="muted" style="font-weight:400">\u00b7 ${state.captures.count || 0} buffered</span></h3>
+      <div class="hint">What the page has seen. A grab lands here first, then goes to data/raw.</div>
+      <div class="log">${rows || '<div class="muted">nothing captured yet</div>'}</div>
+      <div class="panelrow" style="margin-top:11px">
+        <button class="btn-ghost" id="cap-send">Send captured</button>
+        <button class="btn-ghost" id="cap-save">Save to data/raw</button>
+        <button class="btn-ghost" id="cap-clear">Clear</button>
+        <span class="muted" id="cap-msg"></span>
+      </div>
+    </div>`;
+
+  const say = (id, t) => { const e = $(id); if (e) e.textContent = t; };
+  $("ag-fill").onclick = () => { $("ag-uni").value = ids; };
+  $("ag-go").onclick = guard("pull", async () => {
+    const u = $("ag-uni").value.trim();
+    if (!u) { say("ag-msg", "enter at least one universeId"); return; }
+    $("ag-go").disabled = true; say("ag-msg", "running in a Roblox tab\u2026");
+    const r = await collector("pull", { universes: u, start: $("ag-start").value, end: $("ag-end").value });
+    $("ag-go").disabled = false;
+    say("ag-msg", r && r.ok ? String(r.summary || "done").slice(0, 140) : (r && r.error) || "failed");
+    refreshGrabState();
+  });
+
+  const saveSched = guard("schedule", async () => {
+    const r = await bg({ type: "schedule:set", patch: {
+      enabled: $("sc-on").checked,
+      universes: $("sc-uni").value,
+      everyMinutes: Number($("sc-int").value) || 360,
+    } }, 15000);
+    if (r && !r.error) state.sched = r;
+    renderStage();
+  });
+  $("sc-on").onchange = saveSched;
+  $("sc-int").onchange = saveSched;
+  $("sc-uni").onchange = saveSched;
+  $("sc-now").onclick = guard("runNow", async () => {
+    await bg({ type: "schedule:runNow" }, 60000);
+    setTimeout(refreshGrabState, 2500);
+  });
+
+  $("cap-send").onclick = guard("send", async () => { const r = await collector("send"); say("cap-msg", (r && (r.msg || r.error)) || ""); refreshGrabState(); });
+  $("cap-save").onclick = guard("save", async () => { const r = await collector("save"); say("cap-msg", (r && (r.msg || r.error)) || "saved"); refreshGrabState(); });
+  $("cap-clear").onclick = guard("clear", async () => { await collector("clear"); refreshGrabState(); });
+}
+
+function renderSettings() {
+  $("title").textContent = "Settings";
+  $("subtitle").textContent = "Applies to every grab unless a game overrides it.";
+  const ex = state.cfg.exclude || {};
+  const intOpts = [["", "off"], ["1", "1 hour"], ["3", "3 hours"], ["6", "6 hours"], ["12", "12 hours"], ["24", "24 hours"]]
+    .map((o) => `<option value="${o[0]}" ${String(state.cfg.defaultIntervalHours == null ? "" : state.cfg.defaultIntervalHours) === o[0] ? "selected" : ""}>${o[1]}</option>`).join("");
+  const groups = METRIC_GROUPS.map((g) => `
+    <label class="chk ${ex[g.id] ? "off" : ""}" style="align-items:flex-start">
+      <input type="checkbox" data-ex="${g.id}" ${ex[g.id] ? "checked" : ""} style="margin-top:3px">
+      <span><b style="color:var(--ink);font-weight:600">${g.label}</b>
+        <span style="display:block;color:var(--ink-3);font-size:11.5px;margin-top:2px;line-height:1.45">${g.hint}</span></span>
+    </label>`).join("");
+
+  $("stage").innerHTML = `
+    <div class="box">
+      <h3>Default interval</h3>
+      <div class="hint">Used when a game is switched to a repeat grab without picking one.</div>
+      <select id="st-int" style="width:auto">${intOpts}</select>
+    </div>
+
+    <div class="box">
+      <h3>Skip these in a grab</h3>
+      <div class="hint">Fewer requests, faster grab. Think hard before skipping performance: only ~28 days of it exists, so what you do not pull today is gone permanently.</div>
+      <div style="display:flex;flex-direction:column;gap:8px">${groups}</div>
+    </div>
+
+    <div class="box">
+      <h3>Alerts</h3>
+      <div class="hint">A webhook fires when a metric falls outside what that weekday normally does for that game - a measured seasonal baseline, not a typed threshold. A fixed number would fire every Wednesday on a game whose Wednesday runs 42% below its own weekly mean.</div>
+      <input id="st-hook" placeholder="https://discord.com/api/webhooks/\u2026" value="${esc(state.cfg.discordWebhook || "")}">
+      <div class="muted" style="margin-top:9px;font-size:11.5px">Stored, not sending yet. Per-game webhooks override this one.</div>
+    </div>
+
+    <div class="box">
+      <h3>Local app</h3>
+      <div class="hint">Where grabs are planned and where captures are written.</div>
+      <input id="st-ingest" placeholder="http://localhost:3000/api/ingest" value="${esc(state.ingestUrl || "")}">
+      <div style="margin-top:9px"><input id="st-dir" placeholder="rbx-analytics-grabber-test/data/raw" value="${esc(state.downloadDir || "")}"></div>
+      <div class="muted" style="margin-top:9px;font-size:11.5px">Save folder is relative to your Downloads directory. Status: ${state.serverUp ? "connected" : "not reachable"}.</div>
+    </div>`;
+
+  $("st-int").onchange = guard("setInterval", async (e) => {
+    state.cfg.defaultIntervalHours = e.target.value === "" ? null : Number(e.target.value);
+    await saveCfg();
+  });
+  document.querySelectorAll("[data-ex]").forEach((b) => {
+    b.onchange = guard("setExclude", async () => {
+      state.cfg.exclude = state.cfg.exclude || {};
+      state.cfg.exclude[b.dataset.ex] = b.checked;
+      await saveCfg(); renderStage();
+    });
+  });
+  $("st-hook").onchange = guard("setHook", async (e) => { state.cfg.discordWebhook = e.target.value.trim(); await saveCfg(); });
+  $("st-ingest").onchange = guard("setIngest", async (e) => { state.ingestUrl = e.target.value.trim(); await storageSet("rbx_ingest_url", state.ingestUrl); });
+  $("st-dir").onchange = guard("setDir", async (e) => { state.downloadDir = e.target.value.trim(); await storageSet("rbx_download_dir", state.downloadDir); });
+}
+
 function renderStage() {
   if (!state.user) return renderWelcome();
+  if (state.view === "grab") return renderGrab();
+  if (state.view === "settings") return renderSettings();
   $("title").textContent = state.group ? state.group.name : "Experiences";
   $("subtitle").textContent = state.group
     ? `${state.games.length} experience${state.games.length === 1 ? "" : "s"}${state.group.known ? " · studio" : ""}`
@@ -268,7 +461,7 @@ function renderStage() {
     : `<div class="grid">${state.games.map(gameCard).join("")}</div>`;
 
   document.querySelectorAll(".gcard[data-uid]").forEach((el) => {
-    el.onclick = () => { state.selected = state.games.find((g) => String(g.universeId) === el.dataset.uid); renderModal(); };
+    el.onclick = () => { state.selected = state.games.find((g) => String(g.universeId) === el.dataset.uid); state.selectedIds = el.dataset.uid; renderModal(); };
   });
 }
 
@@ -374,6 +567,8 @@ const boot = guard("boot", async (afterIdentify) => {
   renderRail();
   if (!state.user && !state.cfg.username) renderWelcome();
 
+  state.ingestUrl = await storageGet("rbx_ingest_url", DEFAULT_INGEST);
+  state.downloadDir = await storageGet("rbx_download_dir", "");
   const known = await loadKnown();
   renderBanners();
 

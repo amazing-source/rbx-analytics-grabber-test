@@ -20,6 +20,20 @@
   // Relative to the browser's Downloads folder — the repo lives there.
   const DEFAULT_DOWNLOAD_DIR = "rbx-analytics-grabber/data/raw";
   const captures = [];
+  const CAPTURES_MIRROR_KEY = "rbx_captures_mirror";
+
+  // The dashboard cannot see this array: it runs on the extension origin in an
+  // iframe. Mirror a light summary to storage so it can render the same list
+  // without a round trip per paint. Throttled — a grab pushes hundreds of rows.
+  let mirrorTimer = null;
+  function mirrorCaptures() {
+    if (mirrorTimer) return;
+    mirrorTimer = setTimeout(() => {
+      mirrorTimer = null;
+      const recent = captures.slice(-40).map((c2) => ({ url: c2.url, method: c2.method, via: c2.via, ts: c2.ts }));
+      try { chrome.storage.local.set({ [CAPTURES_MIRROR_KEY]: { count: captures.length, recent, at: Date.now() } }); } catch {}
+    }, 400);
+  }
 
   // exec correlation: id -> resolver
   const pending = new Map();
@@ -35,6 +49,7 @@
         reqBody: d.reqBody ?? null, body: d.body,
       });
       render();
+      mirrorCaptures();
       return;
     }
     if (d[EXEC_RESULT]) {
@@ -359,6 +374,37 @@
   // Roblox: it drives this page instead, so every request still leaves from the
   // session the browser already holds. Answer "started" straight away and report
   // the outcome separately — a full grab far outlives the message channel.
+  // Commands from the dashboard. Kept tiny and synchronous-ish: the dashboard
+  // owns the UI, this owns the buffer and the Roblox session.
+  chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
+    if (!msg || msg.type !== "collector-cmd") return;
+    ensurePanel();
+    (async () => {
+      try {
+        if (msg.cmd === "captures") {
+          sendResponse({ ok: true, count: captures.length, recent: captures.slice(-40).map((c2) => ({ url: c2.url, method: c2.method, via: c2.via, ts: c2.ts })) });
+        } else if (msg.cmd === "clear") {
+          captures.length = 0; setStatus(""); render(); mirrorCaptures();
+          sendResponse({ ok: true, count: 0 });
+        } else if (msg.cmd === "send") {
+          const out = await deliver(captures, guessUniverse());
+          setStatus(out.msg, !out.ok ? "#ff7c7c" : "#7cd992");
+          sendResponse({ ok: out.ok, msg: out.msg });
+        } else if (msg.cmd === "save") {
+          const out = await saveToFolder(captures, guessUniverse(), true);
+          sendResponse({ ok: true, msg: (out && out.msg) || "saved" });
+        } else if (msg.cmd === "pull") {
+          const p = msg.payload || {};
+          const r = await runActiveGrab({ universes: p.universes, start: p.start || "", end: p.end || "" });
+          sendResponse({ ok: true, summary: (r && r.summary) || "done" });
+        } else {
+          sendResponse({ ok: false, error: "unknown cmd " + msg.cmd });
+        }
+      } catch (e) { sendResponse({ ok: false, error: String((e && e.message) || e) }); }
+    })();
+    return true;
+  });
+
   chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
     if (!msg || msg.type !== "scheduled-grab") return;
     ensurePanel();
@@ -701,7 +747,19 @@
     catch { return String(u).slice(0, 50); }
   }
 
+  // Throttled. render() used to run once per captured response, so a 400-request
+  // grab did 400 full innerHTML rebuilds of the list while the page was already
+  // busy replaying requests — which is what made the extension feel laggy.
+  // One repaint per animation frame is indistinguishable to a human and ~400x
+  // cheaper here.
+  let renderQueued = false;
   function render() {
+    if (renderQueued) return;
+    renderQueued = true;
+    requestAnimationFrame(() => { renderQueued = false; renderNow(); });
+  }
+
+  function renderNow() {
     ensurePanel();
     countEl.textContent = String(captures.length);
     listEl.innerHTML = captures.slice(-15).reverse()
@@ -709,6 +767,6 @@
       .join("") || `<div style="opacity:.5">passive captures appear here · or use Active grab above</div>`;
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", render);
-  else render();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", renderNow);
+  else renderNow();
 })();
