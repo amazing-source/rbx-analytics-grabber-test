@@ -16,7 +16,8 @@
     "compare-opencloud": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/compare-opencloud.ts",
     "probe-dimensions": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/probe-dimensions.ts",
     "coverage-opencloud": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/coverage-opencloud.ts",
-    "probe-granularity": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/probe-granularity.ts"
+    "probe-granularity": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/probe-granularity.ts",
+    "probe-filter": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/probe-filter.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",

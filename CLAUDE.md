@@ -189,8 +189,39 @@ asking wrong, never missing data): the 8 funnel metrics and
 the place-versions deploy log come from `analytics-annotations`,
 `analytics-benchmark` and `develop.roblox.com` — still the existing path.
 
-**Still open:** `filter` requires an `operation` enum whose legal values are
-unknown (`"Equals"` is rejected). `breakdown` works and returns `displayValue`.
+**`filter` operation enum — measured 2026-08-19, not guessed.** Legal:
+`In`, `NotIn`, `GreaterThan`, `GreaterThanOrEqual`, `LessThan` (integers 0-6 are
+also accepted). Rejected: `Equals`, `EQUALS`, `Eq`, `Contains`, `NotContains`,
+`Gte`, `StartsWith`, `FILTER_OPERATION_EQUALS`. **`In` is the equality
+operator** — it is what scopes a query to one Place.
+
+**PlaceVersion is a deploy log, and the shape is fussy.** `PlaceVersion` and
+`FirstSeenPlaceVersion` both require Place to be present, but **Place must be a
+FILTER, not a breakdown**: with `breakdown:["Place","PlaceVersion"]` the API
+answers 200 and silently drops PlaceVersion, returning one series. The shape
+that works:
+
+    { metric: "ErrorCount", granularity: "OneDay", startTime, endTime,
+      filter: [{ dimension: "Place", values: [placeId], operation: "In" }],
+      breakdown: ["PlaceVersion"], limit: 200 }
+
+On 9963622286 that returned 23 version series; each version's FIRST data point
+dates its ship (v592 -> 2026-08-18, v587 -> 2026-08-14, v577 -> 2026-08-07).
+This is an **independent second source for dating deploys**, which matters
+because F12 records the `develop.roblox.com` place-versions log silently
+truncating at a sub-place's version. Cross-check the two.
+
+`FirstSeenPlaceVersion` stays a FILTER (`operation: "GreaterThanOrEqual"`) =
+"errors this deploy introduced": >=560 returned 16 days from 2026-08-03, >=580
+seven days from 2026-08-12, >=600 zero points — a clean negative control.
+
+**Version first-seen dates are LEFT-CENSORED at the window edge.** On a 20-day
+window v530 and v546 both reported first-seen = the window's own start date;
+they shipped earlier and were clipped. Only a version whose first point falls
+strictly inside the window is genuinely dated — otherwise read it as "on or
+before". Widen the window before quoting a ship date.
+
+`breakdown` works and returns `displayValue`.
 
 **Switching sources switches READ POLICY.** The corpus keeps the *first*
 settled read; Open Cloud serves the *current* one. Adopting it silently changes
