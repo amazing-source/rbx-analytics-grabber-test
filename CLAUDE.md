@@ -233,6 +233,49 @@ keyed by the same date; ignoring it lets a half-hour bucket overwrite the daily
 value. That bug produced a fake "87% disagreement" on PeakConcurrentPlayers and
 a fake "fractional crash count" anomaly, both of which cost an hour.
 
+## The extension is the surface now (2026-08-19)
+The dashboard lives INSIDE create.roblox.com: `collector.js` opens a full-screen
+overlay that frames `dashboard.html`, an extension page. Panel = launcher only.
+Toolbar icon still opens the same page standalone.
+
+**Why an iframe and not an inline render:** Roblox's stylesheet cannot reach into
+a separate document, and the frame runs on the EXTENSION origin, so it keeps its
+`host_permissions` and can call the Roblox APIs and the service worker exactly as
+it does standalone. Rendered inline, those fetches would be subject to
+create.roblox.com's CORS and would fail. Needs `web_accessible_resources` scoped
+to create.roblox.com.
+
+**Where each call goes.** Public Roblox APIs (user, groups, games, thumbnails)
+are called straight from the page — no credential, nothing to protect. Anything
+needing the Open Cloud KEY or the disk goes through the service worker to the
+local app. **The key never enters extension storage**; the client only ever
+learns `ok`/`denied`.
+
+**Reloading an unpacked extension ORPHANS content scripts in open tabs.** The
+page keeps the old script but its link to the new extension context is gone, and
+every message fails with "Receiving end does not exist". This silently broke the
+scheduler — it fired on time and reached nobody. `sendToCollector` now re-injects
+`interceptor.js` + `collector.js` on that error and retries (`scripting`
+permission); `collector.js` guards `window.__RBX_COLLECTOR_LOADED__` so a
+re-inject cannot double-register listeners.
+
+**Grab exclusions are real and must stay reported.** `?exclude=perf,errors` on
+`/api/grab-plan` (caller wins over the saved config) drops whole families —
+measured on a 28-day plan for 9963622286: **333 requests -> 173 with perf off
+alone**, since perf is 160 of them (crash metrics chunk into 7-day windows); all
+five families off leaves 104. Every filtered plan carries
+`excluded: {families, dropped, byFamily}` and the panel prints it. **An excluded
+request that is not reported reads as a metric the game never had**, and perf
+(~28d) and errors (~56d) cannot be backfilled later.
+
+**Do NOT put live metrics in the dashboard.** Cards are thumbnail + name +
+access marker. A metrics panel was built and removed: Roblox already shows those
+numbers on the page this is embedded in, and it cost four Open Cloud requests per
+game with a re-render on each arrival, which is what made the extension lag.
+Related: `render()` in collector.js is coalesced to one animation frame — it used
+to run once per captured response, so a 400-request grab did 400 innerHTML
+rebuilds.
+
 ## The grab plan is seeded, not discovered
 `web/src/lib/default-plan.ts` holds all 49 metrics Roblox serves, as query
 shapes (metric name + granularity + breakdown + filter). The metric list was

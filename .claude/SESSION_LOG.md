@@ -465,3 +465,46 @@ in `web/scripts/` (`probe-opencloud`, `compare-opencloud`, `coverage-opencloud`,
 dirty files the incoming commits rewrite), then port `SKILL.md`, the `CLAUDE.md`
 Open Cloud block and COVERAGE F14 across. Until that happens today's knowledge
 exists ONLY in the test clone, which is exactly the failure this log prevents.
+
+## 2026-08-19 (afternoon) — the extension became the product surface
+
+**State:** all work in the TEST clone `rbx-analytics-grabber-test`, pushed to
+`origin/grabber-correctness`, clean. Manifest **v0.8.0**. The MAIN repo has NONE
+of this — it holds only the morning's knowledge port.
+**Gates** (measured now): verify 23 pass / 2 fail / 8 skip (exit 1, documented) ·
+audit-plan 140 templates 0 failures · test 41/41.
+
+**Landed:** dashboard as an extension page framed into create.roblox.com
+(`dashboard.html` + `dashboard.js`, overlay in `collector.js`); Experiences /
+Grab / Settings views; five server routes (`/api/rbx/user|groups|group-games|
+access`, `/api/dash/config`); grab exclusions wired end to end
+(`lib/exclusions.ts`); the old panel reduced to a launcher (-144 lines).
+
+**Learned → routed:** iframe-vs-inline reasoning, the credential split, the
+orphaned-content-script failure, exclusion numbers and the report-what-you-
+dropped rule, and "no live metrics in the dashboard" → **CLAUDE.md**.
+
+**Disproved / corrected (mine):**
+- "The username field is dead" — it did not exist yet. `boot()` awaited a
+  6–20s local-app probe before painting `#stage`. Now paints first; every entry
+  point is wrapped and paints a visible error banner.
+- "The scheduler is broken" — it fires correctly. Reloading the extension
+  orphaned the content script, so it reached nobody.
+- Metric cards on the grid — built, then removed as costly and redundant.
+
+**Open:**
+- **The scheduler has still never completed a grab end to end.** It fires; the
+  orphan fix is unverified. Next check: a new file in `data/raw/` and a
+  `POST /api/ingest` in the dev log after the next hourly firing.
+- Alerts do not send. `anomaly.ts` has the seasonal baseline; nothing joins it to
+  the webhook field. Decision made: **measured baseline only, no manual
+  threshold** — a typed number fires every Wednesday on a game whose Wednesday
+  runs 42% below its own weekly mean.
+- Lag reportedly improved but not confirmed; user switching to a faster machine.
+- Only universe 9963622286 verified against Open Cloud; Waterslide (multi-place)
+  and Knife Farm unprobed for value parity.
+- Contract §4.2 makes all work product Indigo's — unresolved, and it decides
+  whether any of this is sellable.
+
+**Next:** confirm one scheduled grab lands (`data/raw/` + ingest in the log). If
+the orphan fix holds, wire `anomaly.ts` to the Discord webhook.
