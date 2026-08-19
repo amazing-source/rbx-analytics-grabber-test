@@ -18,5 +18,8 @@ export async function PUT(req: Request) {
   }
   if (patch.username !== undefined) cur.username = patch.username;
   if (patch.userId !== undefined) cur.userId = patch.userId;
+  if (patch.exclude !== undefined) cur.exclude = patch.exclude;
+  if (patch.defaultIntervalHours !== undefined) cur.defaultIntervalHours = patch.defaultIntervalHours;
+  if (patch.discordWebhook !== undefined) cur.discordWebhook = patch.discordWebhook;
   return NextResponse.json({ config: writeConfig(cur) });
 }

@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { getGrabPlan, getDiscoveryRequests } from "@/lib/store";
+import { parseExclude, filterPlan } from "@/lib/exclusions";
+import { readConfig } from "@/lib/opencloud";
 import type { Discovered } from "@/lib/default-plan";
 
 // The extension fetches this from create.roblox.com — allow cross-origin reads.
@@ -24,6 +26,37 @@ function daysAgoISO(days: number) {
   return d.toISOString();
 }
 
+/** Exclusions come from the caller when it has them (the extension knows its
+ *  own settings and may be newer than the file), otherwise from the saved
+ *  dashboard config. Explicit beats stored, so a grab always honours what the
+ *  user is looking at. */
+function excludeFrom(sp: URLSearchParams) {
+  const explicit = sp.get("exclude");
+  if (explicit !== null) return parseExclude(explicit);
+  try { return parseExclude(readConfig().exclude as Record<string, unknown> | undefined); }
+  catch { return parseExclude(null); }
+}
+
+/** Applies the filter and attaches what was removed. A silently shortened plan
+ *  reads downstream as "this game has no crash data", which is exactly the
+ *  failure mode CLAUDE.md warns about. */
+function applyExclusions(plan: { requests?: unknown[] }, excluded: Set<string>) {
+  const reqs = (plan.requests ?? []) as { kind?: string; metric?: string | null }[];
+  const r = filterPlan(reqs, excluded as Set<never>);
+  return {
+    ...plan,
+    requests: r.requests,
+    excluded: {
+      families: [...excluded],
+      dropped: r.dropped,
+      byFamily: r.byFamily,
+      note: r.dropped
+        ? "Excluded by settings, NOT missing from the game. Perf and error history age out (~28d / ~56d), so a skipped family cannot be backfilled later."
+        : undefined,
+    },
+  };
+}
+
 function windowFrom(sp: URLSearchParams) {
   const start = sp.get("start") || daysAgoISO(28);
   const end = sp.get("end") || new Date(new Date().setUTCHours(0, 0, 0, 0)).toISOString();
@@ -46,8 +79,9 @@ export async function GET(req: Request) {
   const { start, end } = windowFrom(sp);
   try {
     const plan = await getGrabPlan(universe, start, end);
+    const filtered = applyExclusions(plan, excludeFrom(sp));
     return NextResponse.json(
-      { ...plan, discovery: getDiscoveryRequests(universe, start, end) },
+      { ...filtered, discovery: getDiscoveryRequests(universe, start, end) },
       { headers: CORS }
     );
   } catch (e) {
@@ -76,7 +110,9 @@ export async function POST(req: Request) {
   const { start, end } = windowFrom(sp);
   try {
     const plan = await getGrabPlan(universe, start, end, payload.discovered);
-    return NextResponse.json(plan, { headers: CORS });
+    const exclude = parseExclude((payload as { exclude?: string }).exclude ?? null);
+    const filtered = applyExclusions(plan, exclude.size ? exclude : excludeFrom(new URLSearchParams()));
+    return NextResponse.json(filtered, { headers: CORS });
   } catch (e) {
     return NextResponse.json({ error: (e as Error).message }, { status: 500, headers: CORS });
   }

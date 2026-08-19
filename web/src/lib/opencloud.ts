@@ -69,6 +69,11 @@ export type GameConfig = {
 export type DashConfig = {
   username?: string;
   userId?: number;
+  /** Metric families to skip in a grab, keyed by family id. Consumed by the
+   *  grab-plan route; see lib/exclusions.ts for what each family covers. */
+  exclude?: Record<string, boolean>;
+  defaultIntervalHours?: number | null;
+  discordWebhook?: string;
   games: Record<string, GameConfig>;
   updatedAt?: string;
 };

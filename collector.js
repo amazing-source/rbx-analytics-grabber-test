@@ -75,6 +75,18 @@
       return stored[DOWNLOAD_DIR_KEY] || DEFAULT_DOWNLOAD_DIR;
     } catch { return DEFAULT_DOWNLOAD_DIR; }
   }
+  // The extension's own exclusion settings, sent with the plan request so a
+  // grab honours what the dashboard is showing rather than whatever was last
+  // written to disk.
+  async function excludeParam() {
+    try {
+      const s2 = await chrome.storage.local.get("rbx_dash_cfg");
+      const ex = (s2 && s2.rbx_dash_cfg && s2.rbx_dash_cfg.exclude) || {};
+      const on = Object.keys(ex).filter((k) => ex[k] === true);
+      return on.length ? on.join(",") : "";
+    } catch { return ""; }
+  }
+
   function baseFrom(ingestUrl) {
     return ingestUrl.replace(/\/api\/ingest\/?$/, "");
   }
@@ -567,7 +579,8 @@
 
     for (const u of ids) {
       setActive(`planning ${u}…`);
-      const qs = `universe=${u}` + (start ? `&start=${encodeURIComponent(start)}` : "") + (end ? `&end=${encodeURIComponent(end)}` : "");
+      const ex = await excludeParam();
+      const qs = `universe=${u}` + (start ? `&start=${encodeURIComponent(start)}` : "") + (end ? `&end=${encodeURIComponent(end)}` : "") + `&exclude=${encodeURIComponent(ex)}`;
       const planRes = await webappFetch(`${base}/api/grab-plan?${qs}`, null, 30000);
       if (!planRes.ok) {
         setActive(`plan failed for ${u}: ${explain(planRes.error, base) || ("HTTP " + planRes.status)}`, "#ff7c7c");
@@ -625,7 +638,7 @@
         });
         const found = Object.entries(discovered).map(([k, v]) => `${k.replace("__", "")}:${v.length}`).join(" ");
         setActive(`${u}: discovered ${found || "nothing"} — replanning…`);
-        const re = await webappFetch(`${base}/api/grab-plan`, { universe: u, start, end, discovered }, 30000);
+        const re = await webappFetch(`${base}/api/grab-plan`, { universe: u, start, end, discovered, exclude: ex }, 30000);
         if (re.ok && re.data && re.data.requests) plan = re.data;
       }
 
@@ -724,6 +737,9 @@
         setActive(`${u}: 0/${reqs.length} returned data — see data/games/${u}/grab-report.md`, "#ff7c7c");
         summaries.push(`${u}: 0/${reqs.length} returned data`);
         continue;
+      }
+      if (plan && plan.excluded && plan.excluded.dropped) {
+        setStatus(`${plan.excluded.dropped} request(s) skipped by settings: ${plan.excluded.families.join(", ")}`);
       }
       captures.push(...delivery);
       render();
