@@ -1,38 +1,26 @@
-// Indigo LiveOps dashboard — runs as an extension page, not a web app.
+// Indigo LiveOps dashboard — an extension page, embedded into create.roblox.com
+// by collector.js or opened standalone from the toolbar icon.
 //
-// Split of responsibility, and it is deliberate:
+// Where each call goes is deliberate:
 //   - Roblox's PUBLIC APIs (user, groups, games, thumbnails) are called straight
-//     from here. They carry no credential, so there is nothing to protect and no
-//     reason to round-trip through a server.
-//   - Anything needing the Open Cloud KEY or the disk (access checks, grab
-//     plans, ingest, data/ writes) goes to the local web app via the background
-//     service worker. The key stays on the server side and never enters
-//     extension storage, so a compromised extension profile does not leak it.
+//     from here. No credential, so nothing to protect and no reason to proxy.
+//   - Anything needing the Open Cloud KEY or the disk (metric summaries, access
+//     checks, grabs, data/ writes) goes through the service worker to the local
+//     app. The key never enters extension storage.
 //
-// That is not a compromise: the extension already cannot grab without the local
-// server, because the grab plan and the ingest sink both live there.
+// EVERY entry point is wrapped so a thrown error paints a visible banner instead
+// of leaving a page that renders but does not respond. A dead-looking input with
+// a silent console error cost an afternoon; it must not be possible again.
 
 const CFG_KEY = "rbx_dash_cfg";
 const INGEST_URL_KEY = "rbx_ingest_url";
 const DEFAULT_INGEST = "http://localhost:3000/api/ingest";
-
-// When framed into create.roblox.com the surrounding overlay already provides
-// the close affordance and the padding, so the page trims its own chrome.
 const EMBEDDED = window.top !== window.self;
 
 const state = {
   cfg: { username: "", userId: 0, games: {} },
-  user: null,
-  groups: [],
-  group: null,
-  games: [],
-  access: {},
-  serverUp: false,
-  hasKey: false,
-  query: "",
-  menuOpen: false,
-  selected: null,
-  loading: "",
+  user: null, groups: [], group: null, games: [], access: {}, summary: {},
+  serverUp: false, hasKey: false, query: "", menuOpen: false, selected: null, loading: "",
 };
 
 /* ---------------------------------------------------------------- plumbing */
@@ -41,22 +29,27 @@ const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const num = (n) => (n == null ? "—" : Number(n).toLocaleString("en-US"));
 
+/** Nothing fails silently. */
+function fail(where, e) {
+  const msg = `${where}: ${(e && (e.stack || e.message)) || e}`;
+  console.error("[LiveOps]", msg);
+  const el = $("err");
+  if (el) el.innerHTML = `<div class="banner err">Something broke — ${esc(msg)}</div>`;
+}
+const guard = (where, fn) => async (...a) => { try { return await fn(...a); } catch (e) { fail(where, e); } };
+
 async function storageGet(key, fallback) {
   try { const s = await chrome.storage.local.get(key); return s[key] ?? fallback; } catch { return fallback; }
 }
 async function storageSet(key, value) {
   try { await chrome.storage.local.set({ [key]: value }); } catch { /* non-fatal */ }
 }
-
-/** Public Roblox JSON. Failures return null so a dead endpoint degrades one
- *  section instead of blanking the page. */
 async function pub(url) {
   try { const r = await fetch(url); return r.ok ? await r.json() : null; } catch { return null; }
 }
 
-/** Anything privileged goes through the service worker to the local web app —
- *  a page's own fetch to localhost is subject to Private Network Access rules,
- *  the worker's is not. */
+/** Privileged work goes via the service worker: a page fetch to localhost is
+ *  subject to Private Network Access rules, the worker's is not. */
 function bg(message, timeoutMs = 60000) {
   return new Promise((resolve) => {
     let done = false;
@@ -70,7 +63,6 @@ function bg(message, timeoutMs = 60000) {
     } catch (e) { if (!done) { done = true; clearTimeout(t); resolve({ ok: false, error: String(e) }); } }
   });
 }
-
 async function appBase() {
   const ingest = await storageGet(INGEST_URL_KEY, DEFAULT_INGEST);
   return String(ingest).replace(/\/api\/ingest\/?$/, "");
@@ -100,8 +92,8 @@ async function loadGroups(userId, knownIds) {
     const m = new Map((t?.data ?? []).filter((d) => d.state === "Completed").map((d) => [d.targetId, d.imageUrl]));
     for (const r of rows) r.emblemUrl = m.get(r.id) ?? null;
   }
-  // Studios first: a real account is 42 memberships and 4 studios, and role
-  // does not tell them apart (both read "Member").
+  // Studios first. A real account is 42 memberships and 4 studios, and role does
+  // not separate them — both read "Member".
   rows.sort((a, b) => (Number(b.known) - Number(a.known)) || a.name.localeCompare(b.name));
   return rows;
 }
@@ -121,35 +113,45 @@ async function loadGames(groupId) {
   return rows.sort((a, b) => (b.playing ?? -1) - (a.playing ?? -1));
 }
 
-/** The local app knows which universes we hold data for; that is what marks a
- *  group as a studio rather than a fan group joined once. Server down => empty
- *  set => everything lands under "Other groups", which is degraded but honest. */
 async function loadKnown() {
   const base = await appBase();
   const r = await bg({ type: "webapp", url: `${base}/api/rbx/groups?seedUniverses=` }, 6000);
-  state.serverUp = Boolean(r?.ok);
+  state.serverUp = Boolean(r && r.ok);
   const ids = new Set();
   if (!state.serverUp) return ids;
-  const held = r?.data?.held ?? [];
+  const held = (r.data && r.data.held) || [];
   if (held.length) {
     const g = await pub(`https://games.roblox.com/v1/games?universeIds=${held.join(",")}`);
-    for (const x of g?.data ?? []) if (x.creator?.type === "Group" && x.creator.id) ids.add(x.creator.id);
+    for (const x of (g && g.data) || []) if (x.creator && x.creator.type === "Group" && x.creator.id) ids.add(x.creator.id);
   }
   const cfg = await bg({ type: "webapp", url: `${base}/api/dash/config` }, 6000);
-  state.hasKey = Boolean(cfg?.data?.hasKey);
+  state.hasKey = Boolean(cfg && cfg.data && cfg.data.hasKey);
   return ids;
+}
+
+/** Metric summaries, one game at a time so the grid fills in progressively
+ *  rather than sitting behind a minute of rate-limited silence. */
+async function loadSummaries(games) {
+  if (!state.serverUp || !state.hasKey) return;
+  const base = await appBase();
+  const forGroup = state.group && state.group.id;
+  for (const g of games) {
+    if (!state.group || state.group.id !== forGroup) return;   // group switched
+    const r = await bg({ type: "webapp", url: `${base}/api/rbx/summary?universeId=${g.universeId}` }, 90000);
+    state.summary[String(g.universeId)] = r && r.ok ? (r.data && r.data.summary) || null : null;
+    renderStage();
+  }
 }
 
 async function checkAccess(universeIds) {
   if (!state.serverUp || !state.hasKey) return {};
   const base = await appBase();
   const r = await bg({ type: "webapp", url: `${base}/api/rbx/access`, body: { universeIds } }, 180000);
-  return r?.data?.access ?? {};
+  return (r && r.data && r.data.access) || {};
 }
 
 async function saveCfg() {
   await storageSet(CFG_KEY, state.cfg);
-  // Mirror to the app so a scheduler outside the browser can read it too.
   if (state.serverUp) {
     const base = await appBase();
     bg({ type: "webapp", url: `${base}/api/dash/config`, method: "PUT", body: state.cfg }, 15000);
@@ -158,236 +160,253 @@ async function saveCfg() {
 
 /* ----------------------------------------------------------------- render */
 
-function renderHeader() {
-  const watched = Object.values(state.cfg.games || {}).filter((g) => g.dailyGrab || g.intervalHours || g.updateWatch).length;
-  $("sub").textContent = watched ? `${watched} game${watched === 1 ? "" : "s"} under watch` : "Portfolio watch";
-  $("me").innerHTML = state.user
-    ? `<div class="me">${state.user.avatarUrl ? `<img src="${esc(state.user.avatarUrl)}" alt="">` : `<div class="pemb"></div>`}
-         <div><b>${esc(state.user.displayName)}</b><span>@${esc(state.user.name)}</span></div></div>`
+function renderRail() {
+  const studios = state.groups.filter((g) => g.known);
+  const q = state.query.trim().toLowerCase();
+  const match = (g) => !q || g.name.toLowerCase().includes(q) || String(g.id).includes(q);
+  const mS = studios.filter(match), mO = state.groups.filter((g) => !g.known && match(g));
+  const row = (g) => `<button data-gid="${g.id}">
+      ${g.emblemUrl ? `<img src="${esc(g.emblemUrl)}" alt="">` : `<div class="emb"></div>`}
+      <span style="min-width:0;flex:1">
+        <span class="nm" style="display:block">${esc(g.name)}</span>
+        <span style="display:block;font-size:11px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(g.role || num(g.memberCount) + " members")}</span>
+      </span></button>`;
+
+  $("gsw").innerHTML = `
+    <button id="gswbtn">
+      ${state.group && state.group.emblemUrl ? `<img src="${esc(state.group.emblemUrl)}" alt="">` : `<div class="emb"></div>`}
+      <span class="nm" style="flex:1;min-width:0">${state.group ? esc(state.group.name) : "Select group"}</span>
+      <span class="caret">▾</span>
+    </button>
+    ${state.menuOpen ? `<div class="menu rise">
+      <div class="menu-search"><input id="q" placeholder="Search ${state.groups.length} groups…" value="${esc(state.query)}"></div>
+      <div class="menu-list">
+        ${!mS.length && !mO.length ? `<div class="muted" style="padding:12px">No match.</div>` : ""}
+        ${mS.length ? `<div class="sect">Your studios</div>${mS.map(row).join("")}` : ""}
+        ${mO.length ? `<div class="sect">Other groups · ${mO.length}</div>${mO.map(row).join("")}` : ""}
+      </div></div>` : ""}`;
+
+  $("nav").innerHTML = ["Experiences", "Analytics", "Updates", "Settings"]
+    .map((n, i) => `<button class="nav ${i === 0 ? "on" : ""}"><span class="ic">${["▦", "◔", "◈", "⚙"][i]}</span>${n}</button>`).join("");
+
+  $("foot").innerHTML = state.user
+    ? `<div class="me">${state.user.avatarUrl ? `<img src="${esc(state.user.avatarUrl)}" alt="">` : `<div class="emb" style="border-radius:99px"></div>`}
+        <div style="min-width:0"><b>${esc(state.user.displayName)}</b><span>@${esc(state.user.name)}</span></div></div>
+       <button class="btn-ghost" id="switch" style="width:100%;margin-top:10px;font-size:12px;padding:7px">Switch user</button>`
     : "";
+
+  const b = $("gswbtn");
+  if (b) b.onclick = (e) => { e.stopPropagation(); state.menuOpen = !state.menuOpen; state.query = ""; renderRail(); };
+  const qEl = $("q");
+  if (qEl) {
+    qEl.focus();
+    qEl.oninput = (e) => { const c = e.target.selectionStart; state.query = e.target.value; renderRail(); const n = $("q"); if (n) { n.focus(); n.setSelectionRange(c, c); } };
+  }
+  document.querySelectorAll(".menu button[data-gid]").forEach((el) => { el.onclick = () => pickGroup(el.dataset.gid); });
+  const sw = $("switch");
+  if (sw) sw.onclick = () => { state.user = null; state.group = null; state.games = []; renderRail(); renderWelcome(); };
 }
 
 function renderBanners() {
   const b = [];
-  if (!state.serverUp) b.push(`<div class="banner warn">Local app not reachable. Thumbnails and groups still work; grabs, access checks and saving need it — run <b>cd web &amp;&amp; npm run dev</b>.</div>`);
-  else if (!state.hasKey) b.push(`<div class="banner warn">No Open Cloud key on the server, so analytics access can’t be verified. Put one in <b>web/.opencloud-key</b>.</div>`);
+  if (!state.serverUp) b.push(`<div class="banner warn">Local app not reachable — groups and thumbnails still work, but metrics, access checks and grabs need it. Run <b>cd web &amp;&amp; npm run dev</b>.</div>`);
+  else if (!state.hasKey) b.push(`<div class="banner warn">No Open Cloud key on the server, so metrics and access can’t be read. Put one in <b>web/.opencloud-key</b>.</div>`);
   $("banners").innerHTML = b.join("");
 }
 
 function renderWelcome() {
-  // Whatever is in the box wins over stored config: a re-render mid-typing must
-  // never clobber what the user is entering. This is why the field appeared
-  // dead -- the value was being reset from state underneath the caret.
-  const typed = $("u") ? $("u").value : null;
+  $("title").textContent = "Welcome";
+  $("subtitle").textContent = "";
+  const typed = $("u") ? $("u").value : null;      // never clobber live typing
   const initial = typed != null ? typed : (state.cfg.username || "");
   $("stage").innerHTML = `
-    <div class="card rise" style="padding:28px">
-      <div style="font-size:21px;font-weight:650;letter-spacing:-.2px">Welcome</div>
-      <p class="muted" style="max-width:520px;margin:7px 0 0;line-height:1.6">
+    <div class="card rise" style="padding:26px;max-width:620px">
+      <p class="muted" style="margin:0 0 18px;line-height:1.6;font-size:13.5px">
         Enter your Roblox username to load your groups and the experiences in them.
         This reads public profile data only — nothing is sent on your behalf.
       </p>
-      <div style="display:flex;gap:9px;margin-top:19px;flex-wrap:wrap">
-        <input id="u" placeholder="Roblox username" style="width:280px" autocomplete="off" spellcheck="false" value="${esc(initial)}">
+      <div style="display:flex;gap:9px;flex-wrap:wrap">
+        <input id="u" placeholder="Roblox username" style="width:270px" autocomplete="off" spellcheck="false" value="${esc(initial)}">
         <button class="btn" id="go">Continue</button>
       </div>
-      <div id="uerr" style="color:var(--down);font-size:12.5px;margin-top:9px"></div>
+      <div id="uerr" style="color:var(--down);font-size:12.5px;margin-top:10px"></div>
     </div>`;
-  const go = async () => {
+
+  const go = guard("identify", async () => {
     const v = $("u").value.trim();
-    if (!v) return;
+    if (!v) { $("uerr").textContent = "Type a username first."; return; }
     $("go").disabled = true; $("go").textContent = "Looking up…";
     const u = await loadUser(v);
-    if (!u) { $("uerr").textContent = `No Roblox user named “${v}”.`; $("go").disabled = false; $("go").textContent = "Continue"; return; }
+    if (!u) {
+      $("uerr").textContent = `No Roblox user named "${v}".`;
+      $("go").disabled = false; $("go").textContent = "Continue";
+      return;
+    }
     state.user = u; state.cfg.username = u.name; state.cfg.userId = u.userId;
     await saveCfg();
     await boot(true);
-  };
+  });
   $("go").onclick = go;
-  $("u").onkeydown = (e) => e.key === "Enter" && go();
-  // Focus without stealing the caret position if it was already there.
+  $("u").onkeydown = (e) => { if (e.key === "Enter") { e.preventDefault(); go(); } };
   if (typed == null) $("u").focus();
 }
 
-function groupRow(g) {
-  return `<button data-gid="${g.id}">
-    ${g.emblemUrl ? `<img src="${esc(g.emblemUrl)}" alt="">` : `<div class="pemb"></div>`}
-    <span style="min-width:0;flex:1">
-      <span class="pname" style="display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(g.name)}</span>
-      <span class="psub" style="display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(g.role || num(g.memberCount) + " members")}</span>
-    </span></button>`;
+function delta(d) {
+  if (d == null || !Number.isFinite(d)) return `<span class="d flat">—</span>`;
+  const cls = d > 0.5 ? "up" : d < -0.5 ? "dn" : "flat";
+  const ar = d > 0.5 ? "↑" : d < -0.5 ? "↓" : "→";
+  return `<span class="d ${cls}">${ar} ${Math.abs(d).toFixed(0)}%</span>`;
+}
+
+function metricRow(k, s, fmt) {
+  if (s === undefined) return `<div class="row"><span class="k">${k}</span><span class="r"><span class="skel"></span></span></div>`;
+  if (s === null) return `<div class="row"><span class="k">${k}</span><span class="r"><span class="v muted">—</span></span></div>`;
+  return `<div class="row"><span class="k">${k}</span><span class="r"><span class="v tnum">${fmt(s.value)}</span>${delta(s.delta)}</span></div>`;
+}
+
+function gameCard(g) {
+  const id = String(g.universeId);
+  const sum = state.summary[id];                      // undefined = still loading
+  const a = state.access[id];
+  const cfg = (state.cfg.games || {})[id] || {};
+  const watching = cfg.dailyGrab || cfg.intervalHours || cfg.updateWatch;
+  const pill = watching ? ["watch", "Watching"]
+    : ({ ok: ["ok", "Access"], denied: ["denied", "No access"], error: ["warn", "Error"], checking: ["idle", "…"] }[a] || ["idle", "—"]);
+  const pick = (k) => (sum === undefined ? undefined : (sum && sum[k]) || null);
+  return `<button class="gcard rise" data-uid="${id}">
+    <div class="ghead">
+      ${g.iconUrl ? `<img src="${esc(g.iconUrl)}" alt="">` : `<div class="emb"></div>`}
+      <span class="gname">${esc(g.name)}</span>
+      <span class="pill ${pill[0]}">${pill[1]}</span>
+    </div>
+    <div class="ccu"><div class="k">Concurrent users</div><div class="v tnum">${g.playing == null ? "—" : num(g.playing)}</div></div>
+    <div class="rows">
+      ${metricRow("Daily active users", pick("dau"), num)}
+      ${metricRow("D1 retention", pick("d1"), (v) => (v * 100).toFixed(1) + "%")}
+      ${metricRow("Daily revenue", pick("revenue"), num)}
+      ${metricRow("Avg. playtime", pick("playtime"), (v) => v.toFixed(0) + " min")}
+    </div></button>`;
 }
 
 function renderStage() {
-  const studios = state.groups.filter((g) => g.known);
-  const q = state.query.trim().toLowerCase();
-  const match = (g) => !q || g.name.toLowerCase().includes(q) || String(g.id).includes(q);
-  const mStudios = studios.filter(match), mOthers = state.groups.filter((g) => !g.known && match(g));
+  if (!state.user) return renderWelcome();
+  $("title").textContent = state.group ? state.group.name : "Experiences";
+  $("subtitle").textContent = state.group
+    ? `${state.games.length} experience${state.games.length === 1 ? "" : "s"}${state.group.known ? " · studio" : ""}`
+    : `${state.groups.filter((g) => g.known).length} studios · ${state.groups.length} groups`;
 
-  $("stage").innerHTML = `
-    <div style="display:flex;gap:11px;align-items:flex-end;flex-wrap:wrap;margin-bottom:20px">
-      <div>
-        <div class="lbl">Group</div>
-        <div class="picker">
-          <button id="pk">
-            ${state.group?.emblemUrl ? `<img src="${esc(state.group.emblemUrl)}" alt="">` : `<div class="pemb"></div>`}
-            <span style="min-width:0;flex:1">
-              <span class="pname" style="display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${state.group ? esc(state.group.name) : "Select a group"}</span>
-              <span class="psub">${state.group ? (state.group.known ? "Studio · " : "") + esc(state.group.role || num(state.group.memberCount) + " members") : `${studios.length} studios · ${state.groups.length} groups`}</span>
-            </span>
-            <span style="color:var(--ink-3)">▾</span>
-          </button>
-          ${state.menuOpen ? `<div class="menu rise" id="menu">
-            <div class="menu-search"><input id="q" placeholder="Search ${state.groups.length} groups…" value="${esc(state.query)}"></div>
-            <div class="menu-list">
-              ${!mStudios.length && !mOthers.length ? `<div class="muted" style="padding:14px">No groups match.</div>` : ""}
-              ${mStudios.length ? `<div class="sect">Your studios</div>${mStudios.map(groupRow).join("")}` : ""}
-              ${mOthers.length ? `<div class="sect">Other groups · ${mOthers.length}</div>${mOthers.map(groupRow).join("")}` : ""}
-            </div></div>` : ""}
-        </div>
-      </div>
-      <button class="btn-ghost" id="switch">Switch user</button>
-    </div>
-    ${state.loading === "games" ? `<div class="muted"><i class="spin"></i>Loading experiences…</div>` : ""}
-    ${!state.group && state.loading !== "games" ? `<div class="card" style="padding:24px" class="muted"><span class="muted">Pick a group to see its experiences.</span></div>` : ""}
-    ${state.group && state.loading !== "games" && !state.games.length ? `<div class="card" style="padding:24px"><span class="muted">No experiences in ${esc(state.group.name)}.</span></div>` : ""}
-    ${state.games.length ? `<div class="grid">${state.games.map(gameCard).join("")}</div>` : ""}`;
+  $("stage").innerHTML =
+    state.loading === "games" ? `<div class="muted"><i class="spin"></i>Loading experiences…</div>`
+    : !state.group ? `<div class="card" style="padding:22px"><span class="muted">Pick a group from the switcher to see its experiences.</span></div>`
+    : !state.games.length ? `<div class="card" style="padding:22px"><span class="muted">No experiences in ${esc(state.group.name)}.</span></div>`
+    : `<div class="grid">${state.games.map(gameCard).join("")}</div>`;
 
-  $("pk").onclick = () => { state.menuOpen = !state.menuOpen; state.query = ""; renderStage(); };
-  $("switch").onclick = async () => { state.user = null; state.group = null; state.games = []; renderHeader(); renderWelcome(); };
-  const qEl = $("q");
-  if (qEl) {
-    qEl.focus();
-    qEl.oninput = (e) => { state.query = e.target.value; const c = e.target.selectionStart; renderStage(); const n = $("q"); if (n) { n.focus(); n.setSelectionRange(c, c); } };
-  }
-  document.querySelectorAll("#menu button[data-gid]").forEach((b) => {
-    b.onclick = async () => {
-      state.group = state.groups.find((g) => String(g.id) === b.dataset.gid) || null;
-      state.menuOpen = false; state.query = ""; state.games = []; state.access = {};
-      state.loading = "games"; renderStage();
-      state.games = state.group ? await loadGames(state.group.id) : [];
-      state.loading = ""; renderStage();
-      if (state.games.length) {
-        state.access = Object.fromEntries(state.games.map((g) => [String(g.universeId), "checking"]));
-        renderStage();
-        state.access = await checkAccess(state.games.map((g) => g.universeId));
-        renderStage();
-      }
-    };
-  });
-  document.querySelectorAll(".game[data-uid]").forEach((el) => {
+  document.querySelectorAll(".gcard[data-uid]").forEach((el) => {
     el.onclick = () => { state.selected = state.games.find((g) => String(g.universeId) === el.dataset.uid); renderModal(); };
   });
 }
 
-function gameCard(g) {
-  const a = state.access[String(g.universeId)] ?? (state.hasKey ? "" : "idle");
-  const pill = { ok: ["ok", "Access"], denied: ["denied", "No access"], error: ["error", "Check failed"], checking: ["idle", "Checking…"], idle: ["idle", "No key"], "": ["idle", "—"] }[a] || ["idle", "—"];
-  const cfg = state.cfg.games?.[String(g.universeId)] || {};
-  const on = cfg.dailyGrab || cfg.intervalHours || cfg.updateWatch;
-  return `<button class="game rise" data-uid="${g.universeId}">
-    ${g.iconUrl ? `<img class="thumb" src="${esc(g.iconUrl)}" alt="">` : `<div class="thumb"></div>`}
-    <div class="meta">
-      <div class="nm">${esc(g.name)}</div>
-      <div class="row">
-        <span class="live">${g.playing ? `<i class="dot"></i>${num(g.playing)} playing` : num(g.playing) + " playing"}</span>
-        <span class="pill ${pill[0]}">${on ? "Watching" : pill[1]}</span>
-      </div>
-    </div></button>`;
-}
+const pickGroup = guard("pickGroup", async (gid) => {
+  state.group = state.groups.find((g) => String(g.id) === String(gid)) || null;
+  state.menuOpen = false; state.query = ""; state.games = []; state.access = {}; state.summary = {};
+  state.loading = "games"; renderRail(); renderStage();
+  state.games = state.group ? await loadGames(state.group.id) : [];
+  state.loading = ""; renderStage();
+  if (!state.games.length) return;
+  state.access = Object.fromEntries(state.games.map((g) => [String(g.universeId), "checking"]));
+  renderStage();
+  checkAccess(state.games.map((g) => g.universeId)).then((a) => { state.access = a; renderStage(); });
+  loadSummaries(state.games.slice(0, 12));
+});
 
 function renderModal() {
   const g = state.selected;
   if (!g) { $("modal-root").innerHTML = ""; return; }
   const key = String(g.universeId);
-  const c = state.cfg.games?.[key] || {};
-  const opt = (id, on, title, hint) => `<button class="opt ${on ? "on" : ""}" data-opt="${id}"><span class="sw"><i></i></span><span><b>${title}</b><span>${hint}</span></span></button>`;
-  $("modal-root").innerHTML = `<div class="scrim" id="scrim"><div class="modal rise" id="modal">
+  const c = (state.cfg.games || {})[key] || {};
+  const opt = (id, on, t, h) => `<button class="opt ${on ? "on" : ""}" data-opt="${id}"><span class="sw"><i></i></span><span><b>${t}</b><span>${h}</span></span></button>`;
+  $("modal-root").innerHTML = `<div class="scrim" id="scrim"><div class="modal rise">
     <div style="display:flex;gap:13px;align-items:flex-start">
-      ${g.iconUrl ? `<img src="${esc(g.iconUrl)}" style="width:56px;height:56px;border-radius:13px;object-fit:cover">` : ""}
+      ${g.iconUrl ? `<img src="${esc(g.iconUrl)}" style="width:54px;height:54px;border-radius:12px;object-fit:cover">` : ""}
       <div style="flex:1;min-width:0">
         <div style="font-size:16.5px;font-weight:650">${esc(g.name)}</div>
         <div class="muted tnum" style="margin-top:2px">Universe ${g.universeId}${g.playing != null ? ` · ${num(g.playing)} playing` : ""}</div>
       </div>
       <button class="btn-ghost" id="x" style="padding:5px 11px">✕</button>
     </div>
-    <div style="margin-top:22px">
+    <div style="margin-top:20px">
       <div class="lbl">Collection</div>
       ${opt("dailyGrab", !!c.dailyGrab, "Daily grab", "One full pull a day. The cheapest thing that keeps history.")}
       <div style="background:var(--surface-2);border-radius:10px;padding:13px;margin-bottom:9px">
         <b style="font-size:13.5px">Repeat grab</b>
         <span style="display:block;font-size:11.5px;color:var(--ink-2);margin-top:2px">Tighter cadence around a publish — sub-daily metrics only hold ~24h.</span>
-        <div class="chips">${[["off", null], ["1h", 1], ["3h", 3], ["6h", 6], ["12h", 12], ["24h", 24]].map(([l, v]) =>
-          `<button class="chip ${(c.intervalHours ?? null) === v ? "on" : ""}" data-int="${v ?? ""}">${l}</button>`).join("")}</div>
+        <div class="chips">${[["off", null], ["1h", 1], ["3h", 3], ["6h", 6], ["12h", 12], ["24h", 24]]
+          .map((p) => `<button class="chip ${(c.intervalHours ?? null) === p[1] ? "on" : ""}" data-int="${p[1] == null ? "" : p[1]}">${p[0]}</button>`).join("")}</div>
       </div>
-      <div class="lbl" style="margin-top:18px">Analysis</div>
+      <div class="lbl" style="margin-top:17px">Analysis</div>
       ${opt("liveopsDiagnosis", !!c.liveopsDiagnosis, "LiveOps diagnosis", "Run the ladder when something moves; score each day against its own weekday baseline.")}
       ${opt("updateWatch", !!c.updateWatch, "Update watch", "Tighten cadence around a publish and report what changed.")}
-      <div class="lbl" style="margin-top:18px">Discord</div>
+      <div class="lbl" style="margin-top:17px">Discord</div>
       <div style="background:var(--surface-2);border-radius:10px;padding:13px">
-        <input id="hook" placeholder="https://discord.com/api/webhooks/…" style="width:100%" value="${esc(c.discordWebhook || "")}">
+        <input id="hook" placeholder="https://discord.com/api/webhooks/…" value="${esc(c.discordWebhook || "")}">
         <div class="muted" style="margin-top:9px;font-size:11.5px;line-height:1.5">Stored, not sent yet — so alerting can be switched on later without revisiting every game.</div>
       </div>
-    </div>
-    <div class="lbl" style="margin-top:18px">Run now</div>
-    <div style="background:var(--surface-2);border-radius:10px;padding:13px">
-      <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+      <div class="lbl" style="margin-top:17px">Run now</div>
+      <div style="background:var(--surface-2);border-radius:10px;padding:13px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
         <button class="btn" id="grab" ${state.serverUp ? "" : "disabled"}>Grab this game</button>
         <span class="muted" id="grabmsg" style="font-size:12px">${state.serverUp ? "Pulls every metric for this universe." : "Needs the local app running."}</span>
       </div>
     </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px">
       <span class="muted" style="font-size:11.5px">${state.serverUp ? "Saved to extension + data/dashboard-config.json" : "Saved locally — app offline"}</span>
       <button class="btn" id="done">Done</button>
     </div>
   </div></div>`;
 
-  const patch = async (p) => {
+  const patch = guard("saveGameConfig", async (p) => {
     state.cfg.games = state.cfg.games || {};
-    state.cfg.games[key] = { ...(state.cfg.games[key] || {}), ...p };
-    await saveCfg(); renderHeader(); renderModal(); renderStage();
-  };
+    state.cfg.games[key] = Object.assign({}, state.cfg.games[key] || {}, p);
+    await saveCfg(); renderModal(); renderStage();
+  });
   $("scrim").onclick = (e) => { if (e.target.id === "scrim") { state.selected = null; renderModal(); } };
   $("x").onclick = $("done").onclick = () => { state.selected = null; renderModal(); renderStage(); };
   document.querySelectorAll("[data-opt]").forEach((b) => { b.onclick = () => patch({ [b.dataset.opt]: !c[b.dataset.opt] }); });
   document.querySelectorAll("[data-int]").forEach((b) => { b.onclick = () => patch({ intervalHours: b.dataset.int === "" ? null : Number(b.dataset.int) }); });
   $("hook").onchange = (e) => patch({ discordWebhook: e.target.value.trim() });
 
-  const grabBtn = $("grab");
-  if (grabBtn) grabBtn.onclick = async () => {
-    grabBtn.disabled = true; grabBtn.textContent = "Starting…";
+  $("grab").onclick = guard("grabNow", async () => {
+    const btn = $("grab"), msgEl = $("grabmsg");
+    btn.disabled = true; btn.textContent = "Starting…";
     const r = await bg({ type: "grab:now", universes: key }, 120000);
-    const msgEl = $("grabmsg");
     if (r && r.ok) {
-      grabBtn.textContent = "Running";
-      if (msgEl) msgEl.textContent = "Grab running in a create.roblox.com tab — watch the panel there for progress.";
-      // Poll the worker's own record rather than guessing when it finished.
+      btn.textContent = "Running";
+      msgEl.textContent = "Grab running in a create.roblox.com tab — watch the panel there.";
       const tick = setInterval(async () => {
         const st = await bg({ type: "grab:status" }, 15000);
         if (st && st.running === false && st.lastResult) {
           clearInterval(tick);
-          grabBtn.disabled = false; grabBtn.textContent = "Grab this game";
-          if (msgEl) msgEl.textContent = String(st.lastResult).slice(0, 160);
+          btn.disabled = false; btn.textContent = "Grab this game";
+          msgEl.textContent = String(st.lastResult).slice(0, 160);
         }
       }, 4000);
     } else {
-      grabBtn.disabled = false; grabBtn.textContent = "Grab this game";
-      if (msgEl) msgEl.textContent = (r && (r.error || r.msg)) || "could not start";
+      btn.disabled = false; btn.textContent = "Grab this game";
+      msgEl.textContent = (r && (r.error || r.msg)) || "could not start";
     }
-  };
+  });
 }
 
 /* ------------------------------------------------------------------- boot */
 
-async function boot(afterIdentify) {
+const boot = guard("boot", async (afterIdentify) => {
   if (!afterIdentify) state.cfg = await storageGet(CFG_KEY, { username: "", userId: 0, games: {} });
   state.cfg.games = state.cfg.games || {};
-  renderHeader();
 
-  // Paint something usable BEFORE any network work. loadKnown() talks to the
-  // local app through the service worker and can sit for its full timeout when
-  // that app is down; doing it first left #stage empty and the username field
-  // simply did not exist yet.
+  // Paint something usable BEFORE any network work. loadKnown() reaches the
+  // local app through the service worker and can sit for its whole timeout when
+  // that app is down; doing it first left the page with no input to type into,
+  // which read as "the field is dead".
+  renderRail();
   if (!state.user && !state.cfg.username) renderWelcome();
 
   const known = await loadKnown();
@@ -395,20 +414,20 @@ async function boot(afterIdentify) {
 
   if (!state.user && state.cfg.username) {
     state.user = await loadUser(state.cfg.username);
-    // A stored username that no longer resolves must fall back to the form
-    // rather than leaving a blank page.
-    if (!state.user) { renderHeader(); renderWelcome(); return; }
+    if (!state.user) { renderRail(); renderWelcome(); return; }   // stale username
   }
-  renderHeader();
+  if (!state.user) { renderRail(); renderWelcome(); return; }
 
-  if (!state.user) { renderWelcome(); return; }
   state.groups = await loadGroups(state.user.userId, known);
+  renderRail();
   renderStage();
-}
+});
 
 document.addEventListener("click", (e) => {
-  if (state.menuOpen && !e.target.closest(".picker")) { state.menuOpen = false; renderStage(); }
+  if (state.menuOpen && !e.target.closest(".gsw")) { state.menuOpen = false; renderRail(); }
 }, true);
+window.addEventListener("error", (e) => fail("uncaught", e.error || e.message));
+window.addEventListener("unhandledrejection", (e) => fail("promise", e.reason));
 
 if (EMBEDDED) document.documentElement.classList.add("embedded");
 boot();
