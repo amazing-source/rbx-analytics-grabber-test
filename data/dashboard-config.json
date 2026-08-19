@@ -1,0 +1,14 @@
+{
+  "games": {
+    "9610561918": {
+      "dailyGrab": true,
+      "intervalHours": 6
+    },
+    "8507699752": {
+      "liveopsDiagnosis": false
+    }
+  },
+  "updatedAt": "2026-08-19T13:12:44.739Z",
+  "username": "francemaxxing",
+  "userId": 1469356435
+}
