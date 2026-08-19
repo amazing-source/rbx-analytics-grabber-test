@@ -16,6 +16,10 @@ const CFG_KEY = "rbx_dash_cfg";
 const INGEST_URL_KEY = "rbx_ingest_url";
 const DEFAULT_INGEST = "http://localhost:3000/api/ingest";
 
+// When framed into create.roblox.com the surrounding overlay already provides
+// the close affordance and the padding, so the page trims its own chrome.
+const EMBEDDED = window.top !== window.self;
+
 const state = {
   cfg: { username: "", userId: 0, games: {} },
   user: null,
@@ -406,4 +410,5 @@ document.addEventListener("click", (e) => {
   if (state.menuOpen && !e.target.closest(".picker")) { state.menuOpen = false; renderStage(); }
 }, true);
 
+if (EMBEDDED) document.documentElement.classList.add("embedded");
 boot();

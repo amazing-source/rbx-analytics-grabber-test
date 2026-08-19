@@ -105,6 +105,67 @@
     return m ? m[1] : "";
   }
 
+
+  // ---- in-page dashboard ---------------------------------------------------
+  //
+  // The dashboard lives INSIDE create.roblox.com rather than in its own tab,
+  // because everything else about this tool already happens here. It is an
+  // iframe of the extension's own page, which buys two things a hand-rolled
+  // in-page render would not: Roblox's stylesheet cannot reach into it, and the
+  // frame runs on the extension origin, so it keeps its host_permissions and can
+  // call the Roblox APIs and the service worker exactly as it does standalone.
+  // Zero duplicated UI code.
+  let overlay = null;
+
+  function toggleOverlay(show) {
+    if (show && !overlay) {
+      overlay = document.createElement("div");
+      overlay.id = "rbx-overlay";
+      overlay.style.cssText = [
+        "position:fixed", "inset:0", "z-index:2147483646",
+        "background:rgba(6,5,12,.72)", "backdrop-filter:blur(3px)",
+        "display:flex", "align-items:center", "justify-content:center", "padding:24px"
+      ].join(";");
+
+      const shell = document.createElement("div");
+      shell.style.cssText = [
+        "position:relative", "width:100%", "max-width:1240px", "height:100%",
+        "border-radius:16px", "overflow:hidden", "background:#0f0e17",
+        "border:1px solid #282540", "box-shadow:0 30px 90px rgba(0,0,0,.6)"
+      ].join(";");
+
+      const close = document.createElement("button");
+      close.textContent = "✕";
+      close.title = "Close (Esc)";
+      close.style.cssText = [
+        "position:absolute", "top:12px", "right:14px", "z-index:2",
+        "cursor:pointer", "background:#1d1b2e", "border:1px solid #332f4d",
+        "color:#a49dbd", "border-radius:9px", "padding:6px 11px", "font-size:13px"
+      ].join(";");
+      close.onclick = () => toggleOverlay(false);
+
+      const frame = document.createElement("iframe");
+      frame.src = chrome.runtime.getURL("dashboard.html");
+      frame.style.cssText = "width:100%;height:100%;border:0;display:block;background:#0f0e17";
+
+      shell.appendChild(close);
+      shell.appendChild(frame);
+      overlay.appendChild(shell);
+      // Clicking the scrim closes; clicking inside must not.
+      overlay.addEventListener("mousedown", (e) => { if (e.target === overlay) toggleOverlay(false); });
+      document.documentElement.appendChild(overlay);
+      document.addEventListener("keydown", onOverlayKey, true);
+    } else if (!show && overlay) {
+      document.removeEventListener("keydown", onOverlayKey, true);
+      overlay.remove();
+      overlay = null;
+    }
+  }
+
+  function onOverlayKey(e) {
+    if (e.key === "Escape") { e.stopPropagation(); toggleOverlay(false); }
+  }
+
   function ensurePanel() {
     if (panel) return;
     panel = document.createElement("div");
@@ -224,7 +285,7 @@
     // Wrapped, not passed directly: onclick hands the listener a MouseEvent,
     // which would arrive as runActiveGrab's options object.
     panel.querySelector("#rbx-pull").onclick = () => runActiveGrab();
-    panel.querySelector("#rbx-dash").onclick = () => bg({ type: "open-dashboard" }, 15000);
+    panel.querySelector("#rbx-dash").onclick = () => toggleOverlay(true);
     panel.querySelector("#rbx-send").onclick = send;
     panel.querySelector("#rbx-save").onclick = () => saveToFolder(captures, guessUniverse(), true);
     panel.querySelector("#rbx-clr").onclick  = () => { captures.length = 0; setStatus(""); render(); };
