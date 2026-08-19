@@ -122,7 +122,7 @@ async function loadGames(groupId) {
  *  set => everything lands under "Other groups", which is degraded but honest. */
 async function loadKnown() {
   const base = await appBase();
-  const r = await bg({ type: "webapp", url: `${base}/api/rbx/groups?seedUniverses=` }, 20000);
+  const r = await bg({ type: "webapp", url: `${base}/api/rbx/groups?seedUniverses=` }, 6000);
   state.serverUp = Boolean(r?.ok);
   const ids = new Set();
   if (!state.serverUp) return ids;
@@ -131,7 +131,7 @@ async function loadKnown() {
     const g = await pub(`https://games.roblox.com/v1/games?universeIds=${held.join(",")}`);
     for (const x of g?.data ?? []) if (x.creator?.type === "Group" && x.creator.id) ids.add(x.creator.id);
   }
-  const cfg = await bg({ type: "webapp", url: `${base}/api/dash/config` }, 20000);
+  const cfg = await bg({ type: "webapp", url: `${base}/api/dash/config` }, 6000);
   state.hasKey = Boolean(cfg?.data?.hasKey);
   return ids;
 }
@@ -171,6 +171,11 @@ function renderBanners() {
 }
 
 function renderWelcome() {
+  // Whatever is in the box wins over stored config: a re-render mid-typing must
+  // never clobber what the user is entering. This is why the field appeared
+  // dead -- the value was being reset from state underneath the caret.
+  const typed = $("u") ? $("u").value : null;
+  const initial = typed != null ? typed : (state.cfg.username || "");
   $("stage").innerHTML = `
     <div class="card rise" style="padding:28px">
       <div style="font-size:21px;font-weight:650;letter-spacing:-.2px">Welcome</div>
@@ -179,7 +184,7 @@ function renderWelcome() {
         This reads public profile data only — nothing is sent on your behalf.
       </p>
       <div style="display:flex;gap:9px;margin-top:19px;flex-wrap:wrap">
-        <input id="u" placeholder="Roblox username" style="width:280px" value="${esc(state.cfg.username || "")}">
+        <input id="u" placeholder="Roblox username" style="width:280px" autocomplete="off" spellcheck="false" value="${esc(initial)}">
         <button class="btn" id="go">Continue</button>
       </div>
       <div id="uerr" style="color:var(--down);font-size:12.5px;margin-top:9px"></div>
@@ -196,6 +201,8 @@ function renderWelcome() {
   };
   $("go").onclick = go;
   $("u").onkeydown = (e) => e.key === "Enter" && go();
+  // Focus without stealing the caret position if it was already there.
+  if (typed == null) $("u").focus();
 }
 
 function groupRow(g) {
@@ -373,10 +380,21 @@ async function boot(afterIdentify) {
   state.cfg.games = state.cfg.games || {};
   renderHeader();
 
+  // Paint something usable BEFORE any network work. loadKnown() talks to the
+  // local app through the service worker and can sit for its full timeout when
+  // that app is down; doing it first left #stage empty and the username field
+  // simply did not exist yet.
+  if (!state.user && !state.cfg.username) renderWelcome();
+
   const known = await loadKnown();
   renderBanners();
 
-  if (!state.user && state.cfg.username) state.user = await loadUser(state.cfg.username);
+  if (!state.user && state.cfg.username) {
+    state.user = await loadUser(state.cfg.username);
+    // A stored username that no longer resolves must fall back to the form
+    // rather than leaving a blank page.
+    if (!state.user) { renderHeader(); renderWelcome(); return; }
+  }
   renderHeader();
 
   if (!state.user) { renderWelcome(); return; }
