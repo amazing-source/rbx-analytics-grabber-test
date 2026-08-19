@@ -47,3 +47,6 @@ Thumbs.db
 
 # Scratch
 *.log
+
+# dashboard config (username + per-game watch settings) is local state
+data/dashboard-config.json
