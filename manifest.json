@@ -1,28 +1,48 @@
 {
   "manifest_version": 3,
-  "name": "RBX Analytics Grabber (Internal · Phase 1)",
-  "version": "0.5.0",
-  "description": "Pulls all analytics for an owned Roblox game by universeId — passively (capturing what the dashboard loads), actively (replaying the dashboard's own requests in your session, no tab browsing), or on a timer. Saves every grab to the project's data/ folder and forwards it to the Indigo LiveOps web app. Own-data only. No credentials are ever read or stored.",
-  "permissions": ["storage", "downloads", "alarms", "tabs"],
+  "name": "RBX Analytics Grabber (Internal \u00b7 Phase 1)",
+  "version": "0.6.0",
+  "description": "Portfolio dashboard + grabber for owned Roblox experiences. Browse your groups and games, toggle scheduled grabs, and pull all analytics for a universeId by replaying the dashboard's own requests in your session. Own-data only. No credentials are ever read or stored.",
+  "permissions": [
+    "storage",
+    "downloads",
+    "alarms",
+    "tabs"
+  ],
   "host_permissions": [
     "http://localhost/*",
-    "http://127.0.0.1/*"
+    "http://127.0.0.1/*",
+    "https://users.roblox.com/*",
+    "https://groups.roblox.com/*",
+    "https://games.roblox.com/*",
+    "https://thumbnails.roblox.com/*"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["https://create.roblox.com/*"],
-      "js": ["interceptor.js"],
+      "matches": [
+        "https://create.roblox.com/*"
+      ],
+      "js": [
+        "interceptor.js"
+      ],
       "world": "MAIN",
       "run_at": "document_start"
     },
     {
-      "matches": ["https://create.roblox.com/*"],
-      "js": ["collector.js"],
+      "matches": [
+        "https://create.roblox.com/*"
+      ],
+      "js": [
+        "collector.js"
+      ],
       "world": "ISOLATED",
       "run_at": "document_start"
     }
-  ]
+  ],
+  "action": {
+    "default_title": "Indigo LiveOps"
+  }
 }

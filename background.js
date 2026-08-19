@@ -94,9 +94,10 @@ function toDataUrl(text) {
 }
 
 async function handleWebapp(msg) {
-  const opts = { method: msg.method || "GET", headers: {} };
+  // An explicit method wins. Previously any body forced POST, which silently
+  // turned the dashboard's config PUT into a POST and 405'd.
+  const opts = { method: msg.method || (msg.body != null ? "POST" : "GET"), headers: {} };
   if (msg.body != null) {
-    opts.method = "POST";
     opts.headers["content-type"] = "application/json";
     opts.body = JSON.stringify(msg.body);
   }
@@ -176,9 +177,13 @@ async function sendToCollector(tabId, msg, attempts = 12) {
   return { ok: false, error: lastErr || "collector never answered" };
 }
 
-async function runScheduledGrab(trigger) {
+async function runScheduledGrab(trigger, universesOverride) {
   const cfg = await getSchedule();
-  const ids = parseUniverses(cfg.universes);
+  // An override lets the dashboard's "Grab now" reuse this whole path — tab
+  // discovery, the overlap guard, the result plumbing — instead of growing a
+  // second grab implementation that would drift from the scheduled one.
+  const universes = universesOverride != null ? String(universesOverride) : cfg.universes;
+  const ids = parseUniverses(universes);
   if (!ids.length) {
     await patchSchedule({ lastRunAt: Date.now(), lastResult: "no universeIds configured" });
     return { ok: false, error: "no universeIds configured" };
@@ -214,7 +219,7 @@ async function runScheduledGrab(trigger) {
   // lifetime, and the worker is killed whenever Chrome feels like it.
   const started = await sendToCollector(tab.tabId, {
     type: "scheduled-grab",
-    universes: cfg.universes,
+    universes,
     start: cfg.start || "",
     end: cfg.end || "",
   });
@@ -245,6 +250,15 @@ async function handleScheduleResult(msg) {
   return { ok: true };
 }
 
+// Toolbar click opens the dashboard as a full tab. A popup is too small for a
+// game grid, and this page is the extension's primary surface now.
+chrome.action.onClicked.addListener(async () => {
+  const url = chrome.runtime.getURL("dashboard.html");
+  const open = await chrome.tabs.query({ url });
+  if (open.length) chrome.tabs.update(open[0].id, { active: true });
+  else chrome.tabs.create({ url });
+});
+
 chrome.alarms.onAlarm.addListener((alarm) => {
   if (alarm.name === ALARM_NAME) runScheduledGrab("timer");
 });
@@ -263,6 +277,8 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   else if (msg.type === "schedule:get") work = getSchedule();
   else if (msg.type === "schedule:set") work = patchSchedule(msg.patch || {}).then(syncAlarm);
   else if (msg.type === "schedule:runNow") work = runScheduledGrab("manual");
+  else if (msg.type === "grab:now" && msg.universes) work = runScheduledGrab("dashboard", msg.universes);
+  else if (msg.type === "grab:status") work = getSchedule();
   else if (msg.type === "schedule:result") work = handleScheduleResult(msg);
   else return;
 
