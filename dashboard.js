@@ -19,7 +19,7 @@ const EMBEDDED = window.top !== window.self;
 
 const state = {
   cfg: { username: "", userId: 0, games: {} },
-  user: null, groups: [], group: null, games: [], access: {}, summary: {},
+  user: null, groups: [], group: null, games: [], access: {},
   serverUp: false, hasKey: false, query: "", menuOpen: false, selected: null, loading: "",
 };
 
@@ -100,17 +100,16 @@ async function loadGroups(userId, knownIds) {
 
 async function loadGames(groupId) {
   const j = await pub(`https://games.roblox.com/v2/groups/${groupId}/games?accessFilter=All&limit=50&sortOrder=Desc`);
-  const rows = (j?.data ?? []).map((x) => ({ universeId: x.id, name: x.name, playing: null, iconUrl: null }));
+  const rows = (j?.data ?? []).map((x) => ({ universeId: x.id, name: x.name, iconUrl: null }));
   if (!rows.length) return rows;
+  // Icons only. The live-player count was dropped with the metric cards: this
+  // tool exists to grab, schedule and analyse, not to restate numbers Roblox
+  // already shows on the page next to it.
   const ids = rows.map((r) => r.universeId).join(",");
-  const [icons, live] = await Promise.all([
-    pub(`https://thumbnails.roblox.com/v1/games/icons?universeIds=${ids}&size=256x256&format=Png`),
-    pub(`https://games.roblox.com/v1/games?universeIds=${ids}`),
-  ]);
+  const icons = await pub(`https://thumbnails.roblox.com/v1/games/icons?universeIds=${ids}&size=512x512&format=Png`);
   const im = new Map((icons?.data ?? []).filter((d) => d.state === "Completed").map((d) => [d.targetId, d.imageUrl]));
-  const pm = new Map((live?.data ?? []).map((d) => [d.id, d.playing]));
-  for (const r of rows) { r.iconUrl = im.get(r.universeId) ?? null; r.playing = pm.get(r.universeId) ?? null; }
-  return rows.sort((a, b) => (b.playing ?? -1) - (a.playing ?? -1));
+  for (const r of rows) r.iconUrl = im.get(r.universeId) ?? null;
+  return rows.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 async function loadKnown() {
@@ -127,20 +126,6 @@ async function loadKnown() {
   const cfg = await bg({ type: "webapp", url: `${base}/api/dash/config` }, 6000);
   state.hasKey = Boolean(cfg && cfg.data && cfg.data.hasKey);
   return ids;
-}
-
-/** Metric summaries, one game at a time so the grid fills in progressively
- *  rather than sitting behind a minute of rate-limited silence. */
-async function loadSummaries(games) {
-  if (!state.serverUp || !state.hasKey) return;
-  const base = await appBase();
-  const forGroup = state.group && state.group.id;
-  for (const g of games) {
-    if (!state.group || state.group.id !== forGroup) return;   // group switched
-    const r = await bg({ type: "webapp", url: `${base}/api/rbx/summary?universeId=${g.universeId}` }, 90000);
-    state.summary[String(g.universeId)] = r && r.ok ? (r.data && r.data.summary) || null : null;
-    renderStage();
-  }
 }
 
 async function checkAccess(universeIds) {
@@ -186,8 +171,8 @@ function renderRail() {
         ${mO.length ? `<div class="sect">Other groups · ${mO.length}</div>${mO.map(row).join("")}` : ""}
       </div></div>` : ""}`;
 
-  $("nav").innerHTML = ["Experiences", "Analytics", "Updates", "Settings"]
-    .map((n, i) => `<button class="nav ${i === 0 ? "on" : ""}"><span class="ic">${["▦", "◔", "◈", "⚙"][i]}</span>${n}</button>`).join("");
+  // No Analytics/Updates/Settings tabs: they were decoration that did nothing,
+  // and a control that does not work is worse than one that is absent.
 
   $("foot").innerHTML = state.user
     ? `<div class="me">${state.user.avatarUrl ? `<img src="${esc(state.user.avatarUrl)}" alt="">` : `<div class="emb" style="border-radius:99px"></div>`}
@@ -251,41 +236,22 @@ function renderWelcome() {
   if (typed == null) $("u").focus();
 }
 
-function delta(d) {
-  if (d == null || !Number.isFinite(d)) return `<span class="d flat">—</span>`;
-  const cls = d > 0.5 ? "up" : d < -0.5 ? "dn" : "flat";
-  const ar = d > 0.5 ? "↑" : d < -0.5 ? "↓" : "→";
-  return `<span class="d ${cls}">${ar} ${Math.abs(d).toFixed(0)}%</span>`;
-}
-
-function metricRow(k, s, fmt) {
-  if (s === undefined) return `<div class="row"><span class="k">${k}</span><span class="r"><span class="skel"></span></span></div>`;
-  if (s === null) return `<div class="row"><span class="k">${k}</span><span class="r"><span class="v muted">—</span></span></div>`;
-  return `<div class="row"><span class="k">${k}</span><span class="r"><span class="v tnum">${fmt(s.value)}</span>${delta(s.delta)}</span></div>`;
-}
-
 function gameCard(g) {
   const id = String(g.universeId);
-  const sum = state.summary[id];                      // undefined = still loading
   const a = state.access[id];
   const cfg = (state.cfg.games || {})[id] || {};
   const watching = cfg.dailyGrab || cfg.intervalHours || cfg.updateWatch;
-  const pill = watching ? ["watch", "Watching"]
-    : ({ ok: ["ok", "Access"], denied: ["denied", "No access"], error: ["warn", "Error"], checking: ["idle", "…"] }[a] || ["idle", "—"]);
-  const pick = (k) => (sum === undefined ? undefined : (sum && sum[k]) || null);
-  return `<button class="gcard rise" data-uid="${id}">
-    <div class="ghead">
-      ${g.iconUrl ? `<img src="${esc(g.iconUrl)}" alt="">` : `<div class="emb"></div>`}
-      <span class="gname">${esc(g.name)}</span>
-      <span class="pill ${pill[0]}">${pill[1]}</span>
-    </div>
-    <div class="ccu"><div class="k">Concurrent users</div><div class="v tnum">${g.playing == null ? "—" : num(g.playing)}</div></div>
-    <div class="rows">
-      ${metricRow("Daily active users", pick("dau"), num)}
-      ${metricRow("D1 retention", pick("d1"), (v) => (v * 100).toFixed(1) + "%")}
-      ${metricRow("Daily revenue", pick("revenue"), num)}
-      ${metricRow("Avg. playtime", pick("playtime"), (v) => v.toFixed(0) + " min")}
-    </div></button>`;
+  // One marker, not a metrics panel: Roblox's own dashboard already shows the
+  // numbers, and fetching them here cost a request per metric per game and made
+  // the page crawl. All this needs to say is "can I reach this one".
+  const mark = watching ? ["watch", "Watching"]
+    : ({ ok: ["ok", "Access"], denied: ["denied", "No access"], error: ["warn", "Error"], checking: ["idle", "…"] }[a] || ["idle", ""]);
+  return `<button class="gcard rise" data-uid="${id}" title="${esc(g.name)}">
+    <span class="gthumb">${g.iconUrl ? `<img src="${esc(g.iconUrl)}" alt="" loading="lazy">` : ""}
+      ${mark[1] ? `<span class="pill ${mark[0]}">${mark[1]}</span>` : ""}
+    </span>
+    <span class="gname">${esc(g.name)}</span>
+  </button>`;
 }
 
 function renderStage() {
@@ -308,7 +274,7 @@ function renderStage() {
 
 const pickGroup = guard("pickGroup", async (gid) => {
   state.group = state.groups.find((g) => String(g.id) === String(gid)) || null;
-  state.menuOpen = false; state.query = ""; state.games = []; state.access = {}; state.summary = {};
+  state.menuOpen = false; state.query = ""; state.games = []; state.access = {};
   state.loading = "games"; renderRail(); renderStage();
   state.games = state.group ? await loadGames(state.group.id) : [];
   state.loading = ""; renderStage();
@@ -316,7 +282,6 @@ const pickGroup = guard("pickGroup", async (gid) => {
   state.access = Object.fromEntries(state.games.map((g) => [String(g.universeId), "checking"]));
   renderStage();
   checkAccess(state.games.map((g) => g.universeId)).then((a) => { state.access = a; renderStage(); });
-  loadSummaries(state.games.slice(0, 12));
 });
 
 function renderModal() {
@@ -330,7 +295,7 @@ function renderModal() {
       ${g.iconUrl ? `<img src="${esc(g.iconUrl)}" style="width:54px;height:54px;border-radius:12px;object-fit:cover">` : ""}
       <div style="flex:1;min-width:0">
         <div style="font-size:16.5px;font-weight:650">${esc(g.name)}</div>
-        <div class="muted tnum" style="margin-top:2px">Universe ${g.universeId}${g.playing != null ? ` · ${num(g.playing)} playing` : ""}</div>
+        <div class="muted tnum" style="margin-top:2px">Universe ${g.universeId}</div>
       </div>
       <button class="btn-ghost" id="x" style="padding:5px 11px">✕</button>
     </div>

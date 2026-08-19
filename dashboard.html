@@ -47,11 +47,6 @@
   .menu-list button:hover { background:var(--surface-2); }
   .sect { font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);padding:9px 8px 5px; }
 
-  .nav { display:flex;align-items:center;gap:11px;padding:8px 10px;border-radius:9px;color:var(--ink-2);
-         font-size:13.5px;cursor:pointer;border:0;background:transparent;width:100%;text-align:left; }
-  .nav:hover { background:var(--surface-2);color:var(--ink); }
-  .nav.on { background:var(--surface-2);color:var(--ink);font-weight:600; }
-  .nav .ic { width:17px;text-align:center;flex:none;opacity:.85; }
   .rail hr { border:0;border-top:1px solid var(--border);margin:10px 4px; }
   .rail .foot { margin-top:auto;padding:8px; }
   .me { display:flex;align-items:center;gap:9px; }
@@ -64,32 +59,25 @@
   h2 { font-size:21px;margin:0 0 2px;font-weight:650;letter-spacing:-.2px; }
   .sub { font-size:12.5px;color:var(--ink-3);margin-bottom:20px; }
 
-  .grid { display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(292px,1fr)); }
-  .card { background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden; }
-  .gcard { text-align:left;padding:0;color:var(--ink);cursor:pointer;border:1px solid var(--border);
-           background:var(--surface);border-radius:14px;transition:border-color .14s,transform .14s;width:100%; }
-  .gcard:hover { border-color:var(--border-2);transform:translateY(-2px); }
-  .ghead { display:flex;align-items:center;gap:10px;padding:13px 14px 0; }
-  .ghead img { width:30px;height:30px;border-radius:8px;object-fit:cover;background:var(--surface-2);flex:none; }
-  .gname { font-size:13.5px;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0; }
-  .pill { font-size:10px;font-weight:700;border-radius:99px;padding:3px 8px;white-space:nowrap;flex:none; }
-  .pill.ok{background:rgba(61,220,151,.13);color:var(--up)} .pill.denied{background:rgba(255,107,91,.13);color:var(--down)}
-  .pill.warn{background:rgba(245,196,81,.13);color:var(--warn)} .pill.idle{background:var(--surface-2);color:var(--ink-3)}
-  .pill.watch{background:var(--violet-wash);color:#a992ff}
-
-  .ccu { padding:11px 14px 4px; }
-  .ccu .k { font-size:11px;color:var(--ink-3); }
-  .ccu .v { font-size:25px;font-weight:700;letter-spacing:-.5px;line-height:1.15; }
-  .rows { padding:8px 14px 14px; }
-  .row { display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 0;font-size:12.5px; }
-  .row .k { color:var(--ink-3); }
-  .row .r { display:flex;align-items:center;gap:9px; }
-  .row .v { font-weight:600; }
-  .d { font-size:11.5px;font-weight:600;min-width:52px;text-align:right; }
-  .d.up{color:var(--up)} .d.dn{color:var(--down)} .d.flat{color:var(--ink-3)}
-  .skel { display:inline-block;height:11px;width:46px;border-radius:5px;background:var(--surface-3);
-          animation:pulse 1.3s ease-in-out infinite; }
-  @keyframes pulse { 0%,100%{opacity:.45} 50%{opacity:.9} }
+  /* games — thumbnail led, name underneath, lifts on hover */
+  .grid { display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(186px,1fr)); }
+  .gcard { display:block;width:100%;text-align:left;background:transparent;border:0;padding:0;
+           color:var(--ink);cursor:pointer; }
+  .gthumb { position:relative;display:block;aspect-ratio:1/1;border-radius:14px;overflow:hidden;
+            background:var(--surface-2);border:1px solid var(--border);
+            transition:transform .18s cubic-bezier(.22,1,.36,1), border-color .18s, box-shadow .18s; }
+  .gthumb img { width:100%;height:100%;object-fit:cover;display:block; }
+  .gcard:hover .gthumb { transform:scale(1.04);border-color:var(--border-2);
+                         box-shadow:0 14px 32px rgba(0,0,0,.5); }
+  .gcard:active .gthumb { transform:scale(1.01); }
+  .gcard .gname { display:block;margin-top:9px;padding:0 2px;font-size:13px;font-weight:600;
+                  line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink); }
+  /* the access marker sits on the art, so the line under it stays just the name */
+  .pill { position:absolute;top:8px;left:8px;font-size:10px;font-weight:700;border-radius:99px;
+          padding:3px 8px;white-space:nowrap;backdrop-filter:blur(6px); }
+  .pill.ok{background:rgba(61,220,151,.22);color:#7ef0bd} .pill.denied{background:rgba(255,107,91,.24);color:#ff9c91}
+  .pill.warn{background:rgba(245,196,81,.22);color:#ffd97a} .pill.idle{background:rgba(255,255,255,.1);color:#d2d2dd}
+  .pill.watch{background:rgba(124,92,255,.3);color:#cdbfff}
 
   input,select { font:inherit;color:var(--ink);background:var(--surface-2);border:1px solid var(--border-2);
                  border-radius:10px;padding:9px 12px;outline:none;width:100%; }
@@ -140,7 +128,6 @@
   <aside class="rail">
     <div class="top"><div class="logo">I</div><div class="wordmark">LiveOps</div></div>
     <div class="gsw" id="gsw"></div>
-    <nav id="nav"></nav>
     <div class="foot" id="foot"></div>
   </aside>
   <main>
