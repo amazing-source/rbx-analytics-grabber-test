@@ -33,9 +33,6 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
-# Open Cloud API key for the analytics probe. A credential: never committed,
-# never printed by any script, and never read by anything but probe-opencloud.
-.opencloud-key
 
 # vercel
 .vercel
