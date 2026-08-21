@@ -305,3 +305,37 @@ the gateway corrected the F18 point. Neither is answerable before that date.
 **Next:** send Nina the detailed 10399712766 writeup once 08-22 numbers settle,
 leading with the reach reading and the baseline correction. Studio code reads
 from today are in `data/games/10399712766/code-reads.md` (PlaceVersion 1241).
+
+## 2026-08-21 (light) — Waterslide update baseline frozen
+
+**Mode:** `checkpoint light` — gates not re-run, they were measured earlier the
+same day (verify 23/2/8 exit 1 - audit-plan 140/0 - test 44/44) and nothing
+under `web/` changed since.
+**State:** branch `grabber-correctness` - pushed - new raw bundle committed.
+**Landed:** `baselines/` — a new top-level, committed folder for frozen
+pre/post-update references. Sits outside `data/`s ignore rules on purpose.
+`baselines/README.md` carries the contract; first entry is
+`10030829154-2026-08-21-waterslide.md`.
+**Read:** an update shipped on 10030829154 on 2026-08-21, **probably v1705**
+(dimension discovery returned PlaceVersion 1705; feedback tops out at v1698 last
+seen 08-20T23:44Z). `ErrorCount` `LogSource: Server` 08-21 = **3,029,260 and
+still partial** against a 96K-182K/day week — ~17x, which is the publish
+signature already documented for this universe (5.04M / 5.85M / 2.03M / 2.84M on
+its four previous deploy days). **Not a finding unless still elevated on 08-22.**
+Client errors tracking normal. Perf clean: crash rate 0.3-0.4%, FPS p10 ~33,
+OOM ~1.6/1k DAU, server crashes 0-2.
+**Game shape:** hard growth spike — DAU 256,677 (08-14) -> 491,464 (08-20),
+revenue +202.9%, paying users +259.2%. Payer conversion **4.12%, top 10% of
+peers**, while ARPPU R$16.03 is below median: breadth exceptional, depth weak.
+Retention is the soft rung at every horizon (D1 13.4%, D7 0.95%, D30 0.18%).
+**Open:** downvote rate roughly tripled v1685 (14.7%) -> v1691 (46.7%) / v1698
+(43.6%), but DAU tripled over the same span so it is confounded. WATCH, not a
+finding. n ~ 35 per version.
+**Could not measure:** publish time to the minute (placeVersions 500 = F12; no
+08-21 feedback rows; half-hour errors clamp at 08-21T00:00Z). Error text —
+`MessageHash` dimensions **500** on this universe again, so volumes without text.
+**Wake:** 2026-08-22 — re-grab 10030829154 and mark all 11 pre-registered
+tripwires in the baseline OK/WATCH/FIX. The decisive number is `ErrorCount`
+`LogSource: Server` on a settled 08-22: under 400K = the spike was the publish.
+Also still due that date: the 10399712766 reach check and the F18 re-read.
+**Next:** the 08-22 Waterslide follow-up, then Nina.
