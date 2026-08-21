@@ -21,6 +21,7 @@ import { getGrabPlan, type GrabRequest } from "@/lib/store";
 import { apiKey } from "@/lib/opencloud";
 import type { Capture } from "@/lib/parse-captures";
 import type { GrabAttempt, GrabReport } from "@/lib/export-files";
+import { startProgress, updateProgress } from "@/lib/grab-progress";
 
 const BASE = "https://apis.roblox.com/analytics-query-api/v1";
 
@@ -249,11 +250,17 @@ export async function runOpenCloudGrab(opts: {
   const key = apiKey();
   if (!key) throw new Error("no Open Cloud key (web/.opencloud-key or ROBLOX_API_KEY)");
 
+  startProgress(universeId);
   const plan = await getGrabPlan(universeId, startTime, endTime, opts.discovered ?? undefined);
 
   const captures: Capture[] = [];
   const attempts: GrabAttempt[] = [];
   const skipped: CloudGrabResult["skipped"] = [];
+
+  // `total` counts every plan request, including the ones skipped below as not
+  // served by Open Cloud, so the counter is monotone and ends at total.
+  updateProgress(universeId, { phase: "querying", total: plan.requests.length });
+  let done = 0, okCount = 0, emptyCount = 0, failedCount = 0;
 
   // Serial, paced to the POST budget. Concurrency would only buy us 429s: the
   // limit is per minute, not per connection.
@@ -262,6 +269,7 @@ export async function runOpenCloudGrab(opts: {
     const t = toCloudQuery(req);
     if ("skip" in t) {
       skipped.push({ id: req.id, metric: req.metric, kind: req.kind, reason: t.skip });
+      updateProgress(universeId, { done: ++done, skipped: skipped.length });
       continue;
     }
     if (sent > 0) await sleep(POST_INTERVAL_MS);
@@ -282,6 +290,23 @@ export async function runOpenCloudGrab(opts: {
       error: r.ok ? null : r.error,
     };
     attempts.push(attempt);
+
+    if (!r.ok) failedCount++;
+    else if (r.points > 0) okCount++;
+    else emptyCount++;
+    // Published every request rather than on a timer: the number that matters
+    // most is the FIRST status, and a grab whose every request 401s should say
+    // so within seconds instead of at minute six.
+    updateProgress(universeId, {
+      done: ++done,
+      sent,
+      ok: okCount,
+      empty: emptyCount,
+      failed: failedCount,
+      metric: req.metric,
+      lastStatus: r.status,
+      lastError: r.ok ? null : r.error,
+    });
 
     if (r.ok) {
       captures.push({

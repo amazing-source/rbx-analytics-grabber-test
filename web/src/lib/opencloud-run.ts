@@ -17,6 +17,7 @@ import {
 } from "@/lib/export-files";
 import { ingestCaptures } from "@/lib/store";
 import { runOpenCloudGrab, type CloudGrabResult } from "@/lib/opencloud-grab";
+import { finishProgress, updateProgress } from "@/lib/grab-progress";
 
 /** Whatever the last grab discovered for this universe.
  *
@@ -63,10 +64,18 @@ export type PersistedGrab = CloudGrabResult & {
 //
 // A queue rather than a rejection: the caller asked for a grab, and making them
 // discover the collision and retry is the same work with worse ergonomics.
-let chain: Promise<unknown> = Promise.resolve();
+// On globalThis for the same reason as the scheduler's lock: a module-scoped
+// chain is replaced by HMR whenever anything this file imports is edited, and
+// two chains serialize nothing against each other. That is not hypothetical —
+// on 2026-08-21 it let two scheduled passes of 10399712766 overlap and 429 each
+// other, which is precisely the collision this queue exists to prevent.
+const lock = ((globalThis as typeof globalThis & {
+  __rbxGrabLock?: { chain: Promise<unknown> };
+}).__rbxGrabLock ??= { chain: Promise.resolve() });
+
 function serialize<T>(fn: () => Promise<T>): Promise<T> {
-  const next = chain.then(fn, fn);
-  chain = next.catch(() => {});
+  const next = lock.chain.then(fn, fn);
+  lock.chain = next.catch(() => {});
   return next;
 }
 
@@ -100,6 +109,9 @@ async function grabAndPersistUnlocked(opts: {
   // Roblox must not be lost to a database being down, and this one is running
   // unattended, so nobody is there to notice and retry.
   const files: PersistedGrab["files"] = {};
+  // Writing 71 metrics' worth of CSVs is not instant, and a status line that
+  // sits on the last request number through it looks like a stall.
+  updateProgress(opts.universeId, { phase: "persisting" });
   try {
     files.report = await exportGrabReport(result.report);
     if (result.captures.length) {
@@ -123,5 +135,6 @@ async function grabAndPersistUnlocked(opts: {
     db = `unavailable: ${(e as Error).message}`;
   }
 
+  finishProgress(opts.universeId, result.summary);
   return { ...result, files, db };
 }

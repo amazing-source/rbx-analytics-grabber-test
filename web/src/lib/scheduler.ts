@@ -18,6 +18,7 @@ import path from "node:path";
 import { readConfig, apiKey } from "@/lib/opencloud";
 import { resolveDataDir } from "@/lib/export-files";
 import { grabAndPersist } from "@/lib/opencloud-run";
+import { autoCommitGrab } from "@/lib/auto-commit";
 import { notifyGrab } from "@/lib/notify";
 
 const TICK_MS = 60_000;
@@ -33,8 +34,19 @@ type State = {
   lastResult: Record<string, string>;
 };
 
-let timer: NodeJS.Timeout | null = null;
-let running = false;
+// On globalThis, NOT module scope — and this is load-bearing, not tidiness.
+//
+// In dev, editing anything this file imports makes HMR hand out a fresh module
+// instance. Module-level `timer` and `running` come back null/false in the new
+// copy while the OLD instance's interval keeps firing into the OLD closure, so
+// the two run passes concurrently against one 30-POSTs/min key budget. Measured
+// 2026-08-21: two passes on 10399712766 two and a half minutes apart, and the
+// 429s they caused landed in the grab report as failed metrics — i.e. as a game
+// with no ServerCrashCount data. globalThis is the only scope HMR does not
+// replace, so it is the only place a genuinely process-wide lock can live.
+const scheduler = ((globalThis as typeof globalThis & {
+  __rbxScheduler?: { timer: NodeJS.Timeout | null; running: boolean };
+}).__rbxScheduler ??= { timer: null, running: false });
 
 async function statePath() {
   return path.join(await resolveDataDir(), "scheduler-state.json");
@@ -97,7 +109,7 @@ export function dueGames(
 async function tick() {
   // One grab at a time, process-wide. The rate limit is per key, not per game,
   // so two concurrent passes would only make each other fail.
-  if (running) return;
+  if (scheduler.running) return;
   if (!apiKey()) return;
 
   const cfg = readConfig();
@@ -106,7 +118,7 @@ async function tick() {
   const due = dueGames(cfg, state, Date.now());
   if (!due.length) return;
 
-  running = true;
+  scheduler.running = true;
   try {
     for (const d of due) {
       const startedAt = new Date().toISOString();
@@ -117,6 +129,12 @@ async function tick() {
         await writeState(state);
         console.log(`[scheduler] ${r.summary}`);
         await notifyGrab(d.universeId, cfg);
+        // After the alert, not before: a push that hangs on credentials must
+        // not delay the thing a human is waiting to see.
+        if (cfg.autoCommit) {
+          const c = await autoCommitGrab(d.universeId, r.summary);
+          console.log(`[scheduler] git: ${c.detail}`);
+        }
       } catch (e) {
         // A failed grab still stamps lastRunAt: without it a universe that
         // always fails would be retried every single tick, burning the whole
@@ -128,17 +146,17 @@ async function tick() {
       }
     }
   } finally {
-    running = false;
+    scheduler.running = false;
   }
 }
 
 export function startScheduler() {
-  if (timer) return; // idempotent: dev HMR calls register() more than once
-  timer = setInterval(() => {
+  if (scheduler.timer) return; // idempotent across HMR, see the globalThis note above
+  scheduler.timer = setInterval(() => {
     tick().catch((e) => console.error("[scheduler] tick failed:", e));
   }, TICK_MS);
   // Don't hold the process open on this timer alone.
-  timer.unref?.();
+  scheduler.timer.unref?.();
   console.log("[scheduler] started — Open Cloud grabs on the per-game cadence in dashboard-config.json");
   // A first tick shortly after boot, not immediately: let the app finish
   // starting before a multi-minute job takes the floor.
@@ -162,7 +180,7 @@ export async function schedulerStatus() {
   const enabled = cfg.schedulerEnabled !== false && process.env.RBX_SCHEDULER !== "off";
   return {
     enabled,
-    running,
+    running: scheduler.running,
     hasKey: !!apiKey(),
     games,
     due: enabled ? dueGames(cfg, state).map((d) => d.universeId) : [],
