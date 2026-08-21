@@ -52,6 +52,56 @@ Getting this wrong sends a producer to fix something that did not happen — and
 the real finding underneath (a genuine −62% week-over-week on weekdays) gets
 buried under a number that falls apart on inspection.
 
+**A partial MAX is a FLOOR. A partial COUNT is a floor. Neither is a ceiling.**
+`PeakConcurrentPlayers` is a max over the day, so an in-progress reading can
+only rise. Learned expensively 2026-08-21: a 13:22Z read of 8,258 was called
+near-final because "the peak lands at 13:00" — a rule inferred from **one day**
+of intraday shape, applied to a different weekday. The 17:11Z re-read was
+13,532. Before leaning on an intraday pattern, count how many days it rests on
+and say the number out loud.
+
+**"Is CCU down?" is three different questions. Ask which one.**
+
+| Question | Metric | Trap |
+|---|---|---|
+| Was today's high lower? | `PeakConcurrentPlayers` ONE_DAY | It is a **sum of per-platform peaks** and overstates in-progress days (F15) |
+| Was the game smaller today? | `ConcurrentPlayers` ONE_HOUR, daily mean | Needs a full day to be comparable |
+| Is it lower *right now*? | `ConcurrentPlayers` ONE_HOUR / `PeakConcurrentPlayers` HALF_HOUR, same clock hour | **We do not hold today** — see below |
+
+A game can set a higher daily peak *and* be below yesterday at 19:00. Both
+statements are true and they support opposite conclusions, so quoting the wrong
+one inverts the answer. A producer watching a live tile is asking the third
+question; the grab answers the first.
+
+**The grabber cannot see the current day, and no window size fixes it.**
+`HALF_HOUR` and `ONE_HOUR` clamp to the last settled 24h on every grab — a
+28-day ask returns the same right edge as a 1-day ask — and `ONE_MINUTE` is
+deliberately dropped from the plan. During a live incident the **dashboard CSV
+export is the only route to today**, and it is cell-exact against our data
+(2026-08-20 17:00 = 7,265.229 in both), so it can be mixed with grabbed history
+without reconciliation. Ask for the export early rather than reasoning around
+the gap.
+
+**"Still dipping" is usually the diurnal curve.** These games fall from an early
+-afternoon peak to a late-evening trough every single day — on 10399712766,
+11,536 at 13:00Z down to 5,550 at 20:30Z, **-52% within one normal day**. Anyone
+checking at 7-9pm local sees a collapse that is not one. Establish the shape
+before reading a decline, and compare same-clock-hour to same-clock-hour.
+
+**A publish has its own signature — do not read it as breakage.** Session
+duration and FPS dip in the publish hour and recover within ~2h, because servers
+cycle and truncate sessions. On 10399712766's 14:15:59Z publish: session
+duration -15.4% then -22.4%, FPS -12.2%, both back to normal (+0.1%, -0.6%) by
+16:00. Crash rate went *down* 28-55%. If a metric is still degraded 3h later,
+that is a finding; inside the publish hour it is the deploy.
+
+**Annotations answer "did an event end" definitively — query the window.** An
+absent END row in a full-history grab is ambiguous (still running, or never
+captured). Re-query annotations over a **narrow window bracketing the suspect
+date**: on 2026-08-21 a 2026-08-19 -> 2026-08-22 query returned zero
+EVENT_STATE rows, which killed the event-ending hypothesis outright. Zero rows
+in a tight window is evidence; a missing row in a wide one is not.
+
 **Retention lags ~2 days and the chart's right edge is always falling.** D1 for
 day D cannot settle until D+1 is over, and Roblox's retention pipeline adds
 about another day: a grab at 2026-08-10 14:28 UTC returned **no D1 past

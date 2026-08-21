@@ -276,6 +276,19 @@ Related: `render()` in collector.js is coalesced to one animation frame — it u
 to run once per captured response, so a 400-request grab did 400 innerHTML
 rebuilds.
 
+**ALERTING DOES NOT SEND — the field stores a URL and nothing reads it.** Both
+surfaces say so in their own UI (`dashboard.js:421` "Stored, not sending yet",
+`page.tsx:487` "Not wired up yet"); `discordWebhook` is persisted through
+`api/dash/config` and `opencloud.ts`, and `anomaly.ts` has the seasonal
+baseline, but **nothing joins the two**. A real alert did fire on 2026-08-19
+(9610561918, `ErrorCount/100kDAU` +362.1%) and it is easy to conclude from that
+screenshot that the feature exists — it does not; that run happened outside the
+repo and was never committed. Verified 2026-08-20 by full-tree grep of both
+clones: the alert's own wording ("vs this weekday", "Not a threshold") matches
+no file, and `anomaly.ts`'s only `fetch` targets `apis.roblox.com`. **Never tell
+a producer they will be notified until this join is in git**, and never quote
+the 19 Aug alert as evidence of a shipped capability.
+
 ## The grab plan is seeded, not discovered
 `web/src/lib/default-plan.ts` holds all 49 metrics Roblox serves, as query
 shapes (metric name + granularity + breakdown + filter). The metric list was
@@ -362,6 +375,29 @@ are what the dashboard itself puts in the request body. Hashes are what rot.)
   3,139.57 and 11.2M client errors. Same roll-up invents a 2026-08-16 row on a
   day that has not happened. Measured 2026-08-15, F13 in
   `data/verify/COVERAGE.md`, **not yet fixed and not yet encoded as a test**.
+- **`PeakConcurrentPlayers` at ONE_DAY is a SUM of per-platform peaks — never
+  quote it for a day in progress.** Measured 2026-08-21 on 10399712766: the
+  ONE_DAY point read 13,532.377, which is exactly
+  `Computer 439.1 + Console 532.3 + Phone 9,773.8 + Tablet 2,783.8 + TV 3.4`,
+  while the dashboard export's best half-hour that day was **10,429** — 30%
+  lower. Platforms peak at different times, so the sum is an upper bound; it
+  only matches when every platform peaks in the same interval (which is why
+  2026-08-20 agreed exactly and hid the bug). This misread a live incident as
+  **+21.8%** when the game was **−24%**. For any concurrency question use
+  `ConcurrentPlayers` at `ONE_HOUR`, `PeakConcurrentPlayers` at `HALF_HOUR`, or
+  the export. F15 in `data/verify/COVERAGE.md`.
+- **A partial MAX is a FLOOR, not a ceiling.** `PeakConcurrentPlayers` is a max,
+  so a partial reading can only rise. On 2026-08-21 a 13:22Z read of 8,258 was
+  treated as near-final on the inferred rule "the peak lands at 13:00" — derived
+  from a **single day** — and reported as a −28% drop. The 17:11Z re-read was
+  13,532. One day is not a rule; say so before leaning on one.
+- **Sub-daily windows clamp to the last settled 24h, so the grabber cannot
+  answer "what is CCU right now."** `HALF_HOUR` and `ONE_HOUR` both stop at
+  `{today}T00:00`, on every grab, regardless of window length — a 28-day ask
+  does not extend them. `ONE_MINUTE` (the live tile) is deliberately dropped
+  from the plan. During an incident the only route to the current day is a
+  **dashboard CSV export**, which is also cell-exact against our data
+  (2026-08-20 17:00 = 7,265.229 in both).
 - **A point whose interval had not elapsed when we captured it is `partial`**
   and is excluded from every headline, Δ and incident. This is what stopped
   `ClientCrashCount` printing "▼85.6%" off a 7-hour day.

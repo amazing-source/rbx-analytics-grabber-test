@@ -325,3 +325,54 @@ sub-1% ones have no revision row because the materiality threshold is 1%.
 
 **Not measured:** only universe 9963622286, which is single-place. Waterslide is
 genuinely multi-place and the Place-scoping question is untested there.
+
+## F15 — `PeakConcurrentPlayers` ONE_DAY is a SUM of per-platform peaks, and overstates true concurrency (2026-08-21)
+
+**Measured on 10399712766 against the dashboard's own export.** The ONE_DAY
+headline (`series = Place=83256791430098`) for the in-progress day read
+**13,532.377**. The dashboard export
+(`Peak concurrent players, 2026-08-20T17:00Z to 2026-08-21T17:00Z.csv`,
+`Platform=Total`) had a maximum half-hour of **10,429** for the same day —
+**30% lower**.
+
+The platform breakdown for that ONE_DAY point sums to the headline exactly:
+
+    Computer 439.116 + Console 532.324 + Phone 9773.771
+      + Tablet 2783.785 + TV 3.381  =  13532.377
+
+So the "total" is the **sum of each platform's own peak**, not the peak of the
+combined series. Platforms peak at different times, so the sum is an upper bound
+that is only correct when every platform peaks in the same interval — which is
+why **2026-08-20 happened to match** (ONE_DAY 11,111.9 vs best hourly 11,112,
+all platforms peaking at 13:00) and why the discrepancy is invisible on a
+settled day with a single sharp peak.
+
+**Consequence:** during an incident the current-day PCU can read ~30% high, and
+the error is largest exactly when platform peaks are spread out. This produced a
+live misread on 2026-08-21 — the ONE_DAY point suggested the day was **+21.8%**
+over yesterday when the export showed it **−24%**.
+
+**Rule:** for any concurrency question use `ConcurrentPlayers` at `ONE_HOUR`, or
+`PeakConcurrentPlayers` at `HALF_HOUR`, or the dashboard export. Do not quote
+the ONE_DAY point for a day in progress. Not yet encoded as a test.
+
+## F16 — the unattended (Open Cloud) grab path produces bundles that ingest to zero (2026-08-21)
+
+Four scheduled grabs of 10399712766 (14:45, 14:47, 15:46, 16:46) each parsed
+121–124 captures and wrote **0 points, 0 metrics** — `no game data in this
+bundle`. They commit and push successfully, so the failure is silent.
+
+Cause: the scheduled path queries **Open Cloud**
+(`analytics-query-api/v1/universes/{id}/metrics`), whose response shape is
+`response.values[].breakdowns[]`, while `parse-captures.ts` only understands the
+gateway's `operation.queryResult.values[].breakdownValue[]`. The data is present
+in the bundles — a `PeakConcurrentPlayers` OneDay series with 28 points was read
+out of one by hand — but nothing in the pipeline can see it.
+
+Second defect on the same path: the Open Cloud windows end at
+`{today}T00:00:00Z`, so even once parsing is fixed the unattended path can never
+hold the current day.
+
+**Consequence:** every number in the 2026-08-21 incident analysis came from
+browser-captured (gateway) grabs. The hourly scheduler has been producing
+unreadable commits.

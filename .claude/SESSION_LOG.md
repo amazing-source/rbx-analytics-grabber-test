@@ -13,6 +13,196 @@ trusting it**. Entries describe the moment they were written.
 
 ---
 
+## 2026-08-21 — A CCU incident on a new game; my own read was wrong twice before the export settled it
+
+**State:** branch `grabber-correctness` · **5 behind origin** (hourly grabs pushed
+from the other PC) · dirty: `CLAUDE.md`, `HANDOFF.md`, `COVERAGE.md`,
+`SKILL.md`, this log, 4 new `data/raw/` bundles, `data/games/10399712766/`
+**Gates:** verify 23 pass/2 fail/8 skip (**exit 1**, documented `KNOWN_OPEN`) ·
+audit-plan 140 templates/0 failures (**proven shapes 125 -> 142**, the new grabs
+taught it) · test 41/41 — measured 2026-08-21.
+**Landed:** first grabs of **`10399712766`** (8 bundles) + a live incident read.
+Full diagnosis in `HANDOFF.md` §5.
+
+**Disproved — mine, twice in one session, and both reached the user before the
+data did.**
+1. "CCU is down 28%." Built on "the daily peak lands at 13:00", inferred from a
+   **single day**, applied to a different weekday. `PeakConcurrentPlayers` is a
+   MAX so a partial read is a floor; the 17:11Z re-read was 13,532 vs the 8,258
+   I used. → SKILL.md §0.
+2. "CCU is up 21.8%." That 13,532 is a **sum of per-platform peaks** and the
+   dashboard export's best half-hour was 10,429 — 30% lower. The real answer,
+   from the export, was **-24.1%**. → **F15** in `COVERAGE.md` + `CLAUDE.md`.
+
+The correct answer only arrived from a **dashboard CSV export**, which is
+cell-exact against our data (2026-08-20 17:00 = 7,265.229 both).
+
+**Learned → routed:**
+- Partial max/count is a floor; "is CCU down" is three different questions;
+  sub-daily clamps to the last settled 24h so the grabber cannot see today; the
+  diurnal curve is -52% peak-to-trough; the publish restart signature; querying
+  annotations over a narrow window to kill an event hypothesis →
+  `liveops-diagnosis/SKILL.md` **§0**.
+- **F15** PCU ONE_DAY = sum of platform peaks (30% high on in-progress days).
+  **F16** the unattended Open Cloud grab path ingests to **zero points** —
+  `parse-captures.ts` only knows the gateway shape — and its windows end at
+  `{today}T00:00`. Both in `COVERAGE.md`; F15 also in `CLAUDE.md`. Neither
+  encoded as a test.
+- Everything about the game → `HANDOFF.md` §5 *Banana game*.
+
+**The finding worth acting on:** `[EventController] PromptRsvpToEventAsync
+failed: HTTP 404` — **2.01M events across 4 signatures**, first seen
+2026-08-09 19:50Z, **50 minutes after** the `AURAS/INDEX + ADMIN ABUSE` event
+START (`19:00:33Z`). `RSVPCount` frozen at 465,357. Twelve days live, `V1228`.
+Not yet traced to code.
+
+**Ruled out for the incident**, each by a named test: today's update (predates by
+14h), any deploy (**none 2026-08-02 -> 2026-08-21**), engine release, an event
+ending (zero EVENT_STATE rows in a 08-19 -> 08-22 query), technical breakage.
+**v1240 is a clean update** — one new signature, 66 events, gamepad cursor.
+
+**Open:** (1) Studio MCP added to this project (`claude mcp add Roblox_Studio`,
+health-check OK) but **needs a Claude Code restart** to be callable — read
+`EventController` for a hardcoded eventId, `ProgressionService:568`, and the
+`MenuHUD.Wheel` gamepad path. (2) H1 thumbnail decay vs H2 event-surface
+withdrawal — tomorrow's CVR direction discriminates. (3) F15/F16 unfixed.
+(4) Webhook sender still uncommitted (may be on the Desktop clone).
+**Next:** `git merge origin/grabber-correctness` (5 behind, `CLAUDE.md` overlaps
+`de3c2e4`), then restart with `claude --continue` and read `EventController`.
+
+## 2026-08-20 — The alert that fired is not in the repo; the role note is reframed
+
+**State:** branch `grabber-correctness` · 56 ahead of main · in sync with origin ·
+dirty: `NOTE - where this fits.md` (new), `CLAUDE.md`, this log
+**Gates:** verify 23 pass/2 fail/8 skip (**exit 1**, the documented `KNOWN_OPEN`
+pair) · audit-plan 140 templates/0 failures · test 41/41 — measured 2026-08-20,
+**no drift** from the documented state.
+**Landed:** no code. `NOTE - where this fits.md`, a short placement note for
+Olivia sent via Nina.
+**Disproved:** "anomaly alerting works now" — believed by Ren and nearly written
+into a document for Indigo leadership. An alert genuinely fired 2026-08-19 18:23
+(9610561918, `ErrorCount/100kDAU` +362.1%, observed 3,499,035 vs expected
+757,201, z +2.10, for 08-18 02:00) but **the sending code is nowhere on disk**:
+full-tree grep of both clones finds no match for its own wording ("vs this
+weekday", "Not a threshold"), and `anomaly.ts`'s only `fetch` targets
+`apis.roblox.com`. Run outside the repo after the 2026-08-19 checkpoint, never
+committed. → standing rule now in `CLAUDE.md` (extension section).
+**Learned → routed:**
+- Indigo portfolio = **10–15 games per producer** (Nina, 2026-08-20), varying by
+  strategy: more games on fast revenue-centred updates, fewer on slower
+  strategic growth. **Closes open item (4) of the 2026-08-16 entry**, which held
+  the position doc to "far larger than four".
+- Contract `Djematene Dilan contract (1).pdf`: §7.4 bars competing work **during
+  the term only** and is absent from the §8.5 survival list; §3.8 survives one
+  year but reaches only Indigo's own clients/partners Ren had contact with, and
+  is geographically limited to the state of Delaware; §8.3 allows immediate
+  termination for convenience by either side. Read 2026-08-20; §4.2 work-product
+  ownership still unresolved.
+- **Log ordering repaired**: both 2026-08-19 entries had been appended at the
+  BOTTOM, so a cold resume read 2026-08-16 as newest and missed the extension
+  becoming the product surface.
+**Open:** (1) Recover the webhook sender from shell history before it is lost —
+it exists only as a screenshot. (2) Olivia decides ~end of 2026-08. (3) F12, F13
+and the Knife Farm cause unchanged.
+**Next:** recover and commit the `anomaly.ts` → webhook join, then confirm one
+scheduled grab lands end to end (`data/raw/` + ingest in the dev log).
+
+## 2026-08-19 (afternoon) — the extension became the product surface
+
+**State:** all work in the TEST clone `rbx-analytics-grabber-test`, pushed to
+`origin/grabber-correctness`, clean. Manifest **v0.8.0**. The MAIN repo has NONE
+of this — it holds only the morning's knowledge port.
+**Gates** (measured now): verify 23 pass / 2 fail / 8 skip (exit 1, documented) ·
+audit-plan 140 templates 0 failures · test 41/41.
+
+**Landed:** dashboard as an extension page framed into create.roblox.com
+(`dashboard.html` + `dashboard.js`, overlay in `collector.js`); Experiences /
+Grab / Settings views; five server routes (`/api/rbx/user|groups|group-games|
+access`, `/api/dash/config`); grab exclusions wired end to end
+(`lib/exclusions.ts`); the old panel reduced to a launcher (-144 lines).
+
+**Learned → routed:** iframe-vs-inline reasoning, the credential split, the
+orphaned-content-script failure, exclusion numbers and the report-what-you-
+dropped rule, and "no live metrics in the dashboard" → **CLAUDE.md**.
+
+**Disproved / corrected (mine):**
+- "The username field is dead" — it did not exist yet. `boot()` awaited a
+  6–20s local-app probe before painting `#stage`. Now paints first; every entry
+  point is wrapped and paints a visible error banner.
+- "The scheduler is broken" — it fires correctly. Reloading the extension
+  orphaned the content script, so it reached nobody.
+- Metric cards on the grid — built, then removed as costly and redundant.
+
+**Open:**
+- **The scheduler has still never completed a grab end to end.** It fires; the
+  orphan fix is unverified. Next check: a new file in `data/raw/` and a
+  `POST /api/ingest` in the dev log after the next hourly firing.
+- Alerts do not send. `anomaly.ts` has the seasonal baseline; nothing joins it to
+  the webhook field. Decision made: **measured baseline only, no manual
+  threshold** — a typed number fires every Wednesday on a game whose Wednesday
+  runs 42% below its own weekly mean.
+- Lag reportedly improved but not confirmed; user switching to a faster machine.
+- Only universe 9963622286 verified against Open Cloud; Waterslide (multi-place)
+  and Knife Farm unprobed for value parity.
+- Contract §4.2 makes all work product Indigo's — unresolved, and it decides
+  whether any of this is sellable.
+
+**Next:** confirm one scheduled grab lands (`data/raw/` + ingest in the log). If
+the orphan fix holds, wire `anomaly.ts` to the Discord webhook.
+
+## 2026-08-19 — Open Cloud is a verified drop-in for the metrics half
+
+**State:** ALL of today's work is in a SECOND CLONE,
+`C:\Users\bfhdh\Downloads\rbx-analytics-grabber-test` (private GitHub repo
+`amazing-source/rbx-analytics-grabber-test`, `origin` = test, `upstream` = real
+with push disabled). Nothing committed anywhere. **The main repo is still
+`behind 2` and dirty** (`SKILL.md`, `data/games/10030829154/grab-report.json`)
+— and both incoming commits rewrite those same two files.
+**Gates** (test repo, measured 2026-08-19): verify 23 pass / 2 fail / 8 skip
+(exit 1, the documented state) · audit-plan 140 templates 0 failures 125 proven
+· test 41/41.
+
+**Landed (uncommitted):** `chrome.alarms` scheduler in the extension
+(`background.js` +208, `collector.js` +116, manifest 0.5.0 — scheduler drives a
+real tab so the session cookie is still never touched); four Open Cloud probes
+in `web/scripts/` (`probe-opencloud`, `compare-opencloud`, `coverage-opencloud`,
+`probe-dimensions`, `probe-granularity`), key read from gitignored
+`web/.opencloud-key`; `liveops-diagnosis` skill 827 → 966 lines.
+
+**Learned → routed:**
+- Open Cloud parity + shapes + the granularity-column trap → `CLAUDE.md`
+- The 726-cell measurement and its two self-inflicted false alarms →
+  `data/verify/COVERAGE.md` **F14**
+- Retention-by-acquisition-source as a discrimination test; platform DAU floors;
+  Roblox's published perf targets; funnel back-fill/repeat/filter rules; Configs
+  API as the rollback lever and Notifications as re-engagement →
+  `SKILL.md` §3c, §3d, §4 technical targets, §5d, §5e
+
+**Disproved (all mine):**
+- "The perf half is unproven — local Place-scope vs cloud universe-scope" —
+  `breakdown:["Place"]` returns ONE series identical to the total; Become a
+  Brainrot is single-place ("[WORLD 3]" is the update name, not a place).
+- "ServerCrashCount's fractional 4.010101010101 is an anomaly to resolve" —
+  both sources return it; normal at daily granularity.
+- "PeakConcurrentPlayers disagrees by 87%" — `compare-opencloud.ts` was not
+  filtering the `granularity` column.
+- "The robocopy preserved everything not in the copy" — it reverted six files
+  from the two newer commits; restored via `git checkout`.
+
+**Open:**
+- `filter` needs an `operation` enum; `"Equals"` rejected — probe for legal
+  values, it blocks Place-scoped queries.
+- Only 9963622286 tested, and it is single-place — run the probes on Waterslide
+  (multi-place) and Knife Farm before generalising.
+- Contract §4.2 makes all work product Indigo's — unresolved, and it decides
+  whether any of this is sellable. Raise with the rate conversation.
+- Extension scheduler is written but never run against Chrome.
+
+**Next:** reconcile the main repo — `git fetch && git merge` (behind 2, two
+dirty files the incoming commits rewrite), then port `SKILL.md`, the `CLAUDE.md`
+Open Cloud block and COVERAGE F14 across. Until that happens today's knowledge
+exists ONLY in the test clone, which is exactly the failure this log prevents.
+
 ## 2026-08-16 — Three games re-read in one pass, and the position doc is written
 
 **State:** branch `grabber-correctness` · 37 ahead of main · pushed · clean
@@ -413,98 +603,3 @@ and now logs only >1%.
 82/119 → 155/186; annotation enumeration found
 `ANNOTATION_TYPE_ENGINE_RELEASE`, the genuine "was it Roblox?" signal.
 
-## 2026-08-19 — Open Cloud is a verified drop-in for the metrics half
-
-**State:** ALL of today's work is in a SECOND CLONE,
-`C:\Users\bfhdh\Downloads\rbx-analytics-grabber-test` (private GitHub repo
-`amazing-source/rbx-analytics-grabber-test`, `origin` = test, `upstream` = real
-with push disabled). Nothing committed anywhere. **The main repo is still
-`behind 2` and dirty** (`SKILL.md`, `data/games/10030829154/grab-report.json`)
-— and both incoming commits rewrite those same two files.
-**Gates** (test repo, measured 2026-08-19): verify 23 pass / 2 fail / 8 skip
-(exit 1, the documented state) · audit-plan 140 templates 0 failures 125 proven
-· test 41/41.
-
-**Landed (uncommitted):** `chrome.alarms` scheduler in the extension
-(`background.js` +208, `collector.js` +116, manifest 0.5.0 — scheduler drives a
-real tab so the session cookie is still never touched); four Open Cloud probes
-in `web/scripts/` (`probe-opencloud`, `compare-opencloud`, `coverage-opencloud`,
-`probe-dimensions`, `probe-granularity`), key read from gitignored
-`web/.opencloud-key`; `liveops-diagnosis` skill 827 → 966 lines.
-
-**Learned → routed:**
-- Open Cloud parity + shapes + the granularity-column trap → `CLAUDE.md`
-- The 726-cell measurement and its two self-inflicted false alarms →
-  `data/verify/COVERAGE.md` **F14**
-- Retention-by-acquisition-source as a discrimination test; platform DAU floors;
-  Roblox's published perf targets; funnel back-fill/repeat/filter rules; Configs
-  API as the rollback lever and Notifications as re-engagement →
-  `SKILL.md` §3c, §3d, §4 technical targets, §5d, §5e
-
-**Disproved (all mine):**
-- "The perf half is unproven — local Place-scope vs cloud universe-scope" —
-  `breakdown:["Place"]` returns ONE series identical to the total; Become a
-  Brainrot is single-place ("[WORLD 3]" is the update name, not a place).
-- "ServerCrashCount's fractional 4.010101010101 is an anomaly to resolve" —
-  both sources return it; normal at daily granularity.
-- "PeakConcurrentPlayers disagrees by 87%" — `compare-opencloud.ts` was not
-  filtering the `granularity` column.
-- "The robocopy preserved everything not in the copy" — it reverted six files
-  from the two newer commits; restored via `git checkout`.
-
-**Open:**
-- `filter` needs an `operation` enum; `"Equals"` rejected — probe for legal
-  values, it blocks Place-scoped queries.
-- Only 9963622286 tested, and it is single-place — run the probes on Waterslide
-  (multi-place) and Knife Farm before generalising.
-- Contract §4.2 makes all work product Indigo's — unresolved, and it decides
-  whether any of this is sellable. Raise with the rate conversation.
-- Extension scheduler is written but never run against Chrome.
-
-**Next:** reconcile the main repo — `git fetch && git merge` (behind 2, two
-dirty files the incoming commits rewrite), then port `SKILL.md`, the `CLAUDE.md`
-Open Cloud block and COVERAGE F14 across. Until that happens today's knowledge
-exists ONLY in the test clone, which is exactly the failure this log prevents.
-
-## 2026-08-19 (afternoon) — the extension became the product surface
-
-**State:** all work in the TEST clone `rbx-analytics-grabber-test`, pushed to
-`origin/grabber-correctness`, clean. Manifest **v0.8.0**. The MAIN repo has NONE
-of this — it holds only the morning's knowledge port.
-**Gates** (measured now): verify 23 pass / 2 fail / 8 skip (exit 1, documented) ·
-audit-plan 140 templates 0 failures · test 41/41.
-
-**Landed:** dashboard as an extension page framed into create.roblox.com
-(`dashboard.html` + `dashboard.js`, overlay in `collector.js`); Experiences /
-Grab / Settings views; five server routes (`/api/rbx/user|groups|group-games|
-access`, `/api/dash/config`); grab exclusions wired end to end
-(`lib/exclusions.ts`); the old panel reduced to a launcher (-144 lines).
-
-**Learned → routed:** iframe-vs-inline reasoning, the credential split, the
-orphaned-content-script failure, exclusion numbers and the report-what-you-
-dropped rule, and "no live metrics in the dashboard" → **CLAUDE.md**.
-
-**Disproved / corrected (mine):**
-- "The username field is dead" — it did not exist yet. `boot()` awaited a
-  6–20s local-app probe before painting `#stage`. Now paints first; every entry
-  point is wrapped and paints a visible error banner.
-- "The scheduler is broken" — it fires correctly. Reloading the extension
-  orphaned the content script, so it reached nobody.
-- Metric cards on the grid — built, then removed as costly and redundant.
-
-**Open:**
-- **The scheduler has still never completed a grab end to end.** It fires; the
-  orphan fix is unverified. Next check: a new file in `data/raw/` and a
-  `POST /api/ingest` in the dev log after the next hourly firing.
-- Alerts do not send. `anomaly.ts` has the seasonal baseline; nothing joins it to
-  the webhook field. Decision made: **measured baseline only, no manual
-  threshold** — a typed number fires every Wednesday on a game whose Wednesday
-  runs 42% below its own weekly mean.
-- Lag reportedly improved but not confirmed; user switching to a faster machine.
-- Only universe 9963622286 verified against Open Cloud; Waterslide (multi-place)
-  and Knife Farm unprobed for value parity.
-- Contract §4.2 makes all work product Indigo's — unresolved, and it decides
-  whether any of this is sellable.
-
-**Next:** confirm one scheduled grab lands (`data/raw/` + ingest in the log). If
-the orphan fix holds, wire `anomaly.ts` to the Discord webhook.

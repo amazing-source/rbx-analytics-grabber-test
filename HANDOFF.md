@@ -575,6 +575,73 @@ report the save-loss path as resolved.** Re-pull with a narrower filter to settl
   unlock block is gated by `table.find(unlockWorlds, worldId)` at L37. Low severity.
 - Teleport errors are universe-wide across 6 places; only the root was open.
 
+### Banana game (`10399712766`) — CCU step-down of 2026-08-21, and a dead event integration
+
+First grabbed 2026-08-21. Single place `83256791430098`. Large: DAU 522K–708K,
+impressions 7.2M–10.6M/day, PCU ~6K–13K. Onboarding funnel instrumented and
+healthy (`Joined` 1.000 -> `Punched` 0.962 -> `Collected a Banana` 0.953).
+
+**The incident.** CCU stepped down ~20-27% versus the same clock time the day
+before, flat at that level all day rather than deepening. Measured against the
+dashboard export, 33 of 35 matched half-hours below Aug 20; mean 8,565 -> 6,503
+(**-24.1%**). Onset ~21:00 on 2026-08-20 (Aug 20 21:00 was -21.5% and 23:00
+-32.7% against the previous Thursday, while that same afternoon was *up*).
+
+**Ruled out, each by a named test:**
+
+| Candidate | Killed by |
+|---|---|
+| The 2026-08-21 update | Decline established 14h before v1240 published at 14:15:59Z |
+| Any deploy | **No publish between 2026-08-02 and 2026-08-21** — 19 days |
+| Engine release | Nearest RCC 735 on 2026-08-17, during the *elevated* period |
+| An event ending | Annotations queried 2026-08-19 -> 2026-08-22 returned **zero** EVENT_STATE rows |
+| Technical breakage | Crash rate -28 to -55% post-update, session duration recovered to +0.1% by 16:00, 1 server crash all day |
+
+**v1240/v1241 (2026-08-21 14:15:59Z / 14:54:57Z) is a CLEAN update.** Exactly one
+new error signature: `Cannot set GamepadService.EnableGamepadCursor on
+...MenuHUD.Wheel because it is outside the viewport`, 66 events, first seen
+14:20:45Z. Unverified whether it blocks the wheel for gamepad users (console PCU
+~532). The 14:00-15:00 dip in session duration (-15.4%, -22.4%) and FPS (-12.2%)
+is the **publish restart signature** and had fully recovered by 16:00.
+
+**The finding that matters — a broken event integration, ~2.01M errors, 12 days
+live.** Four `V1228` signatures, all first seen **2026-08-09 19:50-19:55Z**,
+50 minutes after the `AURAS/INDEX + ADMIN ABUSE` event START annotation
+(`2026-08-09T19:00:33Z`):
+
+    1,413,006  [EventController]: PromptRsvpToEventAsync failed: HTTP 404 (Not Found)
+      361,229  [EventController]: GetEventRsvpStatusAsync failed: HTTP 404 (Not Found)
+      182,274  [EventController]: GetEventRsvpStatusAsync failed: HTTP 404
+       58,406  [EventController]: PromptRsvpToEventAsync failed: HTTP 404
+
+`RSVPCount` is frozen at **465,357** across the whole window. The game prompts
+an RSVP the API cannot resolve, so no new RSVPs accrue and the event surface is
+dead. Functional, not cosmetic. **Not yet traced to code** — needs a Studio read
+of `EventController` to see whether the eventId is hardcoded.
+
+**Leading hypotheses for the step-down, neither confirmed:**
+- **H1 thumbnail novelty decay.** Thumbnail swapped `2026-08-13T21:35:44Z`;
+  `EndToEndCVR` 0.0465 -> **0.0714** (Aug 17 peak) -> 0.0543 (Aug 20), -24% in
+  three days. Explains the gradual component. Predicts CVR keeps falling.
+- **H2 event surface withdrawal.** Explains the sharp ~21:00 onset better. The
+  absent END annotation is consistent with the event being deleted platform-side
+  rather than closed, which is also what a 404 on "get event details" implies.
+
+Impressions oscillate 7.2M-10.6M with no cut; D1 (0.123-0.158) and session
+length (~15 min) flat. Aug 19 -> Aug 20 decomposes as impressions -13%, CVR -9%,
+together the -21% DAU move. **Magnitude caveat:** today is -24% against
+yesterday but only about **-12%** against the Aug 10-16 mean of ~7,385, because
+Aug 20 was an above-average day.
+
+**Other real defects logged, not this incident's story:**
+- `MemoryStoreService: InternalError - Data Structure: AdminState` (198) — the
+  admin system behind the ADMIN ABUSE events.
+- `ProgressionService:568: attempt to index nil with 'AddMailboxGift'` (18,
+  Server) — a reward delivery path failing.
+- `DataStoreService: TooManyRequests` + `ProfileStore 502` on `PlayerData_Main`
+  (23 + 23) — capacity on a shared key.
+- Script timeouts on seven client controllers, all in `onHeartbeat`/refresh.
+
 ## 6. Next steps
 
 > Updated 2026-08-08 after the correctness overhaul (`CORRECTNESS_PLAN.md`).
