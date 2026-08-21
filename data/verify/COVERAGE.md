@@ -411,3 +411,48 @@ What does survive from that investigation: Open Cloud metric windows end at
 `{today}T00:00:00Z`, so the unattended path never holds the current day. That is
 a window choice, not a parser bug, and it is why a live incident still needs the
 browser grab or a dashboard export.
+
+## F18 — the gateway served an impossible `ConcurrentPlayers` point on the in-progress day (2026-08-21)
+
+**Measured on 10399712766, from the raw capture, not inferred.**
+
+`ConcurrentPlayers` at `METRIC_GRANULARITY_ONE_HOUR`, breakdown `[]`, returned
+
+    2026-08-21T14:00:00Z ->  8,042.486904759966
+    2026-08-21T15:00:00Z -> 13,532.377417024942   <-- impossible
+    2026-08-21T16:00:00Z ->  6,461.090079363784
+
+`PeakConcurrentPlayers` at `HALF_HOUR` for that same 15:00 hour reads
+**6,869.115**. A mean over an interval cannot exceed the max over the same
+interval, so the 15:00 point is wrong.
+
+**It is Roblox's value, not ours.** Found in
+`data/raw/10399712766-2026-08-21T17-35-01-465Z.json` entry 385, request
+`{"metric":"ConcurrentPlayers","granularity":"METRIC_GRANULARITY_ONE_HOUR",
+"breakdown":[],"startTime":"2026-08-19T00:00:00.000Z"}`. Nothing in the exporter
+computed it. **An earlier theory that our pipeline injected it was wrong and is
+recorded here so it is not re-derived.**
+
+**What it appears to be.** The value equals the naive left-to-right sum of that
+day's per-platform `PeakConcurrentPlayers` peaks
+(439.116 + 532.324 + 9,773.771 + 2,783.785 + 3.381 = 13,532.377417024942,
+exact to the bit). That is the F15 quantity — the daily platform-sum — appearing
+inside an hourly series. Note it is **not** equal to the `ONE_DAY` value we
+stored (13,532.37741702494, one ulp apart), so the two were computed separately
+upstream rather than one being copied from the other.
+
+**Scope, honestly stated.** *One* observation. The 17:00 grab did not yet serve
+that hour, and the 17:46 grab did not re-issue the query, so **no re-read exists
+and we have not seen whether it self-corrects once the day settles**. Do not
+generalise to "the gateway always does this".
+
+**Why it matters operationally.** The bad point sits at 15:00Z on a day whose
+update published around 14:15Z. On an hourly chart it reads as a spike at the
+publish hour followed by a 52% collapse, which is exactly the shape someone
+looks for when asking "did the update break it". It did not happen.
+
+**Working rule.** On the current, in-progress day, cross-check any sub-daily
+`ConcurrentPlayers` point against `PeakConcurrentPlayers` at `HALF_HOUR` for the
+same interval and discard the point if the mean exceeds the peak. **Next test:**
+re-read 2026-08-21T15:00Z after 2026-08-22T00:00Z and record whether the
+gateway corrects it.

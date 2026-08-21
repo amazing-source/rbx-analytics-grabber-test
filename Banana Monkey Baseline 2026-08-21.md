@@ -144,3 +144,61 @@ lives.
    publish or the half-hour resolution around it is gone permanently. Perf and
    crash data age out at ~30 days; this game is four weeks old, so the whole
    technical history is currently held and will not be later.
+
+---
+
+## Post-update read, same day (added 2026-08-21 ~19:00 UTC+2)
+
+The baseline table above is unchanged and still frozen. This section is the
+first post-publish read, kept here so the two live in one file.
+
+**Context that was not in the baseline: Indigo acquired this game on or about
+2026-08-19** (producer's words, "like 2 days ago"). That date matters — see
+below.
+
+**The publish.** `feedback.csv` shows `asset_version` 1228 still live at
+2026-08-21T02:18Z; the live place read **v1241** in Studio the same evening.
+`place-versions.csv` is useless here — it tops out at **v1153 (2026-07-13)**
+while root ran v1241, a fresh instance of F12 on this universe.
+
+**CCU fell, and the update did not cause it.** Mean `ConcurrentPlayers`
+`ONE_HOUR` over 00–16Z (settled hours only, same clock window every day):
+
+| Day | Mean CCU 00–16Z |
+|---|---|
+| Fri 08-14 | 8,579 |
+| Wed 08-19 | 9,596 |
+| Thu 08-20 | 8,372 |
+| **Fri 08-21** | **6,588** |
+
+−21.3% vs 08-20 and −23.2% vs the previous Friday. **The deficit is already
+present at 00:00Z** (6,013 vs 8,752, −31.3%), roughly 14 hours before the
+~14:15Z publish, and it *narrows* through the day: −33.7% at 12:00Z, −25.7% at
+13:00Z, −22.6% at 14:00Z, −13.2% at 16:00Z. A cause cannot post-date its effect.
+
+**Not unprecedented.** −21.3% ranks 4th of 27 day-over-day moves in the window;
+08-10 was −32.5%, 08-04 −26.1%, 08-02 −21.4%. 6,588 is the window's lowest daily
+mean but only **3.9% under the previous floor** (6,858 on 08-13). The game has
+held a 6,800–7,600 plateau since 08-13.
+
+**Reach, not appeal, and the handover date distorts it.** Paid is **zero on
+every day** (`SponsoredAds` and `SearchAds` both 0), so no ad-spend cliff.
+`HomeRecommendation` is ~84% of impressions and drives everything: 6.97M
+(08-18) -> **9.16M (08-19, +31%)** -> 7.71M (08-20). Indigo took the game over on
+a one-day RFY surge, so the following days read as a collapse against an
+inflated reference.
+
+**Corrects the baseline's own reading.** "Discovery's healthy, click-to-play up
+17%" does not hold. `EndToEndCVR` runs **r = −0.881** against impressions here,
+and it rose over exactly the window impressions fell 13.6M -> 7.2M (−47%). The
+rise was the denominator shrinking. Routed to the diagnosis skill.
+
+**Code read (Studio, PlaceVersion 1241, read-only).** Nothing found that would
+move CCU. `EventController` / `ProgressionService.AddMailboxGift` /
+`MenuHUD.Wheel` gamepad path all clean; three of my own claims about them were
+retracted the same session (see SESSION_LOG 2026-08-21).
+
+**Still open:** why today sits at the plateau's low edge. DAU, impressions and
+CVR for 08-21 do not settle until 08-22. **Next action: re-pull 08-21 DAU +
+`UniqueUsersWithImpressions` by `AcquisitionSource` on 08-22 and check whether
+`HomeRecommendation` kept falling.** That confirms or kills the reach reading.

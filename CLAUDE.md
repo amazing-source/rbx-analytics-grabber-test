@@ -22,7 +22,7 @@ the full spec; this file is the day-to-day reference.
 >   2026-08-08T00:00, and (2) `ErrorCount` half-hour, where 144 of 147 cells
 >   match and the 3 that don't are all the 08:00 bucket at the export window's
 >   own edge — the CSV holds a partial bucket, our later read holds the settled
->   one. `npm run audit-plan` → 140 templates, 0 failures. `npm test` → 41 pass.
+>   one. `npm run audit-plan` → 140 templates, 0 failures. `npm test` → 44 pass.
 >   A change that moves a number without moving these is unproven.
 > - **Both universes were re-grabbed post-fix on 2026-08-08** — that closed the
 >   last verification item. 9963622286's crash history is now present

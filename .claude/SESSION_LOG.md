@@ -250,3 +250,53 @@ default — check the panel's date fields for a leftover value.
 **Next:** verify or kill the +362% ErrorCount reading on 9610561918 against the
 dashboard's own export, then decide the cadence per game — nothing is scheduled
 right now (`schedulerEnabled: false`, extension schedule `enabled: false`).
+
+## 2026-08-21 — A CCU drop that was not the update, and three of my own claims retracted
+
+**State:** branch `grabber-correctness` · 65 ahead of main · pushed · clean at
+session start; this checkpoint touches `CLAUDE.md`, `COVERAGE.md`, the diagnosis
+skill, the Banana Monkey baseline and this log.
+**Gates:** verify 23 pass · 2 fail · 8 skip, **exit 1** (the documented
+`KNOWN_OPEN` pair) · audit-plan 140 templates, 0 failures, **40 upgradable tags**
+· test **44/44** — all measured 2026-08-21, not copied.
+**Fixed stale doc:** `CLAUDE.md` START HERE said `npm test` → **41 pass**; it is
+44 and has been since 2026-08-19. That block loads into every session.
+**Landed:** no code changes. Session was read-only investigation plus routing.
+**Learned → routed:**
+- `EndToEndCVR` is inversely correlated with impressions (**r = −0.881**, 28d,
+  10399712766), so a CVR trend alone is never an appeal signal; check paid
+  sources before an ad-cliff theory; an acquisition landing on an RFY surge day
+  distorts every later comparison → `liveops-diagnosis/SKILL.md` §4.
+- Gateway served an impossible `ConcurrentPlayers` `ONE_HOUR` point
+  (13,532.377 at 2026-08-21T15:00Z vs a 6,869 half-hour peak) → **F18** in
+  `data/verify/COVERAGE.md`. Confirmed from raw entry 385, not our exporter.
+- 10399712766 post-update read, publish timing, handover date → the
+  `Banana Monkey Baseline 2026-08-21.md` post-update section.
+**Disproved — all four mine, three in-session:**
+1. "MenuHUD.Wheel locks out until you step off the pad" — false. `Touched`
+   re-fires for an animated character, so SpinController:201 reopens it. I
+   concluded it from lines 155–230 without reading the whole file.
+2. "`openMenuFrame()` can bind the gamepad cursor to the wrong frame" —
+   unreachable; every open path closes `activePopup` first, so only one popup
+   is ever open. Should never have been reported under the repo's own
+   materiality rule.
+3. "`EventConfig.EventId` is stale, hence the 404s" — false. It matches the live
+   `AURAS/INDEX + ADMIN ABUSE` event exactly; the annotation's
+   `6858286705385014000` is `Number()` precision loss on `...014015`, in our own
+   JSON parse.
+4. "Our exporter injected the 13,532 point" — false, the gateway returned it.
+**Open:**
+- Why 08-21 sits at the plateau's low edge. **Next action: on 08-22 re-pull
+  08-21 DAU and `UniqueUsersWithImpressions` by `AcquisitionSource`, check
+  whether `HomeRecommendation` kept falling below 7.71M.**
+- F18 has one observation and no re-read. **Re-read 2026-08-21T15:00Z after
+  2026-08-22T00:00Z** and record whether the gateway self-corrects.
+- `EventController`'s signup calls still fail for an unknown reason —
+  `errors.md` has null text for all 899 hashes because the async MessageHash
+  lookup never polls. Fixing that poll is what makes error text readable at all.
+- 19-digit Roblox IDs lose precision through `JSON.parse` in our pipeline.
+  Not yet a test. Would have caused a false finding if I had trusted it.
+- 40 audit-plan templates tagged `proven` are actually `observed` — upgradable,
+  not a failure, but the tags are drifting.
+**Next:** send Nina the detailed 10399712766 writeup once 08-22 numbers settle,
+leading with the reach reading and the baseline correction.

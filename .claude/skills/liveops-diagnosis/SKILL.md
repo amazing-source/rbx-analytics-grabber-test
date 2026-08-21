@@ -574,6 +574,36 @@ untouched. So QPTR optimisation would not have restored it — though at 3.3%
 the game does sit far below the 8%+ band, so QPTR remains real *upside*, just
 not the *cause*.
 
+**CVR and impressions are INVERSELY correlated, so a CVR trend alone is not an
+appeal signal.** Measured 2026-08-21 on 10399712766: `EndToEndCVR` against
+`UniqueUsersWithImpressions` over 28 days runs **r = −0.881**. CVR fell every
+time Roblox widened reach and rose every time reach shrank, because the
+denominator moves faster than the plays do. Concretely, CVR "improved" 4.65% ->
+6.64% between 08-13 and 08-16 while impressions fell 9.86M -> 7.22M, and a
+report had already banked that as "discovery is healthy, click-to-play up 17%".
+It was the game being shown to fewer people.
+
+**So: never quote a CVR move without the impressions series beside it, and
+compute the correlation on the window before treating CVR as evidence about the
+listing.** The combination that carries information is the *pair*, which is what
+the table above is for. A CVR rise during a reach collapse is the signature of
+a shrinking audience, not an improving one.
+
+**Both falling on the same day is the rare case and is worth flagging.** On the
+same game it happened 5 times in 27 day-pairs (they move oppositely 16 times).
+One of the five was 2026-08-10, which carried the month's largest single-day CCU
+fall (−32.5%). n=2 for that association, so treat it as a flag to check, never
+as a finding on its own.
+
+**Before blaming an acquisition or an ad cliff, check the paid sources.**
+`UniqueUsersWithImpressions` breaks down by `SponsoredAds` and `SearchAds`.
+On 10399712766 both read **zero on every day of the window**, which killed
+"the seller's ad spend stopped at handover" in one query. Also beware the
+handover date itself: this game changed owners on 2026-08-19, which happened to
+be a one-day RFY surge (HomeRecommendation 6.97M -> 9.16M, +31%), so every
+subsequent day measured against it looks like a collapse. **Compare to the
+plateau, not to the day the deal closed.**
+
 ### Tier bands (by CCU, from the scenario set)
 
 `small` 180–340 · `mid` 380–1,400 · `large` 1,200–2,100 · `mega` 5,200–12,000.
