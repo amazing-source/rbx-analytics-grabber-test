@@ -168,6 +168,28 @@ function utcDate(iso: string): string {
   return iso.slice(0, 10); // points are stamped in UTC, so the date prefix is safe
 }
 
+// Open Cloud's granularity spellings, mapped back onto the gateway enum that
+// every downstream file already uses. The CSVs carry one granularity column and
+// scripts filter on it — a second spelling of ONE_DAY would read as a missing
+// day to every one of them.
+const CLOUD_GRANULARITY: Record<string, string> = {
+  None: "METRIC_GRANULARITY_NONE",
+  OneMinute: "METRIC_GRANULARITY_ONE_MINUTE",
+  HalfHour: "METRIC_GRANULARITY_HALF_HOUR",
+  OneHour: "METRIC_GRANULARITY_ONE_HOUR",
+  OneDay: "METRIC_GRANULARITY_ONE_DAY",
+  OneWeek: "METRIC_GRANULARITY_ONE_WEEK",
+  OneMonth: "METRIC_GRANULARITY_ONE_MONTH",
+};
+
+// Open Cloud stamps `2026-08-15T00:00:00+00:00`, the gateway `...Z`. The same
+// instant, and the merge keys on the string — so the two must be spelled alike
+// or every series forks into two copies of itself.
+function isoZ(t: string): string {
+  const d = new Date(t);
+  return isNaN(d.getTime()) ? t : d.toISOString().replace(/\.\d{3}Z$/, "Z");
+}
+
 // Metric points arrive as ISO strings; feedback timestamps arrive as epoch
 // milliseconds (occasionally seconds). Normalize either to an ISO string.
 function toIso(v: unknown): string {
@@ -334,6 +356,73 @@ export function parseCaptures(captures: Capture[]): ParseResult {
             value: String(v.value),
             raw: v,
           });
+        }
+      }
+      continue;
+    }
+
+    // --- Metric data, Open Cloud: POST analytics-query-api/v1/universes/{id}/metrics
+    //
+    // The scheduled grab path. Same numbers as the gateway (measured 2026-08-19:
+    // 717/726 cells identical, and all 9 differences were our own freeze policy),
+    // so these rows are deliberately normalized onto the SAME shape the gateway
+    // branch below produces: the granularity enum, the `...Z` timestamp spelling,
+    // and the series key. Anything less and one metric would fork into two
+    // series that never merge, which is worse than not having the second source.
+    //
+    // Open Cloud carries no per-point `status`. That is not a loss: the gateway's
+    // is DATA_STATUS_INVALID on 99.5% of points (the protobuf zero-value), and
+    // the one status that matters — NOT_STATISTICALLY_SIGNIFICANT — has never
+    // been observed here. Null means unknown, not valid.
+    if (/analytics-query-api\/v1\/universes\/(\d+)\/metrics/.test(url)) {
+      const req = asObject(c.reqBody);
+      const values = body?.response?.values;
+      if (!req?.metric || !values) continue; // done:false kickoffs carry no data
+
+      const gameId = String(url.match(/universes\/(\d+)\/metrics/)?.[1] ?? "");
+      if (!gameId) continue;
+      games.add(gameId);
+
+      const metric: string = req.metric;
+      const granularity = CLOUD_GRANULARITY[req.granularity] ?? "METRIC_GRANULARITY_NONE";
+      const filters: Snapshot["filters"] = (req.filter ?? []).map((f: any) => ({
+        dimension: f.dimension,
+        values: f.values ?? [],
+        operation: f.operation,
+      }));
+      const capturedAt = typeof c.ts === "number" ? new Date(c.ts).toISOString() : null;
+
+      for (const v of values) {
+        const breakdown = breakdownToMap(v.breakdowns);
+        const breakdownLabels = breakdownLabelsToMap(v.breakdowns);
+        const seriesKey = makeSeriesKey(breakdown, filters);
+        for (const dp of v.dataPoints ?? []) {
+          if (!dp.time) continue;
+          const ts = isoZ(String(dp.time));
+          const row: Snapshot = {
+            gameId,
+            metric,
+            ts,
+            date: utcDate(ts),
+            granularity,
+            breakdown,
+            breakdownLabels,
+            filters,
+            seriesKey,
+            value: typeof dp.value === "number" ? dp.value : null,
+            stringValues: [],
+            status: null,
+            capturedAt,
+            windowStart: req.startTime ? String(req.startTime) : null,
+            windowEnd: req.endTime ? String(req.endTime) : null,
+          };
+          const dedupe = `${gameId}|${metric}|${granularity}|${seriesKey}|${ts}`;
+          if (snapSeen.has(dedupe)) {
+            snapshots[snapSeen.get(dedupe)!] = row; // last-write-wins
+          } else {
+            snapSeen.set(dedupe, snapshots.length);
+            snapshots.push(row);
+          }
         }
       }
       continue;

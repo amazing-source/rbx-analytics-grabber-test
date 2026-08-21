@@ -233,6 +233,92 @@ keyed by the same date; ignoring it lets a half-hour bucket overwrite the daily
 value. That bug produced a fake "87% disagreement" on PeakConcurrentPlayers and
 a fake "fractional crash count" anomaly, both of which cost an hour.
 
+## Two grab paths, and which one runs when (2026-08-19)
+
+The tool now grabs two ways. They are not redundant — each can do something the
+other cannot, and picking the wrong one is how a question becomes unanswerable.
+
+| | **Browser (manual)** | **Open Cloud (scheduled)** |
+|---|---|---|
+| Auth | your Roblox session cookie | `web/.opencloud-key` |
+| Needs | Chrome open, logged in, extension un-orphaned | `npm run dev` |
+| Serves | everything, incl. annotations / benchmarks / deploy log / reviews / error MessageHash | **metrics only** |
+| Driven by | `chrome.alarms` -> a create.roblox.com tab | `src/lib/scheduler.ts`, a timer in the app |
+| Entry point | panel "Grab in browser", `background.js` | `POST /api/grab-opencloud`, `GET /api/scheduler` |
+
+**The scheduled path is metrics-only, and that is not a shortfall to fix later.**
+Annotations, genre benchmarks, `develop.roblox.com` place versions and player
+reviews have no Open Cloud equivalent. Every one of those requests is SKIPPED
+and reported in the response's `skipped[]` with a reason — 39 of them on a
+9963622286 plan. An unreported skip reads as a metric the game never had, which
+is the whole reason `grab-report.md` exists. **Run the browser path when you
+need a deploy dated or an incident cross-referenced against Roblox's own
+timeline.**
+
+**Both write through the same parser, and that is load-bearing.** Open Cloud
+answers in a different envelope — `response.values[]` with `breakdowns[]`,
+granularity spelled `OneDay`, timestamps `+00:00` — and all three are normalized
+onto the gateway's spelling in `parse-captures.ts` before anything downstream
+sees them. Skip any one of them and the metric forks into two series that never
+merge, which looks exactly like a metric that lost half its history *and*
+quietly defeats the freeze policy, since a point can only be frozen against a
+point it collides with. Encoded as **G10** in the test suite.
+
+**Read policy: unchanged, deliberately.** Open Cloud serves the CURRENT value;
+the corpus keeps the FIRST settled read. A divergence is logged to
+`data-quality.md`, never applied — so adopting the scheduled path does not move
+numbers that already went into delivered reports. Decided 2026-08-19; the raw
+bundles tag every capture `via: "opencloud"` so a number's origin stays
+recoverable.
+
+**Pace at 2200ms between POSTs, not 2000ms.** The documented limit is 30 query
+POSTs/min and 2000ms is exactly that — with no headroom for the server's own
+window boundary. Measured: a plan paced at 2000ms took **39 metrics as HTTP
+429**, and they landed in the grab report as 39 failures, i.e. indistinguishable
+from a game with no data. A 429 is never an answer about a game: `runQuery`
+retries it with backoff and only records a failure if it still fails.
+
+**Three shapes are not `OneDay`, and the seed plan does not know it.** The 8
+funnel metrics and `WeeklyCohortRetention` are served at `None`;
+`DailyCohortRetention` is `OneDay` but caps at a **10-day window** and is
+clamped rather than dropped. The gateway accepts `ONE_DAY` for all of these, so
+the shared plan asks for it and Open Cloud answers "Granularity OneDay is not
+supported for metric X" — us asking wrong, never the data missing. Handled in
+`toCloudQuery`.
+
+**The scheduler reads the per-game toggles in `data/dashboard-config.json`.**
+`dailyGrab` and `intervalHours` were written by the UI and read by nothing until
+now — a game could sit marked "watched" for weeks with no grab behind it.
+`intervalHours` wins over `dailyGrab` (which means 24h); the floor is 1h.
+`RBX_SCHEDULER=off`, or `schedulerEnabled: false` in the config, stops it.
+
+## Alerting fires on the weekday baseline, never a threshold (2026-08-19)
+
+`src/lib/notify.ts` posts to the Discord webhook after **either** path finishes
+an active grab — the scheduler, and `/api/ingest` when the browser grab lands —
+and only when a metric falls outside what THAT weekday normally does for THAT
+game. A game watched from only one path is still alerted; before this, browser-
+only games were silently unalerted while looking fully configured.
+Scoring is `scoreSeries()` in `src/lib/anomaly-score.ts` — the same function
+`npm run anomaly` prints, extracted so the alert and the report can never
+disagree about what counts as an outlier.
+
+- **Quiet by default.** Nothing outside the baseline sends nothing. A heartbeat
+  that says "all normal" hourly trains the reader to ignore the channel, which
+  is the same failure as an alarm that fires every Wednesday.
+- **Volume metrics are normalized by DAU before scoring**, or the detector fires
+  on growth — every volume series moves together when a game gets bigger.
+- **`DailyRevenue` is deliberately not watched.** Normalized by DAU it *is*
+  `AverageRevenuePerUser`; watching both produced byte-identical findings
+  (−20.7%, z −1.17) on 2026-08-18. An alert that inflates its own count makes a
+  normal day look like a pile-up.
+- **De-duped on a signature of (date + findings).** The scheduler may run
+  hourly, but a day settles once; without this the same anomaly re-posts every
+  hour until the date rolls over.
+- Per-game webhook overrides the global one. `npm run notify-test -- <id>`
+  previews without sending; `--send` posts; `--z <n>` lowers the bar to see what
+  an alert would look like on a quiet game.
+
 ## The extension is the surface now (2026-08-19)
 The dashboard lives INSIDE create.roblox.com: `collector.js` opens a full-screen
 overlay that frames `dashboard.html`, an extension page. Panel = launcher only.

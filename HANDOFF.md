@@ -101,6 +101,35 @@ Offline path, no server or DB:
 
 ---
 
+## 3b. The second grab path — Open Cloud, unattended (added 2026-08-19)
+
+There are now two ways to grab, and CLAUDE.md carries the full comparison. The
+short version for picking one up cold:
+
+```
+BROWSER (manual)                    OPEN CLOUD (scheduled)
+chrome.alarms -> tab                src/lib/scheduler.ts, a timer in the app
+your session cookie                 web/.opencloud-key
+everything                          metrics only (39 requests skipped, reported)
+needs Chrome + login                needs `npm run dev`
+```
+
+Run it by hand: the game modal's **Grab via Open Cloud** button, or
+`POST /api/grab-opencloud {"universe":"<id>"}`. State: `GET /api/scheduler`
+and `data/scheduler-state.json`. Turn a game on with the `dailyGrab` /
+`intervalHours` chips — those settings now drive something, which they did not
+before. Stop everything with `RBX_SCHEDULER=off`.
+
+**A grab takes ~6 minutes per game** (135 requests paced at 2200ms) and the
+budget is per KEY, so the two paths are serialized through one queue in
+`opencloud-run.ts`. Running them concurrently was measured taking 39 of 135
+requests as 429 — recorded as failed metrics, i.e. as a game with no data.
+
+**Alerting** posts to the Discord webhook after a scheduled grab, only when a
+metric is outside its own weekday baseline. `npm run notify-test -- <id>`
+previews without sending. See CLAUDE.md for why it is quiet by default and why
+`DailyRevenue` is not watched.
+
 ## 4. Hard-won rules — do not relearn these
 
 1. **Never hardcode a dimension VALUE.** Names are stable; values are per-game.

@@ -526,3 +526,118 @@ describe("G9 — dimension display names survive into what a human reads", () =>
     );
   });
 });
+
+// ---------------------------------------------------------------------------
+
+describe("G10 — the Open Cloud path merges into the gateway's series, not beside it", () => {
+  // The scheduled grab authenticates with a key instead of the browser session,
+  // so its responses arrive in a different envelope: `response.values[]` with
+  // `breakdowns[]`, granularity spelled "OneDay", and timestamps stamped
+  // `+00:00` rather than `Z`. Every one of those is a chance to fork a metric
+  // into two series that never merge — which would look exactly like a metric
+  // that lost half its history, and would quietly defeat the freeze policy,
+  // since a point can only be frozen against a point it collides with.
+
+  const GATEWAY = (ts: string, value: number): Capture => ({
+    url: "https://apis.roblox.com/analytics-query-gateway/v1/metrics/resource/RESOURCE_TYPE_UNIVERSE/id/" + GAME,
+    method: "POST",
+    ts: Date.parse("2026-08-19T10:00:00Z"),
+    reqBody: JSON.stringify({
+      resourceType: "RESOURCE_TYPE_UNIVERSE",
+      resourceId: GAME,
+      query: {
+        metric: "DailyActiveUsers",
+        granularity: "METRIC_GRANULARITY_ONE_DAY",
+        startTime: "2026-08-01T00:00:00Z",
+        endTime: "2026-08-18T00:00:00Z",
+      },
+    }),
+    body: { operation: { path: "abc", queryResult: { values: [{ dataPoints: [{ time: ts, value }] }] } } },
+  });
+
+  const CLOUD = (ts: string, value: number): Capture => ({
+    url: "https://apis.roblox.com/analytics-query-api/v1/universes/" + GAME + "/metrics",
+    method: "POST",
+    via: "opencloud",
+    ts: Date.parse("2026-08-19T11:00:00Z"),
+    reqBody: JSON.stringify({
+      metric: "DailyActiveUsers",
+      granularity: "OneDay",
+      startTime: "2026-08-01T00:00:00Z",
+      endTime: "2026-08-18T00:00:00Z",
+    }),
+    body: { done: true, response: { values: [{ dataPoints: [{ time: ts, value }] }] } },
+  });
+
+  test("the same day from both sources is ONE point, not two", () => {
+    const r = parseCaptures([
+      GATEWAY("2026-08-15T00:00:00Z", 180466),
+      CLOUD("2026-08-15T00:00:00+00:00", 180466),
+    ]);
+    const rows = r.snapshots.filter((s) => s.metric === "DailyActiveUsers");
+    assert.equal(rows.length, 1, "the +00:00 spelling must normalize onto the Z spelling");
+    assert.equal(rows[0].ts, "2026-08-15T00:00:00Z");
+    assert.equal(rows[0].granularity, "METRIC_GRANULARITY_ONE_DAY", "OneDay must map to the gateway enum");
+  });
+
+  test("a breakdown from Open Cloud carries the same series key and display name", () => {
+    const cloud: Capture = {
+      url: "https://apis.roblox.com/analytics-query-api/v1/universes/" + GAME + "/metrics",
+      method: "POST",
+      via: "opencloud",
+      ts: Date.parse("2026-08-19T11:00:00Z"),
+      reqBody: JSON.stringify({
+        metric: "FunnelUserStepCompletionRate",
+        granularity: "None",
+        startTime: "2026-08-10T00:00:00Z",
+        endTime: "2026-08-18T00:00:00Z",
+        breakdown: ["FunnelStep"],
+      }),
+      body: {
+        done: true,
+        response: {
+          values: [
+            {
+              breakdowns: [{ dimension: "FunnelStep", value: "7", displayValue: "Rebirth4" }],
+              dataPoints: [{ time: "2026-08-10T00:00:00+00:00", value: 0.943 }],
+            },
+          ],
+        },
+      },
+    };
+    const row = parseCaptures([cloud]).snapshots[0];
+    // G9 again, on the other source: a funnel of twenty anonymous integers is
+    // a downgraded finding, and Open Cloud does ship displayValue.
+    assert.equal(row.breakdown.FunnelStep, "7", "the raw value stays the series identity");
+    assert.equal(row.breakdownLabels?.FunnelStep, "Rebirth4");
+    assert.equal(row.seriesKey, "b[FunnelStep=7]f[]");
+  });
+
+  test("a settled gateway point is not overwritten by a later Open Cloud read", async () => {
+    // The read-policy decision, made explicit: Open Cloud serves the CURRENT
+    // value, the corpus keeps the FIRST settled one. Adopting the new number
+    // silently would change figures that already went into delivered reports.
+    const { game } = await ingestCaptures(
+      GATEWAY("2026-08-15T00:00:00Z", 3170),
+      CLOUD("2026-08-15T00:00:00+00:00", 3213)
+    );
+    const s = totalSeries(game.metrics.DailyActiveUsers)!;
+    const p = s.points.find((x) => x.date === "2026-08-15")!;
+    assert.equal(p.value, 3170, "first settled read wins regardless of which source served it");
+    const revision = (game.quality ?? []).find((q) => q.kind === "revision");
+    assert.ok(revision, "the divergence must be logged, not dropped");
+    assert.match(String(revision!.detail), /3213/);
+  });
+
+  async function ingestCaptures(...captures: Capture[]) {
+    const dir = path.join(tmpRoot, `oc${dirs.length}`);
+    dirs.push(dir);
+    await fs.mkdir(dir, { recursive: true });
+    process.env.RBX_DATA_DIR = dir;
+    for (const c of captures) await exportToFiles(parseCaptures([c]));
+    const game = JSON.parse(
+      await fs.readFile(path.join(dir, "games", GAME, "series.json"), "utf8")
+    ) as GameExport;
+    return { game, dir };
+  }
+});

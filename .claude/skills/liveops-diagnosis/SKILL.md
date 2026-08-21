@@ -318,6 +318,19 @@ A hypothesis that survives nothing is not a finding.
   say the cause is not identified and name the measurement that would find it.
   Inventing an attribution that fits the vibe is how a report loses its warrant.
 
+- **Count findings by mechanism, not by metric name — two metrics can be the
+  same number wearing different labels.** Any volume metric must be normalised
+  by DAU before it is scored, but once you do that, `DailyRevenue`/DAU *is*
+  `AverageRevenuePerUser`. Measured 2026-08-18 on 9963622286: both reported
+  −20.7% at z −1.17, byte-identical, because they are the same quotient. Two
+  entries on a list read as two problems, and a report that inflates its own
+  count makes an ordinary day look like a pile-up — the mirror image of the
+  growth-confounding trap above, and just as easy to ship. Before listing a
+  finding, ask what its numerator and denominator are; if another line has the
+  same pair, they are one finding. Same trap with `AverageSessionLength` vs
+  `AveragePlayTimeMinutesPerDAU`, and with any `L7Average*` against its own
+  daily series.
+
 ## 3b. The algorithm is the mediator — and it changed on 2026-06-15
 
 Everything below comes from Roblox's own documentation and announcements, not

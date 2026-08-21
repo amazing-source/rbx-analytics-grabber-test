@@ -36,6 +36,10 @@ const DEFAULT_SCHEDULE = {
   end: "",
   lastRunAt: null,
   lastResult: null,
+  // Last status line the collector printed during the grab in flight. Null
+  // between runs — a stale "159/159" shown before the first request has gone
+  // out is worse than showing no line at all.
+  progress: null,
   // Set while a scheduled grab is in flight in a tab WE opened, so the result
   // handler knows to close it again. Kept in storage, not memory: the service
   // worker is killed freely between the two halves of that exchange.
@@ -167,7 +171,32 @@ async function ensureDashboardTab() {
 // Re-inject rather than ask the user to remember to refresh the tab.
 async function reinject(tabId) {
   try {
+    // MAIN world, no chrome.* — an extension reload does not break it, and it
+    // guards itself against being wrapped twice. This call is a deliberate
+    // no-op on a page that already has it; it is here for the case where the
+    // tab never had the scripts at all.
     await chrome.scripting.executeScript({ target: { tabId }, files: ["interceptor.js"], world: "MAIN" });
+
+    // The collector is the half that actually died, and healing it needs one
+    // step that is easy to miss: it guards its own re-entry with
+    // window.__RBX_COLLECTOR_LOADED__, and that flag lives in the page's
+    // isolated world, which SURVIVES the extension reload even though the
+    // listeners it was protecting do not. Injecting collector.js on top of a
+    // stale flag hits the guard and returns immediately — so the heal ran, the
+    // retry loop burned its 12 attempts, and the caller still got "Receiving
+    // end does not exist". Clear the flag first; that is the whole difference
+    // between a heal and a no-op.
+    await chrome.scripting.executeScript({
+      target: { tabId },
+      world: "ISOLATED",
+      func: () => {
+        try {
+          delete window.__RBX_COLLECTOR_LOADED__;
+          // Same reason: the dead copy's panel is still in the DOM.
+          document.querySelectorAll("#rbx-panel,#rbx-launch").forEach((n) => n.remove());
+        } catch { /* a page that blocks this still gets the injection below */ }
+      },
+    });
     await chrome.scripting.executeScript({ target: { tabId }, files: ["collector.js"], world: "ISOLATED" });
     return true;
   } catch { return false; }
@@ -230,6 +259,7 @@ async function runScheduledGrab(trigger, universesOverride) {
     lastRunAt: Date.now(),
     lastResult: `running (${trigger}) — ${ids.length} universe(s)…`,
     closeTabWhenDone: tab.created ? tab.tabId : null,
+    progress: null,
   });
 
   // Fire and forget: the collector answers immediately that it started, then
@@ -248,7 +278,12 @@ async function runScheduledGrab(trigger, universesOverride) {
     await patchSchedule({
       running: false,
       closeTabWhenDone: null,
-      lastResult: "could not reach the page collector: " + (started.error || "unknown"),
+      // If the re-injection heal above could not revive the collector either,
+      // the tab itself is the thing to reload — say that rather than passing
+      // Chrome's wording through, which names neither cause nor fix.
+      lastResult: /Receiving end does not exist|Could not establish connection/i.test(String(started.error || ""))
+        ? "could not reach the collector in the create.roblox.com tab — reload that tab and try again"
+        : "could not reach the page collector: " + (started.error || "unknown"),
     });
     return started;
   }
@@ -265,6 +300,7 @@ async function handleScheduleResult(msg) {
     closeTabWhenDone: null,
     lastRunAt: Date.now(),
     lastResult: msg.summary || "finished",
+    progress: null,
   });
   return { ok: true };
 }
@@ -311,6 +347,12 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   else if (msg.type === "schedule:runNow") work = runScheduledGrab("manual");
   else if (msg.type === "grab:now" && msg.universes) work = runScheduledGrab("dashboard", msg.universes);
   else if (msg.type === "grab:status") work = getSchedule();
+  // The collector's own status line, forwarded so the dashboard can show the
+  // same progress the create.roblox.com panel shows.
+  else if (msg.type === "grab:progress")
+    work = patchSchedule({
+      progress: { text: String(msg.text || ""), color: msg.color || null, at: msg.at || Date.now() },
+    });
   // The panel needs this: a content script cannot call chrome.tabs itself, and
   // an unpinned extension with no icon is effectively unreachable otherwise.
   else if (msg.type === "open-dashboard") work = openDashboard();

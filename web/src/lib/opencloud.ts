@@ -73,6 +73,11 @@ export type DashConfig = {
    *  grab-plan route; see lib/exclusions.ts for what each family covers. */
   exclude?: Record<string, boolean>;
   defaultIntervalHours?: number | null;
+  /** Kill switch for the server-side Open Cloud scheduler. Absent means on:
+   *  the per-game dailyGrab/intervalHours toggles are the real opt-in, and a
+   *  second switch that also has to be found would just make "why did nothing
+   *  run" harder to answer. RBX_SCHEDULER=off overrides this. */
+  schedulerEnabled?: boolean;
   discordWebhook?: string;
   games: Record<string, GameConfig>;
   updatedAt?: string;

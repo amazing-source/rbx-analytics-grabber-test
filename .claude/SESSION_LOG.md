@@ -13,6 +13,45 @@ trusting it**. Entries describe the moment they were written.
 
 ---
 
+## 2026-08-19 — A second grab path that needs no browser, and alerting that fires on the weekday baseline
+
+**State:** branch `grabber-correctness` · 56 ahead of main · pushed · dirty:
+9 new `data/raw/` bundles, both grab-reports, `dashboard-config.json`
+**Gates:** verify 23 pass/2 fail/8 skip (**exit 1**, the documented `KNOWN_OPEN`
+pair) · audit-plan 140 templates/0 failures · test **44/44** (was 41; +3 = G10)
+— measured 2026-08-19, not copied.
+**Landed:** Open Cloud grab path (`opencloud-grab.ts` / `opencloud-run.ts`),
+server-side scheduler (`scheduler.ts` + `src/instrumentation.ts`),
+`/api/grab-opencloud` + `/api/scheduler`, Discord alerting (`notify.ts`) on the
+weekday baseline, scorer extracted to `anomaly-score.ts` and now shared with
+`scripts/anomaly.ts`. Two buttons in the game modal: **Local web app grab**
+(session) and **API grab** (key). Corpus rebuilt from `data/raw/` — the clone
+had none, which is why the corpus gate had been skipping silently.
+**Proven end-to-end 2026-08-19 18:17→18:23 UTC+2:** timer → Open Cloud →
+corpus → scoring → a Discord post, no browser open. `data/notify-state.json`
+holds the signature; it is only written after a successful POST.
+**Learned → routed:**
+- 429-recorded-as-failed-metric, the per-key contention between the two paths,
+  and the three non-`OneDay` Open Cloud shapes → **F15** in
+  `data/verify/COVERAGE.md`, regression test **G10**.
+- Two grab paths, read policy, pacing, scheduler inputs → `CLAUDE.md` (new
+  section) + `HANDOFF.md` §3b.
+- Collinear metrics inflate a finding count (`DailyRevenue`/DAU **is** ARPU) →
+  `liveops-diagnosis/SKILL.md` **§3**.
+**Disproved:** mine, twice. (1) "Running both grab paths is something to avoid"
+— they use different budgets (session cookie vs API key), so they do not starve
+each other; the real cost is duplicate bundles and tab churn, a cadence
+question. (2) "I have not fired a real Discord post" — the scheduler I had
+already started fired one automatically at 18:23.
+**Open:** (1) `ErrorCount/100kDAU` on 9610561918 read **+362% vs that weekday**
+(3,499,035 vs 757,201 expected, z +2.10, day 2026-08-18) — the corpus was
+rebuilt minutes earlier, so confirm against the dashboard before believing it.
+(2) A browser grab on 2026-08-19 18:49 used a **20-day** window, not the 28-day
+default — check the panel's date fields for a leftover value.
+**Next:** verify or kill the +362% ErrorCount reading on 9610561918 against the
+dashboard's own export, then decide the cadence per game — nothing is scheduled
+right now (`schedulerEnabled: false`, extension schedule `enabled: false`).
+
 ## 2026-08-16 — Three games re-read in one pass, and the position doc is written
 
 **State:** branch `grabber-correctness` · 37 ahead of main · pushed · clean
