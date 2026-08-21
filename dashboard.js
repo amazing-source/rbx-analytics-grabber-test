@@ -62,8 +62,50 @@ async function pub(url) {
   try { const r = await fetch(url); return r.ok ? await r.json() : null; } catch { return null; }
 }
 
+/** One line for an in-flight Open Cloud grab. Leads with the counts, then the
+ *  metric in flight — and surfaces the last error as soon as anything fails,
+ *  because "0 ok, 3 failed · HTTP 401" at second five is the entire point of
+ *  showing progress at all. */
+function describeCloudProgress(g) {
+  if (g.phase === "planning") return "planning the grab…";
+  if (g.phase === "persisting") return "all requests done — writing files…";
+  const parts = [`${g.done}/${g.total || "?"}`];
+  const tally = [];
+  if (g.ok) tally.push(`${g.ok} ok`);
+  if (g.empty) tally.push(`${g.empty} empty`);
+  if (g.failed) tally.push(`${g.failed} failed`);
+  if (g.skipped) tally.push(`${g.skipped} n/a`);
+  if (tally.length) parts.push(tally.join(", "));
+  if (g.failed && g.lastStatus) {
+    // The message Roblox sent, not our paraphrase of it.
+    let why = `HTTP ${g.lastStatus}`;
+    try {
+      const m = JSON.parse(g.lastError || "{}");
+      const t = m && m.errors && m.errors[0] && m.errors[0].message;
+      if (t) why += ` ${t}`;
+    } catch { if (g.lastError) why += ` ${String(g.lastError).slice(0, 60)}`; }
+    parts.push(why);
+  } else if (g.metric) {
+    parts.push(g.metric);
+  }
+  return parts.join(" · ");
+}
+
 /** Privileged work goes via the service worker: a page fetch to localhost is
  *  subject to Private Network Access rules, the worker's is not. */
+/** Chrome's own wording for a dead extension context is
+ *  "Could not establish connection. Receiving end does not exist." — which
+ *  names neither the cause nor the fix. It means THIS page outlived the
+ *  extension that served it: reloading an unpacked extension kills every
+ *  context it created, and a dashboard left open in a tab (or embedded in a
+ *  create.roblox.com overlay) keeps rendering perfectly while every message it
+ *  sends goes nowhere. The service worker cannot heal that from its side — the
+ *  page has to be reloaded. Say so. */
+function orphaned(err) {
+  return /Receiving end does not exist|Could not establish connection|Extension context invalidated|message port closed/i.test(String(err || ""));
+}
+const ORPHAN_MSG = "this page is left over from before the extension reloaded — refresh it (F5) to reconnect";
+
 function bg(message, timeoutMs = 60000) {
   return new Promise((resolve) => {
     let done = false;
@@ -72,9 +114,17 @@ function bg(message, timeoutMs = 60000) {
       chrome.runtime.sendMessage(message, (resp) => {
         if (done) return;
         done = true; clearTimeout(t);
-        resolve(chrome.runtime.lastError ? { ok: false, error: chrome.runtime.lastError.message } : (resp || { ok: false, error: "no response" }));
+        if (chrome.runtime.lastError) {
+          const raw = chrome.runtime.lastError.message;
+          resolve({ ok: false, error: orphaned(raw) ? ORPHAN_MSG : raw, raw });
+          return;
+        }
+        resolve(resp || { ok: false, error: "no response" });
       });
-    } catch (e) { if (!done) { done = true; clearTimeout(t); resolve({ ok: false, error: String(e) }); } }
+    } catch (e) {
+      const raw = String((e && e.message) || e);
+      if (!done) { done = true; clearTimeout(t); resolve({ ok: false, error: orphaned(raw) ? ORPHAN_MSG : raw, raw }); }
+    }
   });
 }
 async function appBase() {
@@ -418,7 +468,7 @@ function renderSettings() {
       <h3>Alerts</h3>
       <div class="hint">A webhook fires when a metric falls outside what that weekday normally does for that game - a measured seasonal baseline, not a typed threshold. A fixed number would fire every Wednesday on a game whose Wednesday runs 42% below its own weekly mean.</div>
       <input id="st-hook" placeholder="https://discord.com/api/webhooks/\u2026" value="${esc(state.cfg.discordWebhook || "")}">
-      <div class="muted" style="margin-top:9px;font-size:11.5px">Stored, not sending yet. Per-game webhooks override this one.</div>
+      <div class="muted" style="margin-top:9px;font-size:11.5px">Fires after any active grab, on either path. Per-game webhooks override this one.</div>
     </div>
 
     <div class="box">
@@ -507,12 +557,13 @@ function renderModal() {
       <div class="lbl" style="margin-top:17px">Discord</div>
       <div style="background:var(--surface-2);border-radius:10px;padding:13px">
         <input id="hook" placeholder="https://discord.com/api/webhooks/…" value="${esc(c.discordWebhook || "")}">
-        <div class="muted" style="margin-top:9px;font-size:11.5px;line-height:1.5">Stored, not sent yet — so alerting can be switched on later without revisiting every game.</div>
+        <div class="muted" style="margin-top:9px;font-size:11.5px;line-height:1.5">Fires after a scheduled grab when a metric falls outside what that weekday normally does for this game. Quiet otherwise. Overrides the global hook.</div>
       </div>
       <div class="lbl" style="margin-top:17px">Run now</div>
       <div style="background:var(--surface-2);border-radius:10px;padding:13px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-        <button class="btn" id="grab" ${state.serverUp ? "" : "disabled"}>Grab this game</button>
-        <span class="muted" id="grabmsg" style="font-size:12px">${state.serverUp ? "Pulls every metric for this universe." : "Needs the local app running."}</span>
+        <button class="btn" id="grab" ${state.serverUp ? "" : "disabled"}>Local web app grab</button>
+        <button class="btn-ghost" id="grabcloud" ${state.serverUp ? "" : "disabled"}>API grab</button>
+        <span class="muted" id="grabmsg" style="font-size:12px">${state.serverUp ? "Local: replays the dashboard's own requests in your session — needs you logged in, and is the only one that gets annotations, benchmarks, reviews and the deploy log. API: Open Cloud key, server-side, metrics only, no tab and no login. Both alert." : "Needs the local app running."}</span>
       </div>
     </div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px">
@@ -532,6 +583,45 @@ function renderModal() {
   document.querySelectorAll("[data-int]").forEach((b) => { b.onclick = () => patch({ intervalHours: b.dataset.int === "" ? null : Number(b.dataset.int) }); });
   $("hook").onchange = (e) => patch({ discordWebhook: e.target.value.trim() });
 
+  $("grabcloud").onclick = guard("grabCloud", async () => {
+    // The scheduled path, run by hand. Deliberately the same endpoint the
+    // scheduler calls: a "run it now" that exercised different code would
+    // prove nothing about what runs at 03:00.
+    const btn = $("grabcloud"), msgEl = $("grabmsg");
+    btn.disabled = true; btn.textContent = "Grabbing…";
+    msgEl.textContent = "Server-side pull, paced to 30 requests/min — a few minutes.";
+    const base = (state.ingestUrl || DEFAULT_INGEST).replace(/\/api\/ingest.*$/, "");
+
+    // The POST does not answer until the final request has landed, so progress
+    // has to arrive on a second channel. Without this the button sat frozen for
+    // 6.2 minutes on a pass whose every request came back 401 at second three.
+    const poll = setInterval(async () => {
+      try {
+        const r = await fetch(`${base}/api/grab-opencloud?universe=${encodeURIComponent(key)}`);
+        const g = (await r.json()).progress;
+        if (!g || g.phase === "done") return;
+        msgEl.textContent = describeCloudProgress(g);
+        msgEl.style.color = g.failed && !g.ok ? "#ff9d9d" : "";
+      } catch { /* a dropped poll says nothing about the grab; keep waiting */ }
+    }, 1500);
+
+    try {
+      const res = await fetch(base + "/api/grab-opencloud", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ universe: key }),
+      });
+      const j = await res.json();
+      msgEl.textContent = j.summary || j.error || "done";
+    } catch (e) {
+      msgEl.textContent = "failed: " + (e && e.message ? e.message : e);
+    } finally {
+      clearInterval(poll);
+      msgEl.style.color = "";
+    }
+    btn.disabled = false; btn.textContent = "API grab";
+  });
+
   $("grab").onclick = guard("grabNow", async () => {
     const btn = $("grab"), msgEl = $("grabmsg");
     btn.disabled = true; btn.textContent = "Starting…";
@@ -541,14 +631,22 @@ function renderModal() {
       msgEl.textContent = "Grab running in a create.roblox.com tab — watch the panel there.";
       const tick = setInterval(async () => {
         const st = await bg({ type: "grab:status" }, 15000);
-        if (st && st.running === false && st.lastResult) {
-          clearInterval(tick);
-          btn.disabled = false; btn.textContent = "Grab this game";
-          msgEl.textContent = String(st.lastResult).slice(0, 160);
+        if (!st) return;
+        // The collector's own status line, mirrored through the worker — the
+        // same string the overlay prints on create.roblox.com.
+        if (st.progress && st.progress.text) {
+          msgEl.textContent = st.progress.text;
+          msgEl.style.color = st.progress.color || "";
         }
-      }, 4000);
+        if (st.running === false && st.lastResult) {
+          clearInterval(tick);
+          btn.disabled = false; btn.textContent = "Local web app grab";
+          msgEl.textContent = String(st.lastResult).slice(0, 160);
+          msgEl.style.color = "";
+        }
+      }, 1500);
     } else {
-      btn.disabled = false; btn.textContent = "Grab this game";
+      btn.disabled = false; btn.textContent = "Local web app grab";
       msgEl.textContent = (r && (r.error || r.msg)) || "could not start";
     }
   });

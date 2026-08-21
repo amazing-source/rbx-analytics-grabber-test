@@ -5,6 +5,17 @@
 // date / game live in the request payload, not the URL).
 
 (() => {
+  // Re-entry guard, and it must be PERMANENT — unlike the collector's.
+  //
+  // This half runs in the MAIN world and talks over window.postMessage; it never
+  // touches chrome.runtime, so an extension reload leaves it working perfectly.
+  // The collector is the half that dies, and healing it re-runs this file too.
+  // Wrapping fetch and XHR a second time would post every captured response
+  // twice — silently doubling a grab's payload, which is far worse than the
+  // orphaned collector the heal was trying to fix.
+  if (window.__RBX_INTERCEPTOR_LOADED__) return;
+  window.__RBX_INTERCEPTOR_LOADED__ = true;
+
   const TAG = "__RBX_GRAB__";
 
   // "analytics" = only metric/feedback calls (recommended).  "all" = every roblox JSON call.

@@ -205,6 +205,11 @@
   function ensurePanel() {
     if (panel) return;
     panel = document.createElement("div");
+    // Identified so a re-injection can remove the dead script's panel. `panel`
+    // is module-local and starts null in a freshly injected copy, so without an
+    // id the orphaned one just sits there next to the live one, showing a grab
+    // that will never update again.
+    panel.id = "rbx-panel";
     panel.style.cssText = [
       "position:fixed", "bottom:20px", "right:20px", "z-index:2147483647",
       "width:352px", "font:13px/1.45 'Builder Sans',system-ui,-apple-system,sans-serif",
@@ -317,7 +322,34 @@
     statusEl.textContent = msg;
     statusEl.style.color = color || "#9a93b3";
   }
+  // The extension dashboard is a separate document on a separate origin and
+  // cannot see this panel, so every status the panel prints is mirrored to the
+  // service worker for it to poll. Deliberately hung off setActive itself
+  // rather than added at the interesting call sites: one source, so the overlay
+  // and the dashboard can never drift into disagreeing about the same grab.
+  //
+  // Throttled, because setActive fires once per completed request and a
+  // 400-request grab does not need 400 storage writes to say "137/400". The
+  // trailing send guarantees the LAST line still arrives.
+  let statusAt = 0, statusTimer = null, statusPending = null;
+  function mirrorStatus(msg, color) {
+    statusPending = { type: "grab:progress", text: String(msg), color: color || null, at: Date.now() };
+    if (statusTimer) return;
+    const send = () => {
+      statusTimer = null;
+      statusAt = Date.now();
+      const m = statusPending;
+      statusPending = null;
+      if (m) bg(m, 8000);
+    };
+    const wait = 700 - (Date.now() - statusAt);
+    if (wait <= 0) send();
+    else statusTimer = setTimeout(send, wait);
+  }
   function setActive(msg, color) {
+    // Before the guard: a scheduled grab in a tab whose panel is closed still
+    // has to report, and that is exactly the run nobody is watching.
+    mirrorStatus(msg, color);
     if (!activeEl) return;
     activeEl.textContent = msg;
     activeEl.style.color = color || "#9a93b3";

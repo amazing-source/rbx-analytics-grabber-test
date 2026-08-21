@@ -326,7 +326,42 @@ sub-1% ones have no revision row because the materiality threshold is 1%.
 **Not measured:** only universe 9963622286, which is single-place. Waterslide is
 genuinely multi-place and the Place-scoping question is untested there.
 
-## F15 — `PeakConcurrentPlayers` ONE_DAY is a SUM of per-platform peaks, and overstates true concurrency (2026-08-21)
+## F15 — a rate limit was being recorded as a metric that failed (2026-08-19)
+
+Measured while building the Open Cloud grab path. Pacing POSTs at exactly the
+documented budget (30/min = 2000ms apart) left no headroom, and **39 of 135
+requests came back HTTP 429**. Each landed in `grab-report.md` as a failed
+metric — which is indistinguishable from "this universe has no such data", the
+false-finding class the grab report exists to prevent.
+
+Two causes, both fixed:
+1. **No headroom.** 2200ms is what `compare-opencloud.ts` had been using all
+   along. `runQuery` now also retries a 429 with backoff and records a failure
+   only if it still fails after 4 tries — a 429 is never an answer about a game.
+2. **Two paths sharing one key.** The manual grab was fired while the scheduler
+   was mid-pass. The budget is per KEY, so they halved each other. The
+   scheduler's `running` flag only ever guarded the scheduler against itself;
+   both callers now serialize through one queue in `opencloud-run.ts`.
+
+Result on a clean run of 9963622286 (3-day window, 135 requests): **51 failures
+→ 5**, zero 429s, 122 metrics returning data. All 5 remaining are
+`optional=true, provenance=inferred` (PlaceVersion-breakdown shapes and
+`WeeklyCohortRetention · by CohortDay`) — the class that may never be reported
+as a finding about a game.
+
+**Also measured:** three shapes the seed plan gets wrong for Open Cloud, all of
+which read as "metric unavailable" if believed. The 8 funnel metrics and
+`WeeklyCohortRetention` are served at `None`, not `OneDay`;
+`DailyCohortRetention` is `OneDay` capped at a 10-day window. The gateway
+accepts `ONE_DAY` for all of them, so the shared plan asks for it. Handled in
+`toCloudQuery`; 8 failures removed.
+
+**Regression test: G10** in `web/src/lib/__tests__/pipeline.test.ts` — pins that
+an Open Cloud point and a gateway point for the same day merge into ONE series
+(the `+00:00`/`Z` spelling, the `OneDay`/`METRIC_GRANULARITY_ONE_DAY` enum, and
+the breakdown `displayValue`), and that a settled gateway value is not
+overwritten by a later Open Cloud read.
+## F16 — `PeakConcurrentPlayers` ONE_DAY is a SUM of per-platform peaks, and overstates true concurrency (2026-08-21)
 
 **Measured on 10399712766 against the dashboard's own export.** The ONE_DAY
 headline (`series = Place=83256791430098`) for the in-progress day read
@@ -356,23 +391,23 @@ over yesterday when the export showed it **−24%**.
 `PeakConcurrentPlayers` at `HALF_HOUR`, or the dashboard export. Do not quote
 the ONE_DAY point for a day in progress. Not yet encoded as a test.
 
-## F16 — the unattended (Open Cloud) grab path produces bundles that ingest to zero (2026-08-21)
+## F17 — RETRACTED: "the Open Cloud path ingests to zero" was a stale checkout (2026-08-21)
 
-Four scheduled grabs of 10399712766 (14:45, 14:47, 15:46, 16:46) each parsed
-121–124 captures and wrote **0 points, 0 metrics** — `no game data in this
-bundle`. They commit and push successfully, so the failure is silent.
+**Recorded because the false alarm cost an incident hour and the mechanism will
+recur.** Four scheduled bundles for 10399712766 each parsed 121-124 captures and
+wrote **0 points, 0 metrics**, and this was written up as a defect in the
+unattended path. It is not one. The working tree was **5 commits behind
+origin**, before the commit that taught `parse-captures.ts` the Open Cloud
+envelope (`response.values[].breakdowns[]`, `OneDay`, `+00:00`). Re-ingesting
+the identical bundle after `git merge` gives **6,539 points / 57 metrics** —
+matching the grab commit's own "6539 pts".
 
-Cause: the scheduled path queries **Open Cloud**
-(`analytics-query-api/v1/universes/{id}/metrics`), whose response shape is
-`response.values[].breakdowns[]`, while `parse-captures.ts` only understands the
-gateway's `operation.queryResult.values[].breakdownValue[]`. The data is present
-in the bundles — a `PeakConcurrentPlayers` OneDay series with 28 points was read
-out of one by hand — but nothing in the pipeline can see it.
+**Rule: `git fetch && git log HEAD..origin` BEFORE diagnosing a pipeline
+defect.** This repo is worked from two machines; a tool that "does not work" may
+simply be a tool you have not pulled. Nothing about the Open Cloud path was
+broken.
 
-Second defect on the same path: the Open Cloud windows end at
-`{today}T00:00:00Z`, so even once parsing is fixed the unattended path can never
-hold the current day.
-
-**Consequence:** every number in the 2026-08-21 incident analysis came from
-browser-captured (gateway) grabs. The hourly scheduler has been producing
-unreadable commits.
+What does survive from that investigation: Open Cloud metric windows end at
+`{today}T00:00:00Z`, so the unattended path never holds the current day. That is
+a window choice, not a parser bug, and it is why a live incident still needs the
+browser grab or a dashboard export.

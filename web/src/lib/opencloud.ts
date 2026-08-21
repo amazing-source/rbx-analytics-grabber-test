@@ -73,6 +73,17 @@ export type DashConfig = {
    *  grab-plan route; see lib/exclusions.ts for what each family covers. */
   exclude?: Record<string, boolean>;
   defaultIntervalHours?: number | null;
+  /** Kill switch for the server-side Open Cloud scheduler. Absent means on:
+   *  the per-game dailyGrab/intervalHours toggles are the real opt-in, and a
+   *  second switch that also has to be found would just make "why did nothing
+   *  run" harder to answer. RBX_SCHEDULER=off overrides this. */
+  schedulerEnabled?: boolean;
+  /** Commit and push `data/raw/` after each scheduled grab. OPT-IN, unlike the
+   *  scheduler above: this one writes to a remote, and a default that pushes to
+   *  GitHub on a timer is not a default anyone should discover by accident.
+   *  See lib/auto-commit.ts for exactly what it stages (never code, never the
+   *  API key). */
+  autoCommit?: boolean;
   discordWebhook?: string;
   games: Record<string, GameConfig>;
   updatedAt?: string;

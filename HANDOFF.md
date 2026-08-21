@@ -101,6 +101,35 @@ Offline path, no server or DB:
 
 ---
 
+## 3b. The second grab path — Open Cloud, unattended (added 2026-08-19)
+
+There are now two ways to grab, and CLAUDE.md carries the full comparison. The
+short version for picking one up cold:
+
+```
+BROWSER (manual)                    OPEN CLOUD (scheduled)
+chrome.alarms -> tab                src/lib/scheduler.ts, a timer in the app
+your session cookie                 web/.opencloud-key
+everything                          metrics only (39 requests skipped, reported)
+needs Chrome + login                needs `npm run dev`
+```
+
+Run it by hand: the game modal's **Grab via Open Cloud** button, or
+`POST /api/grab-opencloud {"universe":"<id>"}`. State: `GET /api/scheduler`
+and `data/scheduler-state.json`. Turn a game on with the `dailyGrab` /
+`intervalHours` chips — those settings now drive something, which they did not
+before. Stop everything with `RBX_SCHEDULER=off`.
+
+**A grab takes ~6 minutes per game** (135 requests paced at 2200ms) and the
+budget is per KEY, so the two paths are serialized through one queue in
+`opencloud-run.ts`. Running them concurrently was measured taking 39 of 135
+requests as 429 — recorded as failed metrics, i.e. as a game with no data.
+
+**Alerting** posts to the Discord webhook after a scheduled grab, only when a
+metric is outside its own weekday baseline. `npm run notify-test -- <id>`
+previews without sending. See CLAUDE.md for why it is quiet by default and why
+`DailyRevenue` is not watched.
+
 ## 4. Hard-won rules — do not relearn these
 
 1. **Never hardcode a dimension VALUE.** Names are stable; values are per-game.
@@ -169,8 +198,12 @@ Supporting detail:
   patterns". **That's an artifact** of comparing against the Jul 20–22 crash
   week. Same window start-to-end: DAU −43%, revenue −54%.
 
-**The question for Nina: what was in v546?** Analytics can't answer that —
-no API exposes a diff.
+**ANSWERED 2026-08-21 — what was in v546.** More brainrots rolled out with
+**`collision = true`**, plus **data-wipe bugs**. Confirmed by the producer, who
+plays the game. Analytics could never have produced this (no API exposes a
+diff), which is exactly why it sat open — and why it is written down here
+rather than re-derived. **Do not re-open this.** The v546 date, the funnel step
+it broke and the retention fall are all settled; what remains is what to ship.
 
 ---
 
@@ -233,7 +266,10 @@ exports. Supersedes the "structural gate" framing above.
   `FirstMorph` flat at 99–100% across the break; `BaseUpgrade2` −4.9pp,
   `BaseUpgrade3` −7.0pp, `BaseUpgrade5` −7.8pp, `Rebirth1` −10.3pp (29 Jul → 2
   Aug), damage compounding down the chain. D1 16.8% → 9.72% same day. **Cause
-  still unknown** — the question is "what shipped in v546, 30 Jul 11:54 UTC".
+  KNOWN (producer, 2026-08-21): v546 rolled out more brainrots with
+  `collision = true`, plus data-wipe bugs.** Both fit the signature — a
+  colliding NPC blocks the treadmill lane that earns rebirth currency, and a
+  wipe destroys the progress already made toward it.
 - **The 7 Aug fix (v575–577, 17:14 UTC) worked.** All four pre-fix days
   (34.72/35.14/34.79/34.61) sit below all three post-fix days
   (37.18/39.57/36.54) on `Rebirth1`; survives the returning-share control at

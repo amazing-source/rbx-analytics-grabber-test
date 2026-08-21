@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { ingestCaptures } from "@/lib/store";
 import { parseCaptures, type Capture } from "@/lib/parse-captures";
 import { exportToFiles, saveRawCaptures, exportGrabReport, type GrabReport } from "@/lib/export-files";
+import { notifyGrab } from "@/lib/notify";
+import { readConfig } from "@/lib/opencloud";
 
 // The extension posts from https://create.roblox.com — allow cross-origin.
 const CORS = {
@@ -53,6 +55,16 @@ export async function POST(req: Request) {
     }
   } catch (e) {
     files.error = (e as Error).message;
+  }
+
+  // Alert on the browser path too. Only for an ACTIVE grab — a report is what
+  // distinguishes one from passive capture, and a half-buffer of whatever the
+  // dashboard happened to render is not something to wake anyone over. Without
+  // this, a game watched only from the browser is silently unalerted while
+  // looking fully configured, which is the exact failure the scheduler rewrite
+  // was meant to end.
+  if (payload.report?.universeId) {
+    await notifyGrab(String(payload.report.universeId), readConfig());
   }
 
   try {

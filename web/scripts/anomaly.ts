@@ -26,7 +26,14 @@
 // Only needs the 7 days before a point, so a day is scoreable the moment it
 // lands. No waiting for confirmation — which was the whole complaint.
 
+import "./loader-hooks.mjs";
 import { readFileSync } from "node:fs";
+
+// The scorer lives in src/lib so the scheduler's Discord alert and this table
+// can never disagree about what counts as an outlier. Dynamic import because
+// static ones are hoisted above the loader hooks that teach Node the "@/" alias.
+const { scoreSeries, perDau: toPerDau } = await import("../src/lib/anomaly-score.ts");
+type Scored = import("../src/lib/anomaly-score.ts").Scored;
 
 const BASE = "https://apis.roblox.com/analytics-query-api/v1";
 const DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -106,14 +113,6 @@ async function series(metric: string, win: number): Promise<Map<string, number> 
   return m;
 }
 
-const median = (a: number[]) => {
-  if (!a.length) return NaN;
-  const s = [...a].sort((x, y) => x - y);
-  const i = Math.floor(s.length / 2);
-  return s.length % 2 ? s[i] : (s[i - 1] + s[i]) / 2;
-};
-
-type Scored = { metric: string; date: string; obs: number; exp: number; z: number; dir: 1 | -1 };
 
 const scored: Scored[] = [];
 const notes: string[] = [];
@@ -123,53 +122,20 @@ const dau = await series("DailyActiveUsers", days);
 await sleep(2200);
 
 for (const { m, win, dir, perDau } of METRICS) {
-  let s = await series(m, win);
+  let vals = await series(m, win);
   await sleep(2200);
-  if (s && perDau) {
+  if (vals && perDau) {
     if (!dau) { notes.push(`${m}: no DAU to normalise against, skipped`); continue; }
-    const rate = new Map<string, number>();
-    for (const [d, v] of s) { const a = dau.get(d); if (a) rate.set(d, (v / a) * 100000); }
-    s = rate;
+    vals = toPerDau(vals, dau);
   }
-  if (!s || s.size < 21) { notes.push(`${m}: too few points to baseline (${s?.size ?? 0})`); continue; }
+  if (!vals) { notes.push(`${m}: no series returned`); continue; }
 
-  const dates = [...s.keys()].sort();
-  // level(d) from the 7 days before d — computable at the live edge.
-  const level = new Map<string, number>();
-  for (let i = 7; i < dates.length; i++) {
-    const prev = dates.slice(i - 7, i).map((d) => s.get(d)!).filter((v) => v > 0);
-    if (prev.length < 5) continue;
-    level.set(dates[i], Math.exp(prev.reduce((a, v) => a + Math.log(v), 0) / prev.length));
-  }
-
-  // Weekday factor = median ratio, so giveaway spikes cannot set the baseline.
-  const ratios: number[][] = Array.from({ length: 7 }, () => []);
-  for (const d of dates) {
-    const l = level.get(d); const v = s.get(d);
-    if (!l || !v) continue;
-    ratios[new Date(d + "T00:00:00Z").getUTCDay()].push(v / l);
-  }
-  const factor = ratios.map((a) => (a.length >= 3 ? median(a) : 1));
-
-  // Residual spread over the whole history, in log space.
-  const resid: { d: string; r: number }[] = [];
-  for (const d of dates) {
-    const l = level.get(d); const v = s.get(d);
-    if (!l || !v) continue;
-    const f = factor[new Date(d + "T00:00:00Z").getUTCDay()];
-    if (!f) continue;
-    resid.push({ d, r: Math.log(v / (l * f)) });
-  }
-  if (resid.length < 20) { notes.push(`${m}: too few residuals`); continue; }
-  const mu = resid.reduce((a, x) => a + x.r, 0) / resid.length;
-  const sd = Math.sqrt(resid.reduce((a, x) => a + (x.r - mu) ** 2, 0) / resid.length);
-  if (!(sd > 0)) { notes.push(`${m}: zero variance`); continue; }
-
-  for (const x of resid.slice(-5)) {
-    const v = s.get(x.d)!;
-    const f = factor[new Date(x.d + "T00:00:00Z").getUTCDay()];
-    scored.push({ metric: perDau ? `${m}/100kDAU` : m, date: x.d, obs: v, exp: level.get(x.d)! * f, z: (x.r - mu) / sd, dir });
-  }
+  // The scorer itself lives in src/lib/anomaly-score.ts, so the alert the
+  // scheduler posts to Discord and the table below can never disagree about
+  // what counts as an outlier.
+  const { scored: rows, note } = scoreSeries(vals, { metric: perDau ? `${m}/100kDAU` : m, dir });
+  if (note) notes.push(note);
+  scored.push(...rows);
 }
 
 const fmt = (v: number) => Math.abs(v) >= 1000 ? Math.round(v).toLocaleString("en-US") : v >= 1 ? v.toFixed(2) : v.toFixed(4);
