@@ -298,5 +298,10 @@ skill, the Banana Monkey baseline and this log.
   Not yet a test. Would have caused a false finding if I had trusted it.
 - 40 audit-plan templates tagged `proven` are actually `observed` — upgradable,
   not a failure, but the tags are drifting.
+**Wake:** 2026-08-22 — (1) pull 08-21 DAU + `UniqueUsersWithImpressions` by
+`AcquisitionSource` and check whether `HomeRecommendation` fell below 7.71M;
+(2) re-read `ConcurrentPlayers` ONE_HOUR at 2026-08-21T15:00Z and record whether
+the gateway corrected the F18 point. Neither is answerable before that date.
 **Next:** send Nina the detailed 10399712766 writeup once 08-22 numbers settle,
-leading with the reach reading and the baseline correction.
+leading with the reach reading and the baseline correction. Studio code reads
+from today are in `data/games/10399712766/code-reads.md` (PlaceVersion 1241).

@@ -1,6 +1,6 @@
 ---
 name: checkpoint
-description: Save session state so the next session — or the next device — resumes without re-deriving anything. Use when the user says they are switching devices, stopping for now, "save state", "checkpoint", "handoff", "remember where we are", or before a long risky change. Handles the resume side too — `checkpoint resume` rebuilds the thread from the repo and verifies the docs before trusting them.
+description: Save session state so the next session — or the next device — resumes without re-deriving anything. Use when the user says they are switching devices, stopping for now, "save state", "checkpoint", "handoff", "remember where we are", or before a long risky change. Three modes — `checkpoint light` appends conclusions without running the gates (for a mid-day device switch), plain `checkpoint` runs the full gated ritual, and `checkpoint resume` rebuilds the thread from the repo and verifies the docs before trusting them.
 ---
 
 # Checkpoint
@@ -31,6 +31,8 @@ Each thing learned has exactly one right home.
 |---|---|---|
 | A method that generalizes — a discrimination test, a prior, a benchmark, a failure mode | `.claude/skills/liveops-diagnosis/SKILL.md` | git |
 | A fact about one game — confirmed, refuted, still open | `HANDOFF.md` investigation section + `data/games/<id>/` | git |
+| Anything read out of the live place via Studio MCP | `data/games/<id>/code-reads.md`, **stamped with the `PlaceVersion` it was read at** | git |
+| A question answered purely by reading — no file changed | the log entry, as a conclusion carrying its evidence pointer | git |
 | A measurement of the pipeline being right or wrong | `data/verify/COVERAGE.md` + a regression test in `web/test/` | git |
 | A rule that must survive contact with a fresh agent | `CLAUDE.md` | git |
 | Where we stopped, what is open, the next action | `.claude/SESSION_LOG.md` (append-only) | git |
@@ -43,6 +45,17 @@ A finding that exists only in `SESSION_LOG.md` is a finding you will re-derive.
 The log is a pointer, not a vault.
 
 ## Procedure
+
+**Pick the mode first.** `checkpoint light` runs steps 2-5 and 7 only, skipping
+the gates — use it for a mid-day device switch or when a thread closes. Plain
+`checkpoint` runs everything and is the end-of-day ritual. Do not run light
+twice across a device boundary without a full one in between, or documentation
+drift goes unmeasured for days.
+
+**A session with no commits still gets a full checkpoint.** A read-only day —
+investigation, code reads, a diagnosis — produces no diff and will otherwise
+leave almost no trace. Its conclusions and retractions *are* the deliverable.
+If step 2 finds nothing, that is a signal to write **more** in the log, not less.
 
 1. **Measure, do not recall.** Run the three gates from `web/` and record the
    actual output, including exit codes. Copying yesterday's numbers defeats the
@@ -72,8 +85,11 @@ Fixed shape, so a future read is a scan and not a study.
 **Gates:** verify A/B/C (exit N) · audit-plan N · test N/N — measured today
 **Landed:** …
 **Learned → routed:** <fact> → <the file it now lives in>
-**Disproved:** <what we believed> — <what killed it>
+**Retracted:**
+1. <the claim, in the words it was said> — <the observation that killed it>
+2. …
 **Open:** <thread> — <next action>
+**Wake:** <YYYY-MM-DD> — <what only becomes answerable on or after that date>
 **Next:** <single highest-value action>
 ```
 
@@ -87,21 +103,36 @@ Rules for the entry:
   drop it.
 - Absolute dates, never "yesterday" or "last week".
 - If a number appears, name the series or command it came from.
-- Disproved beliefs are the most valuable line in the entry. Write them even
-  when — especially when — the belief was mine.
+- **Retractions are the most valuable part of the entry, so they get a numbered
+  list rather than a line.** Write each in the words it was originally asserted,
+  then the observation that killed it. A retraction compressed to "was wrong
+  about the wheel" does not stop the next session re-deriving it; "Touched
+  re-fires for an animated character" does. Write them even when — especially
+  when — the belief was mine.
+- **`Wake:` is for threads that are not actionable yet**, usually because data
+  has not settled. An item parked there must name the date and the exact pull.
+  Resume reads these before anything else.
 
 ## Resume mode
 
 Invoked as `checkpoint resume`, or whenever a session opens cold on this repo.
 
-1. **Read in order:** `CLAUDE.md` START HERE → `.claude/SESSION_LOG.md` (last
-   two entries) → `HANDOFF.md`.
+1. **Read in order:** the last entry's `Wake:` line first — if today is on or
+   past one of those dates, that pull is the session's opening move — then
+   `CLAUDE.md` START HERE → `.claude/SESSION_LOG.md` (last two entries) →
+   `HANDOFF.md`.
 2. **Verify before trusting.** Run `git log --oneline -5` and the three gates.
    The docs describe the moment they were written; the gates describe now. Any
    disagreement means the doc is stale — fix it *before* doing anything else.
 3. **If the memory directory is empty** (new device), rebuild it from the repo.
    Memories are derived; the repo is canonical. Never the reverse.
-4. **State the thread back in six lines or fewer** — where we are, what is open,
+4. **Re-read the last entry's `Retracted:` list before proposing anything.**
+   Those are the claims most likely to be re-derived, because the reasoning that
+   produced them was plausible enough to publish once.
+5. **Check the data's age, not just the docs'.** `data/games/<id>/` is a snapshot.
+   If the open thread is about a metric, the first action is usually a fresh
+   pull, because sub-daily series hold only ~24h and perf ages out at ~30 days.
+6. **State the thread back in six lines or fewer** — where we are, what is open,
    the proposed next action — then wait for the user.
 
 ## What this exists to prevent
