@@ -46,13 +46,18 @@ freeze-when-settled rule means order affects which reading of a disputed point
 is kept. Then confirm the three gates:
 
 ```bash
-npm run verify -- ../data/verify/9610561918/   # 23 pass · 1 fail · 9 skip, EXITS 1
+npm run verify -- ../data/verify/9610561918/   # 23 pass · 2 fail · 8 skip, EXITS 1
 npm run audit-plan                             # 140 templates, 0 failures
-npm test                                       # 30 pass
+npm test                                       # 44 pass
 ```
 
-The one expected `verify` failure is a documented disputed hour of realtime
-revenue, tracked in the test's `KNOWN_OPEN` set. **It makes `verify` exit 1**,
+*(Counts re-measured 2026-08-23. They previously read "1 fail · 9 skip" and
+"30 pass" here, both stale.)*
+
+The **two** expected `verify` failures are the documented disputed hour of
+realtime revenue and the `ErrorCount` half-hour bucket at the export window's
+own edge, both tracked in the test's `KNOWN_OPEN` set. **They make `verify`
+exit 1**,
 so that gate is currently "green" by its printed counts, not by its exit code —
 do not wire it into CI as a pass/fail without deciding that first
 (measured 2026-08-09).
@@ -611,6 +616,83 @@ report the save-loss path as resolved.** Re-pull with a narrower filter to settl
   unlock block is gated by `table.find(unlockWorlds, worldId)` at L37. Low severity.
 - Teleport errors are universe-wide across 6 places; only the root was open.
 
+### Waterslide post-update incident — read from LIVE source, 2026-08-23
+
+Producer reported "critical state, tutorial broken on phone, CCU 4k against 10k".
+Read the live root place `139617346573330` at **v1708** over MCP. Report:
+`https://claude.ai/code/artifact/f8cad0f1-da1f-4577-a57d-066a2a4115cb`.
+
+**Root cause under most of it.** Client `PlayerService.Awake()` assigns
+`shared["PlayerData"]` at **line 13**. **81 unguarded `shared["PlayerData"].Get()`
+call sites across 42 scripts** (vs 16 guarded). Anything opening before `Awake()`
+finishes throws *"attempt to index nil with 'Get'"*. Slower devices lose the race
+more often — that is the phone/tablet skew, not a rendering bug. Fix is one stub
+in the client bootstrap, not 81 patches.
+
+**Six defects, all confirmed present in v1708 (none fixed as of 18:05 UTC):**
+
+1. **`GoShop_Raft` 601–609 — the scroll bug.** `while scroll.CanvasPosition.Y ~=
+   calcPos do … end`. `calcPos` derives from `AbsolutePosition.Y` (screen space)
+   assigned into `CanvasPosition` (canvas space), and Roblox **clamps** the write,
+   so float equality never holds. **Infinite loop**, overwriting the player's
+   scroll every 0.2s. `ClearTutorial()` does not cancel it and `OnTabChanged`
+   spawns another at 637, so they stack. **Emits no error, ever.**
+2. **`GoShop_Raft` 102 — empty raft list.** Throws at line 488, twelve lines
+   before the tile loop at 500, so no tile is created; also before `clearList()`
+   at 497, so a stale list freezes. **77 hits on v1708** in ~5h.
+3. **`GoShop_Raft` 570 — `isOwnedRaft(2, …)`.** Only Purple Raft Id 2 satisfies
+   tutorial step 5. Own any other raft and you are stuck permanently. Matches two
+   player reports verbatim ("already bought a raft", "another raft").
+4. **`PlayerService` 53 — silent data loss.** `if not data then return end`
+   leaves `serviceInit` false forever, so `PlayerData.Init` never runs and
+   `OnUpdatePlayerData` blocks in an **unbounded** `while not serviceInit`. Player
+   sees an empty profile. 5 × `SavePlayerData 502` today, no retry behind it.
+5. **`Convert` 274 — `FindFirstChild(nil)`.** Raises "Argument 1 missing or nil"
+   *before* its own `or … "Common"` fallback can run. Line 275 also shadows
+   `color` with a second `local` and clones without a nil check.
+6. **Raft `UIGridLayout`** — `CellSize.X = 0.33` × `FillDirectionMaxCells = 4`
+   = **132% of frame width**; with `ScrollingDirection = Y` the 4th column is
+   unreachable. Plus chronic throttling: MemoryStore `RequestThrottled` 430,428 ·
+   Teleport 69,788 · DataStore `KeyThrottled` 15,783.
+
+**What v1708 actually changed:** `GoShop_Raft` grew 8 lines since v1705 (crash
+trace moved `OnOpen` 611 → 619, `RefreshList` still 102). It now carries
+`task.spawn(ctrl.CheckTutorial)` at 623/637 — CheckTutorial was made async so it
+would not block `OnOpen`'s tween. Real fix for a logged symptom; leaves the loop,
+and non-blocking arguably makes the loops **easier** to stack.
+
+**Confirmed / refuted on the numbers:**
+- **Refuted — "all-time low".** Today 5,331 (partial, still climbing); 28-day low
+  is 3,457 on 08-12.
+- **Refuted — "Saturday was terrible".** Sat 08-22 = 7,557, **2nd of the last 4
+  Saturdays, +27% above the Saturday median** (5,949).
+- **Confirmed — today is soft.** Hour-matched vs Sun 08-16: −25.9% at
+  peak-in-window; gap widened to ~−37% by 10:30 then **plateaued** (−35.9% at
+  16:00).
+- **Confirmed — decline predates the deploy.** Starts 08-19 (−1.6%, −6.5%),
+  *then* steepens after v1705 (−5.2%, −21.8%, −35.8%). v1708 did not worsen it:
+  today's afternoon slope −12.1% vs −14.1% on the prior Sunday.
+- **Refuted — a retention collapse.** `ForwardD1Retention` flat at 0.128–0.158
+  across 08-10 → 08-21; 08-21 (0.1500) is 2nd-highest in the window. Damage is on
+  **new** players inside the tutorial, not the existing base.
+- **Chronic, not a regression.** `Tutorial_Main_5_ToRaftShop` = **0.824
+  pre-publish, 0.866 post**. Worst step in the funnel in both windows. Compound
+  tutorial completion 50.5% → 47.4%, so **~half of new players never finish the
+  tutorial and that was true before the incident.** Steps 10 (BuyEgg) and 12
+  (EquipPet) *did* regress (−2.9pp, −2.4pp), matching defect 5.
+- **Retracted (mine):** I first blamed per-tile rotation scripts for the scroll
+  bug. `UIAnimUtils.BindLoopRotate` already uses one shared `RunService.Heartbeat`
+  per animation kind with stale cleanup — the exact architecture I proposed as
+  the fix. Killed by reading `UIAnimUtils`.
+- `ShopTriggerMgr:51` (58s) and `EggOpen:460` (35s) long-runtime warnings are
+  intentional `while task.wait()` polling loops. **Not defects.**
+
+**Ship order given to the dev:** 4 (save guards) → 2 (the stub) → 5 (three
+lines) today; 1 (scroll) and 3 (tutorial gate) next, shipped separately so each
+is measurable. Defect 5 demoted — it did not fire at all on 08-23. Success
+metric is **step-5 completion > 0.95**, not CCU, which will keep falling as the
+08-18 discovery spike unwinds.
+
 ## 6. Next steps
 
 > Updated 2026-08-08 after the correctness overhaul (`CORRECTNESS_PLAN.md`).
@@ -646,3 +728,70 @@ report the save-loss path as resolved.** Re-pull with a narrower filter to settl
    correlation is not.
 5. Optional: a passive pass over Retention/Acquisition tabs to learn the correct
    `DailyCohortRetention` query shape.
+
+---
+
+### Session 2026-08-24 — four-game diagnosis, and two of my own calls corrected
+
+All four games were re-grabbed and diagnosed the same day. Full life was pulled
+for the two that lacked it: **10030829154 went 40 → 118 days** and
+**10399712766 30 → 53 days** (its whole life). Five artifacts published — the
+URLs and the regeneration path are in the `liveops-reports-2026-08-24` memory,
+and the generators are committed under `tools/reports/`.
+
+**Two corrections to conclusions I published earlier the same day.** Both were
+the same class of error — a defensible-looking baseline chosen without asking
+whether it could answer the question. Both are now written into
+`.claude/skills/liveops-diagnosis/SKILL.md` §0b as rules, because they will
+recur otherwise.
+
+1. **Never benchmark against a window minimum.** Waterslide's concurrents were
+   called healthy because 2,993 sat above the 22-day low of 2,675. The 22-day
+   *mean* was 5,453 and the prior week 7,476 — the day was −45% on typical.
+   The same error graded 9963622286 "recovering, +21–54% WoW" against the
+   lowest week in its series. Print four baselines and the day's rank.
+2. **Reach cannot exonerate a deploy.** 9963622286's 30 July deploy was graded
+   *partial* because impressions were already falling. Wrong instrument —
+   reach is downstream of retention with a multi-week lag — and wrong
+   magnitude: −4.7%/week before versus −53%/week after. Re-measured on daily
+   retention and the mix-controlled funnel it is the **primary** cause, which
+   is what `v546-cause-known` already said.
+
+**9963622286 — v600 (24 Aug 14:00Z) is cleared.** It fixed the Stellar quest
+crediting for players already at `MAX_BASE_UPGRADES = 30`. Concurrents fell all
+afternoon and it is not the reason: same two clock times across all 15 days
+held, today −29.3% against a −29.2% mean on nine non-publish days (sd 12.3pp,
+z = −0.01), milder than v582 (−38%) and v587 (−33%). The day was already
+38–48% down at 00:00–03:00, fourteen hours before the publish. Error rate flat
+(~128K/h against v598's ~130K/h), no player report names it, and the producer
+checked it in-game. **Every publish on this game spikes then decays — measure
+against the distribution of publishes, never one control day.**
+
+**10030829154 — eight defects read from live source at v1709.** Full write-up
+in the published artifact. Two emit nothing at all and were found from the
+funnel and the config rather than the log:
+- `UI.GoShop_Raft:603-609` — the scroll loop. Three faults: averages a viewport
+  coordinate with a canvas coordinate; `while` tests float equality against a
+  value the engine **clamps**; and nothing cancels the thread (`OnClose` empty,
+  spawned on every open *and* every tab change, so they stack).
+- `ConfigData.Pet` — **10 of 162 rows missing both `Quality` and `CashBuff`**
+  (Ids 52-57, 69-72; all `Limited_*`/`Code_*`/4203-4205). Missing `Quality`
+  throws in `Convert:274`; missing `CashBuff` silently pays 0. And
+  `PetBagMgr.RefreshFollowPets` calls `ClearAllChildren()` *then* rebuilds with
+  no `pcall`, so one bad pet deletes every pet after it in the list.
+- `SaveLoadDataMgr.SavePlayerData:67-112` — ~20 unguarded expressions in one
+  table literal inside one `pcall`. Any throw skips the `SetAsync` entirely:
+  silent total save loss.
+- `ServerInit:88-100` — Heartbeat iterates both module registries with no
+  `pcall` at any level.
+- The 430K `MemoryStoreService: RequestThrottled` signature is **not** the game
+  loop: it is `Tool.Notification.ExperienceNotificationBatchProcessor` hammering
+  a single shared SortedMap key from every server.
+
+**Still unexplained, and it is the most valuable open thread:** payer
+conversion halved on **12 August** on both 9610561918 and 10399712766, no
+publish either day. Ruled out: denominator (matched-DAU), platform (all four
+fell), product type (DevProduct and GamePass together), composition, and a
+Roblox-wide change (Waterslide's and Brainrot's attributed conversion *rose*
+over the same days). Knife Farm's Gamebeast 403 does **not** explain it — first
+seen 15 Aug 19:46Z, three days after. See the `aug-12-conversion-step` memory.

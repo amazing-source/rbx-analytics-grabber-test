@@ -19,6 +19,12 @@
 /data/*
 !/data/verify/
 !/data/raw/
+# data/exports/ COMMITTED. Creator Dashboard downloads — error message TEXT and
+#               player comment TEXT. The API serves neither: the MessageHash
+#               dimension lookup 500s on every game, so a manual export is the
+#               only route to error text. Not regenerable from data/raw/, and
+#               not re-downloadable once a version ages out of the dashboard.
+!/data/exports/
 # grab-report.json records what each grab ASKED for and what came back. It is
 # not derivable from the raw bundles (a request that failed left no capture),
 # and `npm run audit-plan` reads it to tell a proven query shape from a guess.

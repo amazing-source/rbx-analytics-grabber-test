@@ -1,0 +1,104 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+692260,Warning,Server,Sat Aug 15 2026 21:46:15 GMT+0200 (heure d’été d’Europe centrale),V3829,GamebeastSDK: Request failed (403) | Your billing status is blocked. Please check the Gamebeast dashboard for more details.,,
+293577,Error,Client,Fri Aug 07 2026 15:48:05 GMT+0200 (heure d’été d’Europe centrale),V3826,Players.<Player>.PlayerScripts.TextChat,,
+235701,Warning,Client,,V3727,"Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will not be played.","http://www.roblox.com/asset/?id=10921258489,<Player>
+http://www.roblox.com/asset/?id=10921259953,<Player>
+http://www.roblox.com/asset/?id=10921261968,<Player>
+http://www.roblox.com/asset/?id=10921263860,<Player>
+http://www.roblox.com/asset/?id=10921301576,<Player>
+http://www.roblox.com/asset/?id=507765000,<Player>
+http://www.roblox.com/asset/?id=507766388,<Player>",
+114777,Error,Client,,V3727,MeshContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=10604848
+https://assetdelivery.roblox.com/v1/asset?id=110081811565958
+https://assetdelivery.roblox.com/v1/asset?id=113902051362901
+https://assetdelivery.roblox.com/v1/asset?id=124849959058900
+https://assetdelivery.roblox.com/v1/asset?id=128892722858408
+https://assetdelivery.roblox.com/v1/asset?id=138334376846267
+https://assetdelivery.roblox.com/v1/asset/?id=101384957695637
+https://assetdelivery.roblox.com/v1/asset/?id=11402532476
+https://assetdelivery.roblox.com/v1/asset/?id=9284072921,
+106827,Error,Client,,V3727,Failed to load sound: Timedout,rbxassetid://100169245196733: HttpError
+rbxassetid://10066921516: HttpError
+rbxassetid://101542904500316: HttpError
+rbxassetid://111750814485487: HttpError
+rbxassetid://117544778707571: HttpError
+rbxassetid://131740203895834: HttpError
+rbxassetid://1845341094: HttpError,
+65906,Error,Client,,V3727,Failed to load animation with sanitized ID. Animation failed to load,rbxassetid://102357151005774
+rbxassetid://102439035841579
+rbxassetid://104692882182550
+rbxassetid://10921257536
+rbxassetid://10921259953
+rbxassetid://10921263860
+rbxassetid://10921269718
+rbxassetid://10921300839
+rbxassetid://114772298476551,
+49204,Warning,Client,,V3727,Infinite yield possible on WaitForChild,Players.<Player>.PlayerGui:WaitForChild("BaseFollower")
+Players.<Player>.PlayerGui:WaitForChild("BossFightUI")
+Players.<Player>.PlayerGui:WaitForChild("ConveyorSettings")
+Players.<Player>.PlayerGui:WaitForChild("KnifeSlots")
+Players.<Player>.PlayerGui:WaitForChild("UpgradeUI")
+Slot6:WaitForChild("StandModel"),
+19831,Error,Client,,V3727,Failed to load object. PBR textures may not be visible in game.,Workspace.<Player>.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.aby_ss17.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.earshgar8299.Head.SurfaceAppearance
+Workspace.Elliptic3v56.Accessory (cool designer tactical sunglasses).Handle.SurfaceAppearance
+Workspace.ishai_nya.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Nightuser6051.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.princenakaa0.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.RAIZIO30.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Vizzx275.Head.SurfaceAppearance,
+18953,Error,Client,,V3727,Failed to load sound: HTTP 429 (Too Many Requests),rbxasset://sounds/action_falling.ogg
+rbxassetid://100169245196733
+rbxassetid://10066921516
+rbxassetid://131581414199719
+rbxassetid://95060161042822
+rbxassetid://99176066726196,
+11131,Warning,Client,,V3727,GetServerChannelRemote not available,,
+9310,Error,Client,,V3727,HSRDataContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=103436498803855
+https://assetdelivery.roblox.com/v1/asset?id=108114521521889
+https://assetdelivery.roblox.com/v1/asset?id=113675419447834
+https://assetdelivery.roblox.com/v1/asset?id=116132776727166
+https://assetdelivery.roblox.com/v1/asset?id=122382353890863
+https://assetdelivery.roblox.com/v1/asset?id=12567340019
+https://assetdelivery.roblox.com/v1/asset?id=12724492575
+https://assetdelivery.roblox.com/v1/asset?id=133719408370870
+https://assetdelivery.roblox.com/v1/asset?id=8917572806
+https://assetdelivery.roblox.com/v1/asset?id=98036565198399,
+7012,Error,Client,,V3727,Failed to load sound: DnsResolve,rbxassetid://100169245196733: HttpError
+rbxassetid://10066921516: HttpError
+rbxassetid://101542904500316: HttpError
+rbxassetid://131581414199719: HttpError
+rbxassetid://133761848795389: HttpError,
+5876,Error,Client,,V3727,Failed to load sound: ConnectFail,rbxassetid://100169245196733: HttpError
+rbxassetid://10066921516: HttpError
+rbxassetid://101542904500316: HttpError
+rbxassetid://131581414199719: HttpError
+rbxassetid://133761848795389: HttpError
+rbxassetid://90153447839250: HttpError,
+4495,Warning,Server,Tue Jun 16 2026 02:00:35 GMT+0200 (heure d’été d’Europe centrale),V3801,GamebeastSDK: Gamebeast SDK is out of date! Please update to the latest version. v0.10.0 -> v0.10.1,,
+3168,Error,Client,,V3727,Players.<Player>.PlayerGui.TutorialUI.TutorialClient:103: attempt to index nil with 'PrimaryPart',"Script 'Players.<Player>.PlayerGui.TutorialUI.TutorialClient', Line 103
+    Script 'Players.<Player>.PlayerGui.TutorialUI.TutorialClient', Line 255 - function tutoChanged",
+3100,Error,Client,,V3727,Failed to load sound: NetFail,rbxassetid://100169245196733: HttpError
+rbxassetid://101542904500316: HttpError
+rbxassetid://102939182754072: HttpError
+rbxassetid://110639666212186: HttpError
+rbxassetid://130857909085592: HttpError
+rbxassetid://131740203895834: HttpError
+rbxassetid://1845341094: HttpError
+rbxassetid://5410086218: HttpError
+rbxassetid://77072376620085: HttpError,
+3069,Error,Server,Thu Aug 13 2026 18:06:10 GMT+0200 (heure d’été d’Europe centrale),V3829,UserHasBadgeAsync: Internal error.,"Script 'ServerScriptService.ServerModules.MainModule', Line 897",
+2476,Error,Client,Thu Jul 02 2026 18:04:00 GMT+0200 (heure d’été d’Europe centrale),V3809,"The Parent property of PVPKnifeTool is locked, current parent: NULL, new parent <Player>","Script 'Players.<Player>.PlayerScripts.K1mK1's Backpack.BackpackClient.UpdateBars', Line 220 - function ToggleEquip
+    Script 'Players.<Player>.PlayerScripts.K1mK1's Backpack.BackpackClient.UpdateBars', Line 328",
+2213,Warning,Server,,V3727,"DataStore request was added to queue. If request queue fills, further requests will be dropped. Try sending fewer requests.",Key = <PlayerId>
+Key = 10741403944
+Key = 11109564284
+Key = 2380334203
+Key = 5774172669,
+2125,Error,Server,Sun Jul 26 2026 02:53:40 GMT+0200 (heure d’été d’Europe centrale),V3823,MarketplaceService::userOwnsGamePassAsync - GetGamePassOwnership failed: HTTP request failed with status code: 500,"Script 'ServerScriptService.ServerScripts.AutospawnHandler', Line 119",
+2074,Warning,Server,Fri Jun 05 2026 21:09:55 GMT+0200 (heure d’été d’Europe centrale),V3797,GamebeastSDK: Request failed (400) | Request contained only invalid markers. No markers were ingested,,
+1942,Warning,Client,,V3759,trying to set locked parent!,,
+1796,Error,Server,Fri Aug 14 2026 00:37:15 GMT+0200 (heure d’été d’Europe centrale),V3829,UserHasBadgeAsync: Internal error.,"Script 'ServerScriptService.ServerModules.MainModule', Line 905",
+1638,Error,Client,Thu May 21 2026 21:13:30 GMT+0200 (heure d’été d’Europe centrale),V3760,MarketplaceService::getProductInfo - GetGamePassInfo failed: HTTP request failed with status code: 500,"Script 'Players.<Player>.PlayerGui.ShopGui.ShopGuiClient', Line 54",
+1466,Error,Client,Thu May 21 2026 18:09:15 GMT+0200 (heure d’été d’Europe centrale),V3760,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: Timedout,"Script 'Players.<Player>.PlayerGui.ShopGui.ShopGuiClient', Line 51",

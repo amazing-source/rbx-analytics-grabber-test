@@ -1,0 +1,146 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+481462,Warning,Server,Tue Jun 23 2026 01:01:05 GMT+0200 (heure d’été d’Europe centrale),V468,"[LuckGamebeast] purchase skipped, tutorial not completed: <Player>",,
+409555,Warning,Server,Thu Jun 25 2026 03:00:05 GMT+0200 (heure d’été d’Europe centrale),V468,"[LuckGamebeast] skipped, tutorial not completed: <Player> luck_kiosk_opened",,
+392041,Warning,Server,Tue Jun 23 2026 01:00:55 GMT+0200 (heure d’été d’Europe centrale),V468,"[LuckGamebeast] skipped, tutorial not completed: <Player> luck_upgrade_viewed",,
+280688,Error,Client,,V404,Failed to load sound: Timedout,rbxassetid://105871524427076: HttpError
+rbxassetid://120032784680199: HttpError
+rbxassetid://133761848795389: HttpError
+rbxassetid://134764779929866: HttpError
+rbxassetid://138118304933431: HttpError
+rbxassetid://1836009208: HttpError
+rbxassetid://1842150151: HttpError
+rbxassetid://1846088038: HttpError
+rbxassetid://6878476054: HttpError,
+177659,Warning,Server,Thu Jun 25 2026 03:00:05 GMT+0200 (heure d’été d’Europe centrale),V468,"[RebirthGamebeast] completed skipped, tutorial not completed: <Player>",,
+124920,Warning,Client,,V404,"Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will not be played.","http://www.roblox.com/asset/?id=10921259953,<Player>
+http://www.roblox.com/asset/?id=507765000,<Player>
+http://www.roblox.com/asset/?id=507766388,<Player>
+http://www.roblox.com/asset/?id=507767968,<Player>
+rbxassetid://122150855457006,<Player>",
+115467,Error,Client,,V404,Remote event invocation queue exhausted; did you forget to implement OnClientEvent? (events dropped),ReplicatedStorage.Events.LevelUp,
+86159,Error,Client,,V404,Failed to load object. PBR textures may not be visible in game.,Bombardiro Crocodilo
+Cavallo Virtuoso
+Fluriflura
+Karkerkar Kurkur
+La Grande Combinasion
+Los Tralaleritos
+MaterialService.2022 Stud
+MaterialService.2022 Weld
+MaterialService.Strawberry Stud Dark
+MaterialService.Universal
+Players.<Player>.Backpack.Bombombini Gusini.Bombombini Gusini.Cube.001.SurfaceAppearance
+Players.<Player>.PlayerGui.MainFrame.ImageNotifications.ReplicatedStorage_Models_Animals_Tung_Tung_Tung_Sahur_Cosmic.ViewportFrame.PreviewWorld.Tung Tung Tung Sahur.Plane.001.SurfaceAppearance
+Players.<Player>.PlayerGui.MainFrame.LeftGui.StopConveyor.Frame.MainLabel.Avocadini Guffo.WorldModel.Avocadini Guffo.Cylinder.001.SurfaceAppearance
+Players.<Player>.PlayerGui.MainFrame.LeftGui.StopConveyor.Frame.MainLabel.Bisonte Giuppitere.WorldModel.Bisonte Giuppitere.Sphere.SurfaceAppearance
+Players.<Player>.PlayerGui.MainFrame.LeftGui.StopConveyor.Frame.MainLabel.Cocofanto Elefanto.WorldModel.Cocofanto Elefanto.Cube.001.SurfaceAppearance
+Players.<Player>.PlayerGui.MainFrame.LeftGui.StopConveyor.Frame.MainLabel.Godly Lucky Block.WorldModel.Godly Lucky Block.Cube.002.SurfaceAppearance
+Players.<Player>.PlayerGui.MainFrame.LeftGui.StopConveyor.Frame.MainLabel.Graipuss Medussi.WorldModel.Graipuss Medussi.Circle.001.SurfaceAppearance
+Players.<Player>.PlayerGui.MainFrame.LeftGui.StopConveyor.Frame.MainLabel.Los Tralaleritos.WorldModel.Los Tralaleritos.Cube.009.SurfaceAppearance
+Players.<Player>.PlayerGui.MainFrame.LeftGui.StopConveyor.Frame.MainLabel.Tung Tung Tung Sahur.WorldModel.Tung Tung Tung Sahur.Plane.001.SurfaceAppearance
+Players.<Player>.PlayerGui.MainFrame.StoreFrames.Index.MainFrame.Bananita Dolphinita.ViewportFrame.WorldModel.Bananita Dolphinita.Cube.002.SurfaceAppearance
+Players.<Player>.PlayerGui.MainFrame.StoreFrames.Index.MainFrame.Cavallo Virtuoso.ViewportFrame.WorldModel.Cavallo Virtuoso.Cube.003.SurfaceAppearance
+Players.<Player>.PlayerGui.MainFrame.StoreFrames.Index.MainFrame.Garama and Madundung.ViewportFrame.WorldModel.Garama and Madundung.Cube.016.SurfaceAppearance
+SurfaceAppearance
+thatsmath_67.Jacket-Leather-Black.Handle.SurfaceAppearance
+Workspace.<Player>.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.<Player>.Fluriflura.Fluriflura.Cube.001.Fluriflura
+Workspace.<Player>.Tim Cheese.Tim Cheese.Cube.001.Tim Cheese
+Workspace.6w7rtai.Spaghetti Tualetti.Spaghetti Tualetti.Cube.002.SurfaceAppearance
+Workspace.ALI17_65.Accessory (Ponytail).Handle.SurfaceAppearance
+Workspace.Ikura955.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Lava.Folder.Model.MeshPart.SurfaceAppearance
+Workspace.Locations.1.Brainrots.Avocadini Guffo.Cylinder.001.SurfaceAppearance
+Workspace.Locations.1.Brainrots.Boneca Ambalabu.Cube.001.Boneca Ambalabu
+Workspace.Locations.13.Brainrots.Pakrahmatmamat.Cube.020.Pakrahmatmamat
+Workspace.Locations.14.Brainrots.Mieteteira Bicicleteira.Plane.046.SurfaceAppearance
+Workspace.Locations.14.Brainrots.Pakrahmatmamat.Cube.020.Pakrahmatmamat
+Workspace.Locations.3.Brainrots.Bombombini Gusini.Cube.001.Bombombini Gusini
+Workspace.Locations.8.Brainrots.Celularcini Viciosini.Plane.003.SurfaceAppearance
+Workspace.Locations.9.Brainrots.Trippi Troppi Troppa Trippa.Cube.016.SurfaceAppearance
+Workspace.Map.LimitedBundle.Brainrots.BlackholeGoat.Goat.002.SurfaceAppearance
+Workspace.Plots.<Player>.AnimalStands.22.AnimalModel.Cube.001.SurfaceAppearance
+Workspace.Plots.namwoohyun2.AnimalStands.1.AnimalModel.Cube.001.SurfaceAppearance
+Workspace.Plots.Trulla_Schlumpf.AnimalStands.6.AnimalModel.Tralalelo Tralala.001.SurfaceAppearance
+Workspace.Plots.wudvsoj3.AnimalStands.2.AnimalModel.Cube.001.SurfaceAppearance
+Workspace.ronroncutie12345.LowerTorso.SurfaceAppearance
+Workspace.RoseLove101418.Accessory (Ponytail).Handle.SurfaceAppearance
+Workspace.Tyjordi45.Trippi Troppi Troppa Trippa.Trippi Troppi Troppa Trippa.Cube.016.Trippi Troppi Troppa Trippa,
+65117,Error,Client,,V404,Failed to load sound: NetFail,rbxassetid://100619504934608: HttpError
+rbxassetid://105871524427076: HttpError
+rbxassetid://125236580407249: HttpError
+rbxassetid://128351756710303: HttpError
+rbxassetid://133761848795389: HttpError
+rbxassetid://134764779929866: HttpError
+rbxassetid://140245756477343: HttpError
+rbxassetid://1836009208: HttpError
+rbxassetid://1837768517: HttpError
+rbxassetid://1842150151: HttpError,
+59916,Error,Client,,V404,Failed to load sound: HTTP 429 (Too Many Requests),rbxasset://sounds/action_falling.ogg
+rbxassetid://100619504934608
+rbxassetid://107776727447557
+rbxassetid://116439187028468
+rbxassetid://121336636707861
+rbxassetid://125236580407249
+rbxassetid://128351756710303
+rbxassetid://133946015052315
+rbxassetid://134189051248016
+rbxassetid://359623376,
+43985,Error,Client,Sat May 30 2026 17:00:05 GMT+0200 (heure d’été d’Europe centrale),V428,LifeTime is not a valid member of ImageLabel "NotificationTemplate","Script 'Players.<Player>.PlayerGui.MainFrame.NotificationFrame.NotificationController', Line 72",
+41958,Warning,Server,Mon Jul 27 2026 18:00:10 GMT+0200 (heure d’été d’Europe centrale),V530,value of type nil cannot be converted to a number,"Script 'ServerScriptService.OnPlayerAdded', Line 3046",
+34173,Error,Client,,V404,"Unable to assign property Image. ContentId expected, got nil","Script 'Players.<Player>.PlayerGui.MainFrame.LocationsFrame.PlayerBar.BarController', Line 33 - function createPlayerFrame",
+23098,Warning,Server,,V404,"Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will not be played.","http://www.roblox.com/asset/?id=10921258489,<Player>
+http://www.roblox.com/asset/?id=10921259953,<Player>
+http://www.roblox.com/asset/?id=10921261968,<Player>
+http://www.roblox.com/asset/?id=10921301576,<Player>
+http://www.roblox.com/asset/?id=507765000,<Player>
+http://www.roblox.com/asset/?id=507766388,<Player>
+http://www.roblox.com/asset/?id=507766666,<Player>
+rbxassetid://102357151005774,<Player>",
+21382,Error,Server,Thu Jul 09 2026 15:00:10 GMT+0200 (heure d’été d’Europe centrale),V499,Failed to load sound: Asset is not approved for the requester,rbxassetid://121336636707861,
+16823,Error,Client,,V404,Failed to load sound: ConnectFail,rbxassetid://100619504934608: HttpError
+rbxassetid://105871524427076: HttpError
+rbxassetid://107776727447557: HttpError
+rbxassetid://120032784680199: HttpError
+rbxassetid://1210852193: HttpError
+rbxassetid://121336636707861: HttpError
+rbxassetid://136119448397324: HttpError
+rbxassetid://359623376: HttpError
+rbxassetid://6878476054: HttpError,
+15340,Error,Client,,V404,Failed to load sound: DnsResolve,rbxasset://sounds/action_falling.ogg: HttpError
+rbxassetid://100619504934608: HttpError
+rbxassetid://105871524427076: HttpError
+rbxassetid://121336636707861: HttpError
+rbxassetid://128351756710303: HttpError
+rbxassetid://1842150151: HttpError
+rbxassetid://6878476054: HttpError,
+15275,Warning,Server,Mon Jul 06 2026 12:00:15 GMT+0200 (heure d’été d’Europe centrale),V493,GamebeastSDK: Request failed (400) | v1/markers | Request contained only invalid markers. No markers were ingested,,
+12547,Error,Client,,V404,Failed to load sound: Unable to download sound data,rbxasset://sounds/action_footsteps_plastic.mp3
+rbxassetid://105871524427076
+rbxassetid://120032784680199
+rbxassetid://1836009208,
+11958,Warning,Server,,V404,<Player> Rejoin time: 3,,
+10038,Error,Client,Fri May 22 2026 17:00:40 GMT+0200 (heure d’été d’Europe centrale),V416,Failed to load sound: ServerProtocolError,rbxassetid://105871524427076: HttpError
+rbxassetid://133761848795389: HttpError
+rbxassetid://134764779929866: HttpError
+rbxassetid://138391671909650: HttpError
+rbxassetid://1836009208: HttpError
+rbxassetid://1848028342: HttpError
+rbxassetid://408524543: HttpError
+rbxassetid://5410086218: HttpError,
+9102,Warning,Server,,V404,<Player> Rejoin time: 4,,
+8249,Error,Server,Fri Jul 24 2026 22:00:20 GMT+0200 (heure d’été d’Europe centrale),V528,TrainedSpeed is not a valid member of Player "Players.<Player>","Script 'ServerScriptService.OnPlayerAdded', Line 3335",
+7972,Error,Client,,V404,HSRDataContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=100733203410529
+https://assetdelivery.roblox.com/v1/asset?id=101612812436729
+https://assetdelivery.roblox.com/v1/asset?id=103125580668305
+https://assetdelivery.roblox.com/v1/asset?id=103290937036242
+https://assetdelivery.roblox.com/v1/asset?id=108492824006287
+https://assetdelivery.roblox.com/v1/asset?id=110944204503586
+https://assetdelivery.roblox.com/v1/asset?id=123926795887628
+https://assetdelivery.roblox.com/v1/asset?id=12567340002
+https://assetdelivery.roblox.com/v1/asset?id=126036431440380
+https://assetdelivery.roblox.com/v1/asset?id=12724491920
+https://assetdelivery.roblox.com/v1/asset?id=13024250829
+https://assetdelivery.roblox.com/v1/asset?id=13251297563
+https://assetdelivery.roblox.com/v1/asset?id=8852713274
+https://assetdelivery.roblox.com/v1/asset?id=9246407092,
+7875,Warning,Server,,V404,<Player> Rejoin time: 5,,

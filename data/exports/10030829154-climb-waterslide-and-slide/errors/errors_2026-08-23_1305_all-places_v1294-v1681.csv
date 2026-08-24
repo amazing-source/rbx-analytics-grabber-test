@@ -1,0 +1,262 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+516371,Warning,Client,,V1304,Infinite yield possible on WaitForChild,ReplicatedStorage:WaitForChild("ToolScripts")
+Workspace.<Player>:WaitForChild("Humanoid")
+Workspace.WorldModel.Limited Summer Egg:WaitForChild("Trigger")
+Workspace.WorldModel.LimitedPet4:WaitForChild("Trigger"),
+430428,Error,Server,Fri Jul 24 2026 20:03:15 GMT+0200 (heure d’été d’Europe centrale),V1681,"MemoryStoreService: RequestThrottled: Recent MemoryStores requests hit one or more limits. API: SortedMap.Update, Data Structure: SortedNotificationMap.",,
+182833,Warning,Client,,V1304,"Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will not be played.","http://www.roblox.com/asset/?id=507765000,<Player>
+http://www.roblox.com/asset/?id=507766388,<Player>",
+122104,Error,Client,,V1304,MeshContentProvider failed to process asset because 'could not fetch',701f036c9e8af527856962027ab2be82
+81812b333f3df712240180435bf345d5
+a81076924b0cb790050f05424809f249
+c80c2acb99c1bd969b9eadee4e9739a4
+https://assetdelivery.roblox.com/v1/asset?id=101188245683822
+https://assetdelivery.roblox.com/v1/asset?id=101498550847127
+https://assetdelivery.roblox.com/v1/asset?id=102984794390342
+https://assetdelivery.roblox.com/v1/asset?id=105781569900461
+https://assetdelivery.roblox.com/v1/asset?id=10663244506
+https://assetdelivery.roblox.com/v1/asset?id=111394693907420
+https://assetdelivery.roblox.com/v1/asset?id=116673202407512
+https://assetdelivery.roblox.com/v1/asset?id=120851906774063
+https://assetdelivery.roblox.com/v1/asset?id=122923812667482
+https://assetdelivery.roblox.com/v1/asset?id=13388548605
+https://assetdelivery.roblox.com/v1/asset?id=133971422703041
+https://assetdelivery.roblox.com/v1/asset?id=13405531655
+https://assetdelivery.roblox.com/v1/asset?id=135969921239388
+https://assetdelivery.roblox.com/v1/asset?id=137796986923112
+https://assetdelivery.roblox.com/v1/asset?id=151779305
+https://assetdelivery.roblox.com/v1/asset?id=15984894220
+https://assetdelivery.roblox.com/v1/asset?id=16290537291
+https://assetdelivery.roblox.com/v1/asset?id=17012169455
+https://assetdelivery.roblox.com/v1/asset?id=2496177339
+https://assetdelivery.roblox.com/v1/asset?id=2496177347
+https://assetdelivery.roblox.com/v1/asset?id=76849997091709
+https://assetdelivery.roblox.com/v1/asset?id=89674189545471
+https://assetdelivery.roblox.com/v1/asset?id=93871562855270
+https://assetdelivery.roblox.com/v1/asset/?id=102205697083583
+https://assetdelivery.roblox.com/v1/asset/?id=10725526074
+https://assetdelivery.roblox.com/v1/asset/?id=10725526109
+https://assetdelivery.roblox.com/v1/asset/?id=12852929757
+https://assetdelivery.roblox.com/v1/asset/?id=12852929810
+https://assetdelivery.roblox.com/v1/asset/?id=18837025827
+https://assetdelivery.roblox.com/v1/asset/?id=6938280167
+https://assetdelivery.roblox.com/v1/asset/?id=7193639623
+https://assetdelivery.roblox.com/v1/asset/?id=7783843521,
+100719,Error,Client,,V1304,Failed to load object. PBR textures may not be visible in game.,Handle.SurfaceAppearance
+Lennilouwho20.3.0 Max Watch - Black.Handle.SurfaceAppearance
+Players.<Player>.PlayerGui.GoShop.Frame.Seat.ScrollingFrame.Raft_15.Seat.Seaticon.WorldModel.UFO.Base.SurfaceAppearance
+Players.<Player>.PlayerGui.GoShop.Frame.Seat.ScrollingFrame.Raft_30.Seat.Seaticon.WorldModel.Cut Fish.Base.SurfaceAppearance
+SurfaceAppearance
+Workspace.<Player>.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.<Player>.Accessory (Ponytail).Handle.SurfaceAppearance
+Workspace.<Player>.Accessory (tabby).Handle.SurfaceAppearance
+Workspace.<Player>.Head.SurfaceAppearance
+Workspace.0chi_1.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Adri6620726.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Afiaqh_17.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Alejandro110981.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.amsoma125387.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Ania383837.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Carolina78122.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.CaspCay.Head.SurfaceAppearance
+Workspace.cherpat23.Head.SurfaceAppearance
+Workspace.CMH_4566.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Cupsitjailras_yk.Accessory (Ponytail).Handle.SurfaceAppearance
+Workspace.diva_bloxx48.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.doyu_19.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Elisagamze1.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.elise212145_3.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.ellajoyce_1636.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.fortune1150.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Gaocao24.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.GiuliaLab20.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.gonay_674.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.haruto200731.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.ichika837.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.ILuvMasonThames6.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.ilyukaa.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Irispro2016.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.IRYNA_2289067.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.jihan_76832.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.jjsjksj220.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.julcu02.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.karote6792.Hair-Male-007-Black.Handle.SurfaceAppearance
+Workspace.Leria_182.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.llUllS_66.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Looneyprincess65.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.madiray567.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.matcha_4049.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Michaels45673.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.miimii7921.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.milis_2222.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.MilkTea07150.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Mira_098282.Accessory (tabby).Handle.SurfaceAppearance
+Workspace.monmonlucuw2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.neimarjr0373.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Nganquynh2312219.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.owjmsejk.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Pachipachi201773.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Pepabiubeo.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.pinky_heart11665.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Pjsonicamy.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Poiuwe964.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.puz815.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.quankhang10.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.<PlayerId>.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.10252935284.BearRigs.BearRig_2.Accessory (Balletcore Set - Jacket).Handle.SurfaceAppearance
+Workspace.Rafts.10446535797.BearRigs.BearRig_3.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.10487578463.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.10645388063.BearRigs.BearRig_3.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.10750489501.Raft.Base.SurfaceAppearance
+Workspace.Rafts.11051140808.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.11055773550.BearRigs.BearRig_5.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.11101937253.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.11145678076.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.11240222642.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.11412031106.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.11469112012.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.2055178987.BearRigs.BearRig_4.Accessory.Handle.SurfaceAppearance
+Workspace.Rafts.4008583543.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.5143693778.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.7794384641.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.8021546433.BearRigs.BearRig_6.Head.SurfaceAppearance
+Workspace.Rafts.8771697386.BearRigs.BearRig_3.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.8772555402.BearRigs.BearRig_3.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.8935065869.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.9108104528.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.9245372481.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.9854677314.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.9940935076.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.9992942037.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.raonald3.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rlomel0000.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.roblox_zoe182.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.rsalin0.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.s3ofia5652.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.saigon4568.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.sally456577.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Sophia_Flo4.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.soybuenisimo11133.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Spiderboy2825.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.SpyderSammyu_522.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Star_2016262.Accessory (Ponytail).Handle.SurfaceAppearance
+Workspace.Stesha_kotik790.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.tencu_70.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.trenza272.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Truongdzmaso01.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.UnicornElsa79.Accessory (tabby).Handle.SurfaceAppearance
+Workspace.Vale_ssandra8.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.WorldModel.Egg1.ShowModel.default.SurfaceAppearance
+Workspace.Yamapu11.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Yazzari7275.Accessory (dark_fae).Handle.SurfaceAppearance,
+69788,Error,Server,,V1294,TeleportService:All players in teleport request are already in progress or throttled.,,
+68436,Error,Client,,V1304,Failed to load animation with sanitized ID. Animation failed to load,rbxassetid://102357151005774
+rbxassetid://102439035841579
+rbxassetid://10921240218
+rbxassetid://10921257536
+rbxassetid://10921258489
+rbxassetid://10921259953
+rbxassetid://10921262864
+rbxassetid://115157103323964
+rbxassetid://118182895138883
+rbxassetid://121307391014769
+rbxassetid://16738340646
+rbxassetid://2506281703
+rbxassetid://507765000
+rbxassetid://507766388
+rbxassetid://507766666
+rbxassetid://78570165689113
+rbxassetid://82788088382983,
+60028,Error,Client,,V1304,Failed to load sound: Timedout,rbxassetid://104164882152349: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://125381282450800: HttpError
+rbxassetid://133664122932845: HttpError
+rbxassetid://139646818527155: HttpError
+rbxassetid://140045094283652: HttpError
+rbxassetid://5410086218: HttpError
+rbxassetid://91207122527629: HttpError
+rbxassetid://99334339377211: HttpError,
+15783,Error,Server,,V1304,DataStoreService: KeyThrottled: The request rate exceeds the allowed maximum for the key. API: UpdateAsync,GlobalDataStore,
+13966,Error,Client,,V1304,HSRDataContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=101665077831456
+https://assetdelivery.roblox.com/v1/asset?id=104804537348243
+https://assetdelivery.roblox.com/v1/asset?id=11822607045
+https://assetdelivery.roblox.com/v1/asset?id=122156447276959
+https://assetdelivery.roblox.com/v1/asset?id=12567340000
+https://assetdelivery.roblox.com/v1/asset?id=12674785321
+https://assetdelivery.roblox.com/v1/asset?id=13144667955
+https://assetdelivery.roblox.com/v1/asset?id=13327827368
+https://assetdelivery.roblox.com/v1/asset?id=133719408370870
+https://assetdelivery.roblox.com/v1/asset?id=136586467322909
+https://assetdelivery.roblox.com/v1/asset?id=15093137131
+https://assetdelivery.roblox.com/v1/asset?id=18149021030
+https://assetdelivery.roblox.com/v1/asset?id=70445740811983
+https://assetdelivery.roblox.com/v1/asset?id=71419329902612
+https://assetdelivery.roblox.com/v1/asset?id=85143733129395
+https://assetdelivery.roblox.com/v1/asset?id=8972828323
+https://assetdelivery.roblox.com/v1/asset?id=8980503855
+https://assetdelivery.roblox.com/v1/asset?id=90381305635037
+https://assetdelivery.roblox.com/v1/asset?id=95560984601875,
+9226,Error,Client,,V1304,Failed to load sound: NetFail,rbxassetid://105393302099968: HttpError
+rbxassetid://124271857226514: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://133664122932845: HttpError
+rbxassetid://133761848795389: HttpError
+rbxassetid://138532985066732: HttpError,
+5834,Error,Client,,V1304,Failed to load sound: ServerProtocolError,rbxassetid://124984738215587: HttpError
+rbxassetid://133664122932845: HttpError
+rbxassetid://134764779929866: HttpError
+rbxassetid://139117624240827: HttpError,
+4472,Error,Client,,V1304,Players.<Player>.PlayerScripts.UI.Trade:305: attempt to index nil with 'Name',"Script 'Players.<Player>.PlayerScripts.UI.Trade', Line 305 - function OnCloseTradeBtn",
+3750,Error,Client,,V1300,Failed to load sound: Unable to download sound data,rbxassetid://124984738215587
+rbxassetid://133664122932845
+rbxassetid://133761848795389
+rbxassetid://138118304933431
+rbxassetid://5410086218,
+3683,Error,Client,,V1304,Failed to load sound: DnsResolve,rbxassetid://10066921516: HttpError
+rbxassetid://104164882152349: HttpError
+rbxassetid://106239090346339: HttpError
+rbxassetid://124271857226514: HttpError
+rbxassetid://124596590737636: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://125381282450800: HttpError
+rbxassetid://136971463594943: HttpError
+rbxassetid://140207837688369: HttpError,
+3345,Error,Client,,V1300,Failed to load sound: unsupported file format,rbxasset://sounds/action_falling.mp3
+rbxasset://sounds/action_falling.ogg
+rbxassetid://104164882152349
+rbxassetid://125381282450800,
+2778,Error,Client,,V1304,Failed to load sound: ConnectFail,rbxassetid://10066921516: HttpError
+rbxassetid://104164882152349: HttpError
+rbxassetid://105393302099968: HttpError
+rbxassetid://106239090346339: HttpError
+rbxassetid://108192570225558: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://125381282450800: HttpError
+rbxassetid://138118304933431: HttpError
+rbxassetid://140207837688369: HttpError
+rbxassetid://99334339377211: HttpError,
+2773,Error,Server,Fri Jul 24 2026 20:03:05 GMT+0200 (heure d’été d’Europe centrale),V1681,"MemoryStoreService: PartitionRequestsOverLimit: The request units exceed the allowed limit for the partition. API: SortedMap.Update, Data Structure: SortedNotificationMap.",,
+2433,Error,Client,,V1304,Failed to load sound: HTTP 429 (Too Many Requests),rbxassetid://10066921516
+rbxassetid://104164882152349
+rbxassetid://106239090346339
+rbxassetid://108192570225558
+rbxassetid://124271857226514
+rbxassetid://124596590737636
+rbxassetid://139646818527155
+rbxassetid://140207837688369
+rbxassetid://91207122527629,
+2366,Error,Client,,V1304,raiseTeleportInitFailedEvent: Teleport failed because A Http error has occurred. Please close the client and try again. (Failure),,
+2003,Error,Client,Fri Jul 24 2026 20:00:15 GMT+0200 (heure d’été d’Europe centrale),V1681,HumanoidRootPart is not a valid member of Model "Workspace.<Player>","Script 'Players.<Player>.PlayerScripts.Controller.Tutorial', Line 262 - function UpdateTutorialForKey
+    Script 'Players.<Player>.PlayerScripts.Controller.Tutorial', Line 369 - function OnRefreshPlayerData
+    Script 'Players.<Player>.PlayerScripts.Controller.Tutorial', Line 384 - function OnReLoadCharacter",
+1842,Error,Server,,V1304,"MemoryStoreService: Timeout: The service is temporarily unavailable. API: SortedMap.Update, Data Structure: SortedNotificationMap.",,
+1808,Error,Client,Mon Jun 08 2026 19:09:30 GMT+0200 (heure d’été d’Europe centrale),V1669,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: DnsResolve,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+1760,Error,Client,Mon Jun 08 2026 18:04:55 GMT+0200 (heure d’été d’Europe centrale),V1669,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: ConnectFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+1686,Error,Client,,V1300,Failed to load sound: OutOfMemory,rbxassetid://124984738215587: HttpError
+rbxassetid://133664122932845: HttpError
+rbxassetid://138118304933431: HttpError
+rbxassetid://138532985066732: HttpError
+rbxassetid://140045094283652: HttpError
+rbxassetid://5410086218: HttpError,

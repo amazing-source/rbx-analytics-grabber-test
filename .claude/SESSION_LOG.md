@@ -13,6 +13,61 @@ trusting it**. Entries describe the moment they were written.
 
 ---
 
+## 2026-08-23 — Waterslide: the costliest bug emitted zero log lines
+
+**State:** branch `grabber-correctness` · 66 ahead of `main` · tracking
+`origin/grabber-correctness` · dirty: `data/dashboard-config.json`, two
+`grab-report.json`, untracked `data/raw/10030829154-2026-08-23T11-09-35-036Z.json`
+**Gates:** verify 23 pass / **2 fail** / 8 skip (**exit 1**, both fails the
+documented KNOWN_OPEN pair) · audit-plan 140 templates, 0 failures (exit 0) ·
+`npm test` **44 pass** (exit 0) — all measured 2026-08-23.
+
+**Landed:** no code changes. Diagnosis only, read from the LIVE root place
+`139617346573330` v1708 over the Studio MCP. Deliverable is an artifact:
+`https://claude.ai/code/artifact/f8cad0f1-da1f-4577-a57d-066a2a4115cb`.
+
+**Learned → routed:**
+- Silent defects: a bug in *working* code emits nothing, so never rank by error
+  count; funnel step rates are the second entry point → **liveops-diagnosis §5c**
+- Pre/post test for "regression vs chronic design defect"; funnel endpoint
+  answers only some windows and the set changes between calls →
+  **liveops-diagnosis §5d**
+- Hour-match partial days; rank a day against its own weekday; check whether the
+  decline predates the publish → **liveops-diagnosis §0b**
+- Open Cloud `endTime` is **exclusive**; asking past today makes PCU carry its
+  last value into a future date → **CLAUDE.md** + **COVERAGE.md F16**
+- Every Waterslide defect, with file:line and the v1708 status →
+  **HANDOFF.md §5 "Waterslide post-update incident"**
+
+**Disproved (all mine except the last two):**
+- *Per-tile rotation scripts starve the client, causing the scroll bug.*
+  `UIAnimUtils.BindLoopRotate` already uses one shared `RunService.Heartbeat`
+  per kind with stale cleanup — the exact fix I had proposed. Real cause is the
+  `while … CanvasPosition ~= calcPos` loop at `GoShop_Raft:601-609`.
+- *Tutorial step 5 has no ownership check.* It does (`CheckTutorial` 567-574) —
+  it just hardcodes `isOwnedRaft(2, …)`, so any other raft leaves you stuck.
+- *The tutorial break is new with the update.* Step 5 = 0.824 pre / 0.866 post.
+  Chronic for weeks; the deploy only changed how many people hit it.
+- *(user's) CCU is at an all-time low* — 28-day low is 3,457 on 08-12 vs 5,331
+  today. *(user's) Saturday was terrible* — 08-22 was 2nd of 4 Saturdays, +27%
+  above the Saturday median.
+
+**Open:**
+- **Did the dev ship any of the six?** None were present at 18:05 UTC 08-23.
+  Next action: re-run the `GoShop_Raft` line-102/606/570 pattern scan over MCP.
+- **Step 5 under v1708 is unmeasured** — the funnel endpoint went quiet for
+  every window, including ones that answered twice earlier the same day. Next
+  action: re-query `FunnelUserStepCompletionRate` for 08-23→08-24 tomorrow.
+- **F16 has no regression test.** Two wanted: a PCU series repeating its last
+  point on a future date collapses to one; `FILLED_ZERO` is never written for a
+  date the API previously served. `DailyActiveUsers` 08-16/08-17 are stored as
+  `0` against real 389,477 / 401,742 — this feeds `scoreSeries()`.
+- **Gateway `endTime` inclusivity is inferred, not measured.** Measure before
+  touching `alignWindow`.
+
+**Next:** fix the `FILLED_ZERO` DAU corruption (it silently poisons the alerting
+baseline), and encode both F16 tests — then re-check step 5 and the six defects.
+
 ## 2026-08-19 — A second grab path that needs no browser, and alerting that fires on the weekday baseline
 
 **State:** branch `grabber-correctness` · 56 ahead of main · pushed · dirty:
@@ -547,3 +602,32 @@ dropped rule, and "no live metrics in the dashboard" → **CLAUDE.md**.
 
 **Next:** confirm one scheduled grab lands (`data/raw/` + ingest in the log). If
 the orphan fix holds, wire `anomaly.ts` to the Discord webhook.
+
+## 2026-08-24 — four-game LiveOps diagnosis; two of my own calls corrected; data/exports/ rescued from .gitignore
+
+**State:** branch `grabber-correctness` · 66 ahead of `main` · unpushed · dirty (CLAUDE.md, HANDOFF.md, COVERAGE.md, SKILL.md, 4 grab-reports, new `data/exports/` + `tools/`)
+**Gates:** verify 23 pass / 2 fail / 8 skip (**exit 1**, both fails documented + held) · audit-plan 140 templates, 0 failures (exit 0) · test 44/44 — measured today, not copied
+**Landed:** all four games re-grabbed and diagnosed; full life pulled for 10030829154 (40→118d) and 10399712766 (30→53d); 40 dashboard downloads filed into `data/exports/<id>-<slug>/`; 5 artifacts published (URLs in the `liveops-reports-2026-08-24` memory, generators in `tools/reports/`)
+
+**Learned → routed:**
+- Never benchmark a level against the window **minimum**; print 4 baselines + the day's rank → `SKILL.md` §0b
+- Reach cannot exonerate a deploy — wrong metric (downstream, lagged) and check magnitude (−4.7%/wk vs −53%/wk) → `SKILL.md` §0b
+- Onboarding flat + progression falling = **core-loop** break, rules out traffic quality alone → `SKILL.md` §0b
+- Test a publish against the **distribution of publishes**, not one control day → `SKILL.md` §0b
+- `data/exports/` was untracked; error text is not API-retrievable (MessageHash lookup 500s on all 4) → **F17** in `COVERAGE.md` + `.gitignore` + `CLAUDE.md`
+- Waterslide's 8 defects (v1709, read-only) and Brainrot v600 clearance → `HANDOFF.md`
+
+**Disproved (mine, same day):**
+- "Waterslide is fine, above its 22-day low" — the low was one day (2,675); the mean was 5,453 and last week 7,476. Day was −45% on typical.
+- "Brainrot recovering, +21–54% WoW" — measured against 10–16 Aug, the **lowest week in the series**. Matched Sundays: −23%.
+- "30 Jul deploy = partial cause, impressions were already falling" — impressions were *rising* on a 7-day mean the 4 days before it (+1.5/+1.6/+8.2/+2.8%). Verdict now **primary**: D1 16.8%→9.7% in 4 days, Rebirth1 −9.6pp at identical mix, 25/25 matched pairs negative, onboarding flat at 99.3%. Matches `v546-cause-known`, which I had on file and contradicted.
+- "v600 slide is steeper than normal" — from 2 hand-picked controls. Against all 9 non-publish days: −29.3% vs −29.2% mean, z = −0.01.
+
+**Open:**
+- **12 Aug payer collapse on 9610561918 AND 10399712766**, no publish either day; denominator/platform/product/composition/Roblox-wide all ruled out → needs the 10399712766 error export (none has ever existed) and a read of the purchase path as at 11–12 Aug
+- Knife Farm Gamebeast billing 403 (692,260 events since 15 Aug 19:46Z) → someone must open the Gamebeast dashboard; postdates the 12 Aug step so it is not that cause
+- Knife Farm sell path reported broken since v3831 by a paying player → newest export is v3829, pull one at v3832
+- 381-row Waterslide all-time export landed after the defect report was written → dedicated pass
+- All four games −43% to −58% vs their own 22-day mean on 24 Aug; shape identical, spread 4× → needs one game outside the portfolio to settle seasonal vs not
+
+**Next:** commit this branch (66 commits unpushed, and `data/exports/` is newly tracked — 2.4 MB of otherwise-unrecoverable error text), then the 12 Aug payer question on 10399712766 once an error export exists.

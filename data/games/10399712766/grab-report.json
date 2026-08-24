@@ -1,11 +1,14 @@
 {
   "universeId": "10399712766",
-  "startTime": "2026-07-24T00:00:00Z",
-  "endTime": "2026-08-21T00:00:00Z",
+  "startTime": "2026-06-26T00:00:00Z",
+  "endTime": "2026-08-25T00:00:00Z",
   "planSource": "seed · opencloud",
   "discovered": {
     "__places": [
       "83256791430098"
+    ],
+    "FunnelName": [
+      "FUNNEL_TYPE_ONBOARDING"
     ],
     "PlaceVersion": [
       "1218",
@@ -13,7 +16,9 @@
       "1223",
       "1226",
       "1227",
-      "1228"
+      "1228",
+      "1240",
+      "1241"
     ],
     "Place": [
       "83256791430098"
@@ -23,17 +28,19 @@
       "1228",
       "1207",
       "178",
-      "1161",
       "1223",
+      "1161",
       "672",
       "1218",
+      "1215",
       "794",
       "1214",
-      "1215",
       "938",
       "1217",
       "1216",
       "1192",
+      "1240",
+      "1241",
       "1158",
       "786"
     ],
@@ -43,7 +50,7 @@
       "3"
     ]
   },
-  "requested": 129,
+  "requested": 222,
   "attempts": [
     {
       "metric": "UniqueUsersWithImpressions",
@@ -53,9 +60,9 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -68,7 +75,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 175,
+      "points": 284,
       "error": null
     },
     {
@@ -79,9 +86,9 @@
       "filter": "AcquisitionSource=HomeRecommendation/Friends/Others/Search/Charts",
       "optional": true,
       "provenance": "inferred",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 28,
+      "points": 50,
       "error": null
     },
     {
@@ -94,7 +101,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 37,
       "error": null
     },
     {
@@ -107,7 +114,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 37,
       "error": null
     },
     {
@@ -120,7 +127,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 26,
+      "points": 51,
       "error": null
     },
     {
@@ -133,7 +140,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 21,
+      "points": 48,
       "error": null
     },
     {
@@ -146,7 +153,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 21,
+      "points": 48,
       "error": null
     },
     {
@@ -159,7 +166,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 21,
+      "points": 48,
       "error": null
     },
     {
@@ -172,7 +179,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 0,
+      "points": 29,
       "error": null
     },
     {
@@ -185,7 +192,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 27,
+      "points": 54,
       "error": null
     },
     {
@@ -196,9 +203,9 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 165,
+      "points": 255,
       "error": null
     },
     {
@@ -209,9 +216,9 @@
       "filter": "AcquisitionSource=HomeRecommendation/Friends/Others/Search/Charts",
       "optional": true,
       "provenance": "inferred",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 132,
+      "points": 201,
       "error": null
     },
     {
@@ -237,7 +244,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 21,
+      "points": 50,
       "error": null
     },
     {
@@ -250,7 +257,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 129,
+      "points": 248,
       "error": null
     },
     {
@@ -261,10 +268,10 @@
       "filter": "",
       "optional": true,
       "provenance": "inferred",
-      "status": 429,
-      "ok": false,
-      "points": 0,
-      "error": "rate limited after 4 retries"
+      "status": 200,
+      "ok": true,
+      "points": 28,
+      "error": null
     },
     {
       "metric": "DauMauStickiness",
@@ -276,7 +283,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -287,9 +294,9 @@
       "filter": "",
       "optional": true,
       "provenance": "inferred",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 45,
+      "points": 28,
       "error": null
     },
     {
@@ -315,7 +322,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 27,
+      "points": 55,
       "error": null
     },
     {
@@ -328,7 +335,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 132,
+      "points": 204,
       "error": null
     },
     {
@@ -341,7 +348,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -352,9 +359,9 @@
       "filter": "IsNewUser=New",
       "optional": false,
       "provenance": "proven",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 28,
+      "points": 46,
       "error": null
     },
     {
@@ -367,7 +374,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 52,
       "error": null
     },
     {
@@ -380,7 +387,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 136,
+      "points": 199,
       "error": null
     },
     {
@@ -393,7 +400,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 170,
+      "points": 248,
       "error": null
     },
     {
@@ -419,7 +426,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -432,7 +439,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -445,7 +452,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 170,
+      "points": 248,
       "error": null
     },
     {
@@ -458,7 +465,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -469,10 +476,10 @@
       "filter": "IsNewUser=New",
       "optional": false,
       "provenance": "proven",
-      "status": 429,
-      "ok": false,
-      "points": 0,
-      "error": "rate limited after 4 retries"
+      "status": 200,
+      "ok": true,
+      "points": 46,
+      "error": null
     },
     {
       "metric": "AverageSessionLengthMinutes",
@@ -484,7 +491,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 52,
       "error": null
     },
     {
@@ -497,7 +504,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 170,
+      "points": 248,
       "error": null
     },
     {
@@ -523,7 +530,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -536,7 +543,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 55,
       "error": null
     },
     {
@@ -547,9 +554,9 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 28,
+      "points": 55,
       "error": null
     },
     {
@@ -562,7 +569,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -575,7 +582,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -588,7 +595,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 46,
       "error": null
     },
     {
@@ -601,7 +608,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 170,
+      "points": 257,
       "error": null
     },
     {
@@ -627,7 +634,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -638,9 +645,9 @@
       "filter": "",
       "optional": true,
       "provenance": "inferred",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 172,
+      "points": 250,
       "error": null
     },
     {
@@ -651,9 +658,9 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 28,
+      "points": 44,
       "error": null
     },
     {
@@ -666,7 +673,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -679,7 +686,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -692,7 +699,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -705,7 +712,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 121,
+      "points": 178,
       "error": null
     },
     {
@@ -718,7 +725,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 56,
+      "points": 97,
       "error": null
     },
     {
@@ -744,7 +751,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 55,
       "error": null
     },
     {
@@ -757,7 +764,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 840,
+      "points": 929,
       "error": null
     },
     {
@@ -768,9 +775,9 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 212,
+      "points": 241,
       "error": null
     },
     {
@@ -796,7 +803,46 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
+      "points": 24,
+      "error": null
+    },
+    {
+      "metric": "ErrorCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
       "points": 28,
+      "error": null
+    },
+    {
+      "metric": "ErrorCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 2,
+      "error": null
+    },
+    {
+      "metric": "ErrorCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "LogSource",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 48,
       "error": null
     },
     {
@@ -813,6 +859,19 @@
       "error": null
     },
     {
+      "metric": "ErrorCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "LogSource",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 4,
+      "error": null
+    },
+    {
       "metric": "EventAvgDailyActiveUsers",
       "kind": "metric",
       "granularity": "OneDay",
@@ -822,7 +881,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -835,7 +894,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -848,7 +907,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -861,7 +920,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -874,7 +933,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -885,10 +944,10 @@
       "filter": "",
       "optional": true,
       "provenance": "inferred",
-      "status": 429,
-      "ok": false,
-      "points": 0,
-      "error": "rate limited after 4 retries"
+      "status": 200,
+      "ok": true,
+      "points": 21,
+      "error": null
     },
     {
       "metric": "PlayerFeedbackVotesCount",
@@ -900,7 +959,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 42,
       "error": null
     },
     {
@@ -913,7 +972,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 37,
       "error": null
     },
     {
@@ -926,7 +985,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 53,
       "error": null
     },
     {
@@ -939,8 +998,60 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 20,
+      "points": 48,
       "error": null
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ClientCrashRate15m. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 429,
+      "ok": false,
+      "points": 0,
+      "error": "rate limited after 4 retries"
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-12) exceeds the data retention period of 28 days for metric ClientCrashRate15m. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-20) exceeds the data retention period of 28 days for metric ClientCrashRate15m. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "ClientCrashRate15m",
@@ -1002,6 +1113,58 @@
       "filter": "Place=83256791430098",
       "optional": false,
       "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ClientCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-04) exceeds the data retention period of 28 days for metric ClientCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-12) exceeds the data retention period of 28 days for metric ClientCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-20) exceeds the data retention period of 28 days for metric ClientCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
       "status": 200,
       "ok": true,
       "points": 7,
@@ -1054,6 +1217,58 @@
       "filter": "Place=83256791430098",
       "optional": false,
       "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric OomUnexpectedExits. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-04) exceeds the data retention period of 28 days for metric OomUnexpectedExits. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-12) exceeds the data retention period of 28 days for metric OomUnexpectedExits. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-20) exceeds the data retention period of 28 days for metric OomUnexpectedExits. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
       "status": 200,
       "ok": true,
       "points": 7,
@@ -1106,10 +1321,49 @@
       "filter": "Place=83256791430098",
       "optional": false,
       "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 3,
-      "error": null
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ServerCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ServerCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-04) exceeds the data retention period of 28 days for metric ServerCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ServerCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-12) exceeds the data retention period of 28 days for metric ServerCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ServerCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-20) exceeds the data retention period of 28 days for metric ServerCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "ServerCrashCount",
@@ -1134,7 +1388,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 3,
+      "points": 6,
       "error": null
     },
     {
@@ -1149,6 +1403,71 @@
       "ok": true,
       "points": 2,
       "error": null
+    },
+    {
+      "metric": "ServerCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 3,
+      "error": null
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ClientCrashRate15m. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-04) exceeds the data retention period of 28 days for metric ClientCrashRate15m. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-12) exceeds the data retention period of 28 days for metric ClientCrashRate15m. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-20) exceeds the data retention period of 28 days for metric ClientCrashRate15m. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "ClientCrashRate15m",
@@ -1210,9 +1529,61 @@
       "filter": "Place=83256791430098",
       "optional": true,
       "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ClientCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-04) exceeds the data retention period of 28 days for metric ClientCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-12) exceeds the data retention period of 28 days for metric ClientCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-20) exceeds the data retention period of 28 days for metric ClientCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 30,
+      "points": 34,
       "error": null
     },
     {
@@ -1251,7 +1622,72 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 20,
+      "points": 19,
+      "error": null
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric OomUnexpectedExits. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-04) exceeds the data retention period of 28 days for metric OomUnexpectedExits. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-12) exceeds the data retention period of 28 days for metric OomUnexpectedExits. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-20) exceeds the data retention period of 28 days for metric OomUnexpectedExits. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 23,
       "error": null
     },
     {
@@ -1264,20 +1700,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 20,
-      "error": null
-    },
-    {
-      "metric": "OomUnexpectedExits",
-      "kind": "metric",
-      "granularity": "OneDay",
-      "breakdown": "Platform",
-      "filter": "Place=83256791430098",
-      "optional": true,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 25,
+      "points": 28,
       "error": null
     },
     {
@@ -1303,7 +1726,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 15,
       "error": null
     },
     {
@@ -1314,10 +1737,49 @@
       "filter": "Place=83256791430098",
       "optional": true,
       "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 3,
-      "error": null
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ServerCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ServerCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "CrashType",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-04) exceeds the data retention period of 28 days for metric ServerCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ServerCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "CrashType",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-12) exceeds the data retention period of 28 days for metric ServerCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ServerCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "CrashType",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-20) exceeds the data retention period of 28 days for metric ServerCrashCount. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "ServerCrashCount",
@@ -1342,7 +1804,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 4,
+      "points": 6,
       "error": null
     },
     {
@@ -1359,6 +1821,45 @@
       "error": null
     },
     {
+      "metric": "ServerCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "CrashType",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 3,
+      "error": null
+    },
+    {
+      "metric": "ClientFpsP10",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ClientFpsP10. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientFpsP10",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric ClientFpsP10. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
       "metric": "ClientFpsP10",
       "kind": "metric",
       "granularity": "OneDay",
@@ -1368,8 +1869,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 2,
       "error": null
+    },
+    {
+      "metric": "ClientMemoryUsageAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ClientMemoryUsageAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientMemoryUsageAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric ClientMemoryUsageAvg. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "ClientMemoryUsageAvg",
@@ -1381,8 +1908,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 2,
       "error": null
+    },
+    {
+      "metric": "ClientMemoryUsagePercentageAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ClientMemoryUsagePercentageAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientMemoryUsagePercentageAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric ClientMemoryUsagePercentageAvg. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "ClientMemoryUsagePercentageAvg",
@@ -1394,7 +1947,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 2,
       "error": null
     },
     {
@@ -1405,10 +1958,62 @@
       "filter": "Place=83256791430098",
       "optional": false,
       "provenance": "observed",
-      "status": 200,
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ClientCpuTimeAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCpuTimeAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric ClientCpuTimeAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCpuTimeAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 202,
       "ok": true,
-      "points": 28,
+      "points": 2,
       "error": null
+    },
+    {
+      "metric": "MemoryUsageAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric MemoryUsageAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "MemoryUsageAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric MemoryUsageAvg. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "MemoryUsageAvg",
@@ -1420,8 +2025,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 2,
       "error": null
+    },
+    {
+      "metric": "CpuTimeAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric CpuTimeAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "CpuTimeAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric CpuTimeAvg. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "CpuTimeAvg",
@@ -1433,8 +2064,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 1,
       "error": null
+    },
+    {
+      "metric": "CpuCoreUtilization",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric CpuCoreUtilization. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "CpuCoreUtilization",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric CpuCoreUtilization. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "CpuCoreUtilization",
@@ -1446,8 +2103,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 1,
       "error": null
+    },
+    {
+      "metric": "ClientFpsP10",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ClientFpsP10. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientFpsP10",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric ClientFpsP10. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "ClientFpsP10",
@@ -1459,8 +2142,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 168,
+      "points": 12,
       "error": null
+    },
+    {
+      "metric": "ClientMemoryUsageAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ClientMemoryUsageAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientMemoryUsageAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric ClientMemoryUsageAvg. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "ClientMemoryUsageAvg",
@@ -1472,8 +2181,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 168,
+      "points": 12,
       "error": null
+    },
+    {
+      "metric": "ClientMemoryUsagePercentageAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ClientMemoryUsagePercentageAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientMemoryUsagePercentageAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric ClientMemoryUsagePercentageAvg. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "ClientMemoryUsagePercentageAvg",
@@ -1485,8 +2220,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 168,
+      "points": 12,
       "error": null
+    },
+    {
+      "metric": "PeakConcurrentPlayers",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric PeakConcurrentPlayers. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "PeakConcurrentPlayers",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric PeakConcurrentPlayers. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "PeakConcurrentPlayers",
@@ -1498,8 +2259,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 168,
+      "points": 12,
       "error": null
+    },
+    {
+      "metric": "ClientCpuTimeAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "ClientCpuTimeCategory",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ClientCpuTimeAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientCpuTimeAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "ClientCpuTimeCategory",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric ClientCpuTimeAvg. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "ClientCpuTimeAvg",
@@ -1511,8 +2298,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 140,
+      "points": 10,
       "error": null
+    },
+    {
+      "metric": "CpuTimeAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "CpuTimeCategory",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric CpuTimeAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "CpuTimeAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "CpuTimeCategory",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric CpuTimeAvg. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "CpuTimeAvg",
@@ -1524,8 +2337,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 140,
+      "points": 5,
       "error": null
+    },
+    {
+      "metric": "MemoryUsageAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "MemoryUsageCategory",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric MemoryUsageAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "MemoryUsageAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "MemoryUsageCategory",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric MemoryUsageAvg. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "MemoryUsageAvg",
@@ -1537,8 +2376,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 140,
+      "points": 10,
       "error": null
+    },
+    {
+      "metric": "PeakConcurrentPlayers",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric PeakConcurrentPlayers. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "PeakConcurrentPlayers",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric PeakConcurrentPlayers. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "PeakConcurrentPlayers",
@@ -1550,8 +2415,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 2,
       "error": null
+    },
+    {
+      "metric": "ServerFrameRateP10",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ServerFrameRateP10. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ServerFrameRateP10",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric ServerFrameRateP10. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "ServerFrameRateP10",
@@ -1563,8 +2454,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 2,
       "error": null
+    },
+    {
+      "metric": "SessionDurationSecondsAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric SessionDurationSecondsAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "SessionDurationSecondsAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric SessionDurationSecondsAvg. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "SessionDurationSecondsAvg",
@@ -1576,8 +2493,34 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 2,
       "error": null
+    },
+    {
+      "metric": "SessionDurationSecondsAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric SessionDurationSecondsAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "SessionDurationSecondsAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "observed",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric SessionDurationSecondsAvg. Data is only available from 2026-07-27 onwards.\"}}"
     },
     {
       "metric": "SessionDurationSecondsAvg",
@@ -1589,7 +2532,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 168,
+      "points": 12,
       "error": null
     },
     {
@@ -1600,7 +2543,7 @@
       "filter": "Place=83256791430098",
       "optional": true,
       "provenance": "observed",
-      "status": 200,
+      "status": 202,
       "ok": true,
       "points": 9,
       "error": null
@@ -1613,6 +2556,58 @@
       "filter": "Place=83256791430098",
       "optional": true,
       "provenance": "inferred",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-06-26) exceeds the data retention period of 28 days for metric ClientFpsAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientFpsAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": "{\"done\":true,\"error\":{\"code\":2001,\"message\":\"Query Validation Errors: Query Error: The requested start time (2026-07-25) exceeds the data retention period of 28 days for metric ClientFpsAvg. Data is only available from 2026-07-27 onwards.\"}}"
+    },
+    {
+      "metric": "ClientFpsAvg",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 2,
+      "error": null
+    },
+    {
+      "metric": "ErrorCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 24,
+      "error": null
+    },
+    {
+      "metric": "ErrorCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
       "status": 200,
       "ok": true,
       "points": 28,
@@ -1628,7 +2623,20 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 28,
+      "points": 2,
+      "error": null
+    },
+    {
+      "metric": "ErrorCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "LogSource",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 48,
       "error": null
     },
     {
@@ -1647,9 +2655,22 @@
     {
       "metric": "ErrorCount",
       "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "LogSource",
+      "filter": "Place=83256791430098",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 4,
+      "error": null
+    },
+    {
+      "metric": "ErrorCount",
+      "kind": "metric",
       "granularity": "None",
       "breakdown": "",
-      "filter": "Place=83256791430098,FirstSeenPlaceVersion=1228",
+      "filter": "Place=83256791430098,FirstSeenPlaceVersion=1241",
       "optional": false,
       "provenance": "observed",
       "status": 200,
@@ -1667,7 +2688,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 48,
+      "points": 23,
       "error": null
     },
     {
@@ -1680,7 +2701,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 96,
+      "points": 46,
       "error": null
     },
     {
@@ -1693,7 +2714,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 0,
+      "points": 1,
       "error": null
     },
     {
@@ -1706,7 +2727,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 0,
+      "points": 1,
       "error": null
     },
     {
@@ -1719,7 +2740,202 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 48,
+      "points": 24,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserStepCompletionRate",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING,FunnelStep=1/2/3",
+      "optional": false,
+      "provenance": "observed",
+      "status": 202,
+      "ok": true,
+      "points": 3,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserChurnRate",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": false,
+      "provenance": "observed",
+      "status": 202,
+      "ok": true,
+      "points": 7,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserTotalCount",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 7,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserTotalCount",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 1,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserOverallCompletionRate",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 1,
+      "error": null
+    },
+    {
+      "metric": "FunnelStepTotalCount",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": false,
+      "provenance": "observed",
+      "status": 202,
+      "ok": true,
+      "points": 7,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserChurnRate",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 7,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserStepCompletionRate",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 202,
+      "ok": true,
+      "points": 7,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserOverallCompletionRate",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 1,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserTotalCount",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 7,
+      "error": null
+    },
+    {
+      "metric": "FunnelCohortCompletionRate",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 202,
+      "ok": true,
+      "points": 7,
+      "error": null
+    },
+    {
+      "metric": "FunnelCohortSessionCompletionRate",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 202,
+      "ok": true,
+      "points": 7,
+      "error": null
+    },
+    {
+      "metric": "FunnelStepCompletionRate",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 202,
+      "ok": true,
+      "points": 7,
+      "error": null
+    },
+    {
+      "metric": "FunnelStepChurnRate",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 7,
+      "error": null
+    },
+    {
+      "metric": "FunnelStepOverallCompletionRate",
+      "kind": "metric",
+      "granularity": "None",
+      "breakdown": "",
+      "filter": "FunnelName=FUNNEL_TYPE_ONBOARDING",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 1,
       "error": null
     }
   ]

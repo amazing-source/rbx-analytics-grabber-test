@@ -1,0 +1,123 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+136359,Warning,Client,,V348,Infinite yield possible on WaitForChild,ReplicatedStorage:WaitForChild("ToolScripts")
+Workspace.<Player>:WaitForChild("HumanoidRootPart")
+Workspace.WorldModel.Limited Summer Egg:WaitForChild("Trigger")
+Workspace.WorldModel.LimitedPet2:WaitForChild("Trigger"),
+46505,Error,Client,,V348,Failed to load object. PBR textures may not be visible in game.,Handle.SurfaceAppearance
+Workspace.<Player>.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.2014gurfateh.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.akito8104.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.ArielFort3670.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.aulia_a072.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.CherryHappy_21615.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.hdjtsfj9.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.hndtihhfguuojt30.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Hypercharge119.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.LANIISJUSTTHTGURL.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Lollollol066.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Magoldddd.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.marioPlayer973.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.queen_207091.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.<PlayerId>.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.10654756499.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.11302352360.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.7588469665.BearRigs.BearRig_3.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.8109391042.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.8120470958.BearRigs.BearRig_2.Accessory.Handle.SurfaceAppearance
+Workspace.Rafts.8339574720.BearRigs.BearRig_3.RIA_TShirt_LC.Handle.SurfaceAppearance
+Workspace.Rafts.8569136541.BearRigs.BearRig_4.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.sassy_iya.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Uzmkborutoteam19.Accessory (dark_fae).Handle.SurfaceAppearance,
+43270,Error,Client,,V348,MeshContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=106103053785256
+https://assetdelivery.roblox.com/v1/asset?id=109233350793561
+https://assetdelivery.roblox.com/v1/asset?id=11048702890
+https://assetdelivery.roblox.com/v1/asset?id=116277377511540
+https://assetdelivery.roblox.com/v1/asset?id=119109590271068
+https://assetdelivery.roblox.com/v1/asset?id=12172640520
+https://assetdelivery.roblox.com/v1/asset?id=123911257408666
+https://assetdelivery.roblox.com/v1/asset?id=12397206830
+https://assetdelivery.roblox.com/v1/asset?id=126040579128689
+https://assetdelivery.roblox.com/v1/asset?id=126623125373153
+https://assetdelivery.roblox.com/v1/asset?id=127017225615820
+https://assetdelivery.roblox.com/v1/asset?id=128923104033323
+https://assetdelivery.roblox.com/v1/asset?id=132730069574926
+https://assetdelivery.roblox.com/v1/asset?id=137977404296152
+https://assetdelivery.roblox.com/v1/asset?id=13999280243
+https://assetdelivery.roblox.com/v1/asset?id=140225818505655
+https://assetdelivery.roblox.com/v1/asset?id=304134395
+https://assetdelivery.roblox.com/v1/asset?id=92178260390733
+https://assetdelivery.roblox.com/v1/asset?id=94940576475676
+https://assetdelivery.roblox.com/v1/asset/?id=111103978046627
+https://assetdelivery.roblox.com/v1/asset/?id=13327758216
+https://assetdelivery.roblox.com/v1/asset/?id=13396860854
+https://assetdelivery.roblox.com/v1/asset/?id=139361528957840
+https://assetdelivery.roblox.com/v1/asset/?id=14088686296
+https://assetdelivery.roblox.com/v1/asset/?id=14478743918
+https://assetdelivery.roblox.com/v1/asset/?id=18881968509
+https://assetdelivery.roblox.com/v1/asset/?id=18935557512
+https://assetdelivery.roblox.com/v1/asset/?id=6568378035
+https://assetdelivery.roblox.com/v1/asset/?id=6937034645
+https://assetdelivery.robloxapp.vnggames.com/v1/asset?id=101090158,
+27738,Error,Server,,V339,TeleportService:All players in teleport request are already in progress or throttled.,,
+7650,Error,Client,,V348,Failed to load animation with sanitized ID. Animation failed to load,rbxassetid://101413634678522
+rbxassetid://102386634850622
+rbxassetid://102439035841579
+rbxassetid://104325245285198
+rbxassetid://106477209076115
+rbxassetid://10921155867
+rbxassetid://10921250460
+rbxassetid://10921273958
+rbxassetid://10921279832
+rbxassetid://10921283326
+rbxassetid://10921302207
+rbxassetid://98600215928904
+rbxassetid://98996224418238,
+6882,Error,Client,,V339,HSRDataContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=100175707226055
+https://assetdelivery.roblox.com/v1/asset?id=103436498803855
+https://assetdelivery.roblox.com/v1/asset?id=107982262822019
+https://assetdelivery.roblox.com/v1/asset?id=109856991295816
+https://assetdelivery.roblox.com/v1/asset?id=110944204503586
+https://assetdelivery.roblox.com/v1/asset?id=122388709569052
+https://assetdelivery.roblox.com/v1/asset?id=126554977419896
+https://assetdelivery.roblox.com/v1/asset?id=12673371730
+https://assetdelivery.roblox.com/v1/asset?id=17068384116
+https://assetdelivery.roblox.com/v1/asset?id=8918108910
+https://assetdelivery.roblox.com/v1/asset?id=9062837846
+https://assetdelivery.robloxapp.vnggames.com/v1/asset?id=119363636626661,
+5734,Warning,Client,,V348,"Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will not be played.","http://www.roblox.com/asset/?id=10921054344,<Player>
+http://www.roblox.com/asset/?id=10921258489,<Player>
+http://www.roblox.com/asset/?id=507765000,<Player>
+http://www.roblox.com/asset/?id=507766388,<Player>",
+4192,Error,Client,Sun May 24 2026 14:14:50 GMT+0200 (heure d’été d’Europe centrale),V382,Failed to load sound: unsupported file format,rbxasset://sounds/action_falling.mp3
+rbxasset://sounds/action_falling.ogg
+rbxassetid://135428907715078,
+3192,Error,Client,,V339,Players.<Player>.PlayerScripts.UI.Trade:305: attempt to index nil with 'Name',"Script 'Players.<Player>.PlayerScripts.UI.Trade', Line 305 - function OnCloseTradeBtn",
+1825,Error,Server,,V348,DataStoreService: KeyThrottled: The request rate exceeds the allowed maximum for the key. API: UpdateAsync,GlobalDataStore,
+887,Error,Client,,V339,raiseTeleportInitFailedEvent: Teleport failed because A Http error has occurred. Please close the client and try again. (Failure),,
+623,Error,Client,Tue Jun 09 2026 07:31:05 GMT+0200 (heure d’été d’Europe centrale),V428,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: DnsResolve,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+393,Error,Client,Tue Jun 09 2026 05:53:45 GMT+0200 (heure d’été d’Europe centrale),V428,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: Timedout,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+383,Error,Client,Fri Aug 14 2026 19:57:30 GMT+0200 (heure d’été d’Europe centrale),V439,Pet is not a valid member of Frame "PetInfo","Script 'Players.<Player>.PlayerScripts.UI.PetBag', Line 150 - function RefreshPetInfo
+    Script 'Players.<Player>.PlayerScripts.UI.PetBag', Line 491 - function UpdateView",
+342,Error,Client,Tue Jun 09 2026 04:41:00 GMT+0200 (heure d’été d’Europe centrale),V428,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: ConnectFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+275,Warning,Client,,V339,GetServerChannelRemote not available,,
+221,Error,Client,,V339,Failed to load sound: Timedout,rbxassetid://104164882152349: HttpError
+rbxassetid://105393302099968: HttpError
+rbxassetid://120063078979133: HttpError
+rbxassetid://124271857226514: HttpError,
+183,Error,Client,Sat May 23 2026 03:35:05 GMT+0200 (heure d’été d’Europe centrale),V372,Error in loading DateTimeLocaleConfig file of id-id (Unable to load rbxasset://configs/DateTimeLocaleConfigs/id-id.json),,
+173,Error,Client,Tue Jun 09 2026 06:55:50 GMT+0200 (heure d’été d’Europe centrale),V428,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: Timedout,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 152 - function setSpeedDisplay
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 317",
+170,Error,Client,,V348,raiseTeleportInitFailedEvent: Teleport failed because The previous teleport is in processing (IsTeleporting),,
+156,Error,Client,,V348,Error in loading DateTimeLocaleConfig file of vi-vn (Unable to load rbxasset://configs/DateTimeLocaleConfigs/vi-vn.json),,
+154,Error,Server,Tue Jul 21 2026 23:46:35 GMT+0200 (heure d’été d’Europe centrale),V433,No cage data exists for 372da3e80413a782f1e3326fc6bfeec0. TemporaryReferenceId was not set.,,
+129,Error,Client,Tue Jun 09 2026 21:16:55 GMT+0200 (heure d’été d’Europe centrale),V428,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: NetFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+91,Error,Client,Fri Jul 24 2026 22:42:05 GMT+0200 (heure d’été d’Europe centrale),V434,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: DnsResolve,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.WorldPriceMgr', Line 23 - function onPriceLabelAdded",
+88,Error,Client,Wed Jun 10 2026 13:56:30 GMT+0200 (heure d’été d’Europe centrale),V428,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: DnsResolve,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 152 - function setSpeedDisplay
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 317",

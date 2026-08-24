@@ -22,7 +22,8 @@ the full spec; this file is the day-to-day reference.
 >   2026-08-08T00:00, and (2) `ErrorCount` half-hour, where 144 of 147 cells
 >   match and the 3 that don't are all the 08:00 bucket at the export window's
 >   own edge — the CSV holds a partial bucket, our later read holds the settled
->   one. `npm run audit-plan` → 140 templates, 0 failures. `npm test` → 41 pass.
+>   one. `npm run audit-plan` → 140 templates, 0 failures. `npm test` → 44 pass
+>   (re-measured 2026-08-23; was 41).
 >   A change that moves a number without moving these is unproven.
 > - **Both universes were re-grabbed post-fix on 2026-08-08** — that closed the
 >   last verification item. 9963622286's crash history is now present
@@ -223,6 +224,30 @@ before". Widen the window before quoting a ship date.
 
 `breakdown` works and returns `displayValue`.
 
+**`endTime` is EXCLUSIVE at the day boundary, and asking past today FABRICATES a
+row.** Measured 2026-08-23 on 10030829154, start fixed at 08-20, only `endTime`
+varied:
+
+| `endTime` sent | Days returned |
+|---|---|
+| `2026-08-23T00:00:00Z` | 08-20, 21, 22 — **today is excluded** |
+| `2026-08-23T23:59:59Z` | 08-20, 21, 22, 23 |
+| `2026-08-24T00:00:00Z` | 08-20, 21, 22, 23 — **the correct ask** |
+| `2026-08-25T00:00:00Z` | 08-20, 21, 22, 23, **24** — phantom |
+
+So **to include today, send tomorrow 00:00 UTC**. Send anything later and
+`PeakConcurrentPlayers` **carries its last value forward into a day that has not
+happened** — 08-24 came back byte-identical to 08-23. `ErrorCount`,
+`DailyRevenue` and `AverageSessionLengthMinutes` do NOT do this; they stop at
+the last real day. The phantom is PCU-specific, and it is the origin of the
+duplicate future rows in `PeakConcurrentPlayers.csv` (F16 in
+`data/verify/COVERAGE.md`).
+
+Two related traps: `alignWindow` in `store.ts` snaps `endTime` **down** with
+`setUTCHours(0,0,0,0)`, so passing "now" as the end silently drops the current
+day on the Open Cloud path. And `DailyRevenue` / `AverageSessionLengthMinutes`
+**lag a full day** — their absence for today is normal, never a decline.
+
 **Switching sources switches READ POLICY.** The corpus keeps the *first*
 settled read; Open Cloud serves the *current* one. Adopting it silently changes
 published crash numbers. That is a decision to make, not to inherit.
@@ -362,6 +387,33 @@ Related: `render()` in collector.js is coalesced to one animation frame — it u
 to run once per captured response, so a 400-request grab did 400 innerHTML
 rebuilds.
 
+## Dashboard downloads are FILED, never left in Downloads (2026-08-24)
+
+Everything the user exports from the Creator Dashboard lands in
+`data/exports/<universeId>-<slug>/{errors,feedback,metrics,reports}/`.
+`data/exports/INDEX.md` carries the layout, the naming rule and the
+attribution method. **Standing rule: when the user says "read this error
+report" (or any dashboard CSV), file it there in the same turn** — renamed to
+`<kind>_<downloadDate>_<HHMM>_<detail>.csv`. A file called
+`Errors and warnings by count (17).csv` is unattributable a week later.
+
+**These are committed** — via an explicit `!/data/exports/` negation in
+`.gitignore`, placed directly after `!/data/raw/`. It matched the broad
+`/data/*` ignore until 2026-08-24 and travelled nowhere; ordering matters, a
+negation after the `/data/games/*/*` block does not re-include it. They must
+stay committed because the API serves **neither** error text nor comment text:
+the async `MessageHash` lookup answers HTTP 500 on all four universes, so a
+dashboard export is the only route to a message body. F17 in
+`data/verify/COVERAGE.md`.
+
+Roblox puts no universe id in these filenames. Attribute by evidence:
+**version band** (`First seen version` vs `place-versions.csv` — the four
+games are disjoint: Brainrot ~v400-599, Banana Monkey ~v1143-1242, Knife Farm
+~v3733-3832, Waterslide root ~v1610-1709 plus five sub-place bands), **script
+paths** in the message, or for feedback exports — which carry no version at
+all — **match the comment text against `data/games/<id>/feedback.csv`**,
+which is exact.
+
 ## The grab plan is seeded, not discovered
 `web/src/lib/default-plan.ts` holds all 49 metrics Roblox serves, as query
 shapes (metric name + granularity + breakdown + filter). The metric list was
@@ -448,6 +500,10 @@ are what the dashboard itself puts in the request body. Hashes are what rot.)
   3,139.57 and 11.2M client errors. Same roll-up invents a 2026-08-16 row on a
   day that has not happened. Measured 2026-08-15, F13 in
   `data/verify/COVERAGE.md`, **not yet fixed and not yet encoded as a test**.
+  **A future-dated row has a second, unrelated source** — the API itself, when
+  the end window reaches past today (F16 below and in `COVERAGE.md`). Check
+  which one you are looking at: a roll-up phantom appears only in `*.daily.csv`,
+  an API phantom appears in the `ONE_DAY` rows of the main CSV.
 - **A point whose interval had not elapsed when we captured it is `partial`**
   and is excluded from every headline, Δ and incident. This is what stopped
   `ClientCrashCount` printing "▼85.6%" off a 7-hour day.

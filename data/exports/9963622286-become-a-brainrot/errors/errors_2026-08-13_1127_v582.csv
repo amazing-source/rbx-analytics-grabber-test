@@ -1,0 +1,33 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+606,Error,Server,Wed Aug 12 2026 20:08:00 GMT+0200 (heure d’été d’Europe centrale),V582,ServerScriptService.OnPlayerAdded:1390: attempt to index nil with 'IsA',"Script 'ServerScriptService.OnPlayerAdded', Line 1390 - function sellTool
+    Script 'ServerScriptService.OnPlayerAdded', Line 1416",
+191,Warning,Server,Thu Aug 13 2026 02:01:35 GMT+0200 (heure d’été d’Europe centrale),V582,[PlayerData] BLOCKED SAVE because this session did not load safely: <Player>,,
+84,Warning,Server,Thu Aug 13 2026 02:01:35 GMT+0200 (heure d’été d’Europe centrale),V582,[PlayerData] Session initialization failed; no data will be saved: <Player> nil,,
+56,Warning,Server,Thu Aug 13 2026 02:01:35 GMT+0200 (heure d’été d’Europe centrale),V582,[PlayerData] Character was not ready for inventory hydration: <Player>,,
+48,Error,Server,Wed Aug 12 2026 19:17:35 GMT+0200 (heure d’été d’Europe centrale),V582,41 is not a valid member of Folder "Workspace.Plots.<Player>.AnimalStands","Script 'ServerScriptService.OnPlayerAdded', Line 1706",
+46,Error,Server,Wed Aug 12 2026 22:10:10 GMT+0200 (heure d’été d’Europe centrale),V582,ServerScriptService.OnPlayerAdded:1538: attempt to index nil with 'Parent',"Script 'ServerScriptService.OnPlayerAdded', Line 1538",
+40,Error,Client,Wed Aug 12 2026 22:05:15 GMT+0200 (heure d’été d’Europe centrale),V582,BestRun is not a valid member of Player "Players.<Player>","Script 'Players.<Player>.PlayerScripts.MovementController', Line 83
+    Script 'Players.<Player>.PlayerScripts.MovementController', Line 201 - function StartFoward
+    Script 'Players.<Player>.PlayerScripts.MovementController', Line 351",
+35,Error,Client,Wed Aug 12 2026 19:18:05 GMT+0200 (heure d’été d’Europe centrale),V582,Server Kick Message: Your data could not be restored safely. Please rejoin.,,
+27,Warning,Client,Thu Aug 13 2026 02:02:05 GMT+0200 (heure d’été d’Europe centrale),V582,Need 2000 Garden Seeds! You have 33,,
+27,Warning,Client,Thu Aug 13 2026 01:01:05 GMT+0200 (heure d’été d’Europe centrale),V582,Need 35 Garden Seeds! You have 12,,
+26,Warning,Client,Thu Aug 13 2026 02:01:45 GMT+0200 (heure d’été d’Europe centrale),V582,Need 500 Garden Seeds! You have 23,,
+26,Warning,Client,Thu Aug 13 2026 02:01:45 GMT+0200 (heure d’été d’Europe centrale),V582,Need 2000 Garden Seeds! You have 23,,
+24,Warning,Client,Thu Aug 13 2026 02:01:00 GMT+0200 (heure d’été d’Europe centrale),V582,Need 500 Garden Seeds! You have 14,,
+24,Warning,Client,Thu Aug 13 2026 09:01:05 GMT+0200 (heure d’été d’Europe centrale),V582,Need 35 Garden Seeds! You have 33,,
+21,Warning,Client,Thu Aug 13 2026 09:01:30 GMT+0200 (heure d’été d’Europe centrale),V582,Need 500 Garden Seeds! You have 7,,
+20,Error,Client,Thu Aug 13 2026 01:25:30 GMT+0200 (heure d’été d’Europe centrale),V582,Not running script because past shutdown deadline (when calling anonymous function on line 2 in Players.<Player>.PlayerGui.MainFrame.StoreFrames.SeasonPass.RewardsFrame.Rewards.ContentFrame.Level_1.PremiumFrame.MiddleReward.BG.SpinEffect),,
+19,Warning,Client,Thu Aug 13 2026 02:01:15 GMT+0200 (heure d’été d’Europe centrale),V582,Need 2000 Garden Seeds! You have 9,,
+18,Error,Client,Wed Aug 12 2026 22:06:30 GMT+0200 (heure d’été d’Europe centrale),V582,Players.<Player>.PlayerScripts.MovementController:151: attempt to index nil with number,"Script 'Players.<Player>.PlayerScripts.MovementController', Line 151 - function randomMorph
+    Script 'Players.<Player>.PlayerScripts.MovementController', Line 175 - function StartFoward
+    Script 'Players.<Player>.PlayerScripts.MovementController', Line 351",
+17,Error,Client,Thu Aug 13 2026 01:25:30 GMT+0200 (heure d’été d’Europe centrale),V582,Not running script because past shutdown deadline (when calling anonymous function on line 178 in ReplicatedStorage.Modules.EasyVisuals.Gradient),,
+15,Warning,Client,Thu Aug 13 2026 02:01:40 GMT+0200 (heure d’été d’Europe centrale),V582,Need 500 Garden Seeds! You have 32,,
+14,Error,Server,Wed Aug 12 2026 22:07:05 GMT+0200 (heure d’été d’Europe centrale),V582,ServerScriptService.Modules.ZoneModule:420: attempt to index nil with number,"Script 'ServerScriptService.Modules.ZoneModule', Line 420 - function generateBrainrot
+    Script 'ServerScriptService.ZoneController', Line 327",
+14,Error,Client,Wed Aug 12 2026 22:13:30 GMT+0200 (heure d’été d’Europe centrale),V582,Players.<Player>.PlayerGui.MainFrame.StoreFrames.Morphs.UpgradeController:135: attempt to index nil with number,"Script 'Players.<Player>.PlayerGui.MainFrame.StoreFrames.Morphs.UpgradeController', Line 135 - function update
+    Script 'Players.<Player>.PlayerGui.MainFrame.StoreFrames.Morphs.UpgradeController', Line 159",
+14,Warning,Client,Thu Aug 13 2026 09:02:15 GMT+0200 (heure d’été d’Europe centrale),V582,Need 35 Garden Seeds! You have 23,,
+13,Warning,Client,Thu Aug 13 2026 09:02:10 GMT+0200 (heure d’été d’Europe centrale),V582,Need 500 Garden Seeds! You have 21,,
+10,Error,Server,Wed Aug 12 2026 22:06:30 GMT+0200 (heure d’été d’Europe centrale),V582,22 is not a valid member of Folder "Players.<Player>.AnimalStands","Script 'ServerScriptService.OnPlayerAdded', Line 1544",

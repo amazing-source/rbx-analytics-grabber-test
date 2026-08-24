@@ -45,7 +45,9 @@ a *new* disagreement still breaks the build.
 
 > **Those gate numbers are the 2026-08-08 reading and are kept as history — do
 > not quote them as current.** Measured 2026-08-10: **verify 23 pass · 2 fail ·
-> 8 skip (exit 1)**, audit-plan **0 failures**, `npm test` **41 pass**. The
+> 8 skip (exit 1)**, audit-plan **0 failures**, `npm test` **41 pass**.
+> Re-measured 2026-08-23 — verify and audit-plan unchanged; `npm test` is now
+> **44 pass**. The
 > second verify failure is NOT a regression: it is `ErrorCount` half-hour, where
 > 144 of 147 cells match and the 3 that differ are all the 08:00 bucket sitting
 > at the export window's own edge — the dashboard CSV holds a partial bucket and
@@ -361,3 +363,85 @@ an Open Cloud point and a gateway point for the same day merge into ONE series
 (the `+00:00`/`Z` spelling, the `OneDay`/`METRIC_GRANULARITY_ONE_DAY` enum, and
 the breakdown `displayValue`), and that a settled gateway value is not
 overwritten by a later Open Cloud read.
+
+## F16 — a phantom future row, and the end-window that causes it (2026-08-23)
+
+Measured against Open Cloud on 10030829154, start fixed at `2026-08-20`, only
+`endTime` varied. `endTime` is **exclusive at the day boundary**:
+
+| `endTime` sent | Days returned | |
+|---|---|---|
+| `2026-08-23T00:00:00Z` | 08-20, 21, 22 | today silently excluded |
+| `2026-08-23T23:59:59Z` | 08-20, 21, 22, 23 | |
+| `2026-08-24T00:00:00Z` | 08-20, 21, 22, 23 | the correct ask |
+| `2026-08-25T00:00:00Z` | 08-20, 21, 22, 23, **24** | **phantom** |
+
+Asking past today makes **`PeakConcurrentPlayers` carry its last value forward
+into a day that has not happened** — the 08-24 point came back byte-identical to
+08-23. `ErrorCount`, `DailyRevenue` and `AverageSessionLengthMinutes` do not:
+they stop at the last real day. The behaviour is PCU-specific.
+
+**This is the origin of the duplicate rows in the corpus.**
+`data/games/10030829154/metrics/PeakConcurrentPlayers.csv` holds a `2026-08-24`
+row duplicating `2026-08-23` (same value `4491.938794538081`, same
+`captured_at`, `partial=true`), and `2026-08-17` duplicating `2026-08-16` the
+same way. Both arrived tagged `DATA_STATUS_INVALID`, **not** `FILLED_ZERO` — so
+they came from the API, not from our gap-fill. That in turn implies the browser
+**gateway treats `endTime` as INCLUSIVE where Open Cloud treats it as
+exclusive**; the gateway side is inferred from the stored capture, not yet
+measured directly. **Measure it before changing `alignWindow`.**
+
+Second, independent defect found in the same file set: `DailyActiveUsers` for
+**2026-08-16 and 08-17 is stored as `0`, tagged `FILLED_ZERO`**, where Roblox
+serves **389,477** and **401,742**. Our gap-fill wrote zeros into days that have
+real data. This corrupts any weekday baseline and would mis-fire
+`scoreSeries()` — the alerting path in `src/lib/notify.ts` reads exactly these
+rows.
+
+**Not yet fixed and not yet encoded as a test.** Two tests wanted:
+1. a PCU series whose last point repeats on a future date collapses to one point;
+2. `FILLED_ZERO` is never written for a date the API returned data for on any
+   prior grab.
+
+Also measured the same day: **the funnel endpoint answers only some windows, and
+the set changes between calls.** Of ten rolling windows requested for
+`FunnelUserStepCompletionRate`, two returned data and eight returned an empty
+series — and windows that answered correctly twice went quiet an hour later. An
+empty funnel series is therefore never evidence about a game. Filtering funnel
+metrics by `Platform` returns no series at all (query-shape limit, not a
+finding about devices).
+
+## F17 — `data/exports/` was silently untracked, and it holds the only copy of error text (2026-08-24)
+
+`.gitignore` line 19 is `/data/*` with negations for `verify/`, `raw/` and the
+`grab-report.json` files. **`data/exports/` matched the broad ignore and was
+never negated**, so every Creator Dashboard download filed there — 40 files,
+2.4 MB — existed on one machine only and would not survive a clone.
+
+That matters more than the size suggests, because these are the two things the
+API cannot serve:
+
+- **Error message TEXT.** The async `errorReporting.dimensions/MessageHash`
+  lookup answers **HTTP 500 on all four universes** (see each game's
+  `grab-report.md`, *Failed — observed/proven shapes*). `errors.md` therefore
+  carries volumes against bare hashes: on 10399712766, 511 signatures over
+  133,397,839 events with `Text` null for every one. A dashboard export is the
+  only route to the text.
+- **Player comment TEXT.** `feedback.csv` holds it, but the exports carry
+  device/platform/rating rows the grabber does not.
+
+And they are not re-downloadable later: the dashboard's error export is capped
+at ~26 rows and scoped to recent versions, so a version that ages out takes its
+signatures with it.
+
+**Fixed the same day** — `!/data/exports/` added directly after `!/data/raw/`.
+Ordering matters: git evaluates in sequence, and a negation placed after the
+`/data/games/*/*` block does not re-include the directory. Verify with
+`git check-ignore -v data/exports/INDEX.md`, which must now exit non-zero.
+
+`data/exports/INDEX.md` carries the layout, the naming rule and the attribution
+method (version band, script path, or comment-text match against
+`data/games/<id>/feedback.csv`).
+
+**Gap that remains:** 10399712766 has no error export at all. It is also the
+game with an unexplained payer collapse, so that gap is load-bearing.

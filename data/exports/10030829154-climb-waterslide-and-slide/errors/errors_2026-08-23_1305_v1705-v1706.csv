@@ -1,0 +1,50 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+257,Error,Client,Fri Aug 21 2026 20:07:05 GMT+0200 (heure d’été d’Europe centrale),V1705,Players.<Player>.PlayerScripts.UI.GoShop_Raft:102: attempt to index nil with 'Get',"Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 102 - function RefreshList
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 611 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop', Line 78 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.UIMgr', Line 78 - function Open",
+46,Error,Client,Sat Aug 22 2026 20:08:10 GMT+0200 (heure d’été d’Europe centrale),V1706,Argument 1 missing or nil,"Script 'Players.<Player>.PlayerScripts.Service.PlayerService', Line 52 - function PlayerDataInit
+    Script 'Players.<Player>.PlayerScripts.Service.PlayerService', Line 18",
+35,Error,Client,Fri Aug 21 2026 23:27:40 GMT+0200 (heure d’été d’Europe centrale),V1705,Frame is not a valid member of ScreenGui "CoachBag","Script 'Players.<Player>.PlayerScripts.UI.CoachBag', Line 25 - function RefreshCoachBag",
+24,Error,Server,Sat Aug 22 2026 20:01:15 GMT+0200 (heure d’été d’Europe centrale),V1706,Argument 1 missing or nil,"Script 'ReplicatedStorage.ToolScripts.Convert', Line 274 - function GetPetQualityColor
+    Script 'ServerScriptService.Manager.PetBagMgr', Line 249 - function SetupPetOverheadUI
+    Script 'ServerScriptService.Manager.PetBagMgr', Line 300 - function RefreshFollowPets
+    Script 'ServerScriptService.Manager.PetBagMgr', Line 390 - function EquipPet
+    Script 'ServerScriptService.Service.PetService', Line 111 - function EquipPet
+    Script 'ServerScriptService.Service.PetService', Line 275",
+12,Error,Client,Fri Aug 21 2026 22:00:35 GMT+0200 (heure d’été d’Europe centrale),V1705,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerScripts.UI.Common.Buff', Line 219",
+9,Error,Client,Fri Aug 21 2026 22:02:30 GMT+0200 (heure d’été d’Europe centrale),V1705,Players.<Player>.PlayerScripts.Manager.Common.ItemBagMgr:66: attempt to index nil with 'Get',"Script 'Players.<Player>.PlayerScripts.Manager.Common.ItemBagMgr', Line 66 - function OnRefreshPlayerData",
+7,Error,Client,Fri Aug 21 2026 22:00:35 GMT+0200 (heure d’été d’Europe centrale),V1705,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerGui.GoShop.Frame.Seat.ScrollingFrame.Raft_80.Seat.TexName.Limited.持续旋转', Line 7",
+4,Warning,Server,Sat Aug 22 2026 20:02:40 GMT+0200 (heure d’été d’Europe centrale),V1706,[SaturdayAdminAbuse] Potion error: <Player> StaminaBoost ServerScriptService.Manager.Common.ItemBagMgr:139: attempt to index nil with 'userId',,
+4,Warning,Server,Sat Aug 22 2026 20:03:10 GMT+0200 (heure d’été d’Europe centrale),V1706,"[SaveLoadDataMgr] SavePlayerData failed: 1680845711 ReplicatedStorage.ToolScripts.CopyTableScript:5: invalid argument #1 to 'pairs' (table expected, got nil)",,
+4,Warning,Server,Sat Aug 22 2026 20:02:40 GMT+0200 (heure d’été d’Europe centrale),V1706,[SaturdayAdminAbuse] Potion error: <Player> CashBoost ServerScriptService.Manager.Common.ItemBagMgr:139: attempt to index nil with 'userId',,
+4,Error,Client,Sat Aug 22 2026 15:01:05 GMT+0200 (heure d’été d’Europe centrale),V1705,Failed to load animation with sanitized ID rbxassetid://10921261968: AnimationClip loaded is not valid.,,
+4,Error,Server,Sat Aug 22 2026 20:04:10 GMT+0200 (heure d’été d’Europe centrale),V1706,Argument 1 missing or nil,"Script 'ReplicatedStorage.ToolScripts.Convert', Line 274 - function GetPetQualityColor
+    Script 'ServerScriptService.Manager.PetBagMgr', Line 249 - function SetupPetOverheadUI
+    Script 'ServerScriptService.Manager.PetBagMgr', Line 300 - function RefreshFollowPets
+    Script 'ServerScriptService.Manager.PetBagMgr', Line 390 - function EquipPet
+    Script 'ServerScriptService.Service.PetService', Line 180 - function EquipBest
+    Script 'ServerScriptService.Service.PetService', Line 275",
+4,Warning,Server,Sat Aug 22 2026 20:02:40 GMT+0200 (heure d’été d’Europe centrale),V1706,[SaturdayAdminAbuse] Potion error: <Player> SpeedBoost ServerScriptService.Manager.Common.ItemBagMgr:139: attempt to index nil with 'userId',,
+4,Warning,Server,Sat Aug 22 2026 20:02:40 GMT+0200 (heure d’été d’Europe centrale),V1706,[SaturdayAdminAbuse] Potion error: <Player> WinsBoost ServerScriptService.Manager.Common.ItemBagMgr:139: attempt to index nil with 'userId',,
+3,Error,Client,Sat Aug 22 2026 23:52:15 GMT+0200 (heure d’été d’Europe centrale),V1706,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset/?id=129294929647222 because Error reading mesh data: offset is out of bounds while reading %d bytes,,
+3,Error,Server,Sat Aug 22 2026 20:03:45 GMT+0200 (heure d’été d’Europe centrale),V1706,Argument 1 missing or nil,"Script 'ReplicatedStorage.ToolScripts.Convert', Line 274 - function GetPetQualityColor
+    Script 'ServerScriptService.Manager.PetBagMgr', Line 249 - function SetupPetOverheadUI
+    Script 'ServerScriptService.Manager.PetBagMgr', Line 300 - function RefreshFollowPets
+    Script 'ServerScriptService.Manager.PetBagMgr', Line 390 - function EquipPet
+    Script 'ServerScriptService.Service.PetService', Line 177 - function EquipBest
+    Script 'ServerScriptService.Service.PetService', Line 275",
+2,Error,Client,Sun Aug 23 2026 06:11:35 GMT+0200 (heure d’été d’Europe centrale),V1706,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset?id=124463299487745 because Error reading mesh data: unknown version,,
+2,Error,Client,Sat Aug 22 2026 16:13:40 GMT+0200 (heure d’été d’Europe centrale),V1705,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset/?id=9105348839 because Error reading mesh data: unknown version,,
+2,Error,Client,Sun Aug 23 2026 02:55:30 GMT+0200 (heure d’été d’Europe centrale),V1706,Players.<Player>.PlayerScripts.RbxCharacterSounds.AtomicBinding:114: assertion failed!,"Script 'Players.<Player>.PlayerScripts.RbxCharacterSounds.AtomicBinding', Line 114 - function bindRoot
+    Script 'Players.<Player>.PlayerScripts.RbxCharacterSounds', Line 416 - function characterAdded",
+2,Error,Client,Sun Aug 23 2026 07:04:30 GMT+0200 (heure d’été d’Europe centrale),V1706,HSRDataContentProvider failed to process https://assetdelivery.roblox.com/v1/asset?id=10725547266 because Unrecognized format: \x89PNG\x0d\x0a\x1a\x0a << file header,,
+2,Error,Server,Sat Aug 22 2026 22:37:45 GMT+0200 (heure d’été d’Europe centrale),V1706,Argument 1 missing or nil,"Script 'ReplicatedStorage.ToolScripts.Convert', Line 274 - function GetPetQualityColor
+    Script 'ServerScriptService.Manager.PetBagMgr', Line 249 - function SetupPetOverheadUI
+    Script 'ServerScriptService.Manager.PetBagMgr', Line 300 - function RefreshFollowPets
+    Script 'ServerScriptService.Service.TradeService', Line 276 - function ReadyTrade
+    Script 'ServerScriptService.Service.TradeService', Line 289",
+2,Error,Client,Sun Aug 23 2026 07:04:30 GMT+0200 (heure d’été d’Europe centrale),V1706,HSRDataContentProvider failed to process https://assetdelivery.roblox.com/v1/asset?id=79602288078066 because Unrecognized format: \x89PNG\x0d\x0a\x1a\x0a << file header,,
+2,Error,Client,Sun Aug 23 2026 08:19:50 GMT+0200 (heure d’été d’Europe centrale),V1706,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset/?id=8667837467 because Error reading mesh data: unknown version,,
+1,Warning,Client,Sat Aug 22 2026 14:26:20 GMT+0200 (heure d’été d’Europe centrale),V1705,Script has run for over 39.415 seconds and may timeout,"Script 'Players.<Player>.PlayerGui.GoShop.Frame.Trailing.ScrollingFrame.Trail_34.Trail.TexName.Limited.持续旋转', Line 7",
+1,Error,Client,Sat Aug 22 2026 21:38:10 GMT+0200 (heure d’été d’Europe centrale),V1706,MeshContentProvider failed to process 45474e8e035aac4071a0143b71a64dc7 because Error reading mesh data: unknown version,,

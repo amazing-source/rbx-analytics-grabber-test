@@ -1,0 +1,67 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+20876313,Warning,Client,,V404,trying to set locked parent!,,
+4038300,Error,Client,Thu Jul 09 2026 15:00:05 GMT+0200 (heure d’été d’Europe centrale),V499,Failed to load sound: Asset is not approved for the requester,rbxassetid://121336636707861,
+2415396,Error,Client,,V404,Failed to load animation with sanitized ID. Animation failed to load,rbxassetid://100130898761850
+rbxassetid://100425922758160
+rbxassetid://100489552081601
+rbxassetid://101485205406581
+rbxassetid://10921258489
+rbxassetid://10921259953
+rbxassetid://10921262864
+rbxassetid://10921263860
+rbxassetid://114000947483063
+rbxassetid://115939348446077
+rbxassetid://125766582338778
+rbxassetid://131233158210089
+rbxassetid://133460138742578
+rbxassetid://14366558676
+rbxassetid://507765000
+rbxassetid://507767968
+rbxassetid://88305756401982
+rbxassetid://88763136693023
+rbxassetid://913402848
+rbxassetid://94087807569369
+rbxassetid://97256610009860,
+2248372,Error,Client,,V404,MeshContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=100194693765996
+https://assetdelivery.roblox.com/v1/asset?id=100294757914854
+https://assetdelivery.roblox.com/v1/asset?id=100547118822255
+https://assetdelivery.roblox.com/v1/asset?id=100658392917755
+https://assetdelivery.roblox.com/v1/asset?id=101083278431495
+https://assetdelivery.roblox.com/v1/asset?id=101481311998273
+https://assetdelivery.roblox.com/v1/asset?id=101673121923567
+https://assetdelivery.roblox.com/v1/asset?id=104020335774650
+https://assetdelivery.roblox.com/v1/asset?id=104075063507204
+https://assetdelivery.roblox.com/v1/asset?id=115480024362952
+https://assetdelivery.roblox.com/v1/asset?id=116762403843201
+https://assetdelivery.roblox.com/v1/asset?id=119977921583305
+https://assetdelivery.roblox.com/v1/asset?id=123055264267364
+https://assetdelivery.roblox.com/v1/asset?id=124445436629455
+https://assetdelivery.roblox.com/v1/asset?id=72370539165368
+https://assetdelivery.roblox.com/v1/asset?id=87858099526274
+https://assetdelivery.roblox.com/v1/asset/?id=12874368490
+https://assetdelivery.roblox.com/v1/asset/?id=14102296082
+https://assetdelivery.roblox.com/v1/asset/?id=6568378037
+https://assetdelivery.roblox.com/v1/asset/?id=6994699914
+https://assetdelivery.roblox.com/v1/asset/?id=9111790223
+https://assetdelivery.roblox.com/v1/asset/?id=9120156401,
+2002039,Error,Client,Fri Jul 31 2026 21:00:05 GMT+0200 (heure d’été d’Europe centrale),V552,Players.<Player>.PlayerGui.MainFrame.StoreFrames.SeasonPass.RewardsFrame.Rewards.ContentFrame.LocalScript,,
+1993592,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Unknown rarity: Infinity Animal: Coccodrillo Funguccino,,
+1993563,Warning,Client,Sat Aug 01 2026 01:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Skipping unknown rarity: Lost Animal: Avocadrilo Fungolino,,
+1993540,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Skipping unknown rarity: Infinity Animal: Coccodrillo Funguccino,,
+1993501,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Unknown rarity: Lost Animal: Avocadrilo Fungolino,,
+1993501,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Skipping unknown rarity: Infinity Animal: Poppop Cornetto,,
+1993496,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Skipping unknown rarity: Infinity Animal: Rosso Cerberino,,
+1993495,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Skipping unknown rarity: Infinity Animal: Zombino Pottospotto,,
+1993495,Warning,Client,Sat Aug 01 2026 01:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Skipping unknown rarity: Lost Animal: Andante Tung Tung Sahuro,,
+1993495,Warning,Client,Sat Aug 01 2026 01:00:30 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Unknown rarity: Infinity Animal: Poppop Cornetto,,
+1993493,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Skipping unknown rarity: Lost Animal: Pumpkino Cavalino,,
+1993492,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Unknown rarity: Lost Animal: Andante Tung Tung Sahuro,,
+1993492,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Unknown rarity: Infinity Animal: Ragnetto Karkerkar Kurkur,,
+1993492,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Unknown rarity: Infinity Animal: Zombino Pottospotto,,
+1993491,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Unknown rarity: Lost Animal: Pumpkino Cavalino,,
+1993490,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Skipping unknown rarity: Infinity Animal: Ragnetto Karkerkar Kurkur,,
+1993489,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Skipping unknown rarity: Infinity Animal: Focafoca Volpino,,
+1993489,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Unknown rarity: Infinity Animal: Focafoca Volpino,,
+1993487,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Unknown rarity: Lost Animal: Crocodilo Bombardino e la Stregaccia,,
+1993486,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Unknown rarity: Infinity Animal: Rosso Cerberino,,
+1993485,Warning,Client,Sat Aug 01 2026 05:00:05 GMT+0200 (heure d’été d’Europe centrale),V553,[OddsController] Skipping unknown rarity: Lost Animal: Crocodilo Bombardino e la Stregaccia,,

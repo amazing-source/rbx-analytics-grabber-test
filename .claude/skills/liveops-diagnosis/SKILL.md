@@ -107,6 +107,89 @@ Rough mapping from question to window: *"did our update break something"* is a
 short-window question; *"why is this game bleeding"* and *"should we buy this"*
 are long-window questions, and most acquisition and LiveOps work is the latter.
 
+**Never compare today against whole days.** `PeakConcurrentPlayers` is a
+*maximum* over the day, so a partial day can only ever undercount and a raw
+comparison manufactures a collapse that is not there. Compare the **same clock
+window on both days** at half-hour granularity — and pick the same weekday, since
+the intraday shape differs. Measured 2026-08-23 on `10030829154`: the raw daily
+number read −56% against the peak, while an hour-matched read against the prior
+Sunday gave −26% at peak-in-window. Both are "true"; only the second answers
+*is today unusual*. Report the direction of the **gap over the day** too — one
+that widens through the morning and then plateaus means players arrived and
+left, not that fewer arrived.
+
+**Rank the day against its own weekday before calling it a low.** The same
+session began from "CCU is at an all-time low" and "yesterday's Saturday was
+terrible". Neither survived: the 28-day low was six days *earlier*, and that
+Saturday came in **2nd of the last 4 Saturdays, +27% above the Saturday
+median**. A single alarming number is almost always a weekday-shape artifact or
+a partial-day artifact until proven otherwise.
+
+**But NEVER benchmark against the window's minimum. "Not a new low" is not an
+answer.** Measured 2026-08-24 on `10030829154`, and it is the inverse failure of
+the paragraph above: today's concurrents were reported as fine because 2,993 sat
+above the 22-day low of 2,675. The 22-day **mean** was 5,453 and the prior
+week's plateau was 7,476 — the day was −45% against typical and −60% against
+last week. A trough is one day; it is not a baseline. The same error graded
+9963622286 as "recovering, +21% to +54% WoW" when the comparison week was the
+lowest week in its entire series.
+
+**Print four baselines and let them disagree**, plus the day's rank in the
+window (`3 of 22`): the window mean, the pre-event baseline, the most recent
+stable plateau, and the matched weekday. Call a level normal only when it is
+normal against the *typical* level. If the four disagree, that disagreement is
+the finding — on Waterslide it separated "unwinding a surge" (−19% vs the
+pre-surge base) from "new low" (Knife Farm, −53% against three flat prior
+Mondays).
+
+**And test a publish against the base rate of publishes, not against a hand-
+picked control day.** Same session: v600 on 9963622286 was first read as a
+steeper-than-normal post-publish slide, from two chosen control days. Measured
+against *all nine* non-publish days in the window — same two clock times, so the
+publish spike is out of the denominator — the afternoon fell **−29.3%** against
+a **−29.2%** mean (sd 12.3pp, z = −0.01), milder than two prior publishes.
+Every publish on that game spikes then decays; the question is only whether this
+one decayed more than usual, and that needs the whole distribution.
+
+**Check whether the decline predates the publish.** A decay leg off a discovery
+spike looks exactly like an update regression to anyone reading only the last
+three days. On `10030829154` the slide began two days *before* the deploy
+(−1.6%, −6.5%) and then steepened 4–7× after it (−5.2%, −21.8%, −35.8%). The
+honest finding is "the update did not start this, it steepened it" — which is a
+different remediation than either "the update broke the game" or "this is just
+decay". Get the pre-publish leg on the page or the producer will hear only one
+of the two.
+
+**But "it was already declining" NEVER downgrades a deploy on its own — check
+the magnitude, and check which metric.** Measured 2026-08-24 on 9963622286,
+and this is the correction to the paragraph above. That game's 30 July deploy
+was graded *partial* because impressions had fallen 15% and 25% in the two
+weeks before it. Both wrong:
+
+- **Magnitude.** The pre-existing trend was **−4.7%/week**; what followed was
+  **−53%/week**. Two things an order of magnitude apart are not the same
+  phenomenon, and calling the second a "steepening" of the first understated it
+  by 10×. If the post-event rate is not within ~2× the prior rate, it is a new
+  event, not a continuation.
+- **Wrong metric entirely.** Impressions are *reach*, and since Roblox's
+  2026-06-15 re-weighting reach sits **downstream** of retention with a
+  multi-week lag (§3b). Using a downstream metric to exonerate a build is
+  reading the effect to judge the cause. On a 7-day mean, impressions were
+  *rising* in the four days before that deploy (+1.5%, +1.6%, +8.2%, +2.8%).
+
+**To decide whether a deploy broke something, only same-day-responsive metrics
+count:** `ForwardD1Retention` **daily** (16.8% → 9.7% in four days here),
+`AverageSessionLengthMinutes`, `AveragePlayTimeMinutesPerDAU`, and
+`FunnelCohortCompletionRate` per step **mix-controlled** (§3, matched pairs).
+Read reach *afterwards*, as a consequence.
+
+**The onboarding-vs-progression split settles it without any other test.**
+Onboarding steps holding at 99%+ while progression steps fall is a **core-loop**
+break, and it rules out "the traffic got worse" on its own — worse traffic
+degrades the first session too. On 9963622286: `FirstMorph` 99.3% flat and
+`OnboardingComplete` 100% flat, while `Rebirth1` fell 9.6pp at *identical*
+returning-player mix across 25 of 25 matched pairs.
+
 ## 1. Diagnose bottom-up, not by what looks interesting
 
 Check rungs in order. A break high on the ladder is usually caused by a break
@@ -779,6 +862,34 @@ The two sources answer different halves and neither is enough alone:
 **the dashboard error export gives volume, severity and first-seen version;
 reading the live place gives mechanism and blast radius.** Run them together.
 
+**The most expensive defect may emit ZERO log lines, so never rank by error
+count.** Measured 2026-08-23 on `10030829154` (Climb Waterslide and Slide).
+A tutorial helper held the raft shop's `CanvasPosition` in a `while` loop whose
+exit test was float equality against a value Roblox *clamps* — so it never
+exited, and every 0.2s it overwrote whatever the player had just scrolled to.
+That is working code doing the wrong thing: **no throw, no warning, nothing in
+the error export, ever.** Its entire footprint was one funnel step sitting at
+0.83 completion against 0.97–1.00 for the steps either side.
+
+The trap is that a defect hunt seeded from the error export cannot see this
+class at all. The publish that shipped in the middle of the investigation fixed
+a *different*, logged symptom in the same function and left the loop untouched —
+precisely because the log pointed at the other thing.
+
+So run the funnel and the error export as **two independent entry points**:
+
+- **Error export → mechanism.** Good at crashes, nil indexes, throttling.
+- **Funnel step rates → silent defects.** Any step materially below its
+  neighbours is a defect candidate *even with a clean error log*. Open the code
+  for that step and read it; do not wait for a signature that will never come.
+
+**Symptom grammar that means "silent defect", worth grepping for directly:**
+`while <property> ~= <computed>` on any engine property the engine clamps
+(`CanvasPosition`, `Rotation`, `CFrame` on an anchored part) — float equality
+against a clamped write is an infinite loop by construction. Also any coroutine
+spawned per UI-open with no `task.cancel` on close: they stack, and N of them
+fight each other and the player.
+
 **Always establish blast radius before you claim impact.** Walk *up* from the
 error line to the enclosing connection or thread, because that is what bounds
 the damage:
@@ -920,6 +1031,32 @@ say something it does not mean:
 One-time funnels (onboarding) take no `funnelSessionId`; recurring funnels
 (shop, progression loops) require one, and without it every visit collapses
 into a single funnel run.
+
+**Discrimination test — regression or design defect?** Measure the same step in
+a window *before* the publish and a window *after*. A step that is equally bad
+on both sides is **not** what the deploy broke, however loudly it correlates
+with the complaint. On `10030829154`, `Tutorial_Main_5_ToRaftShop` read 0.824
+pre-publish and 0.866 post-publish — the worst step in the funnel in *both*
+windows. The complaints arriving after the update were real, and the step was
+genuinely broken, but it had been broken for weeks; the deploy only changed how
+many people hit it. Report those as two separate items with two separate
+priorities, or the chronic one gets closed as "fixed by the rollback" and comes
+straight back.
+
+Corollary worth stating to a producer: **a step at ~0.83 is not a 17% problem,
+it is a compounding one.** Fifteen steps at 0.97–1.00 with one at 0.83 still
+compounds to ~50% overall completion, so "half your new players never finish
+the tutorial" was true before the incident and will still be true after it.
+Size the chronic leak against the incident before choosing what to fix first.
+
+**Two failure modes of the funnel endpoint itself, both measured 2026-08-23:**
+it answers only *some* windows — of ten rolling windows requested, two returned
+data and eight returned an empty series — and the set that works **changes
+between calls**, so a window that answered twice can go quiet an hour later.
+An empty funnel series is therefore never evidence about the game. Re-query
+before concluding anything, and record the window that worked alongside the
+number. Filtering funnel metrics by `Platform` returns no series at all; that
+is a query-shape limit, not a finding about devices.
 
 **Quotas that silently cap what exists:** 10 funnels per experience, 100 steps
 per funnel, 3 custom fields per event, and **8,000 unique custom-field value
