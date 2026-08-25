@@ -331,6 +331,18 @@ disagree about what counts as an outlier.
 - **Quiet by default.** Nothing outside the baseline sends nothing. A heartbeat
   that says "all normal" hourly trains the reader to ignore the channel, which
   is the same failure as an alarm that fires every Wednesday.
+- **KNOWN BLIND SPOT: `scoreSeries()` cannot see a decline on a volatile game,
+  and CCU is where it fails first.** On 2026-08-25 all three live games sat at
+  −50% on a like-for-like window (two of them the *lowest* of 27 days) and the
+  scorer printed "Nothing beyond 2 sd on the newest day. Everything is within
+  its normal weekly shape" for every one — `PeakConcurrentPlayers` at z −0.10,
+  −0.20 and −1.70. The z divisor is the sd of residuals over the game's own
+  history, so a series that swung 147K→543K→241K DAU inside a fortnight makes
+  its own detector blind, and the worse the swing the blinder it gets. Two extra
+  traps in the same reading: the newest day is a PARTIAL day compared against
+  whole ones, and where `obs` equals `exp` exactly there was no residual to
+  score at all. **Do not read a quiet `npm run anomaly` as "CCU is fine" — run
+  `npm run ccu-baseline` before saying that.**
 - **Volume metrics are normalized by DAU before scoring**, or the detector fires
   on growth — every volume series moves together when a game gets bigger.
 - **`DailyRevenue` is deliberately not watched.** Normalized by DAU it *is*
@@ -343,6 +355,49 @@ disagree about what counts as an outlier.
 - Per-game webhook overrides the global one. `npm run notify-test -- <id>`
   previews without sending; `--send` posts; `--z <n>` lowers the bar to see what
   an alert would look like on a quiet game.
+
+## Reading CCU: matched time-of-day slots, not day totals (2026-08-25)
+
+    npm run ccu-baseline -- <universeId> [...] [--slots 00:00-11:30]
+
+Answers "is today genuinely down" **before the day ends**, which the daily-peak
+comparison structurally cannot: today is a part-day and every baseline day is a
+whole one. Each point is one XX:00 / XX:30 UTC slot against that same slot on
+other days, so the time-of-day shape divides out and only elapsed slots are ever
+compared. Prints four baselines (same weekday / 7d / 14d / all) plus **the day's
+rank**, which needs no baseline choice at all — and a per-slot deficit profile.
+
+**Read the per-slot profile before naming a cause.** A break inside the game
+costs the same share of players in every slot; a calendar or discovery effect
+bites only in the hours those players were online. A deficit that deepens
+monotonically across the UTC morning on several unrelated games is not three
+simultaneous breaks.
+
+    npm run platform-ccu [-- --top 40]
+
+Snapshots the **whole public Roblox discovery board** — every game across the
+`explore-api` sorts with its live CCU, plus creation dates — into
+`data/platform/`, and diffs against earlier snapshots. Public unauthenticated
+endpoints only; no cookie is read or sent. It exists because "is it us or the
+platform" was **unanswerable on 2026-08-25**: all four games sat ~50% down with
+the mechanism clearly exposure (impressions −28…−46% against conversion
+−8…−20%), and separating "the audience shrank" from "a mega-hit took the
+surface" needs total board CCU *over time*, which no API serves retroactively.
+First snapshot 2026-08-25T14:33Z — 269 games, 7,537,949 combined CCU, with
+`Steal An Egg` (universe 10563114921, created 2026-07-25, public launch ~20 Aug)
+at **917K = 12.2% of the entire board**. **Snapshots are committed** via
+`!/data/platform/` in `.gitignore` — a snapshot is a moment, and an uncommitted
+one is gone. Run it daily or the series never accumulates.
+
+Both read Open Cloud or public endpoints directly and never the corpus CSVs —
+see F18 above for why that is mandatory rather than a preference. Behavioural metrics (DAU, revenue,
+payers, session length) **lag ~2 days**, while CCU and the crash/error metrics
+are current to the hour; when the two disagree about how recent "today" is, it
+is the lag, not a gap. To answer a revenue question inside that lag, project
+through two measured ratios — full-day CCU / elapsed-window CCU, and DAU /
+full-day CCU — and print their spread so the projection carries its error bar.
+Measured 2026-08-25: DAU-per-CCU is tight (64.4±2.5, 73.6±2.4, 81.0±9.5), the
+day-shape ratio looser (~1.05±0.13), so such a projection is good to about ±15%.
 
 ## The extension is the surface now (2026-08-19)
 The dashboard lives INSIDE create.roblox.com: `collector.js` opens a full-screen
@@ -525,9 +580,26 @@ are what the dashboard itself puts in the request body. Hashes are what rot.)
   (52% off), `SessionDurationSecondsAvg` and `OomUnexpectedExits` **do not**,
   and are deliberately not requested at that granularity. Their daily versions
   are fine. Re-add one only when a captured dashboard request proves the shape.
-  Half-hour windows are clamped to the **final 24h** — the gateway silently
-  truncates long sub-daily windows (a 768-hour ask returned 240 hours), and
-  absence outside the served span is NOT zero.
+  Half-hour windows are clamped to the **final 24h on the GATEWAY only** — it
+  silently truncates long sub-daily windows (a 768-hour ask returned 240 hours),
+  and absence outside the served span is NOT zero. **Open Cloud has no such
+  clamp: it serves `HalfHour` across the full 28-day retention window** (1,321
+  points for a 27-day ask, and a 31-day ask 400s naming retention as the reason).
+  F20 in `COVERAGE.md`.
+- **The half-hour rows in `metrics/*.csv` are mostly FABRICATED — do not build a
+  time-of-day analysis on them.** The exporter gap-fills the slots the gateway
+  never served as `FILLED_ZERO`, contradicting the rule directly above it. On
+  10030829154, **390 of 504 half-hour PCU rows (77%) are zeros standing in for
+  real values** — one stored `0` was really 3,514. The genuine rows are sound
+  (they match Open Cloud 106/111, 70/70, 511/539); only the filled ones are
+  fiction, and they bias the baseline DOWNWARD, so a real decline reads as
+  normal. Use `npm run ccu-baseline`, which reads Open Cloud directly. F18.
+- **Drop the final `HalfHour` bucket, always.** The PCU carry-forward phantom of
+  F16 is not confined to `OneDay`: at `HalfHour` the last bucket comes back
+  byte-identical to the one before it (11:30 and 12:00 equal on three universes
+  at 11:44Z). It is not flagged `partial` and duplicating a true reading means it
+  passes any plausibility check. `ErrorCount` and the crash metrics do not do
+  this. F19.
 - Comparison engine: split metrics into RATE (conversion, ARPPU, ARPDAU,
   retention %, funnel completion %) vs VOLUME (revenue, DAU, paying users,
   sessions). Only rate metrics are safe to compare across a growth window;

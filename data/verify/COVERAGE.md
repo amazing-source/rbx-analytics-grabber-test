@@ -445,3 +445,80 @@ method (version band, script path, or comment-text match against
 
 **Gap that remains:** 10399712766 has no error export at all. It is also the
 game with an unexplained payer collapse, so that gap is load-bearing.
+
+## F18 — 77% of the corpus's half-hour PCU rows are fabricated zeros (2026-08-25)
+
+The gateway truncates sub-daily windows to the final 24h. The exporter then
+gap-fills every unserved slot inside the requested window as `FILLED_ZERO` —
+and CLAUDE.md already warns, in the same paragraph that describes the
+truncation, that **"absence outside the served span is NOT zero."** The exporter
+does it anyway, so the two rules contradict each other in the files.
+
+Measured by diffing every corpus `HALF_HOUR` `PeakConcurrentPlayers` row against
+Open Cloud, which serves the same metric across the full 28-day retention
+window:
+
+| universe | genuine rows | agree with Open Cloud | `FILLED_ZERO` rows | agree |
+|---|---|---|---|---|
+| 10030829154 | 111 | 106 | **390 (77%)** | **0** |
+| 10399712766 | 70 | 70 | **143 (66%)** | **0** |
+| 9963622286 | 539 | 511 | **300 (36%)** | **0** |
+
+Every filled row is a real, non-zero CCU value. `2026-08-14T20:00Z` on
+10030829154 is stored as `0` and was **3,514**. The five/28 genuine rows that
+differ are the freeze policy working as designed (first settled read kept) plus
+the bucket at the capture edge — not a source disagreement.
+
+**Consequence:** any time-of-day analysis run off `metrics/*.csv` is reading
+mostly fiction, and it fails in the dangerous direction — a fabricated zero
+makes the baseline *lower*, so a genuine decline reads as normal. It also
+contaminates `*.daily.csv`, which is the already-known F13.
+
+**Not yet fixed.** The narrow fix is to stop gap-filling sub-daily granularities
+entirely: the served span is knowable (the gateway's own response bounds it) and
+absence outside it is unknown, not zero. Until then, `npm run ccu-baseline`
+reads Open Cloud directly and never touches the CSVs.
+
+## F19 — the PCU carry-forward phantom fires at HalfHour too (2026-08-25)
+
+F16 records `PeakConcurrentPlayers` carrying its last value forward into a day
+that has not happened when `endTime` reaches past today, and documents it at
+`OneDay`. It does the same at `HalfHour`: with `endTime` set to tomorrow 00:00Z
+— the *correct* ask for including today — the final bucket comes back
+byte-identical to the one before it.
+
+Measured 2026-08-25 at 11:44Z, one query per universe:
+
+| universe | 11:00 | 11:30 | 12:00 |
+|---|---|---|---|
+| 10030829154 | 2,872.3 | 3,036.5 | **3,036.5** |
+| 10399712766 | 3,648.1 | 3,812.7 | **3,812.7** |
+| 9963622286 | 1,865.1 | 1,853.8 | **1,853.8** |
+
+Exact equality on three unrelated universes, on a metric that never repeats a
+value otherwise. `ErrorCount`, `ClientCrashRate15m` and `OomUnexpectedExits` do
+not do this — it stays PCU-specific.
+
+**Always drop the last half-hour bucket.** It is not marked `partial`, carries
+no distinguishing status, and duplicating the true final reading means it
+survives any "is this value plausible" check.
+
+## F20 — Open Cloud serves HalfHour across the whole 28-day window (2026-08-25)
+
+CLAUDE.md says half-hour windows are "clamped to the final 24h". That is a
+**gateway** limit, and it does not apply to Open Cloud. Measured on
+10030829154, `PeakConcurrentPlayers` at `HalfHour`:
+
+| window asked | returned |
+|---|---|
+| 1d | 25 pts, 08-25T00:00 .. 12:00 |
+| 3d | 121 pts, 08-23 .. |
+| 7d | 313 pts, 08-19 .. |
+| 14d | 649 pts, 08-12 .. |
+| 27d | **1,321 pts, 07-29 ..** |
+| 31d | 400 — "exceeds the data retention period of 28 days" |
+
+So the ceiling is the metric's own 28-day retention, not a sub-daily clamp, and
+the error names it. This is what makes a time-of-day baseline 27 days deep
+available on a first run instead of accumulating one grab at a time — and it is
+why F18 is worth fixing rather than working around.

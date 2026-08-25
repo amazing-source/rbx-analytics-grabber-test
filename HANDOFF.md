@@ -795,3 +795,92 @@ fell), product type (DevProduct and GamePass together), composition, and a
 Roblox-wide change (Waterslide's and Brainrot's attributed conversion *rose*
 over the same days). Knife Farm's Gamebeast 403 does **not** explain it — first
 seen 15 Aug 19:46Z, three days after. See the `aug-12-conversion-step` memory.
+
+---
+
+## Session 2026-08-25 — v1711 verified unfixed, Knife Farm's silent sell break, the portfolio curve
+
+### Waterslide (`10030829154`) — the 23 Aug fix list was never applied
+
+Read the **live root place `139617346573330` at v1711** over MCP, read-only.
+**None of the six defects is fixed.** Two guards were added that address no
+reported mechanism: `PlayerService:19` (`if not serviceInit then return end`,
+protects only the reward call) and `Convert:273` (`if not QualityColor then
+return end`, guards the container while the reported nil-*argument* throw at
+274 and the shadowed blind clone at 275 both remain).
+
+Exact patches published: **https://claude.ai/code/artifact/076be0a2-aadd-421a-b5a0-7f35ab150194**
+
+| # | Defect | v1711 |
+|---|---|---|
+| 1 | `GoShop_Raft:605-609` `CanvasPosition` loop | present, verbatim |
+| 2 | `GoShop_Raft:102` unguarded `PlayerData.Get()` | present |
+| 3 | `GoShop_Raft:570,581` hardcoded raft Id 2 | present |
+| 4 | `PlayerService:53` + unbounded wait at `:39` | present, verbatim |
+| 5 | `Convert:274-275` | wrong half guarded |
+| 6 | Grid 132% overflow | present, **and a 2nd instance** |
+
+**New this session, not in the 23 Aug report:**
+- **The loop cannot exit, and now we know exactly why.** `calcPos` is computed
+  once from `AbsolutePosition.Y` (screen space) written into `CanvasPosition`
+  (canvas space), which Roblox **clamps** — read-back never equals it.
+  `ClearTutorial:543-550` destroys only finger UI and stores no thread handle,
+  so it **cannot** cancel the loop, and `task.spawn(ctrl.CheckTutorial)` fires
+  from *both* `OnOpen:623` and `OnNotify:637`. Copies stack and fight.
+- **Defect 3's permanent stick is located.** `ctrl.tutorial.raftFrame` is
+  assigned only at `:514`, inside `if item.Id == 2` (`:513`), inside the
+  `isFirstBuild` branch of `RefreshList`. If raft 2 is not rendered, `:576`
+  returns silently and step 5 **can never complete** — no finger, no error.
+  Meanwhile `OnBuyBtnDown:237` already fires `Complete("toRaftShop","Main")`
+  after *any* successful purchase, so the Id-2 test was never needed.
+- **The root cause is one line, not 81.** `GameEnter.Start()` runs
+  `InitMgr → InitController → InitUI → InitService`, and
+  `shared["PlayerData"]` is assigned in `PlayerService.Awake()` — in that last
+  group. Every Mgr/Ctrl/UI Awake runs before the table exists. Census: **89
+  `.Get()` sites on the client, 65 unguarded across 33 modules; 102 including
+  ReplicatedStorage. Zero chain `.Get().field`** — which is what makes a stub
+  safe. Stub must return `GetPassBuff → 0` (not nil; callers do arithmetic),
+  `IsHavePass → false`, `Get → nil`. `Online:121` reads `.InitData` as a
+  *field* with a nil check — **not** a bug, checked.
+- **`Tutorial_Main_5_ToRaftShop` 81.9%** (was 77–78% before 21 Aug; target
+  0.95). `Tutorial_Main_10_BuyEgg` flat 63–68% all month, untouched.
+- Error export filed `errors_2026-08-25_1732_v1711_147rows.csv`: **zero
+  signatures first seen in V1711.** Confirms nothing new shipped *and* is not
+  evidence the defects are gone — defect 1 is silent by construction.
+
+### Knife Farm (`9610561918`) — v3831 broke the sell path, silently
+
+Core loop is buy knives from a conveyor → place → sell → repeat. Three player
+reports (one with a clip) say **selling fails, so cases cannot be bought
+either** — the loop is fully broken for those players.
+
+- **`v3831` published 2026-08-21 16:21:21Z, `is_published=true`** — the live
+  version, matching the report. (`v3834` is live per `ErrorCount`/`PlaceVersion`
+  but absent from `place-versions.csv` — F12 again.)
+- **The break is silent.** Errors first-seen at version ≥3831: 116 / 4k / 308 /
+  473 / 858 across 21–25 Aug ≈ **5,700 events, against the 2,022,535 v3831
+  inherited.** No error export will find this.
+- **How many players is NOT derivable from telemetry.** Three instruments, three
+  failures: **zero funnels instrumented on this game at all**; `IsNewUser`
+  returns nothing from 08-21 onward; `TotalSessionsEndedInBucket` degenerate
+  (§0c). The failure *condition* in code is the only route — a numeric
+  threshold or save-size limit would scale with progress and hit payers first,
+  which fits the reports.
+- **Do not claim v3831 caused the decline.** DAU was already falling from 08-19
+  and payers ran 812 (06 Aug) → 236 (18 Aug) → 93 (24 Aug), well before it. The
+  defensible claim: an already-declining game then had its core loop broken for
+  its most established players.
+- **Next: Studio connection to Knife Farm, read-only**, to find the failure
+  condition. Ask the reporter what the clip shows (button dead? cash unchanged?
+  prompt appears and fails?) — that narrows the search to one function.
+
+### Banana Monkey (`10399712766`) — nothing broke; the appeal decayed
+
+`ForwardD1Retention` filtered to **`AcquisitionSource = HomeRecommendation`**
+(one source, so mix is controlled out): **27.5% (23 Jul) → 18.7% (31 Jul) →
+13.7% (09 Aug) → 10.3% (23 Aug).** Continuous, monotonic, no step, no date.
+Kills deploy, mix, technical and funnel-break explanations together. It was
+*liked* at 27.5% — this is a thin loop revealing itself, not a defect.
+**Only `FUNNEL_TYPE_ONBOARDING` is instrumented (3 usable steps, all 95–96%);
+the rebirth loop is unmeasured.** Instrumenting it is the precondition for any
+content decision here.

@@ -25,6 +25,13 @@
 #               only route to error text. Not regenerable from data/raw/, and
 #               not re-downloadable once a version ages out of the dashboard.
 !/data/exports/
+# data/platform/ COMMITTED. Snapshots of the public Roblox discovery board and
+#                its combined CCU. A snapshot is a MOMENT — there is no API that
+#                serves last Tuesday's board, so one that is not committed is
+#                gone. This is the series that answers "did the platform shrink
+#                or did we lose share", which on 2026-08-25 was unanswerable for
+#                exactly this reason.
+!/data/platform/
 # grab-report.json records what each grab ASKED for and what came back. It is
 # not derivable from the raw bundles (a request that failed left no capture),
 # and `npm run audit-plan` reads it to tell a proven query shape from a guess.

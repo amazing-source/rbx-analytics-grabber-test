@@ -190,6 +190,83 @@ degrades the first session too. On 9963622286: `FirstMorph` 99.3% flat and
 `OnboardingComplete` 100% flat, while `Rebirth1` fell 9.6pp at *identical*
 returning-player mix across 25 of 25 matched pairs.
 
+## 0c. A CCU drop is an alarm, not a diagnosis — triage in this order
+
+Measured 2026-08-25, and it inverts the instinct. A concurrents drop is the
+loudest signal this portfolio produces and the least informative one. Run these
+in order and **stop as soon as one answers it**; each is minutes, and steps 1–2
+resolve most alarms before any code is opened.
+
+1. **Is it real?** `npm run ccu-baseline -- <id>`. Matched half-hour slots
+   against the same slots on prior days, so a part-finished day is never
+   measured against whole ones. Most "we dropped 50%" alarms die here.
+2. **Is it us, or everyone?** Run it across every game in the portfolio, and
+   check `npm run platform-ccu` history. **If they moved together there is no
+   bug in any of them** and nothing in the code will explain it. On 2026-08-25
+   five unrelated universes — including a dead one at ~10 CCU — fell together
+   on 24 Aug; crash rates, session length and impression-to-play conversion
+   were all flat, and Banana Monkey had shipped nothing since 21 Aug.
+3. **Did something ship?** `ErrorCount` by `PlaceVersion` dates every deploy
+   independently of `place-versions.csv` (which truncates — F12).
+4. **Reach or retention?** Decompose into impressions × conversion. Impressions
+   collapsing with conversion flat = players stopped *arriving*; conversion
+   falling with impressions flat = they stopped *staying*. Opposite fixes.
+   Measured 22→24 Aug: impressions −46%/−36%/−28% against conversion
+   −8%/−13%/−20%, so exposure was ~65–85% of the loss on all three.
+5. **Only if retention or session length actually moved**, open the game — and
+   then **funnel first, error export second** (§5c: the expensive defect is
+   routinely silent).
+
+**So: bug hunt when retention or session length moved, or when a publish sits in
+the window. Never on a CCU move alone.** Twice on 2026-08-25 the defect that
+mattered emitted zero log lines — Waterslide's `CanvasPosition` loop, and Knife
+Farm's v3831 sell break, whose "errors first seen at version ≥ 3831" totalled
+~5,700 events against the 2,022,535 that version inherited.
+
+**You cannot finish the diagnosis on day 0, and should not try.** What is
+readable when:
+
+| Signal | Available |
+|---|---|
+| CCU, crash rate, `ErrorCount` | now |
+| DAU, revenue, payers, impressions | **+2 days** |
+| Retention | +2 days, and the right edge always reads low |
+| Funnel cohorts | +2 days |
+
+"It's real, it's not portfolio-wide, no deploy, crash rates flat — retention
+reads Thursday" is a complete day-0 answer. Give it and stop.
+
+**An instrument can come back degenerate, and that is not a finding.** On Knife
+Farm `TotalSessionsEndedInBucket` — §1's documented substitute when no funnels
+exist — returned days reading 100%/0% across buckets, totals swinging 13K to
+399K, and nothing at all after 08-18. Say the instrument failed; never read a
+degenerate series as a result.
+
+## 0d. Close your own loop — verification is the analyst's job
+
+The diagnosis is not the deliverable. **Every finding ships with one success
+metric and a date to read it**, and on that date you read it and report the
+result — shipped or not, moved or not, to the same people who got the original.
+
+This is not process hygiene. Measured 2026-08-25: a six-defect fix list with
+line numbers was handed over for 10030829154 on 23 Aug with a stated target of
+`Tutorial_Main_5_ToRaftShop` above 0.95. Two days later a read of the live place
+at v1711 found **none of the six applied** — two unrelated guards had been added
+instead — and the step sat at 81.9%. Nobody had checked. The same studio's
+9963622286 *did* ship its 14–15 Aug fixes and recovered (errors per DAU ~110–130
+→ ~30, D1 8.8% → 12.7–14.1%, `Rebirth1` +8.3pp).
+
+Same analyst, same method, two games: **the one that shipped the fixes improved
+and the one that did not, did not.** So when a report appears to have failed,
+test "was it applied" *before* re-opening the diagnosis — and for a silent
+defect, reading the live place is the only way to answer that.
+
+**Where the analyst's line actually sits.** Name the mechanism, the *class* of
+lever, and its size; the producer picks which lever, who builds it, and when.
+Stopping at "reach is falling" is an unfinished analysis, not a handoff — reach
+is downstream of retention with a ~4-week lag (§3b), so keep going until
+something causal. But picking the game, the person and the date is not yours.
+
 ## 1. Diagnose bottom-up, not by what looks interesting
 
 Check rungs in order. A break high on the ladder is usually caused by a break
@@ -642,6 +719,39 @@ Useful for "what kind of game is this" and for choosing the right comparison.
 - **Measured on our own games:** D1 retention ~16–20% when healthy; Brainrot's
   break took it to ~10–12% and held. Treat sustained sub-13% D1 on these titles
   as broken, not noisy.
+
+**The whole-portfolio curve, measured 2026-08-25 — read this before promising
+any single game a recovery.** `DailyCohortRetention` by `CohortDay`, 10-day
+window, all four live games:
+
+| | D1 | **D2 holds** | D7 | D30 | `RFYL7PlayDays` |
+|---|---|---|---|---|---|
+| Knife Farm `9610561918` | 18.3% | **49%** | 1.38% | — | 1.43 |
+| Waterslide `10030829154` | 13.9% | **48%** | 1.03% | 0.40% | 1.28 |
+| Banana Monkey `10399712766` | 13.5% | **43%** | 1.71% | 0.66% | 1.33 |
+| Become a Brainrot `9963622286` | 13.4% | **46%** | 2.03% | 0.68% | 1.37 |
+
+Three things follow, and each kills a plausible-sounding plan:
+
+1. **D2 holds 43–49% on all four.** Four codebases, one number — that is a
+   studio-level structural signature, not four coincidences, and it says none of
+   them has an effective between-session hook (§4 "Idle/simulator structure":
+   offline earnings / daily reward / streak is what holds D1→D2). Past D2 the
+   curve is *fine* — 66%, 74%, 87%, 89% day over day. **Prestige loops and
+   content tracks hold D5+ and are irrelevant while half the day-1 returners
+   never come back on day 2.** Monkey has rebirths and Waterslide has six
+   worlds; neither shows up, because almost nobody survives to use them.
+2. **Fixing D2 is worth far less than it looks: +6–7% DAU.** At D1 ≈ 13.5%,
+   keeping more of a small number stays small. Model check: `1 + Σ(D1..D6)`
+   reproduces measured `RFYL7PlayDays` to within 0.05 on all four. The bigger
+   prize is upstream — on Waterslide, tutorial completion 64.8% → 90% projects
+   D1 13.9% → ~18%, roughly **5×** the D2 mechanic fix.
+3. **The distribution ceiling is real and none of them clears it.** A game
+   Roblox promotes needs `RFYL7PlayDays` ≈ 2.0, i.e. the first six days summing
+   to ~100pp. Waterslide's sum is **30pp**. That is a 3× gap, not a tuning gap.
+   Knife Farm is the proof it cannot be fixed downstream: **best retention of
+   the four, and it still went R$1,265,577/day (April) → R$42,461 (August),
+   −97%.** Do not promise a recovery that requires beating this ceiling.
 
 Benchmarks in `series.json` are **similarity cohorts, not genre** on these
 universes (check `benchmarkType`), so say "peer cohort", not "genre median".

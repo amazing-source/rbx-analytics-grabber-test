@@ -631,3 +631,33 @@ the orphan fix holds, wire `anomaly.ts` to the Discord webhook.
 - All four games −43% to −58% vs their own 22-day mean on 24 Aug; shape identical, spread 4× → needs one game outside the portfolio to settle seasonal vs not
 
 **Next:** commit this branch (66 commits unpushed, and `data/exports/` is newly tracked — 2.4 MB of otherwise-unrecoverable error text), then the 12 Aug payer question on 10399712766 once an error export exists.
+
+## 2026-08-25 — CCU baselines rebuilt on matched slots; v1711 verified unfixed; four-game curve
+
+**State:** branch `grabber-correctness` · 67 ahead of `main` · **5 unpushed** vs `origin/grabber-correctness` · dirty (`.gitignore`, `CLAUDE.md`, `COVERAGE.md`, `web/package.json`, + `data/platform/`, 2 new scripts, 1 new export)
+**Gates** (measured now, not copied): verify **23 pass · 2 fail · 8 skip, exit 1** (both fails documented + held) · audit-plan **140 templates, 0 failures, exit 0** · test **44/44, exit 0**
+
+**Landed:** `npm run ccu-baseline` (matched XX:00/XX:30 UTC slots, 4 baselines + rank + per-slot profile, reads Open Cloud not the CSVs) · `npm run platform-ccu` (public discovery board snapshot → `data/platform/`, committed via new `.gitignore` negation; first snapshot 269 games / 7,537,949 CCU) · Waterslide patch set published → `https://claude.ai/code/artifact/076be0a2-aadd-421a-b5a0-7f35ab150194`
+
+**Learned → routed:**
+- CCU-drop triage ladder + "what is readable on day 0" + degenerate-instrument rule → **SKILL.md §0c**
+- Verification is the analyst's job; mechanism-vs-decision line → **SKILL.md §0d**
+- Four-game cohort curve, D2 ceiling, RFY ≈ 2.0 bar → **SKILL.md §4**
+- F18 corpus half-hour rows 77% fabricated · F19 PCU carry-forward at HalfHour · F20 Open Cloud serves HalfHour across all 28d → **COVERAGE.md**, summarised in **CLAUDE.md**
+- `scoreSeries()` blind spot; both new tools → **CLAUDE.md**
+- v1711 verification, Knife Farm v3831, Monkey appeal decay → **HANDOFF.md**
+
+**Disproved (mine, same session):**
+- "Late-August/school seasonality" — read off a **half-day** window. The complete 08-24 day is flat across the clock (Waterslide deepest −54% at 03:00 CEST, shallowest −29% at 20:00), and the three games disagree on which hours are worst.
+- "Waterslide needs a rebirth loop / Monkey's loop is thin" — asserted **before** pulling `DailyCohortRetention`. The curve says the constraint is D1→D2 (43–49% hold on all four); loops hold D5+ and are irrelevant above that cliff.
+- "A quiet `npm run anomaly` means CCU is fine" — it scored PCU z −0.10/−0.20/−1.70 on three games at or one off their 28-day floor.
+- "The 23 Aug Waterslide fixes shipped" — code read at v1711 says none of six did.
+
+**Open:**
+- **Knife Farm sell path broken since v3831 (silent).** Affected-player count is not derivable — zero funnels, `IsNewUser` dark after 08-20, session buckets degenerate. → **needs read-only Studio on `9610561918`** to find the failure condition; ask the reporter what the clip shows.
+- **Waterslide patches unapplied.** → hand the artifact to the dev; read `Tutorial_Main_5_ToRaftShop` (81.9%, target 0.95) two days after any publish.
+- **Banana Monkey mid-game unmeasured.** → instrument a first-session funnel (8–12 steps) before any content decision; check whether a dev place exists (Waterslide's is universe `10100945543`).
+- **`platform-ccu` has one snapshot.** → schedule daily or step 2 of §0c stays unanswerable.
+- 12 Aug payer collapse on `9610561918` + `10399712766` — still unexplained.
+
+**Next:** schedule `platform-ccu` daily, then read-only Studio on Knife Farm to locate the v3831 sell failure condition.

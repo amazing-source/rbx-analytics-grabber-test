@@ -22,7 +22,9 @@
     "splits": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/splits.ts",
     "anomaly": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/anomaly.ts",
     "anomaly-places": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/anomaly-places.ts",
-    "notify-test": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/notify-test.ts"
+    "notify-test": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/notify-test.ts",
+    "ccu-baseline": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/ccu-baseline.ts",
+    "platform-ccu": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/platform-ccu.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
