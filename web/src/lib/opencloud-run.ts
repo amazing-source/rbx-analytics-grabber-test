@@ -19,22 +19,64 @@ import { ingestCaptures } from "@/lib/store";
 import { runOpenCloudGrab, type CloudGrabResult } from "@/lib/opencloud-grab";
 import { finishProgress, updateProgress } from "@/lib/grab-progress";
 
-/** Whatever the last grab discovered for this universe.
+/** The universe's place IDs, straight from develop.roblox.com.
+ *
+ *  Unlike funnel names, places are NOT developer-defined values we would have
+ *  to guess: this endpoint is a plain unauthenticated GET and it is the same
+ *  one the deploy log already uses. That distinction matters, because
+ *  `perfSpecs()` and `halfHourSpecs()` both return [] with no places — so on a
+ *  universe whose dashboard was never opened, the ENTIRE technical rung plus
+ *  PeakConcurrentPlayers were silently never requested. Not failed, not
+ *  skipped, just absent, which reads as a game that never crashed. Measured
+ *  2026-08-26 on 10565445771: 71 requests, zero perf shapes among them.
+ *
+ *  Failure here is non-fatal and returns [] — the grab still runs, it just
+ *  loses the Place-scoped half, exactly as it did before. */
+async function fetchPlaces(universeId: string): Promise<string[]> {
+  const ids: string[] = [];
+  let cursor = "";
+  try {
+    for (let page = 0; page < 10; page++) {
+      const url = `https://develop.roblox.com/v1/universes/${universeId}/places?limit=100&sortOrder=Asc${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`;
+      const r = await fetch(url);
+      if (!r.ok) break;
+      const j = (await r.json()) as { data?: { id: number }[]; nextPageCursor?: string | null };
+      for (const p of j.data ?? []) ids.push(String(p.id));
+      if (!j.nextPageCursor) break;
+      cursor = j.nextPageCursor;
+    }
+  } catch {
+    /* non-fatal — see above */
+  }
+  return ids;
+}
+
+/** Whatever the last grab discovered for this universe, plus its place IDs.
  *
  *  Funnel names are developer-defined and per-universe. This path cannot run
  *  the gateway's discovery phase (it replays in the browser session), so it
  *  inherits instead of guessing — the standing rule is that an absent request
  *  is honest while an invented one produces a false finding. No prior grab
- *  means no funnel requests, and getGrabPlan says so in its warnings. */
+ *  means no funnel requests, and getGrabPlan says so in its warnings.
+ *
+ *  Places are the exception, and are fetched rather than inherited: see
+ *  fetchPlaces(). A place list already in the corpus still wins, so a grab
+ *  never loses a place that develop.roblox.com happens to 500 on today. */
 export async function lastDiscovered(universeId: string): Promise<Record<string, string[]> | null> {
+  let discovered: Record<string, string[]> | null = null;
   try {
     const dir = await resolveDataDir();
     const raw = await fs.readFile(path.join(dir, "games", universeId, "grab-report.json"), "utf8");
     const j = JSON.parse(raw) as { discovered?: Record<string, string[]> };
-    return j.discovered ?? null;
+    discovered = j.discovered ?? null;
   } catch {
-    return null;
+    /* no prior grab — places below may still carry the technical rung */
   }
+  const known = (discovered as { __places?: string[] } | null)?.__places ?? [];
+  if (known.length) return discovered;
+  const places = await fetchPlaces(universeId);
+  if (!places.length) return discovered;
+  return { ...(discovered ?? {}), __places: places } as Record<string, string[]>;
 }
 
 /** Default window: the same 28 days the extension path uses, snapped to UTC

@@ -522,3 +522,109 @@ So the ceiling is the metric's own 28-day retention, not a sub-daily clamp, and
 the error names it. This is what makes a time-of-day baseline 27 days deep
 available on a first run instead of accumulating one grab at a time — and it is
 why F18 is worth fixing rather than working around.
+
+## F21 — a fresh universe silently got NO technical rung at all (2026-08-26)
+
+Measured on `10565445771` and `10638354731`, the two games handed over on
+2026-08-26. Both are universes whose dashboard had never been opened, so the
+corpus held no prior grab for them.
+
+`buildSeedTemplates()` passes `discovered.__places` into `perfSpecs()` and
+`halfHourSpecs()`, and **both return `[]` when the place list is empty**:
+
+```
+function perfSpecs(places, firstSeenVersions = []) {
+  if (!places.length) return [];      // default-plan.ts:219
+```
+
+`lastDiscovered()` sourced that list only from a **previous** `grab-report.json`.
+No previous grab ⇒ no places ⇒ the entire Place-scoped half of the plan was
+never generated. On Verity's first pass that was **71 requests with zero perf
+shapes among them**: no `ClientCrashRate15m`, `ClientCrashCount`,
+`ServerCrashCount`, `OomUnexpectedExits`, `ClientFpsP10`, memory, CPU,
+`ServerFrameRateP10` — and no `PeakConcurrentPlayers`, which lives in
+`perfSpecs()` too, so the game had no CCU series either.
+
+**The failure mode is the one the grab report exists to prevent.** These were not
+failures and not skips — the requests were never constructed, so nothing appeared
+in any section of `grab-report.md`. A reader sees 60 metrics returning data and
+no mention of crashes, which is indistinguishable from a game that never crashed.
+
+The comment on that early return ("an absent request is honest") is correct **for
+funnel names**, which are developer-defined values that can only be discovered.
+It is wrong for places: `GET https://develop.roblox.com/v1/universes/{id}/places`
+is an unauthenticated GET that needs no session cookie, and the deploy log
+already relies on it. Fixed in `opencloud-run.ts` by fetching places there, with
+a place list already in the corpus still winning so a transient 500 cannot drop
+one. Plan size went **107 → 198 requests** on Verity; the second pass returned
+the full technical rung.
+
+**Also measured here, and it is a separate trap:** asking perf metrics from
+outside their 28-day retention 400s the *whole family* rather than clamping.
+Verity's window started 2026-07-25 and every one of 27 perf shapes came back
+`"The requested start time (2026-07-25) exceeds the data retention period of 28
+days … Data is only available from 2026-07-29 onwards."` The error names the
+floor; re-asking from 07-29 dropped it to 5 failures. Chunking legalises long
+windows for metrics that *have* the data — it cannot legalise a start date
+before the horizon.
+
+## F22 — funnels ARE reachable on Open Cloud; the blocker is an unpolled 202 plus a dead `FunnelName` filter (2026-08-26)
+
+**Supersedes the first version of this entry, written earlier the same day,
+which concluded funnels were unreachable and that rung 6 needed the browser.
+That was wrong, and it was wrong for a reason worth recording.**
+
+Ground truth from the Creator Dashboard Funnels page: **9 funnels** on
+`10565445771` (Conversation, Onboarding, Session, FollowMe, Messages,
+MessagePack, EndingOthers, Notebook, Ending) and **4** on `10638354731`
+(Onboarding, Progression, MapReach 2, MapReach). Both games had just been
+written up as having no readable funnels.
+
+Two independent faults stacked, and either alone yields an empty result:
+
+1. **Funnel queries are ASYNC.** They answer HTTP **202** with `done:false` and
+   a `path`. Every ad-hoc probe written for this investigation read that as the
+   final answer and reported `0 series`. The poll URL is
+   `https://apis.roblox.com/analytics-query-api/{path}` — the
+   `analytics-query-api/` prefix is part of it, and one probe used
+   `apis.roblox.com/{path}`, which polls nothing. `opencloud-grab.ts:208`
+   already had this right; the probes did not inherit it.
+2. **The `FunnelName` filter is accepted and matches nothing.**
+   `FunnelName In ["Onboarding"]` on a universe whose Onboarding funnel holds
+   1,140,668 users returns **0 series** — identical to a deliberately fake
+   name. Remove the filter and the same query returns every step.
+
+**Filters are not broken in general.** The same metrics filter correctly by
+`Platform` (Computer returned ~33% of every step, matching its DAU share) and by
+`IsNewUser`. `FunnelName` is the single broken dimension.
+
+Legality, enumerated by probing until the API named each case:
+
+| Dimension | On funnel metrics |
+|---|---|
+| `FunnelStep` | the only breakdown that works |
+| `FunnelName` | filter-only, and the filter returns nothing |
+| `Platform`, `IsNewUser` | filter-only, and functional |
+| `FunnelId`, `FunnelSessionId`, `FunnelStepName`, `FunnelType`, `Place`, `AcquisitionSource`, `CohortDay`, `PlaceVersion` | "not supported for metric ..." |
+
+All nine funnel metrics answer at `None`; only `FunnelCohortCompletionRate` and
+`FunnelCohortSessionCompletionRate` also answer at `OneDay`, and those two are
+what date a break. `FunnelUserTotalCount` 400s at `OneDay`.
+
+**The real limitation, and it is narrower than "unreachable":** with no working
+`FunnelName` filter, `FunnelStep` returns the **union across all funnels keyed
+by step index**. Where funnels share an index the label is whichever one won and
+the count is a blend — Seal's index 1 came back `Neighbourhood` (from MapReach)
+though Onboarding's step 1 is `Started`, and merged step-2 completion read
+**66.65%** against the dashboard's **98.15%**. So step names, per-step volumes
+and daily trends are sound; **a single funnel's completion rate is not**, unless
+the game has exactly one funnel.
+
+`dimension-values` remains a dead end: it accepts
+`{metric, dimension, startTime, endTime}` and answers `200 {"values":[]}` for
+everything, positive controls included. The `FunnelName` error message
+recommends it; the recommendation does not work. That part of the original entry
+stands.
+
+Routed to the `liveops-diagnosis` skill as a step-by-step recipe at the top of
+its funnel section, because this failure has now recurred on four games.

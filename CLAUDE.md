@@ -491,6 +491,53 @@ with `query.dimensions:[{namespace,name}]` returns the real values; the plan is
 built from those. If discovery finds nothing, emit NO funnel requests rather
 than guessing — an absent request is honest, an empty result is a false finding.
 
+**PLACES ARE NOT LIKE FUNNEL NAMES — fetch them, never inherit them.** The rule
+directly above cost the entire technical rung on both games handed over
+2026-08-26. `perfSpecs()` and `halfHourSpecs()` return `[]` with no places, and
+`lastDiscovered()` read places only from a PREVIOUS grab — so on a universe whose
+dashboard was never opened, every crash / FPS / memory / CPU shape **and
+`PeakConcurrentPlayers`** was never constructed. Not failed, not skipped: absent,
+and therefore absent from `grab-report.md` too, which reads exactly like a game
+that never crashed. Measured: Verity's first pass was 71 requests with zero perf
+shapes; after the fix, 198. Funnel *values* are developer-defined and genuinely
+undiscoverable without the browser; **places are a plain unauthenticated GET**
+(`develop.roblox.com/v1/universes/{id}/places`, already the deploy log's source),
+so `lastDiscovered()` now fetches them, with a corpus place list still winning.
+F21 in `data/verify/COVERAGE.md`.
+
+**And perf metrics 400 the whole family if the START date precedes the 28-day
+horizon** — they do not clamp. All 27 of Verity's perf shapes failed with *"start
+time (2026-07-25) exceeds the data retention period of 28 days … available from
+2026-07-29 onwards"*. The error names the floor; obey it. Chunking legalises a
+long window for data that exists, not a start date before the horizon.
+
+**FUNNELS ARE REACHABLE ON OPEN CLOUD. Never write "no funnels" again without
+running this exact query** — the mistake has now been made on four games, always
+ending in "not instrumented" about a game with a full Funnels page.
+
+    POST /analytics-query-api/v1/universes/{id}/metrics
+    { metric, granularity: "None", startTime, endTime,
+      breakdown: ["FunnelStep"], limit: 500 }      // NO FunnelName filter
+
+Two faults stack, and either alone returns an empty series:
+1. **Funnel queries are ASYNC — HTTP 202, `done:false` + `path`. Poll
+   `https://apis.roblox.com/analytics-query-api/{path}`** (that prefix is part
+   of the URL; `apis.roblox.com/{path}` polls nothing). `opencloud-grab.ts:208`
+   is the correct loop — reuse it rather than writing a probe without it.
+2. **`FunnelName` as a filter returns 0 series always**, even for a name read
+   straight off the dashboard tab. `Platform` and `IsNewUser` filters DO work on
+   the same metrics, so filters are not broken generally — `FunnelName` alone is.
+
+`FunnelStep` is the only legal breakdown. All nine funnel metrics answer at
+`None`; only `FunnelCohortCompletionRate` / `FunnelCohortSessionCompletionRate`
+also answer at `OneDay` (those date a break). **Caveat: with no working
+`FunnelName` filter the steps are the UNION across all funnels keyed by index**,
+so a merged completion rate is a blend and must never be quoted as one funnel's
+(Seal: merged 66.65% vs the dashboard's Onboarding 98.15%). Names, volumes and
+daily trends are sound. Funnel NAMES come from the dashboard Funnels tabs.
+`dimension-values` is a dead end — 200 `values: []` for everything, positive
+controls included. Full recipe in the `liveops-diagnosis` skill; F22 in COVERAGE.
+
 **A 200 with zero data points is not evidence of anything.** It means the query
 matched nothing. Check the dashboard before concluding the feature is unused.
 Every attempt is recorded to `data/games/<id>/grab-report.md` (returned data /

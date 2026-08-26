@@ -1,0 +1,477 @@
+<title>Verity Companion Baseline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  color-scheme: light;
+  --ground:#F5F5F8; --surface:#FFFFFF; --surface-2:#EDEDF2;
+  --ink:#15161C; --ink-2:#3D3F4B; --muted:#6B6D7C; --faint:#9A9CAA;
+  --rule:#DEDEE6; --rule-2:#C9C9D4;
+  --accent:#B87A00;         /* Verity amber, dropped in chroma for light ground */
+  --accent-soft:#F5E7C4;
+  --neg:#A93226; --neg-soft:#F6E0DD;
+  --pos:#2C6B4A;
+  --ctx:#AFB1BE;            /* context lines in charts */
+  --shadow:0 1px 2px rgba(21,22,28,.05), 0 8px 24px -12px rgba(21,22,28,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --ground:#111218; --surface:#191A22; --surface-2:#22242E;
+    --ink:#F2F2F6; --ink-2:#C9CAD4; --muted:#9698A6; --faint:#6E7080;
+    --rule:#2C2E3A; --rule-2:#3B3E4C;
+    --accent:#E8A93B; --accent-soft:#3A2F16;
+    --neg:#E0705F; --neg-soft:#3A211D;
+    --pos:#5EA37C;
+    --ctx:#565969;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --ground:#111218; --surface:#191A22; --surface-2:#22242E;
+  --ink:#F2F2F6; --ink-2:#C9CAD4; --muted:#9698A6; --faint:#6E7080;
+  --rule:#2C2E3A; --rule-2:#3B3E4C;
+  --accent:#E8A93B; --accent-soft:#3A2F16;
+  --neg:#E0705F; --neg-soft:#3A211D;
+  --pos:#5EA37C;
+  --ctx:#565969;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:16.5px; line-height:1.62; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px; margin:0 auto; padding:0 28px 96px}
+.col{max-width:660px}
+
+/* ---- masthead ---- */
+header.top{padding:64px 0 0}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11.5px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+}
+h1{
+  font-family:"Instrument Serif",Georgia,serif; font-weight:400;
+  font-size:clamp(44px,7vw,76px); line-height:1.02; letter-spacing:-.015em;
+  margin:14px 0 0; text-wrap:balance;
+}
+h1 em{font-style:italic; color:var(--accent)}
+.sub{color:var(--ink-2); font-size:18px; margin:18px 0 0; max-width:56ch}
+.idline{
+  font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--muted);
+  margin-top:26px; padding-top:18px; border-top:1px solid var(--rule);
+  display:flex; flex-wrap:wrap; gap:8px 26px;
+}
+.idline b{color:var(--ink-2); font-weight:500}
+
+/* ---- verdict ---- */
+.verdict{
+  margin:44px 0 0; background:var(--surface); border:1px solid var(--rule);
+  border-left:3px solid var(--accent); border-radius:3px; padding:26px 30px; box-shadow:var(--shadow);
+}
+.verdict .claim{
+  font-family:"Instrument Serif",Georgia,serif; font-size:27px; line-height:1.28;
+  letter-spacing:-.01em; margin:10px 0 0; text-wrap:balance;
+}
+.verdict p{color:var(--ink-2); margin:14px 0 0; font-size:15.5px}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px}
+.chip{
+  font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.06em;
+  text-transform:uppercase; padding:5px 10px; border-radius:2px;
+  border:1px solid var(--rule-2); color:var(--muted); background:var(--surface-2);
+}
+.chip.bad{color:var(--neg); border-color:var(--neg); background:var(--neg-soft)}
+.chip.ok{color:var(--pos); border-color:var(--pos); background:transparent}
+
+/* ---- sections ---- */
+section{margin-top:76px}
+.shead{display:flex; align-items:baseline; gap:16px; border-top:1px solid var(--rule-2); padding-top:14px; margin-bottom:26px}
+.shead .tag{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); margin-left:auto}
+.shead h2{
+  font-family:"Instrument Serif",Georgia,serif; font-weight:400; font-size:34px;
+  letter-spacing:-.012em; margin:0; line-height:1.15;
+}
+p{margin:0 0 16px}
+.lede{font-size:17.5px; color:var(--ink-2)}
+strong{font-weight:600}
+code{font-family:"IBM Plex Mono",monospace; font-size:.88em; background:var(--surface-2); padding:1.5px 5px; border-radius:2px; color:var(--ink-2)}
+
+/* ---- stat grid ---- */
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(178px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:3px; overflow:hidden; margin:8px 0 30px}
+.stat{background:var(--surface); padding:18px 18px 16px}
+.stat .k{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.stat .v{font-family:"IBM Plex Mono",monospace; font-size:26px; font-weight:500; letter-spacing:-.02em; margin-top:9px; font-variant-numeric:tabular-nums; line-height:1.1}
+.stat .d{font-family:"IBM Plex Mono",monospace; font-size:12px; margin-top:6px; font-variant-numeric:tabular-nums}
+.d.down{color:var(--neg)} .d.up{color:var(--pos)} .d.flat{color:var(--muted)}
+
+/* ---- tables ---- */
+.tw{overflow-x:auto; margin:6px 0 28px; border:1px solid var(--rule); border-radius:3px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:14.5px; min-width:520px}
+th,td{text-align:left; padding:11px 16px; border-bottom:1px solid var(--rule)}
+th{
+  font-family:"IBM Plex Mono",monospace; font-size:10.5px; font-weight:500; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted); background:var(--surface-2); white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap}
+tr.hi td{background:var(--accent-soft)}
+tr.hi td:first-child{font-weight:600}
+
+/* ---- figure ---- */
+figure{margin:0 0 30px; background:var(--surface); border:1px solid var(--rule); border-radius:3px; padding:22px 22px 14px}
+figcaption{font-size:13.5px; color:var(--muted); margin-top:14px; padding-top:12px; border-top:1px solid var(--rule)}
+.figtitle{font-size:15px; font-weight:600; margin-bottom:2px}
+.figsub{font-size:13px; color:var(--muted); margin-bottom:16px}
+.legend{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:4px; font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--muted)}
+.legend span{display:inline-flex; align-items:center; gap:7px}
+.swatch{width:14px; height:3px; border-radius:2px; display:inline-block}
+svg{display:block; width:100%; height:auto; overflow:visible}
+.gridline{stroke:var(--rule); stroke-width:1}
+.axis{fill:var(--faint); font-family:"IBM Plex Mono",monospace; font-size:10.5px}
+.dlabel{font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:500}
+
+/* ---- callout ---- */
+.callout{border:1px solid var(--rule-2); border-radius:3px; padding:20px 24px; background:var(--surface); margin:0 0 26px}
+.callout .lbl{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:9px}
+.callout p:last-child{margin-bottom:0}
+.callout.warn{border-left:3px solid var(--neg)}
+.callout.warn .lbl{color:var(--neg)}
+
+/* ---- ladder ---- */
+ol.actions{list-style:none; counter-reset:a; padding:0; margin:0}
+ol.actions li{counter-increment:a; position:relative; padding-left:52px; margin-bottom:22px}
+ol.actions li::before{
+  content:counter(a); position:absolute; left:0; top:1px;
+  font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:500; color:var(--accent);
+  border:1px solid var(--rule-2); border-radius:50%; width:30px; height:30px;
+  display:grid; place-items:center;
+}
+ol.actions li b{display:block; margin-bottom:3px}
+ul.plain{padding-left:20px; margin:0 0 16px}
+ul.plain li{margin-bottom:9px}
+
+footer{margin-top:80px; padding-top:22px; border-top:1px solid var(--rule-2); font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--faint); line-height:1.75}
+@media (max-width:640px){ body{font-size:16px} .wrap{padding:0 18px 72px} .verdict{padding:22px 20px} }
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">LiveOps baseline &middot; 2026-08-26</div>
+  <h1>Verity <em>Companion</em></h1>
+  <p class="sub">A story you finish. It reached 1.28&nbsp;million players a day in nineteen days, and turned three days ago.</p>
+  <div class="idline">
+    <span><b>Universe</b> 10565445771</span>
+    <span><b>Genre</b> Adventure / Story</span>
+    <span><b>Studio</b> buzzword games</span>
+    <span><b>Born</b> 2026-07-25</span>
+    <span><b>Public</b> 2026-08-04</span>
+    <span><b>Life</b> 18.4M visits &middot; 7.47M MAU</span>
+  </div>
+</header>
+
+<div class="verdict">
+  <div class="eyebrow">The claim</div>
+  <p class="claim">Reach turned on 23&nbsp;August after the hook and the return loop had been decaying since the 13th. This is a viral title past its peak, not a broken one.</p>
+  <p>No deploy in the window. No technical fault. The highest-intent traffic cohort never degraded at all &mdash; which is what separates &ldquo;grew faster than its appeal&rdquo; from &ldquo;something broke.&rdquo;</p>
+  <div class="chips">
+    <span class="chip bad">DAU &minus;46.8% from peak</span>
+    <span class="chip bad">CCU &minus;49.6% vs own 7d</span>
+    <span class="chip ok">Crash rate flat</span>
+    <span class="chip ok">No ship in 9 days</span>
+    <span class="chip">D2 hold 35%</span>
+  </div>
+</div>
+
+<section>
+  <div class="shead"><h2>Where it stands</h2></div>
+  <div class="stats">
+    <div class="stat"><div class="k">DAU</div><div class="v">681,316</div><div class="d down">&minus;46.8% vs 08-23 peak</div></div>
+    <div class="stat"><div class="k">Daily revenue</div><div class="v">R$264.9K</div><div class="d down">&minus;56.5% vs 08-21</div></div>
+    <div class="stat"><div class="k">Impressions</div><div class="v">9.22M</div><div class="d down">&minus;36.9% vs 08-23</div></div>
+    <div class="stat"><div class="k">ARPDAU</div><div class="v">R$0.39</div><div class="d down">&minus;75.8% vs 08-13</div></div>
+    <div class="stat"><div class="k">D1 retention</div><div class="v">14.2%</div><div class="d down">peak 24.8% on 08-13</div></div>
+    <div class="stat"><div class="k">D2 hold</div><div class="v">35%</div><div class="d down">portfolio runs 43&ndash;49%</div></div>
+  </div>
+
+  <div class="col">
+    <p class="lede">Today, measured on matched half-hour slots against complete prior days &mdash; the only comparison that does not weigh a part-day against whole ones &mdash; concurrents are <strong>&minus;49.6% against its own last seven days</strong>.</p>
+    <p>The per-slot deficit deepens as the day runs: &minus;24% at 00:00, &minus;31% at 12:00, &minus;38% at 14:30. A defect costs the same share of players in every slot. A deficit that widens through the day is a decline still in progress.</p>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><h2>The whole life</h2></div>
+  <figure>
+    <div class="figtitle">Daily active users, launch to now</div>
+    <div class="figsub">Public launch 04 Aug. Peak 1,281,398 on 23 Aug. Settled days only.</div>
+    <div id="c-dau"></div>
+    <figcaption>Nineteen days from 2,789 to 1.28&nbsp;million, then &minus;46.8% in two. The climb through 13&nbsp;Aug is organic; the step on the 14th is Roblox scaling impressions 47&times;.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <div class="shead"><h2>The mechanism</h2></div>
+  <div class="col">
+    <p class="lede">Five things happened in order, and the order is the diagnosis.</p>
+    <p><strong>Roblox scaled it, hard.</strong> HomeRecommendation impressions went 266,428 on 13&nbsp;Aug to 12,522,663 on the 23rd &mdash; <strong>47&times; in ten days</strong>. Home is 73% of this game's DAU; its distribution is rented, not owned.</p>
+    <p><strong>Retention diluted as the marginal viewer got less interested.</strong> Blended D1 fell from 24.8% to 12.2%. But it did not fall everywhere.</p>
+  </div>
+
+  <figure>
+    <div class="figtitle">Day-1 retention by acquisition source</div>
+    <div class="figsub">Three algorithmic cohorts fell 37&ndash;47%. The deliberate one did not move.</div>
+    <div id="c-d1"></div>
+    <div class="legend">
+      <span><i class="swatch" style="background:var(--accent)"></i> Search &mdash; typed the name</span>
+      <span><i class="swatch" style="background:var(--ctx)"></i> HomeRecommendation, Friends, Others</span>
+    </div>
+    <figcaption>Search users chose this game deliberately, and their day-1 retention is flat across the entire collapse (19.94% &rarr; 19.06%, &minus;4%). Over the same days HomeRecommendation fell 47%, Friends 39%, Others 37%. A broken build degrades the searchers too &mdash; this one didn't.</figcaption>
+  </figure>
+
+  <div class="col">
+    <p><strong>The ranking gate then collapsed.</strong> <code>RFYQualifiedPTR</code> fell 0.0399 to 0.0092, <strong>&minus;77%</strong>. Impression-to-play conversion went 14.37% to 6.67% over the same stretch.</p>
+    <p><strong>Roblox withdrew reach on 23&nbsp;August</strong> &mdash; impressions &minus;36.9% in two days &mdash; and DAU followed within a day.</p>
+    <p>Impressions and conversion are now falling <em>together</em>, which per Indigo's own playbook means a demotion following an appeal drop: fix appeal first, then re-qualify. Reach work alone will not hold.</p>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><h2>What was ruled out</h2></div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Candidate</th><th>The test that killed it</th></tr></thead>
+      <tbody>
+        <tr><td><strong>A bad deploy</strong></td><td>Last publish is <strong>v664, first seen 17&nbsp;Aug</strong>, still live on the 26th &mdash; nine days with no ship. Dated from <code>ErrorCount</code> by <code>PlaceVersion</code>, Roblox's own independent second source. Nothing shipped near the 23rd.</td></tr>
+        <tr><td><strong>A technical fault</strong></td><td>Crash rate <strong>flat at 0.21&ndash;0.32% across the entire 47&times; scale-up</strong>. Server frame rate 59.94 against a 60 target. Client memory 21%. Errors ~2.9&ndash;3.7 per DAU and falling.</td></tr>
+        <tr><td><strong>A platform-wide event</strong></td><td>A simulator handed over the same day, on the same platform, <strong>grew +8% on both 24 and 25&nbsp;Aug</strong>. The 24th was not something that happened to everyone.</td></tr>
+        <tr><td><strong>Traffic-mix artifact</strong></td><td>Rejected in both directions. Pure mix predicts flat per-source rates; three of four sources fell 37&ndash;47%. Mix explains why the blend fell faster than any single source, not the sources themselves.</td></tr>
+        <tr><td><strong>Content exhaustion alone</strong></td><td>Would show retention flat-or-improving while reach fell. Retention fell <em>first</em>, from 13&nbsp;Aug, while reach was still climbing.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><h2>The constraint</h2></div>
+  <div class="col">
+    <p class="lede">The fall is the news. This is the story.</p>
+    <p>Verity converts an unusually good first session into almost no second one. <strong>Only 35% of day-1 returners come back on day 2</strong> &mdash; against 43&ndash;49% on the four games Indigo already runs, which was already the studio's weak spot.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Cohort day</th><th class="num">D1</th><th class="num">D2</th><th class="num">D3</th><th class="num">D5</th><th class="num">D7</th><th class="num">D8</th></tr></thead>
+      <tbody>
+        <tr><td>Retention</td><td class="num">14.23%</td><td class="num">4.91%</td><td class="num">2.55%</td><td class="num">1.85%</td><td class="num">1.89%</td><td class="num">1.80%</td></tr>
+        <tr class="hi"><td>Hold vs prior day</td><td class="num">&mdash;</td><td class="num">35%</td><td class="num">52%</td><td class="num">66%</td><td class="num">101%</td><td class="num">95%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p>Past day 2 the curve is <em>fine</em> &mdash; 66%, 101%, 95%. Whoever survives the second day is genuinely stuck to it. The entire loss is one cliff, one day wide.</p>
+    <p>Which is exactly what the genre predicts:</p>
+    <ul class="plain">
+      <li>Session length <strong>8.17 min and falling</strong> from a 10.20 peak, and the session-length distribution <strong>truncates at 18 minutes</strong>. There is no long tail.</li>
+      <li>Public badge data: the welcome badge is awarded to 100% of players; the two ending badges sit at <strong>9.1% and 9.2%</strong>. About one player in eleven reaches an ending, and that ratio is stable day over day &mdash; a design level, not a regression.</li>
+      <li><code>RFYL7PlayDays</code> <strong>1.38</strong> against the ~2.0 a promoted game needs. The first six days sum to roughly 25 percentage points; the bar is about 100.</li>
+      <li>The store description states a <strong>40-message cap</strong> &mdash; a hard per-session ceiling, consistent with both the 18-minute truncation and the day-2 cliff.</li>
+    </ul>
+    <p>There is no offline-earnings, daily-reward or streak mechanic &mdash; precisely the class that holds day 1 to day 2, and precisely the day Verity loses.</p>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><h2>The funnels</h2><span class="tag">nine of them</span></div>
+  <div class="col">
+    <p class="lede">Conversation, Onboarding, Session, FollowMe, Messages, MessagePack, EndingOthers, Notebook, Ending.</p>
+    <p>Steps merged across all nine by index, whole life. Read the <em>names</em>, the <em>volumes</em> and the <em>trends</em>; the merged rates are a blend across funnels and are not any single funnel's completion.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>#</th><th>Step</th><th class="num">Users</th><th class="num">Step completion</th><th class="num">Churn</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>Submitted</td><td class="num">84,749,451</td><td class="num">100%</td><td class="num">0%</td></tr>
+        <tr><td class="num">2</td><td>Accepted</td><td class="num">73,418,992</td><td class="num">86.63%</td><td class="num">13.37%</td></tr>
+        <tr><td class="num">3</td><td>Delivered</td><td class="num">58,588,133</td><td class="num">79.80%</td><td class="num">20.20%</td></tr>
+        <tr class="hi"><td class="num">4</td><td>First Reply Received</td><td class="num">15,318,870</td><td class="num">26.15%</td><td class="num">73.85%</td></tr>
+        <tr><td class="num">5</td><td>Day 2 Reached</td><td class="num">9,107,671</td><td class="num">59.45%</td><td class="num">40.55%</td></tr>
+        <tr><td class="num">6</td><td>Day 3 Reached</td><td class="num">6,405,862</td><td class="num">70.33%</td><td class="num">29.67%</td></tr>
+        <tr><td class="num">7</td><td>Day 4 Reached</td><td class="num">4,944,595</td><td class="num">77.19%</td><td class="num">22.81%</td></tr>
+        <tr><td class="num">8</td><td>Day 5 Reached</td><td class="num">3,931,910</td><td class="num">79.52%</td><td class="num">20.48%</td></tr>
+        <tr><td class="num">9</td><td>Ending Completed</td><td class="num">1,839,575</td><td class="num">46.79%</td><td class="num">53.21%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p><strong>Steps 5&ndash;8 are a day-by-day return ladder, and it is decaying fast.</strong> Daily cohort completion over the last seven days: Day 4 Reached <strong>67.2% &rarr; 55.5%</strong>, Day 5 Reached <strong>53.0% &rarr; 39.8%</strong>, Ending Completed <strong>22.9% &rarr; 14.3%</strong>. That is the day-2 cliff showing up a second, independent way.</p>
+    <p><code>Delivered</code> meanwhile is flat at 68&ndash;70% across the same days. The conversation mechanic is not degrading. The <em>coming back</em> is.</p>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><h2>What the errors say</h2><span class="tag">dashboard export</span></div>
+  <div class="callout warn">
+    <div class="lbl">The core loop, failing half a million times</div>
+    <p><code>Generated dialogue was rejected by filtering for &lt;Player&gt;</code> &mdash; <strong>512,734 events</strong>, server-side, first seen v446.</p>
+    <p>The AI composed a reply and Roblox's text filter blocked it, so the player asked Verity something and <strong>got nothing back</strong>. It is by far the largest non-cosmetic signature in the game, and it is the most plausible mechanism behind the <strong>73.85% churn at <code>First Reply Received</code></strong>. A player whose first message returns silence has been shown the product failing.</p>
+  </div>
+  <div class="col">
+    <p>Two more that are material:</p>
+    <ul class="plain">
+      <li><strong><code>Monetize:PromptProductPurchase() called with prompt in progress, aborting</code> &mdash; 13,912.</strong> A purchase prompt that never appears is revenue lost outright &mdash; the same defect class that cost 1,844 prompts on Become a Brainrot.</li>
+      <li><strong><code>cannot resume non-suspended coroutine</code> at <code>Packages.Packet:316</code> &mdash; 12,570</strong>, first seen v609. A networking-library bug a specific deploy introduced, in the transport every feature rides on.</li>
+    </ul>
+    <p>Not material, named so nobody re-reports them: the 64-track animation limit (332,195), TopbarPlus version notices, <code>[DayMusicClient]</code> soundtrack warnings, and the mesh/sound/PBR load failures &mdash; cosmetic or self-healing.</p>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><h2>Money</h2></div>
+  <div class="col">
+    <p class="lede">64% GamePass, 36% DevProduct &mdash; a healthier mix than a pure-pass game, since DevProducts are repeatable. Every rate is falling with the dilution.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Metric</th><th class="num">Peak</th><th class="num">25 Aug</th><th class="num">Move</th></tr></thead>
+      <tbody>
+        <tr><td>Payer conversion</td><td class="num">1.82% <span style="color:var(--faint)">08-13</span></td><td class="num">0.68%</td><td class="num" style="color:var(--neg)">&minus;63%</td></tr>
+        <tr><td>ARPPU</td><td class="num">R$106.86 <span style="color:var(--faint)">08-08</span></td><td class="num">R$57.04</td><td class="num" style="color:var(--neg)">&minus;47%</td></tr>
+        <tr><td>ARPDAU</td><td class="num">R$1.61 <span style="color:var(--faint)">08-13</span></td><td class="num">R$0.3889</td><td class="num" style="color:var(--neg)">&minus;76%</td></tr>
+        <tr><td>Daily revenue</td><td class="num">R$609,239 <span style="color:var(--faint)">08-21</span></td><td class="num">R$264,932</td><td class="num" style="color:var(--neg)">&minus;57%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout warn">
+    <div class="lbl">Open question &mdash; unique to this game</div>
+    <p><strong>This is the only game in the portfolio with a variable cost per player.</strong> The description says the AI is paid for per use: <em>&ldquo;AI costs money to run, so unlimited free messages may not always be possible.&rdquo;</em></p>
+    <p>Revenue per DAU is R$0.39, about <strong>$0.00136 per player per day</strong>. If inference costs more than that per player, the game loses money as it grows &mdash; and every DAU number on this page reads the opposite way round.</p>
+    <p>Nobody has told us the unit cost. <strong>Ask before recommending any growth spend.</strong> I have deliberately not modelled it rather than guess at it.</p>
+  </div>
+  <div class="col">
+    <p>Run-rate gap from the 21&nbsp;Aug peak is roughly <strong>$36,150/month</strong>, about $217k capitalised at the 6&times; owner-ask multiple. Two caveats, both material: &times;30 on single days is a simplification, and part of this fall is the unwind of a spike that was never a sustainable level.</p>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><h2>Confidence</h2></div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Tier</th><th>What sits here</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Confirmed</strong><br><span style="color:var(--muted);font-size:13px">measured, cell-level</span></td><td>Every figure on this page; the deploy dates; the crash-rate rule-out; the per-source D1 split; the cohort curve.</td></tr>
+        <tr><td><strong>Likely</strong><br><span style="color:var(--muted);font-size:13px">fits the pattern</span></td><td>That the reach withdrawal on 23&nbsp;Aug is <em>caused by</em> the retention decay rather than coincident with it. The documented RFY mechanism runs on a 28-day signal window, which implies a slower lag than the ~10 days seen here.</td></tr>
+        <tr><td><strong>Unknown</strong></td><td>D30, at 32 days old. And the AI unit cost. <em>Funnels and error text are now in hand &mdash; the earlier claim that they were unreachable was my query being wrong, not a data gap.</em></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <div class="lbl">What would overturn this</div>
+    <p>Impressions recovering to 12M+ with no product change, which would make 23&nbsp;August an algorithmic reshuffle rather than a demotion. Read <code>UniqueUsersWithImpressions</code> and <code>RFYQualifiedPTR</code> on <strong>29 August</strong>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><h2>What to do</h2></div>
+  <div class="col">
+    <p class="lede">There is no defect to fix, so every lever here is a design one. Ranked by expected size.</p>
+    <ol class="actions">
+      <li><b>Build a reason to open it tomorrow.</b> Target cohort day 2, currently 4.91% at a 35% hold. The lever class that holds this exact day is a daily reset &mdash; a fresh message allowance, a daily scenario, a streak. Getting the hold from 35% to the 48% the rest of the portfolio manages is a 20&ndash;50% move on one step, inside the believable band. Read it two days after ship, mix-controlled.</li>
+      <li><b>Fix the filtered-dialogue path.</b> 512,734 blocked replies. Either retry with a re-composed reply, or ship a graceful in-character fallback so the player never meets silence. Measure on step-4 churn, currently 73.85%.</li>
+      <li><b>Do not spend on reach yet.</b> Impressions and conversion are falling together; the playbook's own table says fix appeal first. Reach bought at 6.67% conversion into a 35% day-2 hold leaks straight back out.</li>
+      <li><b>Get the AI unit cost from the studio</b>, then re-read the money section against it.</li>
+      <li><b>Pull the player-comment report</b> &mdash; the one export still missing. Comments named the mechanism twice on Become a Brainrot when the metrics could not, and comment text is not retrievable from the API at all.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><h2>Watch list</h2></div>
+  <div class="col"><p>Not scheduled. This game is not in <code>dashboard-config.json</code>, so nothing is grabbing it and no alerting covers it. That should be a deliberate decision, not a default.</p></div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Read</th><th>When</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td><code>UniqueUsersWithImpressions</code>, <code>RFYQualifiedPTR</code></td><td>29 Aug</td><td>Settles demotion vs reshuffle</td></tr>
+        <tr><td><code>DailyCohortRetention</code> day 2</td><td>2 days after any ship</td><td>The one number the fix targets</td></tr>
+        <tr><td>D1 by <code>AcquisitionSource</code></td><td>weekly</td><td>Search flat means appeal is intact; Search falling is a real product problem</td></tr>
+        <tr><td><code>ClientCrashRate15m</code></td><td>weekly</td><td>Currently the clean rule-out &mdash; keep it that way</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  Measured from the Roblox Open Cloud analytics API, full life, pulled 2026-08-26.<br>
+  198 requests &middot; 107 metrics with data &middot; 39 not served by Open Cloud and reported as skipped.<br>
+  Settled points only &mdash; synthesized zeros and unfinished intervals excluded throughout.<br>Funnels via breakdown:[FunnelStep] with polling and no FunnelName filter; error text from the Creator Dashboard export of 2026-08-26.
+</footer>
+
+</div>
+
+<script>
+(function(){
+  const fmt = n => n>=1e6 ? (n/1e6).toFixed(n>=1e7?0:1)+"M" : n>=1e3 ? Math.round(n/1e3)+"K" : String(n);
+
+  function lineChart(el, opts){
+    const W=760, H=opts.h||260, P={t:16,r:opts.r||58,b:30,l:opts.l||46};
+    const xs=opts.labels.length;
+    const allV=opts.series.flatMap(s=>s.data.filter(v=>v!=null));
+    const vmax=opts.max!=null?opts.max:Math.max(...allV)*1.06, vmin=opts.min!=null?opts.min:0;
+    const X=i=>P.l+(W-P.l-P.r)*(xs===1?0:i/(xs-1));
+    const Y=v=>H-P.b-(H-P.t-P.b)*((v-vmin)/(vmax-vmin));
+    let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+opts.aria+'">';
+    (opts.ticks||[]).forEach(t=>{
+      s+='<line class="gridline" x1="'+P.l+'" y1="'+Y(t)+'" x2="'+(W-P.r)+'" y2="'+Y(t)+'"/>';
+      s+='<text class="axis" x="'+(P.l-9)+'" y="'+(Y(t)+3.5)+'" text-anchor="end">'+(opts.fmtY?opts.fmtY(t):fmt(t))+'</text>';
+    });
+    opts.labels.forEach((lb,i)=>{ if(!lb) return;
+      s+='<text class="axis" x="'+X(i)+'" y="'+(H-P.b+16)+'" text-anchor="middle">'+lb+'</text>'; });
+    // context series first, emphasis last
+    opts.series.slice().sort((a,b)=>(a.emph?1:0)-(b.emph?1:0)).forEach(se=>{
+      let d='', started=false;
+      se.data.forEach((v,i)=>{ if(v==null) return; d+=(started?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)+' '; started=true; });
+      s+='<path d="'+d+'" fill="none" stroke="'+(se.emph?'var(--accent)':'var(--ctx)')+'" stroke-width="'+(se.emph?2.4:1.6)+'" stroke-linejoin="round" stroke-linecap="round" opacity="'+(se.emph?1:.85)+'"/>';
+      const li=se.data.reduce((a,v,i)=>v!=null?i:a,-1);
+      if(li>=0 && se.label){
+        s+='<circle cx="'+X(li)+'" cy="'+Y(se.data[li])+'" r="4" fill="'+(se.emph?'var(--accent)':'var(--ctx)')+'" stroke="var(--surface)" stroke-width="2"/>';
+        s+='<text class="dlabel" x="'+(X(li)+9)+'" y="'+(Y(se.data[li])+4)+'" fill="'+(se.emph?'var(--accent)':'var(--muted)')+'">'+se.label+'</text>';
+      }
+    });
+    (opts.marks||[]).forEach(m=>{
+      s+='<line x1="'+X(m.i)+'" y1="'+P.t+'" x2="'+X(m.i)+'" y2="'+(H-P.b)+'" stroke="var(--rule-2)" stroke-width="1" stroke-dasharray="3 3"/>';
+      s+='<text class="dlabel" x="'+(X(m.i)+6)+'" y="'+(P.t+11)+'" fill="var(--muted)">'+m.t+'</text>';
+    });
+    s+='</svg>';
+    document.getElementById(el).innerHTML=s;
+  }
+
+  // ---- DAU, 04-25 Aug ----
+  const dau=[2789,6663,7346,10469,14213,16875,18361,31803,43004,65052,210353,333207,455167,573273,1012491,811716,1074422,1118833,1150857,1281398,845920,681316];
+  const dlab=dau.map((_,i)=>{const d=4+i; return (d===4||d===9||d===14||d===19||d===23||d===25)?("08-"+String(d).padStart(2,"0")):"";});
+  lineChart('c-dau',{h:280,r:72,l:52,labels:dlab,ticks:[0,400000,800000,1200000],
+    series:[{data:dau,emph:true,label:"681K"}],
+    marks:[{i:10,t:"14 Aug — reach scaled 47×"},{i:19,t:"peak 1.28M"}],
+    aria:"Daily active users from 2,789 on 4 August to a peak of 1,281,398 on 23 August, then falling to 681,316 on 25 August."});
+
+  // ---- D1 by source, 09-24 Aug ----
+  const home  =[.1667,.2314,.2400,.2118,.2799,.2593,.2317,.1639,.1970,.1838,.1805,.2009,.1876,.1662,.1263,.1486];
+  const friend=[.1408,.1703,.1705,.1581,.1982,.1922,.1723,.1304,.1548,.1458,.1395,.1526,.1375,.1334,.1017,.1200];
+  const other =[.1424,.1547,.1631,.1519,.1915,.1868,.1683,.1201,.1409,.1408,.1321,.1562,.1410,.1287,.1026,.1209];
+  const search=[.1835,.2067,.1957,.1887,.1994,.2013,.1942,.1456,.1623,.1635,.1511,.1591,.1534,.1516,.1709,.1906];
+  const slab=home.map((_,i)=>{const d=9+i; return (d===9||d===13||d===17||d===21||d===24)?("08-"+String(d).padStart(2,"0")):"";});
+  lineChart('c-d1',{h:250,r:74,l:46,labels:slab,ticks:[.08,.14,.20,.26],min:.07,max:.30,
+    fmtY:v=>(v*100).toFixed(0)+"%",
+    series:[
+      {data:home,label:"Home"},{data:friend,label:""},{data:other,label:""},
+      {data:search,emph:true,label:"Search"}
+    ],
+    marks:[{i:4,t:"13 Aug"}],
+    aria:"Day-1 retention by acquisition source. Search stays near 19 percent throughout while HomeRecommendation falls from 28 to 15 percent."});
+})();
+</script>

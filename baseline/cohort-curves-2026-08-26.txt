@@ -1,0 +1,20 @@
+
+### Verity (10565445771) — DailyCohortRetention by CohortDay
+  D1  latest 14.23% (2026-08-24)  mean 16.45%  n=8
+  D2  latest 4.91% (2026-08-23)  mean 6.57%  n=7 hold 35%
+  D3  latest 2.55% (2026-08-22)  mean 3.53%  n=6 hold 52%
+  D4  latest 2.81% (2026-08-21)  mean 2.81%  n=5 hold 110%
+  D5  latest 1.85% (2026-08-20)  mean 2.50%  n=4 hold 66%
+  D6  latest 1.87% (2026-08-19)  mean 2.28%  n=3 hold 101%
+  D7  latest 1.89% (2026-08-18)  mean 1.96%  n=2 hold 101%
+  D8  latest 1.80% (2026-08-17)  mean 1.80%  n=1 hold 95%
+
+### Seal (10638354731) — DailyCohortRetention by CohortDay
+  D1  latest 12.40% (2026-08-24)  mean 13.87%  n=8
+  D2  latest 6.56% (2026-08-23)  mean 6.75%  n=7 hold 53%
+  D3  latest 3.15% (2026-08-22)  mean 3.69%  n=6 hold 48%
+  D4  latest 2.77% (2026-08-21)  mean 2.55%  n=5 hold 88%
+  D5  latest 2.36% (2026-08-20)  mean 1.97%  n=4 hold 85%
+  D6  latest 1.68% (2026-08-19)  mean 1.64%  n=3 hold 72%
+  D7  latest 1.35% (2026-08-18)  mean 1.36%  n=2 hold 80%
+  D8  latest 1.31% (2026-08-17)  mean 1.31%  n=1 hold 97%

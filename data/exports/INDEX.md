@@ -33,6 +33,8 @@ unattributable a week later; `errors_2026-08-16_1514_v3727-v3829.csv` under
 | `10399712766` | `10399712766-banana-monkey-destruction` | [UPD] +1 Banana Monkey Destruction |
 | `9963622286` | `9963622286-become-a-brainrot` | [WORLD 3] Become a Brainrot |
 | `9610561918` | `9610561918-my-knife-farm` | My Knife Farm [UPD] |
+| `10565445771` | `10565445771-verity-companion` | Verity Companion [AI] |
+| `10638354731` | `10638354731-seal-a-driveway` | Seal A Driveway [RELEASE] |
 
 ## How a download gets attributed
 
