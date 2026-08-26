@@ -385,7 +385,12 @@ no day changing: PlayerProgression `FunnelUserOverallCompletionRate` read 26.73%
 from an 11 Jul window and 23.09% from a 7 Aug one. A producer comparing two
 screenshots taken with different ranges will report a drop that did not happen.
 
-**No funnels instrumented? Use `TotalSessionsEndedInBucket`.** Broken down by
+**No funnels instrumented? Prove it with the recipe above first** — run
+`breakdown:["FunnelStep"]`, polled, with no `FunnelName` filter, before you
+believe it. Measured 2026-08-26 across the whole portfolio: Knife Farm really
+does return **0 steps**, but Waterslide returns 15, Become a Brainrot 20, Banana
+Monkey 3, Verity 9 funnels' worth and Seal 4. Only Knife Farm is genuinely
+uninstrumented. **Then** use `TotalSessionsEndedInBucket`. Broken down by
 `SessionTimeBucket` it gives the session-length distribution, which is the
 closest substitute for "where do they quit" — and the <60s and 61–180s bands
 are themselves official RFY bounce signals. *Knife Farm: median session ~10 min,

@@ -661,3 +661,34 @@ the orphan fix holds, wire `anomaly.ts` to the Discord webhook.
 - 12 Aug payer collapse on `9610561918` + `10399712766` — still unexplained.
 
 **Next:** schedule `platform-ccu` daily, then read-only Studio on Knife Farm to locate the v3831 sell failure condition.
+
+## 2026-08-26 — two new games baselined from birth; funnels finally cracked; the fresh-universe perf hole closed
+
+**State:** branch `grabber-correctness` · 69 ahead of `main` · **7 unpushed, and 6 BEHIND `origin/grabber-correctness`** — reconcile before pushing · clean
+**Gates** (measured now): verify **23 pass · 2 fail · 8 skip, exit 1** (both fails documented + held) · audit-plan **140 templates, 0 failures, exit 0** · test **44/44, exit 0**
+
+**Landed:** full-life baselines for `10565445771` Verity Companion [AI] and `10638354731` Seal A Driveway, in a new tracked `baseline/` folder (settled series, deploy logs from `ErrorCount`×`PlaceVersion`, CCU baselines, funnels, error text, two published reports). Both error exports filed to `data/exports/` and registered. Commit `90c394b`.
+
+**Learned → routed:**
+- **How to pull funnels** — `breakdown:["FunnelStep"]`, POLLED, and never a `FunnelName` filter → recipe at the top of **`SKILL.md` §1**, summary in **`CLAUDE.md`**, **F22** rewritten, memory `how-to-pull-funnels`
+- A fresh universe got **no technical rung at all** — `perfSpecs()`/`halfHourSpecs()` return `[]` with no discovered places, and places were only ever inherited from a prior grab → fixed in `opencloud-run.ts` (fetches `develop.roblox.com/.../places`), **F21**
+- Perf metrics **400 the whole family** if `startTime` precedes the 28-day horizon; they do not clamp, and the error names the floor → `CLAUDE.md`
+- Both games' full lives sit inside every retention horizon, so the technical rung is complete from birth — a first → `baseline/README.md`
+
+**Disproved (mine, same session):**
+- **"Funnels are unreachable on Open Cloud / the instrument is degenerate"** — written into F22 and CLAUDE.md at ~15:00, false by ~17:30. Two faults stacked: funnel queries answer **HTTP 202 async and my probes never polled** (one also dropped the `analytics-query-api/` prefix from the poll URL), and the **`FunnelName` filter returns 0 series always, even for a real name**. Verity has 9 funnels, Seal 4. `Platform`/`IsNewUser` filters work fine — `FunnelName` alone is broken.
+- **`SKILL.md`'s "filtering funnel metrics by `Platform` returns no series"** — Platform filters correctly (Computer ≈ 33% of each step, matching DAU share). Almost certainly the same unpolled 202, and it had misdirected three later investigations.
+- **"24 Aug was platform-wide / late-August seasonality"** (memory `aug-24-portfolio-wide-drop`) — Seal **grew +8%/+8%** across exactly that window and set an all-time high on the 26th. Memory updated with the caveat that Seal was mid-surge.
+- **Seal's "conversion broke on 24 Aug"** — caught before publishing: it lands on Mon/Tue after the three best days, and one week at this scale cannot separate a step from the weekly shape. Shipped as **unresolved** with a dated test.
+- **`HANDOFF.md`'s "zero funnels on Knife Farm"** — re-tested with the working instrument and it **holds** (0 steps, against Waterslide 15 / Brainrot 20 / Monkey 3). Right claim, previously right for the wrong reason.
+
+**Open:**
+- **Verity's AI unit cost is unknown and it is the only game with a variable cost per player.** Revenue is $0.00136/DAU/day; if inference exceeds that, growth destroys value. → ask the studio before any growth spend
+- **Seal payer CVR: read 2026-08-28/29.** Back to ~1.7–1.9% ⇒ weekly shape, nothing there. Still ~1.25% ⇒ real step worth ~$26–29k/mo
+- **Verity reach: read 2026-08-29** (`UniqueUsersWithImpressions`, `RFYQualifiedPTR`) — settles demotion vs algorithmic reshuffle
+- Seal's `ContextActionService` dead binding (10.5M events, 85% of its error volume) is only *likely* the cause of the 4× desktop crash rate → needs a read of the live place at v901
+- Neither new game is in `data/dashboard-config.json` — **nothing is scheduled and no alerting covers either** → deliberate decision needed
+- Player-comment exports for both games have never existed → pull from the dashboard
+- `platform-ccu` still has one snapshot (2026-08-25) → schedule daily or §0c step 2 stays unanswerable
+
+**Next:** reconcile the 6 commits behind `origin/grabber-correctness`, then push the 7 ahead.

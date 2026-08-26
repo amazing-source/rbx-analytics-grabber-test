@@ -866,6 +866,14 @@ either** — the loop is fully broken for those players.
   (§0c). The failure *condition* in code is the only route — a numeric
   threshold or save-size limit would scale with progress and hit payers first,
   which fits the reports.
+  **Re-verified 2026-08-26 with a working instrument, and it holds.** The funnel
+  method used everywhere before that date was broken two ways (unpolled 202 +
+  a `FunnelName` filter that matches nothing — F22), so every "no funnels"
+  claim in this file was suspect. Re-run with the correct shape
+  (`breakdown:["FunnelStep"]`, polled, no name filter), Knife Farm returns
+  **0 steps** while Waterslide returns 15, Brainrot 20 and Banana Monkey 3.
+  So this one was right for the wrong reason, and is now right for the right
+  one: the blast radius genuinely needs the code read.
 - **Do not claim v3831 caused the decline.** DAU was already falling from 08-19
   and payers ran 812 (06 Aug) → 236 (18 Aug) → 93 (24 Aug), well before it. The
   defensible claim: an already-declining game then had its core loop broken for

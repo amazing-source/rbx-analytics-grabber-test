@@ -13,6 +13,13 @@ the full spec; this file is the day-to-day reference.
 >   `.claude/SESSION_LOG.md` first** (newest entry), then verify it against the
 >   gates before trusting it — that is `checkpoint resume`. The log is written
 >   by the `checkpoint` skill; run it whenever you stop or switch devices.
+> - **The portfolio is SIX games as of 2026-08-26.** Two were handed over that
+>   day and are baselined from birth in **`baseline/`** — `10565445771` Verity
+>   Companion [AI] (past peak, declining) and `10638354731` Seal A Driveway
+>   (still climbing, best ARPDAU and D2 hold of the six). Read
+>   `baseline/README.md` before touching either; it is the reference every later
+>   claim about them is measured against. Neither is in `dashboard-config.json`,
+>   so nothing grabs them on a schedule and no alerting covers them.
 > - **Three gates — run them before and after any change** (measured
 >   2026-08-10, not copied):
 >   `npm run verify -- ../data/verify/9610561918/` → 23 pass · **2 fail** · 8 skip
