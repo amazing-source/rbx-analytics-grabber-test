@@ -1,0 +1,37 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+1894,Error,Server,Fri Aug 28 2026 22:10:10 GMT+0200 (heure d’été d’Europe centrale),V679,ServerStorage.serverModules.Services.MysticLibraryService:144: attempt to call missing method 'FireAllClients' of table,"Script 'ServerStorage.serverModules.Services.MysticLibraryService', Line 144 - function EndEvent
+    Script 'ServerStorage.serverModules.Services.MysticLibraryService', Line 267",
+788,Error,Client,Fri Aug 28 2026 21:37:20 GMT+0200 (heure d’été d’Europe centrale),V678,Player:IsInGroup failed because HTTP unknown error (HttpError: DnsResolve),"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+566,Error,Client,Fri Aug 28 2026 21:46:20 GMT+0200 (heure d’été d’Europe centrale),V678,Players:GetNameFromUserIdAsync() failed: HTTP 429 (Too Many Requests),"Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 264 - function createAnnouncement
+    Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 409
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 37 - function Call
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 42 - function Thread",
+528,Error,Client,Fri Aug 28 2026 21:31:05 GMT+0200 (heure d’été d’Europe centrale),V678,Player:IsInGroup failed because HTTP unknown error (HttpError: Timedout),"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+316,Error,Server,Fri Aug 28 2026 22:10:10 GMT+0200 (heure d’été d’Europe centrale),V679,ServerStorage.serverModules.Services.MysticLibraryService:144: attempt to call missing method 'FireAllClients' of table,"Script 'ServerStorage.serverModules.Services.MysticLibraryService', Line 144 - function EndEvent
+    Script 'ServerStorage.serverModules.Services.MysticLibraryService', Line 256",
+295,Warning,Server,Mon Aug 17 2026 16:01:00 GMT+0200 (heure d’été d’Europe centrale),V664,Model repeated its own previous line (attempt 2): i forgot.,,
+232,Error,Client,Wed Aug 19 2026 21:12:00 GMT+0200 (heure d’été d’Europe centrale),V664,Player:IsInGroup failed because HTTP 504,"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 98",
+198,Error,Client,Fri Aug 28 2026 21:44:00 GMT+0200 (heure d’été d’Europe centrale),V678,Player:IsInGroup failed because HTTP unknown error (HttpError: NetFail),"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+194,Error,Client,Fri Aug 28 2026 21:30:20 GMT+0200 (heure d’été d’Europe centrale),V678,Player:IsInGroup failed because HTTP unknown error (HttpError: SslConnectFail),"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+151,Error,Server,Thu Aug 20 2026 13:07:50 GMT+0200 (heure d’été d’Europe centrale),V664,Error while processing packet: InstanceStateReplicator::readInstanceStateData - Deserialized LOD Level Out Of Bounds (packet id: 161),,
+137,Error,Client,Fri Aug 28 2026 21:40:20 GMT+0200 (heure d’été d’Europe centrale),V678,Player:IsInGroup failed because HTTP unknown error (HttpError: ConnectFail),"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+99,Warning,Server,Mon Aug 17 2026 22:02:10 GMT+0200 (heure d’été d’Europe centrale),V664,"DeepInfra slots all busy (2 in flight, 3 queued); using authored fallbacks",,
+94,Error,Client,Sat Aug 29 2026 00:47:40 GMT+0200 (heure d’été d’Europe centrale),V679,Player:IsInGroup failed because HTTP 504,"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+90,Error,Client,Mon Aug 17 2026 21:42:35 GMT+0200 (heure d’été d’Europe centrale),V664,Failed to load animation with sanitized ID rbxassetid://913402848: AnimationClip loaded is not valid.,,
+79,Error,Client,Fri Aug 28 2026 21:47:00 GMT+0200 (heure d’été d’Europe centrale),V678,Players:GetNameFromUserIdAsync() failed: HTTP unknown error (HttpError: Timedout),"Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 264 - function createAnnouncement
+    Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 409
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 37 - function Call
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 42 - function Thread",
+53,Warning,Server,Mon Aug 17 2026 19:02:45 GMT+0200 (heure d’été d’Europe centrale),V664,Model repeated its own previous line (attempt 1): i forgot.,,
+49,Warning,Server,Tue Aug 18 2026 15:02:00 GMT+0200 (heure d’été d’Europe centrale),V664,"Model repeated its own previous line (attempt 1): Stay close, please.",,
+38,Error,Client,Wed Aug 19 2026 17:15:30 GMT+0200 (heure d’été d’Europe centrale),V664,Player:IsInGroup failed because HTTP 503,"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 98",
+34,Error,Client,Fri Aug 28 2026 21:46:35 GMT+0200 (heure d’été d’Europe centrale),V678,Players:GetNameFromUserIdAsync() failed: HTTP unknown error (HttpError: DnsResolve),"Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 264 - function createAnnouncement
+    Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 409
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 37 - function Call
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 42 - function Thread",
+28,Warning,Server,Mon Aug 17 2026 17:00:50 GMT+0200 (heure d’été d’Europe centrale),V664,Model repeated its own previous line (attempt 2): You should probably stay right where you are.,,
+26,Warning,Server,Mon Aug 17 2026 16:02:30 GMT+0200 (heure d’été d’Europe centrale),V664,Model repeated its own previous line (attempt 2): Please don't go away from me.,,
+26,Warning,Server,Mon Aug 17 2026 18:04:00 GMT+0200 (heure d’été d’Europe centrale),V664,Model echoed the player's message (attempt 2): bye,,
+26,Warning,Server,Tue Aug 18 2026 05:04:05 GMT+0200 (heure d’été d’Europe centrale),V664,"DeepInfra slots all busy (2 in flight, 4 queued); using authored fallbacks",,
+25,Error,Client,Thu Aug 20 2026 12:49:05 GMT+0200 (heure d’été d’Europe centrale),V664,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset/?id=7018365871 because Error reading mesh data: unknown version,,
+24,Error,Client,Fri Aug 28 2026 21:54:45 GMT+0200 (heure d’été d’Europe centrale),V678,Player:IsInGroup failed because HTTP unknown error (HttpError: ServerProtocolError),"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",

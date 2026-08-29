@@ -83,6 +83,66 @@ baseline named `PetBag:484 index nil with 'Get'` at 3 events as a tripwire, and
 90 minutes later it was at 33, which took the finding from "some errors exist"
 to "the thing we said to watch fired".
 
+**A threshold must never be computed over the in-progress day.** A pre-registered
+number is the one thing in the report that cannot be revised later, so a partial
+day inside its baseline mean poisons every subsequent comparison — and it reads
+low, so it biases toward declaring the update fine. Compute means over complete
+UTC days only; show today's value beside them if useful, but excluded and
+labelled. Applied 2026-08-28 to the funnel 7-day means on both baselines.
+
+**An error export cannot tell you whether a defect is still live — pair it with
+`FirstSeenPlaceVersion`.** The export's *First seen version* column dates a
+signature's **first** appearance, not the only build it fires on, so a signature
+stamped with the new version may already be gone. The discriminator is
+`ErrorCount` at `OneDay` filtered to `FirstSeenPlaceVersion >= <new version>`
+(with `Place` present) — "errors this deploy introduced". **A deploy artefact
+decays across the day boundary; a live defect does not.** Measured 2026-08-29 on
+two publishes that looked identical in their exports:
+
+| | publish day | next day | verdict |
+|---|---|---|---|
+| Verity `>= 678` | 2,069 | **4,018** | rising — live defect (`MysticLibraryService:144`) |
+| Waterslide `>= 1715` | 9,826 | **174** | −98% — the next publish fixed it |
+
+Without this test, Waterslide's 9,129-event signature would have been reported as
+a live breakage and Verity's would have been ranked below it on volume.
+
+**Rank by mechanism, not by export count, and read the message text for the
+fix.** Roblox's own warnings often name the remedy: `[DrivewaySealer] Sealing is
+disabled: this place cannot use the Editable Image/Mesh APIs. Fix: File > Game
+Settings > Security > turn on "Allow Mesh & Image APIs"` was **132 events** on a
+game doing R$689K/day — near the bottom of its export by volume, and pointed at
+the game's core verb. Export counts are relative; they rank and date signatures,
+they do not count affected players.
+
+**Funnel tripwires need a two-day-old day, and the mean must exclude the newest
+one.** `FunnelCohortCompletionRate`'s newest point moves by up to **5.5 pp** in
+the days after it is first served — the entire width of a 5 pp tripwire — while
+every point four or more days old moves by less than ±0.6 pp. The direction is
+per-game: on `10565445771` the shallow steps read *high* and settle down, on
+`10638354731` and `10030829154` every step reads ~1–4 pp *low* and settles up.
+So a step that is "3 pp down" on a one-day-old day may be nothing at all.
+**Compute the pre-update mean over days that exclude the newest, never fire on a
+day less than two days old, and treat anything under four days as provisional.**
+Measured 2026-08-29 by pulling the same dates twice, three days apart; F25 in
+`data/verify/COVERAGE.md`.
+
+**Check whether the baseline day itself is anomalous before freezing on it.** A
+freeze inherits whatever happened that day. On 2026-08-27 `ClientCpuTimeAvg`
+tripled on `10030829154` and doubled on `9963622286` while three other universes
+did not move — and 08-27 was the freeze day for five update baselines, so the
+contaminated value would have become the reference every later build was scored
+against. Cross-check a suspicious baseline row against the other games in the
+portfolio on the same date, and if it is anomalous, set the tripwire on the
+pre-anomaly band and say so. F26 in `data/verify/COVERAGE.md`.
+
+**When the publish already happened, say which day the freeze is at.** Both
+2026-08-28 baselines were grabbed *after* their publish (15:25 UTC for a 15:00
+ship). That is still a valid freeze — every quoted number comes from a UTC day
+that closed before the publish, so no post-update player is inside it — but it
+must be stated, and the report must not imply a clean pre-publish partial-day
+shape it does not have. Label it **T+0, frozen at `<last closed day>`**.
+
 | Signal | Pre-update value | Broken if |
 |---|---|---|
 | D1, settled | *baseline mean* | below *X* for 2+ settled days |

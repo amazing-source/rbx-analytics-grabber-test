@@ -1,0 +1,43 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+518,Error,Client,Tue Aug 18 2026 23:44:05 GMT+0200 (heure d’été d’Europe centrale),V901,Maximum event re-entrancy depth exceeded for BindableEvent.Event when calling anonymous function on line 513 in CoreGui.RobloxGui.Modules.Settings.Pages.GameSettings,,
+303,Error,Client,Tue Aug 25 2026 01:27:50 GMT+0200 (heure d’été d’Europe centrale),V901,Failed to load sound: TlsVerificationFail,rbxassetid://10066921516: HttpError
+rbxassetid://105224765745546: HttpError
+rbxassetid://121062914999809: HttpError
+rbxassetid://122209060222267: HttpError
+rbxassetid://1347153667: HttpError
+rbxassetid://138901430543017: HttpError
+rbxassetid://7381723941: HttpError,
+225,Error,Client,Wed Aug 19 2026 20:21:50 GMT+0200 (heure d’été d’Europe centrale),V901,Failed to load sound: HTTP 502 (Bad Gateway or Proxy Error),rbxassetid://10066921516
+rbxassetid://105224765745546
+rbxassetid://122209060222267
+rbxassetid://9112831284,
+187,Error,Client,Thu Aug 27 2026 20:49:40 GMT+0200 (heure d’été d’Europe centrale),V901,Failed to load sound: error code 14,rbxasset://sounds/uuhhh.mp3,
+176,Error,Client,Tue Aug 18 2026 23:22:50 GMT+0200 (heure d’été d’Europe centrale),V901,EditableImage is not accessible. Go to the Security Tab in Experience Settings to enable this API.,,
+163,Error,Client,Thu Aug 27 2026 19:08:30 GMT+0200 (heure d’été d’Europe centrale),V901,RunService:fireRenderStepEarlyFunctions unexpected error while invoking callback: StarterPlayer.PlayerModule.CameraModule.ZoomController:88: invalid argument #3 to 'clamp' (max must be greater than or equal to min),,
+163,Error,Client,Thu Aug 27 2026 19:08:30 GMT+0200 (heure d’été d’Europe centrale),V901,StarterPlayer.PlayerModule.CameraModule.ZoomController:88: invalid argument #3 to 'clamp' (max must be greater than or equal to min),"Script 'StarterPlayer.PlayerModule.CameraModule.ZoomController', Line 88 - function Update
+    Script 'StarterPlayer.PlayerModule.CameraModule.Poppercam', Line 112 - function Update
+    Script 'StarterPlayer.PlayerModule.CameraModule', Line 561 - function Update
+    Script 'StarterPlayer.PlayerModule', Line 114",
+160,Warning,Server,Mon Aug 17 2026 16:25:35 GMT+0200 (heure d’été d’Europe centrale),V888,[TruckServer] a rig was 1.21 studs into the ground -- lifted out,,
+159,Error,Client,Wed Aug 26 2026 17:25:35 GMT+0200 (heure d’été d’Europe centrale),V901,Failed to load sound: Authentication required to access Asset.,rbxassetid://105224765745546
+rbxassetid://121062914999809,
+145,Warning,Server,Mon Aug 17 2026 16:05:25 GMT+0200 (heure d’été d’Europe centrale),V888,[TruckServer] a rig was 1.55 studs into the ground -- lifted out,,
+137,Warning,Server,Tue Aug 18 2026 01:33:20 GMT+0200 (heure d’été d’Europe centrale),V892,[TruckServer] a rig was 1.91 studs into the ground -- lifted out,,
+135,Error,Client,Mon Aug 17 2026 20:20:35 GMT+0200 (heure d’été d’Europe centrale),V888,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 2223",
+134,Warning,Server,Mon Aug 17 2026 22:40:10 GMT+0200 (heure d’été d’Europe centrale),V888,[TruckServer] a rig was 5.25 studs into the ground -- lifted out,,
+132,Warning,Client,Tue Aug 18 2026 23:22:50 GMT+0200 (heure d’été d’Europe centrale),V901,"[DrivewaySealer] Sealing is disabled: this place cannot use the Editable Image/Mesh APIs.
+  Fix: File > Game Settings > Security > turn on ""Allow Mesh & Image APIs"", then republish.",,
+122,Warning,Server,Mon Aug 17 2026 14:40:35 GMT+0200 (heure d’été d’Europe centrale),V888,[TruckServer] a rig was 1.38 studs into the ground -- lifted out,,
+121,Warning,Server,Tue Aug 18 2026 14:17:00 GMT+0200 (heure d’été d’Europe centrale),V892,Unreliable Event dropped as its payload is too large. Consider reducing the total size of the arguments. Payload went over by: 14 bytes,,
+119,Warning,Server,Mon Aug 17 2026 23:15:10 GMT+0200 (heure d’été d’Europe centrale),V890,[TruckServer] a rig was 1.74 studs into the ground -- lifted out,,
+114,Error,Server,Fri Aug 21 2026 10:08:45 GMT+0200 (heure d’été d’Europe centrale),V901,Error while processing packet: InstanceStateReplicator::readInstanceStateData - Deserialized LOD Level Out Of Bounds (packet id: 161),,
+111,Warning,Server,Tue Aug 18 2026 06:12:25 GMT+0200 (heure d’été d’Europe centrale),V892,[TruckServer] a rig was 4.76 studs into the ground -- lifted out,,
+110,Error,Client,Mon Aug 17 2026 22:38:00 GMT+0200 (heure d’été d’Europe centrale),V890,EditableImage:WritePixelsBuffer expects position   size to be within EditableImage bounds,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceRenderer', Line 565 - function Paint
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 877 - function SetDetail
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 888 - function updateDetail
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 902",
+108,Warning,Server,Mon Aug 17 2026 20:28:10 GMT+0200 (heure d’été d’Europe centrale),V888,[TruckServer] a rig was 0.88 studs into the ground -- lifted out,,
+104,Warning,Server,Tue Aug 18 2026 02:39:20 GMT+0200 (heure d’été d’Europe centrale),V892,[TruckServer] a rig was 1.57 studs into the ground -- lifted out,,
+100,Error,Server,Mon Aug 17 2026 19:59:00 GMT+0200 (heure d’été d’Europe centrale),V888,Error while sending. sender type: Security error message: Unsupported Luau version requested: 9 not in [3..6],,
+99,Warning,Server,Mon Aug 17 2026 16:32:50 GMT+0200 (heure d’été d’Europe centrale),V888,[TruckServer] a rig was 1.59 studs into the ground -- lifted out,,
+98,Warning,Server,Mon Aug 17 2026 18:07:35 GMT+0200 (heure d’été d’Europe centrale),V888,[TruckServer] a rig was 0.47 studs into the ground -- lifted out,,

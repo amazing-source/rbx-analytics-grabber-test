@@ -1,0 +1,49 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+2569,Error,Server,Fri Aug 28 2026 22:10:10 GMT+0200 (heure d’été d’Europe centrale),V679,ServerStorage.serverModules.Services.MysticLibraryService:144: attempt to call missing method 'FireAllClients' of table,"Script 'ServerStorage.serverModules.Services.MysticLibraryService', Line 144 - function EndEvent
+    Script 'ServerStorage.serverModules.Services.MysticLibraryService', Line 267",
+984,Error,Client,Fri Aug 28 2026 21:37:20 GMT+0200 (heure d’été d’Europe centrale),V678,Player:IsInGroup failed because HTTP unknown error (HttpError: DnsResolve),"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+651,Error,Client,Fri Aug 28 2026 21:31:05 GMT+0200 (heure d’été d’Europe centrale),V678,Player:IsInGroup failed because HTTP unknown error (HttpError: Timedout),"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+566,Error,Client,Fri Aug 28 2026 21:46:20 GMT+0200 (heure d’été d’Europe centrale),V678,Players:GetNameFromUserIdAsync() failed: HTTP 429 (Too Many Requests),"Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 264 - function createAnnouncement
+    Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 409
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 37 - function Call
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 42 - function Thread",
+461,Error,Server,Fri Aug 28 2026 22:10:10 GMT+0200 (heure d’été d’Europe centrale),V679,ServerStorage.serverModules.Services.MysticLibraryService:144: attempt to call missing method 'FireAllClients' of table,"Script 'ServerStorage.serverModules.Services.MysticLibraryService', Line 144 - function EndEvent
+    Script 'ServerStorage.serverModules.Services.MysticLibraryService', Line 256",
+240,Error,Client,Fri Aug 28 2026 21:30:20 GMT+0200 (heure d’été d’Europe centrale),V678,Player:IsInGroup failed because HTTP unknown error (HttpError: SslConnectFail),"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+223,Error,Client,Fri Aug 28 2026 21:44:00 GMT+0200 (heure d’été d’Europe centrale),V678,Player:IsInGroup failed because HTTP unknown error (HttpError: NetFail),"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+156,Error,Client,Fri Aug 28 2026 21:40:20 GMT+0200 (heure d’été d’Europe centrale),V678,Player:IsInGroup failed because HTTP unknown error (HttpError: ConnectFail),"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+94,Error,Client,Sat Aug 29 2026 00:47:40 GMT+0200 (heure d’été d’Europe centrale),V679,Player:IsInGroup failed because HTTP 504,"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+79,Error,Client,Fri Aug 28 2026 21:47:00 GMT+0200 (heure d’été d’Europe centrale),V678,Players:GetNameFromUserIdAsync() failed: HTTP unknown error (HttpError: Timedout),"Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 264 - function createAnnouncement
+    Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 409
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 37 - function Call
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 42 - function Thread",
+45,Error,Client,Fri Aug 28 2026 21:54:45 GMT+0200 (heure d’été d’Europe centrale),V678,Player:IsInGroup failed because HTTP unknown error (HttpError: ServerProtocolError),"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+34,Error,Client,Fri Aug 28 2026 21:46:35 GMT+0200 (heure d’été d’Europe centrale),V678,Players:GetNameFromUserIdAsync() failed: HTTP unknown error (HttpError: DnsResolve),"Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 264 - function createAnnouncement
+    Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 409
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 37 - function Call
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 42 - function Thread",
+12,Error,Client,Sat Aug 29 2026 00:48:05 GMT+0200 (heure d’été d’Europe centrale),V679,Player:IsInGroup failed because HTTP 500,"Script 'ReplicatedStorage.Shared.Interface.UI.OfferUI', Line 90",
+8,Error,Client,Fri Aug 28 2026 21:46:35 GMT+0200 (heure d’été d’Europe centrale),V678,Players:GetNameFromUserIdAsync() failed: HTTP unknown error (HttpError: SslConnectFail),"Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 264 - function createAnnouncement
+    Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 409
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 37 - function Call
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 42 - function Thread",
+7,Error,Client,Fri Aug 28 2026 21:47:00 GMT+0200 (heure d’été d’Europe centrale),V678,Players:GetNameFromUserIdAsync() failed: HTTP unknown error (HttpError: NetFail),"Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 264 - function createAnnouncement
+    Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 409
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 37 - function Call
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 42 - function Thread",
+4,Error,Client,Fri Aug 28 2026 21:50:00 GMT+0200 (heure d’été d’Europe centrale),V678,Players:GetNameFromUserIdAsync() failed: HTTP unknown error (HttpError: TlsVerificationFail),"Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 264 - function createAnnouncement
+    Script 'ReplicatedStorage.Shared.Interface.Utilities.Notification', Line 409
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 37 - function Call
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 42 - function Thread",
+3,Error,Client,Sat Aug 29 2026 12:53:50 GMT+0200 (heure d’été d’Europe centrale),V679,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset?id=14786022859 because Error reading mesh data: unknown version,,
+3,Error,Client,Sat Aug 29 2026 17:24:25 GMT+0200 (heure d’été d’Europe centrale),V679,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset?id=18501758199 because Error reading mesh data: unknown version,,
+3,Error,Client,Sat Aug 29 2026 11:47:45 GMT+0200 (heure d’été d’Europe centrale),V679,ReplicatedStorage.Shared.Interface.UI.MessageUI:665: Script timeout: exhausted allowed execution time,"Script 'ReplicatedStorage.Shared.Interface.UI.MessageUI', Line 205 - function showLine
+    Script 'ReplicatedStorage.Shared.Interface.UI.MessageUI', Line 665
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 37 - function Call
+    Script 'ReplicatedStorage.Packages.Packet.Task', Line 42 - function Thread",
+3,Warning,Server,Sat Aug 29 2026 06:02:10 GMT+0200 (heure d’été d’Europe centrale),V679,Generated dialogue was rejected by filtering for Reneethehackie,,
+3,Error,Client,Sat Aug 29 2026 14:14:00 GMT+0200 (heure d’été d’Europe centrale),V679,Failed to load animation with sanitized ID rbxassetid://11308929850: AnimationClip loaded is not valid.,,
+3,Warning,Server,Fri Aug 28 2026 22:02:00 GMT+0200 (heure d’été d’Europe centrale),V679,Generated dialogue was rejected by filtering for Amari042618,,
+3,Warning,Server,Sat Aug 29 2026 01:01:30 GMT+0200 (heure d’été d’Europe centrale),V679,Model repeated its own previous line (attempt 1): Rough rough.,,
+3,Warning,Server,Sat Aug 29 2026 12:04:40 GMT+0200 (heure d’été d’Europe centrale),V679,Generated dialogue was rejected by filtering for Im_aTADCfan,,
+2,Warning,Server,Sat Aug 29 2026 00:08:30 GMT+0200 (heure d’été d’Europe centrale),V679,Generated dialogue filter failed for Nialoveee1,,

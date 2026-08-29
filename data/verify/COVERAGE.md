@@ -628,3 +628,172 @@ stands.
 
 Routed to the `liveops-diagnosis` skill as a step-by-step recipe at the top of
 its funnel section, because this failure has now recurred on four games.
+
+---
+
+## F23 — an unfinished async query is indistinguishable from a game with no data, and it is NOT confined to funnels (2026-08-28)
+
+**F22 diagnosed this on funnel metrics and fixed the funnel path. The fault is
+wider than that entry implied, and it bit twice more today on a metric nobody
+thinks of as async.**
+
+Building the two 2026-08-28 update baselines, `ErrorCount` broken down by
+`PlaceVersion` — the deploy-log query, the thing that dates a publish —
+returned **0 versions**. The identical rerun, same window, same filter, minutes
+later, returned **25**. Nothing about the query changed. On the same pass the
+first funnel run reported **"0 steps"** for both games; the retry returned
+**20 steps on `9963622286`** and **3 on `10399712766`**.
+
+**The generalisable rule: an empty answer from this API is a measurement of the
+poll, not of the game, until a retry agrees with it.** The existing standing
+rule — "an invented query shape that 400s, or returns an empty 200, tells you
+nothing about the game" — is now missing its most common cause. `done:false`
+answers arrive with a `path` and no data; read that as final and it presents as
+a clean, well-formed, entirely empty result.
+
+**Why it is more dangerous than the funnel case.** A funnel returning nothing
+prompts suspicion, because a game visibly has funnels. A *deploy log* returning
+nothing looks like a game that simply has not shipped in the window — plausible,
+unremarkable, and it would have been filed into `baseline/` as fact. The
+half-hour deploy-log table is what dates a publish to the bucket; an empty one
+silently removes the ability to say when a build went live.
+
+**What it appears to depend on:** back-to-back load. Both empties occurred
+immediately after a long paced grab or another script's queries; both cleared on
+a spaced retry. `tools/oc.js` polls 40 × 1200ms ≈ 48s, which is not always
+enough under that load.
+
+**Fixed, in the tools rather than in `oc.js`** (leaving the shared helper's
+timing alone, since the grabber paces its own calls):
+
+- `tools/deploy-log.js` and `tools/funnels.js` poll **120 × 1500ms ≈ 3 min** and
+  **retry an empty answer three times**, spaced 6s.
+- `tools/deploy-log.js` **throws rather than writing an empty deploy log.** A
+  missing file is a visible failure; an empty table is a false record. This is
+  the same reasoning as `grab-report.md` existing at all.
+
+**Verified:** `node tools/deploy-log.js 9963622286 99255447043899 <out> "..."`
+reproduces the filed `baseline/2026-08-28T1500Z-…/deploy-log.md` byte-for-byte
+apart from its pull timestamp.
+
+---
+
+## F24 — `ccu-baseline` scores slots that have not happened yet as zero, and it changed the answer by 24 points (2026-08-28)
+
+`npm run ccu-baseline -- <id>` with no `--slots` sweeps the **whole 24 h** of the
+current day. Slots later than now hold no data, are counted as zero, and are
+averaged into "today". On `9963622286` at 15:23 UTC:
+
+| invocation | slots | today's mean CCU | vs last 7 days |
+|---|---|---|---|
+| `-- 9963622286` | 00:00–23:00 (47) | **848** | **−64.7%** |
+| `-- 9963622286 --slots 00:00-15:30` | 00:00–15:30 (32) | **1,246** | **−40.9%** |
+
+The per-slot profile makes it obvious once printed — every slot from 16:00
+onward reads **−100%** — but the summary table above it does not, and the
+summary is what gets quoted. The two readings support different conclusions:
+−64.7% is a collapse, −40.9% is a game sitting level with yesterday (08-27 was
+1,268 on the same window).
+
+**This is the same class of error as F16 and F19** — an artefact at the edge of
+the window that is not marked `partial` and therefore survives every
+plausibility check. It differs in being ours, not Roblox's.
+
+**Interim rule, until it is fixed: always pass `--slots` bounded by the current
+UTC time when reading a part-day.** Note the tool selected the elapsed range by
+itself for `10399712766` in the same run, so the behaviour is inconsistent
+between universes rather than uniformly wrong — do not assume either default.
+
+**Not yet fixed and not yet encoded as a test.** The fix is to clamp the slot
+list to the last elapsed boundary when the requested day is today.
+
+---
+
+## F25 — the newest day of `FunnelCohortCompletionRate` is unstable, by more than the tripwire width (2026-08-29)
+
+Every update baseline sets funnel tripwires as "more than 5 pp below the step's
+own pre-update mean". **The newest day in that series moves by up to 5.5 pp on
+its own, days after it was first served** — so a tripwire evaluated on a fresh
+day fires on the artefact, not on the build.
+
+Measured by pulling the **same dates twice, three days apart** — the 2026-08-26
+funnel dump (`baseline/funnels-2026-08-26.json`) against a 2026-08-29 pull of the
+same window. Verity Companion (`10565445771`), `FunnelCohortCompletionRate` at
+`OneDay`, value on 08-26 → value on 08-29:
+
+| step | 08-20 | 08-21 | 08-22 | 08-23 | 08-24 | **08-25 (newest at first pull)** |
+|---|---|---|---|---|---|---|
+| `First Reply Received` | 52.4→52.6 | 51.8→52.0 | 50.7→50.9 | 49.9→50.1 | 49.2→49.8 | **55.0→49.5 (−5.5 pp)** |
+| `Day 2 Reached` | 33.7→33.9 | 33.6→33.7 | 33.0→33.1 | 32.3→32.5 | 32.1→32.6 | **36.5→32.6 (−3.9 pp)** |
+| `Day 3 Reached` | 24.4→24.5 | 24.2→24.3 | 23.6→23.8 | 23.0→23.2 | 23.0→23.3 | **26.5→23.2 (−3.3 pp)** |
+| `Ending Completed` | 22.9→23.2 | 22.8→23.1 | 19.1→19.4 | 17.8→18.1 | 18.3→18.9 | 17.3→18.7 (+1.4 pp) |
+
+**Every date four or more days old moved by less than ±0.6 pp. The newest day
+moved by up to 5.5 pp.** So the series settles, and it settles fast — but the
+newest point is worth roughly the entire width of a tripwire.
+
+**The direction is per-game, so "the newest day reads low" is not a safe
+shortcut.** Same test on Seal A Driveway (`10638354731`): every step drifted
+**up** with age, +0.3 to +0.4 pp at 5 days old and **+1.0 to +1.5 pp** on the
+then-newest day. Climb Waterslide (`10030829154`) shows the same low-and-rising
+shape, uniformly 2–4 pp across all fifteen tutorial steps. Verity's *shallow*
+steps read high and settle down while its *deep* steps read low and settle up.
+
+**Why it is not simple right-censoring.** `Day 5 Reached` on a cohort one day old
+cannot be complete, so censoring is the obvious hypothesis — but it predicts the
+newest day reads low on the deep steps only, and Verity's newest day reads
+**high** on the shallow ones by 3–5.5 pp. Both effects are present on the same
+game on the same day. Whatever the mechanism, the empirical rule below is what
+holds.
+
+**Rules, applied to the 2026-08-28 evening batch:**
+
+1. **Compute every pre-update mean over complete days that exclude the newest
+   one.** All three baselines in that batch use 08-21…08-27 and display 08-28
+   without averaging it.
+2. **Never fire a funnel tripwire on a day less than two days old**; treat
+   anything under four days as provisional.
+3. A step that is 3 pp "down" on a one-day-old day and back to its mean three
+   days later was never down.
+
+Same class as F16, F19 and F24: an artefact at the newest edge of a window that
+is **not marked `partial`** and therefore survives every plausibility check. It
+differs from F24 in being Roblox's, not ours.
+
+**Not yet encoded as a test.** The wanted regression: a
+`FunnelCohortCompletionRate` series whose newest day is excluded from any
+computed mean, and a check that `tools/funnels.js` never averages the last date
+in its own window.
+
+---
+
+## F26 — the 2026-08-27 client-CPU step hit two games and missed three (2026-08-29)
+
+`ClientCpuTimeAvg` jumped on 2026-08-27 on two universes and did not move on
+three others, which rules out the obvious "Roblox shipped a client" explanation
+without supplying another one. Recorded because **it landed inside the baseline
+day of an update batch**, so it contaminates the reference value the next build
+gets measured against.
+
+| universe | game | 08-26 | **08-27** | 08-28 | move |
+|---|---|---|---|---|---|
+| `10030829154` | Climb Waterslide and Slide | 10.5 | **33.0** | 16.2 | **3.1×** |
+| `9963622286` | Become a Brainrot | 41.0 | **93.0** | — | **2.3×** |
+| `10638354731` | Seal A Driveway | 6.2 | 7.9 | 7.6 | 1.3× |
+| `10399712766` | +1 Banana Monkey Destruction | 15.0 | 15.4 | — | 1.03× |
+| `10565445771` | Verity Companion | 7.2 | 6.9 | 7.2 | 0.96× |
+
+Nothing else moved with it on either affected game — crash rate, FPS, memory and
+server CPU all flat or improving on the same day. Waterslide fell back to 16.2 on
+08-28, still above its 10.5–13.0 band; Brainrot has no 08-28 point yet.
+
+**Consequence, and it is the reason this is written down:** the Waterslide update
+baseline (`2026-08-28T2030Z-…-v1715-v1716`) is frozen at **08-27**, so its client
+CPU reference would have been **33.0**. Using it would make almost any
+post-update reading look like a 50% improvement. That baseline uses the pre-spike
+band instead and sets its tripwire at "> 20 on two consecutive settled days".
+
+This also answers question 3 of the Brainrot baseline, which asked whether
+anything changed on 08-27 on that game specifically: it was not that game alone,
+but it was not portfolio-wide either. **Unexplained; two data points, not a
+trend.** Re-check whether either game returns to its old band.

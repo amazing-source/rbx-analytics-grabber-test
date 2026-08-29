@@ -338,6 +338,21 @@ All nine funnel metrics answer at `granularity: "None"`:
 at `OneDay` — those two date a break. `FunnelUserTotalCount` 400s at `OneDay`
 ("Granularity OneDay is not supported").
 
+**Two of these are rates with DIFFERENT denominators — never put them in one
+column.** Measured 2026-08-28 on both `9963622286` and `10399712766`, and it is
+easy to publish a table that silently mixes them:
+
+- `FunnelUserStepCompletionRate` is **step-to-step**: the share of the *previous
+  step's* players who reached this one. Verified arithmetically — Brainrot step 5
+  users / step 4 users = 354,585 / 395,841 = **89.58%**, exactly the reported
+  rate for step 5.
+- `FunnelCohortCompletionRate` is **cumulative from step 1**, and it is the one
+  served at `OneDay`, so it is the one any tripwire or dated break is set on.
+
+On Banana Monkey the same step reads **99.11%** step-to-step and **95.2%**
+cumulative. Both are correct; a reader shown them side by side without labels
+concludes the instrument is broken. Label the denominator every time.
+
 **THE CAVEAT THAT MATTERS MOST — steps are merged across every funnel by index.**
 `FunnelStep` is an integer position with the name in `displayValue`, and with no
 working `FunnelName` filter you get **the union over all funnels**, summed. Where

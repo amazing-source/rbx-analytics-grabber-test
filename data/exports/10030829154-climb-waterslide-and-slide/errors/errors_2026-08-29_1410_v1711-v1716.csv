@@ -1,0 +1,38 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+9129,Error,Client,Fri Aug 28 2026 22:50:20 GMT+0200 (heure d’été d’Europe centrale),V1715,MuFa is not a valid member of Folder "ReplicatedStorage.Model","Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 35 - function setupRaftView
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 66 - function ensureRaftViewInitialized
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 312 - function updateListItem
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 519 - function RefreshList
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 616 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop', Line 78 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.UIMgr', Line 78 - function Open",
+382,Warning,Client,Fri Aug 28 2026 22:50:25 GMT+0200 (heure d’été d’Europe centrale),V1715,Egg model not found: Egg1,,
+126,Warning,Client,Fri Aug 28 2026 22:50:45 GMT+0200 (heure d’été d’Europe centrale),V1715,Egg model not found: Egg2,,
+112,Warning,Client,Fri Aug 28 2026 22:50:45 GMT+0200 (heure d’été d’Europe centrale),V1715,Egg model not found: Egg3,,
+86,Error,Client,Wed Aug 26 2026 09:00:10 GMT+0200 (heure d’été d’Europe centrale),V1711,WrapDefomer SkinningTransfer Error for 'Workspace.Maryam0098h.Accessory (RightShoeAccessory).Handle': "Could not find nearest triangle in cage-to-mesh projection.",,
+41,Warning,Client,Fri Aug 28 2026 22:50:30 GMT+0200 (heure d’été d’Europe centrale),V1715,Egg model not found: Egg8,,
+15,Error,Client,Fri Aug 28 2026 04:25:20 GMT+0200 (heure d’été d’Europe centrale),V1711,WrapDefomer SkinningTransfer Error for 'Workspace.Rafts.7752202460.BearRigs.BearRig_2.LeftShoe.Handle': "No valid targets with any UV coverage were found.",,
+15,Error,Client,Fri Aug 28 2026 04:25:20 GMT+0200 (heure d’été d’Europe centrale),V1711,WrapDefomer SkinningTransfer Error for 'Workspace.Rafts.7752202460.BearRigs.BearRig_2.RightShoe.Handle': "No valid targets with any UV coverage were found.",,
+6,Error,Client,Fri Aug 28 2026 23:50:00 GMT+0200 (heure d’été d’Europe centrale),V1716,Players.<Player>.PlayerScripts.UI.Teleport:12: attempt to index nil with 'Get',"Script 'Players.<Player>.PlayerScripts.UI.Teleport', Line 12 - function updateCard
+    Script 'Players.<Player>.PlayerScripts.UI.Teleport', Line 86 - function RefreshView
+    Script 'Players.<Player>.PlayerScripts.UI.Teleport', Line 145 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.UIMgr', Line 78 - function Open",
+5,Warning,Server,Sat Aug 29 2026 00:33:05 GMT+0200 (heure d’été d’Europe centrale),V1716,[SaveLoadDataMgr] SavePlayerData attempt 1/3 failed: UserId=<PlayerId> err=502: API Services rejected request with error. Error code: 0 Reason: An internal server error occurred.,,
+5,Error,Client,Tue Aug 25 2026 15:11:00 GMT+0200 (heure d’été d’Europe centrale),V1711,WrapDefomer SkinningTransfer Error for 'Workspace.<Player>.Accessory (RightShoeAccessory).Handle': "Could not find nearest triangle in cage-to-mesh projection.",,
+5,Error,Client,Fri Aug 28 2026 22:51:45 GMT+0200 (heure d’été d’Europe centrale),V1715,Players.<Player>.PlayerScripts.UI.GoShop_Raft:102: attempt to index nil with 'Get',"Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 102 - function RefreshList
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 616 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop', Line 78 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.UIMgr', Line 78 - function Open",
+4,Error,Client,Fri Aug 28 2026 11:22:20 GMT+0200 (heure d’été d’Europe centrale),V1711,WrapDefomer SkinningTransfer Error for 'Workspace.Alewexx27.Accessory (EyelashAccessory).Handle': "No valid targets with any UV coverage were found.",,
+4,Error,Server,Fri Aug 28 2026 21:58:00 GMT+0200 (heure d’été d’Europe centrale),V1711,Failed to load sound: HTTP 504 (Gateway Time-out),rbxassetid://138118304933431,
+2,Warning,Server,Fri Aug 28 2026 12:08:10 GMT+0200 (heure d’été d’Europe centrale),V1711,"[SaveLoadDataMgr] SavePlayerData failed: 10254400246 ReplicatedStorage.ToolScripts.CopyTableScript:5: invalid argument #1 to 'pairs' (table expected, got nil)",,
+2,Warning,Client,Fri Aug 28 2026 13:07:30 GMT+0200 (heure d’été d’Europe centrale),V1711,Asset 78974254932983 is not allowed to be forked. Please contact the owner to share the asset.,,
+2,Error,Client,Thu Aug 27 2026 02:33:35 GMT+0200 (heure d’été d’Europe centrale),V1711,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset/?id=11746967004 because Error reading mesh data: unknown version,,
+2,Warning,Client,Fri Aug 28 2026 13:07:30 GMT+0200 (heure d’été d’Europe centrale),V1711,Asset 101797866864579 is not allowed to be forked. Please contact the owner to share the asset.,,
+2,Warning,Server,Fri Aug 28 2026 20:12:25 GMT+0200 (heure d’été d’Europe centrale),V1711,"[SaveLoadDataMgr] SavePlayerData failed: 11183197772 ReplicatedStorage.ToolScripts.CopyTableScript:5: invalid argument #1 to 'pairs' (table expected, got nil)",,
+2,Error,Client,Thu Aug 27 2026 12:53:40 GMT+0200 (heure d’été d’Europe centrale),V1711,RunService:fireRenderStepEarlyFunctions unexpected error while invoking callback: Players.<Player>.PlayerScripts.PlayerModule.ControlModule:500: Script timeout: exhausted allowed execution time,,
+2,Error,Client,Thu Aug 27 2026 02:33:35 GMT+0200 (heure d’été d’Europe centrale),V1711,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset/?id=11746967002 because Error reading mesh data: unknown version,,
+1,Error,Client,Thu Aug 27 2026 07:39:15 GMT+0200 (heure d’été d’Europe centrale),V1711,WrapDefomer SkinningTransfer Error for 'Workspace.sophiepineapplez.Accessory (EyelashAccessory).Handle': "No valid targets with any UV coverage were found.",,
+1,Warning,Client,Fri Aug 28 2026 13:07:30 GMT+0200 (heure d’été d’Europe centrale),V1711,Asset 80827058700571 is not allowed to be forked. Please contact the owner to share the asset.,,
+1,Warning,Client,Thu Aug 27 2026 18:01:40 GMT+0200 (heure d’été d’Europe centrale),V1711,Script has run for over 30.037 seconds and may timeout,"Script 'Players.<Player>.PlayerScripts.Controller.Raft', Line 112",
+1,Warning,Client,Thu Aug 27 2026 07:01:30 GMT+0200 (heure d’été d’Europe centrale),V1711,Script has run for over 31.199 seconds and may timeout,"Script 'ReplicatedFirst.LoadingController', Line 12",

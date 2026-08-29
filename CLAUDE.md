@@ -13,13 +13,38 @@ the full spec; this file is the day-to-day reference.
 >   `.claude/SESSION_LOG.md` first** (newest entry), then verify it against the
 >   gates before trusting it — that is `checkpoint resume`. The log is written
 >   by the `checkpoint` skill; run it whenever you stop or switch devices.
+> - **`baseline/` holds every frozen "before" state — read `baseline/README.md`
+>   first; it is the index and carries the method.** Two kinds live there:
+>   **handover** baselines (a game newly taken on, diagnosed full-life) and
+>   **update** baselines (one per publish, the `update-watch` grab). Folders are
+>   named `<UTC publish>-<universe>-<slug>-<version>`.
 > - **The portfolio is SIX games as of 2026-08-26.** Two were handed over that
->   day and are baselined from birth in **`baseline/`** — `10565445771` Verity
->   Companion [AI] (past peak, declining) and `10638354731` Seal A Driveway
->   (still climbing, best ARPDAU and D2 hold of the six). Read
->   `baseline/README.md` before touching either; it is the reference every later
->   claim about them is measured against. Neither is in `dashboard-config.json`,
->   so nothing grabs them on a schedule and no alerting covers them.
+>   day and are baselined from birth — `10565445771` Verity Companion [AI] (past
+>   peak, declining) and `10638354731` Seal A Driveway (still climbing, best
+>   ARPDAU and D2 hold of the six). Neither is in `dashboard-config.json`, so
+>   nothing grabs them on a schedule and no alerting covers them.
+> - **FIVE updates shipped inside eight hours on 2026-08-28 and all five are
+>   baselined, all frozen at 2026-08-27** with pre-registered tripwires. In
+>   publish order: `10399712766` Banana Monkey **v1244** (14:00), `9963622286`
+>   Brainrot **v606→v607** (15:00), `10565445771` Verity **v678→v679** (19:00),
+>   `10030829154` Waterslide **v1715→v1716** (20:30), `10638354731` Seal
+>   **v908** (21:00). The last three were reported a day late and baselined
+>   2026-08-29 at T+13–15h; all three are at **100% adoption** of the new build,
+>   so reads from 08-29 are clean.
+>   **The first genuinely post-update UTC day is 2026-08-29 for the evening
+>   three — read it on 08-30.**
+>   **Not one of the five can be judged on DAU or CCU.** Brainrot, Verity and
+>   Waterslide are all in declines that predate their publish; Monkey was already
+>   recovering; Seal is diluting through a +364% w/w scale-up. Retention, funnel
+>   step rates, errors per player and the monetization *rates* are what test them
+>   — see each `BASELINE.md`.
+>   At T+13–15h, errors per concurrent player on matched elapsed slots against
+>   the mean of the two pre-update days: Verity **−0.9%**, Seal **+1.8%**,
+>   Waterslide **−4.7%**. Nothing broken on the evidence available.
+>   **The open blocker on all five is error message TEXT** — every game's newest
+>   dashboard export predates even the build that was live *before* its update,
+>   so the "new signature on this version" tripwire cannot be evaluated at all
+>   without a fresh export per game.
 > - **Three gates — run them before and after any change** (measured
 >   2026-08-10, not copied):
 >   `npm run verify -- ../data/verify/9610561918/` → 23 pass · **2 fail** · 8 skip
@@ -370,9 +395,19 @@ disagree about what counts as an outlier.
 Answers "is today genuinely down" **before the day ends**, which the daily-peak
 comparison structurally cannot: today is a part-day and every baseline day is a
 whole one. Each point is one XX:00 / XX:30 UTC slot against that same slot on
-other days, so the time-of-day shape divides out and only elapsed slots are ever
-compared. Prints four baselines (same weekday / 7d / 14d / all) plus **the day's
-rank**, which needs no baseline choice at all — and a per-slot deficit profile.
+other days, so the time-of-day shape divides out. Prints four baselines (same
+weekday / 7d / 14d / all) plus **the day's rank**, which needs no baseline
+choice at all — and a per-slot deficit profile.
+
+**ALWAYS pass `--slots` bounded by the current UTC hour when reading today.**
+The claim that "only elapsed slots are ever compared" was in this file until
+2026-08-28 and is **false**: with no `--slots` the tool can sweep the whole 24 h
+and count every not-yet-happened slot as a **zero**. On 9963622286 at 15:23 UTC
+that printed today as **848 CCU / −64.7%**; `--slots 00:00-15:30` gives **1,246
+/ −40.9%** — a collapse versus a game sitting level with yesterday. It selected
+the elapsed range by itself for a second universe in the same run, so the
+behaviour is **inconsistent, not uniformly wrong** — never trust either default.
+F24 in `data/verify/COVERAGE.md`; not yet fixed, not yet tested.
 
 **Read the per-slot profile before naming a cause.** A break inside the game
 costs the same share of players in every slot; a calendar or discovery effect
@@ -395,6 +430,14 @@ First snapshot 2026-08-25T14:33Z — 269 games, 7,537,949 combined CCU, with
 at **917K = 12.2% of the entire board**. **Snapshots are committed** via
 `!/data/platform/` in `.gitignore` — a snapshot is a moment, and an uncommitted
 one is gone. Run it daily or the series never accumulates.
+
+**Second snapshot 2026-08-28T15:31Z — 275 games, 8,101,577 CCU, the board UP
+7.5% in three days**, with `Steal An Egg` at **1,355,686 = 16.7%** (from 12.2%).
+So the series now answers its own question for the first time: on 2026-08-28
+**the board was growing while the portfolio was not**, which kills any
+"seasonality" or "Roblox is quiet" explanation for a portfolio-wide deficit and
+is consistent with a single mega-hit continuing to take the surface. Two points
+is still a line, not a trend — keep running it daily.
 
 Both read Open Cloud or public endpoints directly and never the corpus CSVs —
 see F18 above for why that is mandatory rather than a preference. Behavioural metrics (DAU, revenue,
@@ -547,6 +590,19 @@ controls included. Full recipe in the `liveops-diagnosis` skill; F22 in COVERAGE
 
 **A 200 with zero data points is not evidence of anything.** It means the query
 matched nothing. Check the dashboard before concluding the feature is unused.
+
+**And its most common cause is an async query you stopped polling — RETRY BEFORE
+YOU BELIEVE AN EMPTY ANSWER.** This is not confined to funnels (F22). On
+2026-08-28 `ErrorCount` by `PlaceVersion` — the deploy log — returned **0
+versions**, and the identical rerun returned **25**; the same pass reported "0
+steps" for two games that have 20 and 3. A `done:false` answer carries a `path`
+and no data, so read as final it presents as a clean, well-formed, empty result.
+It appears under back-to-back load, and `tools/oc.js`'s 40 × 1200ms poll budget
+is not always enough. **An empty answer is a measurement of the poll, not of the
+game, until a spaced retry agrees with it.** `tools/deploy-log.js` and
+`tools/funnels.js` poll 3 min, retry empties three times, and the deploy log
+*throws rather than writing an empty table* — a missing file is a visible
+failure, an empty one is a false record. F23 in `data/verify/COVERAGE.md`.
 Every attempt is recorded to `data/games/<id>/grab-report.md` (returned data /
 empty 200 / failed), because a request that fails is dropped from the capture
 list and would otherwise be invisible. `getGrabPlan` merges

@@ -1,0 +1,35 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+661694,Warning,Server,Mon Aug 03 2026 22:21:10 GMT+0200 (heure d’été d’Europe centrale),V446,Generated dialogue was rejected by filtering for <Player>,,
+6222,Warning,Server,Tue Aug 04 2026 15:15:40 GMT+0200 (heure d’été d’Europe centrale),V454,Player text filter unavailable for <Player>,,
+3543,Warning,Server,Sat Aug 15 2026 01:02:15 GMT+0200 (heure d’été d’Europe centrale),V615,DeepInfra still rate limiting after 4 attempts; using authored fallbacks,,
+2215,Warning,Server,Sun Aug 16 2026 13:00:35 GMT+0200 (heure d’été d’Europe centrale),V645,Model repeated its own previous line (attempt 1): I forgot.,,
+942,Error,Server,Fri Aug 28 2026 22:10:10 GMT+0200 (heure d’été d’Europe centrale),V679,ServerStorage.serverModules.Services.MysticLibraryService:144: attempt to call missing method 'FireAllClients' of table,"Script 'ServerStorage.serverModules.Services.MysticLibraryService', Line 144 - function EndEvent
+    Script 'ServerStorage.serverModules.Services.MysticLibraryService', Line 267",
+887,Warning,Server,Tue Aug 04 2026 15:32:45 GMT+0200 (heure d’été d’Europe centrale),V454,DeepInfra network failure (attempt 1): HttpError: Timedout,,
+864,Warning,Server,Sun Aug 16 2026 15:00:25 GMT+0200 (heure d’été d’Europe centrale),V645,Model repeated its own previous line (attempt 2): I forgot.,,
+804,Warning,Server,Sun Aug 16 2026 15:01:00 GMT+0200 (heure d’été d’Europe centrale),V645,"DeepInfra slots all busy (2 in flight, 1 queued); using authored fallbacks",,
+751,Warning,Server,Wed Aug 05 2026 08:11:10 GMT+0200 (heure d’été d’Europe centrale),V473,Generated dialogue was rejected by filtering for roblox_user_<PlayerId>,,
+742,Warning,Server,Sun Aug 16 2026 13:02:00 GMT+0200 (heure d’été d’Europe centrale),V645,Model repeated its own previous line (attempt 1): I forgot. Stay close.,,
+536,Warning,Server,Mon Aug 17 2026 16:01:00 GMT+0200 (heure d’été d’Europe centrale),V664,Model repeated its own previous line (attempt 2): i forgot.,,
+511,Error,Server,Tue Aug 04 2026 15:54:00 GMT+0200 (heure d’été d’Europe centrale),V454,No cage data exists for 372da3e80413a782f1e3326fc6bfeec0. TemporaryReferenceId was not set.,,
+395,Error,Server,Tue Aug 04 2026 15:32:00 GMT+0200 (heure d’été d’Europe centrale),V466,ReplicatedStorage.Packages.DataServiceTyped.DataServiceServer:151: attempt to index nil with 'AddUserId',"Script 'ReplicatedStorage.Packages.DataServiceTyped.DataServiceServer', Line 151 - function _playerAdded
+    Script 'ReplicatedStorage.Packages.DataServiceTyped.DataServiceServer', Line 100",
+343,Warning,Server,Tue Aug 04 2026 15:32:10 GMT+0200 (heure d’été d’Europe centrale),V454,AskService: no destination resolved for "alone",,
+267,Warning,Server,Tue Aug 04 2026 15:26:00 GMT+0200 (heure d’été d’Europe centrale),V454,AskService: could not start a lead to "view" (no character?),,
+263,Warning,Server,Mon Aug 17 2026 00:00:30 GMT+0200 (heure d’été d’Europe centrale),V645,"DeepInfra slots all busy (2 in flight, 2 queued); using authored fallbacks",,
+242,Error,Server,Thu Aug 20 2026 13:07:50 GMT+0200 (heure d’été d’Europe centrale),V664,Error while processing packet: InstanceStateReplicator::readInstanceStateData - Deserialized LOD Level Out Of Bounds (packet id: 161),,
+230,Warning,Server,Sun Aug 16 2026 15:03:45 GMT+0200 (heure d’été d’Europe centrale),V645,Model repeated its own previous line (attempt 1): Please stay close to me.,,
+176,Warning,Server,Sun Aug 16 2026 18:00:05 GMT+0200 (heure d’été d’Europe centrale),V645,Model repeated its own previous line (attempt 2): I forgot. Stay close.,,
+172,Warning,Server,Sun Aug 16 2026 13:02:10 GMT+0200 (heure d’été d’Europe centrale),V645,Model repeated its own previous line (attempt 1): I forgot what you said. Stay close.,,
+144,Warning,Server,Sun Aug 16 2026 21:05:00 GMT+0200 (heure d’été d’Europe centrale),V645,Reply was cut at max_tokens (attempt 1): neutral|none|larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp,,
+143,Error,Server,Wed Aug 05 2026 02:16:45 GMT+0200 (heure d’été d’Europe centrale),V471,DataStoreService: InternalServerError: An internal server error occurred. API: UpdateAsync,Default,
+137,Warning,Server,Sun Aug 16 2026 15:02:20 GMT+0200 (heure d’été d’Europe centrale),V645,Reply was cut at max_tokens (attempt 1): unsettling|none|larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp larp,,
+136,Warning,Server,Wed Aug 05 2026 02:16:45 GMT+0200 (heure d’été d’Europe centrale),V471,ProfileStore DataStore API error: 502: API Services rejected request with error. Error code: 0 Reason: An internal server error occurred.,"Default; ,PLAYER_<PlayerId>)
+Default; ,PLAYER_10205276931)
+Default; ,PLAYER_11317174035)
+Default; ,PLAYER_3607785225)
+Default; ,PLAYER_7255743087)
+Default; ,PLAYER_8587391460)
+Default; ,PLAYER_9773466986)
+Default; ,PLAYER_9926466746)",
+130,Warning,Server,Sun Aug 09 2026 21:49:05 GMT+0200 (heure d’été d’Europe centrale),V609,Badge 3067779682561852 was refused by the platform,,

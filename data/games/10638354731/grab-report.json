@@ -1,14 +1,14 @@
 {
   "universeId": "10638354731",
-  "startTime": "2026-08-05T00:00:00Z",
-  "endTime": "2026-08-27T00:00:00Z",
+  "startTime": "2026-08-01T00:00:00Z",
+  "endTime": "2026-08-30T00:00:00Z",
   "planSource": "seed · opencloud",
   "discovered": {
     "__places": [
       "120014184236770"
     ]
   },
-  "requested": 120,
+  "requested": 128,
   "attempts": [
     {
       "metric": "UniqueUsersWithImpressions",
@@ -18,9 +18,9 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -31,9 +31,9 @@
       "filter": "",
       "optional": true,
       "provenance": "inferred",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 95,
+      "points": 113,
       "error": null
     },
     {
@@ -46,7 +46,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -57,9 +57,9 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 10,
+      "points": 14,
       "error": null
     },
     {
@@ -72,7 +72,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 10,
+      "points": 14,
       "error": null
     },
     {
@@ -85,7 +85,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -98,7 +98,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 21,
       "error": null
     },
     {
@@ -111,7 +111,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 21,
       "error": null
     },
     {
@@ -124,7 +124,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 21,
       "error": null
     },
     {
@@ -150,7 +150,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -163,7 +163,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 67,
+      "points": 82,
       "error": null
     },
     {
@@ -176,7 +176,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 60,
+      "points": 72,
       "error": null
     },
     {
@@ -202,7 +202,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 21,
       "error": null
     },
     {
@@ -215,7 +215,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 59,
+      "points": 81,
       "error": null
     },
     {
@@ -241,7 +241,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -252,7 +252,7 @@
       "filter": "",
       "optional": true,
       "provenance": "inferred",
-      "status": 200,
+      "status": 202,
       "ok": true,
       "points": 36,
       "error": null
@@ -278,9 +278,9 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 202,
+      "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -293,7 +293,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 60,
+      "points": 72,
       "error": null
     },
     {
@@ -306,7 +306,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -319,7 +319,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -332,7 +332,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 17,
+      "points": 20,
       "error": null
     },
     {
@@ -345,7 +345,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 60,
+      "points": 72,
       "error": null
     },
     {
@@ -358,7 +358,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 66,
+      "points": 81,
       "error": null
     },
     {
@@ -384,7 +384,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -395,9 +395,9 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -410,7 +410,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 66,
+      "points": 81,
       "error": null
     },
     {
@@ -423,7 +423,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -436,7 +436,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -449,7 +449,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 17,
+      "points": 20,
       "error": null
     },
     {
@@ -462,7 +462,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 66,
+      "points": 81,
       "error": null
     },
     {
@@ -488,7 +488,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -499,9 +499,9 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 202,
+      "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -512,9 +512,9 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 202,
+      "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -527,7 +527,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -540,7 +540,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -553,7 +553,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -564,9 +564,9 @@
       "filter": "IsNewUser=New",
       "optional": false,
       "provenance": "proven",
-      "status": 202,
+      "status": 200,
       "ok": true,
-      "points": 74,
+      "points": 89,
       "error": null
     },
     {
@@ -592,7 +592,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -605,7 +605,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 66,
+      "points": 81,
       "error": null
     },
     {
@@ -616,9 +616,9 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 14,
+      "points": 17,
       "error": null
     },
     {
@@ -631,7 +631,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -644,7 +644,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -657,7 +657,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -670,7 +670,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 59,
+      "points": 74,
       "error": null
     },
     {
@@ -683,7 +683,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 29,
+      "points": 35,
       "error": null
     },
     {
@@ -707,9 +707,9 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -722,7 +722,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 647,
+      "points": 713,
       "error": null
     },
     {
@@ -735,7 +735,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 212,
+      "points": 217,
       "error": null
     },
     {
@@ -746,7 +746,7 @@
       "filter": "",
       "optional": false,
       "provenance": "proven",
-      "status": 200,
+      "status": 202,
       "ok": true,
       "points": 1,
       "error": null
@@ -761,7 +761,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 19,
+      "points": 21,
       "error": null
     },
     {
@@ -774,7 +774,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 37,
+      "points": 41,
       "error": null
     },
     {
@@ -824,7 +824,7 @@
       "filter": "",
       "optional": true,
       "provenance": "inferred",
-      "status": 202,
+      "status": 200,
       "ok": true,
       "points": 0,
       "error": null
@@ -865,7 +865,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 18,
       "error": null
     },
     {
@@ -878,7 +878,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 10,
+      "points": 14,
       "error": null
     },
     {
@@ -891,7 +891,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 21,
       "error": null
     },
     {
@@ -904,7 +904,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 21,
       "error": null
     },
     {
@@ -930,6 +930,19 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
+      "points": 4,
+      "error": null
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=120014184236770",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
       "points": 7,
       "error": null
     },
@@ -943,7 +956,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 6,
+      "points": 5,
       "error": null
     },
     {
@@ -969,6 +982,19 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
+      "points": 4,
+      "error": null
+    },
+    {
+      "metric": "ClientCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=120014184236770",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
       "points": 7,
       "error": null
     },
@@ -982,7 +1008,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 6,
+      "points": 5,
       "error": null
     },
     {
@@ -1008,6 +1034,19 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
+      "points": 3,
+      "error": null
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=120014184236770",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
       "points": 7,
       "error": null
     },
@@ -1021,7 +1060,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 6,
+      "points": 5,
       "error": null
     },
     {
@@ -1064,6 +1103,19 @@
       "error": null
     },
     {
+      "metric": "ServerCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "",
+      "filter": "Place=120014184236770",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 0,
+      "error": null
+    },
+    {
       "metric": "ClientCrashRate15m",
       "kind": "metric",
       "granularity": "OneDay",
@@ -1086,7 +1138,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 26,
+      "points": 12,
       "error": null
     },
     {
@@ -1099,7 +1151,20 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 30,
+      "points": 33,
+      "error": null
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=120014184236770",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 25,
       "error": null
     },
     {
@@ -1113,6 +1178,19 @@
       "status": 200,
       "ok": true,
       "points": 0,
+      "error": null
+    },
+    {
+      "metric": "ClientCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=120014184236770",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 11,
       "error": null
     },
     {
@@ -1138,7 +1216,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 15,
       "error": null
     },
     {
@@ -1164,7 +1242,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 17,
+      "points": 6,
       "error": null
     },
     {
@@ -1177,7 +1255,20 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 18,
+      "points": 19,
+      "error": null
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "Platform",
+      "filter": "Place=120014184236770",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 15,
       "error": null
     },
     {
@@ -1220,6 +1311,19 @@
       "error": null
     },
     {
+      "metric": "ServerCrashCount",
+      "kind": "metric",
+      "granularity": "OneDay",
+      "breakdown": "CrashType",
+      "filter": "Place=120014184236770",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 0,
+      "error": null
+    },
+    {
       "metric": "ClientFpsP10",
       "kind": "metric",
       "granularity": "OneDay",
@@ -1229,7 +1333,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 17,
       "error": null
     },
     {
@@ -1242,7 +1346,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 17,
       "error": null
     },
     {
@@ -1255,7 +1359,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 17,
       "error": null
     },
     {
@@ -1268,7 +1372,7 @@
       "provenance": "observed",
       "status": 202,
       "ok": true,
-      "points": 14,
+      "points": 16,
       "error": null
     },
     {
@@ -1281,7 +1385,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 16,
       "error": null
     },
     {
@@ -1294,7 +1398,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 17,
       "error": null
     },
     {
@@ -1307,7 +1411,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 17,
       "error": null
     },
     {
@@ -1320,7 +1424,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 64,
+      "points": 74,
       "error": null
     },
     {
@@ -1333,7 +1437,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 64,
+      "points": 74,
       "error": null
     },
     {
@@ -1346,7 +1450,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 64,
+      "points": 74,
       "error": null
     },
     {
@@ -1359,7 +1463,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 64,
+      "points": 74,
       "error": null
     },
     {
@@ -1370,9 +1474,9 @@
       "filter": "Place=120014184236770",
       "optional": true,
       "provenance": "observed",
-      "status": 200,
+      "status": 202,
       "ok": true,
-      "points": 70,
+      "points": 80,
       "error": null
     },
     {
@@ -1385,7 +1489,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 70,
+      "points": 85,
       "error": null
     },
     {
@@ -1398,7 +1502,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 70,
+      "points": 80,
       "error": null
     },
     {
@@ -1411,7 +1515,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 17,
       "error": null
     },
     {
@@ -1424,7 +1528,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 16,
       "error": null
     },
     {
@@ -1437,7 +1541,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 17,
       "error": null
     },
     {
@@ -1450,7 +1554,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 64,
+      "points": 74,
       "error": null
     },
     {
@@ -1461,7 +1565,7 @@
       "filter": "Place=120014184236770",
       "optional": true,
       "provenance": "observed",
-      "status": 200,
+      "status": 202,
       "ok": true,
       "points": 9,
       "error": null
@@ -1476,7 +1580,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 17,
       "error": null
     },
     {
@@ -1489,7 +1593,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 19,
+      "points": 21,
       "error": null
     },
     {
@@ -1502,7 +1606,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 37,
+      "points": 41,
       "error": null
     },
     {
@@ -1515,7 +1619,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 29,
+      "points": 32,
       "error": null
     },
     {
@@ -1528,7 +1632,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 58,
+      "points": 64,
       "error": null
     },
     {
@@ -1567,7 +1671,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 30,
+      "points": 33,
       "error": null
     }
   ]

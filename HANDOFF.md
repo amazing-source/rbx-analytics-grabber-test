@@ -892,3 +892,87 @@ Kills deploy, mix, technical and funnel-break explanations together. It was
 **Only `FUNNEL_TYPE_ONBOARDING` is instrumented (3 usable steps, all 95–96%);
 the rebirth loop is unmeasured.** Instrumenting it is the precondition for any
 content decision here.
+
+---
+
+## Session 2026-08-28 — update baselines for two publishes, and the async-empty trap generalised
+
+Two updates shipped within an hour and both were baselined the same afternoon.
+Folders under `baseline/`, named `<UTC publish>-<universe>-<slug>-<version>`;
+`baseline/README.md` is the index and carries the method.
+
+### Both publishes, dated from Roblox's own second source
+
+`develop.roblox.com/v1/assets/<place>/saved-versions` **401s without a session
+cookie**, so the deploy log came from `ErrorCount` × `PlaceVersion` at half-hour
+resolution (`tools/deploy-log.js`).
+
+| Game | Version | First error bucket (UTC) | Previous build |
+|---|---|---|---|
+| Become a Brainrot `9963622286` | **v606 → v607** | 2026-08-28 **15:00** | v605, live from 08-26 11:30 |
+| +1 Banana Monkey Destruction `10399712766` | **v1244** | 2026-08-28 **14:00** | v1241, live from 08-21 |
+
+**v606 and v607 landed in the same half-hour bucket, and the log settles which
+is live:** v606 appears in the 15:00 bucket only (29,218 events, then nothing);
+v607 runs 15:00 *and* 15:30 and keeps accruing. v606 was superseded within
+minutes — exclude its events from the T+2h read, they belong to a build nobody
+is running. The studio has not confirmed whether it was a bad publish.
+
+### Become a Brainrot — shipping into a reach-led decline with retention rising
+
+Frozen at **2026-08-27** (last day closed before the publish). DAU **103,843**
+(−36.2% w/w; 241,553 as recently as 08-16), revenue **R$34,725** (−52.2%),
+payers **621** (−47.4%), impressions **−35.5%** — while **`ForwardD1Retention`
+rose to 14.50% (+9.0%)**. Reach is falling and the product is holding, so a
+post-update DAU fall is guaranteed regardless of v607. **Judge this build on
+retention, session length and errors only.**
+
+- **The error load improved −89% and that is the thing to protect.** `ErrorCount`
+  30.79M (08-16) → **3.24M** (08-27), holding six days; crashes −30%, OOM −34%.
+  Something around 08-22 worked. Nobody has identified what.
+- **`ClientCpuTimeAvg` stepped 41 → 93 on 08-27**, 2.3×, one settled day, the day
+  *before* this publish, with nothing else moving (crash rate flat, FPS +1.3%,
+  memory +1.0%). **A flag, not a finding** — one day is a spike, two is a step.
+  It is now inside the baseline v607 gets measured against. **Re-read on 08-29.**
+- **The funnel has two cliffs and they are the progression problem.** Only
+  **64.5%** who clear step 3 reach `BaseUpgrade4`, only **63.5%** who clear step 7
+  reach `BaseUpgrade8`, against 92–98% at every other gate. 651,943 → 115,835
+  across 20 steps (**17.8% survive**), and **those two gates are 62.9% of all
+  loss** (217,929 + 119,276 of 536,108). Pre-existing, not v607's doing.
+- CCU today level with yesterday (1,246 vs 1,268 on matched slots), **not** still
+  falling — but only once F24's slot bug is worked around.
+- `ServerCrashCount` returned **empty 200s across the whole window** at OneDay,
+  by CrashType and at HalfHour. Given the 1.06M-crash incident on 2026-08-01,
+  treat that as unverified, not as health.
+
+### Banana Monkey Destruction — shipping into a recovery already underway
+
+Frozen at **2026-08-27**. **DAU bottomed 252,338 on 08-26 and rose to 269,321**,
+with PCU (4,326 → 4,830 → 5,051), revenue (R$80,052 → 86,925 → 90,905) and
+payers (1,974 → 2,096 → 2,218) all up three days running. Four independent
+series turning together is a real inflection. ARPDAU **R$0.338 (+23.1% w/w)**,
+payer CVR **0.82% (+12.1%)**, D1 flat at **13.94%**.
+
+**So a flat post-update reading here is a bad result, not a neutral one** — the
+risk is v1244 killing a recovery, which is why "DAU below 250,000 on 08-29" is
+its own tripwire. Technical rung is healthy and needs protecting, not fixing:
+crash rate **0.68%** against Brainrot's 2.46%, OOM −59.5%, errors −49.0%.
+
+Stickiness reading −57.1% is arithmetic, not a fault: MAU *rose* 12.3% while DAU
+halved, so the 30-day denominator still carries the big early-August days.
+
+### The gap that needs a person
+
+**Error message TEXT for both games.** The `MessageHash` lookup 500s and Open
+Cloud serves no text, so a Creator Dashboard export is the only route to a
+message body. Brainrot's newest is `errors_2026-08-24_1831_v600.csv` — **four
+builds old**. **Banana Monkey has never had one filed at all**; its export folder
+has no `errors/` directory. Without a T+2h export per game the "new signature on
+this version" tripwire cannot be evaluated on either.
+
+### Platform board, second snapshot
+
+2026-08-28T15:31Z: **275 games, 8,101,577 CCU — the board UP 7.5% in three
+days**, `Steal An Egg` **1,355,686 = 16.7%** of it (was 917K / 12.2% on 08-25).
+The board grew while the portfolio did not, which rules out seasonality for the
+current deficits. See `data/platform/`.

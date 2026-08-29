@@ -692,3 +692,34 @@ the orphan fix holds, wire `anomaly.ts` to the Discord webhook.
 - `platform-ccu` still has one snapshot (2026-08-25) → schedule daily or §0c step 2 stays unanswerable
 
 **Next:** reconcile the 6 commits behind `origin/grabber-correctness`, then push the 7 ahead.
+
+## 2026-08-28 — update baselines for two publishes; the async-empty trap is wider than F22 said
+
+**State:** branch `grabber-correctness` · 70 ahead of `main` · **8 unpushed, still 6 BEHIND `origin/grabber-correctness`** — unchanged since 08-26, reconcile before pushing · dirty: 2 new `baseline/` folders, 3 new `tools/`, 2 raw bundles, 1 platform snapshot, `baseline/README.md`, 2 grab-report.json
+**Gates** (measured now): verify **23 pass · 2 fail · 8 skip, exit 1** (both fails documented + held) · audit-plan **140 templates, 0 failures, exit 0** · test **44/44, exit 0**
+
+**Landed:** update baselines for `9963622286` **v606→v607** (published 08-28 15:00–15:30 UTC) and `10399712766` **v1244** (14:00–14:30 UTC), in `baseline/<UTC publish>-<universe>-<slug>-<version>/`. Each holds the report, settled metric table + `headline-daily.csv`, funnels, deploy log, CCU baseline and the frozen corpus files. `baseline/README.md` rewritten as an index over both kinds of baseline. Second `platform-ccu` snapshot taken. Three reusable pullers added: `tools/deploy-log.js`, `tools/funnels.js`, `tools/build-baseline.js`.
+
+**Learned → routed:**
+- **An unfinished async query is indistinguishable from a game with no data, and it is NOT confined to funnels** — `ErrorCount`×`PlaceVersion` returned 0 versions then 25 on the identical rerun → **F23**, `CLAUDE.md` (extends the empty-200 standing rule), and guards in `tools/deploy-log.js` / `tools/funnels.js`
+- **`ccu-baseline` counts not-yet-elapsed slots as zero** — 848/−64.7% vs 1,246/−40.9% on the same universe minutes apart → **F24**, `CLAUDE.md` Reading-CCU section
+- **`FunnelUserStepCompletionRate` (step-to-step) and `FunnelCohortCompletionRate` (cumulative from step 1) have different denominators** — 99.11% vs 95.2% for one step → `liveops-diagnosis` SKILL.md funnel section
+- **A pre-registered threshold must exclude the in-progress day**, and a post-publish grab must be labelled T+0 with its freeze date → `update-watch` SKILL.md
+- Brainrot's two funnel cliffs (gates 4 and 8 = **62.9%** of all loss across 20 steps) and its `ClientCpuTimeAvg` 41→93 step on 08-27 → `HANDOFF.md` + `BASELINE.md`
+- Board **up 7.5%** to 8,101,577 CCU while the portfolio was not → `CLAUDE.md`, `data/platform/`
+
+**Disproved:**
+- **`CLAUDE.md`'s "only elapsed slots are ever compared"** about `ccu-baseline` — false; with no `--slots` it swept 00:00–23:00 and scored eight unlived hours as zero, turning a −40.9% day into a −64.7% "collapse". Corrected in place. It selected the elapsed range unprompted for a *second* universe in the same run, so the behaviour is inconsistent rather than uniformly wrong.
+- **F22's implied scope** — "funnel queries are async" was the narrow reading of a fault that hits any Open Cloud query under load, including the deploy log, where an empty answer looks like a plausible "no ships in this window" and would have been filed as fact.
+
+**Open:**
+- **8 commits unpushed and 6 behind `origin/grabber-correctness`** — carried over untouched from 2026-08-26 → reconcile, then push
+- **Nothing here is committed**, including the platform snapshot — "an uncommitted snapshot is gone" → commit
+- **Error TEXT for both games.** Brainrot's newest export is 4 builds old; **Banana Monkey has never had one** → export *Errors and warnings by count* per game at T+2h, filtered to the new version; without it the "new signature" tripwire is unevaluable on both
+- **F24 is not fixed and not tested** → clamp the slot list to the last elapsed boundary when the day is today, in `web/scripts/ccu-baseline.ts`, and encode it
+- **Brainrot `ClientCpuTimeAvg` 93 vs a 37–50 band** — one settled day only → re-read 08-29: still ~93 means a real regression predating v607
+- Both 08-28 updates are **unread post-publish** → full grab after the UTC day rolls, 2026-08-29
+- Seal payer CVR read (due 08-28/29) and Verity reach read (due 08-29) from the 08-26 entry — **both still not done**
+- `9963622286` `ServerCrashCount` returns empty 200s across the whole window at every granularity → verify against the dashboard rather than reading it as zero
+
+**Next:** commit this session, then on 2026-08-29 run the post-update grab for both universes and mark the pre-registered tripwires OK/WATCH/FIX/NO DATA.

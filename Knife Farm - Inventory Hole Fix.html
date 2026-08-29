@@ -1,0 +1,701 @@
+<title>Knife Farm Inventory Holes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+
+<style>
+  :root {
+    --ground:   #F1F4F6;
+    --surface:  #FFFFFF;
+    --surface-2:#E9EEF2;
+    --line:     #D2DBE2;
+    --line-soft:#E3EAEF;
+    --ink:      #101820;
+    --ink-2:    #35434F;
+    --muted:    #5E6E7C;
+    --accent:   #1F6B77;
+    --accent-2: #14454E;
+    --danger:   #A8352A;
+    --danger-bg:#FBEDEB;
+    --ok:       #256B50;
+    --ok-bg:    #E9F3EE;
+    --warn:     #8A6210;
+    --warn-bg:  #FBF2DF;
+    --code-bg:  #101820;
+    --code-ink: #DCE6EC;
+    --code-line:#22303B;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:   #0D1319;
+      --surface:  #151E26;
+      --surface-2:#1C2731;
+      --line:     #2A3843;
+      --line-soft:#212D37;
+      --ink:      #E7EDF2;
+      --ink-2:    #B9C7D2;
+      --muted:    #8B9BA8;
+      --accent:   #4FAEBB;
+      --accent-2: #8AD3DC;
+      --danger:   #E58072;
+      --danger-bg:#2C1A18;
+      --ok:       #62BE95;
+      --ok-bg:    #14271F;
+      --warn:     #D8AC55;
+      --warn-bg:  #2A2214;
+      --code-bg:  #0A1015;
+      --code-ink: #D6E2EA;
+      --code-line:#1E2A34;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:   #0D1319;
+    --surface:  #151E26;
+    --surface-2:#1C2731;
+    --line:     #2A3843;
+    --line-soft:#212D37;
+    --ink:      #E7EDF2;
+    --ink-2:    #B9C7D2;
+    --muted:    #8B9BA8;
+    --accent:   #4FAEBB;
+    --accent-2: #8AD3DC;
+    --danger:   #E58072;
+    --danger-bg:#2C1A18;
+    --ok:       #62BE95;
+    --ok-bg:    #14271F;
+    --warn:     #D8AC55;
+    --warn-bg:  #2A2214;
+    --code-bg:  #0A1015;
+    --code-ink: #D6E2EA;
+    --code-line:#1E2A34;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 20px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 780px; margin: 0 auto; }
+
+  /* ---------- header ---------- */
+
+  header {
+    padding: 56px 0 32px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 40px;
+  }
+
+  .eyebrow {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-bottom: 22px;
+  }
+  .eyebrow span { white-space: nowrap; }
+  .eyebrow .sep { color: var(--line); }
+
+  h1 {
+    font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(31px, 5.2vw, 45px);
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+    margin: 0 0 20px;
+  }
+
+  .deck {
+    font-size: 19.5px;
+    line-height: 1.52;
+    color: var(--ink-2);
+    max-width: 62ch;
+    margin: 0;
+  }
+  .deck strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- headline box ---------- */
+
+  .verdict {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    padding: 22px 26px;
+    margin: 34px 0 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .verdict h2 {
+    font-family: "Archivo", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0;
+  }
+  .verdict ol {
+    margin: 0;
+    padding-left: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    font-size: 16.5px;
+  }
+  .verdict li::marker { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .verdict .foot {
+    font-size: 15px;
+    color: var(--muted);
+    border-top: 1px solid var(--line-soft);
+    padding-top: 13px;
+    margin: 0;
+  }
+
+  /* ---------- sections ---------- */
+
+  section { margin-top: 52px; }
+
+  h2.sec {
+    font-family: "Archivo", sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    letter-spacing: -0.014em;
+    line-height: 1.2;
+    text-wrap: balance;
+    margin: 0 0 6px;
+  }
+  .sec-note {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 20px;
+  }
+
+  h3 {
+    font-family: "Archivo", sans-serif;
+    font-weight: 600;
+    font-size: 17.5px;
+    letter-spacing: -0.005em;
+    margin: 34px 0 10px;
+  }
+
+  p { margin: 0 0 16px; max-width: 68ch; }
+  p:last-child { margin-bottom: 0; }
+
+  ul.body { margin: 0 0 16px; padding-left: 20px; display: flex; flex-direction: column; gap: 7px; max-width: 68ch; }
+  ul.body li::marker { color: var(--accent); }
+
+  code {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.855em;
+    background: var(--surface-2);
+    border-radius: 3px;
+    padding: 1.5px 5px;
+    color: var(--ink);
+    word-break: break-word;
+  }
+
+  pre {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border: 1px solid var(--code-line);
+    border-radius: 5px;
+    padding: 18px 20px;
+    overflow-x: auto;
+    margin: 0 0 18px;
+    font-size: 13.5px;
+    line-height: 1.62;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+    word-break: normal;
+  }
+  pre .c { color: #7F94A3; font-style: italic; }
+  pre .k { color: #6FC2CE; }
+  pre .s { color: #C7A87B; }
+  pre .add { color: #7FCFA6; }
+  pre .del { color: #E08D80; }
+
+  /* ---------- gate list ---------- */
+
+  .gates {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    margin: 0 0 22px;
+  }
+  .gate {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 18px;
+    align-items: baseline;
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .gate:last-child { border-bottom: 0; }
+  .gate .what { font-weight: 600; font-size: 16px; }
+  .gate .where {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12.5px;
+    color: var(--muted);
+    text-align: right;
+    white-space: nowrap;
+  }
+  .gate .how {
+    grid-column: 1 / -1;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12.5px;
+    color: var(--ink-2);
+  }
+
+  /* ---------- the strip ---------- */
+
+  figure { margin: 26px 0 22px; }
+
+  .strip-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .strip {
+    display: flex;
+    height: 46px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .strip .reach {
+    width: 4.5%;
+    background: var(--ok);
+    flex-shrink: 0;
+  }
+  .strip .hole {
+    width: 8px;
+    background: var(--danger);
+    flex-shrink: 0;
+    position: relative;
+  }
+  .strip .lost {
+    flex: 1;
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--surface-2) 0 7px,
+      var(--line-soft) 7px 14px
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12.5px;
+    color: var(--ink-2);
+    letter-spacing: 0.03em;
+  }
+  .strip-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .strip-legend span { display: flex; align-items: center; gap: 7px; }
+  .swatch { width: 11px; height: 11px; flex-shrink: 0; display: inline-block; }
+  .swatch.ok { background: var(--ok); }
+  .swatch.bad { background: var(--danger); }
+  .swatch.gone { background: var(--line); }
+
+  figcaption {
+    font-size: 14.5px;
+    color: var(--muted);
+    margin-top: 12px;
+    max-width: 66ch;
+  }
+
+  /* ---------- table ---------- */
+
+  .scroll { overflow-x: auto; margin: 0 0 14px; border: 1px solid var(--line); background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 620px; }
+  th, td { text-align: right; padding: 10px 14px; border-bottom: 1px solid var(--line-soft); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th {
+    font-family: "Archivo", sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line);
+    background: var(--surface-2);
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.num { font-variant-numeric: tabular-nums; font-family: "JetBrains Mono", monospace; font-size: 13px; }
+  td.mono { font-family: "JetBrains Mono", monospace; font-size: 12.5px; }
+  td.bad { color: var(--danger); font-weight: 600; }
+
+  /* ---------- callouts ---------- */
+
+  .callout {
+    padding: 18px 22px;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--muted);
+    background: var(--surface);
+    margin: 0 0 20px;
+  }
+  .callout .tag {
+    font-family: "Archivo", sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .callout p { margin-bottom: 12px; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout ul.body { margin-bottom: 0; }
+
+  .callout.stop { border-left-color: var(--danger); background: var(--danger-bg); }
+  .callout.stop .tag { color: var(--danger); }
+  .callout.warn { border-left-color: var(--warn); background: var(--warn-bg); }
+  .callout.warn .tag { color: var(--warn); }
+  .callout.good { border-left-color: var(--ok); background: var(--ok-bg); }
+  .callout.good .tag { color: var(--ok); }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 14.5px;
+    color: var(--muted);
+  }
+  footer p { max-width: 68ch; }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  hr.rule { border: 0; border-top: 1px solid var(--line); margin: 46px 0 0; }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; padding: 0 16px 72px; }
+    .gate { grid-template-columns: 1fr; }
+    .gate .where { text-align: left; }
+  }
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">
+    <span>Knife Farm</span><span class="sep">/</span>
+    <span>Universe 9610561918</span><span class="sep">/</span>
+    <span>Read-only investigation, 27 Aug 2026</span>
+  </div>
+  <h1>Selling and placing knives is broken for long-time players</h1>
+  <p class="deck">It is <strong>not</strong> the storage limit. The saved <code>KnifeInventory</code> has
+  <strong>nil holes</strong> in it, and <code>FindKnife</code> walks it with <code>ipairs</code> — which stops dead
+  at the first hole. One hole at index 12 strands the 3,829 knives behind it.</p>
+</header>
+
+<div class="verdict">
+  <h2>The fix, in short</h2>
+  <ol>
+    <li>In <code>Data/DataInit</code>, make <code>clean()</code> rebuild the inventory as a packed array instead of copying the old numeric keys — <strong>with a per-container flag</strong>, because <code>PlotCases</code> / <code>PlotKnives</code> are keyed by slot name and must not be renumbered.</li>
+    <li>In <code>CaseModule.FindKnife</code> (and <code>EquipBestHandler:106</code>), iterate with <code>pairs</code>, not <code>ipairs</code>, so a hole can never brick anything again.</li>
+  </ol>
+  <p class="foot">Every affected player repairs themselves on their next join. No migration script, no data loss, roughly six lines changed.</p>
+</div>
+
+<section>
+  <h2 class="sec">What the player experiences</h2>
+  <p class="sec-note">Symptom</p>
+  <p>Sell one knife: nothing happens. Sell all: nothing happens. Place a knife on a plot slot: nothing happens.
+  Buying then stalls too, because they cannot free up cash. There is no error — the code path returns silently or
+  logs a <code>warn</code>, so nothing surfaces to the player or to error reporting.</p>
+</section>
+
+<section>
+  <h2 class="sec">The mechanism</h2>
+  <p class="sec-note">Cause · measured</p>
+
+  <p><code>CaseModule.FindKnife</code> (<code>ServerScriptService.ServerModules.CaseModule:1055</code>) scans the
+  inventory with <code>ipairs</code>. <code>ipairs</code> stops at the first <code>nil</code>. Everything past that
+  index is invisible to it — and <code>FindKnife</code> is the gate on exactly the three actions players report:</p>
+
+  <div class="gates">
+    <div class="gate">
+      <div class="what">Sell one knife</div>
+      <div class="where">ServerScripts.SellKnives:47</div>
+      <div class="how">if not itemPos then return end</div>
+    </div>
+    <div class="gate">
+      <div class="what">Sell all knives</div>
+      <div class="where">ServerScripts.SellKnives:149</div>
+      <div class="how">continue + warn</div>
+    </div>
+    <div class="gate">
+      <div class="what">Place a knife on a plot slot</div>
+      <div class="where">ServerModules.MainModule:1094</div>
+      <div class="how">if not knifePos then … return end</div>
+    </div>
+  </div>
+
+  <figure>
+    <div class="strip-label">
+      <span>Player_3870112879 — KnifeInventory</span>
+      <span>3,840 knives · max index 3846</span>
+    </div>
+    <div class="strip" role="img" aria-label="Index strip: indices 1 to 11 are reachable, a nil hole sits at index 12, and indices 13 to 3846 are unreachable by ipairs.">
+      <div class="reach"></div>
+      <div class="hole"></div>
+      <div class="lost">3,829 knives past the hole — invisible to FindKnife</div>
+    </div>
+    <div class="strip-legend">
+      <span><i class="swatch ok"></i> 1–11 reachable</span>
+      <span><i class="swatch bad"></i> nil hole @12</span>
+      <span><i class="swatch gone"></i> 13–3846 stranded (99.7%)</span>
+    </div>
+    <figcaption>The array is intact — the knives are still in the save. They are simply unreachable through the one
+    function that every sell and place path depends on.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2 class="sec">The evidence</h2>
+  <p class="sec-note">Live Game_1 datastore · read-only GetAsync</p>
+
+  <p>Player IDs were pulled from the four leaderboard OrderedDataStores, then each profile read once. Nothing was
+  written.</p>
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Knives</th>
+          <th>Max index</th>
+          <th>Holes at</th>
+          <th>ipairs reaches</th>
+          <th>Stranded</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="mono">3870112879</td><td class="num">3,840</td><td class="num">3,846</td><td class="mono">12, 24, 542, 856, 2973, 3040</td><td class="num">11</td><td class="num bad">99.7%</td></tr>
+        <tr><td class="mono">4347265041</td><td class="num">1,979</td><td class="num">1,983</td><td class="mono">60, 267, 1511, 1519</td><td class="num">59</td><td class="num bad">97.0%</td></tr>
+        <tr><td class="mono">589476123</td><td class="num">1,687</td><td class="num">1,691</td><td class="mono">19, 170, 623, 912</td><td class="num">18</td><td class="num bad">98.9%</td></tr>
+        <tr><td class="mono">10079500484</td><td class="num">1,605</td><td class="num">1,611</td><td class="mono">232, 325, 695, 759, 805, 1153</td><td class="num">231</td><td class="num bad">85.6%</td></tr>
+        <tr><td class="mono">10005867630</td><td class="num">877</td><td class="num">881</td><td class="mono">1, 214, 438, 706</td><td class="num">0</td><td class="num bad">100%</td></tr>
+        <tr><td class="mono">11060669747</td><td class="num">292</td><td class="num">293</td><td class="mono">1</td><td class="num">0</td><td class="num bad">100%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>20 of ~510</strong> successfully-read top players are corrupted (~4%). <strong>0 of 243</strong> random
+  casual players — their median inventory is 0–1 knives, so there is nothing to hole.</p>
+
+  <div class="callout warn">
+    <span class="tag">Why the repro failed</span>
+    <p>Every affected account has <code>Upgrades.Storage = 11</code> — the maxed upgrade, limit 150 — and between 53
+    and 3,840 knives. That correlation is real, but it is a correlation with <em>played a lot</em>, not a cause.</p>
+    <p>Granting yourself 200 knives does not punch a hole. To reproduce it, a <strong>duplicate itemID</strong> has to
+    have existed in the profile on a past join.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec">Where the holes come from</h2>
+  <p class="sec-note">Cause · measured</p>
+
+  <p><code>dedupeByItemId</code> → <code>clean()</code> in <code>ServerScriptService.Data.DataInit</code> (~line 144).
+  It rebuilds each container as <code>newContainer[key] = item</code>, <strong>keeping the original numeric key</strong>
+  and skipping any entry whose itemID is nil or whose ID count is not exactly 1. A skipped entry leaves its index empty
+  — that is the hole.</p>
+
+  <p>It also counts IDs across <code>CaseInventory</code> + <code>KnifeInventory</code> + <code>PlotCases</code> +
+  <code>PlotKnives</code> in one shared map, so a duplicated ID deletes <em>both</em> copies. Hole counts in the wild
+  are 1, 2, 4, 6 and 8 — dominated by even numbers, which is the fingerprint of pair-deletion.</p>
+
+  <div class="callout stop">
+    <span class="tag">Why the fixes you already pushed didn't help anyone</span>
+    <p>The holes live in the <strong>saved profile</strong>. <code>clean()</code> re-runs on every join and copies the
+    keys verbatim, so it <em>preserves</em> them. <code>PlayerRemoving</code> only checks that
+    <code>KnifeInventory</code> is still a table — which a holed table is — so it saves happily, forever. Nothing in the
+    codebase compacts it.</p>
+    <p>A poisoned account stays poisoned across every publish until the rebuild itself is changed.</p>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec">The patch</h2>
+  <p class="sec-note">ServerScriptService.Data.DataInit</p>
+
+  <p>Replace <code>clean()</code> and its four call sites:</p>
+
+<pre><code><span class="k">local function</span> clean(container, getId, isArray)
+    <span class="k">if</span> typeof(container) ~= <span class="s">"table"</span> <span class="k">then return</span> container <span class="k">end</span>
+
+    <span class="k">local</span> newContainer = {}
+
+    <span class="k">for</span> key, item <span class="k">in</span> pairs(container) <span class="k">do</span>
+        <span class="k">local</span> id = <span class="k">nil</span>
+        <span class="k">if</span> typeof(item) == <span class="s">"table"</span> <span class="k">then</span>
+            id = getId(item)
+        <span class="k">end</span>
+
+        <span class="k">if</span> id <span class="k">and</span> countMap[id] == 1 <span class="k">then</span>
+            <span class="k">if</span> isArray <span class="k">then</span>
+<span class="add">                table.insert(newContainer, item)  -- pack: never leave a nil hole</span>
+            <span class="k">else</span>
+                newContainer[key] = item          <span class="c">-- PlotCases/PlotKnives are keyed by SLOT NAME, do not renumber</span>
+            <span class="k">end</span>
+        <span class="k">else</span>
+            player:SetAttribute(
+                <span class="s">"Duped"</span>,
+                (player:GetAttribute(<span class="s">"Duped"</span>) <span class="k">or</span> 0) + 1
+            )
+        <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="k">return</span> newContainer
+<span class="k">end</span>
+
+profile.Data.CaseInventory  = clean(profile.Data.CaseInventory,  <span class="k">function</span>(v) <span class="k">return</span> v <span class="k">and</span> v[3] <span class="k">end</span>, <span class="add">true</span>)
+profile.Data.KnifeInventory = clean(profile.Data.KnifeInventory, <span class="k">function</span>(v) <span class="k">return</span> v <span class="k">and</span> v[5] <span class="k">end</span>, <span class="add">true</span>)
+profile.Data.PlotCases      = clean(profile.Data.PlotCases,      <span class="k">function</span>(v) <span class="k">return</span> v <span class="k">and</span> v[4] <span class="k">end</span>, <span class="del">false</span>)
+profile.Data.PlotKnives     = clean(profile.Data.PlotKnives,     <span class="k">function</span>(v) <span class="k">return</span> v <span class="k">and</span> v[5] <span class="k">end</span>, <span class="del">false</span>)</code></pre>
+
+  <div class="callout stop">
+    <span class="tag">The isArray flag is load-bearing</span>
+    <p><code>PlotCases</code> and <code>PlotKnives</code> are dictionaries keyed by slot name (<code>"Slot3"</code>),
+    not arrays. If those get <code>true</code>, their keys become 1, 2, 3… and <strong>every plot breaks on the next
+    join</strong>. Only <code>CaseInventory</code> and <code>KnifeInventory</code> get <code>true</code>.</p>
+  </div>
+
+  <h3>Hardening — optional, but cheap</h3>
+  <p>Make <code>FindKnife</code> tolerant so a hole from any future source can never brick anything again:</p>
+
+<pre><code><span class="c">-- CaseModule.FindKnife, line ~1055</span>
+<span class="k">for</span> i, knife <span class="k">in</span> <span class="add">pairs</span>(profile.Data.KnifeInventory) <span class="k">do</span>   <span class="c">-- was ipairs</span>
+    <span class="k">if</span> typeof(knife) == <span class="s">"table"</span>
+        <span class="k">and</span> knife[1] == knifeName
+        <span class="k">and</span> knife[2] == rarity
+        <span class="k">and</span> knife[3] == eventRarity
+        <span class="k">and</span> knife[4] == level
+        <span class="k">and</span> knife[5] == ItemID <span class="k">then</span>
+        knifePos = i
+        <span class="k">break</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre>
+
+  <p>Every caller uses the return value either as a truthiness check or as <code>KnifeInventory[pos]</code>, so a
+  non-sequential key is fine. Worth making the same change at <code>EquipBestHandler:106</code>.</p>
+</section>
+
+<section>
+  <h2 class="sec">Why this is safe</h2>
+  <p class="sec-note">Checked before writing it</p>
+
+  <ul class="body">
+    <li>It runs at join, <strong>before</strong> <code>CaseModule.UpdateKnives</code> builds the tools — and that
+      already iterates with <code>pairs()</code> over the same entries, so nothing changes about what a player sees.</li>
+    <li>Nothing in the codebase stores an inventory index across sessions. <code>EquippedKnives</code>,
+      <code>KnifeAscensions</code> and the tool attributes are all keyed by <code>ItemID</code>, so renumbering is
+      invisible.</li>
+    <li><code>KnifePower.GetKnifePower</code> falls back to <code>RarityPower.Common</code> and rank 1 — it can never
+      return nil, so a <code>pairs</code> sweep in <code>EquipBestHandler</code> cannot blow up the
+      <code>table.sort</code> comparator.</li>
+    <li>It repairs a second latent bug: today <code>#KnifeInventory</code> (3,846) disagrees with the real entry count
+      (3,840), and <code>CaseModule.GiveKnife</code> compares those two. After packing they match.</li>
+  </ul>
+
+  <div class="callout good">
+    <span class="tag">Does it wipe data? No.</span>
+    <p>The keep/drop condition — <code>if id and countMap[id] == 1</code> — is <strong>not touched</strong>. The patch
+    changes only <em>where a kept item lands</em>: <code>table.insert</code> instead of <code>newContainer[key]</code>.
+    Same items, packed indices instead of gapped ones.</p>
+    <p>And on the poisoned accounts that condition drops nothing. Across the full ~510-profile sweep and in detail on
+    12 accounts: <code>missingId = 0</code>, <code>dupInside = 0</code>, <code>crossDup = 0</code>. Every surviving
+    entry has a unique non-nil id, so every one takes the keep branch. Player_3870112879 goes in with 3,840 knives at
+    indices 1–3846 and comes out with 3,840 knives at indices 1–3840.</p>
+    <p>The wipe those players suffered already happened, at some past join, when the duplicates still existed.
+    There is nothing left to match on. And if a player <em>does</em> join with a live duplicate, today's code deletes
+    both copies and leaves two holes; the patched code deletes both copies and leaves none. Identical deletion,
+    strictly less damage — there is no input where the patch removes more than the current code does.</p>
+  </div>
+
+  <p>Test it in Studio against a copied profile before shipping. <code>DataInit.GetStoreState()</code> returns
+  <code>"Studio_87"</code> in Studio and <code>"Game_1"</code> live, so Studio testing cannot touch live saves by
+  accident.</p>
+</section>
+
+<section>
+  <h2 class="sec">What this does not do</h2>
+  <p class="sec-note">Limits · stated plainly</p>
+
+  <h3>It will not bring back knives <code>clean()</code> already deleted</h3>
+  <p>Those are gone from the save. DataStore version history goes back ~30 days if you want to restore a specific
+  whale by hand.</p>
+
+  <h3>It does not fix whatever creates the duplicate itemIDs</h3>
+  <p>It makes them harmless. The suspects are the plot↔inventory move paths that call <code>AddKnifeToSlot</code> /
+  <code>AddKnife</code> before <code>RemoveKnife</code> without checking its return value —
+  <code>MainModule:1099</code> and <code>EquipBestHandler:127</code>. If the remove silently fails, the knife ends up
+  in two containers, and on the next join <code>clean()</code> deletes <strong>both copies</strong>.</p>
+  <p>Worth considering separately: when a duplicate is found, keep one copy instead of deleting both. Right now a
+  legitimate knife is destroyed alongside its duplicate.</p>
+
+  <div class="callout">
+    <span class="tag">Not proven — treat as hypothesis</span>
+    <ul class="body">
+      <li>Which code path creates the duplicate itemID is a <strong>candidate list, not a finding</strong>. No live
+        duplicate was found in the ~510 profiles read, so the mechanism above is inferred from the pair-deletion
+        fingerprint, not observed directly. Whether new corruption is still being produced is unknown.</li>
+      <li>The first hole was never dated against the <strong>v3831</strong> publish. The DataStore version-history read
+        that would settle it hung on throttling and was killed; it is re-runnable in small batches.</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <span class="tag">Ruled out</span>
+    <p>The Ascension and Mutation machines. All 12 accounts inspected in detail have
+    <code>KnifeAscensions = {}</code> and empty machine states.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<footer>
+  <p>All findings above come from read-only reads of the live <code>Game_1</code> datastore and a read of the place
+  source on 27 August 2026. No edits were made to the place or to any profile. The hole mechanism and the
+  <code>ipairs</code> break are measured; the duplicate-ID source is not.</p>
+</footer>
+
+</div>
