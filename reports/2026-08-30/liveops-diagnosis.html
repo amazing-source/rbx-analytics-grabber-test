@@ -1,0 +1,427 @@
+<title>Eight Days Behind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --ground:#EEF1F3; --surface:#FFFFFF; --surface-2:#F5F7F8;
+    --ink:#111A1D; --ink-2:#3D4B50; --ink-3:#657579;
+    --rule:#D3DBDE; --rule-2:#E4EAEC;
+    --accent:#0E5E68; --accent-soft:#DCEAEC;
+    --steady:#2F6F4F; --steady-bg:#E2EFE8;
+    --watch:#8A6011; --watch-bg:#F4EBD8;
+    --act:#A33A2C; --act-bg:#F6E3DF;
+    --none:#6A7478; --none-bg:#E7EAEB;
+    --shadow:0 1px 2px rgba(17,26,29,.05),0 8px 22px -14px rgba(17,26,29,.28);
+    color-scheme:light dark;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0D1214; --surface:#141C1F; --surface-2:#182225;
+      --ink:#E8EEEF; --ink-2:#B3C0C3; --ink-3:#859599;
+      --rule:#28353A; --rule-2:#1F2A2E;
+      --accent:#54B6C2; --accent-soft:#152F34;
+      --steady:#6FBF93; --steady-bg:#16281F;
+      --watch:#D8AA55; --watch-bg:#2B2416;
+      --act:#E08877; --act-bg:#2E1B18;
+      --none:#8A9599; --none-bg:#1C2427;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px -16px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0D1214; --surface:#141C1F; --surface-2:#182225;
+    --ink:#E8EEEF; --ink-2:#B3C0C3; --ink-3:#859599;
+    --rule:#28353A; --rule-2:#1F2A2E;
+    --accent:#54B6C2; --accent-soft:#152F34;
+    --steady:#6FBF93; --steady-bg:#16281F;
+    --watch:#D8AA55; --watch-bg:#2B2416;
+    --act:#E08877; --act-bg:#2E1B18;
+    --none:#8A9599; --none-bg:#1C2427;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px -16px rgba(0,0,0,.8);
+  }
+  *{box-sizing:border-box}
+  body{background:var(--ground); color:var(--ink); font-family:"Source Serif 4",Georgia,serif; font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1060px; margin:0 auto; padding:0 24px 96px}
+  .measure{max-width:66ch}
+  h1,h2,h3,h4,.ui{font-family:"Familjen Grotesk",ui-sans-serif,system-ui,sans-serif}
+  .mono,td.n,th.n{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums}
+
+  header.mast{padding:56px 0 28px; border-bottom:2px solid var(--ink)}
+  .eyebrow{font-family:"Familjen Grotesk",sans-serif; text-transform:uppercase; letter-spacing:.14em; font-size:11.5px; font-weight:600; color:var(--accent); display:flex; flex-wrap:wrap; gap:10px}
+  .eyebrow .sep{color:var(--ink-3)}
+  h1{font-size:clamp(2.5rem,6.2vw,4.1rem); line-height:1.02; margin:14px 0 0; font-weight:700; letter-spacing:-.022em; text-wrap:balance}
+  .standfirst{font-size:1.16rem; color:var(--ink-2); margin:18px 0 0; max-width:62ch}
+  .standfirst strong{color:var(--ink); font-weight:600}
+
+  section{padding-top:52px}
+  h2{font-size:1.62rem; font-weight:600; letter-spacing:-.014em; margin:0 0 6px; text-wrap:balance}
+  h2 .num{font-family:"JetBrains Mono",monospace; font-size:.74em; color:var(--accent); font-weight:500; margin-right:.6em}
+  h3{font-size:1.24rem; font-weight:600; margin:0 0 10px; letter-spacing:-.01em}
+  .sub{color:var(--ink-3); margin:0 0 22px; font-size:.98rem; max-width:64ch}
+  p{margin:0 0 15px}
+
+  .chip{display:inline-flex; align-items:center; gap:6px; white-space:nowrap; font-family:"Familjen Grotesk",sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.07em; padding:3px 9px; border-radius:2px; border:1px solid transparent}
+  .chip.steady{color:var(--steady); background:var(--steady-bg); border-color:color-mix(in srgb,var(--steady) 26%,transparent)}
+  .chip.watch{color:var(--watch); background:var(--watch-bg); border-color:color-mix(in srgb,var(--watch) 26%,transparent)}
+  .chip.act{color:var(--act); background:var(--act-bg); border-color:color-mix(in srgb,var(--act) 26%,transparent)}
+  .chip.none{color:var(--none); background:var(--none-bg); border-color:color-mix(in srgb,var(--none) 26%,transparent)}
+
+  .scroll{overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); margin-bottom:8px}
+  table{border-collapse:collapse; width:100%; font-size:14px; min-width:540px}
+  caption{text-align:left; font-family:"Familjen Grotesk",sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--ink-3); font-weight:600; padding:0 0 8px}
+  th,td{padding:9px 14px; text-align:left; border-bottom:1px solid var(--rule-2)}
+  thead th{font-family:"Familjen Grotesk",sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-3); background:var(--surface-2); border-bottom:1px solid var(--rule); white-space:nowrap}
+  tbody tr:last-child td{border-bottom:none}
+  td.n,th.n{text-align:right; font-size:13.5px}
+  tr.mark td{background:var(--accent-soft)}
+  tr.mark td:first-child{font-weight:600}
+  .note{font-size:.88rem; color:var(--ink-3); margin:6px 0 0; max-width:72ch}
+
+  /* causal chain */
+  .chain{display:flex; flex-wrap:wrap; gap:0; margin:6px 0 20px; border:1px solid var(--rule); border-radius:3px; overflow:hidden; background:var(--surface)}
+  .link{flex:1 1 190px; padding:16px 18px; border-right:1px solid var(--rule); position:relative}
+  .link:last-child{border-right:none}
+  .link .when{font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--accent); font-weight:500}
+  .link .what{font-family:"Familjen Grotesk",sans-serif; font-weight:600; font-size:.98rem; margin:5px 0 4px}
+  .link .val{font-family:"JetBrains Mono",monospace; font-size:1.02rem; font-variant-numeric:tabular-nums}
+  .link .why{font-size:.86rem; color:var(--ink-3); margin-top:4px; line-height:1.45}
+
+  .game{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:26px; margin-bottom:22px; box-shadow:var(--shadow)}
+  .game-head{display:flex; flex-wrap:wrap; gap:12px 16px; align-items:baseline; border-bottom:1px solid var(--rule); padding-bottom:14px; margin-bottom:18px}
+  .game-head h3{margin:0}
+  .game-head .id{font-family:"JetBrains Mono",monospace; font-size:12px; color:var(--ink-3)}
+  .game-head .spacer{flex:1}
+  .finding{border-top:1px solid var(--rule-2); padding-top:14px; margin-top:16px}
+  .finding:first-of-type{border-top:none; margin-top:0}
+  .finding h4{margin:0 0 5px; font-size:1.02rem; font-weight:600; display:flex; flex-wrap:wrap; gap:9px; align-items:center}
+  .finding p{margin:0 0 9px; font-size:.97rem; color:var(--ink-2); max-width:72ch}
+  .finding p:last-child{margin-bottom:0}
+  code{font-family:"JetBrains Mono",monospace; font-size:.83em; background:var(--surface-2); padding:1px 5px; border-radius:2px; border:1px solid var(--rule-2)}
+
+  blockquote{margin:0 0 10px; padding:10px 0 10px 16px; border-left:2px solid var(--accent); color:var(--ink-2); font-size:.96rem}
+  blockquote p{margin:0 0 6px; font-style:italic}
+  blockquote p:last-child{margin:0}
+
+  .callout{background:var(--surface-2); border:1px solid var(--rule); border-left:3px solid var(--watch); border-radius:3px; padding:16px 18px; margin:0 0 18px}
+  .callout.act{border-left-color:var(--act)}
+  .callout .ui{text-transform:uppercase; letter-spacing:.12em; font-size:10.5px; font-weight:600; color:var(--watch); display:block; margin-bottom:6px}
+  .callout.act .ui{color:var(--act)}
+  .callout p{font-size:.96rem; margin:0 0 9px; max-width:72ch}
+  .callout p:last-child{margin:0}
+  ul{margin:0 0 14px; padding-left:1.15em}
+  li{margin-bottom:7px}
+  li::marker{color:var(--accent)}
+  footer{margin-top:64px; padding-top:22px; border-top:2px solid var(--ink); color:var(--ink-3); font-size:.9rem}
+  footer p{max-width:74ch}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  @media (max-width:620px){ body{font-size:16px} .wrap{padding:0 16px 72px} .game{padding:18px} }
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow"><span>LiveOps diagnosis</span><span class="sep">/</span><span>Verity Companion &amp; Seal A Driveway</span><span class="sep">/</span><span>30 days to 2026-08-30</span></div>
+  <h1>Eight Days Behind</h1>
+  <p class="standfirst">Verity's revenue is down <strong>53%</strong> from its peak, and the cause is not the update — it is a retention decline that Roblox's recommender responded to by withdrawing 61% of the game's impressions. The same thing happened to Monkey and Waterslide. Seal is showing the same signature about <strong>eight days later</strong>, while posting its best revenue day ever.</p>
+  <p class="standfirst" style="margin-top:10px; font-size:1.02rem">Sections 04–07 cover why this keeps recurring and what actually moves it, including the two ranking signals that changed on 15 June and the one number capping both games.</p>
+</header>
+
+<section>
+  <h2><span class="num">01</span>The chain that cost Verity 70% of its traffic</h2>
+  <p class="sub">Each step precedes the next. This is an ordering claim, not a correlation.</p>
+  <div class="chain">
+    <div class="link">
+      <div class="when">08-13 → 08-23</div>
+      <div class="what">D1 retention halves</div>
+      <div class="val">24.8% → 12.2%</div>
+      <div class="why">Falls steadily as the audience broadens during the discovery surge.</div>
+    </div>
+    <div class="link">
+      <div class="when">08-23 → 08-27</div>
+      <div class="what">Impressions withdrawn</div>
+      <div class="val">14.6M → 5.7M</div>
+      <div class="why">−61%. Home-recommendation DAU falls with it, −34% on the first day alone.</div>
+    </div>
+    <div class="link">
+      <div class="when">08-24 → 08-27</div>
+      <div class="what">DAU follows</div>
+      <div class="val">1,281,398 → 403,311</div>
+      <div class="why">−69% in four days. New users −74%, returning −53%.</div>
+    </div>
+    <div class="link">
+      <div class="when">Throughout</div>
+      <div class="what">Revenue tracks it down</div>
+      <div class="val">R$609k → R$285k</div>
+      <div class="why">Peak 08-21. ARPDAU fell independently, so the two losses compound.</div>
+    </div>
+  </div>
+  <div class="measure">
+    <p>Roblox's algorithm did not penalise the game. It read the engagement signals and reallocated impressions — which is what it is built to do. <strong>D7 retention sits at 1.1–1.9%</strong>: after a week, essentially nobody is left. No amount of acquisition survives that, and Verity was running at <strong>60–86% new users every single day</strong>, so the moment the tap closed the game had almost no base to fall back on.</p>
+  </div>
+
+  <div class="callout" style="margin-top:20px">
+    <span class="ui">One thing this chain is not</span>
+    <p>An earlier draft of this document framed it as a same-week trigger: D1 drops below ~12.5%, traffic gets cut the next day. Across all five games that association is real — median next-day home-recommendation change is <strong>−19.7%</strong> after a sub-12.5% day versus <strong>+3.3%</strong> otherwise — but it does not survive scrutiny as a <em>mechanism</em>, for two reasons.</p>
+    <p>First, D1 for a given day cannot settle until two days later, so nothing can act on it overnight. Second, on Verity and Seal the low-D1 days <em>were</em> their single largest traffic days (same-day correlation between home-recommendation volume and D1 is <strong>−0.44</strong> and <strong>−0.69</strong>), so a surge depresses D1 and then mean-reverts. Since 2026-06-15 Roblox ranks on a <strong>28-day</strong> signal window, which means the withdrawal reflects weeks of accumulated engagement, not one bad day.</p>
+    <p>Treat sub-12.5% D1 as a <em>marker that the withdrawal is already underway</em>, not as a tripwire you can stay above by watching it daily.</p>
+  </div>
+
+  <div class="measure">
+    <p>What does survive is stronger, and it is the finding that matters: <strong>the retention decline is in the product, not the traffic mix.</strong> Home-recommendation share held flat at 70–78% across the whole window while D1 fell on <em>every</em> acquisition source — Home 28.0% → 12.5%, Friends 19.8% → 11.3%, Others 19.2% → 11.3%. Only Search held (19.9% → 17.4%), which is what you would expect: people who searched for the game by name still want it.</p>
+    <p>That is Roblox's own discrimination test for exactly this question, and it comes back product. The game got worse at holding people; it was not handed worse people.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">02</span>Verity Companion</h2>
+  <p class="sub">Universe 10565445771 · the numbers behind the chain.</p>
+
+  <div class="scroll">
+    <table>
+      <caption>Peak to now — every per-user metric fell before the update</caption>
+      <thead><tr><th>Metric</th><th>Peak</th><th class="n">Value</th><th>2026-08-29</th><th class="n">Change</th><th>Type</th></tr></thead>
+      <tbody>
+        <tr><td>Daily revenue</td><td>08-21</td><td class="n">609,239</td><td class="n">284,819</td><td class="n">−53%</td><td>volume</td></tr>
+        <tr><td>ARPDAU</td><td>08-13</td><td class="n">1.61</td><td class="n">0.47</td><td class="n">−71%</td><td>rate</td></tr>
+        <tr><td>Paying user CVR</td><td>08-13</td><td class="n">0.018</td><td class="n">0.007</td><td class="n">−61%</td><td>rate</td></tr>
+        <tr><td>ARPPU</td><td>08-12</td><td class="n">100.7</td><td class="n">64.6</td><td class="n">−36%</td><td>rate</td></tr>
+        <tr class="mark"><td>D1 retention</td><td>08-13</td><td class="n">24.8%</td><td class="n">12.7%</td><td class="n">−49%</td><td>rate</td></tr>
+        <tr><td>Session length</td><td>08-14</td><td class="n">10.2 min</td><td class="n">8.3 min</td><td class="n">−19%</td><td>rate</td></tr>
+        <tr><td>D7 retention</td><td>08-18</td><td class="n">1.9%</td><td class="n">~1.1%</td><td class="n">floor</td><td>rate</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Rate metrics are comparable across a growth window; volume metrics are not. Every row above except revenue is a rate, which is why the decline is real and not an artefact of the audience changing size.</p>
+
+  <div class="game" style="margin-top:26px">
+    <div class="game-head"><h3>Leaks that are independent of the traffic loss</h3><span class="spacer"></span><span class="chip act">Revenue</span></div>
+
+    <div class="finding">
+      <h4>The MessagePack purchase prompt stopped firing on 07 August <span class="chip act">Act</span></h4>
+      <p>Players who exhaust their messages hit the paywall. The prompt used to open for nearly all of them. It now opens for one in thirty, and has done for three weeks.</p>
+      <div class="scroll" style="margin:10px 0">
+        <table>
+          <caption>MessagePack — prompt-open rate, one-day windows</caption>
+          <thead><tr><th>Day</th><th class="n">08-05</th><th class="n">08-06</th><th class="n">08-07</th><th class="n">08-08</th><th class="n">08-12</th><th class="n">08-29</th></tr></thead>
+          <tbody><tr><td>Prompt Opened</td><td class="n">92.47%</td><td class="n">92.86%</td><td class="n">24.51%</td><td class="n">3.24%</td><td class="n">3.24%</td><td class="n">5.82%</td></tr></tbody>
+        </table>
+      </div>
+      <p>The partial value on 08-07 dates the break to inside that day. Two deploys are candidates: <strong>v556</strong>, live by 16:35 UTC, and <strong>v584/v586</strong> at 21:16 and 21:45 UTC. The saved-versions log is truncated before 08-07 20:52, so v556's publish time comes from the feedback-version fallback rather than the deploy log — treat the version attribution as probable, the date as certain.</p>
+      <p><strong>Worth the diff:</strong> whatever gates the prompt-open call between v545 and v586.</p>
+    </div>
+
+    <div class="finding">
+      <h4>The Notebook prompt is a slower, separate failure <span class="chip act">Act</span></h4>
+      <p>Different shape, so almost certainly a different cause: it was never healthy, and it is decaying on both stages at once.</p>
+      <div class="scroll" style="margin:10px 0">
+        <table>
+          <caption>Notebook — weekly windows</caption>
+          <thead><tr><th>Window</th><th class="n">07-31→08-07</th><th class="n">08-07→08-14</th><th class="n">08-14→08-21</th><th class="n">08-21→08-28</th><th class="n">08-29</th></tr></thead>
+          <tbody>
+            <tr><td>Prompt Opened</td><td class="n">3.24%</td><td class="n">2.18%</td><td class="n">1.38%</td><td class="n">1.20%</td><td class="n">1.24%</td></tr>
+            <tr><td>Purchased (of opened)</td><td class="n">14.68%</td><td class="n">16.84%</td><td class="n">13.46%</td><td class="n">10.79%</td><td class="n">7.62%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Compounded, pitch-to-purchase fell from <strong>0.48% to 0.09%</strong> — an <strong>80% decline</strong> in the conversion of everyone who sees the Notebook pitch.</p>
+    </div>
+
+    <div class="finding">
+      <h4>A third of downvotes are fear, not dissatisfaction <span class="chip act">Act</span></h4>
+      <p><strong>488 of 1,449 downvotes (33.7%)</strong> use fear or privacy language. The comments name the mechanism themselves — the companion reflects real account metadata back at the player:</p>
+      <blockquote>
+        <p>"I don't like that verity knows where I live and knows my Roblox account information"</p>
+        <p>"they know everything they know my time when i sleep they know where i lived"</p>
+        <p>"You should not tell the people about the day they joined because little kids are playing that"</p>
+      </blockquote>
+      <p>The unsettling-AI conceit is presumably deliberate. What the data shows is that at this intensity it produces "I am never playing again" at scale, in-game approval of 14–33%, and a D1 that halved over the same period. It is the most plausible driver of the retention fall that started the chain in section 01.</p>
+      <p class="note">Roblox text-filter rejections are excluded from this finding — those are platform moderation and not a defect, per your call.</p>
+    </div>
+
+    <div class="finding">
+      <h4>Session depth collapses at 20 minutes <span class="chip watch">Watch</span></h4>
+      <p>Joined 100% → 1 min 81.6% → 5 min 59.6% → <strong>10 min 59.6%</strong> → 20 min 26.9%. The 5-to-10-minute band is perfectly flat — nobody leaves — and then more than half go. Something specific ends sessions in that window; it is the highest-value place to look for the retention fix.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">03</span>Seal A Driveway</h2>
+  <p class="sub">Universe 10638354731 · best revenue day on record, and every quality metric falling.</p>
+
+  <div class="callout act">
+    <span class="ui">The reason this document exists</span>
+    <p>Seal earned <strong>R$810,220 on 08-29</strong>, an all-time high. That number is rising only because DAU is growing faster than per-user value is falling. Every rate metric peaked on <strong>20–21 August</strong> and has declined since.</p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <caption>Seal — peak (20–21 Aug) versus now</caption>
+      <thead><tr><th>Metric</th><th class="n">Peak</th><th class="n">2026-08-29</th><th class="n">Change</th><th>Reading</th></tr></thead>
+      <tbody>
+        <tr><td>Daily revenue</td><td class="n">R$719,329</td><td class="n">R$810,220</td><td class="n">+13%</td><td><span class="chip steady">All-time high</span></td></tr>
+        <tr><td>ARPDAU</td><td class="n">3.57</td><td class="n">1.94</td><td class="n">−46%</td><td><span class="chip act">Falling</span></td></tr>
+        <tr><td>Paying user CVR</td><td class="n">0.019</td><td class="n">0.012</td><td class="n">−37%</td><td><span class="chip act">Falling</span></td></tr>
+        <tr><td>ARPPU</td><td class="n">202.2</td><td class="n">168.1</td><td class="n">−17%</td><td><span class="chip watch">Falling</span></td></tr>
+        <tr class="mark"><td>D1 retention</td><td class="n">15.7%</td><td class="n">11.2%</td><td class="n">−29%</td><td><span class="chip act">The signal</span></td></tr>
+        <tr><td>Session length</td><td class="n">21.6 min</td><td class="n">15.0 min</td><td class="n">−31%</td><td><span class="chip act">Falling</span></td></tr>
+        <tr><td>Returning users</td><td class="n">83,652</td><td class="n">104,103</td><td class="n">+24%</td><td><span class="chip steady">Compounding</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="game" style="margin-top:26px">
+    <div class="game-head"><h3>The comparison worth taking seriously</h3><span class="spacer"></span><span class="chip watch">Early warning</span></div>
+    <div class="finding">
+      <h4>The same product signature, eight days later <span class="chip watch">Watch</span></h4>
+      <p>Seal's D1 is falling on <strong>every acquisition source</strong>, exactly as Verity's did — Home 16.3% → 11.7%, Friends 11.1% → 7.9%, Others 13.0% → 10.3%, Search 24.5% → 15.5% — while home-recommendation share held at 76–83%. This is not dilution from the traffic surge. The game is holding fewer of everyone.</p>
+      <p>Seal reached <strong>11.2% D1 on 08-28</strong>, below where Verity was when its impressions were withdrawn, and its home-recommendation DAU fell 29% on 08-29. That single day proves nothing on its own — but the underlying product deterioration is measured, not inferred, and it is the input Roblox ranks on.</p>
+      <p>The difference in Seal's favour: its <strong>reach is still expanding</strong> (impressions 279k → 4.9M since 08-14) and its click-to-play conversion is holding near <strong>10%</strong>, comfortably inside the strong band. Verity's conversion fell from 14.4% to 5.4% <em>while</em> its impressions collapsed — both halves failing at once. Seal has appeal; what it is losing is the ability to hold the people appeal brings.</p>
+    </div>
+    <div class="finding">
+      <h4>What is genuinely different, and good <span class="chip steady">Steady</span></h4>
+      <p>Seal's returning cohort is compounding hard: 997 daily returners on 08-16, <strong>104,103 on 08-29</strong>, and it grew <strong>+24% on 08-29 while new users fell 31%</strong>. Verity's returning cohort never exceeded 24% of its DAU and fell 53% during the cut.</p>
+      <p>Seal's D7 is 2.1–2.3% against Verity's 1.1–1.9%. Both are low, but Seal's return loop is working in a way Verity's never did. That is the asset to protect.</p>
+    </div>
+    <div class="finding">
+      <h4>Onboarding is not the problem <span class="chip steady">Steady</span></h4>
+      <p>Started 100% → ReachedDriveway 97.4% → PouredOut 95.6% → FirstPass 94.0% → DrivewaySealed 94.0% → Complete 82.9%, and stable across every weekly window since 08-14. Whatever is pulling D1 down, players are not failing to get into the game.</p>
+    </div>
+    <div class="finding">
+      <h4>Player-reported defects that cost sessions <span class="chip act">Act</span></h4>
+      <p>Flagged only because these are player-loss mechanisms rather than polish — you are already inventorying the rest:</p>
+      <ul>
+        <li><strong>Progress loss</strong> — "doesn't save progress at all"; one player reports reaching 91% of the first map, disconnecting, and losing everything.</li>
+        <li><strong>Equipment lock</strong> — equipping the bucket prevents switching to the squeegee and back; resetting the character does not clear it. A dead progression sink.</li>
+        <li><strong>Early session kicks</strong> — "I keep getting kicked out of the game at least a minute after I join."</li>
+      </ul>
+      <p>Any of the three would depress D1 directly, which is the metric that matters most right now.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">04</span>Why the algorithm keeps doing this</h2>
+  <p class="sub">It has happened to Monkey and Waterslide as well. The reason is the same each time, and it is not arbitrary.</p>
+  <div class="measure">
+    <p>On <strong>15 June 2026</strong> Roblox re-weighted Recommended-For-You to value long-term retention. Two changes matter here:</p>
+    <ul>
+      <li>The signal window went from <strong>7 days to 28 days</strong>, split across D1, D2–7 and D8–28.</li>
+      <li><strong>QPTR was removed from ranking entirely</strong>, replaced by play-through rate and first-play bounce rate (under 60s, and 61–180s).</li>
+    </ul>
+    <p>So the thing being ranked is now, in Roblox's own terms: <strong>play days per user</strong>, playtime per user (capped at 60 min/day), play-through rate and bounce rate — all as per-user averages, and counting <em>only organically-discovered users</em>. Paid, social and search-acquired players are excluded from the ranking stage entirely.</p>
+  </div>
+
+  <div class="callout act" style="margin-top:18px">
+    <span class="ui">The ceiling nobody is looking at</span>
+    <p><code>RFYL7PlayDays</code> — play days per user over seven, which since June <em>is</em> the ranking input rather than a proxy for it — reads <strong>1.28 on Verity</strong> and <strong>1.32 on Seal</strong>. Both are drifting down.</p>
+    <p>That means the average player opens the game roughly <strong>once or twice a week</strong> and never more. Every reach improvement is multiplied by that number, so it is the hard ceiling on distribution for both titles. A game that cannot move it will be cut again after the next surge, whatever else is fixed.</p>
+  </div>
+
+  <div class="measure">
+    <p>Two consequences to plan around. <strong>Retention work reaches full ranking effect about four weeks after it ships</strong>, because the window is 28 days — so a fix landing this week is a late-September distribution story, not a next-week one. And <strong>QPTR work is no longer distribution work.</strong> Both games already convert well above target (Seal ~10%, Verity 5.4–7.0% against a 3% bar), so thumbnail and icon iteration is not the lever here; it would not have prevented any of these cuts.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">05</span>How to get D1 back up</h2>
+  <p class="sub">Structure first, because for this genre the retention curve maps onto specific mechanics.</p>
+  <div class="scroll">
+    <table>
+      <caption>Which mechanic holds which day — and what each game is missing</caption>
+      <thead><tr><th>Mechanic</th><th>Holds</th><th>Verity</th><th>Seal</th></tr></thead>
+      <tbody>
+        <tr><td>Offline earnings · daily reward · streak</td><td class="mono">D1 → D2</td><td><span class="chip act">The gap</span> D1 12.7%, falling on every source</td><td><span class="chip act">The gap</span> D1 11.2%, falling on every source</td></tr>
+        <tr><td>Finite upgrade track</td><td class="mono">D2 → D5</td><td>Message packs, notebook</td><td>Upgrade track present</td></tr>
+        <tr><td>Prestige / rebirth loop</td><td class="mono">D7 → D30</td><td><span class="chip act">Absent</span> D7 1.1–1.9%</td><td><span class="chip watch">Present, resented</span> D7 2.1–2.3%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="game" style="margin-top:22px">
+    <div class="game-head"><h3>Verity — the return loop was never built</h3><span class="spacer"></span><span class="chip act">Structural</span></div>
+    <div class="finding">
+      <p><code>DauMauStickiness</code> fell from <strong>0.240 to 0.055</strong> between 08-21 and 08-28 — the average monthly player now opens the game about 1.7 days a month. A companion game has a natural ending: the <code>Ending</code> funnel exists, 44.8% of onboarded players complete it, and after that there is no second goal. That is why D7 is 1.1% and why the 28-day signal is weak no matter how good the first session is.</p>
+      <p><strong>The fix is a reason to return tomorrow, not a better first session.</strong> In order of expected effect:</p>
+      <ul>
+        <li><strong>A daily beat the companion owns</strong> — something Verity remembers and continues, so the return is narrative rather than a login bonus. This directly targets play-days-per-user, which is the ranking input.</li>
+        <li><strong>Fix the 10→20 minute session cliff.</strong> Retention 59.6% at 10 minutes, 26.9% at 20 — completely flat before it, then half gone. Whatever ends sessions there also caps playtime-per-user, the other ranking signal.</li>
+        <li><strong>Soften the account-metadata callouts.</strong> A third of downvotes are fear, and "I am never playing again" is a D1 mechanism, not a sentiment problem.</li>
+        <li><strong>Restore the MessagePack prompt</strong> (broken 08-07) and the Notebook decay. Revenue, not retention — but it is three weeks of paywall traffic reaching nothing.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="game">
+    <div class="game-head"><h3>Seal — the loop exists and is being rejected</h3><span class="spacer"></span><span class="chip act">Tuning + defects</span></div>
+    <div class="finding">
+      <p>Seal has the structure Verity lacks — a rebirth ladder — and its returning cohort is compounding (997 → 104,103 daily returners). It also has three defects that destroy first sessions outright, and those come first because they are the cheapest points of D1 available:</p>
+      <ul>
+        <li><strong>Progress loss on disconnect</strong> — a player reports reaching 91% of the first map and losing everything. A player who loses a session's work does not return on day 2.</li>
+        <li><strong>Equipment lock</strong> — bucket and squeegee cannot be swapped, and resetting does not clear it. This is a dead progression sink: the player cannot continue at all.</li>
+        <li><strong>Kicks within a minute of joining</strong> — this lands directly on first-play bounce rate, which since June is an explicit ranking signal.</li>
+      </ul>
+      <p>Then the tuning question. Feedback says <em>"Rebirth slop — just let me play my game"</em>, and session length has fallen 21.6 → 15.0 min while ARPPU fell 17%. The ladder is doing its job on the people who clear it; the complaint is about the distance to the first rung. <strong>That is a balance number, not a build</strong> — see the lever below.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">06</span>Levers that do not need a republish</h2>
+  <p class="sub">A config change is minutes and reversible. A build is a deploy plus a fresh set of PlaceVersion steps to disentangle from every metric afterwards.</p>
+  <div class="scroll">
+    <table>
+      <caption>Open Cloud levers, with their real constraints</caption>
+      <thead><tr><th>Lever</th><th>What it does here</th><th>Constraints that shape the design</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Configs API</strong></td>
+          <td>Retune Seal's first-rebirth cost live; roll back in minutes if D1 does not move</td>
+          <td>Propagation up to ~5 min, full version history, callable in-experience. This is the rollback mechanism — detection is only worth what the speed of the fix makes it worth.</td>
+        </tr>
+        <tr>
+          <td><strong>Experience Notifications</strong></td>
+          <td>Bring yesterday's players back — the one thing that moves play-days-per-user directly</td>
+          <td><strong>One per user per day</strong>, opted-in 13+ only, 100+ visits required, message text must be pre-created in the dashboard. Delivery scales with engagement, so it rewards the games that need it least.</td>
+        </tr>
+        <tr>
+          <td><strong>Content cadence</strong></td>
+          <td>Resets the algorithm signal; both games already ship faster than this</td>
+          <td>Every 2–3 weeks. Content is consumed once and buys one cycle; a loop regenerates the goal from content that already exists.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Notifications are the highest-leverage item on this page relative to effort, because play-days-per-user is both the ranking input and the metric both games are worst at. Verify the opt-in prompt is actually being shown — <code>ExperienceNotificationService:PromptOptIn()</code> will not re-show within 30 days, so a game that never prompts has no addressable audience.</p>
+</section>
+
+<section>
+  <h2><span class="num">07</span>What to measure, and what to expect</h2>
+  <div class="scroll">
+    <table>
+      <caption>Measurement plan</caption>
+      <thead><tr><th>Signal</th><th>Why this one</th><th>When it should move</th></tr></thead>
+      <tbody>
+        <tr><td><code>RFYL7PlayDays</code></td><td>Since June this <em>is</em> the ranking input, not a proxy. Currently 1.28 / 1.32.</td><td>Days, for the metric; ~4 weeks for the distribution effect</td></tr>
+        <tr><td><code>ForwardD1Retention</code> <strong>split by source</strong></td><td>Blended D1 moves with traffic mix. Per-source is the honest read, and it is what showed this is product.</td><td>Day after a fix ships — the deploy day cohort is mostly pre-fix</td></tr>
+        <tr><td><code>DauMauStickiness</code></td><td>The return loop in one number. Verity 0.055.</td><td>2–4 weeks</td></tr>
+        <tr><td>Session buckets under 60s / 61–180s</td><td>First-play bounce is an explicit ranking signal; Seal's early kicks land here</td><td>Immediately after the kick fix</td></tr>
+        <tr><td><code>UniqueUsersWithImpressions</code> <em>with</em> CVR</td><td>Never quote either alone — they run inversely (r ≈ −0.5 to −0.6 on both games)</td><td>~4 weeks behind retention</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout" style="margin-top:20px">
+    <span class="ui">What is realistic</span>
+    <p>A <strong>20–50% improvement</strong> in a retention or conversion metric is believable with a named mechanism behind it. Anything past 2× that needs a specific reason, and none of the fixes here justifies one.</p>
+    <p>Concretely: Seal's three defects are worth a D1 point or two if they affect the share of sessions the feedback volume implies — that is a real number, and enough to matter at the ranking margin. Verity's daily-return beat is the only item on this page that could plausibly move <code>RFYL7PlayDays</code> off 1.28, and it is a build, not a config. Nothing here restores 1.28M DAU; the honest ceiling is holding what the next surge delivers instead of shedding it in four days.</p>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Method.</strong> Browser grab 2026-08-30, window 2026-07-28 → 2026-08-31, merged with prior grabs. Headline figures use the unbroken-down series throughout. Funnel metrics are served only at <code>NONE</code> granularity, so the trends here were produced by re-querying each funnel over successive narrow windows via Open Cloud — that is what makes a day-level comparison possible at all, and each column is an independent aggregate rather than a slice of one.</p>
+  <p style="margin-top:12px"><strong>Limits.</strong> D1 for the 08-29 cohort has not settled; D7 and D30 for the recent period are not yet answerable. Timeline annotations returned 400 on both universes, so there is no Roblox-side event overlay to corroborate the withdrawal. The saved-versions deploy log is truncated before 08-07 20:52 on Verity, so early-August version attribution rests on the feedback-version fallback. The chain in section 01 is an ordering argument from daily data — strong, but not an experiment.</p>
+  <p style="margin-top:12px"><strong>Confidence.</strong> <em>Confirmed</em> — every figure quoted, read from the headline series with granularity and partial rows filtered. The per-source D1 split is Roblox's own test for mix-versus-product and it comes back product on both games. <em>Likely</em> — that weak play-days-per-user is what governs the recurring withdrawals; this follows from Roblox's published ranking signals and fits five games, but we cannot observe the recommender directly. <em>Unknown</em> — whether the fear/privacy comments cause the D1 fall or merely accompany it, and how large a share of sessions Seal's three defects actually touch. Both need someone who plays the game; per house rule, no level judgement here has survived that test and none should be shipped as if it had.</p>
+  <p style="margin-top:12px"><strong>What would overturn this.</strong> If Verity's D1 recovers to 18%+ without any product change, the retention-drives-distribution reading is wrong and the cause is external. If Seal's impressions keep climbing through next week while its D1 stays near 11%, the eight-days-behind comparison fails and should be dropped rather than defended.</p>
+</footer>
+
+</div>

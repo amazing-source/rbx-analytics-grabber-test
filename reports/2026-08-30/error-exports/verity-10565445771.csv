@@ -1,0 +1,145 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+2442436,Warning,Client,Tue Aug 04 2026 15:28:45 GMT+0200 (heure d’été d’Europe centrale),V454,"Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will not be played.","http://www.roblox.com/asset/?id=10921258489,<Player>
+http://www.roblox.com/asset/?id=11600206437,<Player>
+http://www.roblox.com/asset/?id=507765000,<Player>
+http://www.roblox.com/asset/?id=507766388,<Player>",
+1497543,Warning,Server,Mon Aug 03 2026 22:21:10 GMT+0200 (heure d’été d’Europe centrale),V446,Generated dialogue was rejected by filtering for <Player>,,
+288340,Error,Client,Tue Aug 04 2026 14:05:35 GMT+0200 (heure d’été d’Europe centrale),V454,Failed to load sound: Timedout,rbxassetid://100665791279413: HttpError
+rbxassetid://102044876020627: HttpError
+rbxassetid://105072278230630: HttpError
+rbxassetid://109062172749715: HttpError
+rbxassetid://111971496425410: HttpError
+rbxassetid://118216059481388: HttpError
+rbxassetid://126376581970190: HttpError
+rbxassetid://130584566690447: HttpError
+rbxassetid://135242814447458: HttpError
+rbxassetid://1846088038: HttpError
+rbxassetid://1846271108: HttpError
+rbxassetid://79793174450412: HttpError
+rbxassetid://8354589135: HttpError,
+268360,Error,Client,Wed Aug 12 2026 17:35:10 GMT+0200 (heure d’été d’Europe centrale),V609,cannot resume non-suspended coroutine,"Script 'ReplicatedStorage.Packages.Packet', Line 316",
+214136,Error,Client,Tue Aug 04 2026 15:07:30 GMT+0200 (heure d’été d’Europe centrale),V454,MeshContentProvider failed to process asset because 'could not fetch',a8faa91e126472774a820bf1ee317626
+https://assetdelivery.roblox.com/v1/asset?id=102542989292525
+https://assetdelivery.roblox.com/v1/asset?id=104563658512536
+https://assetdelivery.roblox.com/v1/asset?id=10467829240
+https://assetdelivery.roblox.com/v1/asset?id=105978119885159
+https://assetdelivery.roblox.com/v1/asset?id=109030490483001
+https://assetdelivery.roblox.com/v1/asset?id=113848560470959
+https://assetdelivery.roblox.com/v1/asset?id=117662113705690
+https://assetdelivery.roblox.com/v1/asset?id=132446222133580
+https://assetdelivery.roblox.com/v1/asset?id=139678873812091
+https://assetdelivery.roblox.com/v1/asset?id=15548083235
+https://assetdelivery.roblox.com/v1/asset?id=6711482308
+https://assetdelivery.roblox.com/v1/asset?id=78033674867630
+https://assetdelivery.roblox.com/v1/asset?id=81760877778342
+https://assetdelivery.roblox.com/v1/asset/?id=10725526109
+https://assetdelivery.roblox.com/v1/asset/?id=108810610899793
+https://assetdelivery.roblox.com/v1/asset/?id=113530684898860
+https://assetdelivery.roblox.com/v1/asset/?id=123480233606534
+https://assetdelivery.roblox.com/v1/asset/?id=15229488189
+https://assetdelivery.roblox.com/v1/asset/?id=6568378026
+https://assetdelivery.roblox.com/v1/asset/?id=6897040144
+https://assetdelivery.roblox.com/v1/asset/?id=8650495270
+https://assetdelivery.roblox.com/v1/asset/?id=8917455036
+https://assetdelivery.roblox.com/v1/asset/?id=8997173927
+https://assetdelivery.roblox.com/v1/asset/?id=8997173998
+https://assetdelivery.roblox.com/v1/asset/?id=9120156475
+https://assetdelivery.roblox.com/v1/asset/?id=9255309176,
+209423,Warning,Client,Tue Aug 04 2026 15:04:30 GMT+0200 (heure d’été d’Europe centrale),V454,A new version of TopbarPlus (nil) is available: https://devforum.roblox.com/t/topbarplus/1017485,,
+198388,Error,Client,Tue Aug 04 2026 15:08:35 GMT+0200 (heure d’été d’Europe centrale),V454,Failed to load object. PBR textures may not be visible in game.,KhaiyraLa.Accessory (Oversized Off Shoulder Hoodie).Handle.SurfaceAppearance
+Workspace.<Player>.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.<Player>.Accessory (Ponytail).Handle.SurfaceAppearance
+Workspace.A7madmagrabi.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.aFz_Moon829.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.alissonflo1016.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Elpapuchotititeo4.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Ggfunxbox1.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.iswcru.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Jagjot_95.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.K_KING116.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.magix_princessz.Head.SurfaceAppearance
+Workspace.maya_042211.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Mehribonu870.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.PrincessKT31.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Redpandahaha020614.Head.SurfaceAppearance
+Workspace.Roqueroqueroi.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Satishprogang.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.soyfandecristian8.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.TASKFORCE08.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Tweny2bubba.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.ufuftxgxkhcufyuzci.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.VImenn.Accessory.Handle.SurfaceAppearance,
+182695,Error,Client,Tue Aug 04 2026 15:07:30 GMT+0200 (heure d’été d’Europe centrale),V454,Failed to load animation with sanitized ID. Animation failed to load,rbxassetid://10714356920
+rbxassetid://10921230744
+rbxassetid://10921241244
+rbxassetid://10921258489
+rbxassetid://10921271391
+rbxassetid://10921272275
+rbxassetid://125750702
+rbxassetid://14366558676
+rbxassetid://18747063918
+rbxassetid://507766388
+rbxassetid://913389285,
+88714,Warning,Client,Tue Aug 04 2026 14:04:50 GMT+0200 (heure d’été d’Europe centrale),V454,[DayMusicClient] Morning Mood could not be loaded,,
+69584,Warning,Client,Tue Aug 04 2026 14:04:50 GMT+0200 (heure d’été d’Europe centrale),V454,[DayMusicClient] No non-repeating soundtrack is available for Day 1,,
+45526,Error,Client,Tue Aug 04 2026 15:04:00 GMT+0200 (heure d’été d’Europe centrale),V454,Failed to load sound: NetFail,rbxassetid://100665791279413: HttpError
+rbxassetid://10066921516: HttpError
+rbxassetid://105072278230630: HttpError
+rbxassetid://109062172749715: HttpError
+rbxassetid://128623074640947: HttpError
+rbxassetid://130584566690447: HttpError
+rbxassetid://135242814447458: HttpError
+rbxassetid://137747510778369: HttpError
+rbxassetid://8354589135: HttpError,
+44277,Warning,Client,Tue Aug 04 2026 15:22:25 GMT+0200 (heure d’été d’Europe centrale),V454,"Monetize:PromptProductPurchase() called with prompt in progress, aborting",,
+34887,Warning,Client,Tue Aug 04 2026 15:09:10 GMT+0200 (heure d’été d’Europe centrale),V454,A new version of TopbarPlus (wwersji3.4.0) is available: https://devforum.roblox.com/t/topbarplus/1017485,,
+33655,Error,Client,Tue Aug 04 2026 15:08:35 GMT+0200 (heure d’été d’Europe centrale),V454,HSRDataContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=103087689593574
+https://assetdelivery.roblox.com/v1/asset?id=106159241538925
+https://assetdelivery.roblox.com/v1/asset?id=110944204503586
+https://assetdelivery.roblox.com/v1/asset?id=11414702398
+https://assetdelivery.roblox.com/v1/asset?id=121304731508470
+https://assetdelivery.roblox.com/v1/asset?id=131205756287815
+https://assetdelivery.roblox.com/v1/asset?id=132385234269834
+https://assetdelivery.roblox.com/v1/asset?id=71906604205222
+https://assetdelivery.roblox.com/v1/asset?id=74083404371385
+https://assetdelivery.roblox.com/v1/asset?id=83293415865168
+https://assetdelivery.roblox.com/v1/asset?id=88289227479879
+https://assetdelivery.roblox.com/v1/asset?id=8980503855
+https://assetdelivery.roblox.com/v1/asset?id=9246825050,
+33526,Error,Client,Tue Aug 04 2026 15:08:35 GMT+0200 (heure d’été d’Europe centrale),V454,Failed to load sound: ConnectFail,rbxassetid://100665791279413: HttpError
+rbxassetid://10066942189: HttpError
+rbxassetid://102044876020627: HttpError
+rbxassetid://109062172749715: HttpError
+rbxassetid://8354589135: HttpError,
+31467,Error,Client,Tue Aug 04 2026 15:12:15 GMT+0200 (heure d’été d’Europe centrale),V454,Failed to load sound: DnsResolve,rbxassetid://100665791279413: HttpError
+rbxassetid://10066921516: HttpError
+rbxassetid://10066942189: HttpError
+rbxassetid://105641172106426: HttpError
+rbxassetid://135242814447458: HttpError
+rbxassetid://8354589135: HttpError,
+28093,Warning,Client,Tue Aug 04 2026 15:33:40 GMT+0200 (heure d’été d’Europe centrale),V454,[DayMusicClient] No non-repeating soundtrack is available for Day 5,,
+27794,Error,Client,Tue Aug 04 2026 15:33:15 GMT+0200 (heure d’été d’Europe centrale),V454,Failed to load sound: ServerProtocolError,rbxassetid://10066942189: HttpError
+rbxassetid://102044876020627: HttpError
+rbxassetid://105072278230630: HttpError
+rbxassetid://109062172749715: HttpError
+rbxassetid://117137403216604: HttpError
+rbxassetid://123640509503042: HttpError
+rbxassetid://128623074640947: HttpError
+rbxassetid://130584566690447: HttpError
+rbxassetid://74645563801182: HttpError,
+27189,Warning,Client,Tue Aug 04 2026 15:11:40 GMT+0200 (heure d’été d’Europe centrale),V454,[DayMusicClient] No non-repeating soundtrack is available for Day 2,,
+25423,Error,Client,Tue Aug 04 2026 15:23:35 GMT+0200 (heure d’été d’Europe centrale),V454,Failed to load sound: Unable to download sound data,rbxassetid://10066921516
+rbxassetid://102044876020627
+rbxassetid://109062172749715
+rbxassetid://135242814447458
+rbxassetid://139513937156213,
+20419,Warning,Server,Tue Aug 04 2026 15:15:40 GMT+0200 (heure d’été d’Europe centrale),V454,Player text filter unavailable for <Player>,,
+19289,Warning,Client,Tue Aug 04 2026 15:07:30 GMT+0200 (heure d’été d’Europe centrale),V454,A new version of TopbarPlus (الإصدار3.4.0) is available: https://devforum.roblox.com/t/topbarplus/1017485,,
+18596,Warning,Client,Tue Aug 04 2026 15:19:35 GMT+0200 (heure d’été d’Europe centrale),V454,[DayMusicClient] No non-repeating soundtrack is available for Day 3,,
+17403,Error,Client,Tue Aug 04 2026 22:50:00 GMT+0200 (heure d’été d’Europe centrale),V471,Failed to load sound: OutOfMemory,rbxassetid://102044876020627: HttpError
+rbxassetid://109062172749715: HttpError
+rbxassetid://130584566690447: HttpError
+rbxassetid://139563412933493: HttpError
+rbxassetid://1846088038: HttpError
+rbxassetid://73877786945623: HttpError,
+16987,Warning,Client,Tue Aug 04 2026 15:27:00 GMT+0200 (heure d’été d’Europe centrale),V454,[DayMusicClient] No non-repeating soundtrack is available for Day 4,,
