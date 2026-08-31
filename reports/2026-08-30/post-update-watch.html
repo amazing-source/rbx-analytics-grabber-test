@@ -1,0 +1,483 @@
+<title>Four Publishes, One Day</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --ground:#EEF1F3; --surface:#FFFFFF; --surface-2:#F5F7F8;
+    --ink:#111A1D; --ink-2:#3D4B50; --ink-3:#657579;
+    --rule:#D3DBDE; --rule-2:#E4EAEC;
+    --accent:#0E5E68; --accent-soft:#DCEAEC;
+    --steady:#2F6F4F; --steady-bg:#E2EFE8;
+    --watch:#8A6011; --watch-bg:#F4EBD8;
+    --act:#A33A2C; --act-bg:#F6E3DF;
+    --none:#6A7478; --none-bg:#E7EAEB;
+    --shadow:0 1px 2px rgba(17,26,29,.05),0 8px 22px -14px rgba(17,26,29,.28);
+    --measure:66ch;
+    color-scheme:light dark;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0D1214; --surface:#141C1F; --surface-2:#182225;
+      --ink:#E8EEEF; --ink-2:#B3C0C3; --ink-3:#859599;
+      --rule:#28353A; --rule-2:#1F2A2E;
+      --accent:#54B6C2; --accent-soft:#152F34;
+      --steady:#6FBF93; --steady-bg:#16281F;
+      --watch:#D8AA55; --watch-bg:#2B2416;
+      --act:#E08877; --act-bg:#2E1B18;
+      --none:#8A9599; --none-bg:#1C2427;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px -16px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0D1214; --surface:#141C1F; --surface-2:#182225;
+    --ink:#E8EEEF; --ink-2:#B3C0C3; --ink-3:#859599;
+    --rule:#28353A; --rule-2:#1F2A2E;
+    --accent:#54B6C2; --accent-soft:#152F34;
+    --steady:#6FBF93; --steady-bg:#16281F;
+    --watch:#D8AA55; --watch-bg:#2B2416;
+    --act:#E08877; --act-bg:#2E1B18;
+    --none:#8A9599; --none-bg:#1C2427;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px -16px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+    font-size:17px; line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:0 24px 96px}
+  .measure{max-width:var(--measure)}
+  h1,h2,h3,h4,.ui{font-family:"Familjen Grotesk",ui-sans-serif,system-ui,sans-serif}
+  .mono,td.n,th.n{font-family:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace; font-variant-numeric:tabular-nums}
+
+  /* ---------- masthead ---------- */
+  header.mast{padding:56px 0 28px; border-bottom:2px solid var(--ink)}
+  .eyebrow{
+    font-family:"Familjen Grotesk",sans-serif; text-transform:uppercase;
+    letter-spacing:.14em; font-size:11.5px; font-weight:600; color:var(--accent);
+    display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+  }
+  .eyebrow span.sep{color:var(--ink-3)}
+  h1{
+    font-size:clamp(2.5rem,6.2vw,4.1rem); line-height:1.02; margin:14px 0 0;
+    font-weight:700; letter-spacing:-.022em; text-wrap:balance;
+  }
+  .standfirst{font-size:1.16rem; color:var(--ink-2); margin:18px 0 0; max-width:60ch}
+  .standfirst strong{color:var(--ink); font-weight:600}
+
+  .verdict{
+    margin-top:30px; background:var(--surface); border:1px solid var(--rule);
+    border-left:4px solid var(--accent); border-radius:3px;
+    padding:20px 22px; box-shadow:var(--shadow);
+  }
+  .verdict .ui{
+    text-transform:uppercase; letter-spacing:.13em; font-size:11px;
+    font-weight:600; color:var(--ink-3);
+  }
+  .verdict p{margin:8px 0 0; font-size:1.08rem; max-width:70ch}
+
+  /* ---------- sections ---------- */
+  section{padding-top:52px}
+  h2{
+    font-size:1.62rem; font-weight:600; letter-spacing:-.014em; margin:0 0 6px;
+    text-wrap:balance;
+  }
+  h2 .num{
+    font-family:"JetBrains Mono",monospace; font-size:.74em; color:var(--accent);
+    font-weight:500; margin-right:.6em;
+  }
+  .sub{color:var(--ink-3); margin:0 0 22px; font-size:.98rem; max-width:64ch}
+  p{margin:0 0 15px}
+  .measure p:last-child{margin-bottom:0}
+
+  /* ---------- chips ---------- */
+  .chip{
+    display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
+    font-family:"Familjen Grotesk",sans-serif; font-size:11px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.07em;
+    padding:3px 9px; border-radius:2px; border:1px solid transparent;
+  }
+  .chip.steady{color:var(--steady); background:var(--steady-bg); border-color:color-mix(in srgb,var(--steady) 26%,transparent)}
+  .chip.watch{color:var(--watch); background:var(--watch-bg); border-color:color-mix(in srgb,var(--watch) 26%,transparent)}
+  .chip.act{color:var(--act); background:var(--act-bg); border-color:color-mix(in srgb,var(--act) 26%,transparent)}
+  .chip.none{color:var(--none); background:var(--none-bg); border-color:color-mix(in srgb,var(--none) 26%,transparent)}
+
+  /* ---------- tables ---------- */
+  .scroll{overflow-x:auto; margin:0 0 8px; border:1px solid var(--rule); border-radius:3px; background:var(--surface)}
+  table{border-collapse:collapse; width:100%; font-size:14px; min-width:520px}
+  caption{
+    text-align:left; font-family:"Familjen Grotesk",sans-serif; font-size:11px;
+    text-transform:uppercase; letter-spacing:.12em; color:var(--ink-3);
+    font-weight:600; padding:0 0 8px;
+  }
+  th,td{padding:9px 14px; text-align:left; border-bottom:1px solid var(--rule-2)}
+  thead th{
+    font-family:"Familjen Grotesk",sans-serif; font-size:11px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--ink-3);
+    background:var(--surface-2); border-bottom:1px solid var(--rule); white-space:nowrap;
+  }
+  tbody tr:last-child td{border-bottom:none}
+  td.n,th.n{text-align:right; font-size:13.5px}
+  tr.pub td{background:var(--accent-soft)}
+  tr.pub td:first-child{font-weight:600}
+  .flag{font-family:"Familjen Grotesk",sans-serif; font-size:10.5px; letter-spacing:.06em; color:var(--accent); font-weight:600; text-transform:uppercase}
+  .note{font-size:.88rem; color:var(--ink-3); margin:6px 0 0; max-width:70ch}
+
+  /* ---------- game blocks ---------- */
+  .game{
+    background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+    padding:26px; margin-bottom:22px; box-shadow:var(--shadow);
+  }
+  .game-head{display:flex; flex-wrap:wrap; gap:12px 16px; align-items:baseline; border-bottom:1px solid var(--rule); padding-bottom:14px; margin-bottom:18px}
+  .game-head h3{font-size:1.34rem; margin:0; font-weight:600; letter-spacing:-.01em}
+  .game-head .id{font-family:"JetBrains Mono",monospace; font-size:12px; color:var(--ink-3)}
+  .game-head .spacer{flex:1}
+  .stats{display:flex; flex-wrap:wrap; gap:0; margin:0 0 18px; border:1px solid var(--rule-2); border-radius:3px; overflow:hidden}
+  .stat{flex:1 1 130px; padding:11px 14px; background:var(--surface-2); border-right:1px solid var(--rule-2)}
+  .stat:last-child{border-right:none}
+  .stat .k{font-family:"Familjen Grotesk",sans-serif; font-size:10.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--ink-3); font-weight:600}
+  .stat .v{font-family:"JetBrains Mono",monospace; font-size:1.06rem; font-weight:500; margin-top:3px; font-variant-numeric:tabular-nums}
+  .stat .d{font-size:11.5px; color:var(--ink-3); font-family:"Familjen Grotesk",sans-serif}
+
+  .finding{border-top:1px solid var(--rule-2); padding-top:14px; margin-top:16px}
+  .finding:first-of-type{border-top:none}
+  .finding h4{margin:0 0 5px; font-size:1.02rem; font-weight:600; display:flex; flex-wrap:wrap; gap:9px; align-items:center}
+  .finding p{margin:0 0 8px; font-size:.97rem; color:var(--ink-2); max-width:72ch}
+  .finding p:last-child{margin-bottom:0}
+  .finding code{font-family:"JetBrains Mono",monospace; font-size:.83em; background:var(--surface-2); padding:1px 5px; border-radius:2px; border:1px solid var(--rule-2)}
+
+  ul{margin:0 0 15px; padding-left:1.15em}
+  li{margin-bottom:7px}
+  li::marker{color:var(--accent)}
+
+  .callout{
+    background:var(--surface-2); border:1px solid var(--rule);
+    border-left:3px solid var(--watch); border-radius:3px;
+    padding:16px 18px; margin:0 0 18px;
+  }
+  .callout .ui{text-transform:uppercase; letter-spacing:.12em; font-size:10.5px; font-weight:600; color:var(--watch); display:block; margin-bottom:6px}
+  .callout p{font-size:.96rem; margin:0 0 9px; max-width:72ch}
+  .callout p:last-child{margin:0}
+
+  footer{margin-top:64px; padding-top:22px; border-top:2px solid var(--ink); color:var(--ink-3); font-size:.9rem}
+  footer p{max-width:74ch}
+  a{color:var(--accent)}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  @media (prefers-reduced-motion:no-preference){
+    .game{transition:border-color .18s ease}
+  }
+  @media (max-width:620px){
+    body{font-size:16px}
+    .wrap{padding:0 16px 72px}
+    .game{padding:18px}
+  }
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="eyebrow">
+    <span>Post-update check</span><span class="sep">/</span>
+    <span>4 universes</span><span class="sep">/</span>
+    <span>Grabbed 2026-08-30 19:21 UTC</span>
+  </div>
+  <h1>Four Publishes, One Day</h1>
+  <p class="standfirst">All four games shipped on <strong>28 August</strong>, within six hours of each other. Two days later there is exactly <strong>one settled day</strong> of post-publish data — and it is a Saturday.</p>
+
+  <div class="verdict">
+    <div class="ui">Verdict</div>
+    <p>No publish broke anything measurable. Nothing on 08-29 moves beyond its own weekday baseline on any game that can be scored. The findings worth acting on are all <em>pre-existing</em> — they were true before these updates and remain true after.</p>
+    <p style="margin-top:12px; font-size:.95rem; color:var(--ink-2)">Verity and Seal have their own causes running underneath this window, and those are the ones that decide the next month. They are diagnosed separately in <a href="https://claude.ai/code/artifact/de41f470-2824-4522-bc47-26aad5045cb0"><strong>Eight Days Behind</strong></a>.</p>
+  </div>
+</header>
+
+<section>
+  <h2><span class="num">01</span>When each game actually shipped</h2>
+  <p class="sub">Dated from <code class="mono">develop.roblox.com</code> saved-versions, not the public <code class="mono">updated</code> field.</p>
+  <div class="scroll">
+    <table>
+      <caption>Publish log — root place, is_published = true</caption>
+      <thead><tr><th>Game</th><th>Universe</th><th>Version</th><th>Published (UTC)</th><th>Local (UTC+2)</th></tr></thead>
+      <tbody>
+        <tr><td>Become a Brainrot</td><td class="mono">9963622286</td><td class="mono">v607</td><td class="mono">08-28 15:21</td><td class="mono">17:21</td></tr>
+        <tr><td>Verity Companion</td><td class="mono">10565445771</td><td class="mono">v679</td><td class="mono">08-28 19:53</td><td class="mono">21:53</td></tr>
+        <tr><td>Waterslide</td><td class="mono">10030829154</td><td class="mono">v1716</td><td class="mono">08-28 21:02</td><td class="mono">23:02</td></tr>
+        <tr><td>Seal A Driveway</td><td class="mono">10638354731</td><td class="mono">v908</td><td class="mono">08-28 21:36</td><td class="mono">23:36</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Seal's v909 and v910 (08-29 02:32 and 03:51 UTC) carry <code class="mono">is_published: false</code> — they are saves, not publishes. The public games API reports Seal's <code class="mono">updated</code> as 08-29 03:51, which is v910; using it would have dated the publish six hours late and put it on the wrong side of midnight.</p>
+</section>
+
+<section>
+  <h2><span class="num">02</span>What this grab can and cannot answer</h2>
+  <p class="sub">An absent measurement must never read as a clean bill of health.</p>
+  <div class="scroll">
+    <table>
+      <caption>Readability, two days after the publishes</caption>
+      <thead><tr><th>Question</th><th>Status</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Did daily volume or rate move?</td><td><span class="chip watch">Thin</span></td><td>One settled day (08-29). 08-30 is in progress and excluded.</td></tr>
+        <tr><td>Did the update break the client?</td><td><span class="chip steady">Readable</span></td><td>Crash rate, FPS, OOM and error counts all settled for 08-29.</td></tr>
+        <tr><td>D1 retention on the post-update cohort</td><td><span class="chip none">No data</span></td><td>D1 settles ~2 days behind; the 08-29 cohort is not in.</td></tr>
+        <tr><td>D7 / D30 retention</td><td><span class="chip none">No data</span></td><td>Not answerable for another 5 and 28 days.</td></tr>
+        <tr><td>Hour-by-hour across the publish</td><td><span class="chip none">No data</span></td><td>Only Seal has real hourly spanning 08-28. See the note below.</td></tr>
+        <tr><td>Did the funnel shape change?</td><td><span class="chip none">No data</span></td><td>Funnels return at <code class="mono">NONE</code> granularity — one aggregate over the whole window, so no before/after split.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout" style="margin-top:18px">
+    <span class="ui">The half-hour data does not reach the publish</span>
+    <p>Half-hour rows exist for 08-24 onward on Waterslide and Brainrot, but every one before 08-30 carries <code class="mono">status: FILLED_ZERO</code> — exporter gap-fill, not measurement. Real sub-daily data covers <strong>08-30 only</strong>. The single exception is Seal, whose hourly series is genuine from 08-12 through 08-29 and therefore spans its own publish.</p>
+    <p>Absence outside the served span is not zero. Treating those filled rows as data would have shown all four games at zero errors and zero concurrents through the entire publish window.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">03</span>The weekend confound</h2>
+  <p class="sub">Why "everything went up on 08-29" says nothing on its own.</p>
+  <div class="measure">
+    <p>28 August was a <strong>Friday</strong>; 29 August a <strong>Saturday</strong>. Friday&#8202;→&#8202;Saturday is the strongest natural uplift in the Roblox week, so every game rising on 08-29 is the expected shape whether or not anything shipped.</p>
+    <p>Scoring each day against what <em>that weekday</em> normally does for <em>that game</em> removes it. On 08-29, <strong>nothing exceeds 2 sd on either game with enough history to score</strong>:</p>
+  </div>
+  <div class="scroll" style="margin-top:16px">
+    <table>
+      <caption>Weekday-baseline scores, 2026-08-29</caption>
+      <thead><tr><th>Game</th><th>Largest positive z</th><th>Largest negative z</th><th>Beyond 2 sd?</th></tr></thead>
+      <tbody>
+        <tr><td>Waterslide</td><td class="mono">ErrorCount/100k +0.77</td><td class="mono">ClientCrashRate15m −0.90</td><td><span class="chip steady">None</span></td></tr>
+        <tr><td>Become a Brainrot</td><td class="mono">EndToEndCVR +1.34</td><td class="mono">SessionLength −1.02</td><td><span class="chip steady">None</span></td></tr>
+        <tr><td>Verity Companion</td><td class="mono">—</td><td class="mono">—</td><td><span class="chip none">Baseline invalid</span></td></tr>
+        <tr><td>Seal A Driveway</td><td class="mono">—</td><td class="mono">—</td><td><span class="chip none">Too few residuals</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Verity's baseline expects ~3.7M DAU against an observed 607k — it is fitted on the game's launch spike and is not a usable reference. Seal is 25 days old and has no weekday history at all. For both, the honest answer is that the seasonal test cannot be run, not that it passed.</p>
+</section>
+
+<section>
+  <h2><span class="num">04</span>Game by game</h2>
+  <p class="sub">Ranked within each game by mechanism, not by event count.</p>
+
+  <!-- SEAL -->
+  <div class="game">
+    <div class="game-head">
+      <h3>Seal A Driveway</h3><span class="id">10638354731 · v908</span>
+      <span class="spacer"></span><span class="chip steady">Technically clean</span><span class="chip act">Sentiment</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="k">DAU 08-29</div><div class="v">417,306</div><div class="d">−21.8% vs 08-28 spike</div></div>
+      <div class="stat"><div class="k">Revenue 08-29</div><div class="v">R$810,220</div><div class="d">+12.8% vs 08-28</div></div>
+      <div class="stat"><div class="k">OOM /100k</div><div class="v">46.0</div><div class="d">flat, in range</div></div>
+      <div class="stat"><div class="k">Approval</div><div class="v">56.8%</div><div class="d">lifetime</div></div>
+    </div>
+
+    <div class="finding">
+      <h4>The publish did not break it <span class="chip steady">Steady</span></h4>
+      <p>Seal is the only game with genuine hourly data spanning its own publish. Across v908 at 21:36 UTC, client crash rate stays flat at 0.0035–0.0066 and average FPS holds 57.8–64.6 with no step at the boundary. OOM exits sit at 46 per 100k DAU on 08-29 against a 38–53 band all month.</p>
+    </div>
+    <div class="finding">
+      <h4>The DAU drop is a spike unwinding, not a regression <span class="chip watch">Watch</span></h4>
+      <p>DAU fell 533,776&#8202;→&#8202;417,306 across the publish, but 08-28 was itself an outlier: 08-27 was 356,255, so 08-29 sits <em>above</em> the pre-spike level. Engagement improved on the same day — play time per DAU 17.61&#8202;→&#8202;19.56 min, session length 13.90&#8202;→&#8202;15.01 min, ARPDAU 1.33&#8202;→&#8202;1.94.</p>
+      <p>Today is tracking ahead: at 18:00 UTC concurrents read 7,065 against 6,346 at the same hour yesterday. The returning cohort also grew <strong>+24% on 08-29</strong> while new users fell 31% — so the dip is acquisition, not players leaving.</p>
+      <p><strong>The acquisition side is the one to watch.</strong> Seal's D1 retention reached 11.2% on 08-28 and its home-recommendation traffic fell 29% on 08-29. That is the same sequence that preceded Verity's traffic being cut — see the companion diagnosis.</p>
+    </div>
+    <div class="finding">
+      <h4>Four downvotes for every upvote <span class="chip act">Act</span></h4>
+      <p>284 feedback entries since 08-14: <strong>224 downvotes to 60 upvotes</strong>. Lifetime approval is 56.8%, the second-worst of the four and far below Waterslide's 97.2%. 215 of those entries landed on v901 alone. This is the clearest signal on the game and it is not a technical one.</p>
+    </div>
+    <div class="finding">
+      <h4>51.5M input-binding warnings <span class="chip watch">Verify</span></h4>
+      <p><code>ContextActionService could not find the function passed in, doing nothing.</code> is <strong>87.7% of every event the game emits</strong> — 51,557,243 of them, first seen v488 on 11 August. The wording is literal: a bound input fires and nothing happens. If that binding is on a real player control this is functional, not cosmetic; if it is a dead registration left in the codebase it is free to ignore. Worth ten minutes in the source before the next ship.</p>
+    </div>
+    <div class="finding">
+      <h4>Onboarding funnel is healthy <span class="chip steady">Steady</span></h4>
+      <p>Started 100% → ReachedDriveway 97.9% → PouredOut 97.4% → FirstPass 96.3% → DrivewaySealed 95.0% → <strong>Complete 84.4%</strong>. The only meaningful loss is the final step. For a six-step onboarding this is a strong shape.</p>
+    </div>
+  </div>
+
+  <!-- VERITY -->
+  <div class="game">
+    <div class="game-head">
+      <h3>Verity Companion</h3><span class="id">10565445771 · v679</span>
+      <span class="spacer"></span><span class="chip act">Monetisation</span><span class="chip act">Core mechanic</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="k">DAU 08-29</div><div class="v">606,962</div><div class="d">off a 1.28M peak on 08-23</div></div>
+      <div class="stat"><div class="k">ARPDAU</div><div class="v">R$0.47</div><div class="d">flat all month</div></div>
+      <div class="stat"><div class="k">OOM /100k</div><div class="v">29.5</div><div class="d">lowest of the four</div></div>
+      <div class="stat"><div class="k">Approval</div><div class="v">50.1%</div><div class="d">lifetime</div></div>
+    </div>
+
+    <div class="finding">
+      <h4>Both purchase prompts almost never open <span class="chip act">Act — revenue</span></h4>
+      <p>Two monetisation funnels reach the pitch and then stop dead:</p>
+      <ul>
+        <li><strong>Notebook</strong> — Opened 100% → Pitch Shown 100% → <strong>Prompt Opened 1.31%</strong> → Purchased 12.25%</li>
+        <li><strong>MessagePack</strong> — Ran Out 100% → <strong>Prompt Opened 2.65%</strong> → Purchased 8.78%</li>
+      </ul>
+      <p>The pitch renders for everyone and the purchase prompt opens for roughly one in fifty. Of those that do open, 9–12% convert — so the prompt itself works; almost nobody reaches it.</p>
+      <p><strong>Neither was caused by this update, and MessagePack is now dated.</strong> Re-querying the funnel over one-day windows puts the MessagePack break on <strong>07 August</strong>: 92.86% on 08-06, 24.51% on 08-07, 3.24% on 08-08, flat ever since. Notebook is a separate, slower decay — never above ~3%, down to 1.24%. Both are covered in full in the companion LiveOps diagnosis.</p>
+    </div>
+    <div class="finding">
+      <h4>The 08-29 rise is a rebound, not an update effect <span class="chip watch">Read carefully</span></h4>
+      <p>Verity gained <strong>+34% DAU on 08-29</strong>, which reads as a strong update — until you see what it is rebounding from. The game lost <strong>69% of its DAU between 08-23 and 08-27</strong>, before this publish, when home-recommendation traffic was cut. 606,962 is a recovery toward a collapsed floor, not a return to form: the 08-23 peak was 1,281,398.</p>
+      <p>Treat this game's post-update numbers as uninterpretable in isolation. The full causal account is in the companion LiveOps diagnosis.</p>
+    </div>
+    <div class="finding">
+      <h4>Dialogue filter rejections — excluded <span class="chip none">Not a defect</span></h4>
+      <p><code>Generated dialogue was rejected by filtering</code> is 1,497,543 events and 25.5% of everything the game emits, which makes it the second-loudest signature in the export. It is Roblox platform moderation acting on generated text, not a fault in the game, and is excluded from this report by the producer's call. Noted only so the next reader does not rediscover it and rank it as a finding.</p>
+    </div>
+    <div class="finding">
+      <h4>Half the players who set off never arrive <span class="chip watch">Watch</span></h4>
+      <p><code>FollowMe</code>: Asked 100% → Set Off 99.5% → <strong>Arrived 51.5%</strong>. Near-everyone accepts and starts moving; half never complete. Reads like pathing or a distance/timeout condition. <code>Ending</code> shows a similar shape — Box Appeared 100% → Hold Started 49.0%, then 96.3% of those who start do finish.</p>
+    </div>
+    <div class="finding">
+      <h4>Session depth falls off a cliff at 20 minutes <span class="chip watch">Watch</span></h4>
+      <p>Joined 100% → 1 min 81.6% → 5 min 59.6% → 10 min 59.6% → <strong>20 min 26.9%</strong>. The 5-to-10-minute band is completely flat and then loses more than half. Something in that window ends sessions.</p>
+    </div>
+    <div class="finding">
+      <h4>No OOM regression <span class="chip steady">Steady</span></h4>
+      <p>OOM exits run 344 → 400 → … → 129 → 179 across the window; per 100k DAU that is 29.5 on 08-29 against a 28–38 band. Verity has the <em>lowest</em> OOM rate of the four.</p>
+    </div>
+  </div>
+
+  <!-- WATERSLIDE -->
+  <div class="game">
+    <div class="game-head">
+      <h3>Climb Waterslide and Slide</h3><span class="id">10030829154 · v1716</span>
+      <span class="spacer"></span><span class="chip watch">Pre-existing error step</span><span class="chip steady">Sentiment</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="k">DAU 08-29</div><div class="v">164,979</div><div class="d">from 543k on 08-18</div></div>
+      <div class="stat"><div class="k">ARPDAU</div><div class="v">R$0.63</div><div class="d">highest since 08-21</div></div>
+      <div class="stat"><div class="k">OOM /100k</div><div class="v">190.3</div><div class="d">within 167–238 band</div></div>
+      <div class="stat"><div class="k">Approval</div><div class="v">97.2%</div><div class="d">best of the four</div></div>
+    </div>
+
+    <div class="finding">
+      <h4>Errors stepped 2.7× on 08-25 — four days before this update <span class="chip watch">Watch</span></h4>
+      <p>Error rate per 100k DAU jumped 657,729 → 1,789,752 on 08-25 and has stayed there since; the weekday scorer flagged 08-26 at <strong>z +2.19</strong>, the only genuine anomaly in this entire scan. The cause is <code>Failed to load sound: Asset is not approved for the requester</code>, server-side, <strong>first seen v1708 on 24 August 21:49</strong>. That predates the 08-28 publish by four days.</p>
+      <p>Client and server variants together are <strong>5.3M events, 70% of everything this game emits</strong>. But the mechanism is a sound that does not play — by the reporting rule that is cosmetic, and it is a textbook case of the loudest signature in an export being the cheapest one. It matters here mainly because it is what is distorting the error metric.</p>
+      <p><strong>Worth fixing anyway:</strong> the asset is failing moderation approval, which is a one-line fix and would restore the error series to a usable signal.</p>
+    </div>
+    <div class="finding">
+      <h4>What v1715 actually introduced <span class="chip watch">Verify</span></h4>
+      <p>Exactly one new signature dates to this deploy: <code>MuFa is not a valid member of Folder "ReplicatedStorage.Model"</code> at <strong>9,130 events</strong> — 0.1% of the game's total. A missing model reference. Small, but it is genuinely new and it is a name lookup failing, so whatever <code>MuFa</code> was meant to be is not there.</p>
+    </div>
+    <div class="finding">
+      <h4>Half the players never finish the tutorial <span class="chip watch">Watch</span></h4>
+      <p>Fifteen steps compound to roughly <strong>49% completion</strong>. Two steps carry most of the loss:</p>
+      <ul>
+        <li><code>Tutorial_Main_5_ToRaftShop</code> — 84.4%</li>
+        <li><code>Tutorial_Main_10_BuyEgg</code> — 86.8%</li>
+        <li><code>Tutorial_Main_15_AddFriendTip</code> — 89.0%</li>
+      </ul>
+      <p>Step 5 sends the player to a shop and step 10 asks for a purchase — the two points where the tutorial hands over control. Both are worth watching, but note this is a window aggregate and cannot be attributed to any one version.</p>
+    </div>
+    <div class="finding">
+      <h4>The healthiest sentiment of the four <span class="chip steady">Steady</span></h4>
+      <p>99 upvotes to 53 downvotes in-window, 97.2% lifetime approval on 69,121 votes. Whatever is driving the DAU decline from 543k to 165k over eleven days, it is not players disliking the game.</p>
+    </div>
+  </div>
+
+  <!-- BRAINROT -->
+  <div class="game">
+    <div class="game-head">
+      <h3>[WORLD 3] Become a Brainrot</h3><span class="id">9963622286 · v607</span>
+      <span class="spacer"></span><span class="chip act">Progression wall</span><span class="chip watch">OOM</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="k">DAU 08-29</div><div class="v">145,475</div><div class="d">+41% vs Friday</div></div>
+      <div class="stat"><div class="k">Revenue 08-29</div><div class="v">R$77,094</div><div class="d">ARPDAU R$0.53</div></div>
+      <div class="stat"><div class="k">OOM /100k</div><div class="v">1,109.5</div><div class="d">10× Waterslide</div></div>
+      <div class="stat"><div class="k">Approval</div><div class="v">88.3%</div><div class="d">lifetime</div></div>
+    </div>
+
+    <div class="finding">
+      <h4>Rebirth 1 is where the game loses everyone <span class="chip act">Act — progression</span></h4>
+      <p><code>PlayerProgression</code>: FirstMorph 100% → OnboardingComplete 100% → FirstUpgrade 99.3% → <strong>Rebirth1 38.25%</strong> → Rebirth2 70.6% → Rebirth3 88.6% → Rebirth4 91.55%.</p>
+      <p>Onboarding is essentially perfect and the first upgrade is near-universal — then 62% never reach the first rebirth. Everyone who clears it keeps going, and each subsequent rebirth is easier than the last. That is the signature of a single wall too far from the previous beat, not a difficulty curve. It is the highest-leverage change available on this game.</p>
+    </div>
+    <div class="finding">
+      <h4>One in a hundred daily players loses their session to memory <span class="chip watch">Watch</span></h4>
+      <p>OOM exits run 908–1,442 per 100k DAU all month — roughly <strong>1% of daily actives</strong>, against 190 on Waterslide and 30 on Verity. 08-29 sits at 1,109.5, inside that band, so this update did not cause it. It is a standing condition and the largest single source of lost sessions across the four games.</p>
+    </div>
+    <div class="finding">
+      <h4>A Season Pass script erroring 611k times <span class="chip watch">Verify</span></h4>
+      <p><code>Players.&lt;Player&gt;.PlayerGui.MainFrame.StoreFrames.SeasonPass.RewardsFrame.Rewards.ContentFrame.LocalScript</code> — 611,612 events, first seen v552 on 31 July. The path runs straight through a store surface and a rewards frame. It may be purely a render fault, but it sits on a monetisation surface, which is exactly the case where a defect that looks cosmetic turns out to gate a purchase. Check whether the rewards frame still populates.</p>
+    </div>
+    <div class="finding">
+      <h4>What v607 introduced <span class="chip steady">Benign</span></h4>
+      <p>One new signature: <code>Not running script because past shutdown deadline</code>, 20,514 events. This fires when scripts are still starting as a server shuts down; it is ordinary and not worth acting on.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">05</span>Live concurrents</h2>
+  <p class="sub">Half-hour resolution, 2026-08-30, through 19:30 UTC (21:30 local).</p>
+  <div class="scroll">
+    <table>
+      <caption>Today's concurrents — peak so far and latest reading</caption>
+      <thead><tr><th>Game</th><th class="n">Peak today</th><th>At (UTC)</th><th class="n">Latest 19:30</th><th>Shape</th></tr></thead>
+      <tbody>
+        <tr><td>Seal A Driveway</td><td class="n">7,065</td><td class="mono">18:30</td><td class="n">7,027</td><td>Still climbing into evening</td></tr>
+        <tr><td>Verity Companion</td><td class="n">5,860</td><td class="mono">14:30</td><td class="n">4,985</td><td>Peaked midday, easing</td></tr>
+        <tr><td>Waterslide</td><td class="n">3,507</td><td class="mono">13:30</td><td class="n">2,612</td><td>Peaked midday, easing</td></tr>
+        <tr><td>Become a Brainrot</td><td class="n">2,005</td><td class="mono">14:00</td><td class="n">1,491</td><td>Peaked midday, easing</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">The final bucket is partial. Peak concurrents is a maximum, so a partial reading can only rise — treat every figure here as a floor, not a settled value. Seal in particular is still on its way up.</p>
+</section>
+
+<section>
+  <h2><span class="num">06</span>What to do next</h2>
+  <div class="measure">
+    <p>Ranked across all four games by mechanism — revenue and player-loss first, volume last.</p>
+  </div>
+  <div class="scroll" style="margin-top:16px">
+    <table>
+      <caption>Actions, highest leverage first</caption>
+      <thead><tr><th>#</th><th>Game</th><th>Action</th><th>Mechanism</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">1</td><td>Seal</td><td>Fix save-loss, equipment lock and early session kicks</td><td><span class="chip act">Player loss</span></td></tr>
+        <tr><td class="mono">2</td><td>Verity</td><td>Diff v545→v586 for the MessagePack prompt gate (broke 08-07)</td><td><span class="chip act">Revenue</span></td></tr>
+        <tr><td class="mono">3</td><td>Brainrot</td><td>Re-tune the gap between first upgrade and Rebirth 1</td><td><span class="chip act">Progression</span></td></tr>
+        <tr><td class="mono">4</td><td>Brainrot</td><td>Profile client memory — 1% of DAU lost to OOM</td><td><span class="chip act">Player loss</span></td></tr>
+        <tr><td class="mono">5</td><td>Verity</td><td>Repair the Notebook prompt-open and conversion decay</td><td><span class="chip act">Revenue</span></td></tr>
+        <tr><td class="mono">6</td><td>Seal</td><td>Confirm the ContextActionService binding is dead code, not a live control</td><td><span class="chip watch">Verify</span></td></tr>
+        <tr><td class="mono">7</td><td>Brainrot</td><td>Confirm the Season Pass rewards frame still populates</td><td><span class="chip watch">Verify</span></td></tr>
+        <tr><td class="mono">8</td><td>Waterslide</td><td>Get the sound asset through moderation approval</td><td><span class="chip watch">Signal hygiene</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout" style="margin-top:20px">
+    <span class="ui">Re-grab on 31 August</span>
+    <p>D1 retention for the 08-29 cohort settles then, which is the first real read on whether these updates held anyone. A second settled day also lets the weekday scorer compare Saturday to Saturday instead of Saturday to Friday.</p>
+    <p>Perf and crash history age out at roughly 30 days and error history at 56 — anything not captured before late September is gone permanently.</p>
+  </div>
+
+  <h3 style="margin-top:34px">Two things that change how a fix should ship</h3>
+  <div class="measure">
+    <p><strong>Prefer a config change to a build.</strong> The Open Cloud Configs API changes live balance without publishing — propagation is about five minutes, it carries full version history, and it can be rolled back if a metric moves the wrong way. A republish costs a deploy plus a fresh set of <code class="mono">PlaceVersion</code> steps to disentangle from every metric afterwards, which is precisely the noise this report had to work around. For anything that is a number rather than a behaviour, use the config.</p>
+    <p><strong>Expect the deploy's own signature and do not read it as breakage.</strong> Session duration and FPS dip in the publish hour and recover within about two hours as servers cycle; error counts can spike 20–50× on the publish day alone. A grab taken the day after a deploy will show all of it. Degradation still present three hours later is a finding; inside the publish hour it is the deploy.</p>
+  </div>
+
+  <div class="callout" style="margin-top:22px">
+    <span class="ui">What to watch instead of DAU</span>
+    <p>Since 15 June, Roblox ranks on play days per user, playtime per user, play-through rate and first-play bounce — over a <strong>28-day</strong> window, counting only organically-discovered players. QPTR was removed from ranking entirely, so listing and thumbnail work no longer buys distribution.</p>
+    <p>The number to track on all four games is <code class="mono">RFYL7PlayDays</code>. It reads <strong>1.28 on Verity</strong> and <strong>1.32 on Seal</strong> — roughly one or two sessions per player per week, which is the ceiling every reach gain gets multiplied by. The causes and the fixes are in <a href="https://claude.ai/code/artifact/de41f470-2824-4522-bc47-26aad5045cb0"><strong>Eight Days Behind</strong></a>.</p>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Provenance.</strong> Browser grab through the extension, 2026-08-30 18:54–19:21 UTC, window 2026-07-28 → 2026-08-31. Requests returning data: Seal 209/814, Verity 313/1039, Waterslide 323/1201, Brainrot 272/1395. Error signatures from the dashboard's own CSV exports, mapped to universes by 100% version overlap against each grab's discovered <code class="mono">PlaceVersion</code> set. Vote totals from the public games API.</p>
+  <p style="margin-top:12px"><strong>Known limits.</strong> Timeline annotations returned 400 on all four universes, so no Roblox-side event overlay. The <code class="mono">MessageHash</code> dimension returned 500, so error text comes from the CSV exports rather than the grab. Funnel metrics return only at <code class="mono">NONE</code> granularity — every funnel figure is a single aggregate over the full window and carries no before/after split. Headline figures use the unbroken-down series throughout; where a metric is Place-scoped, the bare <code class="mono">Place=</code> filter is the whole.</p>
+</footer>
+
+</div>

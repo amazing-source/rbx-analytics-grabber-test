@@ -13,6 +13,126 @@ trusting it**. Entries describe the moment they were written.
 
 ---
 
+## 2026-08-28 — update baselines for two publishes; the async-empty trap is wider than F22 said
+
+**State:** branch `grabber-correctness` · 70 ahead of `main` · **8 unpushed, still 6 BEHIND `origin/grabber-correctness`** — unchanged since 08-26, reconcile before pushing · dirty: 2 new `baseline/` folders, 3 new `tools/`, 2 raw bundles, 1 platform snapshot, `baseline/README.md`, 2 grab-report.json
+**Gates** (measured now): verify **23 pass · 2 fail · 8 skip, exit 1** (both fails documented + held) · audit-plan **140 templates, 0 failures, exit 0** · test **44/44, exit 0**
+
+**Landed:** update baselines for `9963622286` **v606→v607** (published 08-28 15:00–15:30 UTC) and `10399712766` **v1244** (14:00–14:30 UTC), in `baseline/<UTC publish>-<universe>-<slug>-<version>/`. Each holds the report, settled metric table + `headline-daily.csv`, funnels, deploy log, CCU baseline and the frozen corpus files. `baseline/README.md` rewritten as an index over both kinds of baseline. Second `platform-ccu` snapshot taken. Three reusable pullers added: `tools/deploy-log.js`, `tools/funnels.js`, `tools/build-baseline.js`.
+
+**Learned → routed:**
+- **An unfinished async query is indistinguishable from a game with no data, and it is NOT confined to funnels** — `ErrorCount`×`PlaceVersion` returned 0 versions then 25 on the identical rerun → **F23**, `CLAUDE.md` (extends the empty-200 standing rule), and guards in `tools/deploy-log.js` / `tools/funnels.js`
+- **`ccu-baseline` counts not-yet-elapsed slots as zero** — 848/−64.7% vs 1,246/−40.9% on the same universe minutes apart → **F24**, `CLAUDE.md` Reading-CCU section
+- **`FunnelUserStepCompletionRate` (step-to-step) and `FunnelCohortCompletionRate` (cumulative from step 1) have different denominators** — 99.11% vs 95.2% for one step → `liveops-diagnosis` SKILL.md funnel section
+- **A pre-registered threshold must exclude the in-progress day**, and a post-publish grab must be labelled T+0 with its freeze date → `update-watch` SKILL.md
+- Brainrot's two funnel cliffs (gates 4 and 8 = **62.9%** of all loss across 20 steps) and its `ClientCpuTimeAvg` 41→93 step on 08-27 → `HANDOFF.md` + `BASELINE.md`
+- Board **up 7.5%** to 8,101,577 CCU while the portfolio was not → `CLAUDE.md`, `data/platform/`
+
+**Disproved:**
+- **`CLAUDE.md`'s "only elapsed slots are ever compared"** about `ccu-baseline` — false; with no `--slots` it swept 00:00–23:00 and scored eight unlived hours as zero, turning a −40.9% day into a −64.7% "collapse". Corrected in place. It selected the elapsed range unprompted for a *second* universe in the same run, so the behaviour is inconsistent rather than uniformly wrong.
+- **F22's implied scope** — "funnel queries are async" was the narrow reading of a fault that hits any Open Cloud query under load, including the deploy log, where an empty answer looks like a plausible "no ships in this window" and would have been filed as fact.
+
+**Open:**
+- **8 commits unpushed and 6 behind `origin/grabber-correctness`** — carried over untouched from 2026-08-26 → reconcile, then push
+- **Nothing here is committed**, including the platform snapshot — "an uncommitted snapshot is gone" → commit
+- **Error TEXT for both games.** Brainrot's newest export is 4 builds old; **Banana Monkey has never had one** → export *Errors and warnings by count* per game at T+2h, filtered to the new version; without it the "new signature" tripwire is unevaluable on both
+- **F24 is not fixed and not tested** → clamp the slot list to the last elapsed boundary when the day is today, in `web/scripts/ccu-baseline.ts`, and encode it
+- **Brainrot `ClientCpuTimeAvg` 93 vs a 37–50 band** — one settled day only → re-read 08-29: still ~93 means a real regression predating v607
+- Both 08-28 updates are **unread post-publish** → full grab after the UTC day rolls, 2026-08-29
+- Seal payer CVR read (due 08-28/29) and Verity reach read (due 08-29) from the 08-26 entry — **both still not done**
+- `9963622286` `ServerCrashCount` returns empty 200s across the whole window at every granularity → verify against the dashboard rather than reading it as zero
+
+**Next:** commit this session, then on 2026-08-29 run the post-update grab for both universes and mark the pre-registered tripwires OK/WATCH/FIX/NO DATA.
+## 2026-08-26 — two new games baselined from birth; funnels finally cracked; the fresh-universe perf hole closed
+
+**State:** branch `grabber-correctness` · 69 ahead of `main` · **7 unpushed, and 6 BEHIND `origin/grabber-correctness`** — reconcile before pushing · clean
+**Gates** (measured now): verify **23 pass · 2 fail · 8 skip, exit 1** (both fails documented + held) · audit-plan **140 templates, 0 failures, exit 0** · test **44/44, exit 0**
+
+**Landed:** full-life baselines for `10565445771` Verity Companion [AI] and `10638354731` Seal A Driveway, in a new tracked `baseline/` folder (settled series, deploy logs from `ErrorCount`×`PlaceVersion`, CCU baselines, funnels, error text, two published reports). Both error exports filed to `data/exports/` and registered. Commit `90c394b`.
+
+**Learned → routed:**
+- **How to pull funnels** — `breakdown:["FunnelStep"]`, POLLED, and never a `FunnelName` filter → recipe at the top of **`SKILL.md` §1**, summary in **`CLAUDE.md`**, **F22** rewritten, memory `how-to-pull-funnels`
+- A fresh universe got **no technical rung at all** — `perfSpecs()`/`halfHourSpecs()` return `[]` with no discovered places, and places were only ever inherited from a prior grab → fixed in `opencloud-run.ts` (fetches `develop.roblox.com/.../places`), **F21**
+- Perf metrics **400 the whole family** if `startTime` precedes the 28-day horizon; they do not clamp, and the error names the floor → `CLAUDE.md`
+- Both games' full lives sit inside every retention horizon, so the technical rung is complete from birth — a first → `baseline/README.md`
+
+**Disproved (mine, same session):**
+- **"Funnels are unreachable on Open Cloud / the instrument is degenerate"** — written into F22 and CLAUDE.md at ~15:00, false by ~17:30. Two faults stacked: funnel queries answer **HTTP 202 async and my probes never polled** (one also dropped the `analytics-query-api/` prefix from the poll URL), and the **`FunnelName` filter returns 0 series always, even for a real name**. Verity has 9 funnels, Seal 4. `Platform`/`IsNewUser` filters work fine — `FunnelName` alone is broken.
+- **`SKILL.md`'s "filtering funnel metrics by `Platform` returns no series"** — Platform filters correctly (Computer ≈ 33% of each step, matching DAU share). Almost certainly the same unpolled 202, and it had misdirected three later investigations.
+- **"24 Aug was platform-wide / late-August seasonality"** (memory `aug-24-portfolio-wide-drop`) — Seal **grew +8%/+8%** across exactly that window and set an all-time high on the 26th. Memory updated with the caveat that Seal was mid-surge.
+- **Seal's "conversion broke on 24 Aug"** — caught before publishing: it lands on Mon/Tue after the three best days, and one week at this scale cannot separate a step from the weekly shape. Shipped as **unresolved** with a dated test.
+- **`HANDOFF.md`'s "zero funnels on Knife Farm"** — re-tested with the working instrument and it **holds** (0 steps, against Waterslide 15 / Brainrot 20 / Monkey 3). Right claim, previously right for the wrong reason.
+
+**Open:**
+- **Verity's AI unit cost is unknown and it is the only game with a variable cost per player.** Revenue is $0.00136/DAU/day; if inference exceeds that, growth destroys value. → ask the studio before any growth spend
+- **Seal payer CVR: read 2026-08-28/29.** Back to ~1.7–1.9% ⇒ weekly shape, nothing there. Still ~1.25% ⇒ real step worth ~$26–29k/mo
+- **Verity reach: read 2026-08-29** (`UniqueUsersWithImpressions`, `RFYQualifiedPTR`) — settles demotion vs algorithmic reshuffle
+- Seal's `ContextActionService` dead binding (10.5M events, 85% of its error volume) is only *likely* the cause of the 4× desktop crash rate → needs a read of the live place at v901
+- Neither new game is in `data/dashboard-config.json` — **nothing is scheduled and no alerting covers either** → deliberate decision needed
+- Player-comment exports for both games have never existed → pull from the dashboard
+- `platform-ccu` still has one snapshot (2026-08-25) → schedule daily or §0c step 2 stays unanswerable
+
+**Next:** reconcile the 6 commits behind `origin/grabber-correctness`, then push the 7 ahead.
+
+## 2026-08-25 — CCU baselines rebuilt on matched slots; v1711 verified unfixed; four-game curve
+
+**State:** branch `grabber-correctness` · 67 ahead of `main` · **5 unpushed** vs `origin/grabber-correctness` · dirty (`.gitignore`, `CLAUDE.md`, `COVERAGE.md`, `web/package.json`, + `data/platform/`, 2 new scripts, 1 new export)
+**Gates** (measured now, not copied): verify **23 pass · 2 fail · 8 skip, exit 1** (both fails documented + held) · audit-plan **140 templates, 0 failures, exit 0** · test **44/44, exit 0**
+
+**Landed:** `npm run ccu-baseline` (matched XX:00/XX:30 UTC slots, 4 baselines + rank + per-slot profile, reads Open Cloud not the CSVs) · `npm run platform-ccu` (public discovery board snapshot → `data/platform/`, committed via new `.gitignore` negation; first snapshot 269 games / 7,537,949 CCU) · Waterslide patch set published → `https://claude.ai/code/artifact/076be0a2-aadd-421a-b5a0-7f35ab150194`
+
+**Learned → routed:**
+- CCU-drop triage ladder + "what is readable on day 0" + degenerate-instrument rule → **SKILL.md §0c**
+- Verification is the analyst's job; mechanism-vs-decision line → **SKILL.md §0d**
+- Four-game cohort curve, D2 ceiling, RFY ≈ 2.0 bar → **SKILL.md §4**
+- F18 corpus half-hour rows 77% fabricated · F19 PCU carry-forward at HalfHour · F20 Open Cloud serves HalfHour across all 28d → **COVERAGE.md**, summarised in **CLAUDE.md**
+- `scoreSeries()` blind spot; both new tools → **CLAUDE.md**
+- v1711 verification, Knife Farm v3831, Monkey appeal decay → **HANDOFF.md**
+
+**Disproved (mine, same session):**
+- "Late-August/school seasonality" — read off a **half-day** window. The complete 08-24 day is flat across the clock (Waterslide deepest −54% at 03:00 CEST, shallowest −29% at 20:00), and the three games disagree on which hours are worst.
+- "Waterslide needs a rebirth loop / Monkey's loop is thin" — asserted **before** pulling `DailyCohortRetention`. The curve says the constraint is D1→D2 (43–49% hold on all four); loops hold D5+ and are irrelevant above that cliff.
+- "A quiet `npm run anomaly` means CCU is fine" — it scored PCU z −0.10/−0.20/−1.70 on three games at or one off their 28-day floor.
+- "The 23 Aug Waterslide fixes shipped" — code read at v1711 says none of six did.
+
+**Open:**
+- **Knife Farm sell path broken since v3831 (silent).** Affected-player count is not derivable — zero funnels, `IsNewUser` dark after 08-20, session buckets degenerate. → **needs read-only Studio on `9610561918`** to find the failure condition; ask the reporter what the clip shows.
+- **Waterslide patches unapplied.** → hand the artifact to the dev; read `Tutorial_Main_5_ToRaftShop` (81.9%, target 0.95) two days after any publish.
+- **Banana Monkey mid-game unmeasured.** → instrument a first-session funnel (8–12 steps) before any content decision; check whether a dev place exists (Waterslide's is universe `10100945543`).
+- **`platform-ccu` has one snapshot.** → schedule daily or step 2 of §0c stays unanswerable.
+- 12 Aug payer collapse on `9610561918` + `10399712766` — still unexplained.
+
+**Next:** schedule `platform-ccu` daily, then read-only Studio on Knife Farm to locate the v3831 sell failure condition.
+
+## 2026-08-24 — four-game LiveOps diagnosis; two of my own calls corrected; data/exports/ rescued from .gitignore
+
+**State:** branch `grabber-correctness` · 66 ahead of `main` · unpushed · dirty (CLAUDE.md, HANDOFF.md, COVERAGE.md, SKILL.md, 4 grab-reports, new `data/exports/` + `tools/`)
+**Gates:** verify 23 pass / 2 fail / 8 skip (**exit 1**, both fails documented + held) · audit-plan 140 templates, 0 failures (exit 0) · test 44/44 — measured today, not copied
+**Landed:** all four games re-grabbed and diagnosed; full life pulled for 10030829154 (40→118d) and 10399712766 (30→53d); 40 dashboard downloads filed into `data/exports/<id>-<slug>/`; 5 artifacts published (URLs in the `liveops-reports-2026-08-24` memory, generators in `tools/reports/`)
+
+**Learned → routed:**
+- Never benchmark a level against the window **minimum**; print 4 baselines + the day's rank → `SKILL.md` §0b
+- Reach cannot exonerate a deploy — wrong metric (downstream, lagged) and check magnitude (−4.7%/wk vs −53%/wk) → `SKILL.md` §0b
+- Onboarding flat + progression falling = **core-loop** break, rules out traffic quality alone → `SKILL.md` §0b
+- Test a publish against the **distribution of publishes**, not one control day → `SKILL.md` §0b
+- `data/exports/` was untracked; error text is not API-retrievable (MessageHash lookup 500s on all 4) → **F17** in `COVERAGE.md` + `.gitignore` + `CLAUDE.md`
+- Waterslide's 8 defects (v1709, read-only) and Brainrot v600 clearance → `HANDOFF.md`
+
+**Disproved (mine, same day):**
+- "Waterslide is fine, above its 22-day low" — the low was one day (2,675); the mean was 5,453 and last week 7,476. Day was −45% on typical.
+- "Brainrot recovering, +21–54% WoW" — measured against 10–16 Aug, the **lowest week in the series**. Matched Sundays: −23%.
+- "30 Jul deploy = partial cause, impressions were already falling" — impressions were *rising* on a 7-day mean the 4 days before it (+1.5/+1.6/+8.2/+2.8%). Verdict now **primary**: D1 16.8%→9.7% in 4 days, Rebirth1 −9.6pp at identical mix, 25/25 matched pairs negative, onboarding flat at 99.3%. Matches `v546-cause-known`, which I had on file and contradicted.
+- "v600 slide is steeper than normal" — from 2 hand-picked controls. Against all 9 non-publish days: −29.3% vs −29.2% mean, z = −0.01.
+
+**Open:**
+- **12 Aug payer collapse on 9610561918 AND 10399712766**, no publish either day; denominator/platform/product/composition/Roblox-wide all ruled out → needs the 10399712766 error export (none has ever existed) and a read of the purchase path as at 11–12 Aug
+- Knife Farm Gamebeast billing 403 (692,260 events since 15 Aug 19:46Z) → someone must open the Gamebeast dashboard; postdates the 12 Aug step so it is not that cause
+- Knife Farm sell path reported broken since v3831 by a paying player → newest export is v3829, pull one at v3832
+- 381-row Waterslide all-time export landed after the defect report was written → dedicated pass
+- All four games −43% to −58% vs their own 22-day mean on 24 Aug; shape identical, spread 4× → needs one game outside the portfolio to settle seasonal vs not
+
+**Next:** commit this branch (66 commits unpushed, and `data/exports/` is newly tracked — 2.4 MB of otherwise-unrecoverable error text), then the 12 Aug payer question on 10399712766 once an error export exists.
+
 ## 2026-08-23 — Waterslide: the costliest bug emitted zero log lines
 
 **State:** branch `grabber-correctness` · 66 ahead of `main` · tracking
@@ -68,6 +188,240 @@ documented KNOWN_OPEN pair) · audit-plan 140 templates, 0 failures (exit 0) ·
 **Next:** fix the `FILLED_ZERO` DAU corruption (it silently poisons the alerting
 baseline), and encode both F16 tests — then re-check step 5 and the six defects.
 
+## 2026-08-21 (light) — Waterslide update baseline frozen
+
+**Mode:** `checkpoint light` — gates not re-run, they were measured earlier the
+same day (verify 23/2/8 exit 1 - audit-plan 140/0 - test 44/44) and nothing
+under `web/` changed since.
+**State:** branch `grabber-correctness` - pushed - new raw bundle committed.
+**Landed:** `baselines/` — a new top-level, committed folder for frozen
+pre/post-update references. Sits outside `data/`s ignore rules on purpose.
+`baselines/README.md` carries the contract; first entry is
+`10030829154-2026-08-21-waterslide.md`.
+**Read:** an update shipped on 10030829154 on 2026-08-21, **probably v1705**
+(dimension discovery returned PlaceVersion 1705; feedback tops out at v1698 last
+seen 08-20T23:44Z). `ErrorCount` `LogSource: Server` 08-21 = **3,029,260 and
+still partial** against a 96K-182K/day week — ~17x, which is the publish
+signature already documented for this universe (5.04M / 5.85M / 2.03M / 2.84M on
+its four previous deploy days). **Not a finding unless still elevated on 08-22.**
+Client errors tracking normal. Perf clean: crash rate 0.3-0.4%, FPS p10 ~33,
+OOM ~1.6/1k DAU, server crashes 0-2.
+**Game shape:** hard growth spike — DAU 256,677 (08-14) -> 491,464 (08-20),
+revenue +202.9%, paying users +259.2%. Payer conversion **4.12%, top 10% of
+peers**, while ARPPU R$16.03 is below median: breadth exceptional, depth weak.
+Retention is the soft rung at every horizon (D1 13.4%, D7 0.95%, D30 0.18%).
+**Open:** downvote rate roughly tripled v1685 (14.7%) -> v1691 (46.7%) / v1698
+(43.6%), but DAU tripled over the same span so it is confounded. WATCH, not a
+finding. n ~ 35 per version.
+**Could not measure:** publish time to the minute (placeVersions 500 = F12; no
+08-21 feedback rows; half-hour errors clamp at 08-21T00:00Z). Error text —
+`MessageHash` dimensions **500** on this universe again, so volumes without text.
+**Wake:** 2026-08-22 — re-grab 10030829154 and mark all 11 pre-registered
+tripwires in the baseline OK/WATCH/FIX. The decisive number is `ErrorCount`
+`LogSource: Server` on a settled 08-22: under 400K = the spike was the publish.
+Also still due that date: the 10399712766 reach check and the F18 re-read.
+**Next:** the 08-22 Waterslide follow-up, then Nina.
+## 2026-08-21 — A CCU drop that was not the update, and three of my own claims retracted
+
+**State:** branch `grabber-correctness` · 65 ahead of main · pushed · clean at
+session start; this checkpoint touches `CLAUDE.md`, `COVERAGE.md`, the diagnosis
+skill, the Banana Monkey baseline and this log.
+**Gates:** verify 23 pass · 2 fail · 8 skip, **exit 1** (the documented
+`KNOWN_OPEN` pair) · audit-plan 140 templates, 0 failures, **40 upgradable tags**
+· test **44/44** — all measured 2026-08-21, not copied.
+**Fixed stale doc:** `CLAUDE.md` START HERE said `npm test` → **41 pass**; it is
+44 and has been since 2026-08-19. That block loads into every session.
+**Landed:** no code changes. Session was read-only investigation plus routing.
+**Learned → routed:**
+- `EndToEndCVR` is inversely correlated with impressions (**r = −0.881**, 28d,
+  10399712766), so a CVR trend alone is never an appeal signal; check paid
+  sources before an ad-cliff theory; an acquisition landing on an RFY surge day
+  distorts every later comparison → `liveops-diagnosis/SKILL.md` §4.
+- Gateway served an impossible `ConcurrentPlayers` `ONE_HOUR` point
+  (13,532.377 at 2026-08-21T15:00Z vs a 6,869 half-hour peak) → **F18** in
+  `data/verify/COVERAGE.md`. Confirmed from raw entry 385, not our exporter.
+- 10399712766 post-update read, publish timing, handover date → the
+  `Banana Monkey Baseline 2026-08-21.md` post-update section.
+**Disproved — all four mine, three in-session:**
+1. "MenuHUD.Wheel locks out until you step off the pad" — false. `Touched`
+   re-fires for an animated character, so SpinController:201 reopens it. I
+   concluded it from lines 155–230 without reading the whole file.
+2. "`openMenuFrame()` can bind the gamepad cursor to the wrong frame" —
+   unreachable; every open path closes `activePopup` first, so only one popup
+   is ever open. Should never have been reported under the repo's own
+   materiality rule.
+3. "`EventConfig.EventId` is stale, hence the 404s" — false. It matches the live
+   `AURAS/INDEX + ADMIN ABUSE` event exactly; the annotation's
+   `6858286705385014000` is `Number()` precision loss on `...014015`, in our own
+   JSON parse.
+4. "Our exporter injected the 13,532 point" — false, the gateway returned it.
+**Open:**
+- Why 08-21 sits at the plateau's low edge. **Next action: on 08-22 re-pull
+  08-21 DAU and `UniqueUsersWithImpressions` by `AcquisitionSource`, check
+  whether `HomeRecommendation` kept falling below 7.71M.**
+- F18 has one observation and no re-read. **Re-read 2026-08-21T15:00Z after
+  2026-08-22T00:00Z** and record whether the gateway self-corrects.
+- `EventController`'s signup calls still fail for an unknown reason —
+  `errors.md` has null text for all 899 hashes because the async MessageHash
+  lookup never polls. Fixing that poll is what makes error text readable at all.
+- 19-digit Roblox IDs lose precision through `JSON.parse` in our pipeline.
+  Not yet a test. Would have caused a false finding if I had trusted it.
+- 40 audit-plan templates tagged `proven` are actually `observed` — upgradable,
+  not a failure, but the tags are drifting.
+**Wake:** 2026-08-22 — (1) pull 08-21 DAU + `UniqueUsersWithImpressions` by
+`AcquisitionSource` and check whether `HomeRecommendation` fell below 7.71M;
+(2) re-read `ConcurrentPlayers` ONE_HOUR at 2026-08-21T15:00Z and record whether
+the gateway corrected the F18 point. Neither is answerable before that date.
+**Next:** send Nina the detailed 10399712766 writeup once 08-22 numbers settle,
+leading with the reach reading and the baseline correction. Studio code reads
+from today are in `data/games/10399712766/code-reads.md` (PlaceVersion 1241).
+
+## 2026-08-21 — A CCU incident on a new game; my own read was wrong twice before the export settled it
+
+**State:** branch `grabber-correctness` · merged origin (5 commits from the other
+PC, incl. `notify.ts` / `scheduler.ts`) · dirty: `CLAUDE.md`, `HANDOFF.md`, `COVERAGE.md`,
+`SKILL.md`, this log, 4 new `data/raw/` bundles, `data/games/10399712766/`
+**Gates:** verify 23 pass/2 fail/8 skip (**exit 1**, documented `KNOWN_OPEN`) ·
+audit-plan 140 templates/0 failures (**proven shapes 221**) · test **44/44** —
+all measured 2026-08-21 **after** merging origin. Pre-merge this tree reported
+41/41 and 142 proven shapes; the difference is the 5 commits from the other PC.
+**Landed:** first grabs of **`10399712766`** (8 bundles) + a live incident read.
+Full diagnosis in `HANDOFF.md` §5.
+
+**Disproved — mine, twice in one session, and both reached the user before the
+data did.**
+1. "CCU is down 28%." Built on "the daily peak lands at 13:00", inferred from a
+   **single day**, applied to a different weekday. `PeakConcurrentPlayers` is a
+   MAX so a partial read is a floor; the 17:11Z re-read was 13,532 vs the 8,258
+   I used. → SKILL.md §0.
+2. "CCU is up 21.8%." That 13,532 is a **sum of per-platform peaks** and the
+   dashboard export's best half-hour was 10,429 — 30% lower. The real answer,
+   from the export, was **-24.1%**. → **F15** in `COVERAGE.md` + `CLAUDE.md`.
+
+The correct answer only arrived from a **dashboard CSV export**, which is
+cell-exact against our data (2026-08-20 17:00 = 7,265.229 both).
+
+**Learned → routed:**
+- Partial max/count is a floor; "is CCU down" is three different questions;
+  sub-daily clamps to the last settled 24h so the grabber cannot see today; the
+  diurnal curve is -52% peak-to-trough; the publish restart signature; querying
+  annotations over a narrow window to kill an event hypothesis →
+  `liveops-diagnosis/SKILL.md` **§0**.
+- **F16** PCU ONE_DAY = sum of platform peaks (30% high on in-progress days) →
+  `COVERAGE.md` + `CLAUDE.md`. Not encoded as a test.
+- **F17 is a RETRACTION of my own claim.** I reported the unattended Open Cloud
+  path as ingesting to zero points and wrote it up as a defect. The working tree
+  was **5 commits behind origin**, before `parse-captures.ts` learned the Open
+  Cloud envelope. The identical bundle post-merge ingests **6,539 points / 57
+  metrics**. Nothing was broken. **Rule now in `COVERAGE.md`: `git fetch && git
+  log HEAD..origin` before diagnosing a pipeline defect** — this repo is worked
+  from two machines.
+- **Removed the "ALERTING DOES NOT SEND" block I added to `CLAUDE.md` on
+  2026-08-20.** It was true of my checkout and false of the repo: `notify.ts`,
+  `scheduler.ts` and `anomaly-score.ts` were committed from the other PC. The
+  2026-08-19 alert I could not find the code for was real and is now merged.
+- Everything about the game → `HANDOFF.md` §5 *Banana game*.
+
+**The finding worth acting on:** `[EventController] PromptRsvpToEventAsync
+failed: HTTP 404` — **2.01M events across 4 signatures**, first seen
+2026-08-09 19:50Z, **50 minutes after** the `AURAS/INDEX + ADMIN ABUSE` event
+START (`19:00:33Z`). `RSVPCount` frozen at 465,357. Twelve days live, `V1228`.
+Not yet traced to code.
+
+**Ruled out for the incident**, each by a named test: today's update (predates by
+14h), any deploy (**none 2026-08-02 -> 2026-08-21**), engine release, an event
+ending (zero EVENT_STATE rows in a 08-19 -> 08-22 query), technical breakage.
+**v1240 is a clean update** — one new signature, 66 events, gamepad cursor.
+
+**Open:** (1) Studio MCP added to this project (`claude mcp add Roblox_Studio`,
+health-check OK) but **needs a Claude Code restart** to be callable — read
+`EventController` for a hardcoded eventId, `ProgressionService:568`, and the
+`MenuHUD.Wheel` gamepad path. (2) H1 thumbnail decay vs H2 event-surface
+withdrawal — tomorrow's CVR direction discriminates. (3) F15/F16 unfixed.
+(4) Webhook sender still uncommitted (may be on the Desktop clone).
+**Next:** `git merge origin/grabber-correctness` (5 behind, `CLAUDE.md` overlaps
+`de3c2e4`), then restart with `claude --continue` and read `EventController`.
+
+## 2026-08-20 — The alert that fired is not in the repo; the role note is reframed
+
+**State:** branch `grabber-correctness` · 56 ahead of main · in sync with origin ·
+dirty: `NOTE - where this fits.md` (new), `CLAUDE.md`, this log
+**Gates:** verify 23 pass/2 fail/8 skip (**exit 1**, the documented `KNOWN_OPEN`
+pair) · audit-plan 140 templates/0 failures · test 41/41 — measured 2026-08-20,
+**no drift** from the documented state.
+**Landed:** no code. `NOTE - where this fits.md`, a short placement note for
+Olivia sent via Nina.
+**Disproved:** "anomaly alerting works now" — believed by Ren and nearly written
+into a document for Indigo leadership. An alert genuinely fired 2026-08-19 18:23
+(9610561918, `ErrorCount/100kDAU` +362.1%, observed 3,499,035 vs expected
+757,201, z +2.10, for 08-18 02:00) but **the sending code is nowhere on disk**:
+full-tree grep of both clones finds no match for its own wording ("vs this
+weekday", "Not a threshold"), and `anomaly.ts`'s only `fetch` targets
+`apis.roblox.com`. Run outside the repo after the 2026-08-19 checkpoint, never
+committed. → standing rule now in `CLAUDE.md` (extension section).
+**Learned → routed:**
+- Indigo portfolio = **10–15 games per producer** (Nina, 2026-08-20), varying by
+  strategy: more games on fast revenue-centred updates, fewer on slower
+  strategic growth. **Closes open item (4) of the 2026-08-16 entry**, which held
+  the position doc to "far larger than four".
+- Contract `Djematene Dilan contract (1).pdf`: §7.4 bars competing work **during
+  the term only** and is absent from the §8.5 survival list; §3.8 survives one
+  year but reaches only Indigo's own clients/partners Ren had contact with, and
+  is geographically limited to the state of Delaware; §8.3 allows immediate
+  termination for convenience by either side. Read 2026-08-20; §4.2 work-product
+  ownership still unresolved.
+- **Log ordering repaired**: both 2026-08-19 entries had been appended at the
+  BOTTOM, so a cold resume read 2026-08-16 as newest and missed the extension
+  becoming the product surface.
+**Open:** (1) Recover the webhook sender from shell history before it is lost —
+it exists only as a screenshot. (2) Olivia decides ~end of 2026-08. (3) F12, F13
+and the Knife Farm cause unchanged.
+**Next:** recover and commit the `anomaly.ts` → webhook join, then confirm one
+scheduled grab lands end to end (`data/raw/` + ingest in the dev log).
+
+## 2026-08-19 (afternoon) — the extension became the product surface
+
+**State:** all work in the TEST clone `rbx-analytics-grabber-test`, pushed to
+`origin/grabber-correctness`, clean. Manifest **v0.8.0**. The MAIN repo has NONE
+of this — it holds only the morning's knowledge port.
+**Gates** (measured now): verify 23 pass / 2 fail / 8 skip (exit 1, documented) ·
+audit-plan 140 templates 0 failures · test 41/41.
+
+**Landed:** dashboard as an extension page framed into create.roblox.com
+(`dashboard.html` + `dashboard.js`, overlay in `collector.js`); Experiences /
+Grab / Settings views; five server routes (`/api/rbx/user|groups|group-games|
+access`, `/api/dash/config`); grab exclusions wired end to end
+(`lib/exclusions.ts`); the old panel reduced to a launcher (-144 lines).
+
+**Learned → routed:** iframe-vs-inline reasoning, the credential split, the
+orphaned-content-script failure, exclusion numbers and the report-what-you-
+dropped rule, and "no live metrics in the dashboard" → **CLAUDE.md**.
+
+**Disproved / corrected (mine):**
+- "The username field is dead" — it did not exist yet. `boot()` awaited a
+  6–20s local-app probe before painting `#stage`. Now paints first; every entry
+  point is wrapped and paints a visible error banner.
+- "The scheduler is broken" — it fires correctly. Reloading the extension
+  orphaned the content script, so it reached nobody.
+- Metric cards on the grid — built, then removed as costly and redundant.
+
+**Open:**
+- **The scheduler has still never completed a grab end to end.** It fires; the
+  orphan fix is unverified. Next check: a new file in `data/raw/` and a
+  `POST /api/ingest` in the dev log after the next hourly firing.
+- Alerts do not send. `anomaly.ts` has the seasonal baseline; nothing joins it to
+  the webhook field. Decision made: **measured baseline only, no manual
+  threshold** — a typed number fires every Wednesday on a game whose Wednesday
+  runs 42% below its own weekly mean.
+- Lag reportedly improved but not confirmed; user switching to a faster machine.
+- Only universe 9963622286 verified against Open Cloud; Waterslide (multi-place)
+  and Knife Farm unprobed for value parity.
+- Contract §4.2 makes all work product Indigo's — unresolved, and it decides
+  whether any of this is sellable.
+
+**Next:** confirm one scheduled grab lands (`data/raw/` + ingest in the log). If
+the orphan fix holds, wire `anomaly.ts` to the Discord webhook.
+
 ## 2026-08-19 — A second grab path that needs no browser, and alerting that fires on the weekday baseline
 
 **State:** branch `grabber-correctness` · 56 ahead of main · pushed · dirty:
@@ -106,6 +460,59 @@ default — check the panel's date fields for a leftover value.
 **Next:** verify or kill the +362% ErrorCount reading on 9610561918 against the
 dashboard's own export, then decide the cadence per game — nothing is scheduled
 right now (`schedulerEnabled: false`, extension schedule `enabled: false`).
+
+## 2026-08-19 — Open Cloud is a verified drop-in for the metrics half
+
+**State:** ALL of today's work is in a SECOND CLONE,
+`C:\Users\bfhdh\Downloads\rbx-analytics-grabber-test` (private GitHub repo
+`amazing-source/rbx-analytics-grabber-test`, `origin` = test, `upstream` = real
+with push disabled). Nothing committed anywhere. **The main repo is still
+`behind 2` and dirty** (`SKILL.md`, `data/games/10030829154/grab-report.json`)
+— and both incoming commits rewrite those same two files.
+**Gates** (test repo, measured 2026-08-19): verify 23 pass / 2 fail / 8 skip
+(exit 1, the documented state) · audit-plan 140 templates 0 failures 125 proven
+· test 41/41.
+
+**Landed (uncommitted):** `chrome.alarms` scheduler in the extension
+(`background.js` +208, `collector.js` +116, manifest 0.5.0 — scheduler drives a
+real tab so the session cookie is still never touched); four Open Cloud probes
+in `web/scripts/` (`probe-opencloud`, `compare-opencloud`, `coverage-opencloud`,
+`probe-dimensions`, `probe-granularity`), key read from gitignored
+`web/.opencloud-key`; `liveops-diagnosis` skill 827 → 966 lines.
+
+**Learned → routed:**
+- Open Cloud parity + shapes + the granularity-column trap → `CLAUDE.md`
+- The 726-cell measurement and its two self-inflicted false alarms →
+  `data/verify/COVERAGE.md` **F14**
+- Retention-by-acquisition-source as a discrimination test; platform DAU floors;
+  Roblox's published perf targets; funnel back-fill/repeat/filter rules; Configs
+  API as the rollback lever and Notifications as re-engagement →
+  `SKILL.md` §3c, §3d, §4 technical targets, §5d, §5e
+
+**Disproved (all mine):**
+- "The perf half is unproven — local Place-scope vs cloud universe-scope" —
+  `breakdown:["Place"]` returns ONE series identical to the total; Become a
+  Brainrot is single-place ("[WORLD 3]" is the update name, not a place).
+- "ServerCrashCount's fractional 4.010101010101 is an anomaly to resolve" —
+  both sources return it; normal at daily granularity.
+- "PeakConcurrentPlayers disagrees by 87%" — `compare-opencloud.ts` was not
+  filtering the `granularity` column.
+- "The robocopy preserved everything not in the copy" — it reverted six files
+  from the two newer commits; restored via `git checkout`.
+
+**Open:**
+- `filter` needs an `operation` enum; `"Equals"` rejected — probe for legal
+  values, it blocks Place-scoped queries.
+- Only 9963622286 tested, and it is single-place — run the probes on Waterslide
+  (multi-place) and Knife Farm before generalising.
+- Contract §4.2 makes all work product Indigo's — unresolved, and it decides
+  whether any of this is sellable. Raise with the rate conversation.
+- Extension scheduler is written but never run against Chrome.
+
+**Next:** reconcile the main repo — `git fetch && git merge` (behind 2, two
+dirty files the incoming commits rewrite), then port `SKILL.md`, the `CLAUDE.md`
+Open Cloud block and COVERAGE F14 across. Until that happens today's knowledge
+exists ONLY in the test clone, which is exactly the failure this log prevents.
 
 ## 2026-08-16 — Three games re-read in one pass, and the position doc is written
 
@@ -506,220 +913,3 @@ and now logs only >1%.
 `PlayerProgression` and 20 steps; returned-data counts 80/120 → 127/156 and
 82/119 → 155/186; annotation enumeration found
 `ANNOTATION_TYPE_ENGINE_RELEASE`, the genuine "was it Roblox?" signal.
-
-## 2026-08-19 — Open Cloud is a verified drop-in for the metrics half
-
-**State:** ALL of today's work is in a SECOND CLONE,
-`C:\Users\bfhdh\Downloads\rbx-analytics-grabber-test` (private GitHub repo
-`amazing-source/rbx-analytics-grabber-test`, `origin` = test, `upstream` = real
-with push disabled). Nothing committed anywhere. **The main repo is still
-`behind 2` and dirty** (`SKILL.md`, `data/games/10030829154/grab-report.json`)
-— and both incoming commits rewrite those same two files.
-**Gates** (test repo, measured 2026-08-19): verify 23 pass / 2 fail / 8 skip
-(exit 1, the documented state) · audit-plan 140 templates 0 failures 125 proven
-· test 41/41.
-
-**Landed (uncommitted):** `chrome.alarms` scheduler in the extension
-(`background.js` +208, `collector.js` +116, manifest 0.5.0 — scheduler drives a
-real tab so the session cookie is still never touched); four Open Cloud probes
-in `web/scripts/` (`probe-opencloud`, `compare-opencloud`, `coverage-opencloud`,
-`probe-dimensions`, `probe-granularity`), key read from gitignored
-`web/.opencloud-key`; `liveops-diagnosis` skill 827 → 966 lines.
-
-**Learned → routed:**
-- Open Cloud parity + shapes + the granularity-column trap → `CLAUDE.md`
-- The 726-cell measurement and its two self-inflicted false alarms →
-  `data/verify/COVERAGE.md` **F14**
-- Retention-by-acquisition-source as a discrimination test; platform DAU floors;
-  Roblox's published perf targets; funnel back-fill/repeat/filter rules; Configs
-  API as the rollback lever and Notifications as re-engagement →
-  `SKILL.md` §3c, §3d, §4 technical targets, §5d, §5e
-
-**Disproved (all mine):**
-- "The perf half is unproven — local Place-scope vs cloud universe-scope" —
-  `breakdown:["Place"]` returns ONE series identical to the total; Become a
-  Brainrot is single-place ("[WORLD 3]" is the update name, not a place).
-- "ServerCrashCount's fractional 4.010101010101 is an anomaly to resolve" —
-  both sources return it; normal at daily granularity.
-- "PeakConcurrentPlayers disagrees by 87%" — `compare-opencloud.ts` was not
-  filtering the `granularity` column.
-- "The robocopy preserved everything not in the copy" — it reverted six files
-  from the two newer commits; restored via `git checkout`.
-
-**Open:**
-- `filter` needs an `operation` enum; `"Equals"` rejected — probe for legal
-  values, it blocks Place-scoped queries.
-- Only 9963622286 tested, and it is single-place — run the probes on Waterslide
-  (multi-place) and Knife Farm before generalising.
-- Contract §4.2 makes all work product Indigo's — unresolved, and it decides
-  whether any of this is sellable. Raise with the rate conversation.
-- Extension scheduler is written but never run against Chrome.
-
-**Next:** reconcile the main repo — `git fetch && git merge` (behind 2, two
-dirty files the incoming commits rewrite), then port `SKILL.md`, the `CLAUDE.md`
-Open Cloud block and COVERAGE F14 across. Until that happens today's knowledge
-exists ONLY in the test clone, which is exactly the failure this log prevents.
-
-## 2026-08-19 (afternoon) — the extension became the product surface
-
-**State:** all work in the TEST clone `rbx-analytics-grabber-test`, pushed to
-`origin/grabber-correctness`, clean. Manifest **v0.8.0**. The MAIN repo has NONE
-of this — it holds only the morning's knowledge port.
-**Gates** (measured now): verify 23 pass / 2 fail / 8 skip (exit 1, documented) ·
-audit-plan 140 templates 0 failures · test 41/41.
-
-**Landed:** dashboard as an extension page framed into create.roblox.com
-(`dashboard.html` + `dashboard.js`, overlay in `collector.js`); Experiences /
-Grab / Settings views; five server routes (`/api/rbx/user|groups|group-games|
-access`, `/api/dash/config`); grab exclusions wired end to end
-(`lib/exclusions.ts`); the old panel reduced to a launcher (-144 lines).
-
-**Learned → routed:** iframe-vs-inline reasoning, the credential split, the
-orphaned-content-script failure, exclusion numbers and the report-what-you-
-dropped rule, and "no live metrics in the dashboard" → **CLAUDE.md**.
-
-**Disproved / corrected (mine):**
-- "The username field is dead" — it did not exist yet. `boot()` awaited a
-  6–20s local-app probe before painting `#stage`. Now paints first; every entry
-  point is wrapped and paints a visible error banner.
-- "The scheduler is broken" — it fires correctly. Reloading the extension
-  orphaned the content script, so it reached nobody.
-- Metric cards on the grid — built, then removed as costly and redundant.
-
-**Open:**
-- **The scheduler has still never completed a grab end to end.** It fires; the
-  orphan fix is unverified. Next check: a new file in `data/raw/` and a
-  `POST /api/ingest` in the dev log after the next hourly firing.
-- Alerts do not send. `anomaly.ts` has the seasonal baseline; nothing joins it to
-  the webhook field. Decision made: **measured baseline only, no manual
-  threshold** — a typed number fires every Wednesday on a game whose Wednesday
-  runs 42% below its own weekly mean.
-- Lag reportedly improved but not confirmed; user switching to a faster machine.
-- Only universe 9963622286 verified against Open Cloud; Waterslide (multi-place)
-  and Knife Farm unprobed for value parity.
-- Contract §4.2 makes all work product Indigo's — unresolved, and it decides
-  whether any of this is sellable.
-
-**Next:** confirm one scheduled grab lands (`data/raw/` + ingest in the log). If
-the orphan fix holds, wire `anomaly.ts` to the Discord webhook.
-
-## 2026-08-24 — four-game LiveOps diagnosis; two of my own calls corrected; data/exports/ rescued from .gitignore
-
-**State:** branch `grabber-correctness` · 66 ahead of `main` · unpushed · dirty (CLAUDE.md, HANDOFF.md, COVERAGE.md, SKILL.md, 4 grab-reports, new `data/exports/` + `tools/`)
-**Gates:** verify 23 pass / 2 fail / 8 skip (**exit 1**, both fails documented + held) · audit-plan 140 templates, 0 failures (exit 0) · test 44/44 — measured today, not copied
-**Landed:** all four games re-grabbed and diagnosed; full life pulled for 10030829154 (40→118d) and 10399712766 (30→53d); 40 dashboard downloads filed into `data/exports/<id>-<slug>/`; 5 artifacts published (URLs in the `liveops-reports-2026-08-24` memory, generators in `tools/reports/`)
-
-**Learned → routed:**
-- Never benchmark a level against the window **minimum**; print 4 baselines + the day's rank → `SKILL.md` §0b
-- Reach cannot exonerate a deploy — wrong metric (downstream, lagged) and check magnitude (−4.7%/wk vs −53%/wk) → `SKILL.md` §0b
-- Onboarding flat + progression falling = **core-loop** break, rules out traffic quality alone → `SKILL.md` §0b
-- Test a publish against the **distribution of publishes**, not one control day → `SKILL.md` §0b
-- `data/exports/` was untracked; error text is not API-retrievable (MessageHash lookup 500s on all 4) → **F17** in `COVERAGE.md` + `.gitignore` + `CLAUDE.md`
-- Waterslide's 8 defects (v1709, read-only) and Brainrot v600 clearance → `HANDOFF.md`
-
-**Disproved (mine, same day):**
-- "Waterslide is fine, above its 22-day low" — the low was one day (2,675); the mean was 5,453 and last week 7,476. Day was −45% on typical.
-- "Brainrot recovering, +21–54% WoW" — measured against 10–16 Aug, the **lowest week in the series**. Matched Sundays: −23%.
-- "30 Jul deploy = partial cause, impressions were already falling" — impressions were *rising* on a 7-day mean the 4 days before it (+1.5/+1.6/+8.2/+2.8%). Verdict now **primary**: D1 16.8%→9.7% in 4 days, Rebirth1 −9.6pp at identical mix, 25/25 matched pairs negative, onboarding flat at 99.3%. Matches `v546-cause-known`, which I had on file and contradicted.
-- "v600 slide is steeper than normal" — from 2 hand-picked controls. Against all 9 non-publish days: −29.3% vs −29.2% mean, z = −0.01.
-
-**Open:**
-- **12 Aug payer collapse on 9610561918 AND 10399712766**, no publish either day; denominator/platform/product/composition/Roblox-wide all ruled out → needs the 10399712766 error export (none has ever existed) and a read of the purchase path as at 11–12 Aug
-- Knife Farm Gamebeast billing 403 (692,260 events since 15 Aug 19:46Z) → someone must open the Gamebeast dashboard; postdates the 12 Aug step so it is not that cause
-- Knife Farm sell path reported broken since v3831 by a paying player → newest export is v3829, pull one at v3832
-- 381-row Waterslide all-time export landed after the defect report was written → dedicated pass
-- All four games −43% to −58% vs their own 22-day mean on 24 Aug; shape identical, spread 4× → needs one game outside the portfolio to settle seasonal vs not
-
-**Next:** commit this branch (66 commits unpushed, and `data/exports/` is newly tracked — 2.4 MB of otherwise-unrecoverable error text), then the 12 Aug payer question on 10399712766 once an error export exists.
-
-## 2026-08-25 — CCU baselines rebuilt on matched slots; v1711 verified unfixed; four-game curve
-
-**State:** branch `grabber-correctness` · 67 ahead of `main` · **5 unpushed** vs `origin/grabber-correctness` · dirty (`.gitignore`, `CLAUDE.md`, `COVERAGE.md`, `web/package.json`, + `data/platform/`, 2 new scripts, 1 new export)
-**Gates** (measured now, not copied): verify **23 pass · 2 fail · 8 skip, exit 1** (both fails documented + held) · audit-plan **140 templates, 0 failures, exit 0** · test **44/44, exit 0**
-
-**Landed:** `npm run ccu-baseline` (matched XX:00/XX:30 UTC slots, 4 baselines + rank + per-slot profile, reads Open Cloud not the CSVs) · `npm run platform-ccu` (public discovery board snapshot → `data/platform/`, committed via new `.gitignore` negation; first snapshot 269 games / 7,537,949 CCU) · Waterslide patch set published → `https://claude.ai/code/artifact/076be0a2-aadd-421a-b5a0-7f35ab150194`
-
-**Learned → routed:**
-- CCU-drop triage ladder + "what is readable on day 0" + degenerate-instrument rule → **SKILL.md §0c**
-- Verification is the analyst's job; mechanism-vs-decision line → **SKILL.md §0d**
-- Four-game cohort curve, D2 ceiling, RFY ≈ 2.0 bar → **SKILL.md §4**
-- F18 corpus half-hour rows 77% fabricated · F19 PCU carry-forward at HalfHour · F20 Open Cloud serves HalfHour across all 28d → **COVERAGE.md**, summarised in **CLAUDE.md**
-- `scoreSeries()` blind spot; both new tools → **CLAUDE.md**
-- v1711 verification, Knife Farm v3831, Monkey appeal decay → **HANDOFF.md**
-
-**Disproved (mine, same session):**
-- "Late-August/school seasonality" — read off a **half-day** window. The complete 08-24 day is flat across the clock (Waterslide deepest −54% at 03:00 CEST, shallowest −29% at 20:00), and the three games disagree on which hours are worst.
-- "Waterslide needs a rebirth loop / Monkey's loop is thin" — asserted **before** pulling `DailyCohortRetention`. The curve says the constraint is D1→D2 (43–49% hold on all four); loops hold D5+ and are irrelevant above that cliff.
-- "A quiet `npm run anomaly` means CCU is fine" — it scored PCU z −0.10/−0.20/−1.70 on three games at or one off their 28-day floor.
-- "The 23 Aug Waterslide fixes shipped" — code read at v1711 says none of six did.
-
-**Open:**
-- **Knife Farm sell path broken since v3831 (silent).** Affected-player count is not derivable — zero funnels, `IsNewUser` dark after 08-20, session buckets degenerate. → **needs read-only Studio on `9610561918`** to find the failure condition; ask the reporter what the clip shows.
-- **Waterslide patches unapplied.** → hand the artifact to the dev; read `Tutorial_Main_5_ToRaftShop` (81.9%, target 0.95) two days after any publish.
-- **Banana Monkey mid-game unmeasured.** → instrument a first-session funnel (8–12 steps) before any content decision; check whether a dev place exists (Waterslide's is universe `10100945543`).
-- **`platform-ccu` has one snapshot.** → schedule daily or step 2 of §0c stays unanswerable.
-- 12 Aug payer collapse on `9610561918` + `10399712766` — still unexplained.
-
-**Next:** schedule `platform-ccu` daily, then read-only Studio on Knife Farm to locate the v3831 sell failure condition.
-
-## 2026-08-26 — two new games baselined from birth; funnels finally cracked; the fresh-universe perf hole closed
-
-**State:** branch `grabber-correctness` · 69 ahead of `main` · **7 unpushed, and 6 BEHIND `origin/grabber-correctness`** — reconcile before pushing · clean
-**Gates** (measured now): verify **23 pass · 2 fail · 8 skip, exit 1** (both fails documented + held) · audit-plan **140 templates, 0 failures, exit 0** · test **44/44, exit 0**
-
-**Landed:** full-life baselines for `10565445771` Verity Companion [AI] and `10638354731` Seal A Driveway, in a new tracked `baseline/` folder (settled series, deploy logs from `ErrorCount`×`PlaceVersion`, CCU baselines, funnels, error text, two published reports). Both error exports filed to `data/exports/` and registered. Commit `90c394b`.
-
-**Learned → routed:**
-- **How to pull funnels** — `breakdown:["FunnelStep"]`, POLLED, and never a `FunnelName` filter → recipe at the top of **`SKILL.md` §1**, summary in **`CLAUDE.md`**, **F22** rewritten, memory `how-to-pull-funnels`
-- A fresh universe got **no technical rung at all** — `perfSpecs()`/`halfHourSpecs()` return `[]` with no discovered places, and places were only ever inherited from a prior grab → fixed in `opencloud-run.ts` (fetches `develop.roblox.com/.../places`), **F21**
-- Perf metrics **400 the whole family** if `startTime` precedes the 28-day horizon; they do not clamp, and the error names the floor → `CLAUDE.md`
-- Both games' full lives sit inside every retention horizon, so the technical rung is complete from birth — a first → `baseline/README.md`
-
-**Disproved (mine, same session):**
-- **"Funnels are unreachable on Open Cloud / the instrument is degenerate"** — written into F22 and CLAUDE.md at ~15:00, false by ~17:30. Two faults stacked: funnel queries answer **HTTP 202 async and my probes never polled** (one also dropped the `analytics-query-api/` prefix from the poll URL), and the **`FunnelName` filter returns 0 series always, even for a real name**. Verity has 9 funnels, Seal 4. `Platform`/`IsNewUser` filters work fine — `FunnelName` alone is broken.
-- **`SKILL.md`'s "filtering funnel metrics by `Platform` returns no series"** — Platform filters correctly (Computer ≈ 33% of each step, matching DAU share). Almost certainly the same unpolled 202, and it had misdirected three later investigations.
-- **"24 Aug was platform-wide / late-August seasonality"** (memory `aug-24-portfolio-wide-drop`) — Seal **grew +8%/+8%** across exactly that window and set an all-time high on the 26th. Memory updated with the caveat that Seal was mid-surge.
-- **Seal's "conversion broke on 24 Aug"** — caught before publishing: it lands on Mon/Tue after the three best days, and one week at this scale cannot separate a step from the weekly shape. Shipped as **unresolved** with a dated test.
-- **`HANDOFF.md`'s "zero funnels on Knife Farm"** — re-tested with the working instrument and it **holds** (0 steps, against Waterslide 15 / Brainrot 20 / Monkey 3). Right claim, previously right for the wrong reason.
-
-**Open:**
-- **Verity's AI unit cost is unknown and it is the only game with a variable cost per player.** Revenue is $0.00136/DAU/day; if inference exceeds that, growth destroys value. → ask the studio before any growth spend
-- **Seal payer CVR: read 2026-08-28/29.** Back to ~1.7–1.9% ⇒ weekly shape, nothing there. Still ~1.25% ⇒ real step worth ~$26–29k/mo
-- **Verity reach: read 2026-08-29** (`UniqueUsersWithImpressions`, `RFYQualifiedPTR`) — settles demotion vs algorithmic reshuffle
-- Seal's `ContextActionService` dead binding (10.5M events, 85% of its error volume) is only *likely* the cause of the 4× desktop crash rate → needs a read of the live place at v901
-- Neither new game is in `data/dashboard-config.json` — **nothing is scheduled and no alerting covers either** → deliberate decision needed
-- Player-comment exports for both games have never existed → pull from the dashboard
-- `platform-ccu` still has one snapshot (2026-08-25) → schedule daily or §0c step 2 stays unanswerable
-
-**Next:** reconcile the 6 commits behind `origin/grabber-correctness`, then push the 7 ahead.
-
-## 2026-08-28 — update baselines for two publishes; the async-empty trap is wider than F22 said
-
-**State:** branch `grabber-correctness` · 70 ahead of `main` · **8 unpushed, still 6 BEHIND `origin/grabber-correctness`** — unchanged since 08-26, reconcile before pushing · dirty: 2 new `baseline/` folders, 3 new `tools/`, 2 raw bundles, 1 platform snapshot, `baseline/README.md`, 2 grab-report.json
-**Gates** (measured now): verify **23 pass · 2 fail · 8 skip, exit 1** (both fails documented + held) · audit-plan **140 templates, 0 failures, exit 0** · test **44/44, exit 0**
-
-**Landed:** update baselines for `9963622286` **v606→v607** (published 08-28 15:00–15:30 UTC) and `10399712766` **v1244** (14:00–14:30 UTC), in `baseline/<UTC publish>-<universe>-<slug>-<version>/`. Each holds the report, settled metric table + `headline-daily.csv`, funnels, deploy log, CCU baseline and the frozen corpus files. `baseline/README.md` rewritten as an index over both kinds of baseline. Second `platform-ccu` snapshot taken. Three reusable pullers added: `tools/deploy-log.js`, `tools/funnels.js`, `tools/build-baseline.js`.
-
-**Learned → routed:**
-- **An unfinished async query is indistinguishable from a game with no data, and it is NOT confined to funnels** — `ErrorCount`×`PlaceVersion` returned 0 versions then 25 on the identical rerun → **F23**, `CLAUDE.md` (extends the empty-200 standing rule), and guards in `tools/deploy-log.js` / `tools/funnels.js`
-- **`ccu-baseline` counts not-yet-elapsed slots as zero** — 848/−64.7% vs 1,246/−40.9% on the same universe minutes apart → **F24**, `CLAUDE.md` Reading-CCU section
-- **`FunnelUserStepCompletionRate` (step-to-step) and `FunnelCohortCompletionRate` (cumulative from step 1) have different denominators** — 99.11% vs 95.2% for one step → `liveops-diagnosis` SKILL.md funnel section
-- **A pre-registered threshold must exclude the in-progress day**, and a post-publish grab must be labelled T+0 with its freeze date → `update-watch` SKILL.md
-- Brainrot's two funnel cliffs (gates 4 and 8 = **62.9%** of all loss across 20 steps) and its `ClientCpuTimeAvg` 41→93 step on 08-27 → `HANDOFF.md` + `BASELINE.md`
-- Board **up 7.5%** to 8,101,577 CCU while the portfolio was not → `CLAUDE.md`, `data/platform/`
-
-**Disproved:**
-- **`CLAUDE.md`'s "only elapsed slots are ever compared"** about `ccu-baseline` — false; with no `--slots` it swept 00:00–23:00 and scored eight unlived hours as zero, turning a −40.9% day into a −64.7% "collapse". Corrected in place. It selected the elapsed range unprompted for a *second* universe in the same run, so the behaviour is inconsistent rather than uniformly wrong.
-- **F22's implied scope** — "funnel queries are async" was the narrow reading of a fault that hits any Open Cloud query under load, including the deploy log, where an empty answer looks like a plausible "no ships in this window" and would have been filed as fact.
-
-**Open:**
-- **8 commits unpushed and 6 behind `origin/grabber-correctness`** — carried over untouched from 2026-08-26 → reconcile, then push
-- **Nothing here is committed**, including the platform snapshot — "an uncommitted snapshot is gone" → commit
-- **Error TEXT for both games.** Brainrot's newest export is 4 builds old; **Banana Monkey has never had one** → export *Errors and warnings by count* per game at T+2h, filtered to the new version; without it the "new signature" tripwire is unevaluable on both
-- **F24 is not fixed and not tested** → clamp the slot list to the last elapsed boundary when the day is today, in `web/scripts/ccu-baseline.ts`, and encode it
-- **Brainrot `ClientCpuTimeAvg` 93 vs a 37–50 band** — one settled day only → re-read 08-29: still ~93 means a real regression predating v607
-- Both 08-28 updates are **unread post-publish** → full grab after the UTC day rolls, 2026-08-29
-- Seal payer CVR read (due 08-28/29) and Verity reach read (due 08-29) from the 08-26 entry — **both still not done**
-- `9963622286` `ServerCrashCount` returns empty 200s across the whole window at every granularity → verify against the dashboard rather than reading it as zero
-
-**Next:** commit this session, then on 2026-08-29 run the post-update grab for both universes and mark the pre-registered tripwires OK/WATCH/FIX/NO DATA.

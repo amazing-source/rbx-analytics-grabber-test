@@ -153,6 +153,44 @@ shape it does not have. Label it **T+0, frozen at `<last closed day>`**.
 | Downvote rate | *rate on the previous version* | above the previous version's |
 | ARPDAU | *baseline* | **any** move, if it has been flat |
 
+## Compare versions CONCURRENTLY, not before-and-after
+
+The default post-update test in this file is "yesterday versus today", and it
+has a structural weakness: **servers adopt a new build as they cycle, so for
+several hours both versions are live at once and every daily number is a blend
+of the two.** A before/after comparison charges the new build for the old
+build's last hours and vice versa.
+
+**The stronger test is to hold the window fixed and split by `PlaceVersion`.**
+During the overlap, old and new are running on the same day, the same traffic
+mix, the same event calendar and the same platform conditions — so a difference
+between them is attributable in a way a day-over-day delta never is. Roblox
+supports `PlaceVersion` on the client performance metrics specifically
+(`ClientCrashRate15m`, `ClientCrashCount`, `ClientFpsP10`,
+`ClientMemoryUsagePercentageAvg`, `OomUnexpectedExits`,
+`SessionDurationSecondsAvg`), and recommends exactly this comparison.
+
+Two rules that come with it:
+
+- **Onset versus exposure.** A movement that starts before any player could be
+  served the new version cannot have been *initiated* by it. The publish
+  timestamp is not the exposure time — servers cycle, and backend flags, config
+  changes, asset swaps and staged rollouts can all precede the nominal publish.
+  Date the first *served* version, not the ship.
+- **The update can still be contributory.** If a second break appears at
+  exposure, or the new version underperforms the old one *during the overlap*,
+  the update is implicated even when the decline began earlier. That is a
+  different claim from "the update caused it" — write whichever one the data
+  supports.
+
+**External corroboration that grab 2 is aimed correctly:** Uplift Games
+(Adopt Me!) shipped catchable fish during a summer event; the fish were marked
+as scenery, the engine repainted backdrops excessively, and **crash rate and
+frame rate were what told them immediately**. They localised it and fixed it
+from the analytics. That is the same two signals this routine reads at T+2h, and
+the same class as our own `v587` finding — new content shipped without the entry
+another system indexes it by.
+
 ## Four things that look like breakage and are not
 
 Check every one of these before escalating. Each has produced a false alarm.

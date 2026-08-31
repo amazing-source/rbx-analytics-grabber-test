@@ -52,6 +52,56 @@ Getting this wrong sends a producer to fix something that did not happen — and
 the real finding underneath (a genuine −62% week-over-week on weekdays) gets
 buried under a number that falls apart on inspection.
 
+**A partial MAX is a FLOOR. A partial COUNT is a floor. Neither is a ceiling.**
+`PeakConcurrentPlayers` is a max over the day, so an in-progress reading can
+only rise. Learned expensively 2026-08-21: a 13:22Z read of 8,258 was called
+near-final because "the peak lands at 13:00" — a rule inferred from **one day**
+of intraday shape, applied to a different weekday. The 17:11Z re-read was
+13,532. Before leaning on an intraday pattern, count how many days it rests on
+and say the number out loud.
+
+**"Is CCU down?" is three different questions. Ask which one.**
+
+| Question | Metric | Trap |
+|---|---|---|
+| Was today's high lower? | `PeakConcurrentPlayers` ONE_DAY | It is a **sum of per-platform peaks** and overstates in-progress days (F15) |
+| Was the game smaller today? | `ConcurrentPlayers` ONE_HOUR, daily mean | Needs a full day to be comparable |
+| Is it lower *right now*? | `ConcurrentPlayers` ONE_HOUR / `PeakConcurrentPlayers` HALF_HOUR, same clock hour | **We do not hold today** — see below |
+
+A game can set a higher daily peak *and* be below yesterday at 19:00. Both
+statements are true and they support opposite conclusions, so quoting the wrong
+one inverts the answer. A producer watching a live tile is asking the third
+question; the grab answers the first.
+
+**The grabber cannot see the current day, and no window size fixes it.**
+`HALF_HOUR` and `ONE_HOUR` clamp to the last settled 24h on every grab — a
+28-day ask returns the same right edge as a 1-day ask — and `ONE_MINUTE` is
+deliberately dropped from the plan. During a live incident the **dashboard CSV
+export is the only route to today**, and it is cell-exact against our data
+(2026-08-20 17:00 = 7,265.229 in both), so it can be mixed with grabbed history
+without reconciliation. Ask for the export early rather than reasoning around
+the gap.
+
+**"Still dipping" is usually the diurnal curve.** These games fall from an early
+-afternoon peak to a late-evening trough every single day — on 10399712766,
+11,536 at 13:00Z down to 5,550 at 20:30Z, **-52% within one normal day**. Anyone
+checking at 7-9pm local sees a collapse that is not one. Establish the shape
+before reading a decline, and compare same-clock-hour to same-clock-hour.
+
+**A publish has its own signature — do not read it as breakage.** Session
+duration and FPS dip in the publish hour and recover within ~2h, because servers
+cycle and truncate sessions. On 10399712766's 14:15:59Z publish: session
+duration -15.4% then -22.4%, FPS -12.2%, both back to normal (+0.1%, -0.6%) by
+16:00. Crash rate went *down* 28-55%. If a metric is still degraded 3h later,
+that is a finding; inside the publish hour it is the deploy.
+
+**Annotations answer "did an event end" definitively — query the window.** An
+absent END row in a full-history grab is ambiguous (still running, or never
+captured). Re-query annotations over a **narrow window bracketing the suspect
+date**: on 2026-08-21 a 2026-08-19 -> 2026-08-22 query returned zero
+EVENT_STATE rows, which killed the event-ending hypothesis outright. Zero rows
+in a tight window is evidence; a missing row in a wide one is not.
+
 **Retention lags ~2 days and the chart's right edge is always falling.** D1 for
 day D cannot settle until D+1 is over, and Roblox's retention pipeline adds
 about another day: a grab at 2026-08-10 14:28 UTC returned **no D1 past
@@ -274,7 +324,7 @@ lower down, and the lowest broken rung is the diagnosis.
 
 | # | Rung | Metrics | Question |
 |---|---|---|---|
-| 1 | **Reach** | `UniqueUsersWithImpressions`, `RFYQualifiedPTR`, DAU by `AcquisitionSource` | Is Roblox still showing the game to people? |
+| 1 | **Reach** | `UniqueUsersWithImpressions`, `RFYPlayThroughRate`, the RFY signal block (§3e), DAU by `AcquisitionSource` | Is Roblox still showing the game to people — and if not, is that our doing? |
 | 2 | **Hook** | `ForwardD1Retention` (+ by `Platform`), `AverageSessionLengthMinutes` | Do arrivals stay? |
 | 3 | **Return loop** | `ForwardD7Retention`, `ForwardD30Retention`, `DauMauStickiness` | Do they come back? |
 | 4 | **Money** | `PayingUsersCVR`, `AverageRevenuePerPayingUser`, `AverageRevenuePerUser`, `DailyRevenue` by `RevenueSource` | Do they pay, and how? |
@@ -433,7 +483,12 @@ conversion all rising while QPTR halved (7.33% → 3.65%) and impressions fell
 to reach. Do not "fix" the product in that state.
 
 **Retention flat while reach collapses = discovery, not product.** That single
-contrast has carried more diagnoses here than any other.
+contrast has carried more diagnoses here than any other — **and as of
+2026-08-31 it is no longer the end of the test.** D1 is one of Roblox's eight
+ranking signals; the other seven are now readable as metrics, and Roblox says an
+impression decline typically *follows* a fall in them. Flat D1 next to falling
+impressions rules out D1, nothing more. **Finish the test in §3e before writing
+"discovery".**
 
 ## 3. Discrimination — the step that makes it a diagnosis
 
@@ -502,7 +557,18 @@ A hypothesis that survives nothing is not a finding.
   baseline within 24h each time.* Worth reporting as its own finding — a
   20–50× publish spike is real — but it is not "the update broke something",
   and a grab taken the day after a deploy will read it as one.
-- **A huge error count is not a huge problem. Test it against a rate.**
+- **`ErrorCount`'s unit is not documented, so every rate you build on it carries an
+unverified denominator.** Checked 2026-08-30: `ErrorCount`, `MessageHash` and
+`LogSource` do not appear in Roblox's public metric list at all — they are
+dashboard-internal surface, which is also the likeliest reason the
+`MessageHash` → text lookup 500s. Nothing public says whether one unit is an
+occurrence, a unique player or a unique server. We have always assumed
+occurrences and the numbers behave that way, but **"errors per DAU" is an
+assumption stacked on an assumption** — say so when a finding rests on it, and
+prefer the affected-player or blast-radius reading below, which does not depend
+on the unit.
+
+**A huge error count is not a huge problem. Test it against a rate.**
   9963622286 shipped ~35M client warnings on 2026-07-31 (`[OddsController]
   Unknown rarity`, broken season pass and shop UI, ~3M each). All three are
   monetization or aspiration surfaces, so if they cost anything **ARPDAU** would
@@ -513,7 +579,24 @@ A hypothesis that survives nothing is not a finding.
   mattered was **8,249** (`TrainedSpeed is not a valid member of Player`, a race
   on the line that fires the tutorial), four hundred times smaller.
 - **Is it just the weekend?** Roblox audiences normally *rise* Fri–Sun. A
-  weekend fall is anomalous; a weekend rise is not a win.
+  weekend fall is anomalous; a weekend rise is not a win. **Roblox documents
+  this as platform-wide, peaking Saturday** — so the 3–5× Saturday PCU spike on
+  9963622286 that this file used to call "the game's rhythm" is the platform's
+  rhythm. Same practical advice, but do not present it as a property of the game,
+  and expect it on every title.
+- **Is it external? Split by `Country` — it is the only external control we
+  have.** Added to the plan 2026-08-31 (`MonthlyActiveUsers` by `Country`,
+  `Locale`, `AgeGroupV2`, `Gender`; 203 country series on 9963622286). A single
+  universe cannot demonstrate seasonality, a competitor launch or a
+  platform-wide demand shock — but geo gets close: **a decline concentrated in
+  one or two countries is not a product regression**, and a decline that is
+  uniform across every region is not a regional or seasonal effect either. Run
+  it before writing "external factors" or before ruling them out.
+  Two cautions: `AgeGroupV2` is ~60% `AgeUnchecked` on this portfolio, so the
+  known buckets describe the verified minority and not the audience; and the
+  demographic breakdowns are observed on **MAU**, which is a trailing monthly
+  population and will not date a change to a day. The DAU-by-geo shapes in the
+  plan are `inferred` — if they come back empty that says nothing.
 - **Does the pattern predate the cause you found?** The most dangerous
   explanation is a real, dated, external event that fits a short window. On
   2026-08-09 I attributed Knife Farm's July collapse to Roblox's 2026-06-15
@@ -633,11 +716,122 @@ curation, friends, search or social are excluded. So a DAU breakdown by
 `AcquisitionSource` is not a curiosity; growth from non-recommendation sources
 does not buy ranking.
 
-**Roblox publishes NO retention benchmarks.** Its docs give definitions and
-improvement advice, no numbers. The "simulators get 45–60% D1" figures that
+**Correction, 2026-08-31: the "~4-week lag" was our inference and Roblox
+contradicts it.** This file previously reasoned that a 28-day signal window
+means the 2026-06-15 change reaches full effect about four weeks after rollout
+(~2026-07-13). Roblox's own announcement says the ranking does **not** wait for
+28 full days — shorter-term signals are used from a game's first sessions. So
+there is no clean date after which the change "lands", and any finding that
+leaned on ~07-13 as a boundary should be re-read.
+
+**A second Home change shipped 2026-08-06 — "long-term retention and
+sustainable monetization" — and it sits inside almost every window this repo has
+diagnosed.** Every reach reading taken in August 2026 has this as an
+unexamined platform confound. Name it in any August report rather than letting a
+reader assume the window was clean.
+
+**Dated platform changes worth holding** (from the 2026-08-30 research pass;
+Roblox publishes no guaranteed-complete changelog, so absence of a date is not
+absence of a change):
+
+| Date | Change | Why it matters here |
+|---|---|---|
+| 2025-07-01 | Thumbnail personalization keeps the existing winner while testing | Changes impression allocation per thumbnail; can move QPTR with no creative change |
+| 2025-10-16 | Retention by acquisition source + selectable benchmark set | The mix-vs-gameplay test in §3c; also means a benchmark can move with no game change |
+| 2026-03-09 | "Qualified play sessions per user" made explicit in RFY signals | A new ranking input |
+| **2026-06-15** | RFY re-weighted to 7 → 28-day signals; QPTR dropped from ranking | See above |
+| **2026-08-06** | Home update: long-term retention + sustainable monetization | First-order confound for any late-July/August 2026 reach diagnosis |
+| 2026-08-24 | New Analytics segmentation dimensions | A new breakdown series is not historically comparable — do not mentally backfill it |
+
+## 3e. Read the ranking signals directly — they are metrics, not inferences
+
+**Roblox exposes every Home-ranking signal as its own queryable metric, one per
+(segment × signal).** Observed 2026-08-31 on 9963622286's acquisition tab; all
+20 returned data at `ONE_DAY`, no breakdown, no filter. They are in the plan as
+of that date.
+
+| Signal | Metrics |
+|---|---|
+| Play-through rate | `RFYPlayThroughRate` |
+| First-play bounce (negative) | `RFYDuration0To60`, `RFYDuration61To180` |
+| Play days per user | `RFYD2To7PlayDays`, `RFYD8To28PlayDays` |
+| Playtime per user | `RFYD1Playtime`, `RFYD2To7Playtime`, `RFYD8To28Playtime` |
+| Qualified play sessions | `RFYD1/D2To7/D8To28QualifiedPlaySessions` |
+| Intentional co-play days | `RFYD1/D2To7/D8To28CoplayDays` |
+| Spend days | `RFYD1SpendDay`, `RFYD2To7SpendDays`, `RFYD8To28SpendDays` |
+| Robux per user | `RFYD1/D2To7/D8To28RobuxSpend` |
+
+**This changes the most-used test in this file.** §2 says "retention flat while
+reach collapses = discovery, not product", and that has carried more diagnoses
+here than anything else. It has a hole: **D1 is one signal out of eight.**
+Play days per user, playtime per user, qualified sessions and bounce rate can
+all decay while D1 sits flat — and that is precisely the state that earns a
+reach cut. So a flat D1 next to falling impressions never proved the platform
+acted on its own; it only proved D1 was not the reason.
+
+**Roblox states the direction explicitly: an impression decline typically
+FOLLOWS a fall in play-through rate, play days per user or playtime per user, or
+a rise in first-play bounce.** So impressions are simultaneously an input to
+your DAU and a *lagging response* to your own product signals. "Impressions fell,
+then DAU fell" establishes a sequence, not an origin.
+
+**The test now, and run it before saying "discovery":**
+
+1. Pull the RFY signal block across the window.
+2. **All eight flat while impressions fall** → the platform moved for reasons
+   outside the game. This is now a positive finding rather than an assumption.
+3. **Any of them declining ahead of the impression fall** → the reach cut is the
+   *consequence*. Fixing distribution is treating a symptom; the lever is
+   whichever signal moved.
+4. **Bounce (`RFYDuration0To60`) rising** → a first-session problem, and it will
+   cost distribution as well as retention. Read it against `SessionTimeBucket`.
+
+*First reading, 9963622286, 23–29 Aug:* PTR 1.39–1.73%, bounce <60s 14.6–16.6%,
+61–180s 17.9–20.6% (so ~32% of RFY first plays end inside three minutes),
+`RFYD2To7PlayDays` roughly flat at 0.35–0.42, **`RFYD8To28PlayDays` 0.44 → 0.32
+across the week**. That last one is the long-horizon signal Roblox re-weighted
+twice in 2026. **Seven days, one game, no baseline — it is a thing to check on
+the next grab, not a finding.**
+
+**The other three causes of an impression change, per Roblox:** changes you made;
+Roblox or recommendation-system changes; platform traffic and seasonality; and
+**relative competitive performance — another game performing better can cut your
+distribution while every one of your own signals holds steady.** We have no test
+for the fourth and cannot build one from a single universe. When all signals are
+flat and impressions fell, competitive displacement is on the list and stays
+unresolved; say so rather than defaulting to "the algorithm changed".
+
+**Three different rates are all called some form of "play-through", and this
+file used to conflate them.** Measured on 9963622286:
+
+| Metric | Level | What it is |
+|---|---|---|
+| `RFYPlayThroughRate` | **1.4–1.7%** | Roblox's RFY-surface play-through rate |
+| `RFYQualifiedPTR` | **~0.5%** | The same, restricted to *qualified* plays |
+| `EndToEndCVR` | **4.8–7.1%** | All-surface impression → play, ~4× larger |
+
+They are not comparable and none of them is Indigo's click-based QPTR. State
+which one you used, every time.
+
+**Roblox publishes NO static retention benchmarks.** Its docs give definitions
+and improvement advice, no numbers. The "simulators get 45–60% D1" figures that
 circulate on SEO blogs (bloxg, rolearn, lensblox) are unsourced — do not quote
-them. Use the benchmark series in `series.json` (a similar-experience cohort)
-or say the bar is unknown.
+them. Use the benchmark series in `series.json` or say the bar is unknown.
+
+**What Roblox does provide is a DYNAMIC benchmark, and knowing how it is built
+changes how to read it.** The cohort is chosen in order: **games with similar
+players** first, then **genre**, then all experiences. Member games need **100+
+DAU**, similar-game sets refresh daily, and the dashboard shows a **50th–90th
+percentile band**. Benchmarked KPIs are all the retention KPIs, engagement
+average session time, monetization ARPPU / ARPDAU / CVR, and acquisition PTR.
+
+Two consequences: **a benchmark can move with no change to the game**, because
+the peer set changed underneath it (and since 2025-10-16 the benchmark set is
+selectable, so it can also move because someone changed the setting) — never
+report a benchmark delta as a game finding without checking `benchmarkType`.
+And **the 12.11%–18.73% D1 figure that appears in Roblox's own documentation is
+an example explaining how to read the percentile UI, not a target.** Do not
+hardcode it; it is the single most quotable-looking number in the docs.
 
 ## 3c. Traffic mix vs gameplay — the test Roblox shipped for exactly this
 
@@ -782,6 +976,36 @@ while QPTR held at 3.37% → 3.29%. Distribution was withdrawn; click-appeal was
 untouched. So QPTR optimisation would not have restored it — though at 3.3%
 the game does sit far below the 8%+ band, so QPTR remains real *upside*, just
 not the *cause*.
+
+**CVR and impressions are INVERSELY correlated, so a CVR trend alone is not an
+appeal signal.** Measured 2026-08-21 on 10399712766: `EndToEndCVR` against
+`UniqueUsersWithImpressions` over 28 days runs **r = −0.881**. CVR fell every
+time Roblox widened reach and rose every time reach shrank, because the
+denominator moves faster than the plays do. Concretely, CVR "improved" 4.65% ->
+6.64% between 08-13 and 08-16 while impressions fell 9.86M -> 7.22M, and a
+report had already banked that as "discovery is healthy, click-to-play up 17%".
+It was the game being shown to fewer people.
+
+**So: never quote a CVR move without the impressions series beside it, and
+compute the correlation on the window before treating CVR as evidence about the
+listing.** The combination that carries information is the *pair*, which is what
+the table above is for. A CVR rise during a reach collapse is the signature of
+a shrinking audience, not an improving one.
+
+**Both falling on the same day is the rare case and is worth flagging.** On the
+same game it happened 5 times in 27 day-pairs (they move oppositely 16 times).
+One of the five was 2026-08-10, which carried the month's largest single-day CCU
+fall (−32.5%). n=2 for that association, so treat it as a flag to check, never
+as a finding on its own.
+
+**Before blaming an acquisition or an ad cliff, check the paid sources.**
+`UniqueUsersWithImpressions` breaks down by `SponsoredAds` and `SearchAds`.
+On 10399712766 both read **zero on every day of the window**, which killed
+"the seller's ad spend stopped at handover" in one query. Also beware the
+handover date itself: this game changed owners on 2026-08-19, which happened to
+be a one-day RFY surge (HomeRecommendation 6.97M -> 9.16M, +31%), so every
+subsequent day measured against it looks like a collapse. **Compare to the
+plateau, not to the day the deal closed.**
 
 ### Tier bands (by CCU, from the scenario set)
 
@@ -1314,9 +1538,43 @@ hours that idle earnings are ready to claim.
 "Trending Events" sort needs **1,000+ RSVPs**. `RSVPCount` is already in the
 grab plan, so an event's pull is measurable before it starts.
 
+**Experiments — the only thing here that produces a causal answer.** Roblox
+Experiments covers onboarding, progression, controls, matchmaking, shop
+visibility, starter packs and pricing, and reports D1, D7, playtime, ARPU,
+ARPPU, payer conversion and session time. The constraints decide whether a
+proposal is even runnable, so check them before recommending a test:
+
+- Runs **14–60 days**; 50/50 control-vs-variant on large rollouts.
+- **Below roughly 1,000 DAU there is not enough power** to get a useful result.
+- Significance = a percent-change confidence interval **not overlapping zero**.
+- Roblox explicitly warns against **ending early** — novelty effects push results
+  into and out of significance — and against shipping unrelated content while an
+  experiment runs. Both are things a producer will want to do.
+
+**Managed Pricing, for a suspected pricing problem.** Assigns subsets of users
+different prices, measures conversion and recommends optimised prices. It needs
+roughly **60,000 transactions in the preceding 30 days** to generate significant
+data and runs about **three weeks**. Below that volume, price A/B is not
+available and an arbitrary before/after price change is the alternative — which
+is not evidence. Say which situation the game is in.
+
+**Regional pricing** is a real mechanism for revenue weakness concentrated in
+lower-purchasing-power regions — and the `Country` breakdown added 2026-08-31 is
+what identifies that case. Roblox publishes no measured lift, so propose it as
+an experiment, not as a quantified fix.
+
 **When proposing a fix, prefer the lever that ships without a republish.** A
 config change is minutes and reversible. A build is a deploy, a review, and a
 fresh set of `PlaceVersion` steps to disentangle from every metric afterwards.
+
+**A KPI can improve while the feature is harmful — require a guardrail.**
+Uplift Games (Adopt Me!) shipped a system awarding currency for playing with
+friends; it worked, and players then spammed friend requests, which drove a
+large rise in private-server creation as people tried to escape the spam. The
+target metric moved in the right direction the whole time. **Every fix proposed
+here should name one mechanism metric and one adverse-behaviour guardrail**, not
+just the KPI it is meant to move. This is the clearest external example of the
+failure §5b describes from our own side.
 
 ## 6. What you hand over
 

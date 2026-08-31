@@ -63,11 +63,51 @@ export const DISCOVER_DIMENSIONS = [
 export type Discovered = Record<string, string[]> & { __places?: string[] };
 const NEW = [{ dimension: "IsNewUser", values: ["New"] }];
 const RETURNING = [{ dimension: "IsNewUser", values: ["Returning"] }];
+// The full value list the dashboard itself sends, observed 2026-08-31 on the
+// acquisition tab of 9963622286. We shipped five of these for months; the three
+// that were missing (CrossGame, PortalAds, Curation) are real traffic sources,
+// and a filter that omits a source silently under-counts the "where did the
+// traffic go" question it exists to answer. Report-1's list (Continue Play,
+// Today's Picks, Teleport, Home other) is the UI's grouping, NOT dimension
+// values — do not add those, they 400.
 const SOURCES = [
   {
     dimension: "AcquisitionSource",
-    values: ["HomeRecommendation", "Friends", "Others", "Search", "Charts"],
+    values: [
+      "HomeRecommendation", "Search", "Friends", "CrossGame", "SponsoredAds",
+      "PortalAds", "Curation", "Charts", "SearchAds", "Others",
+    ],
   },
+];
+
+// Demographic breakdowns, observed 2026-08-31 on the same tab. All four are
+// served on MonthlyActiveUsers with no `limit` and no filter — Country came
+// back as 203 series, Locale 50, AgeGroupV2 7, Gender 3.
+//
+// Why these matter for a diagnosis and not just for a slide: geo is the only
+// control we hold for "external / seasonal / platform-wide", which is otherwise
+// unfalsifiable on a single universe. A decline concentrated in one country is
+// not a product regression.
+//
+// AgeGroupV2 has a large `AgeUnchecked` bucket (60% on 9963622286), so treat
+// the known buckets as a sample of the minority whose age is verified, never as
+// the audience.
+const DEMOGRAPHICS = ["Country", "Locale", "AgeGroupV2", "Gender"];
+
+// Roblox's published Home-ranking signals, one metric per (segment x signal).
+// Observed 2026-08-31 on 9963622286's acquisition tab, all returning data.
+// Order matches the docs: conversion, then bounce, then the D1 / D2-7 / D8-28
+// engagement and spend segments.
+const RFY_SIGNALS = [
+  "RFYPlayThroughRate",
+  "RFYDuration0To60",            // first-play bounce <60s  — negative signal
+  "RFYDuration61To180",          // first-play bounce 61-180s — negative signal
+  "RFYD1Playtime", "RFYD1CoplayDays", "RFYD1QualifiedPlaySessions",
+  "RFYD1RobuxSpend", "RFYD1SpendDay",
+  "RFYD2To7PlayDays", "RFYD2To7Playtime", "RFYD2To7CoplayDays",
+  "RFYD2To7QualifiedPlaySessions", "RFYD2To7RobuxSpend", "RFYD2To7SpendDays",
+  "RFYD8To28PlayDays", "RFYD8To28Playtime", "RFYD8To28CoplayDays",
+  "RFYD8To28QualifiedPlaySessions", "RFYD8To28RobuxSpend", "RFYD8To28SpendDays",
 ];
 
 type Spec = {
@@ -90,12 +130,85 @@ const SPECS: Spec[] = [
   { metric: "UniqueUsersWithImpressions", granularity: DAY, breakdown: ["AcquisitionSource"], optional: true },
   { metric: "UniqueUsersWithImpressions", granularity: DAY, filter: SOURCES, optional: true },
   { metric: "RFYQualifiedPTR", granularity: DAY },
+  // Kept, but it is NOT one of the shapes the dashboard sends and it is not in
+  // Roblox's public metric list either. The real per-segment signals are the
+  // RFY_SIGNALS block below, which supersedes it; the name looks like a leftover
+  // from before the 2026-06-15 change moved the window from 7 to 28 days.
   { metric: "RFYL7PlayDays", granularity: DAY, optional: true },
   { metric: "AttributionD1RetentionRatio", granularity: DAY, optional: true },
   { metric: "Attribution7DPayerConversionRatio", granularity: DAY, optional: true },
   { metric: "Attribution7DPlaytimePerUserInMinutes", granularity: DAY, optional: true },
   { metric: "Attribution7DRobuxPerUser", granularity: DAY, optional: true },
   { metric: "Attribution30DRobuxPerUser", granularity: DAY, optional: true },
+
+  // ---- RFY ranking signals ------------------------------------------------
+  // Roblox exposes EVERY signal it says it ranks Home recommendations on as its
+  // own metric, one per (segment x signal). Observed 2026-08-31 on the
+  // acquisition tab of 9963622286; all 20 returned data at ONE_DAY with no
+  // breakdown and no filter.
+  //
+  // Why this block is worth ~20 requests: until now the only way to ask "is the
+  // reach cut the platform's doing, or our own signals decaying?" was to proxy
+  // it with D1 retention and argue. These ARE the inputs. Roblox's own docs say
+  // an impression decline typically FOLLOWS a fall in play-through rate, play
+  // days per user or playtime per user, or a rise in first-play bounce — so
+  // reading impressions without reading these can mistake a lagged consequence
+  // of a product problem for a discovery event.
+  //
+  // Segment naming is Roblox's own and is inconsistent: `RFYD1SpendDay` is
+  // singular while `RFYD2To7SpendDays` and `RFYD8To28SpendDays` are plural, and
+  // there is no `RFYD1PlayDays` (play days over one day carries no information).
+  // Do not "fix" these names — they are what the request body must say.
+  ...RFY_SIGNALS.map((metric) => ({
+    metric,
+    granularity: DAY,
+    provenance: "observed" as const,
+  })),
+
+  // ---- Demographics -------------------------------------------------------
+  // Observed 2026-08-31, all four served on MonthlyActiveUsers with no limit.
+  ...DEMOGRAPHICS.map((dim) => ({
+    metric: "MonthlyActiveUsers",
+    granularity: DAY,
+    breakdown: [dim],
+    provenance: "observed" as const,
+  })),
+  // The same breakdowns on DAU are NOT observed — the dashboard only asks for
+  // them on MAU. They are the shape we actually want (a monthly snapshot cannot
+  // date a regional decline), so they are worth asking for, but a failure or an
+  // empty result here says nothing about the game and must never be reported as
+  // a finding. Promote to `observed` only if a capture proves the shape.
+  ...DEMOGRAPHICS.map((dim) => ({
+    metric: "DailyActiveUsers",
+    granularity: DAY,
+    breakdown: [dim],
+    optional: true,
+    provenance: "inferred" as const,
+  })),
+
+  // ---- Acquisition-source value table -------------------------------------
+  // The per-source quality table the dashboard renders: how each traffic source
+  // actually performs downstream. Observed at NONE with an AcquisitionSource
+  // breakdown AND filter, which is how the dashboard scopes it.
+  //
+  // NONE means one aggregate over the requested window, so the date column is
+  // the WINDOW START, not a day — moving the window changes the number with no
+  // day changing. Never compare two of these taken at different ranges.
+  ...["Attribution30DPayerConversionRatio", "Attribution30DRobuxPerUser",
+      "Attribution7DPlaytimePerUserInMinutes", "AttributionD7RetentionRatio"]
+    .map((metric) => ({
+      metric,
+      granularity: NONE,
+      breakdown: ["AcquisitionSource"],
+      filter: SOURCES,
+      provenance: "observed" as const,
+    })),
+  { metric: "EndToEndCVR", granularity: NONE, breakdown: ["AcquisitionSource"],
+    filter: [...SOURCES, ...NEW], provenance: "observed" },
+  { metric: "UniqueUsersWithPlaySessions", granularity: DAY,
+    breakdown: ["AcquisitionSource"], filter: NEW, provenance: "observed" },
+  { metric: "UniqueUsersWithImpressions", granularity: DAY,
+    breakdown: ["AcquisitionSource"], filter: NEW, provenance: "observed" },
 
   // ---- Retention (the hook + the return loop) ----------------------------
   { metric: "ForwardD1Retention", granularity: DAY },

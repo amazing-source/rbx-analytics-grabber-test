@@ -39,6 +39,9 @@
 !/data/games/
 /data/games/*/*
 !/data/games/*/grab-report.json
+# code-reads.md is NOT regenerable from data/raw/ — it is read out of the live
+# place through Studio at one PlaceVersion, and that version moves. It travels.
+!/data/games/*/code-reads.md
 
 # Raw capture dumps at the repo root (same reason)
 rbx-grab-*.json
