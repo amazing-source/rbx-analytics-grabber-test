@@ -51,3 +51,9 @@ Thumbs.db
 # Scratch
 *.log
 
+
+# Cross-game analysis (2026-09-02). Scripts, charts and the report are committed;
+# the DuckDB file is not — it rebuilds from data/games/*/metrics/*.csv in seconds
+# via `python analysis/load.py`, and it is 7MB of pure derived output.
+/analysis/analytics.duckdb
+/analysis/__pycache__/
