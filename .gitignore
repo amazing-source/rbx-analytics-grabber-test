@@ -57,3 +57,9 @@ Thumbs.db
 # via `python analysis/load.py`, and it is 7MB of pure derived output.
 /analysis/analytics.duckdb
 /analysis/__pycache__/
+
+# Playwright's dedicated grab profile. Normally lives outside the repo
+# (~/.rbx-grab-profile) but RBX_GRAB_PROFILE can point anywhere — a browser
+# profile holds a live Roblox session cookie and must never be committable.
+.rbx-grab-profile/
+**/.rbx-grab-profile/

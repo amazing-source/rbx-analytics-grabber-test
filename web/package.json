@@ -22,7 +22,12 @@
     "splits": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/splits.ts",
     "anomaly": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/anomaly.ts",
     "anomaly-places": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/anomaly-places.ts",
-    "notify-test": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/notify-test.ts"
+    "notify-test": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/notify-test.ts",
+    "grab": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/grab.ts",
+    "grab:login": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/grab-login.ts",
+    "chunk-cost": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/chunk-cost.ts",
+    "rebuild-report": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/rebuild-report.ts",
+    "grab:doctor": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/grab-doctor.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
@@ -39,6 +44,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "playwright": "^1.62.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

@@ -313,6 +313,51 @@ now — a game could sit marked "watched" for weeks with no grab behind it.
 `intervalHours` wins over `dailyGrab` (which means 24h); the floor is 1h.
 `RBX_SCHEDULER=off`, or `schedulerEnabled: false` in the config, stops it.
 
+## Driving a browser grab without clicking (2026-09-03)
+
+Playwright launches Chrome with the unpacked extension and fires the SAME
+message the dashboard's "Grab now" button sends. It is not a second grab
+implementation and not the scheduler.
+
+    npm run grab:doctor                     # check every precondition first
+    npm run grab:login                      # ONE TIME: log into Roblox
+    npm run grab -- 9963622286 --lifetime
+    npm run grab -- 9963622286 10030829154 --start 2026-01-01 --end 2026-09-04
+    npm run grab -- --all --days 60
+
+**Prefer this over Open Cloud for dataset runs.** No 30-POST/min ceiling, and it
+is the only path returning feedback content, annotations, genre benchmarks,
+place-versions and error `MessageHash` text.
+
+**Naming trap:** `background.js` routes BOTH the one-time grab and the scheduler
+through `runScheduledGrab()`. The name is wrong — it just means "run a grab",
+and the comment there says so. The one-time dated grab is `collector-cmd / pull`
+with `{universes, start, end}`; `background.js` opens its own create.roblox.com
+tab via `ensureDashboardTab()`. Do not read the function name as "this is the
+scheduler" (I did, and confused a whole exchange).
+
+**The profile is dedicated and lives OUTSIDE the repo** (`~/.rbx-grab-profile`,
+override with `RBX_GRAB_PROFILE`), so the daily Chrome stays open and untouched.
+`.gitignore` blocks it anywhere in the tree: a profile holds a live session
+cookie. **Nothing in `scripts/browser-context.ts` reads or exports that cookie —
+no `context.cookies()`, no `storageState()`** — and it must stay that way, per
+the standing rule on `.ROBLOSECURITY`. Chrome holds the session; we only drive
+the window.
+
+MV3 extensions need a **persistent context and a real head**; `headless: true`
+drops them silently, which looks exactly like a broken extension. The unpacked
+extension's id derives from its path, so it is read off the service worker at
+runtime rather than hardcoded.
+
+**Completion is detected from `data/raw/`, not the message reply.** A lifetime
+grab outlives the service worker's message channel, so awaiting the reply would
+report a dead channel as a failed grab. Live progress comes from `schedule:get`,
+which is where the collector forwards its own status line.
+
+`npm run grab` refuses to start if the web app is not answering — the collector
+POSTs captures to it, so a grab without the app runs to completion and lands
+nowhere. That is the most expensive possible failure.
+
 ## Alerting fires on the weekday baseline, never a threshold (2026-08-19)
 
 `src/lib/notify.ts` posts to the Discord webhook after **either** path finishes
