@@ -162,7 +162,11 @@ and a change that fixes a number should move one of them.
   (a version appearing = a ship) and by `ErrorMessage` is bug discovery.
 - IGNORE as noise: `translations-cdn.roblox.com`, `barista-feature-flags`,
   `product-experimentation-platform`.
-- Test universe: KameHameHa Walls For Brainrots = `10192528661`, genre `simulation`.
+- `10192528661` (KameHameHa Walls For Brainrots, genre `simulation`) is a
+  **portfolio game**, not a scratch universe. It was labelled "test universe"
+  here from the earliest sessions and that label is wrong — corrected
+  2026-09-03 by Ren. Treat its data as production: it is in the lifetime
+  dataset grab alongside the other titles.
 
 ## Open Cloud serves the same numbers — verified 2026-08-19, do not re-derive
 Roblox shipped an official, key-authenticated analytics READ API (beta). It is
