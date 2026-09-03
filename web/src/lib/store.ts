@@ -224,6 +224,25 @@ function alignWindow(granularity: string | undefined, startTime: string, endTime
 const MAX_CRASH_WINDOW_DAYS = 7;
 const MAX_PERF_WINDOW_DAYS = 28;
 
+// How far back the data still EXISTS. Different question from the window caps
+// above: those are how much you may ask for at once, these are how much Roblox
+// still stores. Measured 2026-08-09 by a chunked 430-request grab of 9963622286
+// back to 2026-03-23 — crash/perf served nothing older than 2026-07-11 (~30d),
+// ErrorCount nothing older than 2026-06-15 (~56d, a chunk boundary, so the true
+// horizon is 56-84d). 242 of that grab's 245 failures were 400s on chunks older
+// than these lines. Behavioural, retention, monetization and reach have NO
+// horizon — they served back to launch.
+//
+// Generous on purpose: over-asking by a few chunks costs seconds, under-asking
+// loses history that can never be recovered. Set RBX_NO_HORIZON=1 to disable
+// and tile the whole span (what the grabber did before 2026-09-03).
+const HORIZON_PERF_DAYS = 35;
+const HORIZON_ERRORS_DAYS = 90;
+
+function horizonDays(metric: string): number {
+  return metric === "ErrorCount" ? HORIZON_ERRORS_DAYS : HORIZON_PERF_DAYS;
+}
+
 const CRASH_METRICS = new Set([
   "ServerCrashCount",
   "ClientCrashCount",
@@ -495,6 +514,8 @@ export async function getGrabPlan(
   ];
   const metricNames = new Set<string>();
   let chunked = 0;
+  const clampedMetrics = new Set<string>();
+  let clampedDays = 0;
 
   for (const t of merged.values()) {
     const rt = t.resourceType;
@@ -518,11 +539,29 @@ export async function getGrabPlan(
       const cap = maxWindowDays(t.metric, t.query);
       // Sub-daily templates are already clamped by alignWindow (half-hour to the
       // final 24h), so chunking them yields exactly one window.
+      // A capped template is a technical one, and technical data ages out. Tiling
+      // the whole span asks Roblox for months it deleted: every chunk older than
+      // the horizon is a guaranteed 400, indistinguishable in a grab report from
+      // a game that never crashed. Clamp FIRST, then chunk what is left.
+      //
+      // This is NOT "solve a 400 by shortening the grab" (see CLAUDE.md) — that
+      // rule is about the window CAP and it still holds: everything inside the
+      // horizon is still tiled at 7d/28d and still fully retrieved. Nothing that
+      // exists is dropped.
+      const horizon = cap && !process.env.RBX_NO_HORIZON ? horizonDays(t.metric) : null;
+      const inHorizon = horizon ? clampToRecent(aligned, horizon) : aligned;
+      if (horizon && inHorizon.startTime !== aligned.startTime) {
+        clampedMetrics.add(t.metric);
+        clampedDays = Math.max(
+          clampedDays,
+          Math.round((Date.parse(inHorizon.startTime) - Date.parse(aligned.startTime)) / 86_400_000)
+        );
+      }
       const windows = !cap
         ? [aligned]
         : gran === "METRIC_GRANULARITY_NONE" || !gran
-        ? [clampToRecent(aligned, cap)]   // one aggregate stays one aggregate
-        : chunkWindow(aligned.startTime, aligned.endTime, cap, gran);
+        ? [clampToRecent(inHorizon, cap)]   // one aggregate stays one aggregate
+        : chunkWindow(inHorizon.startTime, inHorizon.endTime, cap, gran);
       if (windows.length > 1) chunked += windows.length - 1;
       for (const w of windows) {
         const q = { ...(t.query as Record<string, unknown>), ...w };
@@ -542,6 +581,19 @@ export async function getGrabPlan(
         });
       }
     }
+  }
+
+  if (clampedMetrics.size) {
+    warnings.push(
+      `technical rung clamped to its retention horizon: ${clampedMetrics.size} ` +
+        `metrics asked over the last ${HORIZON_PERF_DAYS}d (perf/crash) / ` +
+        `${HORIZON_ERRORS_DAYS}d (errors) instead of the full span, dropping ` +
+        `${clampedDays} days of window that Roblox no longer stores. Measured ` +
+        `2026-08-09: crash/perf serve ~30d, ErrorCount ~56d, and older chunks ` +
+        `400. THIS IS A GAP IN COVERAGE, NOT AN ABSENCE OF INCIDENTS — a ` +
+        `technical question about a period further back is unanswerable, and ` +
+        `must not be read as health. RBX_NO_HORIZON=1 restores the full tiling.`
+    );
   }
 
   if (chunked) {
