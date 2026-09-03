@@ -3,7 +3,8 @@
 // bypasses RLS, so all of this is server-only.
 
 import { supabase } from "./supabase";
-import { parseCaptures, type Capture, type Snapshot } from "./parse-captures";
+import { parseCaptures, type Capture, type Snapshot, templateKey } from "./parse-captures";
+import { retargetLearnedQuery } from "./retarget-templates";
 import {
   buildSeedTemplates,
   DISCOVER_DIMENSIONS,
@@ -221,6 +222,7 @@ function alignWindow(granularity: string | undefined, startTime: string, endTime
 // kept because a smaller window always succeeds where a larger one does — the
 // only cost is request count. Raise it to 28 only after a grab report shows a
 // 28-day crash chunk returning data across a long span.
+
 const MAX_CRASH_WINDOW_DAYS = 7;
 const MAX_PERF_WINDOW_DAYS = 28;
 
@@ -464,6 +466,7 @@ export function getAnnotationRequests(
   }));
 }
 
+
 export async function getGrabPlan(
   universeId: string,
   startTime: string,
@@ -479,6 +482,30 @@ export async function getGrabPlan(
     );
   }
 
+  // `grab_templates` is keyed on the template alone and is NOT scoped by
+  // universe, so every game's learned templates pool together. Dimension NAMES
+  // are stable across universes but their VALUES are not, and a learned
+  // template carries the values it was captured with. Replaying Verity's
+  // `FunnelName: Conversation` against another game returns a valid 200 with
+  // zero rows — indistinguishable from "this game does not use funnels", which
+  // is precisely the false finding CLAUDE.md exists to prevent. Measured
+  // 2026-09-03 on 10192528661: 910 of 1000 learned templates carried foreign
+  // values, producing 314 empty-200 funnel requests under 14 funnel names that
+  // belong to other games, plus a Place filter naming Waterslide's seven places
+  // (403). Re-target to THIS universe's discovered values, or drop.
+  let retargeted = 0;
+  let droppedForeign = 0;
+  const foreignDims = new Set<string>();
+  const retarget = (q: SeedTemplate["query"]) => {
+    const r = retargetLearnedQuery(q, discovered);
+    if (r.query === null) {
+      foreignDims.add((r as { dimension: string }).dimension);
+      return null;
+    }
+    if ((r as { changed: boolean }).changed) retargeted++;
+    return r.query;
+  };
+
   let learned = 0;
   try {
     const { data, error } = await supabase
@@ -490,12 +517,21 @@ export async function getGrabPlan(
       // Live tiles poll at minute granularity for a single instant — replaying
       // one over a multi-week window is meaningless, so drop those.
       if (q?.granularity === "METRIC_GRANULARITY_ONE_MINUTE") continue;
-      merged.set(t.key as string, {
-        key: t.key as string,
+      const rq = retarget(q);
+      if (!rq) {
+        droppedForeign++;
+        continue;
+      }
+      // Re-targeting changes what the request IS, so it must change the key too
+      // — otherwise two universes' versions of the same template collide and
+      // whichever loaded last wins.
+      const key = templateKey(t.kind as "metric" | "benchmark", rq as Parameters<typeof templateKey>[1]);
+      merged.set(key, {
+        key,
         kind: t.kind as "metric" | "benchmark",
         metric: t.metric as string,
         resourceType: (t.resource_type as string) ?? "RESOURCE_TYPE_UNIVERSE",
-        query: q,
+        query: rq,
         // learned templates are harvested from real captured requests —
         // observed by definition
         provenance: "observed",
@@ -505,6 +541,18 @@ export async function getGrabPlan(
   } catch (e) {
     // Supabase down shouldn't stop a grab — the seeded plan is self-sufficient.
     warnings.push(`could not load learned templates (${(e as Error).message}); using the built-in plan only`);
+  }
+
+  if (droppedForeign || retargeted) {
+    warnings.push(
+      `learned templates re-scoped to this universe: ${retargeted} re-targeted, ` +
+        `${droppedForeign} dropped for carrying values this universe does not have` +
+        (foreignDims.size ? ` (${[...foreignDims].sort().join(", ")})` : "") +
+        `. grab_templates is shared across every game and dimension VALUES are ` +
+        `per-universe, so replaying another game's FunnelName or Place returns a ` +
+        `valid 200 with zero rows — which reads as "this game does not use the ` +
+        `feature". A dropped template is not a gap in this game's data.`
+    );
   }
 
   const requests: GrabRequest[] = [

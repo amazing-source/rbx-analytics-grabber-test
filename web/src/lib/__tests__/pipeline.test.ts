@@ -15,6 +15,7 @@ import os from "node:os";
 import path from "node:path";
 
 import { parseCaptures, type Capture } from "../parse-captures";
+import { retargetLearnedQuery } from "../retarget-templates";
 import {
   exportToFiles,
   detectIncidents,
@@ -692,4 +693,76 @@ describe("G10 — the Open Cloud path merges into the gateway's series, not besi
     ) as GameExport;
     return { game, dir };
   }
+});
+
+// F19 — learned templates carry another game's dimension VALUES.
+// `grab_templates` is keyed on the template and NOT scoped by universe, so
+// every game's learned templates pool. Measured 2026-09-03 on 10192528661:
+// 910 of 1000 rows carried foreign values, producing 314 empty-200 funnel
+// requests under 14 funnel names belonging to other games, plus a Place filter
+// naming Waterslide's seven places (403). An empty 200 reads exactly like
+// "this game does not use the feature" — the false finding this repo exists to
+// prevent, generated automatically.
+describe("F19 — a learned template never carries another universe's values", () => {
+  const MINE = { __places: ["71469476498100"], FunnelName: ["FUNNEL_TYPE_ONBOARDING"] };
+
+  test("a foreign FunnelName is DROPPED, not replayed into an empty 200", () => {
+    const q = {
+      metric: "FunnelUserStepCompletionRate",
+      granularity: "METRIC_GRANULARITY_ONE_DAY",
+      filter: [{ dimension: "FunnelName", values: ["Conversation"] }],
+    };
+    const r = retargetLearnedQuery(q, { ...MINE, FunnelName: [] } as never);
+    assert.equal(r.query, null, "no funnel discovered here — the template must be dropped");
+  });
+
+  test("a foreign FunnelName is re-targeted when this universe has its own", () => {
+    const q = {
+      metric: "FunnelUserStepCompletionRate",
+      granularity: "METRIC_GRANULARITY_ONE_DAY",
+      filter: [{ dimension: "FunnelName", values: ["MessagePack"] }],
+    };
+    const r = retargetLearnedQuery(q, MINE as never);
+    assert.ok(r.query, "should re-target, not drop");
+    const f = (r.query as { filter: { dimension: string; values: string[] }[] }).filter;
+    assert.deepEqual(f[0].values, ["FUNNEL_TYPE_ONBOARDING"], "must use THIS universe's funnel");
+  });
+
+  test("Waterslide's seven places never reach another universe", () => {
+    const q = {
+      metric: "ClientCrashRate15m",
+      granularity: "METRIC_GRANULARITY_ONE_DAY",
+      filter: [{ dimension: "Place", values: ["87388097381958", "94401613935841"] }],
+    };
+    const r = retargetLearnedQuery(q, MINE as never);
+    const f = (r.query as { filter: { dimension: string; values: string[] }[] }).filter;
+    assert.deepEqual(f[0].values, ["71469476498100"], "Place must be re-targeted to our own place");
+  });
+
+  test("a non-scoped dimension is left alone", () => {
+    const q = {
+      metric: "DailyActiveUsers",
+      granularity: "METRIC_GRANULARITY_ONE_DAY",
+      filter: [{ dimension: "AcquisitionSource", values: ["HomeRecommendation", "Search"] }],
+    };
+    const r = retargetLearnedQuery(q, MINE as never);
+    const f = (r.query as { filter: { dimension: string; values: string[] }[] }).filter;
+    assert.deepEqual(
+      f[0].values,
+      ["HomeRecommendation", "Search"],
+      "AcquisitionSource values are platform-wide, not per-universe",
+    );
+  });
+
+  test("the MessageHash NOT_CONTAINS -1 sentinel survives untouched", () => {
+    const q = {
+      metric: "ErrorCount",
+      granularity: "METRIC_GRANULARITY_NONE",
+      filter: [{ dimension: "MessageHash", values: ["-1"], operation: "FILTER_OPERATION_NOT_CONTAINS" }],
+    };
+    const r = retargetLearnedQuery(q, MINE as never);
+    assert.ok(r.query, "-1 is a sentinel, not a universe value — must not drop the template");
+    const f = (r.query as { filter: { values: string[] }[] }).filter;
+    assert.deepEqual(f[0].values, ["-1"]);
+  });
 });

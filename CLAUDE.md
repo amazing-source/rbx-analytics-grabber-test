@@ -90,20 +90,29 @@ reached Roblox must not be lost to a database being down (it has been).
   The only part of `data/` that is committed.
 Offline path, no server or DB: `cd web && npm run ingest:file -- <raw.json>`.
 
-## Running the app — one command, and Supabase is meant to be dead
+## Running the app — one command; check whether Supabase is alive
 `cd web && npm run dev` → http://localhost:3000. That is the whole procedure.
 Deps are installed and `web/.env.local` is already correct, so there is nothing
-to discover first: no run-skill to hunt for, no route listing, no API smoke
-test. **Supabase is a deliberate placeholder** (`https://placeholder.supabase.co`)
-and there is no project behind it, so every DB-backed route (`/api/games`,
-`/api/overview`, `/api/series`, …) answers `TypeError: fetch failed` / 500.
-**That is the steady state, not a bug** — the file mirror above is the real
-sink, and the architecture is out of scope. The var must *exist* but may point
-nowhere: `src/lib/supabase.ts` throws at module-import time when it is unset,
-while a dead URL imports fine and only fails on an actual query. So never empty
-it and never "fix" it by provisioning a project. `/` renders the dashboard shell
-with empty tiles and a red error line, because the client chains every fetch off
-`/api/games`. That is a running app.
+to discover first: no run-skill to hunt for, no route listing, no API smoke test.
+
+**CORRECTED 2026-09-03: Supabase is LIVE on this machine.** `web/.env.local`
+points at a real project and `grab_templates` holds 1,000 rows. This file used
+to state flatly that Supabase was a deliberate placeholder
+(`https://placeholder.supabase.co`) with no project behind it, so that every
+DB-backed route answered `TypeError: fetch failed` and that was "the steady
+state, not a bug". That may still describe the other machine — **do not assume
+either way; read `SUPABASE_URL` before claiming a DB route is expected to
+fail.** Believing the database was dead is what let F19 (below) sit unnoticed:
+a live, unscoped `grab_templates` table was pooling every game's learned query
+shapes, and nobody looked because the DB "wasn't real".
+
+The var must *exist* whichever it is: `src/lib/supabase.ts` throws at
+module-import time when unset, while a dead URL imports fine and only fails on
+an actual query. So never empty it. The **file mirror in `data/` is the real
+sink** either way, and the architecture is out of scope — do not re-plumb it.
+If the DB is dead, `/` renders the dashboard shell with empty tiles and a red
+error line because the client chains every fetch off `/api/games`. That is still
+a running app.
 
 ## The three gates
 Run from `web/`. Any change to what the numbers say must keep all three green,
@@ -373,6 +382,36 @@ game with a re-render on each arrival, which is what made the extension lag.
 Related: `render()` in collector.js is coalesced to one animation frame — it used
 to run once per captured response, so a 400-request grab did 400 innerHTML
 rebuilds.
+
+## Learned templates are shared across every game — F19, fixed 2026-09-03
+
+`grab_templates` is keyed on the template alone and is **not scoped by
+universe**, so every game's learned shapes pool into one table and are merged
+into every other game's plan. Dimension NAMES are stable; their VALUES are not.
+
+Measured on 10192528661's lifetime grab: **910 of 1,000 learned templates
+carried another game's values.** That produced 314 empty-200 funnel requests
+under 14 funnel names belonging to other titles (`Conversation`, `MessagePack`,
+`Notebook`, `BaseUpgrades`, `MapReach`…) on a universe whose only funnel is
+`FUNNEL_TYPE_ONBOARDING`, plus a `Place` filter naming Waterslide's seven places
+(403). **An empty 200 reads exactly like "this game does not use the feature"** —
+the automatic version of the hardcoded-`FunnelName` defect this file already
+warns about.
+
+`retargetLearnedQuery()` in `src/lib/retarget-templates.ts` now rewrites a
+learned template's universe-scoped values to the current universe's discovered
+ones, or drops the template when discovery has none. Kept out of `store.ts`
+because that module imports Supabase and throws at import time without env.
+Scoped dimensions: `Place`, `PlaceVersion`, `FirstSeenPlaceVersion`,
+`FunnelName`, `FunnelStep`, `MessageHash`, `AvatarItemId`. The `MessageHash
+NOT_CONTAINS -1` sentinel is not a universe value and survives untouched.
+Re-scoping changes the request, so the template key is recomputed — otherwise
+two universes' versions collide and whichever loaded last wins. Every drop and
+re-target is reported in the plan's warnings. Encoded as **F19** in the suite.
+
+Against the live table for 10192528661: 226 kept, **732 re-targeted**, 42
+dropped (`FunnelStep`, which this universe never discovered because its
+`dimensions by FunnelStep` request 403s).
 
 ## The grab plan is seeded, not discovered
 `web/src/lib/default-plan.ts` holds all 49 metrics Roblox serves, as query
