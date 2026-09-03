@@ -5,7 +5,7 @@
 //   npm run grab -- --all --days 60
 //
 // This is the SAME path as the dashboard's "Grab now" button: it sends
-// `collector-cmd / pull` with {universes, start, end}, which background.js
+// `collector:cmd / pull` with {universes, start, end}, which background.js
 // forwards to the create.roblox.com tab it opens itself. Nothing to do with the
 // scheduler — `runScheduledGrab()` is just badly named, both entry points share
 // it so a second grab implementation cannot drift from the first.
@@ -35,8 +35,9 @@ if (flag("help") || (!argv.length)) {
 npm run grab -- <universeId...> [options]
 
   --all                every game under data/games/
-  --lifetime           from 2021-01-01 (the technical rung is horizon-clamped,
-                       so a lifetime window now costs about what 30 days costs)
+  --lifetime           from the game's CREATION date (looked up from the public
+                       games API). Not a fixed early date: a window far wider
+                       than the game 400s the behavioural metrics outright.
   --days N             the last N days
   --start YYYY-MM-DD   explicit window start
   --end   YYYY-MM-DD   explicit window end (default: tomorrow, so today is whole)
@@ -67,7 +68,44 @@ const tomorrow = () => {
   return iso(d);
 };
 
-const start = opt("start") ?? (flag("lifetime") ? "2021-01-01" : daysAgo(Number(opt("days") ?? 28)));
+/**
+ * "Lifetime" means since the game was CREATED, not since some fixed early date.
+ *
+ * A window far wider than the game's life does not merely waste requests — the
+ * gateway 400s it. Measured 2026-09-03 on 9758414065 (created 2026-02-19): a
+ * 2021-01-01 start produced 15 DailyActiveUsers 400s and left DAU with 44 days
+ * of a 161-day span, while a 578-day window on 10192528661 had DAU succeed
+ * 17/18. Behavioural metrics have no retention horizon, so losing them to an
+ * over-wide ask destroys exactly the history a lifetime grab exists to collect.
+ *
+ * Public endpoint, no auth. Falls back to a conservative recent start rather
+ * than a wide one, because wide is the failure mode.
+ */
+async function createdDate(universeIds: string[]): Promise<string | null> {
+  try {
+    const r = await fetch(
+      `https://games.roblox.com/v1/games?universeIds=${universeIds.join(",")}`,
+      { signal: AbortSignal.timeout(15_000) }
+    );
+    if (!r.ok) return null;
+    const { data } = (await r.json()) as { data?: { id: number; created?: string }[] };
+    const dates = (data ?? []).map((g) => g.created).filter(Boolean) as string[];
+    if (!dates.length) return null;
+    // Earliest creation across the requested games, minus a day of margin.
+    const earliest = new Date(dates.sort()[0]);
+    earliest.setUTCDate(earliest.getUTCDate() - 1);
+    return iso(earliest);
+  } catch {
+    return null;
+  }
+}
+
+let start = opt("start");
+if (!start && flag("lifetime")) {
+  start = (await createdDate(universes)) ?? daysAgo(365);
+  console.log(`lifetime  : resolved to ${start} (game creation date)`);
+}
+start ??= daysAgo(Number(opt("days") ?? 28));
 const end = opt("end") ?? tomorrow();
 const timeoutMs = Number(opt("timeout") ?? 180) * 60_000;
 
@@ -105,6 +143,40 @@ if (!(await isLoggedIn(context))) {
   process.exit(1);
 }
 
+// The collector only exists on create.roblox.com (manifest content_scripts), and
+// it is the thing that actually runs the grab — the extension page is only where
+// we can call chrome.runtime. background.js does open its own tab via
+// ensureDashboardTab(), but relying on that means a slow first load races
+// sendToCollector's retry budget and the grab is refused for no visible reason.
+// Open the page ourselves and confirm the collector is live BEFORE asking for
+// anything.
+const robloxPage = await context.newPage();
+await robloxPage.goto("https://create.roblox.com/dashboard/creations", {
+  waitUntil: "domcontentloaded",
+  timeout: 60_000,
+});
+// Probe the MAIN-world interceptor, not the collector. collector.js runs in the
+// ISOLATED world, so `__RBX_COLLECTOR_LOADED__` is on a different window object
+// and page.evaluate() can never see it — checking for it always fails, which
+// reads as "the extension is broken". interceptor.js is the MAIN-world half of
+// the same pair, injected by the same content_scripts entry, so its flag proves
+// the extension attached to this page.
+try {
+  await robloxPage.waitForFunction(
+    () => (window as never as { __RBX_INTERCEPTOR_LOADED__?: boolean }).__RBX_INTERCEPTOR_LOADED__ === true,
+    undefined,
+    { timeout: 30_000 }
+  );
+  console.log(`extension attached to ${new URL(robloxPage.url()).pathname}`);
+} catch {
+  console.error(`the extension did not attach to ${robloxPage.url()}`);
+  console.error("content_scripts match https://create.roblox.com/* at document_start —");
+  console.error("if that URL redirected to a login, the profile's session has expired:");
+  console.error("  npm run grab:login");
+  await context.close();
+  process.exit(1);
+}
+
 const page = await context.newPage();
 await page.goto(`chrome-extension://${extensionId}/dashboard.html`);
 
@@ -117,7 +189,7 @@ await page.evaluate(
     w.__rbxGrab = { state: "running" };
     chrome.runtime
       .sendMessage({
-        type: "collector-cmd",
+        type: "collector:cmd",
         cmd: "pull",
         payload: { universes: universesArg, start: startArg, end: endArg },
       })
@@ -159,10 +231,31 @@ while (Date.now() - t0 < timeoutMs) {
     process.stdout.write(`  [${mins}m] ${line.slice(0, 110)}\n`);
   }
 
-  const outcome = (await page.evaluate(() => (window as never as { __rbxGrab?: { state: string; error?: string } }).__rbxGrab).catch(() => null));
+  // The reply can be a REFUSAL rather than a throw — background.js answers
+  // {ok:false, error} when it cannot reach the collector or open a tab. Treating
+  // that as "still running" is how this script sat silent for ten minutes on a
+  // grab that never started: waiting looks identical to working.
+  const outcome = await page
+    .evaluate(
+      () =>
+        (window as never as { __rbxGrab?: { state: string; error?: string; result?: unknown } })
+          .__rbxGrab
+    )
+    .catch(() => null);
+
   if (outcome?.state === "error") {
     console.error(`\n  message channel error: ${outcome.error}`);
-    console.error("  (the grab itself may still be running in the tab — checking for bundles)");
+    console.error("  (the grab may still be running in the tab — still watching data/raw/)");
+  }
+  if (outcome?.state === "done") {
+    const r = outcome.result as { ok?: boolean; error?: string; summary?: string } | null;
+    if (r && r.ok === false) {
+      console.error(`\n  the extension REFUSED the grab: ${r.error ?? "no reason given"}`);
+      console.error("  nothing is running — not waiting for a bundle that will never arrive.");
+      if (!flag("keep-open")) await context.close();
+      process.exit(1);
+    }
+    if (r?.summary) console.log(`\n  extension reports: ${String(r.summary).slice(0, 200)}`);
   }
 }
 

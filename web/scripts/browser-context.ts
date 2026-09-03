@@ -29,6 +29,12 @@ export async function launchWithExtension(): Promise<Launched> {
   if (!existsSync(path.join(EXTENSION_DIR, "manifest.json"))) {
     throw new Error(`no manifest.json in ${EXTENSION_DIR} — is the extension dir right?`);
   }
+  // A Chrome already holding this profile makes the new launch hand off to it
+  // and exit 0 immediately ("Ouverture dans une session de navigateur
+  // existante"). Playwright then reports a closed browser, which reads as a
+  // Playwright bug rather than a stale window — it cost a silent ten-minute
+  // "grab" that never issued a single request.
+  await assertProfileFree();
   const context = await chromium.launchPersistentContext(PROFILE_DIR, {
     headless: false,
     channel: process.env.RBX_GRAB_CHANNEL || undefined,
@@ -67,4 +73,41 @@ export async function isLoggedIn(context: BrowserContext): Promise<boolean> {
   } finally {
     await page.close();
   }
+}
+
+/**
+ * Refuse to launch while another Chrome holds the profile directory.
+ *
+ * Chrome hands a second launch off to the running instance and exits 0, so
+ * Playwright sees a browser that closed by itself. The symptom is a grab that
+ * starts, reports nothing, and never issues a request — indistinguishable from
+ * a hung network. Better to fail loudly with the PIDs to kill.
+ */
+export async function assertProfileFree(): Promise<void> {
+  if (process.platform !== "win32") return; // POSIX: Chrome's own SingletonLock handles it
+  const { execFileSync } = await import("node:child_process");
+  let out = "";
+  try {
+    out = execFileSync(
+      "powershell.exe",
+      [
+        "-NoProfile",
+        "-NonInteractive",
+        "-Command",
+        `Get-CimInstance Win32_Process -Filter "Name='chrome.exe'" | ` +
+          `Where-Object { $_.CommandLine -like '*${path.basename(PROFILE_DIR)}*' } | ` +
+          `Select-Object -ExpandProperty ProcessId`,
+      ],
+      { encoding: "utf8", timeout: 20_000 }
+    );
+  } catch {
+    return; // cannot check — do not block the grab on a diagnostic
+  }
+  const pids = out.split(/\s+/).filter(Boolean);
+  if (!pids.length) return;
+  throw new Error(
+    `a Chrome is already using the grab profile (${PROFILE_DIR}).\n` +
+      `      Chrome would hand this launch off to it and exit, so the grab would ` +
+      `never start.\n      Close that window, or: taskkill /F ${pids.map((p) => `/PID ${p}`).join(" ")}`
+  );
 }
