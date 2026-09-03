@@ -1127,8 +1127,26 @@ function grabReportMd(r: GrabReport): string {
   // failure is a real problem (the dashboard sends this exact request, or it
   // has returned data before). Mixing them is how 37 broken guesses once read
   // as "this universe has no performance data".
-  const failedReal = failed.filter((a) => a.provenance === "observed" || a.provenance === "proven");
-  const failedInferred = failed.filter((a) => a.provenance !== "observed" && a.provenance !== "proven");
+  // A technical-rung 400 whose OWN SHAPE succeeded elsewhere in this same grab
+  // is not broken capture — it is a window reaching past what Roblox still
+  // stores (crash/perf ~30d, ErrorCount ~56d, measured 2026-08-09). Filing
+  // those as "real problems" is how one design issue became 12,382 alarm rows
+  // on 10192528661 and buried the ~29 failures that genuinely were broken.
+  //
+  // The shape succeeding at least once is the evidence: the query is valid, so
+  // the only thing separating a 200 from a 400 is the window.
+  const shapeKey = (a: GrabAttempt) =>
+    `${a.metric ?? ""}|${a.granularity}|${a.breakdown}|${a.filter}`;
+  const shapeWorked = new Set(r.attempts.filter((a) => a.ok).map(shapeKey));
+  const technical = (a: GrabAttempt) =>
+    a.metric === "ErrorCount" || /(^|,)Place=/.test(a.filter ?? "");
+  const agedOut = (a: GrabAttempt) =>
+    a.status === 400 && technical(a) && shapeWorked.has(shapeKey(a));
+
+  const failedAged = failed.filter(agedOut);
+  const stillFailed = failed.filter((a) => !agedOut(a));
+  const failedReal = stillFailed.filter((a) => a.provenance === "observed" || a.provenance === "proven");
+  const failedInferred = stillFailed.filter((a) => a.provenance !== "observed" && a.provenance !== "proven");
   const shape = (a: GrabAttempt) =>
     [a.granularity.replace("METRIC_GRANULARITY_", ""), a.breakdown && `by ${a.breakdown}`, a.filter && `where ${a.filter}`]
       .filter(Boolean).join(" · ");
@@ -1144,8 +1162,33 @@ function grabReportMd(r: GrabReport): string {
       .map(([k, v]) => `**${k}**: ${v.join(", ")}`);
     out.push(`- Discovered dimension values: ${d.length ? d.join(" · ") : "_none_"}`);
   }
-  out.push(`- Requested ${r.requested} · **${ok.length} returned data** · ${empty.length} empty · ${failed.length} failed (${failedReal.length} on observed/proven shapes)`);
+  out.push(
+    `- Requested ${r.requested} · **${ok.length} returned data** · ${empty.length} empty · ` +
+      `${failed.length} failed — of which ${failedAged.length} aged out (data Roblox no longer stores) ` +
+      `and **${failedReal.length} on observed/proven shapes (look here first)**`
+  );
   out.push("");
+
+  if (failedAged.length) {
+    const metrics = [...new Set(failedAged.map((a) => a.metric ?? "—"))].sort();
+    out.push("## Failed — window older than the data (aged out, not a capture problem)");
+    out.push("");
+    out.push(
+      `${failedAged.length} requests over ${metrics.length} metrics. Each of these shapes ` +
+        `returned data elsewhere in this same grab, so the query is valid and only the window ` +
+        `differs. Roblox keeps crash/performance for ~30 days and \`ErrorCount\` for ~56; ` +
+        `anything older 400s. **This is a gap in coverage, not an absence of incidents** — a ` +
+        `technical question about a period further back is unanswerable and must never be read ` +
+        `as health. Since 2026-09-03 the planner clamps these windows up front, so a large ` +
+        `number here means the grab predates that or ran with \`RBX_NO_HORIZON=1\`.`
+    );
+    out.push("");
+    out.push("| Metric | Requests aged out |");
+    out.push("|---|---|");
+    for (const m of metrics)
+      out.push(`| ${m} | ${failedAged.filter((a) => (a.metric ?? "—") === m).length} |`);
+    out.push("");
+  }
 
   if (failedReal.length) {
     out.push("## Failed — observed/proven shapes (real problems)");
