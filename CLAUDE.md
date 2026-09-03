@@ -13,6 +13,12 @@ the full spec; this file is the day-to-day reference.
 >   `.claude/SESSION_LOG.md` first** (newest entry), then verify it against the
 >   gates before trusting it — that is `checkpoint resume`. The log is written
 >   by the `checkpoint` skill; run it whenever you stop or switch devices.
+> - **Before writing ANY diagnosis, read `DIAGNOSIS_LOG.md`** — one row per
+>   claim delivered to Ren and what happened to it, plus the six recurring
+>   failure modes and the control that catches each. Every retraction in this
+>   repo's history is one of those six. Append to it whenever a diagnosis ships
+>   or a claim changes status; the session log is per-session and does not carry
+>   the thread across deliverables.
 > - **Three gates — run them before and after any change** (measured
 >   2026-08-10, not copied):
 >   `npm run verify -- ../data/verify/9610561918/` → 23 pass · **2 fail** · 8 skip
@@ -22,7 +28,9 @@ the full spec; this file is the day-to-day reference.
 >   2026-08-08T00:00, and (2) `ErrorCount` half-hour, where 144 of 147 cells
 >   match and the 3 that don't are all the 08:00 bucket at the export window's
 >   own edge — the CSV holds a partial bucket, our later read holds the settled
->   one. `npm run audit-plan` → 140 templates, 0 failures. `npm test` → 44 pass.
+>   one. `npm run audit-plan` → 175 templates, 0 failures (140 before the RFY
+>   signals landed 2026-08-31; 41 upgradable tags are not failures).
+>   `npm test` → 44 pass.
 >   A change that moves a number without moving these is unproven.
 > - **Both universes were re-grabbed post-fix on 2026-08-08** — that closed the
 >   last verification item. 9963622286's crash history is now present

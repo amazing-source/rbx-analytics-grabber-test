@@ -1,0 +1,109 @@
+# Diagnosis log — every claim that reached Ren, and what happened to it
+
+One row per delivered diagnosis. The point is not to collect scalps; it is that
+the same five mistakes keep recurring, and each one now has a named control that
+prevents it. **Read the "Recurring failure modes" table before writing a new
+report** — it is the checklist that would have caught every retraction below.
+
+Started 2026-09-03, reconstructed from `.claude/SESSION_LOG.md` (which stops at
+2026-08-21), `reports/2026-08-30/README.md`, the `.docx` deliverables in the repo
+root, and the published artifacts. **Append to this file whenever a diagnosis
+ships or a claim changes status** — the session log is per-session and does not
+survive as a thread across the ten artifacts published 24 Aug → 2 Sep.
+
+Status vocabulary: **HELD** (still believed, evidence unchanged or strengthened) ·
+**NARROWED** (true in a smaller scope than delivered) · **RETRACTED** (wrong) ·
+**OPEN** (testable, not yet tested).
+
+---
+
+## Delivered diagnoses
+
+| Date | Deliverable | Headline claim | Status | What actually happened |
+|---|---|---|---|---|
+| 08-07 | `Become a Brainrot - LiveOps Bleed Report.docx` | Decline starts at the 30 Jul deploy (v535–546). "It's a quality problem, not a traffic one." | **NARROWED** | The 31 Jul break is real and was independently re-dated on 09-02 by a change-point scan across three metric families (D1 −5.6pp, playtime −4.1 min, session −1.74 min). But Home reach peaked **29 June** and was already **−38.2%** by the day the bug landed. The step was real; "not a traffic one" was false about what started the decline, and the report attributed 32 days of pre-existing pullback to a deploy that had not shipped yet. |
+| 08-09 | `Knife Farm - Decline Diagnosis.docx` | "Not a bug and not the algorithm." Roblox pushes reach, D1 holds (16–25%), D7 collapses (4.5%→1.3%), so Roblox stops. Three push/pullback cycles, each peak lower. | **OPEN** | This is a *mechanism* claim — retention failure causes the withdrawal — and it is now directly testable with the RFY ranking signals (added to the plan 08-31). It has **not** been retested. On the two games where the same test was run (09-03, Brainrot and Waterslide) the mechanism did **not** appear. Knife Farm's D7/D30 decay is far steeper than either, so it may genuinely be the exception — but the claim currently rests on a correlation that failed elsewhere. **Next action: pull RFY lifetime for 9610561918 and re-run finding 09's two tests.** |
+| 08-12 | `Brainrot Error Analysis 2026-08-12.docx` | Five code defects ranked by severity, from error exports + place file. | **HELD** | Explicitly framed as hypothetical ("reasoning about code, not watching it happen"). The save-guard fix from this line of work "is still catching writes today" per the 08-16 role doc. |
+| 08-14 | `Waterslide Update Watch 2026-08-14.docx` | v1698 broke nothing; the usual 20–50× server-error publish spike did not occur. | **HELD** | Correctly identified the publish signature as a known baseline behaviour rather than an incident. This is the template the later baselines follow. |
+| 08-15 | `Brainrot - World 3 update check (15 Aug).docx` | Update day ahead of the prior day on DAU +46.3%, revenue +39.9%. | **NARROWED** | Only 3.8 hours of the day were post-update, which the doc says. But a raw day-over-day on a single pair of days carries no weekday control — the 09-02 analysis later showed Tue/Wed troughs of −22%/−25% on this game, large enough to produce a "+46%" from position in the week alone. |
+| 08-16 | `LiveOps Analytics - the case for a full-time role.docx` | Four titles, three needed different answers, two would have been misdiagnosed by the obvious read. | **HELD** | Superseded in detail by later work but the framing survived. |
+| 08-20 | (verbal / nearly written to Indigo leadership) | "Anomaly alerting works now." | **RETRACTED** | An alert genuinely fired 08-19 18:23, but the sending code was nowhere on disk — full-tree grep of both clones found no match for its own wording. It had been run outside the repo and never committed. |
+| 08-21 | Live incident read, 10399712766 | "CCU is down 28%." then "CCU is up 21.8%." | **RETRACTED ×2** | (1) Built on "the daily peak lands at 13:00", inferred from a **single day** and applied to a different weekday; a partial MAX is a floor, and the re-read was 13,532 vs the 8,258 used. (2) That 13,532 is a **sum of per-platform peaks**; the dashboard export's best half-hour was 10,429. The real answer was **−24.1%**, and only the CSV export settled it. → F15/F16. |
+| 08-21 | Code findings, 10399712766 | Four defects reported. | **RETRACTED ×3** | Three of four fell in-session: a `Touched` re-fire I missed by reading lines 155–230 instead of the whole file; an unreachable popup path; and a "stale EventId" that was actually `Number()` precision loss on a 19-digit ID inside our own JSON parse. |
+| 08-30 | `reports/2026-08-30/liveops-diagnosis.html` (draft) | "D1 below ~12.5% triggers a next-day traffic cut." | **RETRACTED** | The association is real across five games (median next-day home-rec change −19.7% vs +3.3%) but it is not a mechanism: D1 does not settle for two days, and on Verity and Seal the low-D1 days *were* their biggest traffic days (same-day r = −0.44, −0.69). A surge depresses D1 and then mean-reverts. Caught before delivery. |
+| 08-30 | `post-update-watch.html`, four games | No publish on 08-28 broke anything measurable. | **HELD** | Confirmed by the 09-02 placebo audit, which found nothing at the deploy on Brainrot or Waterslide and showed the apparent Verity/Seal effects were the peak's curvature. |
+| 09-02 | `Four Games, One Distribution Problem` (artifact) | Reach is the larger term in all four; two also lost conversion. | **HELD** | Reproduces observed DAU change to within 0.4pp in all four. Explicitly flagged as an accounting identity, not causation. |
+| 09-02 | same | "No update moved a metric." | **RETRACTED in-report** | Tested **one date** (28 Aug) per game and stated it as if it covered every publish. A proper change-point scan found genuine breaks on three of four games. |
+| 09-02 | same | Verity has "the best hook in the portfolio" (D1 +115%, above 90th pct). | **RETRACTED in-report** | Cohort artifact. Verity's D1 of 14.6% is statistically identical to Brainrot's 14.3%; it only reads as exceptional because Verity is benchmarked against adventure (median 6.78%) and Brainrot against a cohort at 15.56%. Same retention, half the bar. |
+| 09-02 | same | Seal's 28 Aug update cost it 71% of DAU / 87% of revenue (p=0.002). | **RETRACTED pre-publication** | The placebo audit killed it — the same test fires at 27, 28, 29 and 30 Aug with similar magnitude. A smear, not a step. This is the single most valuable control added so far: a standard, defensible test produced a confident, wrong answer. |
+| 09-02 | same | "No product fix will restore these DAU numbers, because nothing about the product is what changed." | **RETRACTED 09-03** | Contradicted finding 02 on the same page, which dates real product breaks on three of four games. Rewritten to a claim about what a fix can be expected to *move*. |
+| 09-03 | same, finding 09 (new) | Quality held as reach scaled; no ranking signal leads the pullback. | **HELD** | See below. |
+
+---
+
+## 2026-09-03 — the ranking-signal test
+
+Prompted by a research brief arguing the diagnostic ladder should start from
+Roblox's published Home signals rather than from "reach fell". The brief's
+mechanism — *an impressions drop typically follows a fall in PTR / play days /
+playtime or a rise in first-play bounce* — is testable, and had never been tested
+here. Two results, both on Home-filtered `UniqueUsersWithImpressions`:
+
+- **Quality holds under expansion.** Controlling for a time trend and weekday
+  fixed effects, every long-horizon signal (D2–7 and D8–28 play days, playtime,
+  qualified sessions) moves *in the game's favour* as reach rises, on both games
+  with enough history. Only PTR dilutes, on one game — the effect Roblox
+  documents as normal during expansion.
+- **Nothing leads the pullback.** Symmetric Granger-style test, both directions
+  given the same 7-lag search, Sidak-corrected: 1 marginal hit out of 32 tests on
+  Brainrot (chance produces ~1.6), and 0 of 14 on Waterslide, where 6 of 14 run
+  the *other* way. Waterslide lost **79.8%** of Home reach while its D8–28
+  signals moved −3% and its bounce *improved*.
+
+**Two retractions of my own, in-session, before either reached the artifact:**
+
+1. **Rigged lag search.** My first lead-lag run gave the forward direction seven
+   lags and the reverse only one, and produced five "signal leads reach" results
+   on Waterslide. All five vanished under a symmetric search. I had built the
+   asymmetry into the code without noticing it was a multiple-comparison
+   advantage for the hypothesis I was testing.
+2. **Reach-quintile reading.** The raw quintile table appeared to show Seal's
+   quality degrading as reach scaled (bounce +0.70 with reach). Controlling for
+   time it is −0.21 — the quintiles were almost perfectly collinear with
+   time-since-launch (r = +0.81), so I was reading novelty decay as audience
+   dilution.
+
+**Also corrected:** the objective pullback-date rule fired on early-life
+volatility because it scanned from series start; restricted to search from the
+all-time peak.
+
+---
+
+## Recurring failure modes, and the control that catches each
+
+| # | Failure mode | Where it has bitten | The control |
+|---|---|---|---|
+| 1 | **A rule inferred from one observation.** | "Peak lands at 13:00" (one day) · "no update moved anything" (one date) · "D1 <12.5% cuts traffic" (an association) | State n before leaning on a rule. If n=1, say so in the sentence. Scan every candidate date rather than testing the one you expect. |
+| 2 | **The wrong series read as the headline.** | PCU ONE_DAY = sum of per-platform peaks (30% high) · `series[0]` fallback printing a 30,393-crash incident as "5" · an OOM figure read 0→36→50 when the real series was 344→400→179 (the Tablet slice) | `totalSeries()` only. Filter the `granularity` column. A partial max is a floor, not a ceiling. |
+| 3 | **A trend fitted as a step.** | Seal "−71% DAU from the update, p=0.002" · every change point on a trending series | Placebo cut dates, always. Report the **smear fraction** — what share of candidate dates also fire. On the 09-03 run, 40–86% smear killed most apparent breaks. |
+| 4 | **A test built asymmetrically in favour of the hypothesis.** | 09-03 lag search (7 lags forward, 1 back) · reach quintiles with no time control | Both directions get the identical procedure. Correct for the search. Control for time and weekday before believing any cross-sectional pattern. |
+| 5 | **A rate compared across cohorts.** | Verity "best hook, +115%, above 90th percentile" — same D1 as Brainrot, half the bar | Lead with the absolute number. Percentiles are per-game cohorts and never comparable across games. |
+| 6 | **Diagnosing the pipeline without checking the checkout.** | F17 — reported the Open Cloud path ingesting zero points; the tree was 5 commits behind origin | `git fetch && git log HEAD..origin` before calling anything a pipeline defect. This repo is worked from two machines. |
+
+---
+
+## Open items this log is tracking
+
+- **Knife Farm (9610561918).** The 08-09 mechanism claim has never been tested
+  with the RFY signals. Highest-value re-test available.
+- **Onboarding funnel instrumentation.** Nothing we grab can locate *where* a
+  new player gives up. That needs `LogOnboardingFunnelStepEvent` in-game, which
+  is a dev ask, not a grabber change. It is the difference between "bounce rose"
+  and "they quit at the third tutorial step, on Phone".
+- **Competition / seasonality / Discovery-side changes.** Roblox names all three
+  as reach factors and we observe none of them. Every "the algorithm withdrew
+  the push" statement is a description of shape until one of these is measured.
+- **`ItemMonetizationRevenue` freeze policy.** Systematically understated in the
+  corpus (restated up to 21×, always upward). Any report quoting it is wrong in
+  the same direction. Decide whether it switches to last-write-wins.
+- **F13 / F15** unfixed and F13 not encoded as a test.
