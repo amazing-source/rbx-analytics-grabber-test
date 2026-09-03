@@ -169,7 +169,7 @@ figcaption b{color:var(--ink); font-weight:600}
     <div class="nm"><span class="swatch" style="background:#eb6834"></span>Seal</div>
     <div class="vbig">355.3k <span style="font-size:.8rem;color:var(--ink-3)">DAU</span></div>
     <div class="vsub">−71.0% from peak · 4 days post-peak<br>decaying −25.9%/day · R$678.1k/day</div>
-    <div class="vnote">Best unit economics by 3.5&times;, fastest current slide, and a save bug. Only 4 post-peak days &mdash; trajectory not yet rateable.</div>
+    <div class="vnote">Best unit economics by 3.5&times;, fastest current slide, and a progress-reset defect. Only 4 post-peak days &mdash; trajectory not yet rateable.</div>
   </div>
   <div class="vcard">
     <div class="nm"><span class="swatch" style="background:#1baf7a"></span>Verity</div>
@@ -202,26 +202,40 @@ figcaption b{color:var(--ink); font-weight:600}
 <div class="finding">
   <div class="fnum">02</div>
   <div class="fbody">
-    <h3>None of the 28 August updates caused any of this <span class="tag t-conf">confirmed</span></h3>
-    <p class="measure">All four studios shipped on 28 August. Testing each deploy with a trend-adjusted step model — so the decline already in progress is not credited to the update — the naive read is that Seal and Verity both took large significant hits. That read is wrong. Re-running the identical test at fake cut dates on 24–30 August produces the same "significant" step on days when nothing shipped, which means the model is fitting the curvature of a peak, not a discontinuity at a deploy.</p>
-    <p class="measure">Where the model is well specified (Brainrot and Waterslide, both on steady trends), the answer is clean: <b>no detectable step in any engagement or monetization metric</b>, largest effect p=0.08. In every game the turn began 4–5 days <em>before</em> the deploy.</p>
+    <h3>Three of four games have a real product break — and in two of them it arrived after the decline had started <span class="tag t-conf">confirmed</span></h3>
+    <p class="measure">My first pass tested one date per game, 28 August, found nothing, and I wrote that no update moved a metric. That was a claim about one date stated as if it covered every publish. Scanning instead — fitting a trend and a step at <em>every</em> candidate date and keeping the largest — finds genuine breaks:</p>
+    <div class="tblwrap" style="margin:14px 0 10px">
+    <table>
+    <thead><tr><th>Game</th><th>Engagement break</th><th>D1 step</th><th>Corroboration</th><th>Reach peak</th><th>Gap</th></tr></thead>
+    <tbody>
+    <tr><td class="lbl">Brainrot</td><td>2026-07-31</td><td class="neg">−5.6pp</td><td style="text-align:left">playtime −4.1 min, session −1.74 min</td><td>29 Jun</td><td class="neg">+32d</td></tr>
+    <tr><td class="lbl">Seal</td><td>2026-08-27</td><td class="neg">−6.0pp</td><td style="text-align:left">playtime −13.7 min; only 2/14 dates fire</td><td>1 Sep</td><td class="pos">−5d</td></tr>
+    <tr><td class="lbl">Waterslide</td><td>2026-08-22</td><td class="neg">−2.0pp</td><td style="text-align:left">session −1.13 min, conversion −1.8pp</td><td>3 Aug</td><td class="neg">+19d</td></tr>
+    <tr><td class="lbl">Verity</td><td class="dim">none</td><td class="dim">—</td><td style="text-align:left" class="dim">every change point is positive (its launch ramp)</td><td>25 Aug</td><td class="dim">—</td></tr>
+    </tbody>
+    </table>
+    </div>
+    <p class="measure">Brainrot's 31 July break is independently dated by three metric families and matches a known publish — broken collision geometry and progress resets. But reach peaked 29 June and was <b>already −38.2%</b> by the day it landed. The pullback ran 32 days before the bug. Waterslide is the same shape at +19 days. <b>Seal is the exception</b>: its break precedes its reach turn by 5 days, and it is the sharpest signal here (2 of 14 candidate dates fire, versus 70% on Brainrot's trending series).</p>
+    <p class="measure">So these games carry <b>two independent wounds</b>: a distribution pullback that starts at the reach peak, and a product break that in two of three cases arrives well after it. Conflating them is what makes the story confusing — the bugs are real and worth fixing, and they are not what started the decline.</p>
   </div>
 </div>
 
 <div class="finding">
   <div class="fnum">03</div>
   <div class="fbody">
-    <h3>Verity is capping its own sessions <span class="tag t-conf">confirmed</span></h3>
-    <p class="measure">Verity has the strongest hook in the portfolio — D1 retention of 14.6% on a 14-day mean, which is <b>115% above its cohort median and above the 90th percentile</b>. It also has the shortest sessions: 8.4 minutes on the same basis, 18% below that cohort's median, and playtime per DAU below median too. Strong hook plus short sessions is the signature of a gate, not of churn.</p>
-    <p class="measure">The player feedback says exactly what the gate is. Of 2,097 comments, <b>8.6% mention the refill timer or message limit</b> by name: "why do I only get like 50 questions and then wait a minute", "get rid of the message limit", and — directly costing a sale — "the messages are so limited, im not about to spend robux on a game that i wont play for the next month". Verity's cohort curve also decays fastest after D2 of any game here (5.7% → 2.7% → 1.8%).</p>
+    <h3>Verity is throttled at both ends of the session, not broken <span class="tag t-conf">confirmed</span></h3>
+    <p class="measure">Verity's D1 retention is <b>14.6%, which is ordinary</b> — Brainrot's is 14.3%, statistically the same number. It reads as "+115%, above the 90th percentile" only because Verity is benchmarked against the adventure genre, where the median is 6.78%, while Brainrot sits in a cohort at 15.56%. Same retention, half the bar. An earlier draft of this report called it the best hook in the portfolio; that was the cohort artifact talking, and the caveat about not reading percentiles across games applies to me as much as to anyone.</p>
+    <p class="measure">What is genuinely distinctive is that Verity is squeezed at <em>both</em> ends. Its sessions are the shortest here at 8.4 minutes, 18% below its own cohort median. And its loop dies one day later than you would guess. Its <em>second-day</em> return (D1, "came back the next day") is 14.58%, the highest of the four. It is the <em>third</em> day where it falls apart: only <b>39.0%</b> of its day-1 players are still there on cohort-day 2, against Seal's 49.6% and Waterslide's 45.7%. The curve runs 14.71% → 5.74% → 2.70% → 1.81%, the steepest decay in the set.</p>
+    <p class="measure">The player feedback says exactly what the gate is. Of 2,097 comments, <b>8.6% mention the refill timer or message limit</b> by name: "why do I only get like 50 questions and then wait a minute", "get rid of the message limit", and — directly costing a sale — "the messages are so limited, im not about to spend robux on a game that i wont play for the next month". The two ends point at the same thing: the cap truncates the session, and nothing sustains a player past their third day. Note the precise shape — players <em>do</em> come back for a second day at a normal rate, so this is not a missing next-day hook; it is that there is nothing to come back <em>to</em> once the novelty of the AI has gone.</p>
   </div>
 </div>
 
 <div class="finding">
   <div class="fnum">04</div>
   <div class="fbody">
-    <h3>Seal is losing player progress <span class="tag t-conf">confirmed</span></h3>
+    <h3>Seal discards partial surface progress on rejoin <span class="tag t-conf">confirmed</span></h3>
     <p class="measure">6.3% of Seal's 318 comments report lost progress, and they are unambiguous: "doesn't save progress at all", "resets ur progress when u leave", "I lost all my progress", "I did a lot of work to make almost ALL OF THE ROAD BUT THEN I PLAY A NEW GAME BUT WHEN I JOIN BACK ITS ALL RESETED". A second cluster is a design choice rather than a bug — rebirth wipes skill upgrades, and several players ask for those to persist.</p>
+    <p class="measure"><b>This is not a data wipe.</b> Confirmed with the studio: a surface persists at 100% or 0% and nothing in between, so a player who cleans 60% of a surface and rejoins finds it back at 0. That is a persistence-granularity choice, not lost save data — and a cheaper fix, since it means checkpointing partial progress at intervals rather than only on completion. It also fits the numbers better than a wipe would: a player returns once, sees the work gone, and leaves. Seal has the lowest D1 in the set at 11.8% and the highest downvote rate at 78%.</p>
     <p class="measure">Seal also carries the worst sentiment in the set at <b>78% downvotes</b>, and the lowest D1 retention at 11.8%. Given the game earns 3.5&times; the ARPDAU of anything else in the portfolio, this is the single most expensive defect on this page.</p>
   </div>
 </div>
@@ -461,11 +475,11 @@ figcaption b{color:var(--ink); font-weight:600}
 <div class="acts">
   <div class="act">
     <div class="who"><span class="swatch" style="background:#eb6834;margin-top:6px"></span>Seal</div>
-    <div class="what"><b>Fix the save.</b> This is the highest-value item on the page by a distance. Seal earns R$678k/day at 3.5&times; the ARPDAU of anything else in the portfolio, and players are reporting that a disconnect or a rejoin wipes their road. Its D1 of 11.8% is the lowest here and its downvote rate the highest at 78%, both consistent with new players losing a session's work. Separately, let rebirth keep skill upgrades — several players ask for exactly that, and a rebirth that wipes everything is a progression sink that reads as a bug even when it is intended.</div>
+    <div class="what"><b>Checkpoint partial surface progress.</b> This is the highest-value item on the page by a distance. Seal earns R$678k/day at 3.5&times; the ARPDAU of anything else in the portfolio, and a rejoin currently resets any surface that was not finished to 0. Its D1 of 11.8% is the lowest here and its downvote rate the highest at 78%, both consistent with new players losing a session's work. Separately, let rebirth keep skill upgrades — several players ask for exactly that, and a rebirth that wipes everything is a progression sink that reads as a bug even when it is intended.</div>
   </div>
   <div class="act">
     <div class="who"><span class="swatch" style="background:#1baf7a;margin-top:6px"></span>Verity</div>
-    <div class="what"><b>Raise or remove the message cap.</b> Verity's hook is the strongest asset in the portfolio — D1 above its cohort's 90th percentile — and the game is spending it on an 8.4-minute session. The cap is the single most named complaint in 2,097 comments, and at least one player states outright that it stopped them buying. Worth testing a much higher cap, or moving the paywall from <em>how much you may talk</em> to <em>what you may talk about</em>. Also worth a look: 18.8% of comments are about the AI knowing personal details, which is a retention risk and possibly a policy one.</div>
+    <div class="what"><b>Raise the message cap, and give players a reason to return.</b> Verity is throttled at both ends: an 8.4-minute session, 18% below its cohort median, and the worst third-day survival in the set at 39.0% of its day-1 players. The cap is the most-named complaint in 2,097 comments, and at least one player states outright that it stopped them buying. Test a much higher cap, or move the paywall from <em>how much you may talk</em> to <em>what you may talk about</em> — then give the loop somewhere to go past day three, because second-day return is already normal and it is the day after that where players stop. Also worth a look: 18.8% of comments are about the AI knowing personal details, which is a retention risk and possibly a policy one.</div>
   </div>
   <div class="act">
     <div class="who"><span class="swatch" style="background:#eda100;margin-top:6px"></span>Waterslide</div>
@@ -478,7 +492,7 @@ figcaption b{color:var(--ink); font-weight:600}
 </div>
 
 <h3 style="margin-top:32px">Best fundamentals, and worst structure</h3>
-<p class="measure"><b>Best unit economics: Seal — trend data too short to trust yet.</b> It earns 3.5&times; the ARPDAU of any other game here, holds the best D7 and the best D8 cohort retention, and clears its benchmark cohort on every metric measured. That is a claim about fundamentals only. On trajectory it is unrateable: 4 post-peak days, week-over-week figures inflated by a launch ramp sitting inside the comparison window, the fastest current slide in the set at −25.9% a day, and a save bug. Calling it the healthiest game outright would not survive contact with any of those.</p>
+<p class="measure"><b>Best unit economics: Seal — trend data too short to trust yet.</b> It earns 3.5&times; the ARPDAU of any other game here, holds the best D7 and the best D8 cohort retention, and clears its benchmark cohort on every metric measured. That is a claim about fundamentals only. On trajectory it is unrateable: 4 post-peak days, week-over-week figures inflated by a launch ramp sitting inside the comparison window, the fastest current slide in the set at −25.9% a day, and a progress-reset defect. Calling it the healthiest game outright would not survive contact with any of those.</p>
 <p class="measure"><b>Sliding worst: Waterslide</b>, on structure rather than speed. It has the slowest decay in the set at −2.8% a day, but it is 30 days post-peak with the weakest retention here (D7 0.94%, D8 cohort 0.69%) and ARPPU two thirds below its cohort median. Brainrot is further gone in absolute terms — 93.7% off peak — but it is at least mid-pack on the rates. Waterslide is the one whose fundamentals will not hold up the next time Home gives it a push.</p>
 
 <div class="call warnc" style="margin-top:28px">

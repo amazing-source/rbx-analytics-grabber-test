@@ -17,6 +17,6 @@
   "username": "francemaxxing",
   "userId": 1469356435,
   "discordWebhook": "https://discord.com/api/webhooks/1539656655577292840/Cl2NsqJeMg-mMg3vDKUMy-nSd0ymmnbZfjoXkMSVo_ZNL9y6Shym0xlvTu8BmKvdVxEC",
-  "schedulerEnabled": true,
+  "schedulerEnabled": false,
   "autoCommit": true
 }
