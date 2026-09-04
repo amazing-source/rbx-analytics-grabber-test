@@ -1,0 +1,687 @@
+Twelve Games, One Panel
+Indigo LiveOps · panel audit & investigation plan · 4 September 2026
+Twelve Games, One Panel
+What the 12-game lifetime dataset actually contains, what it can and cannot answer,
+and the sequenced plan — with the four constraints that change the plan before any modelling starts.
+Panel
+3,186 game-days
+Aggregate metrics
+76
+Universal across 12
+63
+Span
+2025-02-03 → 2026-09-04
+Modelling run
+none yet
+0
+Four constraints that reshape the brief
+All four are measured, not assumed. Each removes or downgrades something the plan asks for,
+and it is cheaper to know now than after a week of modelling.
+Read these before Phase 1
+01
+The RFY signals only start 2026-05-01 — on every game, identically.
+That is Roblox's own retention boundary, not our grab. The June discovery change sits just
+45 days
+after it. So the pre/post-June test you asked for has, on the RFY side,
+45 pre-days against 80 post-days on 9 games and none on 3.
+pre/post-June on RFY: weak
+on DAU/revenue: fine
+02
+Technical history is missing for most of every game's life.
+Between 8 and 551 days of each
+game's behavioural record has no crash, performance or error data behind it — it aged out before
+we ever grabbed. Any "did something break?" question before roughly July 2026 is
+unanswerable
+, and must be reported as absence of coverage, never as health.
+03
+The publish log is truncated at 100 versions on 10 of 12 games
+(F12). Don't Wake The Police's
+newest recorded publish is
+2026-02-14
+on a game that is live now — that is
+the cap, not the truth. Update timing is a
+control variable
+in Phases 1, 6 and 7, so this
+contaminates them until repaired from
+feedback.csv
+asset versions or an
+ErrorCount
+-by-PlaceVersion pull.
+04
+n = 12 games, and roughly one pullback each.
+Phase 7 asks for a predictive model; with about
+a dozen events, leave-one-game-out validation is close to anecdote and any feature importance will be
+unstable. Worth running as hypothesis generation, but I will not present a model as evidence, and
+pre/post-June splitting of an already-small event set is not defensible.
+Phase 7: hypothesis generation only
+A
+Metric coverage
+63 metrics exist on all 12 games
+at
+ONE_DAY
+— including the
+complete RFY ranking-signal set, all six Attribution columns, retention at D1/D7/D30, and the full
+performance rung. That is a genuinely balanced panel: the backbone is universal, not patched together.
+Metrics present on some games only
+Metric family
+Games
+Missing from
+Why
+RFYD8To28* (6 metrics)
+10
+Verity, Seal
+Too young — a 28-day cohort has not matured
+FunnelCohort* (2)
+8
+Poison Treats, Knife Farm, Climb Up Mtn, Don't Wake Police
+No funnel instrumentation in the game
+DailyCohortRetention
+8
+Knife Farm, Plane Training, Don't Wake Police, KameHameHa
+10-day window cap; not requested on older grabs
+L7Average* (5)
+7
+Poison Treats, Plane Training, Don't Wake Police, KameHameHa, Moon
+Family withdrawn by Roblox — 13 of 16 attempts 400
+ServerCrashCount
+7
+Plane Training, Climb Up Mtn, Don't Wake Police, KameHameHa, Moon
+Not served; likely no server crashes in window
+Consequence for the plan:
+every cross-game test in Phases 2, 3, 6 and 7 can run on the
+63-metric backbone with no imputation. Funnel work (Phase 5) is restricted to a named subset, and the
+D8–28 horizon work drops Verity and Seal.
+B
+Granularity
+Game-metric series by granularity
+Granularity
+Series
+What it covers
+Usable for
+ONE_DAY
+888
+The whole backbone
+Everything in Phases 1–7
+NONE
+252
+Funnels, the Attribution table
+One aggregate over the window — no trend
+ONE_HOUR
+47
+CCU, FPS, memory, session, revenue
+Incident forensics only
+HALF_HOUR
+29
+ErrorCount, PCU, ServerCrashCount
+≤30 days; incident hours
+ONE_MINUTE
+2
+Live tiles
+Deliberately dropped
+The NONE row is the trap.
+A large share of funnel data is a single aggregate
+dated at the window start, not a series. Plane Training has 51 named funnel steps and only
+14 daily dates
+, from July 2025 — a step count is not a time series. Phase 5's
+"did this step collapse on date D" is answerable on four games only.
+Funnel dates that can actually show change
+Game
+ONE_DAY dates
+Span
+Verdict
+Become a Brainrot
+119
+2026-05-08 → 09-03
+real series
+KameHameHa Walls
+102
+2026-05-25 → 09-02
+real series
++1 Banana Monkey
+54
+2026-06-29 → 09-02
+usable
+Climb Waterslide
+41
+2026-07-24 → 09-02
+usable
+Verity Companion
+31
+2026-08-04 → 09-03
+thin
+Seal A Driveway
+23
+2026-08-08 → 09-02
+thin
+Plane Training
+14
+2025-07-01 → 07-14
+unusable
+Moon Incremental
+3
+—
+unusable
+C
+Where the technical record is blind
+Crash and performance data ages out at roughly 30 days and
+ErrorCount
+at roughly 56. Every game's behavioural history starts long before its technical history does. The red bar
+is the blind period — days where we know what the players did and can never know what the software did.
+Behavioural span vs technical span
+Game
+Coverage
+Blind days
+DAU from
+Technical from
+KameHameHa Walls
+551
+2025-02-03
+2026-08-08
+Plane Training
+516
+2025-03-11
+2026-08-09
+Moon Incremental
+424
+2025-06-10
+2026-08-08
+Poison Treats
+352
+2025-08-21
+2026-08-08
+Don't Wake Police
+335
+2025-09-08
+2026-08-09
+My Knife Farm
+170
+2026-01-22
+2026-07-11
+Climb Up Mountain
+171
+2026-02-18
+2026-08-08
+Become a Brainrot
+111
+2026-03-22
+2026-07-11
+Climb Waterslide
+101
+2026-04-12
+2026-07-22
++1 Banana Monkey
+29
+2026-06-25
+2026-07-24
+Verity Companion
+9
+2026-07-24
+2026-08-02
+Seal A Driveway
+8
+2026-07-28
+2026-08-05
+This inverts the usual assumption.
+The games with the
+longest
+behavioural history have the
+least
+technical history — Plane Training has 542 game-days and 26 days
+of crash data. So "a technical incident caused the pullback" is testable on the recent, short-history games
+and
+unanswerable
+on the long ones, which is the opposite of what a lifetime
+dataset feels like it should give you.
+D
+Maturation lag — and the one piece of good news
+Days each metric stops behind the DAU frontier (median across 12 games)
+Metric
+Lag
+Consequence for a J0 event study
+DailyActiveUsers
+0
+Frontier
+RFYD1Playtime · RFYD2To7 · RFYD8To28
+0
+Settles same-day — usable as a leading indicator
+DauMauStickiness
+0
+Frontier
+ForwardD1Retention
+1
+J−1 readable at J0
+ForwardD7Retention
+7
+Cannot inform a J0 call; confirmatory only
+Attribution30DRobuxPerUser
+29
+Post-hoc only
+ForwardD30Retention
+30
+Post-hoc only
+This is the single most useful finding in the audit.
+The RFY signals — including the
+D2–7 and D8–28 segments, which
+sound
+lagged — carry no maturation delay at all. They are published
+at the frontier while D7 retention is a week behind. So the Phase 2 question has a clean answer shape:
+RFY signals are the only engagement measures that
+can
+lead a pullback, because retention
+physically cannot be known in time. Any "D7 fell first" claim is a statement about a week-old cohort.
+E
+Publish timestamps
+Version history and player feedback per game
+Game
+Versions
+Published
+Newest publish
+Feedback rows
+Status
+Climb Waterslide
+486
+98
+2026-08-28
+381
+complete
+Moon Incremental
+200
+59
+2026-09-02
+111
+complete
+KameHameHa Walls
+28
+10
+2026-07-17
+17
+short but whole
+My Knife Farm
+100
+33
+2026-09-03
+1,233
+capped at 100
+Become a Brainrot
+100
+33
+2026-08-28
+681
+capped at 100
+Verity Companion
+100
+13
+2026-08-31
+2,179
+capped at 100
+Plane Training
+100
+16
+2026-09-04
+738
+capped at 100
+Poison Treats
+100
+21
+2026-08-17
+563
+capped at 100
++1 Banana Monkey
+100
+23
+2026-08-28
+580
+capped at 100
+Seal A Driveway
+100
+10
+2026-08-28
+348
+capped at 100
+Climb Up Mountain
+100
+25
+2026-05-24
+333
+stale — game is live
+Don't Wake Police
+100
+11
+2026-02-14
+67
+stale — game is live
+Two games have a publish log that ends months before now on a live title.
+That is F12 — the log is per-place and paginates at 100, so a busy sub-place crowds the root's recent
+publishes out of the window. Update timing is a control in three phases, so this is repaired first:
+cross-check
+feedback.csv
+asset_version
+min/max dates
+(which worked before) against
+ErrorCount
+broken down by
+PlaceVersion
+, where a version's first data point dates its ship.
+F
+Breakdown dimensions held
+Eleven dimensions are present on
+all twelve games
+:
+Platform
+,
+AcquisitionSource
+,
+Country
+,
+AgeGroupV2
+,
+Gender
+,
+IsNewUser
+,
+RevenueSource
+,
+PlaceVersion
+,
+LogSource
+,
+SessionTimeBucket
+,
+MessageHash
+. Phase 4 (acquisition-source quality) and the device splits
+in Phases 3, 5 and 8 are fully supported everywhere.
+Partial:
+FunnelName
+/
+FunnelStep
+on 8,
+CohortDay
+on 8,
+ProductType
+on 10,
+CrashType
+on 6.
+G
+Pre- and post-June split
+Usable days each side of the 2026-06-15 discovery change
+Game
+DAU pre
+DAU post
+RFY pre
+RFY post
+Plane Training
+457
+81
+45
+81
+Poison Treats
+297
+80
+45
+80
+Don't Wake Police
+278
+81
+45
+81
+Moon Incremental
+114
+80
+45
+80
+Climb Up Mountain
+110
+80
+45
+80
+My Knife Farm
+106
+80
+45
+80
+Become a Brainrot
+77
+80
+45
+80
+Climb Waterslide
+49
+80
+40
+80
+KameHameHa Walls
+21
+80
+17
+80
++1 Banana Monkey
+0
+64
+0
+48
+Verity Companion
+0
+36
+0
+26
+Seal A Driveway
+0
+26
+0
+19
+Verdict:
+a pre/post-June comparison on
+reach and behaviour
+is well supported —
+six games carry 100+ pre-days. A pre/post-June comparison on
+the RFY ranking signals themselves
+is
+weak
+: at most 45 pre-days, on nine games, with three contributing
+nothing. I will run the first and report the second as directional at best.
+H
+The canonical dataset
+Built and committed. Aggregate metrics are wide; anything source-, device- or step-specific
+stays in its own long table, so a breakdown slice can never be mistaken for the headline.
+analysis/panel/
+File
+Rows
+Grain
+daily.csv
+3,186
+game × date × 76 aggregate metrics
+by_source.csv
+135,035
+game × date × AcquisitionSource × metric
+by_platform.csv
+103,571
+game × date × Platform × metric
+funnel.csv
+13,551
+game × date × funnel × step × metric
+coverage.csv
+861
+game × metric × first · last · n_days
+Rules enforced in the builder, each one a defect that has bitten this repo before:
+granularity filtered to
+ONE_DAY
+; the headline is the series with an
+empty
+breakdown, where a bare
+Place
+filter still counts as total but a
+population filter does not; partial intervals dropped;
+FILLED_ZERO
+retained but
+flagged per row so gap-fills can be excluded from rate work without vanishing from volume work;
+*.daily.csv
+roll-ups skipped entirely.
+I
+The plan
+Ordered as briefed, with a feasibility call on each from the audit above. Descriptive work
+finishes before anything is modelled.
+0
+Repair update timing
+do first
+blocks 1, 6, 7
+Not in the original brief, but it precedes Phase 1. Rebuild the publish log for the 10 capped games
+from
+feedback.csv
+asset versions and
+ErrorCount
+by
+PlaceVersion
+. Version first-seen dates are left-censored at the window edge —
+a version whose first point falls on the window's own start shipped earlier and was clipped, so it reads
+"on or before", never "on".
+1
+Reconstruct each lifecycle
+fully supported
+Objective pullback rule fixed
+before
+looking at any other metric: J0 is the first day at or
+after the all-time Home-reach peak where the 3-day mean falls below a threshold of that peak and stays
+below for 3 consecutive days. Sensitivity-tested at 0.60 / 0.70 / 0.80 and at 3 / 5 / 7 hold days; a
+result that only survives one setting is reported as such.
+Reach is
+UniqueUsersWithImpressions
+filtered to
+HomeRecommendation
+— not the all-source total, which mixes in Friends and Search
+and blunts the very signal being dated.
+2
+Leading indicators of pullback
+supported
+retention cannot lead
+Event-study on the J−28…J+28 windows as briefed. Two disciplines carried over from the work that has
+already failed on this question: every direction test gives
+both
+arrows the same lag search and
+a multiplicity correction — an asymmetric search manufactured five false "signal leads reach" results on
+Waterslide last week — and every candidate break reports its
+smear fraction
+, the share of candidate
+dates that also fire, because a trending series accepts a step almost anywhere.
+Per the maturation table, D7 and D30 are structurally incapable of leading and enter as outcomes only.
+3
+Explore → expand → degradation
+supported
+The discriminating test, and the one already run on two games: partial correlation of each signal
+against log Home reach, controlling for a linear trend
+and
+weekday. The trend control is not
+optional — without it, reach quintiles on a young game are almost perfectly collinear with
+time-since-launch (r = +0.81 on Seal), and novelty decay reads as audience dilution.
+Dilution is PTR falling while bounce, playtime and play-days hold. Failure at scale is PTR falling
+with
+bounce rising and play-days falling. Those get different reports.
+4
+Acquisition-source quality
+fully supported, all 12
+Conversion, D7, 7-day playtime and payer quality per source, weighted by
+UniqueUsersWithPlaySessions
+— the denominator. Rates alone mislead: on Seal,
+Friends converts at 40.5% against Home's 19.5%, which reads as the better channel until you see 343,887
+users against 2,084,897.
+Kept strictly separate from Phase 2: aggregate acquisition quality is not an RFY ranking signal, and
+Roblox states the ranking runs on RFY-acquired behaviour specifically.
+5
+Funnels
+4 games
+2 thin
+2 unusable
+Reconstruct the join → first action → first reward → progression → second-loop sequence where the
+steps exist, split by device, platform, acquisition source and place version.
+A step's level is not a finding.
+A step sitting at 40% completion means nothing without a
+baseline it moved from — and on most of these games there is no baseline to move from. Funnels
+localise
+a churn detected elsewhere; they do not lead the diagnosis. Where a step does collapse,
+the chain is metric → feedback text → QA repro → Studio code, and the output is
+"phone players fail tutorial step 4 after build X", not "bounce got worse".
+6
+Common shock vs independent failure
+supported on reach
+weak on RFY
+Both alignments — calendar date, and days relative to each game's own peak — on weekday-and-trend
+residualised log reach. If several games lose residual reach on the same calendar dates while their own
+signals hold, platform or seasonality gains credibility. If declines line up better against each game's
+own lifecycle and are each preceded by that game's own deterioration, independent causes win.
+The pre/post-June arm runs on reach and behaviour, not on RFY, for the reason in constraint 01.
+7
+Prediction
+hypothesis generation only
+Leave-one-game-out, time-ordered, features frozen at J−1, logistic regression before anything with
+more capacity, compared against a "days since peak" baseline that will probably be hard to beat. Reported
+with false positives and negatives by name, and sensitivity to the pullback definition.
+With ~12 events this cannot establish that we have recovered anything about Roblox's ranking. If the
+model beats the baseline it is a hypothesis worth a prospective test on the next pullback, and that is
+the strongest claim available.
+8
+Intervention mapping
+supported
+Each recurring pattern gets an action, the metric that should move if we are right, the maturation-aware
+wait before judging it, and the result that would falsify it. The wait is set by the audit: D1 at +2 days,
+D2–7 at +8, D7 at +8, D30 at +31. Anything judged sooner is being judged on an immature cohort.
+9
+Today's five updates
+start immediately
+time-critical
+This runs first in wall-clock time, whatever the research schedule says.
+Monkey, Seal, Brainrot,
+Verity and Waterslide are shipping today; a pre-update baseline that is not frozen before exposure spreads
+cannot be reconstructed afterwards. Success and failure thresholds are written down before any post-update
+number is read, in
+baselines/
+, which already exists for exactly this.
+Held separately from the historical research, and read with interrupted-time-series and placebo cut
+dates rather than before/after — the naive test on Seal's last update returned −71% DAU at p = 0.002 and
+was wrong, because the same test fires on days when nothing shipped.
+J
+Agents
+Your structure, with the schema pinned so outputs stay comparable: every agent reads
+analysis/panel/
+, uses the J0 definition from Phase 1, and labels every claim
+confirmed
+strong
+suggestive
+weak
+unsupported
+unanswerable
+.
+I synthesise; I do not forward their conclusions unchecked.
+1 · auditor
+Repair the publish log (Phase 0), then own the schema, missingness map and June break
+2–4 · analysts
+Four games each, identical lifecycle + event-study output per game
+5 · cross-game
+Common shocks, alignment, leave-one-game-out, the predictive attempt
+6 · QA/product
+Funnel and retention anomalies → feedback text → repro → code evidence
+7 · skeptic
+Leakage, confounds, causal overreach; runs last and can veto a finding
+Splitting games 4/4/4 across agents 2–4 risks three incompatible house styles. They get a
+single output template and the same worked example — one game I do myself first — before any of them start.
+K
+What we do not have
+Home impressions before 2026-05-01
+The RFY series simply do not exist earlier. For Plane Training that is 457 of 542 game-days where we can see what happened but never what Roblox saw.
+Technical history before ~July 2026
+Aged out permanently. 8–551 blind days per game. Absence must never be read as health.
+Error message text
+Volumes by
+MessageHash
+exist on all 12; the hash→text lookup is async and the grabber does not poll it, so signatures have counts and no words.
+Competition and Discovery-side changes
+Roblox names these as reach factors alongside game changes. We observe none of them, which caps every common-shock conclusion at "consistent with".
+Funnels on the long-history games
+Poison Treats, Knife Farm, Climb Up Mountain and Don't Wake Police have none — a dev-side instrumentation ask, not a grab change.
+Country-level ARPDAU
+Country splits exist for reach and DAU but the revenue-by-country cut is not in the plan, so the market-mix explanation for ARPPU gaps stays untested.
+Panel built by
+analysis/panel.py
+, audit by
+analysis/audit.py
+, both committed. Gates at time of writing:
+verify 23 pass / 2 fail / 8 skip (documented), audit-plan 180 templates / 0 failures, tests 51 / 51.
+No modelling has been run.
