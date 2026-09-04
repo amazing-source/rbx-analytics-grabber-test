@@ -15,6 +15,39 @@ don't know yet". This skill is the method that keeps the difference visible.
 > receives — use the **`update-watch`** skill, and come back here when
 > something has actually moved.
 
+## 0a. Funnels + RFY are the diagnosis — open here, every time
+
+**Before the headline metrics.** DAU, revenue and reach tell you *that*
+something moved. The pair that tells you *what to do* is:
+
+- **Funnels — WHERE players churn.** `FunnelUserStepCompletionRate`,
+  `FunnelUserChurnRate`, `FunnelUserTotalCount`, broken down by `FunnelName` +
+  `FunnelStep`, **at `ONE_DAY`** (at `NONE` the gateway returns one aggregate and
+  "did this change on date D" becomes unanswerable). **Segment by `Platform`** —
+  a step that collapses on Phone but not Computer names both the defect and the
+  device, and is the most actionable shape available.
+- **RFY — WHAT ROBLOX SAW.** A funnel break visible in `RFYDuration0To60`
+  (first-play bounce) or `RFYD1Playtime` is one the recommender can rank on; one
+  that is not is a product problem with no distribution consequence. Different
+  reports, both worth writing.
+
+**NEVER claim a game lacks funnels — or any metric — without listing the files.**
+
+    ls data/games/<id>/metrics/Funnel*.csv
+
+Thirty seconds. On 2026-09-04 I twice told Ren the portfolio had no funnel
+instrumentation and that measuring new-player churn would need dev work. **Seven
+games had it**, some for weeks: Verity 36 steps, Brainrot 28, Seal 17,
+Waterslide 15 (`Tutorial_Main_1_StartSwim`, a textbook onboarding funnel),
+Banana Monkey 7, KameHameHa 5. I had read one grab report's "Discovered
+dimension values" line and generalised. **A wrong "we cannot measure this" is
+worse than a wrong number — it closes a line of enquiry instead of opening one.**
+
+Step names come from `displayValue`; bare integers (Moon Incremental) make a
+funnel much weaker than a shorter named one. Funnel names are developer-defined
+and per-universe — never carry one game's to another (F19). RFY series reach
+back only ~125 days (2026-05-01 on every game), so grab often.
+
 ## 0. Earn the right to quote a number
 
 Do this before any analysis. It takes a minute and it has already caught a

@@ -130,6 +130,45 @@ Dropped Shoot a Brainrot (8220738785): reachable, but no metrics permission.
 (`WorldProgress`, `AscensionProgress`, 15 steps) — the one place "where do new
 players give up" is measurable rather than inferred.
 
+## 2026-09-04 — "only one game has funnels" — wrong, and backwards
+
+**Claimed:** Moon Incremental (7888930431) is the only game in the portfolio
+with real funnel instrumentation, so "where do new players give up" is
+unanswerable elsewhere and would need a dev to add `LogOnboardingFunnelStepEvent`.
+
+**RETRACTED the same evening, by Ren.** Seven games carry funnel data:
+
+| game | steps | step names |
+|---|---|---|
+| Verity | 36 | `1 Minute`, `10 Minutes`, `1 Sent`, `10 Sent` |
+| Become a Brainrot | 28 | `BaseUpgrade1..12`, `PlayerProgression` |
+| Moon Incremental | 21 | `11`, `12`, `13` — **bare integers** |
+| Seal A Driveway | 17 | `Airport`, `DrivewaySealed`, `EstateDistrict` |
+| Waterslide | 15 | `Tutorial_Main_1_StartSwim`, `_10_BuyEgg`, `_11_OpenPetBag` |
+| +1 Banana Monkey | 7 | `Collected a Banana`, `Completed Tutorial (Part 1-3)` |
+| KameHameHa | 5 | `Cross Starting Line`, `Grab First Brainrot` |
+
+Moon Incremental is in fact the **worst** of the seven — the only one whose
+steps are unnamed integers. Waterslide's `Tutorial_Main_*` is a textbook
+onboarding funnel.
+
+**Cause: failure mode 1, generalised from a single observation.** I read the
+"Discovered dimension values" line of ONE grab report, saw funnel names in it,
+and concluded the others had none — without opening a second report or listing
+`metrics/Funnel*.csv`, which takes thirty seconds and is what settled it.
+
+**Why it mattered:** it inverted the main recommendation. I told Ren the research
+brief's central gap — "nothing we grab can locate where a new player gives up" —
+was real and needed dev work. It is already answerable on six games with data
+we have been pulling for weeks. **A wrong "we cannot measure this" is more
+expensive than a wrong number: it closes a line of enquiry instead of opening
+one.** Before declaring anything unmeasurable, list the files.
+
+**Also corrected by Ren the same evening:** the portfolio is 12 games, not 10 —
+`7364907416` Plane Training (52.7M visits, third largest) and `8669915245`
+Don't Wake The Police (6.8M) were both missing, and I had reported the list as
+complete after checking only the groups whose names matched my filters.
+
 ## Recurring failure modes, and the control that catches each
 
 | # | Failure mode | Where it has bitten | The control |
