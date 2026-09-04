@@ -48,6 +48,41 @@ funnel much weaker than a shorter named one. Funnel names are developer-defined
 and per-universe — never carry one game's to another (F19). RFY series reach
 back only ~125 days (2026-05-01 on every game), so grab often.
 
+## 0b. Platform questions: within-platform delta + feedback text, never levels
+
+**Never compare a metric's LEVEL across platforms.** Players self-select onto a
+device, so Computer and Mobile populations differ before your game does anything
+— comparing their session lengths is the same error as comparing benchmark
+percentiles across games ([[never-compare-benchmark-percentiles-across-games]]).
+
+Measured 2026-09-04 on Seal A Driveway (10638354731), where Ren reported the
+game was near-unplayable for Computer players:
+
+| instrument | says |
+|---|---|
+| cross-platform LEVELS | Computer has the **longest** sessions (19.9 vs 14.4 min) and the best D1 — "Computer is fine" |
+| within-platform DELTA vs its own baseline | Computer −3.5% D1, Mobile −5.1% — "Computer is fine, slightly better than mobile" |
+| **feedback text by device** | **Computer 7/14 (50%) mention lag/fps/freeze/crash; Mobile 2/22 (9%)** — a 5.5x concentration |
+
+All three are correct measurements. The first two are the wrong instrument.
+
+**The mechanism is survivorship.** Players a performance problem drives away stop
+appearing in per-player averages — the defect removes its own victims from the
+denominator. So a real platform defect can leave engagement metrics *looking
+better* on the affected platform, because only the tolerant players remain.
+
+**The procedure:**
+1. Group `Phone` + `Tablet` as **Mobile** — they are one platform class and
+   splitting them halves your n for no gain.
+2. Compare each platform against **its own earlier baseline**, never against
+   another platform.
+3. Cross-check `feedback.csv` `comment` text grouped by the `device` column.
+   Performance language (`lag|fps|frame|freez|stutter|crash|glitch|unplayable`)
+   concentrated on one device is the finding the metrics cannot show.
+4. Report the churn cost as **unmeasurable**, not zero. You can establish that a
+   platform-specific defect exists; you cannot size it from retained players.
+5. Feedback n is usually small (14 rows carried the Seal finding). Say the n.
+
 ## 0. Earn the right to quote a number
 
 Do this before any analysis. It takes a minute and it has already caught a
