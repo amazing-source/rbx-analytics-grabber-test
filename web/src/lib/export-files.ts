@@ -1143,6 +1143,15 @@ function grabReportMd(r: GrabReport): string {
   const agedOut = (a: GrabAttempt) =>
     a.status === 400 && technical(a) && shapeWorked.has(shapeKey(a));
 
+  // A grab against a game whose analytics you cannot see answers 403 to almost
+  // everything. Measured 2026-09-03: Flip A Coin 368/380 and Shoot a Brainrot
+  // 247/260 — both games the operator can SEE (they list under their group) but
+  // has no analytics permission for. Filed as "real problems" this reads as a
+  // broken grabber, and filed as empty results it would read as a game with no
+  // players. It is neither: it is a wall, and the fix is access, not code.
+  const total403 = failed.filter((a) => a.status === 403).length;
+  const noPermission = total403 >= 20 && total403 / Math.max(1, failed.length) > 0.8;
+
   const failedAged = failed.filter(agedOut);
   const stillFailed = failed.filter((a) => !agedOut(a));
   const failedReal = stillFailed.filter((a) => a.provenance === "observed" || a.provenance === "proven");
@@ -1165,9 +1174,24 @@ function grabReportMd(r: GrabReport): string {
   out.push(
     `- Requested ${r.requested} · **${ok.length} returned data** · ${empty.length} empty · ` +
       `${failed.length} failed — of which ${failedAged.length} aged out (data Roblox no longer stores) ` +
-      `and **${failedReal.length} on observed/proven shapes (look here first)**`
+      `and **${failedReal.length} on observed/proven shapes (look here first)**` +
+      (noPermission ? ` · **NO ANALYTICS PERMISSION — ${total403} of ${failed.length} are 403; this universe was not measured**` : "")
   );
   out.push("");
+
+  if (noPermission) {
+    out.push("## No analytics permission for this universe");
+    out.push("");
+    out.push(
+      `**${total403} of ${failed.length} requests answered HTTP 403.** That is a ` +
+        `permissions wall, not a defect and not a finding about the game. Being able ` +
+        `to see an experience (it lists under a group you belong to) is not the same ` +
+        `as being granted its analytics. **Nothing below should be read as evidence ` +
+        `about this game** — it has not been measured at all. The fix is access, not ` +
+        `code: ask the group owner for the analytics permission, then re-grab.`
+    );
+    out.push("");
+  }
 
   if (failedAged.length) {
     const metrics = [...new Set(failedAged.map((a) => a.metric ?? "—"))].sort();

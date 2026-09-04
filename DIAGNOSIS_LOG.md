@@ -79,6 +79,57 @@ all-time peak.
 
 ---
 
+## 2026-09-03 (later) — tooling, and four bugs of my own
+
+Not diagnoses, but they belong in the same ledger because the same failure modes
+produced them.
+
+**Landed:** the horizon clamp (technical rung asked only over the ~30d/~56d
+Roblox actually retains — a 976-day window went 2,438 -> 230 requests with zero
+data lost); an "aged out" bucket in the grab report (10192528661 went from
+12,382 rows filed as "real problems" to 30); **F19**, learned templates carrying
+other games' dimension values (910 of 1,000 rows; 314 empty-200 funnel requests
+under 14 foreign funnel names); and a Playwright driver so grabs run from the
+CLI.
+
+**Four bugs of mine, in one feature:**
+
+1. **Wrong message type** — sent `collector-cmd`, the receiver listens for
+   `collector:cmd`. The hyphen form is the *next hop*. Unknown types fall
+   through to `else return`, so the call resolved `undefined` instantly and the
+   grab never started. **Failure mode 4** (I read a function name instead of the
+   dispatcher) and the root cause of an hour of wrong-tree debugging.
+2. **`--lifetime` hardcoded to 2021-01-01** on a game created 2026-02-19. The
+   gateway 400s an over-wide ask, so DAU took 15 x 400 and landed 44 days of a
+   161-day span. The flag was destroying the data it existed to collect. Now
+   resolves the real creation date.
+3. **Probed `__RBX_COLLECTOR_LOADED__`** from `page.evaluate` — it lives in the
+   ISOLATED world and can never be visible there, so a working extension always
+   reported as broken.
+4. **Treated `{ok:false}` as "still running"**, so a refused grab looked
+   identical to a slow one.
+
+**The pattern worth keeping:** three of the four were bugs in my own
+*instrumentation*, and I kept adding guards around a message that was never
+being handled. Ren's words: *"You've found so many bugs so far but they haven't
+fixed anything."* Correct. **Before adding a guard, confirm the thing you are
+guarding is on the path at all** — one read of the receiver's dispatcher would
+have ended it immediately.
+
+**Also corrected:** `CLAUDE.md` said Supabase was a placeholder with no project
+behind it and that DB failures were "the steady state". It is live with 1,000
+rows — and believing it was dead is exactly why nobody looked at the unscoped
+shared table behind F19. Same file wrongly called 10192528661 a "test universe";
+it is a portfolio game.
+
+**Portfolio corrected:** the tool held 8 games; Ren's actual list is 11.
+Newly added — **Poison Treats (8507699752, 114M visits, the largest title and we
+had nothing)**, Moon Incremental (7888930431) and Flip A Coin (9537928732).
+Dropped Shoot a Brainrot (8220738785): reachable, but no metrics permission.
+**Moon Incremental is the only game with real funnel instrumentation**
+(`WorldProgress`, `AscensionProgress`, 15 steps) — the one place "where do new
+players give up" is measurable rather than inferred.
+
 ## Recurring failure modes, and the control that catches each
 
 | # | Failure mode | Where it has bitten | The control |

@@ -27,7 +27,8 @@
     "grab:login": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/grab-login.ts",
     "chunk-cost": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/chunk-cost.ts",
     "rebuild-report": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/rebuild-report.ts",
-    "grab:doctor": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/grab-doctor.ts"
+    "grab:doctor": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/grab-doctor.ts",
+    "find-games": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/find-games.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
