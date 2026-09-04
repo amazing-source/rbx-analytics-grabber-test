@@ -42,3 +42,25 @@ quietly move it.
 | Universe | Game | Update | Baseline | Follow-up due |
 |---|---|---|---|---|
 | 10030829154 | Waterslide | v1705 (probable), 2026-08-21 | [10030829154-2026-08-21-waterslide.md](10030829154-2026-08-21-waterslide.md) | 2026-08-22 |
+| 10399712766 | +1 Banana Monkey | 2026-09-04 (grab 1, pre-publish) | [10399712766-2026-09-04-banana.md](10399712766-2026-09-04-banana.md) | 2026-09-05, D1 on 09-06 |
+| 10638354731 | Seal A Driveway | 2026-09-04 (grab 1, pre-publish) | [10638354731-2026-09-04-seal.md](10638354731-2026-09-04-seal.md) | 2026-09-05, D1 on 09-06 |
+| 9963622286 | Become a Brainrot | v608, 2026-09-04 12:17Z (grab 2) | [9963622286-2026-09-04-brainrot.md](9963622286-2026-09-04-brainrot.md) | 2026-09-05, D1 on 09-06 |
+| 10565445771 | Verity Companion | 2026-09-04 (grab 1, pre-publish) | [10565445771-2026-09-04-verity.md](10565445771-2026-09-04-verity.md) | 2026-09-05, D1 on 09-06 |
+| 10030829154 | Climb Waterslide | 2026-09-04 (grab 1, pre-publish) | [10030829154-2026-09-04-waterslide.md](10030829154-2026-09-04-waterslide.md) | 2026-09-05, D1 on 09-06 |
+
+## The 2026-09-04 set
+
+Five games updating the same day. Baseline day is **2026-09-03**, the last fully
+settled day and pre-update on all five. Four are genuine grab 1 (pre-publish);
+Brainrot had already shipped v608 at 12:17Z, so its file is grab 2 and says so.
+
+Each metric carries its **position within that game's own full history**, not
+just a 7-day mean — a value cannot be called abnormal without knowing what the
+game normally does. Several were already extreme before the update: Seal's
+first-play bounce sits at the 89th percentile of its own record and its
+`EndToEndCVR` at its all-time low, both pre-existing and not attributable to
+whatever ships today.
+
+**Cross-game controls are unavailable today.** All five candidate controls are
+themselves being treated, so a "the others didn't move" argument is not
+available for this cohort.
