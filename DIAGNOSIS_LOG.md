@@ -215,6 +215,44 @@ and it would have failed immediately.
 the exact test you ran before concluding they were wrong. Mine was one sentence
 away from being visibly inadequate.
 
+## 2026-09-04 — "Banana Monkey's funnel died on 18 July" — RETRACTED by Ren
+
+**Claimed:** `Sold Bananas` and `Completed Tutorial (Part 1/2/3)` read exactly
+0.0000 for 46 consecutive days while the preceding step kept reporting 95-100%,
+therefore the events stopped firing on 2026-07-18 and the studio has been blind
+to its own tutorial completion since July.
+
+**Wrong.** Ren: *"for monkey youre hallucinating, the funnels are only joined
+punched collected a banana."* Density check:
+
+| step | non-zero days |
+|---|---|
+| Joined / Punched / Collected a Banana | **54 of 54** |
+| Sold Bananas | 7 of 54 |
+| Completed Tutorial (Part 1 / 2 / 3) | 7 / 7 / 6 of 54 |
+
+Those four were **never a working funnel** — 6-7 days of data out of 54, at the
+very start of the series. Not "healthy then broken", which is what my sentence
+implied and what makes it a defect claim rather than a coverage note.
+
+**Cause: I read ONE number and built a story on it.** I printed `last non-zero =
+2026-07-18` and interpreted it as a break date, without ever asking how many
+non-zero days there were in total. The line above it in my own output would have
+answered it.
+
+**Control, now in `analysis/phase5.py`:** a density guard. A step must fire on
+>=50% of observed days to enter the comparison at all; anything sparser is
+listed separately as *never-populated*, explicitly because it has no baseline to
+have moved from. This is the same rule Ren gave earlier — a level is not a
+finding without a baseline — applied to the step's existence rather than its value.
+
+**What is actually true, and it still matters:** Banana Monkey instruments
+`Joined -> Punched -> Collected a Banana` and nothing after. That is roughly the
+first thirty seconds. Its D2-7 play-days fell 35% alongside the reach pullback,
+and **the instrumentation cannot locate where that loss happens** — the funnel
+ends long before the players do. That is a real gap, and it is the honest
+version of what I said: not a broken funnel, a short one.
+
 ## Recurring failure modes, and the control that catches each
 
 | # | Failure mode | Where it has bitten | The control |

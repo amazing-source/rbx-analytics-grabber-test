@@ -36,11 +36,22 @@ for (game, fname), steps in sorted(rows.items()):
         continue
     split = len(alldates) // 2
     base_w, late_w = alldates[:split], alldates[split:]
-    out = []
+    out, sparse = [], []
     for step, series in steps.items():
         b = [series[d] for d in base_w if d in series]
         a = [series[d] for d in late_w if d in series]
         if len(b) < 5 or len(a) < 5:
+            continue
+        # DENSITY GUARD. A step populated on only a handful of days is not a
+        # funnel step that broke — it is a step that never worked, or was
+        # defined and dropped. Reading its last non-zero date as a break date
+        # produced a false "the funnel died on 18 July" finding on Banana
+        # Monkey, whose real funnel is three steps and whose other four had 7
+        # non-zero days out of 53. Require a step to fire on most days before
+        # it is allowed into the comparison.
+        nz = sum(1 for v in series.values() if v > 0)
+        if nz < 0.5 * len(alldates):
+            sparse.append((step, nz, len(alldates)))
             continue
         mb, ma = statistics.mean(b), statistics.mean(a)
         sd = statistics.pstdev(b) or 1e-9
@@ -67,4 +78,9 @@ for (game, fname), steps in sorted(rows.items()):
     if wi is not None:
         print(f"   >> biggest single drop: {out[wi-1][3][:30]} -> {out[wi][3][:30]}"
               f"  ({100*worst:+.1f}% of the cohort)")
+    if sparse:
+        print("   excluded as never-populated (fired on <50% of days, so no baseline "
+              "to move from):")
+        for step, nz, tot in sparse:
+            print(f"      {step[:40]:42s} {nz} non-zero days of {tot}")
     print()
