@@ -39,7 +39,9 @@ GAMES = {
 
 home = collections.defaultdict(dict)
 for r in csv.DictReader(open(os.path.join(OUT, "by_source.csv"), encoding="utf-8")):
-    if r["metric"] == "UniqueUsersWithImpressions" and r["source"] == "HomeRecommendation":
+    if (r["metric"] == "UniqueUsersWithImpressions"
+            and r["source"] == "HomeRecommendation"
+            and not r.get("filters")):
         v = float(r["value"])
         if v > 0:
             home[r["universe"]][r["date"]] = v

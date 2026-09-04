@@ -40,14 +40,26 @@ GAMES = {
 }
 
 def parse_series(s):
-    """-> (breakdown_dim, breakdown_value, filters_string)"""
+    """-> (breakdown_dim, breakdown_value, filters_string)
+
+    A series name is `[<Dim>: <value>][ · <filters>]`. The trap: a series whose
+    name is ONLY a filter — `IsNewUser=Returning`, `AcquisitionSource=Home…` —
+    has no " · " at all, so splitting on it puts the filter in `headpart` and
+    leaves `filt` empty. The earlier version then short-circuited on `not filt`
+    and declared a population slice to be the headline total. Because the daily
+    table is last-write-wins, that made DailyActiveUsers the IsNewUser=Returning
+    slice on every game-day. Anything with `=` and no `: ` is a filter.
+    """
     s = s or ""
-    filt = s.split(" · ", 1)[1] if " · " in s else ""
-    headpart = s.split(" · ", 1)[0]
-    if headpart == "Total" or not headpart:
-        return (None, None, filt)
-    m = re.match(r"^([A-Za-z0-9]+): (.*)$", headpart)
-    return (m.group(1), m.group(2), filt) if m else (None, None, filt)
+    parts = s.split(" · ")
+    head, rest = parts[0], " · ".join(parts[1:])
+    if head == "Total" or not head:
+        return (None, None, rest)
+    m = re.match(r"^([A-Za-z0-9]+): (.*)$", head)
+    if m:
+        return (m.group(1), m.group(2), rest)
+    # No "Dim: value" — the head is itself a filter expression.
+    return (None, None, " · ".join(p for p in (head, rest) if p))
 
 def is_headline(dim, filt):
     """Empty breakdown, and no POPULATION filter. Place-scoping is still total."""
@@ -92,9 +104,13 @@ for uid, name in GAMES.items():
                     if r.get("status") == "FILLED_ZERO":
                         flags[(uid, d)].add(metric)
                 elif dim == "AcquisitionSource":
-                    by_source.append((uid, name, d, dval, metric, val))
+                    # `filt` MUST travel: `AcquisitionSource: HomeRecommendation`
+                    # and the same broken down under `IsNewUser=New` are different
+                    # series, and without the filter column they collide on
+                    # (game, date, source, metric) and silently double the rows.
+                    by_source.append((uid, name, d, dval, filt, metric, val))
                 elif dim == "Platform":
-                    by_platform.append((uid, name, d, dval, metric, val))
+                    by_platform.append((uid, name, d, dval, filt, metric, val))
                 elif dim in ("FunnelStep", "FunnelName"):
                     fn = re.search(r"FunnelName=([^,]+)", filt)
                     funnel.append((uid, name, d, fn.group(1) if fn else "", dval or "", metric, val))
@@ -113,8 +129,8 @@ def dump(path, header, data):
     with open(os.path.join(OUT, path), "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh); w.writerow(header); w.writerows(data)
 
-dump("by_source.csv", ["universe","game","date","source","metric","value"], by_source)
-dump("by_platform.csv", ["universe","game","date","platform","metric","value"], by_platform)
+dump("by_source.csv", ["universe","game","date","source","filters","metric","value"], by_source)
+dump("by_platform.csv", ["universe","game","date","platform","filters","metric","value"], by_platform)
 dump("funnel.csv", ["universe","game","date","funnel","step","metric","value"], funnel)
 
 cov = []

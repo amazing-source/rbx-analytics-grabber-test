@@ -169,6 +169,52 @@ one.** Before declaring anything unmeasurable, list the files.
 Don't Wake The Police (6.8M) were both missing, and I had reported the list as
 complete after checking only the groups whose names matched my filters.
 
+## 2026-09-04 (late) — the skeptic found a real defect in my panel
+
+**RETRACTED: the entire 12-game panel, and both conclusions built on it.**
+
+`is_headline()` in `analysis/panel.py` declared six FILTER-ONLY series to be the
+unbroken-down total: `IsNewUser=New`, `IsNewUser=Returning`, and three
+`AcquisitionSource=…` variants. The mechanism: `parse_series` only populated
+`filt` when the series string contained `" · "`, so a series whose entire name
+*is* a filter landed in `headpart`, failed the `Dim: value` regex, and returned
+an empty `filt` — which `is_headline` then short-circuited to `True`.
+
+Because the daily table is last-write-wins, **`DailyActiveUsers` was the
+`IsNewUser=Returning` slice on every game-day of all 12 games** — 17.6% to 54.5%
+of true DAU. Brainrot 2026-08-20: true 162,717, panel said 129,987. 8.00% of
+aggregate cells were written by a population slice. The same class of error hit
+`by_source.csv`, so **the Home-reach series defining every J0 was the new-user
+slice**.
+
+**What it changed once fixed:**
+- Brainrot 4 pullback events -> **1**. The "3 of 4 FRAGILE" I reported was the
+  artefact, not a stepped decline.
+- Poison Treats 1 -> **3**, two of them inside its own Track A outcome window.
+- Pre-RFY event set 6 -> 8; every event now fires at 9/9 settings, not 8/9.
+- **Track A's negative does not survive.** Real 2.25 LEADS/window against a
+  placebo of 1.12. The skeptic's fairer placebo — random cut dates >=30 days
+  from any detected pullback, rather than my +/-60/90 offsets which sat *inside*
+  the decline — gives 2.00 vs 0.98, Fisher p = 0.022. The honest label is
+  **underpowered and inconclusive**, not "nothing leads".
+- **"DAU was rising before three of six pullbacks" (z +2.2/+2.1/+3.1) is
+  withdrawn.** That was the Returning slice; on true DAU it is +0.9/+1.3/+1.6,
+  and residualised on log Home reach it is -0.0/-0.1/+0.5.
+- Phase 6 survives: calendar +0.028 vs lifecycle +0.266, p = 0.045.
+
+**Why I did not catch it.** I *did* test the panel when an agent flagged it —
+and my test was wrong. I checked whether more than one series passes
+`is_headline()` per metric FILE. The collision is per game-metric-DAY, so a file
+with exactly one passing series per day but the *wrong* one looks clean. I
+reported "0 metrics affected" and moved on. **Failure mode 4: a test built so it
+could only return the answer I expected.** The right test compares the panel's
+value against the raw `Total` row for the same game, metric and date — one line,
+and it would have failed immediately.
+
+**Standing rule now:** when someone reports a defect you cannot reproduce, state
+the exact test you ran before concluding they were wrong. Mine was one sentence
+away from being visibly inadequate.
+
 ## Recurring failure modes, and the control that catches each
 
 | # | Failure mode | Where it has bitten | The control |

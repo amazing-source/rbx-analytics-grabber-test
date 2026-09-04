@@ -75,76 +75,75 @@ universe,game,metric,first,last,n_days
 9963622286,Become a Brainrot,Attribution7DRobuxPerUser,2026-03-24,2026-08-27,157
 9963622286,Become a Brainrot,AttributionD1RetentionRatio,2026-03-29,2026-09-01,157
 9963622286,Become a Brainrot,AttributionD7RetentionRatio,2026-03-23,2026-08-26,157
-9963622286,Become a Brainrot,AveragePlayTimeMinutesPerDAU,2026-03-30,2026-09-02,157
-9963622286,Become a Brainrot,AverageRevenuePerPayingUser,2026-03-31,2026-09-02,156
-9963622286,Become a Brainrot,AverageRevenuePerUser,2026-03-30,2026-09-02,157
-9963622286,Become a Brainrot,AverageSessionLengthMinutes,2026-03-30,2026-09-02,157
-9963622286,Become a Brainrot,ClientCpuTimeAvg,2026-07-11,2026-09-02,54
-9963622286,Become a Brainrot,ClientCrashCount,2026-07-11,2026-09-02,54
-9963622286,Become a Brainrot,ClientCrashRate15m,2026-07-11,2026-09-02,54
-9963622286,Become a Brainrot,ClientFpsAvg,2026-07-11,2026-09-02,54
-9963622286,Become a Brainrot,ClientFpsP10,2026-07-11,2026-09-02,54
-9963622286,Become a Brainrot,ClientMemoryUsageAvg,2026-07-11,2026-09-02,54
-9963622286,Become a Brainrot,ClientMemoryUsagePercentageAvg,2026-07-11,2026-09-02,54
-9963622286,Become a Brainrot,CpuCoreUtilization,2026-07-11,2026-09-02,54
-9963622286,Become a Brainrot,CpuTimeAvg,2026-07-11,2026-09-02,54
+9963622286,Become a Brainrot,AveragePlayTimeMinutesPerDAU,2026-03-30,2026-09-03,158
+9963622286,Become a Brainrot,AverageRevenuePerPayingUser,2026-03-31,2026-09-03,157
+9963622286,Become a Brainrot,AverageRevenuePerUser,2026-03-30,2026-09-03,158
+9963622286,Become a Brainrot,AverageSessionLengthMinutes,2026-03-30,2026-09-03,158
+9963622286,Become a Brainrot,ClientCpuTimeAvg,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,ClientCrashCount,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,ClientCrashRate15m,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,ClientFpsAvg,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,ClientFpsP10,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,ClientMemoryUsageAvg,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,ClientMemoryUsagePercentageAvg,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,CpuCoreUtilization,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,CpuTimeAvg,2026-07-11,2026-09-03,55
 9963622286,Become a Brainrot,D1Retention,2026-07-21,2026-09-01,43
-9963622286,Become a Brainrot,DailyActiveUsers,2026-03-22,2026-09-02,165
-9963622286,Become a Brainrot,DailyRevenue,2026-03-22,2026-09-02,165
-9963622286,Become a Brainrot,DauMauStickiness,2026-03-30,2026-09-02,157
-9963622286,Become a Brainrot,EndToEndCVR,2026-03-30,2026-09-01,156
-9963622286,Become a Brainrot,ErrorCount,2026-06-15,2026-09-02,80
+9963622286,Become a Brainrot,DailyActiveUsers,2026-03-22,2026-09-03,166
+9963622286,Become a Brainrot,DailyRevenue,2026-03-22,2026-09-03,166
+9963622286,Become a Brainrot,DauMauStickiness,2026-03-30,2026-09-03,158
+9963622286,Become a Brainrot,EndToEndCVR,2026-03-30,2026-09-02,157
+9963622286,Become a Brainrot,ErrorCount,2026-06-15,2026-09-03,81
 9963622286,Become a Brainrot,EventAvgDailyActiveUsers,2026-03-22,2026-09-02,165
 9963622286,Become a Brainrot,EventAvgDailyRevenue,2026-03-22,2026-09-02,165
 9963622286,Become a Brainrot,EventAvgDailyUserPlaytimeMinutes,2026-04-18,2026-09-02,138
 9963622286,Become a Brainrot,EventAvgRevenuePerDailyActiveUser,2026-04-18,2026-09-02,138
-9963622286,Become a Brainrot,ForwardD1Retention,2026-03-29,2026-09-01,157
+9963622286,Become a Brainrot,ForwardD1Retention,2026-03-29,2026-09-02,158
 9963622286,Become a Brainrot,ForwardD30Retention,2026-03-22,2026-08-03,135
 9963622286,Become a Brainrot,ForwardD7Retention,2026-03-23,2026-08-26,157
 9963622286,Become a Brainrot,L7AverageDailyActiveUsers,2026-03-22,2026-08-29,161
 9963622286,Become a Brainrot,L7AverageDailyRevenue,2026-03-22,2026-08-29,161
 9963622286,Become a Brainrot,L7AverageForwardD1Retention,2026-03-29,2026-08-28,153
 9963622286,Become a Brainrot,L7AveragePlayTimeMinutesPerDAU,2026-03-30,2026-08-29,153
-9963622286,Become a Brainrot,L7AverageUniqueUsersWithPlaySessions,2026-07-21,2026-08-29,40
-9963622286,Become a Brainrot,MemoryUsageAvg,2026-07-11,2026-09-02,54
-9963622286,Become a Brainrot,MonthlyActiveUsers,2026-03-22,2026-09-02,165
-9963622286,Become a Brainrot,OomUnexpectedExits,2026-07-11,2026-09-02,54
-9963622286,Become a Brainrot,PayingUsers,2026-03-22,2026-09-02,165
-9963622286,Become a Brainrot,PayingUsersCVR,2026-03-30,2026-09-02,157
-9963622286,Become a Brainrot,PeakConcurrentPlayers,2026-07-11,2026-09-02,54
-9963622286,Become a Brainrot,PlayerFeedbackVotesCount,2026-03-22,2026-09-02,165
-9963622286,Become a Brainrot,RFYD1CoplayDays,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD1Playtime,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD1QualifiedPlaySessions,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD1RobuxSpend,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD1SpendDay,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD2To7CoplayDays,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD2To7PlayDays,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD2To7Playtime,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD2To7QualifiedPlaySessions,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD2To7RobuxSpend,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD2To7SpendDays,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD8To28CoplayDays,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD8To28PlayDays,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD8To28Playtime,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD8To28QualifiedPlaySessions,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD8To28RobuxSpend,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYD8To28SpendDays,2026-03-29,2026-09-02,158
-9963622286,Become a Brainrot,RFYDuration0To60,2026-05-01,2026-09-02,125
-9963622286,Become a Brainrot,RFYDuration61To180,2026-05-01,2026-09-02,125
-9963622286,Become a Brainrot,RFYL7PlayDays,2026-04-03,2026-09-02,148
-9963622286,Become a Brainrot,RFYPlayThroughRate,2026-05-01,2026-09-02,125
-9963622286,Become a Brainrot,RFYQualifiedPTR,2026-04-03,2026-09-02,153
-9963622286,Become a Brainrot,RFYUniqueNotInterestedUsersPerMillionImpressions,2026-04-03,2026-09-02,153
+9963622286,Become a Brainrot,MemoryUsageAvg,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,MonthlyActiveUsers,2026-03-22,2026-09-03,166
+9963622286,Become a Brainrot,OomUnexpectedExits,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,PayingUsers,2026-03-22,2026-09-03,166
+9963622286,Become a Brainrot,PayingUsersCVR,2026-03-30,2026-09-03,158
+9963622286,Become a Brainrot,PeakConcurrentPlayers,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,PlayerFeedbackVotesCount,2026-03-22,2026-09-03,166
+9963622286,Become a Brainrot,RFYD1CoplayDays,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD1Playtime,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD1QualifiedPlaySessions,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD1RobuxSpend,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD1SpendDay,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD2To7CoplayDays,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD2To7PlayDays,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD2To7Playtime,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD2To7QualifiedPlaySessions,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD2To7RobuxSpend,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD2To7SpendDays,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD8To28CoplayDays,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD8To28PlayDays,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD8To28Playtime,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD8To28QualifiedPlaySessions,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD8To28RobuxSpend,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYD8To28SpendDays,2026-03-29,2026-09-03,159
+9963622286,Become a Brainrot,RFYDuration0To60,2026-05-01,2026-09-03,126
+9963622286,Become a Brainrot,RFYDuration61To180,2026-05-01,2026-09-03,126
+9963622286,Become a Brainrot,RFYL7PlayDays,2026-04-03,2026-09-03,149
+9963622286,Become a Brainrot,RFYPlayThroughRate,2026-05-01,2026-09-03,126
+9963622286,Become a Brainrot,RFYQualifiedPTR,2026-04-03,2026-09-03,154
+9963622286,Become a Brainrot,RFYUniqueNotInterestedUsersPerMillionImpressions,2026-04-03,2026-09-03,154
 9963622286,Become a Brainrot,RSVPCount,2026-03-22,2026-09-02,165
-9963622286,Become a Brainrot,ServerCrashCount,2026-07-11,2026-09-01,53
-9963622286,Become a Brainrot,ServerFrameRateP10,2026-07-11,2026-09-02,54
-9963622286,Become a Brainrot,SessionDurationSecondsAvg,2026-07-11,2026-09-02,54
-9963622286,Become a Brainrot,TotalPlayTimeHours,2026-03-30,2026-09-02,157
-9963622286,Become a Brainrot,UniqueUsersWithImpressions,2026-03-22,2026-09-01,164
-9963622286,Become a Brainrot,UniqueUsersWithPlaySessions,2026-03-22,2026-09-01,164
+9963622286,Become a Brainrot,ServerCrashCount,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,ServerFrameRateP10,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,SessionDurationSecondsAvg,2026-07-11,2026-09-03,55
+9963622286,Become a Brainrot,TotalPlayTimeHours,2026-03-30,2026-09-03,158
+9963622286,Become a Brainrot,UniqueUsersWithImpressions,2026-03-22,2026-09-02,165
+9963622286,Become a Brainrot,UniqueUsersWithPlaySessions,2026-03-22,2026-09-02,165
 9963622286,Become a Brainrot,UsersJoinedFromNotifications,2026-03-22,2026-09-02,165
-9963622286,Become a Brainrot,Visits,2026-03-22,2026-09-02,165
+9963622286,Become a Brainrot,Visits,2026-03-22,2026-09-03,166
 9610561918,My Knife Farm,Attribution30DRobuxPerUser,2026-01-26,2026-08-04,183
 9610561918,My Knife Farm,Attribution7DPayerConversionRatio,2026-01-24,2026-08-27,187
 9610561918,My Knife Farm,Attribution7DPlaytimePerUserInMinutes,2026-01-24,2026-08-27,187
@@ -293,101 +292,100 @@ universe,game,metric,first,last,n_days
 10030829154,Climb Waterslide,Attribution7DRobuxPerUser,2026-04-18,2026-08-27,130
 10030829154,Climb Waterslide,AttributionD1RetentionRatio,2026-04-23,2026-09-01,130
 10030829154,Climb Waterslide,AttributionD7RetentionRatio,2026-04-17,2026-08-26,130
-10030829154,Climb Waterslide,AveragePlayTimeMinutesPerDAU,2026-04-24,2026-09-02,129
-10030829154,Climb Waterslide,AverageRevenuePerPayingUser,2026-04-29,2026-09-02,123
-10030829154,Climb Waterslide,AverageRevenuePerUser,2026-04-24,2026-09-02,129
-10030829154,Climb Waterslide,AverageSessionLengthMinutes,2026-04-24,2026-09-02,129
-10030829154,Climb Waterslide,ClientCpuTimeAvg,2026-07-24,2026-09-02,41
-10030829154,Climb Waterslide,ClientCrashCount,2026-07-22,2026-09-02,43
-10030829154,Climb Waterslide,ClientCrashRate15m,2026-07-22,2026-09-02,43
-10030829154,Climb Waterslide,ClientFpsAvg,2026-07-24,2026-09-02,41
-10030829154,Climb Waterslide,ClientFpsP10,2026-07-24,2026-09-02,41
-10030829154,Climb Waterslide,ClientMemoryUsageAvg,2026-07-24,2026-09-02,41
-10030829154,Climb Waterslide,ClientMemoryUsagePercentageAvg,2026-07-24,2026-09-02,41
-10030829154,Climb Waterslide,CpuCoreUtilization,2026-07-24,2026-09-02,41
-10030829154,Climb Waterslide,CpuTimeAvg,2026-07-24,2026-09-02,41
+10030829154,Climb Waterslide,AveragePlayTimeMinutesPerDAU,2026-04-24,2026-09-03,130
+10030829154,Climb Waterslide,AverageRevenuePerPayingUser,2026-04-29,2026-09-03,124
+10030829154,Climb Waterslide,AverageRevenuePerUser,2026-04-24,2026-09-03,130
+10030829154,Climb Waterslide,AverageSessionLengthMinutes,2026-04-24,2026-09-03,130
+10030829154,Climb Waterslide,ClientCpuTimeAvg,2026-07-24,2026-09-03,42
+10030829154,Climb Waterslide,ClientCrashCount,2026-07-22,2026-09-03,44
+10030829154,Climb Waterslide,ClientCrashRate15m,2026-07-22,2026-09-03,44
+10030829154,Climb Waterslide,ClientFpsAvg,2026-07-24,2026-09-03,42
+10030829154,Climb Waterslide,ClientFpsP10,2026-07-24,2026-09-03,42
+10030829154,Climb Waterslide,ClientMemoryUsageAvg,2026-07-24,2026-09-03,42
+10030829154,Climb Waterslide,ClientMemoryUsagePercentageAvg,2026-07-24,2026-09-03,42
+10030829154,Climb Waterslide,CpuCoreUtilization,2026-07-24,2026-09-03,42
+10030829154,Climb Waterslide,CpuTimeAvg,2026-07-24,2026-09-03,42
 10030829154,Climb Waterslide,D1Retention,2026-07-14,2026-09-01,50
-10030829154,Climb Waterslide,DailyActiveUsers,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,DailyRevenue,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,DauMauStickiness,2026-04-24,2026-09-02,129
-10030829154,Climb Waterslide,EndToEndCVR,2026-04-24,2026-09-01,128
-10030829154,Climb Waterslide,ErrorCount,2026-07-05,2026-09-02,60
+10030829154,Climb Waterslide,DailyActiveUsers,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,DailyRevenue,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,DauMauStickiness,2026-04-24,2026-09-03,130
+10030829154,Climb Waterslide,EndToEndCVR,2026-04-24,2026-09-02,129
+10030829154,Climb Waterslide,ErrorCount,2026-07-05,2026-09-03,61
 10030829154,Climb Waterslide,EventAvgDailyActiveUsers,2026-04-12,2026-09-02,144
 10030829154,Climb Waterslide,EventAvgDailyRevenue,2026-04-12,2026-09-02,144
 10030829154,Climb Waterslide,EventAvgDailyUserPlaytimeMinutes,2026-05-12,2026-09-02,114
 10030829154,Climb Waterslide,EventAvgRevenuePerDailyActiveUser,2026-05-12,2026-09-02,114
-10030829154,Climb Waterslide,ForwardD1Retention,2026-04-23,2026-09-01,130
+10030829154,Climb Waterslide,ForwardD1Retention,2026-04-23,2026-09-02,131
 10030829154,Climb Waterslide,ForwardD30Retention,2026-04-12,2026-08-03,114
 10030829154,Climb Waterslide,ForwardD7Retention,2026-04-17,2026-08-26,129
 10030829154,Climb Waterslide,L7AverageDailyActiveUsers,2026-07-14,2026-08-29,47
 10030829154,Climb Waterslide,L7AverageDailyRevenue,2026-07-14,2026-08-29,47
 10030829154,Climb Waterslide,L7AverageForwardD1Retention,2026-07-14,2026-08-28,46
 10030829154,Climb Waterslide,L7AveragePlayTimeMinutesPerDAU,2026-07-14,2026-08-29,47
-10030829154,Climb Waterslide,L7AverageUniqueUsersWithPlaySessions,2026-07-14,2026-08-29,47
-10030829154,Climb Waterslide,MemoryUsageAvg,2026-07-24,2026-09-02,41
-10030829154,Climb Waterslide,MonthlyActiveUsers,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,OomUnexpectedExits,2026-07-22,2026-09-02,43
-10030829154,Climb Waterslide,PayingUsers,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,PayingUsersCVR,2026-04-24,2026-09-02,129
-10030829154,Climb Waterslide,PeakConcurrentPlayers,2026-07-24,2026-09-02,41
-10030829154,Climb Waterslide,PlayerFeedbackVotesCount,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD1CoplayDays,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD1Playtime,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD1QualifiedPlaySessions,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD1RobuxSpend,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD1SpendDay,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD2To7CoplayDays,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD2To7PlayDays,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD2To7Playtime,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD2To7QualifiedPlaySessions,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD2To7RobuxSpend,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD2To7SpendDays,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD8To28CoplayDays,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD8To28PlayDays,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD8To28Playtime,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD8To28QualifiedPlaySessions,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD8To28RobuxSpend,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYD8To28SpendDays,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,RFYDuration0To60,2026-05-07,2026-09-02,119
-10030829154,Climb Waterslide,RFYDuration61To180,2026-05-07,2026-09-02,119
-10030829154,Climb Waterslide,RFYL7PlayDays,2026-05-06,2026-09-02,120
-10030829154,Climb Waterslide,RFYPlayThroughRate,2026-05-06,2026-09-02,120
-10030829154,Climb Waterslide,RFYQualifiedPTR,2026-05-06,2026-09-02,120
-10030829154,Climb Waterslide,RFYUniqueNotInterestedUsersPerMillionImpressions,2026-05-06,2026-09-02,120
+10030829154,Climb Waterslide,MemoryUsageAvg,2026-07-24,2026-09-03,42
+10030829154,Climb Waterslide,MonthlyActiveUsers,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,OomUnexpectedExits,2026-07-22,2026-09-03,44
+10030829154,Climb Waterslide,PayingUsers,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,PayingUsersCVR,2026-04-24,2026-09-03,130
+10030829154,Climb Waterslide,PeakConcurrentPlayers,2026-07-24,2026-09-03,42
+10030829154,Climb Waterslide,PlayerFeedbackVotesCount,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD1CoplayDays,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD1Playtime,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD1QualifiedPlaySessions,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD1RobuxSpend,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD1SpendDay,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD2To7CoplayDays,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD2To7PlayDays,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD2To7Playtime,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD2To7QualifiedPlaySessions,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD2To7RobuxSpend,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD2To7SpendDays,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD8To28CoplayDays,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD8To28PlayDays,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD8To28Playtime,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD8To28QualifiedPlaySessions,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD8To28RobuxSpend,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYD8To28SpendDays,2026-04-12,2026-09-03,145
+10030829154,Climb Waterslide,RFYDuration0To60,2026-05-07,2026-09-03,120
+10030829154,Climb Waterslide,RFYDuration61To180,2026-05-07,2026-09-03,120
+10030829154,Climb Waterslide,RFYL7PlayDays,2026-05-06,2026-09-03,121
+10030829154,Climb Waterslide,RFYPlayThroughRate,2026-05-06,2026-09-03,121
+10030829154,Climb Waterslide,RFYQualifiedPTR,2026-05-06,2026-09-03,121
+10030829154,Climb Waterslide,RFYUniqueNotInterestedUsersPerMillionImpressions,2026-05-06,2026-09-03,121
 10030829154,Climb Waterslide,RSVPCount,2026-04-12,2026-09-02,144
 10030829154,Climb Waterslide,ServerCrashCount,2026-07-22,2026-08-24,34
-10030829154,Climb Waterslide,ServerFrameRateP10,2026-07-24,2026-09-02,41
-10030829154,Climb Waterslide,SessionDurationSecondsAvg,2026-07-24,2026-09-02,41
-10030829154,Climb Waterslide,TotalPlayTimeHours,2026-04-24,2026-09-02,129
-10030829154,Climb Waterslide,UniqueUsersWithImpressions,2026-04-12,2026-09-01,143
-10030829154,Climb Waterslide,UniqueUsersWithPlaySessions,2026-04-12,2026-09-01,143
+10030829154,Climb Waterslide,ServerFrameRateP10,2026-07-24,2026-09-03,42
+10030829154,Climb Waterslide,SessionDurationSecondsAvg,2026-07-24,2026-09-03,42
+10030829154,Climb Waterslide,TotalPlayTimeHours,2026-04-24,2026-09-03,130
+10030829154,Climb Waterslide,UniqueUsersWithImpressions,2026-04-12,2026-09-02,144
+10030829154,Climb Waterslide,UniqueUsersWithPlaySessions,2026-04-12,2026-09-02,144
 10030829154,Climb Waterslide,UsersJoinedFromNotifications,2026-04-12,2026-09-02,144
-10030829154,Climb Waterslide,Visits,2026-04-12,2026-09-02,144
+10030829154,Climb Waterslide,Visits,2026-04-12,2026-09-03,145
 10399712766,+1 Banana Monkey,Attribution30DRobuxPerUser,2026-06-25,2026-08-04,41
 10399712766,+1 Banana Monkey,Attribution7DPayerConversionRatio,2026-06-25,2026-08-27,60
 10399712766,+1 Banana Monkey,Attribution7DPlaytimePerUserInMinutes,2026-06-25,2026-08-27,60
 10399712766,+1 Banana Monkey,Attribution7DRobuxPerUser,2026-06-25,2026-08-27,60
 10399712766,+1 Banana Monkey,AttributionD1RetentionRatio,2026-06-28,2026-09-01,62
 10399712766,+1 Banana Monkey,AttributionD7RetentionRatio,2026-06-28,2026-08-26,59
-10399712766,+1 Banana Monkey,AveragePlayTimeMinutesPerDAU,2026-06-29,2026-09-02,64
-10399712766,+1 Banana Monkey,AverageRevenuePerPayingUser,2026-07-10,2026-09-02,55
-10399712766,+1 Banana Monkey,AverageRevenuePerUser,2026-06-29,2026-09-02,64
-10399712766,+1 Banana Monkey,AverageSessionLengthMinutes,2026-06-29,2026-09-02,64
-10399712766,+1 Banana Monkey,ClientCpuTimeAvg,2026-07-24,2026-09-02,41
-10399712766,+1 Banana Monkey,ClientCrashCount,2026-07-24,2026-09-02,41
-10399712766,+1 Banana Monkey,ClientCrashRate15m,2026-07-24,2026-09-02,41
-10399712766,+1 Banana Monkey,ClientFpsAvg,2026-07-24,2026-09-02,41
-10399712766,+1 Banana Monkey,ClientFpsP10,2026-07-24,2026-09-02,41
-10399712766,+1 Banana Monkey,ClientMemoryUsageAvg,2026-07-24,2026-09-02,41
-10399712766,+1 Banana Monkey,ClientMemoryUsagePercentageAvg,2026-07-24,2026-09-02,41
-10399712766,+1 Banana Monkey,CpuCoreUtilization,2026-07-24,2026-09-02,41
-10399712766,+1 Banana Monkey,CpuTimeAvg,2026-07-24,2026-09-02,41
+10399712766,+1 Banana Monkey,AveragePlayTimeMinutesPerDAU,2026-06-29,2026-09-03,65
+10399712766,+1 Banana Monkey,AverageRevenuePerPayingUser,2026-07-10,2026-09-03,56
+10399712766,+1 Banana Monkey,AverageRevenuePerUser,2026-06-29,2026-09-03,65
+10399712766,+1 Banana Monkey,AverageSessionLengthMinutes,2026-06-29,2026-09-03,65
+10399712766,+1 Banana Monkey,ClientCpuTimeAvg,2026-07-24,2026-09-03,42
+10399712766,+1 Banana Monkey,ClientCrashCount,2026-07-24,2026-09-03,42
+10399712766,+1 Banana Monkey,ClientCrashRate15m,2026-07-24,2026-09-03,42
+10399712766,+1 Banana Monkey,ClientFpsAvg,2026-07-24,2026-09-03,42
+10399712766,+1 Banana Monkey,ClientFpsP10,2026-07-24,2026-09-03,42
+10399712766,+1 Banana Monkey,ClientMemoryUsageAvg,2026-07-24,2026-09-03,42
+10399712766,+1 Banana Monkey,ClientMemoryUsagePercentageAvg,2026-07-24,2026-09-03,42
+10399712766,+1 Banana Monkey,CpuCoreUtilization,2026-07-24,2026-09-03,42
+10399712766,+1 Banana Monkey,CpuTimeAvg,2026-07-24,2026-09-03,42
 10399712766,+1 Banana Monkey,D1Retention,2026-07-24,2026-08-29,37
-10399712766,+1 Banana Monkey,DailyActiveUsers,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,DailyRevenue,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,DauMauStickiness,2026-06-29,2026-09-02,64
-10399712766,+1 Banana Monkey,EndToEndCVR,2026-07-01,2026-09-01,63
-10399712766,+1 Banana Monkey,ErrorCount,2026-06-25,2026-09-02,70
+10399712766,+1 Banana Monkey,DailyActiveUsers,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,DailyRevenue,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,DauMauStickiness,2026-06-29,2026-09-03,65
+10399712766,+1 Banana Monkey,EndToEndCVR,2026-07-01,2026-09-02,64
+10399712766,+1 Banana Monkey,ErrorCount,2026-06-25,2026-09-03,71
 10399712766,+1 Banana Monkey,EventAvgDailyActiveUsers,2026-06-25,2026-09-02,70
 10399712766,+1 Banana Monkey,EventAvgDailyRevenue,2026-06-25,2026-09-02,70
 10399712766,+1 Banana Monkey,EventAvgDailyUserPlaytimeMinutes,2026-08-02,2026-09-02,32
@@ -399,46 +397,45 @@ universe,game,metric,first,last,n_days
 10399712766,+1 Banana Monkey,L7AverageDailyRevenue,2026-07-24,2026-08-29,37
 10399712766,+1 Banana Monkey,L7AverageForwardD1Retention,2026-07-24,2026-08-28,36
 10399712766,+1 Banana Monkey,L7AveragePlayTimeMinutesPerDAU,2026-07-24,2026-08-29,37
-10399712766,+1 Banana Monkey,L7AverageUniqueUsersWithPlaySessions,2026-07-24,2026-08-29,37
-10399712766,+1 Banana Monkey,MemoryUsageAvg,2026-07-24,2026-09-02,41
+10399712766,+1 Banana Monkey,MemoryUsageAvg,2026-07-24,2026-09-03,42
 10399712766,+1 Banana Monkey,MonthlyActiveUsers,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,OomUnexpectedExits,2026-07-24,2026-09-02,41
-10399712766,+1 Banana Monkey,PayingUsers,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,PayingUsersCVR,2026-06-29,2026-09-02,64
-10399712766,+1 Banana Monkey,PeakConcurrentPlayers,2026-07-24,2026-09-02,41
-10399712766,+1 Banana Monkey,PlayerFeedbackVotesCount,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD1CoplayDays,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD1Playtime,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD1QualifiedPlaySessions,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD1RobuxSpend,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD1SpendDay,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD2To7CoplayDays,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD2To7PlayDays,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD2To7Playtime,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD2To7QualifiedPlaySessions,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD2To7RobuxSpend,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD2To7SpendDays,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD8To28CoplayDays,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD8To28PlayDays,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD8To28Playtime,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD8To28QualifiedPlaySessions,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD8To28RobuxSpend,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYD8To28SpendDays,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,RFYDuration0To60,2026-07-17,2026-09-02,48
-10399712766,+1 Banana Monkey,RFYDuration61To180,2026-07-17,2026-09-02,48
-10399712766,+1 Banana Monkey,RFYL7PlayDays,2026-07-17,2026-09-02,48
-10399712766,+1 Banana Monkey,RFYPlayThroughRate,2026-07-17,2026-09-02,48
-10399712766,+1 Banana Monkey,RFYQualifiedPTR,2026-07-17,2026-09-02,48
-10399712766,+1 Banana Monkey,RFYUniqueNotInterestedUsersPerMillionImpressions,2026-07-17,2026-09-02,48
+10399712766,+1 Banana Monkey,OomUnexpectedExits,2026-07-24,2026-09-03,42
+10399712766,+1 Banana Monkey,PayingUsers,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,PayingUsersCVR,2026-06-29,2026-09-03,65
+10399712766,+1 Banana Monkey,PeakConcurrentPlayers,2026-07-24,2026-09-03,42
+10399712766,+1 Banana Monkey,PlayerFeedbackVotesCount,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD1CoplayDays,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD1Playtime,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD1QualifiedPlaySessions,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD1RobuxSpend,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD1SpendDay,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD2To7CoplayDays,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD2To7PlayDays,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD2To7Playtime,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD2To7QualifiedPlaySessions,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD2To7RobuxSpend,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD2To7SpendDays,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD8To28CoplayDays,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD8To28PlayDays,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD8To28Playtime,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD8To28QualifiedPlaySessions,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD8To28RobuxSpend,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYD8To28SpendDays,2026-06-25,2026-09-03,71
+10399712766,+1 Banana Monkey,RFYDuration0To60,2026-07-17,2026-09-03,49
+10399712766,+1 Banana Monkey,RFYDuration61To180,2026-07-17,2026-09-03,49
+10399712766,+1 Banana Monkey,RFYL7PlayDays,2026-07-17,2026-09-03,49
+10399712766,+1 Banana Monkey,RFYPlayThroughRate,2026-07-17,2026-09-03,49
+10399712766,+1 Banana Monkey,RFYQualifiedPTR,2026-07-17,2026-09-03,49
+10399712766,+1 Banana Monkey,RFYUniqueNotInterestedUsersPerMillionImpressions,2026-07-17,2026-09-03,49
 10399712766,+1 Banana Monkey,RSVPCount,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,ServerCrashCount,2026-07-24,2026-09-02,41
-10399712766,+1 Banana Monkey,ServerFrameRateP10,2026-07-24,2026-09-02,41
-10399712766,+1 Banana Monkey,SessionDurationSecondsAvg,2026-07-24,2026-09-02,41
-10399712766,+1 Banana Monkey,TotalPlayTimeHours,2026-06-29,2026-09-02,64
-10399712766,+1 Banana Monkey,UniqueUsersWithImpressions,2026-06-25,2026-09-01,69
-10399712766,+1 Banana Monkey,UniqueUsersWithPlaySessions,2026-06-25,2026-09-01,69
+10399712766,+1 Banana Monkey,ServerCrashCount,2026-07-24,2026-09-03,42
+10399712766,+1 Banana Monkey,ServerFrameRateP10,2026-07-24,2026-09-03,42
+10399712766,+1 Banana Monkey,SessionDurationSecondsAvg,2026-07-24,2026-09-03,42
+10399712766,+1 Banana Monkey,TotalPlayTimeHours,2026-06-29,2026-09-03,65
+10399712766,+1 Banana Monkey,UniqueUsersWithImpressions,2026-06-25,2026-09-02,70
+10399712766,+1 Banana Monkey,UniqueUsersWithPlaySessions,2026-06-25,2026-09-02,70
 10399712766,+1 Banana Monkey,UsersJoinedFromNotifications,2026-06-25,2026-09-02,70
-10399712766,+1 Banana Monkey,Visits,2026-06-25,2026-09-02,70
+10399712766,+1 Banana Monkey,Visits,2026-06-25,2026-09-03,71
 9758414065,Climb Up Mountain,Attribution30DRobuxPerUser,2026-02-18,2026-08-04,168
 9758414065,Climb Up Mountain,Attribution7DPayerConversionRatio,2026-02-19,2026-08-27,190
 9758414065,Climb Up Mountain,Attribution7DPlaytimePerUserInMinutes,2026-02-19,2026-08-27,190
@@ -518,70 +515,69 @@ universe,game,metric,first,last,n_days
 10565445771,Verity Companion,Attribution7DRobuxPerUser,2026-07-24,2026-08-27,33
 10565445771,Verity Companion,AttributionD1RetentionRatio,2026-07-28,2026-09-01,34
 10565445771,Verity Companion,AttributionD7RetentionRatio,2026-07-26,2026-08-26,32
-10565445771,Verity Companion,AveragePlayTimeMinutesPerDAU,2026-07-29,2026-09-02,36
-10565445771,Verity Companion,AverageRevenuePerPayingUser,2026-08-01,2026-09-02,32
-10565445771,Verity Companion,AverageRevenuePerUser,2026-07-29,2026-09-02,36
-10565445771,Verity Companion,AverageSessionLengthMinutes,2026-07-29,2026-09-02,36
-10565445771,Verity Companion,ClientCpuTimeAvg,2026-08-05,2026-09-02,29
-10565445771,Verity Companion,ClientCrashCount,2026-08-02,2026-09-02,32
-10565445771,Verity Companion,ClientCrashRate15m,2026-08-04,2026-09-02,30
-10565445771,Verity Companion,ClientFpsAvg,2026-08-04,2026-09-02,30
-10565445771,Verity Companion,ClientFpsP10,2026-08-04,2026-09-02,30
-10565445771,Verity Companion,ClientMemoryUsageAvg,2026-08-04,2026-09-02,30
-10565445771,Verity Companion,ClientMemoryUsagePercentageAvg,2026-08-04,2026-09-02,30
-10565445771,Verity Companion,CpuCoreUtilization,2026-08-04,2026-09-02,30
-10565445771,Verity Companion,CpuTimeAvg,2026-08-04,2026-09-02,30
+10565445771,Verity Companion,AveragePlayTimeMinutesPerDAU,2026-07-29,2026-09-03,37
+10565445771,Verity Companion,AverageRevenuePerPayingUser,2026-08-01,2026-09-03,33
+10565445771,Verity Companion,AverageRevenuePerUser,2026-07-29,2026-09-03,37
+10565445771,Verity Companion,AverageSessionLengthMinutes,2026-07-29,2026-09-03,37
+10565445771,Verity Companion,ClientCpuTimeAvg,2026-08-05,2026-09-03,30
+10565445771,Verity Companion,ClientCrashCount,2026-08-02,2026-09-03,33
+10565445771,Verity Companion,ClientCrashRate15m,2026-08-04,2026-09-03,31
+10565445771,Verity Companion,ClientFpsAvg,2026-08-04,2026-09-03,31
+10565445771,Verity Companion,ClientFpsP10,2026-08-04,2026-09-03,31
+10565445771,Verity Companion,ClientMemoryUsageAvg,2026-08-04,2026-09-03,31
+10565445771,Verity Companion,ClientMemoryUsagePercentageAvg,2026-08-04,2026-09-03,31
+10565445771,Verity Companion,CpuCoreUtilization,2026-08-04,2026-09-03,31
+10565445771,Verity Companion,CpuTimeAvg,2026-08-04,2026-09-03,31
 10565445771,Verity Companion,D1Retention,2026-07-29,2026-09-01,35
-10565445771,Verity Companion,DailyActiveUsers,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,DailyRevenue,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,DauMauStickiness,2026-07-29,2026-09-02,36
-10565445771,Verity Companion,EndToEndCVR,2026-07-29,2026-09-01,34
-10565445771,Verity Companion,ErrorCount,2026-07-24,2026-09-02,41
+10565445771,Verity Companion,DailyActiveUsers,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,DailyRevenue,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,DauMauStickiness,2026-07-29,2026-09-03,37
+10565445771,Verity Companion,EndToEndCVR,2026-07-29,2026-09-02,35
+10565445771,Verity Companion,ErrorCount,2026-07-24,2026-09-03,42
 10565445771,Verity Companion,EventAvgDailyActiveUsers,2026-07-24,2026-09-02,41
 10565445771,Verity Companion,EventAvgDailyRevenue,2026-07-24,2026-09-02,41
 10565445771,Verity Companion,EventAvgDailyUserPlaytimeMinutes,2026-08-28,2026-09-02,6
 10565445771,Verity Companion,EventAvgRevenuePerDailyActiveUser,2026-08-28,2026-09-02,6
-10565445771,Verity Companion,ForwardD1Retention,2026-07-28,2026-09-01,36
+10565445771,Verity Companion,ForwardD1Retention,2026-07-28,2026-09-02,37
 10565445771,Verity Companion,ForwardD30Retention,2026-07-24,2026-08-03,11
 10565445771,Verity Companion,ForwardD7Retention,2026-07-24,2026-08-26,34
 10565445771,Verity Companion,L7AverageDailyActiveUsers,2026-07-28,2026-08-29,33
 10565445771,Verity Companion,L7AverageDailyRevenue,2026-07-28,2026-08-29,33
 10565445771,Verity Companion,L7AverageForwardD1Retention,2026-07-28,2026-08-28,32
 10565445771,Verity Companion,L7AveragePlayTimeMinutesPerDAU,2026-07-29,2026-08-29,32
-10565445771,Verity Companion,L7AverageUniqueUsersWithPlaySessions,2026-07-28,2026-08-29,33
-10565445771,Verity Companion,MemoryUsageAvg,2026-08-05,2026-09-02,29
-10565445771,Verity Companion,MonthlyActiveUsers,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,OomUnexpectedExits,2026-08-02,2026-09-02,32
-10565445771,Verity Companion,PayingUsers,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,PayingUsersCVR,2026-07-29,2026-09-02,36
-10565445771,Verity Companion,PeakConcurrentPlayers,2026-08-02,2026-09-02,32
-10565445771,Verity Companion,PlayerFeedbackVotesCount,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,RFYD1CoplayDays,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,RFYD1Playtime,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,RFYD1QualifiedPlaySessions,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,RFYD1RobuxSpend,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,RFYD1SpendDay,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,RFYD2To7CoplayDays,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,RFYD2To7PlayDays,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,RFYD2To7Playtime,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,RFYD2To7QualifiedPlaySessions,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,RFYD2To7RobuxSpend,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,RFYD2To7SpendDays,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,RFYDuration0To60,2026-08-08,2026-09-02,26
-10565445771,Verity Companion,RFYDuration61To180,2026-08-08,2026-09-02,26
-10565445771,Verity Companion,RFYL7PlayDays,2026-08-08,2026-09-02,26
-10565445771,Verity Companion,RFYPlayThroughRate,2026-08-08,2026-09-02,26
-10565445771,Verity Companion,RFYQualifiedPTR,2026-08-08,2026-09-02,26
-10565445771,Verity Companion,RFYUniqueNotInterestedUsersPerMillionImpressions,2026-08-08,2026-09-02,26
+10565445771,Verity Companion,MemoryUsageAvg,2026-08-05,2026-09-03,30
+10565445771,Verity Companion,MonthlyActiveUsers,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,OomUnexpectedExits,2026-08-02,2026-09-03,33
+10565445771,Verity Companion,PayingUsers,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,PayingUsersCVR,2026-07-29,2026-09-03,37
+10565445771,Verity Companion,PeakConcurrentPlayers,2026-08-02,2026-09-03,33
+10565445771,Verity Companion,PlayerFeedbackVotesCount,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,RFYD1CoplayDays,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,RFYD1Playtime,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,RFYD1QualifiedPlaySessions,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,RFYD1RobuxSpend,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,RFYD1SpendDay,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,RFYD2To7CoplayDays,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,RFYD2To7PlayDays,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,RFYD2To7Playtime,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,RFYD2To7QualifiedPlaySessions,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,RFYD2To7RobuxSpend,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,RFYD2To7SpendDays,2026-07-24,2026-09-03,42
+10565445771,Verity Companion,RFYDuration0To60,2026-08-08,2026-09-03,27
+10565445771,Verity Companion,RFYDuration61To180,2026-08-08,2026-09-03,27
+10565445771,Verity Companion,RFYL7PlayDays,2026-08-08,2026-09-03,27
+10565445771,Verity Companion,RFYPlayThroughRate,2026-08-08,2026-09-03,27
+10565445771,Verity Companion,RFYQualifiedPTR,2026-08-08,2026-09-03,27
+10565445771,Verity Companion,RFYUniqueNotInterestedUsersPerMillionImpressions,2026-08-08,2026-09-03,27
 10565445771,Verity Companion,RSVPCount,2026-07-24,2026-09-02,41
 10565445771,Verity Companion,ServerCrashCount,2026-08-10,2026-09-01,23
-10565445771,Verity Companion,ServerFrameRateP10,2026-08-05,2026-09-02,29
-10565445771,Verity Companion,SessionDurationSecondsAvg,2026-08-04,2026-09-02,30
-10565445771,Verity Companion,TotalPlayTimeHours,2026-07-29,2026-09-02,36
-10565445771,Verity Companion,UniqueUsersWithImpressions,2026-07-24,2026-09-01,40
-10565445771,Verity Companion,UniqueUsersWithPlaySessions,2026-07-24,2026-09-01,40
+10565445771,Verity Companion,ServerFrameRateP10,2026-08-05,2026-09-03,30
+10565445771,Verity Companion,SessionDurationSecondsAvg,2026-08-04,2026-09-03,31
+10565445771,Verity Companion,TotalPlayTimeHours,2026-07-29,2026-09-03,37
+10565445771,Verity Companion,UniqueUsersWithImpressions,2026-07-24,2026-09-02,41
+10565445771,Verity Companion,UniqueUsersWithPlaySessions,2026-07-24,2026-09-02,41
 10565445771,Verity Companion,UsersJoinedFromNotifications,2026-07-24,2026-09-02,41
-10565445771,Verity Companion,Visits,2026-07-24,2026-09-02,41
+10565445771,Verity Companion,Visits,2026-07-24,2026-09-03,42
 8669915245,Don't Wake Police,Attribution30DRobuxPerUser,2025-09-08,2026-08-04,331
 8669915245,Don't Wake Police,Attribution7DPayerConversionRatio,2025-09-08,2026-08-27,354
 8669915245,Don't Wake Police,Attribution7DPlaytimePerUserInMinutes,2025-09-08,2026-08-27,354
@@ -657,25 +653,25 @@ universe,game,metric,first,last,n_days
 10638354731,Seal A Driveway,Attribution7DRobuxPerUser,2026-08-02,2026-08-27,26
 10638354731,Seal A Driveway,AttributionD1RetentionRatio,2026-08-07,2026-09-01,26
 10638354731,Seal A Driveway,AttributionD7RetentionRatio,2026-08-01,2026-08-26,26
-10638354731,Seal A Driveway,AveragePlayTimeMinutesPerDAU,2026-08-08,2026-09-02,26
-10638354731,Seal A Driveway,AverageRevenuePerPayingUser,2026-08-12,2026-09-02,22
-10638354731,Seal A Driveway,AverageRevenuePerUser,2026-08-08,2026-09-02,26
-10638354731,Seal A Driveway,AverageSessionLengthMinutes,2026-08-08,2026-09-02,26
-10638354731,Seal A Driveway,ClientCpuTimeAvg,2026-08-13,2026-09-02,21
-10638354731,Seal A Driveway,ClientCrashCount,2026-08-05,2026-09-02,29
-10638354731,Seal A Driveway,ClientCrashRate15m,2026-08-12,2026-09-02,22
-10638354731,Seal A Driveway,ClientFpsAvg,2026-08-12,2026-09-02,22
-10638354731,Seal A Driveway,ClientFpsP10,2026-08-12,2026-09-02,22
-10638354731,Seal A Driveway,ClientMemoryUsageAvg,2026-08-12,2026-09-02,22
-10638354731,Seal A Driveway,ClientMemoryUsagePercentageAvg,2026-08-12,2026-09-02,22
-10638354731,Seal A Driveway,CpuCoreUtilization,2026-08-12,2026-09-02,22
-10638354731,Seal A Driveway,CpuTimeAvg,2026-08-12,2026-09-02,22
+10638354731,Seal A Driveway,AveragePlayTimeMinutesPerDAU,2026-08-08,2026-09-03,27
+10638354731,Seal A Driveway,AverageRevenuePerPayingUser,2026-08-12,2026-09-03,23
+10638354731,Seal A Driveway,AverageRevenuePerUser,2026-08-08,2026-09-03,27
+10638354731,Seal A Driveway,AverageSessionLengthMinutes,2026-08-08,2026-09-03,27
+10638354731,Seal A Driveway,ClientCpuTimeAvg,2026-08-13,2026-09-03,22
+10638354731,Seal A Driveway,ClientCrashCount,2026-08-05,2026-09-03,30
+10638354731,Seal A Driveway,ClientCrashRate15m,2026-08-12,2026-09-03,23
+10638354731,Seal A Driveway,ClientFpsAvg,2026-08-12,2026-09-03,23
+10638354731,Seal A Driveway,ClientFpsP10,2026-08-12,2026-09-03,23
+10638354731,Seal A Driveway,ClientMemoryUsageAvg,2026-08-12,2026-09-03,23
+10638354731,Seal A Driveway,ClientMemoryUsagePercentageAvg,2026-08-12,2026-09-03,23
+10638354731,Seal A Driveway,CpuCoreUtilization,2026-08-12,2026-09-03,23
+10638354731,Seal A Driveway,CpuTimeAvg,2026-08-12,2026-09-03,23
 10638354731,Seal A Driveway,D1Retention,2026-08-08,2026-09-01,25
-10638354731,Seal A Driveway,DailyActiveUsers,2026-07-28,2026-09-02,37
-10638354731,Seal A Driveway,DailyRevenue,2026-07-28,2026-09-02,37
-10638354731,Seal A Driveway,DauMauStickiness,2026-08-08,2026-09-02,26
-10638354731,Seal A Driveway,EndToEndCVR,2026-08-08,2026-09-01,25
-10638354731,Seal A Driveway,ErrorCount,2026-07-28,2026-09-02,37
+10638354731,Seal A Driveway,DailyActiveUsers,2026-07-28,2026-09-03,38
+10638354731,Seal A Driveway,DailyRevenue,2026-07-28,2026-09-03,38
+10638354731,Seal A Driveway,DauMauStickiness,2026-08-08,2026-09-03,27
+10638354731,Seal A Driveway,EndToEndCVR,2026-08-08,2026-09-02,26
+10638354731,Seal A Driveway,ErrorCount,2026-07-28,2026-09-03,38
 10638354731,Seal A Driveway,EventAvgDailyActiveUsers,2026-07-28,2026-09-02,37
 10638354731,Seal A Driveway,EventAvgDailyRevenue,2026-07-28,2026-09-02,37
 10638354731,Seal A Driveway,EventAvgDailyUserPlaytimeMinutes,2026-08-28,2026-09-02,6
@@ -687,40 +683,39 @@ universe,game,metric,first,last,n_days
 10638354731,Seal A Driveway,L7AverageDailyRevenue,2026-07-28,2026-08-29,33
 10638354731,Seal A Driveway,L7AverageForwardD1Retention,2026-08-07,2026-08-28,22
 10638354731,Seal A Driveway,L7AveragePlayTimeMinutesPerDAU,2026-08-08,2026-08-29,22
-10638354731,Seal A Driveway,L7AverageUniqueUsersWithPlaySessions,2026-07-28,2026-08-29,33
-10638354731,Seal A Driveway,MemoryUsageAvg,2026-08-13,2026-09-02,21
+10638354731,Seal A Driveway,MemoryUsageAvg,2026-08-13,2026-09-03,22
 10638354731,Seal A Driveway,MonthlyActiveUsers,2026-07-28,2026-09-02,37
-10638354731,Seal A Driveway,OomUnexpectedExits,2026-08-12,2026-09-02,22
-10638354731,Seal A Driveway,PayingUsers,2026-07-28,2026-09-02,37
-10638354731,Seal A Driveway,PayingUsersCVR,2026-08-08,2026-09-02,26
-10638354731,Seal A Driveway,PeakConcurrentPlayers,2026-08-05,2026-09-02,29
-10638354731,Seal A Driveway,PlayerFeedbackVotesCount,2026-07-28,2026-09-02,37
-10638354731,Seal A Driveway,RFYD1CoplayDays,2026-08-04,2026-09-02,30
-10638354731,Seal A Driveway,RFYD1Playtime,2026-08-04,2026-09-02,30
-10638354731,Seal A Driveway,RFYD1QualifiedPlaySessions,2026-08-04,2026-09-02,30
-10638354731,Seal A Driveway,RFYD1RobuxSpend,2026-08-04,2026-09-02,30
-10638354731,Seal A Driveway,RFYD1SpendDay,2026-08-04,2026-09-02,30
-10638354731,Seal A Driveway,RFYD2To7CoplayDays,2026-08-04,2026-09-02,30
-10638354731,Seal A Driveway,RFYD2To7PlayDays,2026-08-04,2026-09-02,30
-10638354731,Seal A Driveway,RFYD2To7Playtime,2026-08-04,2026-09-02,30
-10638354731,Seal A Driveway,RFYD2To7QualifiedPlaySessions,2026-08-04,2026-09-02,30
-10638354731,Seal A Driveway,RFYD2To7RobuxSpend,2026-08-04,2026-09-02,30
-10638354731,Seal A Driveway,RFYD2To7SpendDays,2026-08-04,2026-09-02,30
-10638354731,Seal A Driveway,RFYDuration0To60,2026-08-16,2026-09-02,18
-10638354731,Seal A Driveway,RFYDuration61To180,2026-08-16,2026-09-02,18
-10638354731,Seal A Driveway,RFYL7PlayDays,2026-08-14,2026-09-02,19
-10638354731,Seal A Driveway,RFYPlayThroughRate,2026-08-14,2026-09-02,19
-10638354731,Seal A Driveway,RFYQualifiedPTR,2026-08-14,2026-09-02,19
-10638354731,Seal A Driveway,RFYUniqueNotInterestedUsersPerMillionImpressions,2026-08-14,2026-09-02,19
+10638354731,Seal A Driveway,OomUnexpectedExits,2026-08-12,2026-09-03,23
+10638354731,Seal A Driveway,PayingUsers,2026-07-28,2026-09-03,38
+10638354731,Seal A Driveway,PayingUsersCVR,2026-08-08,2026-09-03,27
+10638354731,Seal A Driveway,PeakConcurrentPlayers,2026-08-05,2026-09-03,30
+10638354731,Seal A Driveway,PlayerFeedbackVotesCount,2026-07-28,2026-09-03,38
+10638354731,Seal A Driveway,RFYD1CoplayDays,2026-08-04,2026-09-03,31
+10638354731,Seal A Driveway,RFYD1Playtime,2026-08-04,2026-09-03,31
+10638354731,Seal A Driveway,RFYD1QualifiedPlaySessions,2026-08-04,2026-09-03,31
+10638354731,Seal A Driveway,RFYD1RobuxSpend,2026-08-04,2026-09-03,31
+10638354731,Seal A Driveway,RFYD1SpendDay,2026-08-04,2026-09-03,31
+10638354731,Seal A Driveway,RFYD2To7CoplayDays,2026-08-04,2026-09-03,31
+10638354731,Seal A Driveway,RFYD2To7PlayDays,2026-08-04,2026-09-03,31
+10638354731,Seal A Driveway,RFYD2To7Playtime,2026-08-04,2026-09-03,31
+10638354731,Seal A Driveway,RFYD2To7QualifiedPlaySessions,2026-08-04,2026-09-03,31
+10638354731,Seal A Driveway,RFYD2To7RobuxSpend,2026-08-04,2026-09-03,31
+10638354731,Seal A Driveway,RFYD2To7SpendDays,2026-08-04,2026-09-03,31
+10638354731,Seal A Driveway,RFYDuration0To60,2026-08-16,2026-09-03,19
+10638354731,Seal A Driveway,RFYDuration61To180,2026-08-16,2026-09-03,19
+10638354731,Seal A Driveway,RFYL7PlayDays,2026-08-14,2026-09-03,20
+10638354731,Seal A Driveway,RFYPlayThroughRate,2026-08-14,2026-09-03,20
+10638354731,Seal A Driveway,RFYQualifiedPTR,2026-08-14,2026-09-03,20
+10638354731,Seal A Driveway,RFYUniqueNotInterestedUsersPerMillionImpressions,2026-08-14,2026-09-03,20
 10638354731,Seal A Driveway,RSVPCount,2026-07-28,2026-09-02,37
 10638354731,Seal A Driveway,ServerCrashCount,2026-08-20,2026-08-27,8
-10638354731,Seal A Driveway,ServerFrameRateP10,2026-08-13,2026-09-02,21
-10638354731,Seal A Driveway,SessionDurationSecondsAvg,2026-08-12,2026-09-02,22
-10638354731,Seal A Driveway,TotalPlayTimeHours,2026-08-08,2026-09-02,26
-10638354731,Seal A Driveway,UniqueUsersWithImpressions,2026-07-28,2026-09-01,36
-10638354731,Seal A Driveway,UniqueUsersWithPlaySessions,2026-07-28,2026-09-01,36
+10638354731,Seal A Driveway,ServerFrameRateP10,2026-08-13,2026-09-03,22
+10638354731,Seal A Driveway,SessionDurationSecondsAvg,2026-08-12,2026-09-03,23
+10638354731,Seal A Driveway,TotalPlayTimeHours,2026-08-08,2026-09-03,27
+10638354731,Seal A Driveway,UniqueUsersWithImpressions,2026-07-28,2026-09-02,37
+10638354731,Seal A Driveway,UniqueUsersWithPlaySessions,2026-07-28,2026-09-02,37
 10638354731,Seal A Driveway,UsersJoinedFromNotifications,2026-07-28,2026-09-02,37
-10638354731,Seal A Driveway,Visits,2026-07-28,2026-09-02,37
+10638354731,Seal A Driveway,Visits,2026-07-28,2026-09-03,38
 10192528661,KameHameHa Walls,Attribution30DRobuxPerUser,2026-04-26,2026-08-04,101
 10192528661,KameHameHa Walls,Attribution7DPayerConversionRatio,2026-05-19,2026-08-27,101
 10192528661,KameHameHa Walls,Attribution7DPlaytimePerUserInMinutes,2026-05-19,2026-08-27,101

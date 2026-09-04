@@ -42,6 +42,10 @@ def home_reach(uid):
             continue
         if r["source"] != "HomeRecommendation":
             continue
+        # unfiltered only — a population-filtered copy of the same source is a
+        # different series and must not be mixed into the J0 input
+        if r.get("filters"):
+            continue
         out[r["date"]] = float(r["value"])
     return out
 

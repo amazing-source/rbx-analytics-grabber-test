@@ -38,12 +38,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "analysis", "panel")
 
 EVENTS = [
-    ("8507699752", "Poison Treats", "2025-12-01", -33.2),
-    ("7364907416", "Plane Training", "2025-05-06", -40.3),
-    ("7364907416", "Plane Training", "2025-09-22", -32.2),
-    ("8669915245", "Don't Wake Police", "2025-10-13", -30.6),
-    ("9758414065", "Climb Up Mountain", "2026-04-07", -42.1),
-    ("7888930431", "Moon Incremental", "2026-04-15", -38.0),
+    ("8507699752", "Poison Treats", "2025-12-01", -30.8),
+    ("8507699752", "Poison Treats", "2025-12-16", -32.1),
+    ("8507699752", "Poison Treats", "2025-12-31", -31.6),
+    ("7364907416", "Plane Training", "2025-05-06", -39.8),
+    ("7364907416", "Plane Training", "2025-09-22", -33.1),
+    ("9758414065", "Climb Up Mountain", "2026-04-07", -41.5),
+    ("8669915245", "Don't Wake Police", "2025-10-14", -40.8),
+    ("7888930431", "Moon Incremental", "2026-04-15", -36.8),
 ]
 
 # metric -> (short label, +1 if higher is better)
@@ -72,7 +74,9 @@ for r in csv.DictReader(open(os.path.join(OUT, "daily.csv"), encoding="utf-8")):
 
 home = collections.defaultdict(dict)
 for r in csv.DictReader(open(os.path.join(OUT, "by_source.csv"), encoding="utf-8")):
-    if r["metric"] == "UniqueUsersWithImpressions" and r["source"] == "HomeRecommendation":
+    if (r["metric"] == "UniqueUsersWithImpressions"
+            and r["source"] == "HomeRecommendation"
+            and not r.get("filters")):
         home[r["universe"]][r["date"]] = float(r["value"])
 
 
