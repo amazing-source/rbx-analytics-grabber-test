@@ -339,3 +339,62 @@ tripwires in the baseline OK/WATCH/FIX. The decisive number is `ErrorCount`
 `LogSource: Server` on a settled 08-22: under 400K = the spike was the publish.
 Also still due that date: the 10399712766 reach check and the F18 re-read.
 **Next:** the 08-22 Waterslide follow-up, then Nina.
+
+## 2026-09-04 — 12-game panel built; three negatives that reshape the brief
+
+**State:** branch `grabber-correctness` · 90 ahead of main · **15 unpushed** ·
+dirty: `analysis/panel/*.csv`, `analysis/skeptic/` (4 subagents live at write time)
+**Gates:** `checkpoint light` — not re-measured. Last measured 2026-09-04 earlier:
+verify 23/2/8 (exit 1, documented `KNOWN_OPEN`) · audit-plan 180/0 · test 51/51
+**Landed:** portfolio 8 → **12 games**, all lifetime-grabbed via the new Playwright
+path (`npm run grab -- <id> --lifetime`). Canonical panel `analysis/panel/`:
+3,186 game-days × 76 aggregate metrics, with source/platform/funnel in separate
+long tables. Five pre-update baselines frozen for the 2026-09-04 ships.
+**Learned → routed:**
+- Funnels + RFY are the diagnostic pair; never declare a metric absent without
+  listing the files → `liveops-diagnosis/SKILL.md` §0a + memory
+- Technical rung clamped to its retention horizon (a 976-day window went
+  2,438 → 230 requests, zero data lost) → `CLAUDE.md`
+- F19, learned templates carrying other games' dimension values → `CLAUDE.md`
+- Supabase is LIVE on this machine, not the documented placeholder → `CLAUDE.md`
+- Every claim's fate → `DIAGNOSIS_LOG.md` (new, indexed from `CLAUDE.md`)
+**Retracted:**
+1. "Moon Incremental is the only game with real funnel instrumentation, so
+   locating new-player churn needs dev work." — **seven** games carry funnel
+   data; six were usable. Generalised from one grab report's discovery line.
+2. "Plane Training is the strongest candidate for a funnel read." — its 51 steps
+   are almost all `NONE` granularity; only 14 daily dates exist, from July 2025.
+   A step count is not a time series.
+3. "The publish log is truncated at 100 on 10 of 12 games." — it is not
+   truncated. `place-versions.csv` holds rows for EVERY place and versions are
+   per-place; sorting by timestamp mixes a root publish with a sub-place save.
+4. "Don't Wake Police and Climb Up Mountain have stale logs on live games." —
+   both genuinely **stopped shipping** (2026-02-14, 2026-05-24); feedback
+   confirms players on those versions for months after.
+5. "`--lifetime` should start 2021-01-01." — an over-wide window makes the
+   gateway 400 the behavioural metrics. It cost DAU 15 × 400 and 44 days of a
+   161-day span until it resolved the real creation date.
+6. (2026-09-02 artifact) "Similar post-peak slopes are what a shared external
+   cause looks like." — Phase 6: calendar-aligned residual reach r = **+0.035**.
+   The shape is shared; the timing is not.
+**Three negatives, each placebo- or null-controlled:**
+- No behavioural signal leads a pullback (Track A, 6 pre-RFY events, placebo
+  1.31 vs real 2.00 LEADS/window — no separation)
+- No RFY signal leads one either (2026-09-03, Brainrot + Waterslide)
+- No calendar clustering (Phase 6); lifecycle alignment r = +0.266, p = 0.035
+  against a peak-shuffled null → **strong**, not confirmed
+**Open:**
+- A subagent claimed "the panel's headline series is wrong for five metrics". I
+  could not reproduce it (zero metrics on 9963622286 have >1 series passing
+  `is_headline()`). **Next action: read the skeptic's `analysis/skeptic/review.md`
+  and analyst B's reply before trusting Track A or Phase 6.**
+- Phases 3, 4, 5, 7, 8 not started. Phase 7 (prediction) looks unpromising —
+  two independent tests say the signal it would learn is not there.
+- 4 subagents were rate-limited mid-run and resumed; outputs land in
+  `analysis/games/` and `analysis/skeptic/`.
+**Wake:** **2026-09-05** — first honest post-update read for the five 2026-09-04
+ships (DAU, revenue, session, RFY). **2026-09-06** — D1 for those cohorts.
+Tripwires are pre-registered in `baselines/*-2026-09-04-*.md`; mark each
+OK/WATCH/FIX/NO DATA *before* looking for causes.
+**Next:** fold the subagent outputs in — starting with the panel-headline
+challenge, which is load-bearing for everything after Phase 1.
