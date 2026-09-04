@@ -48,6 +48,60 @@ funnel much weaker than a shorter named one. Funnel names are developer-defined
 and per-universe — never carry one game's to another (F19). RFY series reach
 back only ~125 days (2026-05-01 on every game), so grab often.
 
+## 0a2. CCU is a headline metric. Open with it.
+
+Ren, 2026-09-04: *"ccu needs to be more included in ur diagnoses, its really
+important and i feel like u leave it out."* Correct — several analyses in this
+repo led with DAU and reach and mentioned CCU only in passing.
+
+**Why it earns top billing:** it is the number everyone can see (it is on the
+game's own page), it moves with everything downstream, and the collapse is
+legible without any statistics. Measured across the portfolio, decay from each
+game's own CCU peak:
+
+| game | peak CCU | %/day | half-life | now, % of peak |
+|---|---|---|---|---|
+| Verity | 20,213 | −8.6% | 8d | 27.2% |
+| Brainrot | 27,322 | −5.9% | 11d | 3.5% |
+| Banana Monkey | 21,935 | −5.5% | 12d | 8.7% |
+| Knife Farm | 2,552 | −4.2% | 16d | 13.2% |
+| Waterslide | 17,155 | −3.2% | 21d | 15.3% |
+
+**Every game runs the same shape** — a constant-percentage decay with a half-life
+of one to three weeks. That is the portfolio's defining pattern and CCU shows it
+more plainly than any other series.
+
+**Which CCU series to use, and this matters:**
+
+| series | granularity | use for | trap |
+|---|---|---|---|
+| `PeakConcurrentPlayers` | `ONE_DAY` | nothing, alone | **F15** — it is a SUM of per-platform peaks and overstates. Never quote it for a day in progress |
+| `ConcurrentPlayers` | `ONE_HOUR` | trends, diurnal shape | the clean series; ~1,000 points per game |
+| `PeakConcurrentPlayers` | `HALF_HOUR` | incidents, intraday | see the accumulation rule below |
+| dashboard CSV export | any | ground truth | cell-exact against our data; the only route to *today* |
+
+**The half-hour "gimmick", resolved 2026-09-04.** Each individual GRAB returns
+only about the last 24 hours at `HALF_HOUR` — the gateway clamps it regardless of
+the window asked for. But the stored series MERGES across grabs, so half-hour
+history accumulates with grab frequency. Measured: Brainrot holds **28 days** of
+half-hour CCU (1,374 points, 2026-08-07 → 09-04) because it has been grabbed
+often; Seal holds **5 days** because it was added recently. So it is not "only
+the 1d window" — it is 1 day per grab, compounding. **Another reason to grab
+daily.**
+
+**Saturday poisoning.** Admin-abuse events inflate Saturday CCU on some games.
+Measured against each game's own Fri/Sun neighbours: **Brainrot +159.5%**,
+Knife Farm +28.3%, Verity +13.5%, Banana +2.5%, Seal +2.0%, Waterslide −6.8%.
+On Brainrot and Knife Farm, **exclude Saturdays outright** from any CCU trend —
+do not average them in.
+
+**One caveat on the "CCU is the best indicator" claim, tested not assumed.**
+Correlating daily log-changes against revenue, DAU edges CCU on 4 of 5 games
+(Verity 0.813 vs 0.680; Banana 0.785 vs 0.663; Brainrot 0.655 vs 0.547;
+Waterslide 0.868 vs 0.843; Knife Farm is the exception, 0.171 vs 0.231). Both
+are strong. Lead with CCU because it is legible and public; corroborate with DAU
+because it tracks revenue marginally better.
+
 ## 0b. Platform questions: within-platform delta + feedback text, never levels
 
 **Never compare a metric's LEVEL across platforms.** Players self-select onto a
