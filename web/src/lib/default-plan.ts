@@ -203,6 +203,35 @@ const SPECS: Spec[] = [
       filter: SOURCES,
       provenance: "observed" as const,
     })),
+  // The rest of the same dashboard table. Added 2026-09-03 from two Acquisition
+  // CSV exports (10638354731, 10192528661) that carry columns the plan did not
+  // ask for: 1D and 7D payer conversion / revenue per user, and "Users with
+  // plays" — the table's own DENOMINATOR, without which every rate above is
+  // unweighted and a source's size is invisible. The exports are ground truth:
+  // all six columns we DID pull matched Seal's export to the digit (see
+  // data/verify/acquisition-exports/).
+  //
+  // Tagged `inferred` + `optional` DELIBERATELY, and understating what we know.
+  // An ad-hoc probe returned real data for all five on 9963622286 (2026-09-03,
+  // analysis/probe_attr.py), but `proven` means an ACTIVE GRAB recorded data in
+  // grab-report.json, and no grab has run these yet. Erring toward `inferred`
+  // costs nothing — an optional template's 4xx is reported "n/a", never as a
+  // finding about a game — while a false `proven` is exactly how a guess gets
+  // mistaken for evidence. UPGRADE to `proven` after the next full grab;
+  // audit-plan lists them as upgradable once the data lands.
+  ...["Attribution1DPayerConversionRatio", "Attribution1DRobuxPerUser",
+      "Attribution7DPayerConversionRatio", "Attribution7DRobuxPerUser"]
+    .map((metric) => ({
+      metric,
+      granularity: NONE,
+      breakdown: ["AcquisitionSource"],
+      filter: SOURCES,
+      optional: true,
+      provenance: "inferred" as const,
+    })),
+  { metric: "UniqueUsersWithPlaySessions", granularity: NONE,
+    breakdown: ["AcquisitionSource"], filter: SOURCES,
+    optional: true, provenance: "inferred" },
   { metric: "EndToEndCVR", granularity: NONE, breakdown: ["AcquisitionSource"],
     filter: [...SOURCES, ...NEW], provenance: "observed" },
   { metric: "UniqueUsersWithPlaySessions", granularity: DAY,
@@ -228,8 +257,16 @@ const SPECS: Spec[] = [
   // Optional until then: its failure must not read as a problem with the game.
   { metric: "DailyCohortRetention", granularity: DAY, breakdown: ["CohortDay"], optional: true },
   { metric: "WeeklyCohortRetention", granularity: DAY, breakdown: ["CohortDay"], optional: true },
-  { metric: "L7AverageForwardD1Retention", granularity: DAY },
-  { metric: "L7AverageForwardD1Retention", granularity: DAY, breakdown: ["AcquisitionSource"], filter: SOURCES },
+  // The L7Average* family 400s almost everywhere as of 2026-09-03. Measured
+  // across all eight universes' grab reports: 13 of 16 attempts 400 on every
+  // recently-grabbed game; the only clean run is 9610561918's report from
+  // 2026-08, i.e. before the change. These WERE observed in real dashboard
+  // captures, so the shape was right once — Roblox appears to have withdrawn
+  // them. Marked `optional` so a 4xx is reported as "n/a" instead of a failure,
+  // and so the tag stops resting on one ageing report. Re-check before relying
+  // on any L7 rolling average; the underlying daily metrics are unaffected.
+  { metric: "L7AverageForwardD1Retention", granularity: DAY , optional: true },
+  { metric: "L7AverageForwardD1Retention", granularity: DAY, breakdown: ["AcquisitionSource"], filter: SOURCES , optional: true },
 
   // ---- Engagement ---------------------------------------------------------
   { metric: "DailyActiveUsers", granularity: DAY },
@@ -249,12 +286,12 @@ const SPECS: Spec[] = [
   { metric: "AverageSessionLengthMinutes", granularity: DAY, breakdown: ["Platform"], optional: true },
   { metric: "AverageSessionLengthMinutes", granularity: DAY, breakdown: ["PlaceVersion"], optional: true },
   { metric: "AveragePlayTimeMinutesPerDAU", granularity: DAY },
-  { metric: "L7AveragePlayTimeMinutesPerDAU", granularity: DAY },
-  { metric: "L7AverageDailyActiveUsers", granularity: DAY },
+  { metric: "L7AveragePlayTimeMinutesPerDAU", granularity: DAY , optional: true },
+  { metric: "L7AverageDailyActiveUsers", granularity: DAY , optional: true },
   { metric: "TotalPlayTimeHours", granularity: DAY },
   { metric: "UniqueUsersWithPlaySessions", granularity: DAY },
   { metric: "UniqueUsersWithPlaySessions", granularity: DAY, filter: NEW },
-  { metric: "L7AverageUniqueUsersWithPlaySessions", granularity: DAY, breakdown: ["AcquisitionSource"], filter: NEW },
+  { metric: "L7AverageUniqueUsersWithPlaySessions", granularity: DAY, breakdown: ["AcquisitionSource"], filter: NEW , optional: true },
   { metric: "TotalSessionsEndedInBucket", granularity: NONE, breakdown: ["SessionTimeBucket"] },
   // PeakConcurrentPlayers moved to perfSpecs() — it needs a Place filter and
   // ONE_DAY. At HOUR with no filter it 400s. `ConcurrentPlayers` is a live
@@ -271,7 +308,7 @@ const SPECS: Spec[] = [
   { metric: "DailyRevenue", granularity: DAY, breakdown: ["RevenueSource"] },
   { metric: "DailyRevenue", granularity: DAY, breakdown: ["BalanceType"] },
   { metric: "DailyRevenue", granularity: DAY, breakdown: ["PlaceVersion"], optional: true },
-  { metric: "L7AverageDailyRevenue", granularity: DAY },
+  { metric: "L7AverageDailyRevenue", granularity: DAY , optional: true },
   // Passes vs Dev Products — the idle-monetization thesis. This is the
   // overview page's "Robux Spent (Realtime)" series, so it RESTATES as
   // transactions settle: re-reads of the same settled hour have moved

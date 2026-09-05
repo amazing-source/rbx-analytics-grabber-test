@@ -1,0 +1,505 @@
+<title>Four Games, One Distribution Problem</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ground:#faf9f6; --surface:#ffffff; --surface-2:#f2f1ec;
+  --ink:#15171b; --ink-2:#4a4f57; --ink-3:#858a92;
+  --rule:#e3e1da; --rule-2:#cfcdc4;
+  --accent:#2a78d6; --accent-soft:#e7f0fb;
+  --good:#0f8a5f; --good-soft:#e2f3ec;
+  --warn:#a86f00; --warn-soft:#faefd6;
+  --bad:#c4302f; --bad-soft:#fbe6e5;
+  --plate:#fcfcfb;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#141518; --surface:#1c1e22; --surface-2:#25282d;
+    --ink:#f2f1ec; --ink-2:#b6bac1; --ink-3:#868b93;
+    --rule:#2e3237; --rule-2:#3c4148;
+    --accent:#5c9ff0; --accent-soft:#1a2735;
+    --good:#3fc191; --good-soft:#15291f;
+    --warn:#e0a53a; --warn-soft:#2c2314;
+    --bad:#ef7d7c; --bad-soft:#2e1a1a;
+    --plate:#fcfcfb;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#141518; --surface:#1c1e22; --surface-2:#25282d;
+  --ink:#f2f1ec; --ink-2:#b6bac1; --ink-3:#868b93;
+  --rule:#2e3237; --rule-2:#3c4148;
+  --accent:#5c9ff0; --accent-soft:#1a2735;
+  --good:#3fc191; --good-soft:#15291f;
+  --warn:#e0a53a; --warn-soft:#2c2314;
+  --bad:#ef7d7c; --bad-soft:#2e1a1a;
+  --plate:#fcfcfb;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--ground); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-size:17px; line-height:1.62; margin:0;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px; margin:0 auto; padding:0 28px 96px}
+.measure{max-width:68ch}
+h1,h2,h3,.disp{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif; text-wrap:balance}
+h1{font-size:clamp(2.1rem,4.6vw,3.1rem); line-height:1.06; font-weight:800; letter-spacing:-.022em; margin:0 0 .5rem}
+h2{font-size:1.45rem; font-weight:700; letter-spacing:-.012em; margin:0 0 .2rem}
+h3{font-size:1.06rem; font-weight:700; letter-spacing:-.006em; margin:0 0 .35rem}
+p{margin:0 0 1rem}
+a{color:var(--accent)}
+.eyebrow{font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.68rem; font-weight:500;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace; font-variant-numeric:tabular-nums}
+
+/* ---- masthead ---- */
+header.top{padding:56px 0 30px; border-bottom:2px solid var(--ink)}
+header.top .lede{font-size:1.16rem; color:var(--ink-2); max-width:64ch; margin-top:.85rem}
+.meta{display:flex; flex-wrap:wrap; gap:8px 26px; margin-top:22px}
+.meta div{font-family:"JetBrains Mono",monospace; font-size:.73rem; color:var(--ink-3); letter-spacing:.02em}
+.meta b{color:var(--ink-2); font-weight:500}
+
+/* ---- section rhythm ---- */
+section{padding:46px 0 0; border-top:1px solid var(--rule); margin-top:44px}
+section:first-of-type{border-top:none}
+.sec-head{display:flex; align-items:baseline; gap:16px; margin-bottom:22px; flex-wrap:wrap}
+
+/* ---- verdict strip ---- */
+.verdicts{display:grid; grid-template-columns:repeat(auto-fit,minmax(232px,1fr)); gap:14px; margin:26px 0 8px}
+.vcard{background:var(--surface); border:1px solid var(--rule); border-radius:3px; padding:16px 17px 17px;
+  display:flex; flex-direction:column; gap:9px}
+.vcard .nm{font-family:"Bricolage Grotesque",sans-serif; font-weight:700; font-size:1.12rem; letter-spacing:-.01em;
+  display:flex; align-items:center; gap:8px}
+.swatch{width:11px; height:11px; border-radius:2px; flex:none}
+.vbig{font-family:"JetBrains Mono",monospace; font-size:1.62rem; font-weight:700; line-height:1; letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums}
+.vsub{font-family:"JetBrains Mono",monospace; font-size:.72rem; color:var(--ink-3); line-height:1.5}
+.vnote{font-size:.9rem; color:var(--ink-2); line-height:1.45; border-top:1px dashed var(--rule); padding-top:9px; margin-top:2px}
+
+/* ---- tags ---- */
+.tag{display:inline-flex; align-items:center; gap:5px; font-family:"JetBrains Mono",monospace;
+  font-size:.62rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+  padding:3px 7px; border-radius:2px; white-space:nowrap; vertical-align:2px}
+.t-conf{background:var(--good-soft); color:var(--good)}
+.t-sugg{background:var(--warn-soft); color:var(--warn)}
+.t-no{background:var(--bad-soft); color:var(--bad)}
+.t-flat{background:var(--surface-2); color:var(--ink-2)}
+
+/* ---- findings ---- */
+.finding{display:grid; grid-template-columns:38px 1fr; gap:0 18px; padding:20px 0; border-top:1px solid var(--rule)}
+.finding:first-of-type{border-top:1px solid var(--rule-2)}
+.fnum{font-family:"JetBrains Mono",monospace; font-size:.82rem; font-weight:700; color:var(--ink-3); padding-top:3px}
+.fbody h3{margin-bottom:.3rem}
+.fbody p{margin-bottom:.5rem; color:var(--ink-2)}
+.fbody p:last-child{margin-bottom:0}
+.fbody .measure{max-width:74ch}
+
+/* ---- tables ---- */
+.tblwrap{overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); margin:18px 0 10px}
+table{border-collapse:collapse; width:100%; font-family:"JetBrains Mono",monospace; font-size:.78rem;
+  font-variant-numeric:tabular-nums}
+caption{text-align:left; font-family:"Bricolage Grotesque",sans-serif; font-weight:700; font-size:.98rem;
+  padding:14px 16px 0; color:var(--ink)}
+th,td{padding:7px 13px; text-align:right; border-bottom:1px solid var(--rule); white-space:nowrap}
+th{font-weight:700; font-size:.66rem; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-3);
+  border-bottom:1px solid var(--rule-2); position:sticky; top:0; background:var(--surface)}
+th:first-child,td:first-child{text-align:left}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface-2)}
+td.lbl{font-family:"Source Serif 4",serif; font-size:.92rem; color:var(--ink)}
+.pos{color:var(--good)} .neg{color:var(--bad)} .dim{color:var(--ink-3)}
+.grp td{background:var(--surface-2); font-family:"Bricolage Grotesque",sans-serif; font-weight:700;
+  font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-2)}
+.tnote{font-size:.85rem; color:var(--ink-3); max-width:80ch; margin:0 0 26px; line-height:1.5}
+
+/* ---- figures ---- */
+figure{margin:26px 0 30px}
+.plate{background:var(--plate); border:1px solid var(--rule); border-radius:3px; padding:10px; overflow-x:auto}
+.plate img{display:block; width:100%; min-width:640px; height:auto}
+figcaption{margin-top:11px; font-size:.95rem; color:var(--ink-2); max-width:82ch; line-height:1.5}
+figcaption b{color:var(--ink); font-weight:600}
+
+/* ---- callout ---- */
+.call{border-left:3px solid var(--accent); background:var(--accent-soft); padding:15px 18px; border-radius:0 3px 3px 0; margin:22px 0}
+.call.warnc{border-left-color:var(--warn); background:var(--warn-soft)}
+.call p{margin:0; color:var(--ink-2)}
+.call p+p{margin-top:.6rem}
+.call .eyebrow{display:block; margin-bottom:.35rem}
+
+/* ---- action list ---- */
+.acts{display:grid; gap:12px; margin:18px 0 0}
+.act{display:grid; grid-template-columns:120px 1fr; gap:0 18px; background:var(--surface);
+  border:1px solid var(--rule); border-radius:3px; padding:14px 16px}
+.act .who{font-family:"Bricolage Grotesque",sans-serif; font-weight:700; font-size:.95rem; display:flex;
+  align-items:flex-start; gap:7px}
+.act .what{color:var(--ink-2); font-size:.96rem; line-height:1.5}
+.act .what b{color:var(--ink); font-weight:600}
+@media (max-width:640px){
+  .act{grid-template-columns:1fr; gap:8px}
+  .finding{grid-template-columns:1fr; gap:6px}
+  .wrap{padding:0 18px 70px}
+  body{font-size:16px}
+}
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">Indigo LiveOps · cross-game analysis · 2 September 2026</div>
+  <h1>Four games, one distribution problem</h1>
+  <p class="lede">Brainrot, Seal, Verity and Waterslide are all at or near their all-time low at the same time. They did not all break at the same time. In all four, lost reach is the larger term by far. But that is the precise claim, not a clean one: conversion <em>rose</em> on Brainrot and Verity and <em>fell</em> on Seal (&minus;35%) and Waterslide (&minus;24%), so two of the four have a genuine conversion problem underneath the distribution one.</p>
+  <div class="meta">
+    <div><b>Source</b> data/games/&lt;id&gt;/metrics/*.csv → DuckDB, 352 files, 215,189 rows, 91 metrics</div>
+    <div><b>Settled through</b> 2026-09-01</div>
+    <div><b>Common window</b> 19 Aug – 1 Sep</div>
+    <div><b>Gates</b> verify 23/2/8 · audit-plan 0 fail · 44 tests pass</div>
+  </div>
+</header>
+
+<section>
+<div class="sec-head"><h2>Where each game stands</h2><span class="eyebrow">7-day mean, 26 Aug – 1 Sep</span></div>
+<div class="verdicts">
+  <div class="vcard">
+    <div class="nm"><span class="swatch" style="background:#2a78d6"></span>Brainrot</div>
+    <div class="vbig">110.2k <span style="font-size:.8rem;color:var(--ink-3)">DAU</span></div>
+    <div class="vsub">−93.7% from peak · 65 days post-peak<br>decaying −3.8%/day · R$54.9k/day</div>
+    <div class="vnote">The most exhausted. Longest fall, smallest base, retention and ARPPU both below its cohort median.</div>
+  </div>
+  <div class="vcard">
+    <div class="nm"><span class="swatch" style="background:#eb6834"></span>Seal</div>
+    <div class="vbig">355.3k <span style="font-size:.8rem;color:var(--ink-3)">DAU</span></div>
+    <div class="vsub">−71.0% from peak · 4 days post-peak<br>decaying −25.9%/day · R$678.1k/day</div>
+    <div class="vnote">Best unit economics by 3.5&times;, fastest current slide, and a progress-reset defect. Only 4 post-peak days &mdash; trajectory not yet rateable.</div>
+  </div>
+  <div class="vcard">
+    <div class="nm"><span class="swatch" style="background:#1baf7a"></span>Verity</div>
+    <div class="vbig">471.2k <span style="font-size:.8rem;color:var(--ink-3)">DAU</span></div>
+    <div class="vsub">−65.4% from peak · 9 days post-peak<br>decaying −9.2%/day · R$217.9k/day</div>
+    <div class="vnote">Best hook anywhere (D1 is 115% above its cohort median) and the shortest sessions. Gated by its own message limit.</div>
+  </div>
+  <div class="vcard">
+    <div class="nm"><span class="swatch" style="background:#eda100"></span>Waterslide</div>
+    <div class="vbig">155.2k <span style="font-size:.8rem;color:var(--ink-3)">DAU</span></div>
+    <div class="vsub">−82.0% from peak · 30 days post-peak<br>decaying −2.8%/day · R$89.5k/day</div>
+    <div class="vnote">Slowest bleed, weakest fundamentals. Worst D7 in the set and ARPPU 66% below its cohort median.</div>
+  </div>
+</div>
+<p class="tnote" style="margin-top:16px">Decay rates are log-linear fits from each game's own DAU peak, so a launch ramp cannot flatter anyone. Seal's rate rests on 4 post-peak days and is the least certain figure on this page.</p>
+</section>
+
+<section>
+<div class="sec-head"><h2>What the data says</h2><span class="eyebrow">tagged by how far the evidence actually goes</span></div>
+
+<div class="finding">
+  <div class="fnum">01</div>
+  <div class="fbody">
+    <h3>Reach is the larger term in every game &mdash; and two of four also lost conversion <span class="tag t-conf">confirmed</span></h3>
+    <p class="measure">DAU is the product of reach (unique users Roblox showed the game) and conversion (the share of them who played). Splitting each game's peak-to-1-Sep move into those two factors reproduces the observed DAU change to within 0.4 points in all four cases. Reach fell 56–95%. Conversion moved <b>+14%, +6%, −24%, −35%</b> — and on Brainrot and Verity it is <em>higher</em> now than it was at peak.</p>
+    <p class="measure">Reach accounts for 77&ndash;99% of the daily variance in DAU in all four games. That is an accounting result, not a causal one &mdash; DAU is <em>defined</em> as reach &times; conversion, so the decomposition says where the change came through, never why. See finding 07 for what happens when you try to push it further.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="fnum">02</div>
+  <div class="fbody">
+    <h3>Three of four games have a real product break — and in two of them it arrived after the decline had started <span class="tag t-conf">confirmed</span></h3>
+    <p class="measure">My first pass tested one date per game, 28 August, found nothing, and I wrote that no update moved a metric. That was a claim about one date stated as if it covered every publish. Scanning instead — fitting a trend and a step at <em>every</em> candidate date and keeping the largest — finds genuine breaks:</p>
+    <div class="tblwrap" style="margin:14px 0 10px">
+    <table>
+    <thead><tr><th>Game</th><th>Engagement break</th><th>D1 step</th><th>Corroboration</th><th>Reach peak</th><th>Gap</th></tr></thead>
+    <tbody>
+    <tr><td class="lbl">Brainrot</td><td>2026-07-31</td><td class="neg">−5.6pp</td><td style="text-align:left">playtime −4.1 min, session −1.74 min</td><td>29 Jun</td><td class="neg">+32d</td></tr>
+    <tr><td class="lbl">Seal</td><td>2026-08-27</td><td class="neg">−6.0pp</td><td style="text-align:left">playtime −13.7 min; only 2/14 dates fire</td><td>1 Sep</td><td class="pos">−5d</td></tr>
+    <tr><td class="lbl">Waterslide</td><td>2026-08-22</td><td class="neg">−2.0pp</td><td style="text-align:left">session −1.13 min, conversion −1.8pp</td><td>3 Aug</td><td class="neg">+19d</td></tr>
+    <tr><td class="lbl">Verity</td><td class="dim">none</td><td class="dim">—</td><td style="text-align:left" class="dim">every change point is positive (its launch ramp)</td><td>25 Aug</td><td class="dim">—</td></tr>
+    </tbody>
+    </table>
+    </div>
+    <p class="measure">Brainrot's 31 July break is independently dated by three metric families and matches a known publish — broken collision geometry and progress resets. But reach peaked 29 June and was <b>already −38.2%</b> by the day it landed. The pullback ran 32 days before the bug. Waterslide is the same shape at +19 days. <b>Seal is the exception</b>: its break precedes its reach turn by 5 days, and it is the sharpest signal here (2 of 14 candidate dates fire, versus 70% on Brainrot's trending series).</p>
+    <p class="measure">So these games carry <b>two independent wounds</b>: a distribution pullback that starts at the reach peak, and a product break that in two of three cases arrives well after it. Conflating them is what makes the story confusing — the bugs are real and worth fixing, and they are not what started the decline.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="fnum">03</div>
+  <div class="fbody">
+    <h3>Verity is throttled at both ends of the session, not broken <span class="tag t-conf">confirmed</span></h3>
+    <p class="measure">Verity's D1 retention is <b>14.6%, which is ordinary</b> — Brainrot's is 14.3%, statistically the same number. It reads as "+115%, above the 90th percentile" only because Verity is benchmarked against the adventure genre, where the median is 6.78%, while Brainrot sits in a cohort at 15.56%. Same retention, half the bar. An earlier draft of this report called it the best hook in the portfolio; that was the cohort artifact talking, and the caveat about not reading percentiles across games applies to me as much as to anyone.</p>
+    <p class="measure">What is genuinely distinctive is that Verity is squeezed at <em>both</em> ends. Its sessions are the shortest here at 8.4 minutes, 18% below its own cohort median. And its loop dies one day later than you would guess. Its <em>second-day</em> return (D1, "came back the next day") is 14.58%, the highest of the four. It is the <em>third</em> day where it falls apart: only <b>39.0%</b> of its day-1 players are still there on cohort-day 2, against Seal's 49.6% and Waterslide's 45.7%. The curve runs 14.71% → 5.74% → 2.70% → 1.81%, the steepest decay in the set.</p>
+    <p class="measure">The player feedback says exactly what the gate is. Of 2,097 comments, <b>8.6% mention the refill timer or message limit</b> by name: "why do I only get like 50 questions and then wait a minute", "get rid of the message limit", and — directly costing a sale — "the messages are so limited, im not about to spend robux on a game that i wont play for the next month". The two ends point at the same thing: the cap truncates the session, and nothing sustains a player past their third day. Note the precise shape — players <em>do</em> come back for a second day at a normal rate, so this is not a missing next-day hook; it is that there is nothing to come back <em>to</em> once the novelty of the AI has gone.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="fnum">04</div>
+  <div class="fbody">
+    <h3>Seal discards partial surface progress on rejoin <span class="tag t-conf">confirmed</span></h3>
+    <p class="measure">6.3% of Seal's 318 comments report lost progress, and they are unambiguous: "doesn't save progress at all", "resets ur progress when u leave", "I lost all my progress", "I did a lot of work to make almost ALL OF THE ROAD BUT THEN I PLAY A NEW GAME BUT WHEN I JOIN BACK ITS ALL RESETED". A second cluster is a design choice rather than a bug — rebirth wipes skill upgrades, and several players ask for those to persist.</p>
+    <p class="measure"><b>This is not a data wipe.</b> Confirmed with the studio: a surface persists at 100% or 0% and nothing in between, so a player who cleans 60% of a surface and rejoins finds it back at 0. That is a persistence-granularity choice, not lost save data — and a cheaper fix, since it means checkpointing partial progress at intervals rather than only on completion. It also fits the numbers better than a wipe would: a player returns once, sees the work gone, and leaves. Seal has the lowest D1 in the set at 11.8% and the highest downvote rate at 78%.</p>
+    <p class="measure">Seal also carries the worst sentiment in the set at <b>78% downvotes</b>, and the lowest D1 retention at 11.8%. Given the game earns 3.5&times; the ARPDAU of anything else in the portfolio, this is the single most expensive defect on this page.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="fnum">05</div>
+  <div class="fbody">
+    <h3>Waterslide's monetization is structurally thin <span class="tag t-conf">confirmed</span></h3>
+    <p class="measure">Waterslide converts more players to payers than anything else here — 3.1% of DAU on a 14-day mean, close to four times Brainrot and Verity, and 225% above its cohort median. Then it takes <b>R$19 from each</b>, which is 66% below the same cohort's median and a ninth of Seal's R$177. It is also 88% dependent on dev products, so there is no pass ladder catching the players who already showed they will pay.</p>
+    <p class="measure">Waterslide is also the weakest retainer in the set: D7 of 0.94% on the same 14-day basis, 31% below its cohort median, and D8 cohort retention of 0.69% against Seal's 2.12%.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="fnum">06</div>
+  <div class="fbody">
+    <h3>Two of the four are running on a near-invisible audience <span class="tag t-sugg">suggestive</span></h3>
+    <p class="measure">Age is verified for a minority of players, so these buckets are a sample of the checked minority, not the audience. With that caveat: Brainrot is <b>52.9% age-unchecked</b> and Waterslide 43.5%, against Seal's 10.2%. Among checked players Brainrot skews young (20.4% under 13) and heavily male (70.3%), while Seal is evenly split by gender and spread across every age band, and Waterslide is 54.4% female.</p>
+    <p class="measure">Seal's audience being both older and better identified is consistent with it earning 3.5&times; the ARPDAU — older accounts have their own Robux. This is a plausible mechanism, not a measured one, and I have not tested it.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="fnum">07</div>
+  <div class="fbody">
+    <h3>The data cannot prove reach caused the decline, and on the longest series it points the other way <span class="tag t-no">direction not established</span></h3>
+    <p class="measure">DAU is <em>defined</em> as reach &times; conversion, so the decomposition in finding 01 is an accounting identity. It establishes that the change came through the reach term. It cannot establish that falling reach <em>caused</em> falling DAU, because the identity holds whichever way the causation runs, and Roblox's recommender plausibly feeds on engagement — which would make this a loop, not an arrow.</p>
+    <p class="measure">The only available direction test is lead&ndash;lag: does yesterday's change in one predict today's change in the other, controlling for the series' own lag? Run on daily log-differences over each game's last 40 days, it does not support the reach&nbsp;&rarr;&nbsp;DAU story:</p>
+    <div class="tblwrap" style="margin:14px 0 10px">
+    <table>
+    <thead><tr><th>Game</th><th>reach(t&minus;1) &rarr; DAU(t)</th><th>DAU(t&minus;1) &rarr; reach(t)</th><th style="text-align:left">Reading</th></tr></thead>
+    <tbody>
+    <tr><td class="lbl">Brainrot</td><td class="dim">p=0.54</td><td class="pos">p=0.008</td><td style="text-align:left">Only DAU&rarr;reach is significant &mdash; the reverse of the narrative</td></tr>
+    <tr><td class="lbl">Seal</td><td>p=0.041</td><td>p=0.021</td><td style="text-align:left">Both significant, opposite signs &mdash; incoherent</td></tr>
+    <tr><td class="lbl">Verity</td><td>p=0.043</td><td>p=0.050</td><td style="text-align:left">Both significant, opposite signs &mdash; incoherent</td></tr>
+    <tr><td class="lbl">Waterslide</td><td class="dim">p=0.41</td><td class="dim">p=0.33</td><td style="text-align:left">Neither significant</td></tr>
+    </tbody>
+    </table>
+    </div>
+    <p class="measure">Brainrot has the longest clean series here, and it is the one game with an unambiguous result — pointing at DAU driving reach, not the other way round. Two games are incoherent and one is silent. <b>So the correct statement is: reach is where the decline shows up, and this data cannot say what moved first.</b> A story in which these games lost players for their own reasons and the recommender responded by pulling distribution fits this evidence at least as well as the one in the banner.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="fnum">08</div>
+  <div class="fbody">
+    <h3>The weekly cadence is just the weekend <span class="tag t-no">not supported</span></h3>
+    <p class="measure">Brainrot shows visible weekly spikes and my first read was a Saturday event cadence. Modelling log DAU on time plus weekday dummies over eight weeks does not support that: Saturday is +6.5% against Sunday at p=0.60, i.e. indistinguishable. What <em>is</em> significant is the ordinary weekday trough — Tuesday −21.9% and Wednesday −25.4% against Sunday, both p&lt;0.05. That is the normal Roblox weekend shape, not a liveops beat. Seal and Verity cannot be modelled this way at all while their launch ramp dominates the window.</p>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="sec-head"><h2>Data quality</h2><span class="eyebrow">checked before any of the above</span></div>
+<p class="measure">You asked whether what the grabber pulls is trustworthy. On this corpus, the headline numbers are. Two independent checks agree: every breakdown reconciles to its own total exactly (ratio 1.000 on every game-day where both exist), and my DuckDB figures match the repo's separately generated <span class="mono">summary.md</span> to the digit on DAU, revenue and paying users for all four games. The repo's three gates are also green, with <span class="mono">verify</span> at its documented 23 pass / 2 fail / 8 skip.</p>
+<div class="tblwrap">
+<table>
+<caption>Issues found, and what I did about each</caption>
+<thead><tr><th>Issue</th><th style="text-align:left">Detail</th><th style="text-align:left">Handling</th></tr></thead>
+<tbody>
+<tr><td class="lbl">Metric maturity</td><td style="text-align:left">Roblox reports <span class="mono">latestAvailableTime</span> = 29 Aug on every metric, but serves 30 Aug – 1 Sep anyway</td><td style="text-align:left">Kept. Across 1,300 logged restatements, <b>zero</b> touch DAU, revenue, paying users, visits, MAU or D1 — headline metrics do not get revised. The tail is real.</td></tr>
+<tr><td class="lbl">Restated values</td><td style="text-align:left"><span class="mono">ItemMonetizationRevenue</span> restated 217&times; on Waterslide, 24&times; on Seal, 21&times; on Verity — always upward, up to 21&times; (R$12,185 → R$258,059)</td><td style="text-align:left">Metric dropped. Used <span class="mono">DailyRevenue</span>, which is never restated, and its <span class="mono">RevenueSource</span> breakdown instead.</td></tr>
+<tr><td class="lbl">Zero vs null</td><td style="text-align:left">Seal 30.6% <span class="mono">FILLED_ZERO</span> on DAU, Brainrot 4.9%, Verity 2.8%</td><td style="text-align:left">All leading, none interior — they are pre-launch days, not gaps. Excluded from every mean, trend and peak.</td></tr>
+<tr><td class="lbl">Mismatched ranges</td><td style="text-align:left">Brainrot holds 164 days, Waterslide 50, Seal and Verity 36 — and Seal/Verity are grab-window-limited, not young</td><td style="text-align:left">All cross-game comparison confined to 19 Aug – 1 Sep, where all four are live and at scale.</td></tr>
+<tr><td class="lbl">Double-count risk</td><td style="text-align:left">Two competing <span class="mono">AcquisitionSource</span> filter templates on DAU — a 5-source and a 10-source variant, overlapping from 5 Aug</td><td style="text-align:left">Pinned to the 5-source template throughout, so the acquisition table is one consistent shape.</td></tr>
+<tr><td class="lbl">Rate peaks</td><td style="text-align:left">Launch days with 1–4 DAU produce D1 retention of 1.00 and stickiness of 1.00</td><td style="text-align:left">All rate peaks and means masked to days with DAU ≥ 10,000.</td></tr>
+<tr><td class="lbl">Known-bad rollups</td><td style="text-align:left"><span class="mono">*.daily.csv</span> sums <span class="mono">FILLED_ZERO</span> rows (F13); <span class="mono">PeakConcurrentPlayers</span> at ONE_DAY is a sum of per-platform peaks (F15)</td><td style="text-align:left">Both excluded. CCU read from <span class="mono">ConcurrentPlayers</span> at ONE_HOUR only.</td></tr>
+<tr><td class="lbl">Breakdown coverage</td><td style="text-align:left">Seal has only 3 days of <span class="mono">RevenueSource</span> coverage vs 14 for the others</td><td style="text-align:left">Shown as shares, never as totals. Flagged on the chart.</td></tr>
+<tr><td class="lbl">Missing days</td><td style="text-align:left">None. Zero calendar gaps inside any game's own DAU span.</td><td style="text-align:left">—</td></tr>
+</tbody>
+</table>
+</div>
+<div class="call warnc">
+  <span class="eyebrow">One thing I could not settle</span>
+  <p>The freeze policy keeps the <em>first</em> settled read of a point. That is safe for the headline metrics — they are never restated — but it means <span class="mono">ItemMonetizationRevenue</span> in the corpus is systematically understated, sometimes by an order of magnitude, and any report that quoted it is wrong in the same direction. Worth deciding whether that metric should switch to last-write-wins.</p>
+</div>
+</section>
+
+<section>
+<div class="sec-head"><h2>The four charts</h2></div>
+
+<figure>
+  <div class="plate"><img src="__IMG1__" alt="Daily active users, seven-day moving average on a log scale, for all four games from mid-July to early September. All four rise to a peak and then fall along similar slopes."></div>
+  <figcaption><b>Every game is post-peak, and the slopes are similar.</b> On a log scale a straight line is a constant percentage decline per day, and after each peak all four settle into comparable slopes — which is what a shared external cause looks like, rather than four separate product failures.</figcaption>
+</figure>
+
+<figure>
+  <div class="plate"><img src="__IMG2__" alt="Four panels, one per game, each indexed to 100 at that game's DAU peak, showing reach collapsing while conversion stays roughly flat."></div>
+  <figcaption><b>Reach is the larger term everywhere, but conversion is not a constant.</b> Brainrot lost 95% of its reach while converting 14% <em>better</em> than at peak, and Verity is +6%. Seal (&minus;35%) and Waterslide (&minus;24%) lost real conversion on top of the reach loss &mdash; smaller than the reach term in both cases, but not noise.</figcaption>
+</figure>
+
+<figure>
+  <div class="plate"><img src="__IMG3__" alt="Six small dot plots comparing each game against its Roblox benchmark cohort on D1 retention, D7 retention, playtime per DAU, paying-user CVR, ARPDAU and ARPPU."></div>
+  <figcaption><b>Product quality is not what is failing.</b> Every game clears its cohort median on paying-user conversion, and three of four clear it on D7. The genuine outlier is Waterslide's ARPPU, 66% below median. Cohorts differ per game, so read each row against its own bar and not across games.</figcaption>
+</figure>
+
+<figure>
+  <div class="plate"><img src="__IMG4__" alt="Three panels: paying-user conversion rate by game, ARPPU by game, and revenue mix between dev products and game passes."></div>
+  <figcaption><b>Two different monetization machines.</b> Waterslide converts 2.8% of its players and takes R$19 each; Seal converts 1.4% and takes R$177. Seal and Verity earn most of their money from passes, Brainrot and Waterslide almost entirely from dev products — the mix, not the audience, is what sets ARPPU here.</figcaption>
+</figure>
+</section>
+
+<section>
+<div class="sec-head"><h2>Scorecard</h2><span class="eyebrow">7-day means, 26 Aug – 1 Sep · WoW vs the 7 days before</span></div>
+<div class="tblwrap">
+<table>
+<caption>Headline metrics, all four games</caption>
+<thead><tr><th>Metric</th><th>Brainrot</th><th>Seal</th><th>Verity</th><th>Waterslide</th></tr></thead>
+<tbody>
+<tr class="grp"><td colspan="5">Reach and scale — volume</td></tr>
+<tr><td class="lbl">DAU</td><td>110,212</td><td>355,313</td><td>471,246</td><td>155,169</td></tr>
+<tr><td class="lbl">DAU, week over week</td><td class="neg">−34.8%</td><td class="pos dim">+129.4%*</td><td class="neg">−52.6%</td><td class="neg">−56.4%</td></tr>
+<tr><td class="lbl">DAU vs all-time peak</td><td class="neg">−93.7%</td><td class="neg">−71.0%</td><td class="neg">−65.4%</td><td class="neg">−82.0%</td></tr>
+<tr><td class="lbl">Reach (impressions)</td><td>1.66M</td><td>3.40M</td><td>6.27M</td><td>3.36M</td></tr>
+<tr><td class="lbl">Reach, week over week</td><td class="neg">−30.7%</td><td class="pos dim">+159.1%*</td><td class="neg">−42.8%</td><td class="neg">−45.4%</td></tr>
+<tr><td class="lbl">Peak CCU, 1 Sep</td><td>1,000</td><td>3,266</td><td>5,623</td><td>2,845</td></tr>
+<tr class="grp"><td colspan="5">Retention and engagement — rate</td></tr>
+<tr><td class="lbl">D1 retention</td><td>14.34%</td><td>11.79%</td><td>13.00%</td><td>12.79%</td></tr>
+<tr><td class="lbl">D7 retention</td><td>1.60%</td><td>1.92%</td><td>1.15%</td><td class="neg">0.84%</td></tr>
+<tr><td class="lbl">D8 cohort retention</td><td class="dim">n/a</td><td>2.12%</td><td>1.25%</td><td class="neg">0.69%</td></tr>
+<tr><td class="lbl">Session length (min)</td><td>10.3</td><td>15.1</td><td class="neg">8.2</td><td>14.2</td></tr>
+<tr><td class="lbl">Playtime per DAU (min)</td><td>16.1</td><td>19.7</td><td>12.0</td><td>20.1</td></tr>
+<tr class="grp"><td colspan="5">Monetization — R$</td></tr>
+<tr><td class="lbl">Daily revenue</td><td>54,894</td><td>678,106</td><td>217,905</td><td>89,469</td></tr>
+<tr><td class="lbl">Revenue, week over week</td><td class="neg">−43.9%</td><td class="pos dim">+50.0%*</td><td class="neg">−54.5%</td><td class="neg">−59.6%</td></tr>
+<tr><td class="lbl">ARPDAU</td><td>0.50</td><td class="pos">2.01</td><td>0.46</td><td>0.58</td></tr>
+<tr><td class="lbl">ARPPU</td><td>65</td><td class="pos">177</td><td>61</td><td class="neg">19</td></tr>
+<tr><td class="lbl">Paying-user CVR</td><td>0.85%</td><td>1.23%</td><td>0.76%</td><td class="pos">2.83%</td></tr>
+<tr class="grp"><td colspan="5">Decay — measured from each game's own peak</td></tr>
+<tr><td class="lbl">DAU decay per day</td><td>−3.79%</td><td class="dim">−25.91%*</td><td>−9.20%</td><td>−2.82%</td></tr>
+<tr><td class="lbl">Implied half-life</td><td>17.9 d</td><td class="dim">2.3 d*</td><td>7.2 d</td><td>24.2 d</td></tr>
+<tr><td class="lbl">Days post-peak</td><td>65</td><td>4</td><td>9</td><td>30</td></tr>
+<tr><td class="lbl">Drop in first 4 post-peak days</td><td>−28.2%</td><td>−71.0%</td><td>−68.5%</td><td>−51.5%</td></tr>
+</tbody>
+</table>
+</div>
+<p class="tnote">* Seal launched inside the comparison window, so its week-over-week figures compare a ramp against a launch and overstate its health; its decay rate rests on 4 post-peak days. The bottom block is the fair comparison — every game measured from its own peak.</p>
+</section>
+
+<section>
+<div class="sec-head"><h2>Breakdowns</h2><span class="eyebrow">19 Aug – 1 Sep</span></div>
+
+<div class="tblwrap">
+<table>
+<caption>DAU by acquisition source — share of the 5-source template (%)</caption>
+<thead><tr><th>Source</th><th>Brainrot</th><th>Seal</th><th>Verity</th><th>Waterslide</th></tr></thead>
+<tbody>
+<tr><td class="lbl">Home recommendation</td><td>61.9</td><td>72.2</td><td>74.9</td><td>68.9</td></tr>
+<tr><td class="lbl">Friends</td><td>20.5</td><td>11.6</td><td>12.3</td><td>18.8</td></tr>
+<tr><td class="lbl">Others</td><td>11.6</td><td>10.1</td><td>8.8</td><td>10.1</td></tr>
+<tr><td class="lbl">Search</td><td>5.9</td><td>6.1</td><td>4.0</td><td>2.1</td></tr>
+<tr><td class="lbl">Charts</td><td>0.2</td><td>0.0</td><td>0.0</td><td>0.1</td></tr>
+</tbody>
+</table>
+</div>
+<p class="tnote">Between 62% and 75% of every game's players arrive through Home recommendation. That single dependency is why finding 01 matters: when the recommender pulls back, there is no other channel large enough to absorb it. Brainrot has the healthiest mix here at 20.5% from friends, which is also the only source a studio can influence directly.</p>
+
+<div class="tblwrap">
+<table>
+<caption>DAU by platform (share %) and D1 retention by platform (%)</caption>
+<thead><tr><th>Platform</th><th>Brainrot</th><th>Seal</th><th>Verity</th><th>Waterslide</th></tr></thead>
+<tbody>
+<tr class="grp"><td colspan="5">Share of DAU</td></tr>
+<tr><td class="lbl">Phone</td><td>57.7</td><td>44.1</td><td>44.6</td><td>63.4</td></tr>
+<tr><td class="lbl">Tablet</td><td>26.7</td><td>27.8</td><td>43.3</td><td>29.5</td></tr>
+<tr><td class="lbl">Computer</td><td>9.7</td><td>28.1</td><td>10.3</td><td>5.4</td></tr>
+<tr><td class="lbl">Console</td><td>5.9</td><td>0.0</td><td>1.7</td><td>1.7</td></tr>
+<tr class="grp"><td colspan="5">D1 retention on that platform</td></tr>
+<tr><td class="lbl">Phone</td><td>14.6</td><td>10.5</td><td>13.7</td><td>13.5</td></tr>
+<tr><td class="lbl">Tablet</td><td>14.4</td><td>10.7</td><td>15.6</td><td>12.5</td></tr>
+<tr><td class="lbl">Computer</td><td>14.1</td><td>11.5</td><td>13.1</td><td>13.2</td></tr>
+<tr><td class="lbl">Console</td><td>15.4</td><td class="dim">n/a</td><td>12.9</td><td>13.3</td></tr>
+</tbody>
+</table>
+</div>
+<p class="tnote">No platform is broken anywhere. The spread within each game is under 3 points, which rules out a device-specific regression as a cause of any of these declines. Seal's 28.1% computer share is unusual for the genre and consistent with its older audience.</p>
+
+<div class="tblwrap">
+<table>
+<caption>Demographics — share of MAU (%)</caption>
+<thead><tr><th>Segment</th><th>Brainrot</th><th>Seal</th><th>Verity</th><th>Waterslide</th></tr></thead>
+<tbody>
+<tr class="grp"><td colspan="5">Age — verified minority only, see finding 06</td></tr>
+<tr><td class="lbl">Unchecked</td><td class="neg">52.9</td><td>10.2</td><td>27.1</td><td class="neg">43.5</td></tr>
+<tr><td class="lbl">Under 13</td><td>26.5</td><td>16.9</td><td>42.3</td><td>28.6</td></tr>
+<tr><td class="lbl">13 to 18</td><td>10.8</td><td>38.7</td><td>17.7</td><td>16.0</td></tr>
+<tr><td class="lbl">18 and over</td><td>9.8</td><td>34.2</td><td>12.9</td><td>11.9</td></tr>
+<tr class="grp"><td colspan="5">Gender</td></tr>
+<tr><td class="lbl">Male</td><td>70.3</td><td>48.4</td><td>41.6</td><td>36.8</td></tr>
+<tr><td class="lbl">Female</td><td>19.2</td><td>43.6</td><td>47.9</td><td>54.4</td></tr>
+<tr><td class="lbl">Unknown</td><td>10.5</td><td>8.0</td><td>10.5</td><td>8.8</td></tr>
+<tr class="grp"><td colspan="5">Top markets</td></tr>
+<tr><td class="lbl">United States</td><td>18.7</td><td>34.5</td><td>32.3</td><td>10.6</td></tr>
+<tr><td class="lbl">Indonesia</td><td>12.0</td><td>2.2</td><td>3.2</td><td>8.9</td></tr>
+<tr><td class="lbl">Vietnam</td><td>5.5</td><td>0.3</td><td>0.5</td><td>6.5</td></tr>
+<tr><td class="lbl">Philippines</td><td>4.2</td><td>5.0</td><td>5.4</td><td>3.2</td></tr>
+<tr><td class="lbl">Brazil</td><td>4.6</td><td>2.7</td><td>3.6</td><td>5.5</td></tr>
+<tr><td class="lbl">United Kingdom</td><td>2.8</td><td>8.3</td><td>7.0</td><td>3.3</td></tr>
+</tbody>
+</table>
+</div>
+<p class="tnote">Market mix tracks ARPDAU closely. Seal and Verity are roughly a third US and earn the most per player; Brainrot and Waterslide lean on Indonesia and Vietnam, where Robux spend per head is far lower. That is a plausible partial explanation for the ARPDAU gap and I have not tested it — the clean test would be ARPDAU by country, which the current plan does not pull.</p>
+</section>
+
+<section>
+<div class="sec-head"><h2>Significance tests</h2><span class="eyebrow">in plain words</span></div>
+<p class="measure">Every series here is trending hard, so a plain before-and-after comparison would credit any update with a decline that was already running. Each test below fits a time trend and a step at the deploy together, and reports only the step.</p>
+<div class="tblwrap">
+<table>
+<caption>28 August deploys — trend-adjusted step at the deploy</caption>
+<thead><tr><th>Game</th><th style="text-align:left">Naive verdict</th><th style="text-align:left">Placebo check</th><th style="text-align:left">Real answer</th></tr></thead>
+<tbody>
+<tr><td class="lbl">Brainrot</td><td style="text-align:left">No step on any metric except CVR (+0.30pp, p=0.006)</td><td style="text-align:left">Clean — no fake cut date fires</td><td style="text-align:left"><b>Nothing happened.</b> The lone CVR result survives the placebo and is a genuine small improvement. <span class="tag t-conf">confirmed</span></td></tr>
+<tr><td class="lbl">Waterslide</td><td style="text-align:left">No step on anything, largest effect p=0.20</td><td style="text-align:left">Clean at the deploy; fires on 24–26 Aug instead</td><td style="text-align:left"><b>Nothing happened at the deploy.</b> The real break was 24–26 Aug. <span class="tag t-conf">confirmed</span></td></tr>
+<tr><td class="lbl">Verity</td><td style="text-align:left">Six metrics "significantly" improved, DAU −52%</td><td style="text-align:left"><b>Fails.</b> ARPPU is significant at every cut from 24–28 Aug and stops being significant after</td><td style="text-align:left"><b>Not interpretable.</b> The model is fitting the peak's curvature. Verity turned on 23–24 Aug, four days before the deploy. <span class="tag t-no">discarded</span></td></tr>
+<tr><td class="lbl">Seal</td><td style="text-align:left">Seven metrics "significantly" worsened, DAU −71%</td><td style="text-align:left"><b>Fails.</b> DAU is significant at 27, 28, 29 and 30 Aug with similar magnitude — a smear, not a step</td><td style="text-align:left"><b>Not interpretable.</b> Same artifact: a viral ramp turning over. <span class="tag t-no">discarded</span></td></tr>
+</tbody>
+</table>
+</div>
+<div class="call">
+  <span class="eyebrow">Why the placebo check matters here</span>
+  <p>Without it this report would have said Seal's 28 August update cost the game 71% of its DAU and 87% of its revenue, at p=0.002. That conclusion is available from a standard, defensible test — and it is wrong. The same test says the same thing about days when nothing shipped.</p>
+</div>
+<p class="measure" style="margin-top:22px"><b>What is genuinely testable:</b> Brainrot's weekday shape (Tuesday −21.9% and Wednesday −25.4% against Sunday, both p&lt;0.05, eight weeks of data) and its paying-user CVR step. Everything else on the deploy question is a negative result: no update in this portfolio moved a metric in a way this data can detect.</p>
+</section>
+
+<section>
+<div class="sec-head"><h2>Health check</h2><span class="eyebrow">why they are all at a low, and what to do</span></div>
+
+<p class="measure">The honest headline is that these four games have one shared cause and three separate private ones, and the shared cause is the big term.</p>
+
+<h3 style="margin-top:26px">The shared cause</h3>
+<p class="measure">All four run on Roblox Home recommendation for 62–75% of their players. Home traffic is allocated, not earned in any way a studio controls week to week, and it is the thing that collapsed: reach is down 56–95% while conversion held. Every one of these games peaked, got its algorithmic push, and then had it withdrawn on the usual schedule. Brainrot is 65 days into that and Seal is 4 days into it, which is why the portfolio looks synchronised — it is the same curve at four different offsets, not one event.</p>
+<p class="measure">The practical consequence: <b>no product fix will restore these DAU numbers</b>, because nothing about the product is what changed. Product fixes change what happens to the traffic you still get, and that is where the money is.</p>
+
+<h3 style="margin-top:30px">What each game should actually do</h3>
+<div class="acts">
+  <div class="act">
+    <div class="who"><span class="swatch" style="background:#eb6834;margin-top:6px"></span>Seal</div>
+    <div class="what"><b>Checkpoint partial surface progress.</b> This is the highest-value item on the page by a distance. Seal earns R$678k/day at 3.5&times; the ARPDAU of anything else in the portfolio, and a rejoin currently resets any surface that was not finished to 0. Its D1 of 11.8% is the lowest here and its downvote rate the highest at 78%, both consistent with new players losing a session's work. Separately, let rebirth keep skill upgrades — several players ask for exactly that, and a rebirth that wipes everything is a progression sink that reads as a bug even when it is intended.</div>
+  </div>
+  <div class="act">
+    <div class="who"><span class="swatch" style="background:#1baf7a;margin-top:6px"></span>Verity</div>
+    <div class="what"><b>Raise the message cap, and give players a reason to return.</b> Verity is throttled at both ends: an 8.4-minute session, 18% below its cohort median, and the worst third-day survival in the set at 39.0% of its day-1 players. The cap is the most-named complaint in 2,097 comments, and at least one player states outright that it stopped them buying. Test a much higher cap, or move the paywall from <em>how much you may talk</em> to <em>what you may talk about</em> — then give the loop somewhere to go past day three, because second-day return is already normal and it is the day after that where players stop. Also worth a look: 18.8% of comments are about the AI knowing personal details, which is a retention risk and possibly a policy one.</div>
+  </div>
+  <div class="act">
+    <div class="who"><span class="swatch" style="background:#eda100;margin-top:6px"></span>Waterslide</div>
+    <div class="what"><b>Build a pass ladder.</b> Waterslide has already solved the hard half of monetization — 3.1% of players pay, close to four times the rest of the portfolio and 225% above its cohort median. It then takes R$19 from each of them, 66% below its cohort median, with 88% of revenue coming from one-shot dev products. There is a proven willingness to pay here with nothing above R$19 to spend it on. Its D7 is also the weakest in the set, so a reason to come back on day 3 is the second item.</div>
+  </div>
+  <div class="act">
+    <div class="who"><span class="swatch" style="background:#2a78d6;margin-top:6px"></span>Brainrot</div>
+    <div class="what"><b>Decide whether to keep funding it.</b> 65 days post-peak, down 93.7%, below its cohort median on D1, session length, playtime and ARPPU, and still bleeding 3.8% a day. Nothing here is broken and nothing here is winning. The one asset worth noting is that 20.5% of its players come from friends, the highest in the portfolio and the only channel a studio can actually influence — if anything gets funded, it should be whatever makes that number bigger.</div>
+  </div>
+</div>
+
+<h3 style="margin-top:32px">Best fundamentals, and worst structure</h3>
+<p class="measure"><b>Best unit economics: Seal — trend data too short to trust yet.</b> It earns 3.5&times; the ARPDAU of any other game here, holds the best D7 and the best D8 cohort retention, and clears its benchmark cohort on every metric measured. That is a claim about fundamentals only. On trajectory it is unrateable: 4 post-peak days, week-over-week figures inflated by a launch ramp sitting inside the comparison window, the fastest current slide in the set at −25.9% a day, and a progress-reset defect. Calling it the healthiest game outright would not survive contact with any of those.</p>
+<p class="measure"><b>Sliding worst: Waterslide</b>, on structure rather than speed. It has the slowest decay in the set at −2.8% a day, but it is 30 days post-peak with the weakest retention here (D7 0.94%, D8 cohort 0.69%) and ARPPU two thirds below its cohort median. Brainrot is further gone in absolute terms — 93.7% off peak — but it is at least mid-pack on the rates. Waterslide is the one whose fundamentals will not hold up the next time Home gives it a push.</p>
+
+<div class="call warnc" style="margin-top:28px">
+  <span class="eyebrow">What this analysis cannot tell you</span>
+  <p>Why the reach fell, or even whether it fell first. The RFY ranking signals are captured and none is falling hard enough on its own to explain a 56&ndash;95% reach loss, and the ranking function is not published. Worse, the lead&ndash;lag test in finding 07 cannot separate reach&nbsp;&rarr;&nbsp;DAU from DAU&nbsp;&rarr;&nbsp;reach, and on Brainrot it leans the wrong way for this report. "The algorithm withdrew the push" is a description of the shape, not a mechanism and not a proven direction. Treat it as the question to answer, not the answer.</p>
+  <p>Also open: the country-level ARPDAU test that would confirm the market-mix explanation for the revenue gap, and whether Seal's save loss is a bug or a data-store design limit. Both are answerable with grabs the current plan does not make.</p>
+</div>
+</section>
+
+</div>

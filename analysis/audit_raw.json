@@ -1,0 +1,10610 @@
+{
+"8507699752": {
+"Attribution1DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-08-21",
+"last": "2026-09-01",
+"n": 2,
+"rows": 11,
+"series": 7
+}
+},
+"Attribution1DRobuxPerUser": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-08-21",
+"last": "2026-09-01",
+"n": 2,
+"rows": 11,
+"series": 7
+}
+},
+"Attribution30DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-08-21",
+"last": "2025-08-21",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-08-04",
+"n": 349,
+"rows": 349,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-08-21",
+"last": "2025-08-21",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPayerConversionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-08-27",
+"n": 368,
+"rows": 368,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-08-21",
+"last": "2025-08-21",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPlaytimePerUserInMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-08-27",
+"n": 368,
+"rows": 368,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-08-21",
+"last": "2025-08-21",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-08-27",
+"n": 368,
+"rows": 368,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-08-21",
+"last": "2025-08-21",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AttributionD1RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-01",
+"n": 373,
+"rows": 373,
+"series": 1
+}
+},
+"AttributionD7RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-08-26",
+"n": 367,
+"rows": 367,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-08-21",
+"last": "2025-08-21",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-22",
+"last": "2026-09-02",
+"n": 377,
+"rows": 377,
+"series": 1
+}
+},
+"AverageRevenuePerPayingUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-27",
+"last": "2026-09-02",
+"n": 372,
+"rows": 372,
+"series": 1
+}
+},
+"AverageRevenuePerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-22",
+"last": "2026-09-02",
+"n": 377,
+"rows": 377,
+"series": 1
+}
+},
+"AverageSessionLengthMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-22",
+"last": "2026-09-02",
+"n": 377,
+"rows": 3118,
+"series": 10
+}
+},
+"ClientCpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-03",
+"n": 6,
+"rows": 36,
+"series": 6
+}
+},
+"ClientCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 163,
+"series": 6
+}
+},
+"ClientCrashRate15m": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 196,
+"series": 7
+}
+},
+"ClientFpsAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 7,
+"series": 1
+}
+},
+"ClientFpsP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 49,
+"series": 7
+}
+},
+"ClientMemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 49,
+"series": 7
+}
+},
+"ClientMemoryUsagePercentageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 49,
+"series": 7
+}
+},
+"ConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-09-01",
+"last": "2026-09-03",
+"n": 3,
+"rows": 71,
+"series": 1
+}
+},
+"CpuCoreUtilization": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-02",
+"n": 5,
+"rows": 5,
+"series": 1
+}
+},
+"CpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-02",
+"n": 5,
+"rows": 30,
+"series": 6
+}
+},
+"DailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 91888,
+"series": 260
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-08-21",
+"last": "2026-09-01",
+"n": 2,
+"rows": 9,
+"series": 5
+}
+},
+"DailyCohortRetention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-09-01",
+"last": "2026-09-01",
+"n": 1,
+"rows": 1,
+"series": 1
+}
+},
+"DailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 3402,
+"series": 9
+}
+},
+"DauMauStickiness": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-22",
+"last": "2026-09-02",
+"n": 377,
+"rows": 377,
+"series": 1
+}
+},
+"EndToEndCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-22",
+"last": "2026-09-01",
+"n": 376,
+"rows": 376,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-08-21",
+"last": "2026-09-01",
+"n": 2,
+"rows": 9,
+"series": 5
+}
+},
+"ErrorCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-05",
+"last": "2026-09-03",
+"n": 61,
+"rows": 366,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-09-03",
+"last": "2026-09-03",
+"n": 1,
+"rows": 129,
+"series": 3
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-07",
+"last": "2026-09-01",
+"n": 2,
+"rows": 1004,
+"series": 874
+}
+},
+"EventAvgDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"EventAvgDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"EventAvgDailyUserPlaytimeMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-12-25",
+"last": "2026-09-02",
+"n": 252,
+"rows": 252,
+"series": 1
+}
+},
+"EventAvgRevenuePerDailyActiveUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-12-25",
+"last": "2026-09-02",
+"n": 252,
+"rows": 252,
+"series": 1
+}
+},
+"ForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-01",
+"n": 377,
+"rows": 6600,
+"series": 20
+}
+},
+"ForwardD30Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-08-03",
+"n": 348,
+"rows": 348,
+"series": 1
+}
+},
+"ForwardD7Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-08-26",
+"n": 371,
+"rows": 2383,
+"series": 8
+}
+},
+"ItemMonetizationRevenue": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-09-01",
+"last": "2026-09-03",
+"n": 3,
+"rows": 294,
+"series": 5
+}
+},
+"MemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-03",
+"n": 6,
+"rows": 36,
+"series": 6
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-03",
+"last": "2026-09-03",
+"n": 1,
+"rows": 18,
+"series": 9
+}
+},
+"MonthlyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 5340,
+"series": 226
+}
+},
+"OomUnexpectedExits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 118,
+"series": 5
+}
+},
+"PayingUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"PayingUsersCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-22",
+"last": "2026-09-02",
+"n": 377,
+"rows": 2367,
+"series": 8
+}
+},
+"PeakConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 49,
+"series": 7
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-09-03",
+"last": "2026-09-03",
+"n": 1,
+"rows": 44,
+"series": 1
+}
+},
+"PlayerFeedbackVotesCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"PotentialExtraEarningsTotalUsd": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-07",
+"last": "2026-09-01",
+"n": 2,
+"rows": 2,
+"series": 1
+}
+},
+"RFYD1CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD1Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD1QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD1RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD1SpendDay": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD2To7CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD2To7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD2To7Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD2To7QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD2To7RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD2To7SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD8To28CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD8To28PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD8To28Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD8To28QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD8To28RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYD8To28SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"RFYDuration0To60": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 125,
+"rows": 125,
+"series": 1
+}
+},
+"RFYDuration61To180": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 125,
+"rows": 125,
+"series": 1
+}
+},
+"RFYL7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-06",
+"last": "2026-09-02",
+"n": 360,
+"rows": 360,
+"series": 1
+}
+},
+"RFYPlayThroughRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 125,
+"rows": 125,
+"series": 1
+}
+},
+"RFYQualifiedPTR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-31",
+"last": "2026-09-02",
+"n": 368,
+"rows": 368,
+"series": 1
+}
+},
+"RFYUniqueNotInterestedUsersPerMillionImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-01",
+"last": "2026-09-02",
+"n": 214,
+"rows": 214,
+"series": 1
+}
+},
+"RSVPCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"ServerCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-08-14",
+"n": 7,
+"rows": 14,
+"series": 2
+}
+},
+"ServerFrameRateP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 7,
+"series": 1
+}
+},
+"SessionDurationSecondsAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 49,
+"series": 7
+}
+},
+"TotalPlayTimeHours": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-22",
+"last": "2026-09-02",
+"n": 377,
+"rows": 377,
+"series": 1
+}
+},
+"TotalSessionsEndedInBucket": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-08-21",
+"last": "2026-09-01",
+"n": 2,
+"rows": 122,
+"series": 61
+}
+},
+"UniqueUsersWithImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 7182,
+"series": 19
+}
+},
+"UniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 3402,
+"series": 9
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-08-21",
+"last": "2026-09-01",
+"n": 2,
+"rows": 12,
+"series": 8
+}
+},
+"UsersJoinedFromNotifications": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 378,
+"series": 1
+}
+},
+"Visits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-08-21",
+"last": "2026-09-02",
+"n": 378,
+"rows": 3024,
+"series": 8
+}
+}
+},
+"9963622286": {
+"Attribution1DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-29",
+"last": "2026-03-29",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution1DRobuxPerUser": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-29",
+"last": "2026-03-29",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-29",
+"last": "2026-03-29",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-08-04",
+"n": 136,
+"rows": 136,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-29",
+"last": "2026-03-29",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPayerConversionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-24",
+"last": "2026-08-27",
+"n": 157,
+"rows": 157,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-29",
+"last": "2026-03-29",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPlaytimePerUserInMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-24",
+"last": "2026-08-27",
+"n": 157,
+"rows": 157,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-29",
+"last": "2026-08-05",
+"n": 2,
+"rows": 13,
+"series": 7
+}
+},
+"Attribution7DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-24",
+"last": "2026-08-27",
+"n": 157,
+"rows": 157,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-29",
+"last": "2026-03-29",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AttributionD1RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-01",
+"n": 157,
+"rows": 157,
+"series": 1
+}
+},
+"AttributionD7RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-23",
+"last": "2026-08-26",
+"n": 157,
+"rows": 157,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-29",
+"last": "2026-08-05",
+"n": 2,
+"rows": 13,
+"series": 7
+}
+},
+"AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-30",
+"last": "2026-09-02",
+"n": 157,
+"rows": 157,
+"series": 1
+}
+},
+"AverageRevenuePerPayingUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-31",
+"last": "2026-09-02",
+"n": 156,
+"rows": 156,
+"series": 1
+}
+},
+"AverageRevenuePerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-30",
+"last": "2026-09-02",
+"n": 157,
+"rows": 157,
+"series": 1
+}
+},
+"AverageSessionLengthMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-30",
+"last": "2026-09-02",
+"n": 157,
+"rows": 1379,
+"series": 10
+}
+},
+"ClientCpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-03",
+"n": 55,
+"rows": 330,
+"series": 6
+}
+},
+"ClientCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 386,
+"series": 7
+}
+},
+"ClientCrashRate15m": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-21",
+"last": "2026-09-02",
+"n": 44,
+"rows": 1033,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 392,
+"series": 7
+}
+},
+"ClientFpsAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-21",
+"last": "2026-09-02",
+"n": 44,
+"rows": 1033,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 56,
+"series": 1
+}
+},
+"ClientFpsP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 392,
+"series": 7
+}
+},
+"ClientMemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 392,
+"series": 7
+}
+},
+"ClientMemoryUsagePercentageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 392,
+"series": 7
+}
+},
+"ConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-21",
+"last": "2026-09-02",
+"n": 44,
+"rows": 1033,
+"series": 1
+}
+},
+"CpuCoreUtilization": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-02",
+"n": 54,
+"rows": 54,
+"series": 1
+}
+},
+"CpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-02",
+"n": 54,
+"rows": 324,
+"series": 6
+}
+},
+"D1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-21",
+"last": "2026-09-01",
+"n": 43,
+"rows": 43,
+"series": 1
+}
+},
+"DailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-09-02",
+"n": 165,
+"rows": 42929,
+"series": 315
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-29",
+"last": "2026-08-05",
+"n": 5,
+"rows": 25,
+"series": 6
+}
+},
+"DailyCohortRetention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-06",
+"last": "2026-08-09",
+"n": 4,
+"rows": 10,
+"series": 4
+}
+},
+"DailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-09-02",
+"n": 165,
+"rows": 1279,
+"series": 8
+}
+},
+"DauMauStickiness": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-30",
+"last": "2026-09-02",
+"n": 157,
+"rows": 157,
+"series": 1
+}
+},
+"EndToEndCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-30",
+"last": "2026-09-01",
+"n": 156,
+"rows": 156,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-29",
+"last": "2026-08-05",
+"n": 2,
+"rows": 10,
+"series": 5
+}
+},
+"ErrorCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-15",
+"last": "2026-09-03",
+"n": 81,
+"rows": 486,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-05",
+"last": "2026-09-03",
+"n": 30,
+"rows": 4820,
+"series": 9
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-15",
+"last": "2026-08-12",
+"n": 13,
+"rows": 8875,
+"series": 2400
+}
+},
+"EventAvgDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-09-02",
+"n": 165,
+"rows": 165,
+"series": 1
+}
+},
+"EventAvgDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-09-02",
+"n": 165,
+"rows": 165,
+"series": 1
+}
+},
+"EventAvgDailyUserPlaytimeMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-18",
+"last": "2026-09-02",
+"n": 138,
+"rows": 138,
+"series": 1
+}
+},
+"EventAvgRevenuePerDailyActiveUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-18",
+"last": "2026-09-02",
+"n": 138,
+"rows": 138,
+"series": 1
+}
+},
+"ForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-01",
+"n": 157,
+"rows": 2899,
+"series": 20
+}
+},
+"ForwardD30Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-08-03",
+"n": 135,
+"rows": 135,
+"series": 1
+}
+},
+"ForwardD7Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-23",
+"last": "2026-08-26",
+"n": 157,
+"rows": 1073,
+"series": 8
+}
+},
+"FunnelCohortCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-08",
+"last": "2026-09-03",
+"n": 119,
+"rows": 3249,
+"series": 28
+}
+},
+"FunnelCohortSessionCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-08",
+"last": "2026-09-03",
+"n": 119,
+"rows": 3305,
+"series": 29
+}
+},
+"FunnelStepChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-23",
+"last": "2026-08-12",
+"n": 9,
+"rows": 324,
+"series": 81
+}
+},
+"FunnelStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-23",
+"last": "2026-08-12",
+"n": 9,
+"rows": 297,
+"series": 81
+}
+},
+"FunnelStepOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-23",
+"last": "2026-08-12",
+"n": 9,
+"rows": 55,
+"series": 37
+}
+},
+"FunnelStepTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-23",
+"last": "2026-08-12",
+"n": 9,
+"rows": 327,
+"series": 84
+}
+},
+"FunnelUserChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-23",
+"last": "2026-08-12",
+"n": 9,
+"rows": 303,
+"series": 67
+}
+},
+"FunnelUserOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-23",
+"last": "2026-08-12",
+"n": 9,
+"rows": 40,
+"series": 23
+}
+},
+"FunnelUserStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-23",
+"last": "2026-08-12",
+"n": 9,
+"rows": 310,
+"series": 74
+}
+},
+"FunnelUserTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-23",
+"last": "2026-08-12",
+"n": 9,
+"rows": 323,
+"series": 70
+}
+},
+"ItemMonetizationRevenue": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-03-31",
+"last": "2026-09-03",
+"n": 157,
+"rows": 16381,
+"series": 5
+}
+},
+"L7AverageDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-08-29",
+"n": 161,
+"rows": 161,
+"series": 1
+}
+},
+"L7AverageDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-08-29",
+"n": 161,
+"rows": 161,
+"series": 1
+}
+},
+"L7AverageForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-08-28",
+"n": 153,
+"rows": 1054,
+"series": 10
+}
+},
+"L7AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-30",
+"last": "2026-08-29",
+"n": 153,
+"rows": 153,
+"series": 1
+}
+},
+"L7AverageUniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-08-29",
+"n": 161,
+"rows": 1146,
+"series": 8
+}
+},
+"MemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-21",
+"last": "2026-09-02",
+"n": 44,
+"rows": 1033,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-03",
+"n": 55,
+"rows": 330,
+"series": 6
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-08",
+"last": "2026-09-03",
+"n": 11,
+"rows": 135,
+"series": 9
+}
+},
+"MonthlyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-09-02",
+"n": 165,
+"rows": 16212,
+"series": 294
+}
+},
+"OomUnexpectedExits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 353,
+"series": 7
+}
+},
+"PayingUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-09-02",
+"n": 165,
+"rows": 165,
+"series": 1
+}
+},
+"PayingUsersCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-30",
+"last": "2026-09-02",
+"n": 157,
+"rows": 1067,
+"series": 8
+}
+},
+"PeakConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-21",
+"last": "2026-09-02",
+"n": 44,
+"rows": 1033,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_MINUTE": {
+"first": "2026-08-05",
+"last": "2026-08-12",
+"n": 6,
+"rows": 6599,
+"series": 5
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 392,
+"series": 7
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-07",
+"last": "2026-09-03",
+"n": 28,
+"rows": 1340,
+"series": 1
+}
+},
+"PlayerFeedbackVotesCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-09-02",
+"n": 165,
+"rows": 219,
+"series": 3
+}
+},
+"PotentialExtraEarningsTotalUsd": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-02",
+"last": "2026-08-12",
+"n": 11,
+"rows": 11,
+"series": 1
+}
+},
+"RFYD1CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD1Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD1QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD1RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD1SpendDay": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD2To7CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD2To7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD2To7Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD2To7QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD2To7RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD2To7SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD8To28CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD8To28PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD8To28Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD8To28QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD8To28RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYD8To28SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-29",
+"last": "2026-09-02",
+"n": 158,
+"rows": 158,
+"series": 1
+}
+},
+"RFYDuration0To60": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 125,
+"rows": 125,
+"series": 1
+}
+},
+"RFYDuration61To180": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 125,
+"rows": 125,
+"series": 1
+}
+},
+"RFYL7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-03",
+"last": "2026-09-02",
+"n": 148,
+"rows": 148,
+"series": 1
+}
+},
+"RFYPlayThroughRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 125,
+"rows": 125,
+"series": 1
+}
+},
+"RFYQualifiedPTR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-03",
+"last": "2026-09-02",
+"n": 153,
+"rows": 153,
+"series": 1
+}
+},
+"RFYUniqueNotInterestedUsersPerMillionImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-03",
+"last": "2026-09-02",
+"n": 153,
+"rows": 153,
+"series": 1
+}
+},
+"RSVPCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-09-02",
+"n": 165,
+"rows": 165,
+"series": 1
+}
+},
+"ServerCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-01",
+"n": 53,
+"rows": 159,
+"series": 3
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-07",
+"last": "2026-09-01",
+"n": 26,
+"rows": 3489,
+"series": 3
+}
+},
+"ServerFrameRateP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 56,
+"series": 1
+}
+},
+"SessionDurationSecondsAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-21",
+"last": "2026-09-02",
+"n": 44,
+"rows": 1033,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 392,
+"series": 7
+}
+},
+"TotalPlayTimeHours": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-30",
+"last": "2026-09-02",
+"n": 157,
+"rows": 157,
+"series": 1
+}
+},
+"TotalSessionsEndedInBucket": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-22",
+"last": "2026-08-12",
+"n": 13,
+"rows": 793,
+"series": 61
+}
+},
+"UniqueUsersWithImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-09-01",
+"n": 164,
+"rows": 2999,
+"series": 19
+}
+},
+"UniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-09-01",
+"n": 164,
+"rows": 1421,
+"series": 9
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-03-29",
+"last": "2026-03-29",
+"n": 1,
+"rows": 8,
+"series": 8
+}
+},
+"UsersJoinedFromNotifications": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-09-02",
+"n": 165,
+"rows": 165,
+"series": 1
+}
+},
+"Visits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-22",
+"last": "2026-09-02",
+"n": 165,
+"rows": 1295,
+"series": 8
+}
+}
+},
+"9610561918": {
+"Attribution1DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-01-22",
+"last": "2026-01-22",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution1DRobuxPerUser": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-01-22",
+"last": "2026-01-22",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-01-22",
+"last": "2026-01-22",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-26",
+"last": "2026-08-04",
+"n": 183,
+"rows": 183,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-01-22",
+"last": "2026-01-22",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPayerConversionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-24",
+"last": "2026-08-27",
+"n": 187,
+"rows": 187,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-01-22",
+"last": "2026-01-22",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPlaytimePerUserInMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-24",
+"last": "2026-08-27",
+"n": 187,
+"rows": 187,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-01-22",
+"last": "2026-01-22",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-24",
+"last": "2026-08-27",
+"n": 187,
+"rows": 187,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-01-22",
+"last": "2026-01-22",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AttributionD1RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-29",
+"last": "2026-09-01",
+"n": 187,
+"rows": 187,
+"series": 1
+}
+},
+"AttributionD7RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-23",
+"last": "2026-08-26",
+"n": 187,
+"rows": 187,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-01-22",
+"last": "2026-01-22",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-30",
+"last": "2026-09-02",
+"n": 186,
+"rows": 186,
+"series": 1
+}
+},
+"AverageRevenuePerPayingUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-24",
+"last": "2026-09-02",
+"n": 175,
+"rows": 175,
+"series": 1
+}
+},
+"AverageRevenuePerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-30",
+"last": "2026-09-02",
+"n": 186,
+"rows": 186,
+"series": 1
+}
+},
+"AverageSessionLengthMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-30",
+"last": "2026-09-02",
+"n": 186,
+"rows": 1503,
+"series": 10
+}
+},
+"ClientCpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-03",
+"n": 36,
+"rows": 216,
+"series": 6
+}
+},
+"ClientCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 332,
+"series": 6
+}
+},
+"ClientCrashRate15m": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 382,
+"series": 7
+}
+},
+"ClientFpsAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"ClientFpsP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 37,
+"rows": 253,
+"series": 7
+}
+},
+"ClientMemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 37,
+"rows": 253,
+"series": 7
+}
+},
+"ClientMemoryUsagePercentageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 37,
+"rows": 253,
+"series": 7
+}
+},
+"CpuCoreUtilization": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-02",
+"n": 34,
+"rows": 34,
+"series": 1
+}
+},
+"CpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-02",
+"n": 34,
+"rows": 204,
+"series": 6
+}
+},
+"DailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 59960,
+"series": 278
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-01-22",
+"last": "2026-01-22",
+"n": 1,
+"rows": 5,
+"series": 5
+}
+},
+"DailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 1758,
+"series": 8
+}
+},
+"DauMauStickiness": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-30",
+"last": "2026-09-02",
+"n": 186,
+"rows": 186,
+"series": 1
+}
+},
+"EndToEndCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-08",
+"last": "2026-09-01",
+"n": 177,
+"rows": 177,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-01-22",
+"last": "2026-01-22",
+"n": 1,
+"rows": 5,
+"series": 5
+}
+},
+"ErrorCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-14",
+"last": "2026-09-03",
+"n": 82,
+"rows": 462,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-07",
+"last": "2026-09-03",
+"n": 28,
+"rows": 4017,
+"series": 3
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-24",
+"last": "2026-08-07",
+"n": 5,
+"rows": 2506,
+"series": 904
+}
+},
+"EventAvgDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"EventAvgDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"EventAvgDailyUserPlaytimeMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-25",
+"last": "2026-09-02",
+"n": 131,
+"rows": 131,
+"series": 1
+}
+},
+"EventAvgRevenuePerDailyActiveUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-25",
+"last": "2026-09-02",
+"n": 131,
+"rows": 131,
+"series": 1
+}
+},
+"ForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-29",
+"last": "2026-09-01",
+"n": 191,
+"rows": 3112,
+"series": 20
+}
+},
+"ForwardD30Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-25",
+"last": "2026-08-03",
+"n": 185,
+"rows": 185,
+"series": 1
+}
+},
+"ForwardD7Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-23",
+"last": "2026-08-26",
+"n": 189,
+"rows": 1164,
+"series": 8
+}
+},
+"ItemMonetizationRevenue": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-04-01",
+"last": "2026-08-09",
+"n": 131,
+"rows": 15434,
+"series": 5
+}
+},
+"L7AverageDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-01",
+"last": "2026-08-08",
+"n": 130,
+"rows": 130,
+"series": 1
+}
+},
+"L7AverageDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-01",
+"last": "2026-08-08",
+"n": 130,
+"rows": 130,
+"series": 1
+}
+},
+"L7AverageForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-01",
+"last": "2026-08-06",
+"n": 128,
+"rows": 766,
+"series": 6
+}
+},
+"L7AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-01",
+"last": "2026-08-07",
+"n": 129,
+"rows": 129,
+"series": 1
+}
+},
+"L7AverageUniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-01",
+"last": "2026-08-08",
+"n": 130,
+"rows": 910,
+"series": 7
+}
+},
+"MemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-03",
+"n": 36,
+"rows": 216,
+"series": 6
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-08",
+"last": "2026-09-03",
+"n": 3,
+"rows": 81,
+"series": 54
+}
+},
+"MonthlyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 13861,
+"series": 62
+}
+},
+"OomUnexpectedExits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 283,
+"series": 6
+}
+},
+"PayingUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"PayingUsersCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-30",
+"last": "2026-09-02",
+"n": 186,
+"rows": 1152,
+"series": 8
+}
+},
+"PeakConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_MINUTE": {
+"first": "2026-08-06",
+"last": "2026-08-08",
+"n": 3,
+"rows": 2892,
+"series": 2
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 56,
+"rows": 388,
+"series": 7
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-07",
+"last": "2026-09-03",
+"n": 28,
+"rows": 1340,
+"series": 1
+}
+},
+"PlayerFeedbackVotesCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"PotentialExtraEarningsTotalUsd": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-07",
+"last": "2026-08-07",
+"n": 3,
+"rows": 3,
+"series": 1
+}
+},
+"RFYD1CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD1Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD1QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD1RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD1SpendDay": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD2To7CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD2To7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD2To7Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD2To7QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD2To7RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD2To7SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD8To28CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD8To28PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD8To28Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD8To28QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD8To28RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYD8To28SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"RFYDuration0To60": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 125,
+"rows": 125,
+"series": 1
+}
+},
+"RFYDuration61To180": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 125,
+"rows": 125,
+"series": 1
+}
+},
+"RFYL7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-26",
+"last": "2026-09-02",
+"n": 161,
+"rows": 161,
+"series": 1
+}
+},
+"RFYPlayThroughRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 125,
+"rows": 125,
+"series": 1
+}
+},
+"RFYQualifiedPTR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-19",
+"last": "2026-09-02",
+"n": 168,
+"rows": 168,
+"series": 1
+}
+},
+"RFYUniqueNotInterestedUsersPerMillionImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-19",
+"last": "2026-09-02",
+"n": 168,
+"rows": 168,
+"series": 1
+}
+},
+"RSVPCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"ServerCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-03",
+"n": 55,
+"rows": 154,
+"series": 3
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-09-03",
+"last": "2026-09-03",
+"n": 1,
+"rows": 56,
+"series": 2
+}
+},
+"ServerFrameRateP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"SessionDurationSecondsAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-11",
+"last": "2026-09-04",
+"n": 37,
+"rows": 256,
+"series": 7
+}
+},
+"TotalPlayTimeHours": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-30",
+"last": "2026-09-02",
+"n": 186,
+"rows": 186,
+"series": 1
+}
+},
+"TotalSessionsEndedInBucket": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-01-22",
+"last": "2026-07-11",
+"n": 4,
+"rows": 244,
+"series": 61
+}
+},
+"UniqueUsersWithImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-01",
+"n": 223,
+"rows": 4197,
+"series": 19
+}
+},
+"UniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-01",
+"n": 223,
+"rows": 1937,
+"series": 9
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-01-22",
+"last": "2026-01-22",
+"n": 1,
+"rows": 8,
+"series": 8
+}
+},
+"UsersJoinedFromNotifications": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 224,
+"series": 1
+}
+},
+"Visits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-09-02",
+"n": 224,
+"rows": 1762,
+"series": 8
+}
+}
+},
+"7364907416": {
+"Attribution1DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution1DRobuxPerUser": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-08-04",
+"n": 511,
+"rows": 511,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPayerConversionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-08-27",
+"n": 534,
+"rows": 534,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPlaytimePerUserInMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-08-27",
+"n": 534,
+"rows": 534,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-08-27",
+"n": 534,
+"rows": 534,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AttributionD1RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-14",
+"last": "2026-09-01",
+"n": 536,
+"rows": 536,
+"series": 1
+}
+},
+"AttributionD7RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-08-26",
+"n": 533,
+"rows": 533,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-15",
+"last": "2026-09-03",
+"n": 538,
+"rows": 538,
+"series": 1
+}
+},
+"AverageRevenuePerPayingUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-15",
+"last": "2026-09-03",
+"n": 538,
+"rows": 538,
+"series": 1
+}
+},
+"AverageRevenuePerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-15",
+"last": "2026-09-03",
+"n": 538,
+"rows": 538,
+"series": 1
+}
+},
+"AverageSessionLengthMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-15",
+"last": "2026-09-03",
+"n": 538,
+"rows": 4501,
+"series": 10
+}
+},
+"ClientCpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-04",
+"n": 6,
+"rows": 36,
+"series": 6
+}
+},
+"ClientCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-09",
+"last": "2026-09-05",
+"n": 28,
+"rows": 162,
+"series": 6
+}
+},
+"ClientCrashRate15m": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-09",
+"last": "2026-09-05",
+"n": 28,
+"rows": 192,
+"series": 7
+}
+},
+"ClientFpsAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 7,
+"series": 1
+}
+},
+"ClientFpsP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 48,
+"series": 7
+}
+},
+"ClientMemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 48,
+"series": 7
+}
+},
+"ClientMemoryUsagePercentageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 48,
+"series": 7
+}
+},
+"CpuCoreUtilization": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-03",
+"n": 5,
+"rows": 5,
+"series": 1
+}
+},
+"CpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-03",
+"n": 5,
+"rows": 30,
+"series": 6
+}
+},
+"DailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 102438,
+"series": 189
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 5,
+"series": 5
+}
+},
+"DailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 4336,
+"series": 8
+}
+},
+"DauMauStickiness": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-15",
+"last": "2026-09-03",
+"n": 538,
+"rows": 538,
+"series": 1
+}
+},
+"EndToEndCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-15",
+"last": "2026-09-02",
+"n": 537,
+"rows": 537,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 5,
+"series": 5
+}
+},
+"ErrorCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-06",
+"last": "2026-09-04",
+"n": 61,
+"rows": 366,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-09-04",
+"last": "2026-09-04",
+"n": 1,
+"rows": 84,
+"series": 3
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-08",
+"last": "2026-08-08",
+"n": 1,
+"rows": 502,
+"series": 502
+}
+},
+"EventAvgDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"EventAvgDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"EventAvgDailyUserPlaytimeMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-18",
+"last": "2026-09-02",
+"n": 350,
+"rows": 350,
+"series": 1
+}
+},
+"EventAvgRevenuePerDailyActiveUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-18",
+"last": "2026-09-02",
+"n": 350,
+"rows": 350,
+"series": 1
+}
+},
+"ForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-14",
+"last": "2026-09-02",
+"n": 538,
+"rows": 8090,
+"series": 20
+}
+},
+"ForwardD30Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-08-03",
+"n": 511,
+"rows": 511,
+"series": 1
+}
+},
+"ForwardD7Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-08-26",
+"n": 534,
+"rows": 3448,
+"series": 8
+}
+},
+"FunnelCohortCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-07-01",
+"last": "2025-07-14",
+"n": 14,
+"rows": 42,
+"series": 3
+}
+},
+"FunnelCohortSessionCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-07-01",
+"last": "2025-07-14",
+"n": 14,
+"rows": 42,
+"series": 3
+}
+},
+"FunnelStepChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 99,
+"series": 99
+}
+},
+"FunnelStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 99,
+"series": 99
+}
+},
+"FunnelStepOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 3,
+"series": 3
+}
+},
+"FunnelStepTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 100,
+"series": 100
+}
+},
+"FunnelUserChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 99,
+"series": 99
+}
+},
+"FunnelUserOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 3,
+"series": 3
+}
+},
+"FunnelUserStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 99,
+"series": 99
+}
+},
+"FunnelUserTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 102,
+"series": 102
+}
+},
+"MemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-04",
+"n": 6,
+"rows": 36,
+"series": 6
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-04",
+"last": "2026-09-04",
+"n": 1,
+"rows": 9,
+"series": 9
+}
+},
+"MonthlyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 34146,
+"series": 63
+}
+},
+"OomUnexpectedExits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-09",
+"last": "2026-09-05",
+"n": 28,
+"rows": 114,
+"series": 5
+}
+},
+"PayingUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"PayingUsersCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-15",
+"last": "2026-09-03",
+"n": 538,
+"rows": 3427,
+"series": 8
+}
+},
+"PeakConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 48,
+"series": 7
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-09-04",
+"last": "2026-09-04",
+"n": 1,
+"rows": 29,
+"series": 1
+}
+},
+"PlayerFeedbackVotesCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"PotentialExtraEarningsTotalUsd": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-08",
+"last": "2026-08-08",
+"n": 1,
+"rows": 1,
+"series": 1
+}
+},
+"RFYD1CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD1Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD1QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD1RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD1SpendDay": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD2To7CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD2To7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD2To7Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD2To7QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD2To7RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD2To7SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD8To28CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD8To28PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD8To28Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD8To28QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD8To28RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYD8To28SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"RFYDuration0To60": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-03",
+"n": 126,
+"rows": 126,
+"series": 1
+}
+},
+"RFYDuration61To180": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-03",
+"n": 126,
+"rows": 126,
+"series": 1
+}
+},
+"RFYL7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-25",
+"last": "2026-09-03",
+"n": 528,
+"rows": 528,
+"series": 1
+}
+},
+"RFYPlayThroughRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-03",
+"n": 126,
+"rows": 126,
+"series": 1
+}
+},
+"RFYQualifiedPTR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-17",
+"last": "2026-09-03",
+"n": 536,
+"rows": 536,
+"series": 1
+}
+},
+"RFYUniqueNotInterestedUsersPerMillionImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-01",
+"last": "2026-09-03",
+"n": 215,
+"rows": 215,
+"series": 1
+}
+},
+"RSVPCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"ServerFrameRateP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 7,
+"series": 1
+}
+},
+"SessionDurationSecondsAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 49,
+"series": 7
+}
+},
+"TotalPlayTimeHours": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-15",
+"last": "2026-09-03",
+"n": 538,
+"rows": 538,
+"series": 1
+}
+},
+"TotalSessionsEndedInBucket": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 61,
+"series": 61
+}
+},
+"UniqueUsersWithImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 9214,
+"series": 17
+}
+},
+"UniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 4878,
+"series": 9
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-03-11",
+"last": "2025-03-11",
+"n": 1,
+"rows": 8,
+"series": 8
+}
+},
+"UsersJoinedFromNotifications": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 542,
+"series": 1
+}
+},
+"Visits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-03-11",
+"last": "2026-09-03",
+"n": 542,
+"rows": 4336,
+"series": 8
+}
+}
+},
+"10030829154": {
+"Attribution1DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-04-12",
+"last": "2026-04-12",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution1DRobuxPerUser": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-04-12",
+"last": "2026-04-12",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-04-12",
+"last": "2026-04-12",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-08-04",
+"n": 115,
+"rows": 115,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-04-12",
+"last": "2026-04-12",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPayerConversionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-18",
+"last": "2026-08-27",
+"n": 130,
+"rows": 130,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-04-12",
+"last": "2026-04-12",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPlaytimePerUserInMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-18",
+"last": "2026-08-27",
+"n": 130,
+"rows": 130,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-04-12",
+"last": "2026-08-05",
+"n": 2,
+"rows": 13,
+"series": 7
+}
+},
+"Attribution7DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-18",
+"last": "2026-08-27",
+"n": 130,
+"rows": 130,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-04-12",
+"last": "2026-04-12",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AttributionD1RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-23",
+"last": "2026-09-01",
+"n": 130,
+"rows": 130,
+"series": 1
+}
+},
+"AttributionD7RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-17",
+"last": "2026-08-26",
+"n": 130,
+"rows": 130,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-04-12",
+"last": "2026-08-05",
+"n": 2,
+"rows": 13,
+"series": 7
+}
+},
+"AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-24",
+"last": "2026-09-02",
+"n": 129,
+"rows": 129,
+"series": 1
+}
+},
+"AverageRevenuePerPayingUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-29",
+"last": "2026-09-02",
+"n": 123,
+"rows": 123,
+"series": 1
+}
+},
+"AverageRevenuePerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-24",
+"last": "2026-09-02",
+"n": 129,
+"rows": 129,
+"series": 1
+}
+},
+"AverageSessionLengthMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-24",
+"last": "2026-09-02",
+"n": 129,
+"rows": 1120,
+"series": 10
+}
+},
+"ClientCpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-03",
+"n": 42,
+"rows": 444,
+"series": 12
+}
+},
+"ClientCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-22",
+"last": "2026-09-04",
+"n": 45,
+"rows": 528,
+"series": 14
+}
+},
+"ClientCrashRate15m": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 961,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-22",
+"last": "2026-09-04",
+"n": 45,
+"rows": 539,
+"series": 14
+}
+},
+"ClientFpsAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 961,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 75,
+"series": 2
+}
+},
+"ClientFpsP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 525,
+"series": 14
+}
+},
+"ClientMemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 525,
+"series": 14
+}
+},
+"ClientMemoryUsagePercentageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 525,
+"series": 14
+}
+},
+"ConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 961,
+"series": 1
+}
+},
+"CpuCoreUtilization": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 72,
+"series": 2
+}
+},
+"CpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 432,
+"series": 12
+}
+},
+"D1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-14",
+"last": "2026-09-01",
+"n": 50,
+"rows": 50,
+"series": 1
+}
+},
+"DailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 44630,
+"series": 319
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-04-12",
+"last": "2026-08-05",
+"n": 5,
+"rows": 25,
+"series": 6
+}
+},
+"DailyCohortRetention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-20",
+"last": "2026-08-28",
+"n": 9,
+"rows": 45,
+"series": 9
+}
+},
+"DailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 1289,
+"series": 9
+}
+},
+"DauMauStickiness": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-24",
+"last": "2026-09-02",
+"n": 129,
+"rows": 129,
+"series": 1
+}
+},
+"EndToEndCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-24",
+"last": "2026-09-01",
+"n": 128,
+"rows": 128,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-04-12",
+"last": "2026-08-05",
+"n": 2,
+"rows": 10,
+"series": 5
+}
+},
+"ErrorCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-05",
+"last": "2026-09-03",
+"n": 61,
+"rows": 519,
+"series": 9
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-14",
+"last": "2026-09-03",
+"n": 21,
+"rows": 3591,
+"series": 6
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-18",
+"last": "2026-08-07",
+"n": 6,
+"rows": 3536,
+"series": 1233
+}
+},
+"EventAvgDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"EventAvgDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"EventAvgDailyUserPlaytimeMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-12",
+"last": "2026-09-02",
+"n": 114,
+"rows": 114,
+"series": 1
+}
+},
+"EventAvgRevenuePerDailyActiveUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-12",
+"last": "2026-09-02",
+"n": 114,
+"rows": 114,
+"series": 1
+}
+},
+"ForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-23",
+"last": "2026-09-01",
+"n": 130,
+"rows": 2238,
+"series": 20
+}
+},
+"ForwardD30Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-08-03",
+"n": 114,
+"rows": 114,
+"series": 1
+}
+},
+"ForwardD7Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-17",
+"last": "2026-08-26",
+"n": 129,
+"rows": 865,
+"series": 8
+}
+},
+"FunnelCohortCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 615,
+"series": 15
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-02",
+"last": "2026-08-02",
+"n": 1,
+"rows": 15,
+"series": 15
+}
+},
+"FunnelCohortSessionCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-02",
+"n": 37,
+"rows": 555,
+"series": 15
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-02",
+"last": "2026-08-02",
+"n": 1,
+"rows": 15,
+"series": 15
+}
+},
+"FunnelStepChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 60,
+"series": 15
+}
+},
+"FunnelStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 60,
+"series": 15
+}
+},
+"FunnelStepOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 4,
+"series": 1
+}
+},
+"FunnelStepTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 60,
+"series": 15
+}
+},
+"FunnelUserChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 60,
+"series": 15
+}
+},
+"FunnelUserOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 4,
+"series": 1
+}
+},
+"FunnelUserStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 105,
+"series": 30
+}
+},
+"FunnelUserTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 64,
+"series": 16
+}
+},
+"ItemMonetizationRevenue": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-04-29",
+"last": "2026-09-03",
+"n": 128,
+"rows": 13849,
+"series": 6
+}
+},
+"L7AverageDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-14",
+"last": "2026-08-29",
+"n": 47,
+"rows": 47,
+"series": 1
+}
+},
+"L7AverageDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-14",
+"last": "2026-08-29",
+"n": 47,
+"rows": 47,
+"series": 1
+}
+},
+"L7AverageForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-14",
+"last": "2026-08-28",
+"n": 46,
+"rows": 460,
+"series": 10
+}
+},
+"L7AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-14",
+"last": "2026-08-29",
+"n": 47,
+"rows": 47,
+"series": 1
+}
+},
+"L7AverageUniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-14",
+"last": "2026-08-29",
+"n": 47,
+"rows": 329,
+"series": 7
+}
+},
+"MemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 961,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-03",
+"n": 42,
+"rows": 444,
+"series": 12
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-14",
+"last": "2026-09-03",
+"n": 5,
+"rows": 90,
+"series": 18
+}
+},
+"MonthlyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 39685,
+"series": 298
+}
+},
+"OomUnexpectedExits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-22",
+"last": "2026-09-04",
+"n": 45,
+"rows": 383,
+"series": 10
+}
+},
+"PayingUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"PayingUsersCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-24",
+"last": "2026-09-02",
+"n": 129,
+"rows": 870,
+"series": 8
+}
+},
+"PeakConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 961,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 525,
+"series": 14
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-14",
+"last": "2026-09-03",
+"n": 21,
+"rows": 1198,
+"series": 2
+}
+},
+"PlayerFeedbackVotesCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"PotentialExtraEarningsTotalUsd": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-18",
+"last": "2026-08-07",
+"n": 6,
+"rows": 6,
+"series": 1
+}
+},
+"RFYD1CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD1Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD1QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD1RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD1SpendDay": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD2To7CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD2To7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD2To7Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD2To7QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD2To7RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD2To7SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD8To28CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD8To28PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD8To28Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD8To28QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD8To28RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYD8To28SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"RFYDuration0To60": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-07",
+"last": "2026-09-02",
+"n": 119,
+"rows": 119,
+"series": 1
+}
+},
+"RFYDuration61To180": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-07",
+"last": "2026-09-02",
+"n": 119,
+"rows": 119,
+"series": 1
+}
+},
+"RFYL7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-06",
+"last": "2026-09-02",
+"n": 120,
+"rows": 120,
+"series": 1
+}
+},
+"RFYPlayThroughRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-06",
+"last": "2026-09-02",
+"n": 120,
+"rows": 120,
+"series": 1
+}
+},
+"RFYQualifiedPTR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-06",
+"last": "2026-09-02",
+"n": 120,
+"rows": 120,
+"series": 1
+}
+},
+"RFYUniqueNotInterestedUsersPerMillionImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-06",
+"last": "2026-09-02",
+"n": 120,
+"rows": 120,
+"series": 1
+}
+},
+"RSVPCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"ServerCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-22",
+"last": "2026-08-24",
+"n": 34,
+"rows": 145,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-14",
+"last": "2026-08-14",
+"n": 1,
+"rows": 2,
+"series": 2
+}
+},
+"ServerFrameRateP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 75,
+"series": 2
+}
+},
+"SessionDurationSecondsAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 961,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 525,
+"series": 14
+}
+},
+"TotalPlayTimeHours": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-24",
+"last": "2026-09-02",
+"n": 129,
+"rows": 129,
+"series": 1
+}
+},
+"TotalSessionsEndedInBucket": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-04-12",
+"last": "2026-08-05",
+"n": 7,
+"rows": 427,
+"series": 61
+}
+},
+"UniqueUsersWithImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-01",
+"n": 143,
+"rows": 2705,
+"series": 19
+}
+},
+"UniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-01",
+"n": 143,
+"rows": 1281,
+"series": 9
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-04-12",
+"last": "2026-04-12",
+"n": 1,
+"rows": 8,
+"series": 8
+}
+},
+"UsersJoinedFromNotifications": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 144,
+"series": 1
+}
+},
+"Visits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-12",
+"last": "2026-09-02",
+"n": 144,
+"rows": 1148,
+"series": 8
+}
+}
+},
+"10399712766": {
+"Attribution1DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-06-25",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution1DRobuxPerUser": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-06-25",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-06-25",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-08-04",
+"n": 41,
+"rows": 41,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-06-25",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPayerConversionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-08-27",
+"n": 60,
+"rows": 60,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-06-25",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPlaytimePerUserInMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-08-27",
+"n": 60,
+"rows": 60,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-06-25",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-08-27",
+"n": 60,
+"rows": 60,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-06-25",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AttributionD1RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-28",
+"last": "2026-09-01",
+"n": 62,
+"rows": 62,
+"series": 1
+}
+},
+"AttributionD7RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-28",
+"last": "2026-08-26",
+"n": 59,
+"rows": 59,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-06-25",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-29",
+"last": "2026-09-02",
+"n": 64,
+"rows": 64,
+"series": 1
+}
+},
+"AverageRevenuePerPayingUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-10",
+"last": "2026-09-02",
+"n": 55,
+"rows": 55,
+"series": 1
+}
+},
+"AverageRevenuePerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-29",
+"last": "2026-09-02",
+"n": 64,
+"rows": 64,
+"series": 1
+}
+},
+"AverageSessionLengthMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-29",
+"last": "2026-09-02",
+"n": 64,
+"rows": 498,
+"series": 10
+}
+},
+"ClientCpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-03",
+"n": 42,
+"rows": 252,
+"series": 6
+}
+},
+"ClientCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 258,
+"series": 6
+}
+},
+"ClientCrashRate15m": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-24",
+"last": "2026-08-29",
+"n": 37,
+"rows": 888,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 301,
+"series": 7
+}
+},
+"ClientFpsAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-24",
+"last": "2026-08-29",
+"n": 37,
+"rows": 888,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 43,
+"series": 1
+}
+},
+"ClientFpsP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 301,
+"series": 7
+}
+},
+"ClientMemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 301,
+"series": 7
+}
+},
+"ClientMemoryUsagePercentageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 301,
+"series": 7
+}
+},
+"ConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-24",
+"last": "2026-08-29",
+"n": 37,
+"rows": 888,
+"series": 1
+}
+},
+"CpuCoreUtilization": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"CpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 246,
+"series": 6
+}
+},
+"D1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-08-29",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"DailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 22107,
+"series": 318
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-08-20",
+"n": 4,
+"rows": 20,
+"series": 5
+}
+},
+"DailyCohortRetention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-11",
+"last": "2026-08-28",
+"n": 18,
+"rows": 90,
+"series": 9
+}
+},
+"DailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 559,
+"series": 8
+}
+},
+"DauMauStickiness": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-29",
+"last": "2026-09-02",
+"n": 64,
+"rows": 64,
+"series": 1
+}
+},
+"EndToEndCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-01",
+"last": "2026-09-01",
+"n": 63,
+"rows": 63,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-06-25",
+"n": 1,
+"rows": 5,
+"series": 5
+}
+},
+"ErrorCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-03",
+"n": 71,
+"rows": 426,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-20",
+"last": "2026-09-03",
+"n": 15,
+"rows": 2148,
+"series": 3
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-20",
+"n": 5,
+"rows": 2020,
+"series": 969
+}
+},
+"EventAvgDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"EventAvgDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"EventAvgDailyUserPlaytimeMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-02",
+"last": "2026-09-02",
+"n": 32,
+"rows": 32,
+"series": 1
+}
+},
+"EventAvgRevenuePerDailyActiveUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-02",
+"last": "2026-09-02",
+"n": 32,
+"rows": 32,
+"series": 1
+}
+},
+"ForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-28",
+"last": "2026-09-01",
+"n": 65,
+"rows": 978,
+"series": 20
+}
+},
+"ForwardD30Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-08-03",
+"n": 40,
+"rows": 40,
+"series": 1
+}
+},
+"ForwardD7Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-27",
+"last": "2026-08-26",
+"n": 61,
+"rows": 376,
+"series": 8
+}
+},
+"FunnelCohortCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-12",
+"last": "2026-09-03",
+"n": 54,
+"rows": 378,
+"series": 7
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-02",
+"last": "2026-08-02",
+"n": 1,
+"rows": 3,
+"series": 3
+}
+},
+"FunnelCohortSessionCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-12",
+"last": "2026-09-03",
+"n": 54,
+"rows": 378,
+"series": 7
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-02",
+"last": "2026-08-02",
+"n": 1,
+"rows": 3,
+"series": 3
+}
+},
+"FunnelStepChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-08-20",
+"n": 5,
+"rows": 19,
+"series": 7
+}
+},
+"FunnelStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-08-20",
+"n": 5,
+"rows": 19,
+"series": 7
+}
+},
+"FunnelStepOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-08-20",
+"n": 5,
+"rows": 5,
+"series": 1
+}
+},
+"FunnelStepTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-08-20",
+"n": 5,
+"rows": 24,
+"series": 8
+}
+},
+"FunnelUserChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-08-20",
+"n": 5,
+"rows": 31,
+"series": 10
+}
+},
+"FunnelUserOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-08-20",
+"n": 5,
+"rows": 17,
+"series": 4
+}
+},
+"FunnelUserStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-08-20",
+"n": 5,
+"rows": 40,
+"series": 13
+}
+},
+"FunnelUserTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-08-20",
+"n": 5,
+"rows": 36,
+"series": 11
+}
+},
+"ItemMonetizationRevenue": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-09",
+"last": "2026-09-03",
+"n": 57,
+"rows": 6636,
+"series": 5
+}
+},
+"L7AverageDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-08-29",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"L7AverageDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-08-29",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"L7AverageForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-08-28",
+"n": 36,
+"rows": 357,
+"series": 10
+}
+},
+"L7AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-08-29",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"L7AverageUniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-08-29",
+"n": 37,
+"rows": 287,
+"series": 8
+}
+},
+"MemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-24",
+"last": "2026-08-29",
+"n": 37,
+"rows": 888,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-03",
+"n": 42,
+"rows": 252,
+"series": 6
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-21",
+"last": "2026-09-03",
+"n": 3,
+"rows": 72,
+"series": 9
+}
+},
+"MonthlyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 20663,
+"series": 297
+}
+},
+"OomUnexpectedExits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 192,
+"series": 5
+}
+},
+"PayingUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"PayingUsersCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-29",
+"last": "2026-09-02",
+"n": 64,
+"rows": 380,
+"series": 8
+}
+},
+"PeakConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-24",
+"last": "2026-08-29",
+"n": 37,
+"rows": 888,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 301,
+"series": 7
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-20",
+"last": "2026-09-03",
+"n": 15,
+"rows": 717,
+"series": 1
+}
+},
+"PlayerFeedbackVotesCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"PotentialExtraEarningsTotalUsd": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-20",
+"n": 5,
+"rows": 5,
+"series": 1
+}
+},
+"RFYD1CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD1Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD1QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD1RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD1SpendDay": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD2To7CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD2To7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD2To7Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD2To7QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD2To7RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD2To7SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD8To28CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD8To28PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD8To28Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD8To28QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD8To28RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYD8To28SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"RFYDuration0To60": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-17",
+"last": "2026-09-02",
+"n": 48,
+"rows": 48,
+"series": 1
+}
+},
+"RFYDuration61To180": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-17",
+"last": "2026-09-02",
+"n": 48,
+"rows": 48,
+"series": 1
+}
+},
+"RFYL7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-17",
+"last": "2026-09-02",
+"n": 48,
+"rows": 48,
+"series": 1
+}
+},
+"RFYPlayThroughRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-17",
+"last": "2026-09-02",
+"n": 48,
+"rows": 48,
+"series": 1
+}
+},
+"RFYQualifiedPTR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-17",
+"last": "2026-09-02",
+"n": 48,
+"rows": 48,
+"series": 1
+}
+},
+"RFYUniqueNotInterestedUsersPerMillionImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-17",
+"last": "2026-09-02",
+"n": 48,
+"rows": 48,
+"series": 1
+}
+},
+"RSVPCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"ServerCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-03",
+"n": 42,
+"rows": 93,
+"series": 3
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-21",
+"last": "2026-09-03",
+"n": 14,
+"rows": 1230,
+"series": 2
+}
+},
+"ServerFrameRateP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 43,
+"series": 1
+}
+},
+"SessionDurationSecondsAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-07-24",
+"last": "2026-08-29",
+"n": 37,
+"rows": 888,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-04",
+"n": 43,
+"rows": 301,
+"series": 7
+}
+},
+"TotalPlayTimeHours": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-29",
+"last": "2026-09-02",
+"n": 64,
+"rows": 64,
+"series": 1
+}
+},
+"TotalSessionsEndedInBucket": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-08-20",
+"n": 5,
+"rows": 305,
+"series": 61
+}
+},
+"UniqueUsersWithImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-01",
+"n": 69,
+"rows": 1263,
+"series": 19
+}
+},
+"UniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-01",
+"n": 69,
+"rows": 597,
+"series": 9
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-06-25",
+"last": "2026-06-25",
+"n": 1,
+"rows": 8,
+"series": 8
+}
+},
+"UsersJoinedFromNotifications": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 70,
+"series": 1
+}
+},
+"Visits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-25",
+"last": "2026-09-02",
+"n": 70,
+"rows": 547,
+"series": 8
+}
+}
+},
+"9758414065": {
+"Attribution1DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-02-18",
+"last": "2026-08-27",
+"n": 2,
+"rows": 13,
+"series": 7
+}
+},
+"Attribution1DRobuxPerUser": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-02-18",
+"last": "2026-08-27",
+"n": 2,
+"rows": 13,
+"series": 7
+}
+},
+"Attribution30DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-02-18",
+"last": "2026-02-18",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-08-04",
+"n": 168,
+"rows": 168,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-02-18",
+"last": "2026-02-18",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPayerConversionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-19",
+"last": "2026-08-27",
+"n": 190,
+"rows": 190,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-02-18",
+"last": "2026-08-27",
+"n": 2,
+"rows": 11,
+"series": 7
+}
+},
+"Attribution7DPlaytimePerUserInMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-19",
+"last": "2026-08-27",
+"n": 190,
+"rows": 190,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-02-18",
+"last": "2026-08-27",
+"n": 2,
+"rows": 11,
+"series": 7
+}
+},
+"Attribution7DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-19",
+"last": "2026-08-27",
+"n": 190,
+"rows": 190,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-02-18",
+"last": "2026-08-27",
+"n": 2,
+"rows": 11,
+"series": 7
+}
+},
+"AttributionD1RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-21",
+"last": "2026-09-01",
+"n": 192,
+"rows": 192,
+"series": 1
+}
+},
+"AttributionD7RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-08-26",
+"n": 190,
+"rows": 190,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-02-18",
+"last": "2026-02-18",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-22",
+"last": "2026-09-02",
+"n": 190,
+"rows": 190,
+"series": 1
+}
+},
+"AverageRevenuePerPayingUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-25",
+"last": "2026-09-02",
+"n": 187,
+"rows": 187,
+"series": 1
+}
+},
+"AverageRevenuePerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-22",
+"last": "2026-09-02",
+"n": 190,
+"rows": 190,
+"series": 1
+}
+},
+"AverageSessionLengthMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-22",
+"last": "2026-09-02",
+"n": 190,
+"rows": 1400,
+"series": 9
+}
+},
+"ClientCpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-27",
+"last": "2026-09-03",
+"n": 8,
+"rows": 48,
+"series": 6
+}
+},
+"ClientCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 111,
+"series": 4
+}
+},
+"ClientCrashRate15m": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-27",
+"last": "2026-09-03",
+"n": 8,
+"rows": 190,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 157,
+"series": 6
+}
+},
+"ClientFpsAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-27",
+"last": "2026-09-03",
+"n": 8,
+"rows": 190,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-27",
+"last": "2026-09-04",
+"n": 9,
+"rows": 9,
+"series": 1
+}
+},
+"ClientFpsP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-27",
+"last": "2026-09-04",
+"n": 9,
+"rows": 52,
+"series": 6
+}
+},
+"ClientMemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-27",
+"last": "2026-09-04",
+"n": 9,
+"rows": 52,
+"series": 6
+}
+},
+"ClientMemoryUsagePercentageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-27",
+"last": "2026-09-04",
+"n": 9,
+"rows": 52,
+"series": 6
+}
+},
+"ConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-27",
+"last": "2026-09-03",
+"n": 8,
+"rows": 191,
+"series": 1
+}
+},
+"CpuCoreUtilization": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-27",
+"last": "2026-09-02",
+"n": 7,
+"rows": 7,
+"series": 1
+}
+},
+"CpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-27",
+"last": "2026-09-02",
+"n": 7,
+"rows": 42,
+"series": 6
+}
+},
+"DailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 57582,
+"series": 304
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-02-18",
+"last": "2026-08-27",
+"n": 2,
+"rows": 10,
+"series": 6
+}
+},
+"DailyCohortRetention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-27",
+"last": "2026-09-01",
+"n": 6,
+"rows": 21,
+"series": 6
+}
+},
+"DailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 1716,
+"series": 9
+}
+},
+"DauMauStickiness": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-22",
+"last": "2026-09-02",
+"n": 190,
+"rows": 190,
+"series": 1
+}
+},
+"EndToEndCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-20",
+"last": "2026-09-01",
+"n": 190,
+"rows": 190,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-02-18",
+"last": "2026-08-27",
+"n": 2,
+"rows": 10,
+"series": 5
+}
+},
+"ErrorCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-05",
+"last": "2026-09-03",
+"n": 61,
+"rows": 366,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-09-03",
+"last": "2026-09-03",
+"n": 1,
+"rows": 132,
+"series": 3
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-07",
+"last": "2026-08-27",
+"n": 2,
+"rows": 1009,
+"series": 840
+}
+},
+"EventAvgDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"EventAvgDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"EventAvgDailyUserPlaytimeMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-07",
+"last": "2026-09-02",
+"n": 180,
+"rows": 180,
+"series": 1
+}
+},
+"EventAvgRevenuePerDailyActiveUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-07",
+"last": "2026-09-02",
+"n": 180,
+"rows": 180,
+"series": 1
+}
+},
+"ForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-21",
+"last": "2026-09-01",
+"n": 192,
+"rows": 3125,
+"series": 19
+}
+},
+"ForwardD30Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-08-03",
+"n": 167,
+"rows": 167,
+"series": 1
+}
+},
+"ForwardD7Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-08-26",
+"n": 189,
+"rows": 1079,
+"series": 7
+}
+},
+"ItemMonetizationRevenue": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-02-25",
+"last": "2026-09-03",
+"n": 191,
+"rows": 21669,
+"series": 5
+}
+},
+"L7AverageDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-25",
+"last": "2026-04-30",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"L7AverageDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-25",
+"last": "2026-04-30",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"L7AverageForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-25",
+"last": "2026-04-30",
+"n": 37,
+"rows": 222,
+"series": 6
+}
+},
+"L7AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-25",
+"last": "2026-04-30",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"L7AverageUniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-25",
+"last": "2026-04-30",
+"n": 37,
+"rows": 221,
+"series": 6
+}
+},
+"MemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-27",
+"last": "2026-09-03",
+"n": 8,
+"rows": 188,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-27",
+"last": "2026-09-03",
+"n": 8,
+"rows": 47,
+"series": 6
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-03",
+"last": "2026-09-03",
+"n": 1,
+"rows": 24,
+"series": 8
+}
+},
+"MonthlyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 47749,
+"series": 256
+}
+},
+"OomUnexpectedExits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 98,
+"series": 4
+}
+},
+"PayingUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"PayingUsersCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-22",
+"last": "2026-09-02",
+"n": 190,
+"rows": 1023,
+"series": 8
+}
+},
+"PeakConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-27",
+"last": "2026-09-03",
+"n": 8,
+"rows": 190,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-27",
+"last": "2026-09-04",
+"n": 9,
+"rows": 53,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-09-03",
+"last": "2026-09-03",
+"n": 1,
+"rows": 45,
+"series": 1
+}
+},
+"PlayerFeedbackVotesCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"PotentialExtraEarningsTotalUsd": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-07",
+"last": "2026-08-27",
+"n": 2,
+"rows": 2,
+"series": 1
+}
+},
+"RFYD1CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD1Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD1QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD1RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD1SpendDay": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD2To7CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD2To7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD2To7Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD2To7QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD2To7RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD2To7SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD8To28CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD8To28PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD8To28Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD8To28QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD8To28RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYD8To28SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"RFYDuration0To60": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 119,
+"rows": 119,
+"series": 1
+}
+},
+"RFYDuration61To180": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 119,
+"rows": 119,
+"series": 1
+}
+},
+"RFYL7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-12",
+"last": "2026-09-02",
+"n": 175,
+"rows": 175,
+"series": 1
+}
+},
+"RFYPlayThroughRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 125,
+"rows": 125,
+"series": 1
+}
+},
+"RFYQualifiedPTR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-06",
+"last": "2026-09-02",
+"n": 181,
+"rows": 181,
+"series": 1
+}
+},
+"RFYUniqueNotInterestedUsersPerMillionImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-06",
+"last": "2026-09-02",
+"n": 181,
+"rows": 181,
+"series": 1
+}
+},
+"RSVPCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"ServerFrameRateP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-27",
+"last": "2026-09-04",
+"n": 9,
+"rows": 9,
+"series": 1
+}
+},
+"SessionDurationSecondsAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-27",
+"last": "2026-09-04",
+"n": 9,
+"rows": 193,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-27",
+"last": "2026-09-04",
+"n": 9,
+"rows": 53,
+"series": 6
+}
+},
+"TotalPlayTimeHours": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-22",
+"last": "2026-09-02",
+"n": 190,
+"rows": 190,
+"series": 1
+}
+},
+"TotalSessionsEndedInBucket": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-02-18",
+"last": "2026-08-27",
+"n": 3,
+"rows": 183,
+"series": 61
+}
+},
+"UniqueUsersWithImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-01",
+"n": 196,
+"rows": 3620,
+"series": 19
+}
+},
+"UniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-01",
+"n": 196,
+"rows": 1709,
+"series": 9
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-02-18",
+"last": "2026-08-27",
+"n": 2,
+"rows": 13,
+"series": 8
+}
+},
+"UsersJoinedFromNotifications": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 197,
+"series": 1
+}
+},
+"Visits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-18",
+"last": "2026-09-02",
+"n": 197,
+"rows": 1377,
+"series": 7
+}
+}
+},
+"10565445771": {
+"Attribution1DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-07-24",
+"n": 1,
+"rows": 6,
+"series": 6
+}
+},
+"Attribution1DRobuxPerUser": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-07-24",
+"n": 1,
+"rows": 6,
+"series": 6
+}
+},
+"Attribution30DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-07-24",
+"n": 1,
+"rows": 6,
+"series": 6
+}
+},
+"Attribution30DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-08-04",
+"n": 12,
+"rows": 12,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-07-24",
+"n": 1,
+"rows": 6,
+"series": 6
+}
+},
+"Attribution7DPayerConversionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-08-27",
+"n": 33,
+"rows": 33,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-07-24",
+"n": 1,
+"rows": 6,
+"series": 6
+}
+},
+"Attribution7DPlaytimePerUserInMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-08-27",
+"n": 33,
+"rows": 33,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 2,
+"rows": 12,
+"series": 6
+}
+},
+"Attribution7DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-08-27",
+"n": 33,
+"rows": 33,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-07-24",
+"n": 1,
+"rows": 6,
+"series": 6
+}
+},
+"AttributionD1RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-01",
+"n": 34,
+"rows": 34,
+"series": 1
+}
+},
+"AttributionD7RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-26",
+"last": "2026-08-26",
+"n": 32,
+"rows": 32,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 2,
+"rows": 12,
+"series": 6
+}
+},
+"AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-29",
+"last": "2026-09-02",
+"n": 36,
+"rows": 36,
+"series": 1
+}
+},
+"AverageRevenuePerPayingUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-01",
+"last": "2026-09-02",
+"n": 32,
+"rows": 32,
+"series": 1
+}
+},
+"AverageRevenuePerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-29",
+"last": "2026-09-02",
+"n": 36,
+"rows": 36,
+"series": 1
+}
+},
+"AverageSessionLengthMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-29",
+"last": "2026-09-02",
+"n": 36,
+"rows": 289,
+"series": 10
+}
+},
+"ClientCpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-05",
+"last": "2026-09-03",
+"n": 30,
+"rows": 180,
+"series": 6
+}
+},
+"ClientCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-02",
+"last": "2026-09-04",
+"n": 34,
+"rows": 228,
+"series": 7
+}
+},
+"ClientCrashRate15m": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 683,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-04",
+"n": 32,
+"rows": 220,
+"series": 7
+}
+},
+"ClientFpsAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 682,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-04",
+"n": 32,
+"rows": 32,
+"series": 1
+}
+},
+"ClientFpsP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-04",
+"n": 32,
+"rows": 220,
+"series": 7
+}
+},
+"ClientMemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-04",
+"n": 32,
+"rows": 220,
+"series": 7
+}
+},
+"ClientMemoryUsagePercentageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-04",
+"n": 32,
+"rows": 220,
+"series": 7
+}
+},
+"ConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 682,
+"series": 1
+}
+},
+"CpuCoreUtilization": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 30,
+"series": 1
+}
+},
+"CpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 180,
+"series": 6
+}
+},
+"D1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-29",
+"last": "2026-09-01",
+"n": 35,
+"rows": 35,
+"series": 1
+}
+},
+"DailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 12874,
+"series": 315
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 3,
+"rows": 15,
+"series": 5
+}
+},
+"DailyCohortRetention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-20",
+"last": "2026-08-28",
+"n": 9,
+"rows": 45,
+"series": 9
+}
+},
+"DailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 286,
+"series": 7
+}
+},
+"DauMauStickiness": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-29",
+"last": "2026-09-02",
+"n": 36,
+"rows": 36,
+"series": 1
+}
+},
+"EndToEndCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-29",
+"last": "2026-09-01",
+"n": 34,
+"rows": 34,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 2,
+"rows": 8,
+"series": 4
+}
+},
+"ErrorCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-03",
+"n": 42,
+"rows": 252,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-29",
+"last": "2026-09-03",
+"n": 6,
+"rows": 852,
+"series": 3
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-02",
+"last": "2026-08-07",
+"n": 4,
+"rows": 1527,
+"series": 537
+}
+},
+"EventAvgDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"EventAvgDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"EventAvgDailyUserPlaytimeMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-28",
+"last": "2026-09-02",
+"n": 6,
+"rows": 6,
+"series": 1
+}
+},
+"EventAvgRevenuePerDailyActiveUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-28",
+"last": "2026-09-02",
+"n": 6,
+"rows": 6,
+"series": 1
+}
+},
+"ForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-01",
+"n": 36,
+"rows": 524,
+"series": 18
+}
+},
+"ForwardD30Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-08-03",
+"n": 11,
+"rows": 11,
+"series": 1
+}
+},
+"ForwardD7Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-08-26",
+"n": 34,
+"rows": 217,
+"series": 8
+}
+},
+"FunnelCohortCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-03",
+"n": 31,
+"rows": 1516,
+"series": 49
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-02",
+"last": "2026-08-02",
+"n": 1,
+"rows": 40,
+"series": 40
+}
+},
+"FunnelCohortSessionCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-03",
+"n": 31,
+"rows": 1516,
+"series": 49
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-02",
+"last": "2026-08-02",
+"n": 1,
+"rows": 40,
+"series": 40
+}
+},
+"FunnelStepChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 169,
+"series": 49
+}
+},
+"FunnelStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 169,
+"series": 49
+}
+},
+"FunnelStepOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 37,
+"series": 10
+}
+},
+"FunnelStepTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 173,
+"series": 51
+}
+},
+"FunnelUserChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 184,
+"series": 54
+}
+},
+"FunnelUserOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 52,
+"series": 15
+}
+},
+"FunnelUserStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 251,
+"series": 97
+}
+},
+"FunnelUserTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 221,
+"series": 64
+}
+},
+"ItemMonetizationRevenue": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-01",
+"last": "2026-09-03",
+"n": 34,
+"rows": 3088,
+"series": 4
+}
+},
+"L7AverageDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-08-29",
+"n": 33,
+"rows": 33,
+"series": 1
+}
+},
+"L7AverageDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-08-29",
+"n": 33,
+"rows": 33,
+"series": 1
+}
+},
+"L7AverageForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-08-28",
+"n": 32,
+"rows": 244,
+"series": 9
+}
+},
+"L7AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-29",
+"last": "2026-08-29",
+"n": 32,
+"rows": 32,
+"series": 1
+}
+},
+"L7AverageUniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-08-29",
+"n": 33,
+"rows": 231,
+"series": 7
+}
+},
+"MemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 678,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-05",
+"last": "2026-09-03",
+"n": 30,
+"rows": 180,
+"series": 6
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-30",
+"last": "2026-09-03",
+"n": 3,
+"rows": 45,
+"series": 9
+}
+},
+"MonthlyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 12099,
+"series": 296
+}
+},
+"OomUnexpectedExits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-02",
+"last": "2026-09-04",
+"n": 34,
+"rows": 158,
+"series": 5
+}
+},
+"PayingUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"PayingUsersCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-29",
+"last": "2026-09-02",
+"n": 36,
+"rows": 221,
+"series": 8
+}
+},
+"PeakConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 683,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-02",
+"last": "2026-09-04",
+"n": 34,
+"rows": 238,
+"series": 7
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-29",
+"last": "2026-09-03",
+"n": 6,
+"rows": 285,
+"series": 1
+}
+},
+"PlayerFeedbackVotesCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"PotentialExtraEarningsTotalUsd": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-02",
+"last": "2026-08-07",
+"n": 4,
+"rows": 4,
+"series": 1
+}
+},
+"RFYD1CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"RFYD1Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"RFYD1QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"RFYD1RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"RFYD1SpendDay": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"RFYD2To7CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"RFYD2To7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"RFYD2To7Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"RFYD2To7QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"RFYD2To7RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"RFYD2To7SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"RFYDuration0To60": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 26,
+"series": 1
+}
+},
+"RFYDuration61To180": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 26,
+"series": 1
+}
+},
+"RFYL7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 26,
+"series": 1
+}
+},
+"RFYPlayThroughRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 26,
+"series": 1
+}
+},
+"RFYQualifiedPTR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 26,
+"series": 1
+}
+},
+"RFYUniqueNotInterestedUsersPerMillionImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 26,
+"series": 1
+}
+},
+"RSVPCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"ServerCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-10",
+"last": "2026-09-01",
+"n": 23,
+"rows": 46,
+"series": 2
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-30",
+"last": "2026-08-30",
+"n": 1,
+"rows": 2,
+"series": 2
+}
+},
+"ServerFrameRateP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-05",
+"last": "2026-09-04",
+"n": 31,
+"rows": 31,
+"series": 1
+}
+},
+"SessionDurationSecondsAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 683,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-04",
+"n": 32,
+"rows": 220,
+"series": 7
+}
+},
+"TotalPlayTimeHours": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-29",
+"last": "2026-09-02",
+"n": 36,
+"rows": 36,
+"series": 1
+}
+},
+"TotalSessionsEndedInBucket": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-08-05",
+"n": 4,
+"rows": 244,
+"series": 61
+}
+},
+"UniqueUsersWithImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-01",
+"n": 40,
+"rows": 668,
+"series": 17
+}
+},
+"UniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-01",
+"n": 40,
+"rows": 316,
+"series": 8
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-24",
+"last": "2026-07-24",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"UsersJoinedFromNotifications": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 41,
+"series": 1
+}
+},
+"Visits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-24",
+"last": "2026-09-02",
+"n": 41,
+"rows": 324,
+"series": 8
+}
+}
+},
+"8669915245": {
+"Attribution1DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-09-08",
+"last": "2025-09-08",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution1DRobuxPerUser": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-09-08",
+"last": "2025-09-08",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-09-08",
+"last": "2025-09-08",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-08-04",
+"n": 331,
+"rows": 331,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-09-08",
+"last": "2025-09-08",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPayerConversionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-08-27",
+"n": 354,
+"rows": 354,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-09-08",
+"last": "2025-09-08",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPlaytimePerUserInMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-08-27",
+"n": 354,
+"rows": 354,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-09-08",
+"last": "2025-09-08",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-08-27",
+"n": 354,
+"rows": 354,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-09-08",
+"last": "2025-09-08",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AttributionD1RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-01",
+"n": 359,
+"rows": 359,
+"series": 1
+}
+},
+"AttributionD7RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-08-26",
+"n": 353,
+"rows": 353,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-09-08",
+"last": "2025-09-08",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-09",
+"last": "2026-09-03",
+"n": 359,
+"rows": 359,
+"series": 1
+}
+},
+"AverageRevenuePerPayingUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-13",
+"last": "2026-09-03",
+"n": 323,
+"rows": 323,
+"series": 1
+}
+},
+"AverageRevenuePerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-09",
+"last": "2026-09-03",
+"n": 359,
+"rows": 359,
+"series": 1
+}
+},
+"AverageSessionLengthMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-09",
+"last": "2026-09-03",
+"n": 359,
+"rows": 2266,
+"series": 9
+}
+},
+"ClientCpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-04",
+"n": 6,
+"rows": 36,
+"series": 6
+}
+},
+"ClientCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-09",
+"last": "2026-09-05",
+"n": 28,
+"rows": 92,
+"series": 4
+}
+},
+"ClientCrashRate15m": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-09",
+"last": "2026-09-05",
+"n": 28,
+"rows": 122,
+"series": 5
+}
+},
+"ClientFpsAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 7,
+"series": 1
+}
+},
+"ClientFpsP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 30,
+"series": 5
+}
+},
+"ClientMemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 30,
+"series": 5
+}
+},
+"ClientMemoryUsagePercentageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 30,
+"series": 5
+}
+},
+"CpuCoreUtilization": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-03",
+"n": 5,
+"rows": 5,
+"series": 1
+}
+},
+"CpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-03",
+"n": 5,
+"rows": 30,
+"series": 6
+}
+},
+"DailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 82308,
+"series": 228
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-09-08",
+"last": "2025-09-08",
+"n": 1,
+"rows": 5,
+"series": 5
+}
+},
+"DailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 2888,
+"series": 8
+}
+},
+"DauMauStickiness": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-09",
+"last": "2026-09-03",
+"n": 359,
+"rows": 359,
+"series": 1
+}
+},
+"EndToEndCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-09",
+"last": "2026-09-02",
+"n": 359,
+"rows": 359,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-09-08",
+"last": "2025-09-08",
+"n": 1,
+"rows": 5,
+"series": 5
+}
+},
+"ErrorCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-06",
+"last": "2026-09-04",
+"n": 61,
+"rows": 366,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-09-04",
+"last": "2026-09-04",
+"n": 1,
+"rows": 84,
+"series": 3
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-08",
+"last": "2026-08-08",
+"n": 1,
+"rows": 501,
+"series": 501
+}
+},
+"EventAvgDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"EventAvgDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"EventAvgDailyUserPlaytimeMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-18",
+"last": "2026-09-02",
+"n": 350,
+"rows": 350,
+"series": 1
+}
+},
+"EventAvgRevenuePerDailyActiveUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-18",
+"last": "2026-09-02",
+"n": 350,
+"rows": 350,
+"series": 1
+}
+},
+"ForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-02",
+"n": 360,
+"rows": 4901,
+"series": 19
+}
+},
+"ForwardD30Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-08-04",
+"n": 331,
+"rows": 331,
+"series": 1
+}
+},
+"ForwardD7Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-08-27",
+"n": 354,
+"rows": 1608,
+"series": 7
+}
+},
+"MemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-04",
+"n": 6,
+"rows": 36,
+"series": 6
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-04",
+"last": "2026-09-04",
+"n": 1,
+"rows": 8,
+"series": 8
+}
+},
+"MonthlyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 63175,
+"series": 175
+}
+},
+"OomUnexpectedExits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-17",
+"last": "2026-09-04",
+"n": 19,
+"rows": 56,
+"series": 3
+}
+},
+"PayingUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"PayingUsersCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-09",
+"last": "2026-09-03",
+"n": 359,
+"rows": 1549,
+"series": 7
+}
+},
+"PeakConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 33,
+"series": 5
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-09-04",
+"last": "2026-09-04",
+"n": 1,
+"rows": 29,
+"series": 1
+}
+},
+"PlayerFeedbackVotesCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"PotentialExtraEarningsTotalUsd": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-08",
+"last": "2026-08-08",
+"n": 1,
+"rows": 1,
+"series": 1
+}
+},
+"RFYD1CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD1Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD1QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD1RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD1SpendDay": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD2To7CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD2To7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD2To7Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD2To7QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD2To7RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD2To7SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD8To28CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD8To28PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD8To28Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD8To28QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD8To28RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYD8To28SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"RFYDuration0To60": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-03",
+"n": 126,
+"rows": 126,
+"series": 1
+}
+},
+"RFYDuration61To180": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-03",
+"n": 126,
+"rows": 126,
+"series": 1
+}
+},
+"RFYL7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-24",
+"last": "2026-09-03",
+"n": 345,
+"rows": 345,
+"series": 1
+}
+},
+"RFYPlayThroughRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-03",
+"n": 126,
+"rows": 126,
+"series": 1
+}
+},
+"RFYQualifiedPTR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-16",
+"last": "2026-09-03",
+"n": 353,
+"rows": 353,
+"series": 1
+}
+},
+"RFYUniqueNotInterestedUsersPerMillionImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-01",
+"last": "2026-09-03",
+"n": 215,
+"rows": 215,
+"series": 1
+}
+},
+"RSVPCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"ServerFrameRateP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 7,
+"series": 1
+}
+},
+"SessionDurationSecondsAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-30",
+"last": "2026-09-05",
+"n": 7,
+"rows": 30,
+"series": 5
+}
+},
+"TotalPlayTimeHours": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-09",
+"last": "2026-09-03",
+"n": 359,
+"rows": 359,
+"series": 1
+}
+},
+"TotalSessionsEndedInBucket": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-09-08",
+"last": "2025-09-08",
+"n": 1,
+"rows": 61,
+"series": 61
+}
+},
+"UniqueUsersWithImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 6859,
+"series": 19
+}
+},
+"UniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 3249,
+"series": 9
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-09-08",
+"last": "2025-09-08",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"UsersJoinedFromNotifications": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 361,
+"series": 1
+}
+},
+"Visits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-09-08",
+"last": "2026-09-03",
+"n": 361,
+"rows": 2527,
+"series": 7
+}
+}
+},
+"10638354731": {
+"Attribution1DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-04",
+"last": "2026-08-04",
+"n": 1,
+"rows": 5,
+"series": 5
+}
+},
+"Attribution1DRobuxPerUser": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-04",
+"last": "2026-08-04",
+"n": 1,
+"rows": 5,
+"series": 5
+}
+},
+"Attribution30DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-04",
+"last": "2026-08-04",
+"n": 1,
+"rows": 4,
+"series": 4
+}
+},
+"Attribution30DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-08-04",
+"n": 5,
+"rows": 5,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-04",
+"last": "2026-08-04",
+"n": 1,
+"rows": 4,
+"series": 4
+}
+},
+"Attribution7DPayerConversionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-02",
+"last": "2026-08-27",
+"n": 26,
+"rows": 26,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-04",
+"last": "2026-08-04",
+"n": 1,
+"rows": 5,
+"series": 5
+}
+},
+"Attribution7DPlaytimePerUserInMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-02",
+"last": "2026-08-27",
+"n": 26,
+"rows": 26,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-04",
+"last": "2026-08-05",
+"n": 2,
+"rows": 10,
+"series": 5
+}
+},
+"Attribution7DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-02",
+"last": "2026-08-27",
+"n": 26,
+"rows": 26,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-04",
+"last": "2026-08-04",
+"n": 1,
+"rows": 5,
+"series": 5
+}
+},
+"AttributionD1RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-07",
+"last": "2026-09-01",
+"n": 26,
+"rows": 26,
+"series": 1
+}
+},
+"AttributionD7RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-01",
+"last": "2026-08-26",
+"n": 26,
+"rows": 26,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-04",
+"last": "2026-08-05",
+"n": 2,
+"rows": 10,
+"series": 5
+}
+},
+"AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 26,
+"series": 1
+}
+},
+"AverageRevenuePerPayingUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-12",
+"last": "2026-09-02",
+"n": 22,
+"rows": 22,
+"series": 1
+}
+},
+"AverageRevenuePerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 26,
+"series": 1
+}
+},
+"AverageSessionLengthMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 183,
+"series": 8
+}
+},
+"ClientCpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-13",
+"last": "2026-09-03",
+"n": 22,
+"rows": 132,
+"series": 6
+}
+},
+"ClientCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-05",
+"last": "2026-09-04",
+"n": 31,
+"rows": 122,
+"series": 5
+}
+},
+"ClientCrashRate15m": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-12",
+"last": "2026-09-02",
+"n": 22,
+"rows": 487,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-12",
+"last": "2026-09-04",
+"n": 24,
+"rows": 133,
+"series": 6
+}
+},
+"ClientFpsAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-12",
+"last": "2026-09-02",
+"n": 22,
+"rows": 487,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-12",
+"last": "2026-09-04",
+"n": 24,
+"rows": 24,
+"series": 1
+}
+},
+"ClientFpsP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-12",
+"last": "2026-09-04",
+"n": 24,
+"rows": 133,
+"series": 6
+}
+},
+"ClientMemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-12",
+"last": "2026-09-04",
+"n": 24,
+"rows": 133,
+"series": 6
+}
+},
+"ClientMemoryUsagePercentageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-12",
+"last": "2026-09-04",
+"n": 24,
+"rows": 133,
+"series": 6
+}
+},
+"ConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-12",
+"last": "2026-09-02",
+"n": 22,
+"rows": 486,
+"series": 1
+}
+},
+"CpuCoreUtilization": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-12",
+"last": "2026-09-02",
+"n": 22,
+"rows": 22,
+"series": 1
+}
+},
+"CpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-12",
+"last": "2026-09-02",
+"n": 22,
+"rows": 132,
+"series": 6
+}
+},
+"D1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-01",
+"n": 25,
+"rows": 25,
+"series": 1
+}
+},
+"DailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-02",
+"n": 37,
+"rows": 9333,
+"series": 312
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-28",
+"last": "2026-08-05",
+"n": 3,
+"rows": 15,
+"series": 5
+}
+},
+"DailyCohortRetention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-20",
+"last": "2026-08-27",
+"n": 8,
+"rows": 36,
+"series": 8
+}
+},
+"DailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-02",
+"n": 37,
+"rows": 296,
+"series": 8
+}
+},
+"DauMauStickiness": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 26,
+"series": 1
+}
+},
+"EndToEndCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-01",
+"n": 25,
+"rows": 25,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-04",
+"last": "2026-08-05",
+"n": 2,
+"rows": 8,
+"series": 4
+}
+},
+"ErrorCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-03",
+"n": 38,
+"rows": 228,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-30",
+"last": "2026-09-03",
+"n": 5,
+"rows": 708,
+"series": 3
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-02",
+"last": "2026-08-07",
+"n": 4,
+"rows": 1523,
+"series": 533
+}
+},
+"EventAvgDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-02",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"EventAvgDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-02",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"EventAvgDailyUserPlaytimeMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-28",
+"last": "2026-09-02",
+"n": 6,
+"rows": 6,
+"series": 1
+}
+},
+"EventAvgRevenuePerDailyActiveUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-28",
+"last": "2026-09-02",
+"n": 6,
+"rows": 6,
+"series": 1
+}
+},
+"ForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-07",
+"last": "2026-09-01",
+"n": 26,
+"rows": 339,
+"series": 15
+}
+},
+"ForwardD30Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-07-30",
+"n": 3,
+"rows": 3,
+"series": 1
+}
+},
+"ForwardD7Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-01",
+"last": "2026-08-26",
+"n": 26,
+"rows": 132,
+"series": 6
+}
+},
+"FunnelCohortCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-12",
+"last": "2026-09-03",
+"n": 23,
+"rows": 523,
+"series": 27
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-02",
+"last": "2026-08-02",
+"n": 1,
+"rows": 6,
+"series": 6
+}
+},
+"FunnelCohortSessionCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-12",
+"last": "2026-09-03",
+"n": 23,
+"rows": 523,
+"series": 27
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-02",
+"last": "2026-08-02",
+"n": 1,
+"rows": 6,
+"series": 6
+}
+},
+"FunnelStepChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-28",
+"last": "2026-08-05",
+"n": 4,
+"rows": 60,
+"series": 27
+}
+},
+"FunnelStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-28",
+"last": "2026-08-05",
+"n": 4,
+"rows": 60,
+"series": 27
+}
+},
+"FunnelStepOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-28",
+"last": "2026-08-05",
+"n": 4,
+"rows": 11,
+"series": 5
+}
+},
+"FunnelStepTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-28",
+"last": "2026-08-05",
+"n": 4,
+"rows": 64,
+"series": 29
+}
+},
+"FunnelUserChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-28",
+"last": "2026-08-05",
+"n": 4,
+"rows": 75,
+"series": 32
+}
+},
+"FunnelUserOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-28",
+"last": "2026-08-05",
+"n": 4,
+"rows": 26,
+"series": 10
+}
+},
+"FunnelUserStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-28",
+"last": "2026-08-05",
+"n": 4,
+"rows": 96,
+"series": 62
+}
+},
+"FunnelUserTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-28",
+"last": "2026-08-05",
+"n": 4,
+"rows": 86,
+"series": 37
+}
+},
+"ItemMonetizationRevenue": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-12",
+"last": "2026-09-03",
+"n": 23,
+"rows": 2498,
+"series": 5
+}
+},
+"L7AverageDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-08-29",
+"n": 33,
+"rows": 33,
+"series": 1
+}
+},
+"L7AverageDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-08-29",
+"n": 33,
+"rows": 33,
+"series": 1
+}
+},
+"L7AverageForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-07",
+"last": "2026-08-28",
+"n": 22,
+"rows": 174,
+"series": 9
+}
+},
+"L7AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-08-29",
+"n": 22,
+"rows": 22,
+"series": 1
+}
+},
+"L7AverageUniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-08-29",
+"n": 33,
+"rows": 198,
+"series": 6
+}
+},
+"MemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-12",
+"last": "2026-09-02",
+"n": 22,
+"rows": 485,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-13",
+"last": "2026-09-03",
+"n": 22,
+"rows": 132,
+"series": 6
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-30",
+"last": "2026-09-03",
+"n": 3,
+"rows": 27,
+"series": 9
+}
+},
+"MonthlyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-02",
+"n": 37,
+"rows": 8776,
+"series": 296
+}
+},
+"OomUnexpectedExits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-12",
+"last": "2026-09-04",
+"n": 24,
+"rows": 96,
+"series": 4
+}
+},
+"PayingUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-02",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"PayingUsersCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 133,
+"series": 7
+}
+},
+"PeakConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-12",
+"last": "2026-09-02",
+"n": 22,
+"rows": 487,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-05",
+"last": "2026-09-04",
+"n": 31,
+"rows": 186,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-08-30",
+"last": "2026-09-03",
+"n": 5,
+"rows": 237,
+"series": 1
+}
+},
+"PlayerFeedbackVotesCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-02",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"PotentialExtraEarningsTotalUsd": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-02",
+"last": "2026-08-07",
+"n": 4,
+"rows": 4,
+"series": 1
+}
+},
+"RFYD1CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 30,
+"series": 1
+}
+},
+"RFYD1Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 30,
+"series": 1
+}
+},
+"RFYD1QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 30,
+"series": 1
+}
+},
+"RFYD1RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 30,
+"series": 1
+}
+},
+"RFYD1SpendDay": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 30,
+"series": 1
+}
+},
+"RFYD2To7CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 30,
+"series": 1
+}
+},
+"RFYD2To7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 30,
+"series": 1
+}
+},
+"RFYD2To7Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 30,
+"series": 1
+}
+},
+"RFYD2To7QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 30,
+"series": 1
+}
+},
+"RFYD2To7RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 30,
+"series": 1
+}
+},
+"RFYD2To7SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-04",
+"last": "2026-09-02",
+"n": 30,
+"rows": 30,
+"series": 1
+}
+},
+"RFYDuration0To60": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-16",
+"last": "2026-09-02",
+"n": 18,
+"rows": 18,
+"series": 1
+}
+},
+"RFYDuration61To180": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-16",
+"last": "2026-09-02",
+"n": 18,
+"rows": 18,
+"series": 1
+}
+},
+"RFYL7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-14",
+"last": "2026-09-02",
+"n": 19,
+"rows": 19,
+"series": 1
+}
+},
+"RFYPlayThroughRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-14",
+"last": "2026-09-02",
+"n": 19,
+"rows": 19,
+"series": 1
+}
+},
+"RFYQualifiedPTR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-14",
+"last": "2026-09-02",
+"n": 19,
+"rows": 19,
+"series": 1
+}
+},
+"RFYUniqueNotInterestedUsersPerMillionImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-14",
+"last": "2026-09-02",
+"n": 19,
+"rows": 19,
+"series": 1
+}
+},
+"RSVPCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-02",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"ServerCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-20",
+"last": "2026-08-27",
+"n": 8,
+"rows": 16,
+"series": 2
+}
+},
+"ServerFrameRateP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-13",
+"last": "2026-09-04",
+"n": 23,
+"rows": 23,
+"series": 1
+}
+},
+"SessionDurationSecondsAvg": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-08-12",
+"last": "2026-09-02",
+"n": 22,
+"rows": 487,
+"series": 1
+},
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-12",
+"last": "2026-09-04",
+"n": 24,
+"rows": 133,
+"series": 6
+}
+},
+"TotalPlayTimeHours": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 26,
+"series": 1
+}
+},
+"TotalSessionsEndedInBucket": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-07-28",
+"last": "2026-08-05",
+"n": 4,
+"rows": 244,
+"series": 61
+}
+},
+"UniqueUsersWithImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-01",
+"n": 36,
+"rows": 557,
+"series": 17
+}
+},
+"UniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-01",
+"n": 36,
+"rows": 214,
+"series": 7
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-04",
+"last": "2026-08-04",
+"n": 1,
+"rows": 6,
+"series": 6
+}
+},
+"UsersJoinedFromNotifications": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-02",
+"n": 37,
+"rows": 37,
+"series": 1
+}
+},
+"Visits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-28",
+"last": "2026-09-02",
+"n": 37,
+"rows": 222,
+"series": 6
+}
+}
+},
+"10192528661": {
+"Attribution1DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 14,
+"series": 7
+}
+},
+"Attribution1DRobuxPerUser": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 14,
+"series": 7
+}
+},
+"Attribution30DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 14,
+"series": 7
+}
+},
+"Attribution30DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-26",
+"last": "2026-08-04",
+"n": 101,
+"rows": 101,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 14,
+"series": 7
+}
+},
+"Attribution7DPayerConversionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-19",
+"last": "2026-08-27",
+"n": 101,
+"rows": 101,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 14,
+"series": 7
+}
+},
+"Attribution7DPlaytimePerUserInMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-19",
+"last": "2026-08-27",
+"n": 101,
+"rows": 101,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 14,
+"series": 7
+}
+},
+"Attribution7DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-19",
+"last": "2026-08-27",
+"n": 101,
+"rows": 101,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 14,
+"series": 7
+}
+},
+"AttributionD1RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-24",
+"last": "2026-09-01",
+"n": 101,
+"rows": 101,
+"series": 1
+}
+},
+"AttributionD7RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-18",
+"last": "2026-08-26",
+"n": 101,
+"rows": 101,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 14,
+"series": 7
+}
+},
+"AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-25",
+"last": "2026-09-02",
+"n": 101,
+"rows": 101,
+"series": 1
+}
+},
+"AverageRevenuePerPayingUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-25",
+"last": "2026-09-02",
+"n": 101,
+"rows": 101,
+"series": 1
+}
+},
+"AverageRevenuePerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-25",
+"last": "2026-09-02",
+"n": 101,
+"rows": 101,
+"series": 1
+}
+},
+"AverageSessionLengthMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-25",
+"last": "2026-09-02",
+"n": 101,
+"rows": 813,
+"series": 9
+}
+},
+"ClientCpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-03",
+"n": 27,
+"rows": 162,
+"series": 6
+}
+},
+"ClientCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 148,
+"series": 6
+}
+},
+"ClientCrashRate15m": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 174,
+"series": 7
+}
+},
+"ClientFpsAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 28,
+"series": 1
+}
+},
+"ClientFpsP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 181,
+"series": 7
+}
+},
+"ClientMemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 181,
+"series": 7
+}
+},
+"ClientMemoryUsagePercentageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 181,
+"series": 7
+}
+},
+"CpuCoreUtilization": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 26,
+"series": 1
+}
+},
+"CpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-02",
+"n": 26,
+"rows": 156,
+"series": 6
+}
+},
+"D1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-25",
+"last": "2026-09-02",
+"n": 101,
+"rows": 101,
+"series": 1
+}
+},
+"DailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 181178,
+"series": 314
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 10,
+"series": 5
+}
+},
+"DailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 4039,
+"series": 7
+}
+},
+"DauMauStickiness": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-25",
+"last": "2026-09-02",
+"n": 101,
+"rows": 101,
+"series": 1
+}
+},
+"EndToEndCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-25",
+"last": "2026-09-01",
+"n": 100,
+"rows": 100,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 10,
+"series": 5
+}
+},
+"ErrorCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-05",
+"last": "2026-09-03",
+"n": 61,
+"rows": 366,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-09-03",
+"last": "2026-09-03",
+"n": 1,
+"rows": 132,
+"series": 3
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-07",
+"last": "2026-08-07",
+"n": 1,
+"rows": 514,
+"series": 514
+}
+},
+"EventAvgDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"EventAvgDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"EventAvgDailyUserPlaytimeMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-19",
+"last": "2026-09-02",
+"n": 76,
+"rows": 76,
+"series": 1
+}
+},
+"EventAvgRevenuePerDailyActiveUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-06-19",
+"last": "2026-09-02",
+"n": 76,
+"rows": 76,
+"series": 1
+}
+},
+"ForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-24",
+"last": "2026-09-01",
+"n": 101,
+"rows": 1645,
+"series": 19
+}
+},
+"ForwardD30Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-04-25",
+"last": "2026-08-03",
+"n": 101,
+"rows": 101,
+"series": 1
+}
+},
+"ForwardD7Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-18",
+"last": "2026-08-26",
+"n": 101,
+"rows": 645,
+"series": 7
+}
+},
+"FunnelCohortCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-25",
+"last": "2026-09-03",
+"n": 102,
+"rows": 510,
+"series": 5
+}
+},
+"FunnelCohortSessionCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-25",
+"last": "2026-09-03",
+"n": 102,
+"rows": 510,
+"series": 5
+}
+},
+"FunnelStepChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 10,
+"series": 5
+}
+},
+"FunnelStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 10,
+"series": 5
+}
+},
+"FunnelStepOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 2,
+"series": 1
+}
+},
+"FunnelStepTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 12,
+"series": 6
+}
+},
+"FunnelUserChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 15,
+"series": 10
+}
+},
+"FunnelUserOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 7,
+"series": 6
+}
+},
+"FunnelUserStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 28,
+"series": 23
+}
+},
+"FunnelUserTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 17,
+"series": 11
+}
+},
+"ItemMonetizationRevenue": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-05-25",
+"last": "2026-09-03",
+"n": 102,
+"rows": 12067,
+"series": 5
+}
+},
+"MemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-03",
+"n": 27,
+"rows": 162,
+"series": 6
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-03",
+"last": "2026-09-03",
+"n": 1,
+"rows": 18,
+"series": 9
+}
+},
+"MonthlyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 169638,
+"series": 294
+}
+},
+"OomUnexpectedExits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 117,
+"series": 5
+}
+},
+"PayingUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"PayingUsersCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-25",
+"last": "2026-09-02",
+"n": 101,
+"rows": 612,
+"series": 7
+}
+},
+"PeakConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 196,
+"series": 7
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-09-03",
+"last": "2026-09-03",
+"n": 1,
+"rows": 45,
+"series": 1
+}
+},
+"PlayerFeedbackVotesCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"PotentialExtraEarningsTotalUsd": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-07",
+"last": "2026-08-07",
+"n": 1,
+"rows": 1,
+"series": 1
+}
+},
+"RFYD1CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD1Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD1QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD1RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD1SpendDay": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD2To7CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD2To7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD2To7Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD2To7QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD2To7RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD2To7SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD8To28CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD8To28PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD8To28Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD8To28QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD8To28RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYD8To28SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"RFYDuration0To60": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-29",
+"last": "2026-09-02",
+"n": 97,
+"rows": 97,
+"series": 1
+}
+},
+"RFYDuration61To180": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-29",
+"last": "2026-09-02",
+"n": 97,
+"rows": 97,
+"series": 1
+}
+},
+"RFYL7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-29",
+"last": "2026-09-02",
+"n": 97,
+"rows": 97,
+"series": 1
+}
+},
+"RFYPlayThroughRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-29",
+"last": "2026-09-02",
+"n": 97,
+"rows": 97,
+"series": 1
+}
+},
+"RFYQualifiedPTR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-29",
+"last": "2026-09-02",
+"n": 97,
+"rows": 97,
+"series": 1
+}
+},
+"RFYUniqueNotInterestedUsersPerMillionImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-29",
+"last": "2026-09-02",
+"n": 97,
+"rows": 97,
+"series": 1
+}
+},
+"RSVPCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"ServerFrameRateP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 28,
+"series": 1
+}
+},
+"SessionDurationSecondsAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 179,
+"series": 7
+}
+},
+"TotalPlayTimeHours": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-25",
+"last": "2026-09-02",
+"n": 101,
+"rows": 101,
+"series": 1
+}
+},
+"TotalSessionsEndedInBucket": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 122,
+"series": 61
+}
+},
+"UniqueUsersWithImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 10963,
+"series": 19
+}
+},
+"UniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 5193,
+"series": 9
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-02-03",
+"last": "2026-05-19",
+"n": 2,
+"rows": 16,
+"series": 8
+}
+},
+"UsersJoinedFromNotifications": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 577,
+"series": 1
+}
+},
+"Visits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-02-03",
+"last": "2026-09-02",
+"n": 577,
+"rows": 4039,
+"series": 7
+}
+}
+},
+"7888930431": {
+"Attribution1DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-06-10",
+"last": "2026-09-01",
+"n": 2,
+"rows": 12,
+"series": 7
+}
+},
+"Attribution1DRobuxPerUser": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-06-10",
+"last": "2026-09-01",
+"n": 2,
+"rows": 12,
+"series": 7
+}
+},
+"Attribution30DPayerConversionRatio": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-06-10",
+"last": "2025-06-10",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution30DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-23",
+"last": "2026-08-04",
+"n": 194,
+"rows": 194,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-06-10",
+"last": "2025-06-10",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPayerConversionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-15",
+"last": "2026-08-27",
+"n": 194,
+"rows": 194,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-06-10",
+"last": "2025-06-10",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DPlaytimePerUserInMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-15",
+"last": "2026-08-27",
+"n": 194,
+"rows": 194,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-06-10",
+"last": "2025-06-10",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"Attribution7DRobuxPerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-15",
+"last": "2026-08-27",
+"n": 194,
+"rows": 194,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-06-10",
+"last": "2025-06-10",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AttributionD1RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-20",
+"last": "2026-09-01",
+"n": 194,
+"rows": 194,
+"series": 1
+}
+},
+"AttributionD7RetentionRatio": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-14",
+"last": "2026-08-26",
+"n": 194,
+"rows": 194,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-06-10",
+"last": "2025-06-10",
+"n": 1,
+"rows": 7,
+"series": 7
+}
+},
+"AveragePlayTimeMinutesPerDAU": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-21",
+"last": "2026-09-02",
+"n": 194,
+"rows": 194,
+"series": 1
+}
+},
+"AverageRevenuePerPayingUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-22",
+"last": "2026-09-02",
+"n": 193,
+"rows": 193,
+"series": 1
+}
+},
+"AverageRevenuePerUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-21",
+"last": "2026-09-02",
+"n": 194,
+"rows": 194,
+"series": 1
+}
+},
+"AverageSessionLengthMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-21",
+"last": "2026-09-02",
+"n": 194,
+"rows": 1464,
+"series": 10
+}
+},
+"ClientCpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-03",
+"n": 6,
+"rows": 36,
+"series": 6
+}
+},
+"ClientCrashCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 145,
+"series": 6
+}
+},
+"ClientCrashRate15m": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-04",
+"n": 28,
+"rows": 154,
+"series": 7
+}
+},
+"ClientFpsAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 7,
+"series": 1
+}
+},
+"ClientFpsP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 37,
+"series": 6
+}
+},
+"ClientMemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 37,
+"series": 6
+}
+},
+"ClientMemoryUsagePercentageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 37,
+"series": 6
+}
+},
+"CpuCoreUtilization": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-02",
+"n": 5,
+"rows": 5,
+"series": 1
+}
+},
+"CpuTimeAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-02",
+"n": 5,
+"rows": 30,
+"series": 6
+}
+},
+"DailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 135000,
+"series": 300
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-06-10",
+"last": "2026-09-01",
+"n": 2,
+"rows": 9,
+"series": 5
+}
+},
+"DailyCohortRetention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-09-01",
+"last": "2026-09-01",
+"n": 1,
+"rows": 1,
+"series": 1
+}
+},
+"DailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 4050,
+"series": 9
+}
+},
+"DauMauStickiness": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-21",
+"last": "2026-09-02",
+"n": 194,
+"rows": 194,
+"series": 1
+}
+},
+"EndToEndCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-21",
+"last": "2026-09-01",
+"n": 193,
+"rows": 193,
+"series": 1
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-06-10",
+"last": "2026-09-01",
+"n": 2,
+"rows": 9,
+"series": 5
+}
+},
+"ErrorCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-07-05",
+"last": "2026-09-03",
+"n": 61,
+"rows": 366,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-09-03",
+"last": "2026-09-03",
+"n": 1,
+"rows": 132,
+"series": 3
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-07",
+"last": "2026-09-01",
+"n": 2,
+"rows": 897,
+"series": 719
+}
+},
+"EventAvgDailyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"EventAvgDailyRevenue": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"EventAvgDailyUserPlaytimeMinutes": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-26",
+"last": "2026-09-02",
+"n": 189,
+"rows": 189,
+"series": 1
+}
+},
+"EventAvgRevenuePerDailyActiveUser": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-26",
+"last": "2026-09-02",
+"n": 189,
+"rows": 189,
+"series": 1
+}
+},
+"ForwardD1Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-20",
+"last": "2026-09-01",
+"n": 194,
+"rows": 2908,
+"series": 20
+}
+},
+"ForwardD30Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-01-22",
+"last": "2026-08-03",
+"n": 194,
+"rows": 194,
+"series": 1
+}
+},
+"ForwardD7Retention": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-14",
+"last": "2026-08-26",
+"n": 194,
+"rows": 1107,
+"series": 8
+}
+},
+"FunnelCohortCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-09-01",
+"last": "2026-09-03",
+"n": 3,
+"rows": 108,
+"series": 36
+}
+},
+"FunnelCohortSessionCompletionRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-09-01",
+"last": "2026-09-03",
+"n": 3,
+"rows": 108,
+"series": 36
+}
+},
+"FunnelStepChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-01",
+"last": "2026-09-01",
+"n": 1,
+"rows": 36,
+"series": 36
+}
+},
+"FunnelStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-01",
+"last": "2026-09-01",
+"n": 1,
+"rows": 36,
+"series": 36
+}
+},
+"FunnelStepOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-01",
+"last": "2026-09-01",
+"n": 1,
+"rows": 3,
+"series": 3
+}
+},
+"FunnelStepTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-01",
+"last": "2026-09-01",
+"n": 1,
+"rows": 37,
+"series": 37
+}
+},
+"FunnelUserChurnRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-01",
+"last": "2026-09-01",
+"n": 1,
+"rows": 51,
+"series": 51
+}
+},
+"FunnelUserOverallCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-01",
+"last": "2026-09-01",
+"n": 1,
+"rows": 18,
+"series": 18
+}
+},
+"FunnelUserStepCompletionRate": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-01",
+"last": "2026-09-01",
+"n": 1,
+"rows": 51,
+"series": 51
+}
+},
+"FunnelUserTotalCount": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-01",
+"last": "2026-09-01",
+"n": 1,
+"rows": 54,
+"series": 54
+}
+},
+"ItemMonetizationRevenue": {
+"METRIC_GRANULARITY_ONE_HOUR": {
+"first": "2026-09-01",
+"last": "2026-09-03",
+"n": 3,
+"rows": 272,
+"series": 4
+}
+},
+"MemoryUsageAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-03",
+"n": 6,
+"rows": 35,
+"series": 6
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-09-03",
+"last": "2026-09-03",
+"n": 1,
+"rows": 18,
+"series": 9
+}
+},
+"MonthlyActiveUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 125550,
+"series": 279
+}
+},
+"OomUnexpectedExits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-08",
+"last": "2026-09-03",
+"n": 27,
+"rows": 48,
+"series": 4
+}
+},
+"PayingUsers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"PayingUsersCVR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-21",
+"last": "2026-09-02",
+"n": 194,
+"rows": 1082,
+"series": 8
+}
+},
+"PeakConcurrentPlayers": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 40,
+"series": 6
+},
+"METRIC_GRANULARITY_HALF_HOUR": {
+"first": "2026-09-03",
+"last": "2026-09-04",
+"n": 2,
+"rows": 49,
+"series": 1
+}
+},
+"PlayerFeedbackVotesCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"PotentialExtraEarningsTotalUsd": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2026-08-07",
+"last": "2026-09-01",
+"n": 2,
+"rows": 2,
+"series": 1
+}
+},
+"RFYD1CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD1Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD1QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD1RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD1SpendDay": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD2To7CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD2To7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD2To7Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD2To7QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD2To7RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD2To7SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD8To28CoplayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD8To28PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD8To28Playtime": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD8To28QualifiedPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD8To28RobuxSpend": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYD8To28SpendDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"RFYDuration0To60": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 125,
+"rows": 125,
+"series": 1
+}
+},
+"RFYDuration61To180": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 125,
+"rows": 125,
+"series": 1
+}
+},
+"RFYL7PlayDays": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-03-06",
+"last": "2026-09-02",
+"n": 181,
+"rows": 181,
+"series": 1
+}
+},
+"RFYPlayThroughRate": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-05-01",
+"last": "2026-09-02",
+"n": 125,
+"rows": 125,
+"series": 1
+}
+},
+"RFYQualifiedPTR": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-28",
+"last": "2026-09-02",
+"n": 187,
+"rows": 187,
+"series": 1
+}
+},
+"RFYUniqueNotInterestedUsersPerMillionImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-28",
+"last": "2026-09-02",
+"n": 187,
+"rows": 187,
+"series": 1
+}
+},
+"RSVPCount": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"ServerFrameRateP10": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 7,
+"series": 1
+}
+},
+"SessionDurationSecondsAvg": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-08-29",
+"last": "2026-09-04",
+"n": 7,
+"rows": 37,
+"series": 6
+}
+},
+"TotalPlayTimeHours": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2026-02-21",
+"last": "2026-09-02",
+"n": 194,
+"rows": 194,
+"series": 1
+}
+},
+"TotalSessionsEndedInBucket": {
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-06-10",
+"last": "2026-09-01",
+"n": 2,
+"rows": 122,
+"series": 61
+}
+},
+"UniqueUsersWithImpressions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 8550,
+"series": 19
+}
+},
+"UniqueUsersWithPlaySessions": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 4050,
+"series": 9
+},
+"METRIC_GRANULARITY_NONE": {
+"first": "2025-06-10",
+"last": "2026-09-01",
+"n": 2,
+"rows": 12,
+"series": 8
+}
+},
+"UsersJoinedFromNotifications": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 450,
+"series": 1
+}
+},
+"Visits": {
+"METRIC_GRANULARITY_ONE_DAY": {
+"first": "2025-06-10",
+"last": "2026-09-02",
+"n": 450,
+"rows": 3600,
+"series": 8
+}
+}
+}
+}

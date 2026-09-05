@@ -13,6 +13,214 @@ trusting it**. Entries describe the moment they were written.
 
 ---
 
+## 2026-09-05 — the frame reset, and the Waterslide 21 Aug chain
+
+**Ren's instruction:** the analytical frame is over-anchored, not the repo.
+Treat prior diagnoses as untrusted until re-derived from raw evidence. Preserve
+everything. Per-game first (acquisition → RFY → retention → funnels →
+monetization → feedback → mechanics); cross-game only after; **a portfolio-level
+null may never be used as evidence that an individual game is healthy.**
+
+**RETRACTED — the flagship counterexample.** "Waterslide lost 79.8% of Home
+reach while its D8–28 signals moved −3%" was a pre/post average over a window
+straddling the break. Read by day: **0.115 → 0.093, −19%, starting 25 Aug** —
+exactly when cohorts that arrived 17–21 Aug reach their D8 window. The
+counterexample was an averaging artefact, and it was load-bearing for "quality
+holds while Roblox withdraws reach."
+
+**The 21 Aug chain (v1705, shipped 17:41 UTC):**
+
+| when | what |
+|---|---|
+| 21 Aug 17:41 | v1705 ships |
+| 21 Aug ~22:53 | first raft-shop bug report (Ren's webarchive — **not in our data**) |
+| 22 Aug | `<60s` bounce 12.05% → 15.20%; 2nd-largest 1-day rise in 119 days |
+| 23 Aug | Home reach 5.33M → 2.84M |
+| 25–29 Aug | D8–28 play-days break, 0.115 → 0.074–0.089 |
+| since | no recovery; 2.6M = 35% of the 7.4M peak. June's −41% recovered fully |
+
+Four series, four different lags, each in the order the mechanism predicts. D2–7
+stays flat (0.25–0.34) — Waterslide's weakness is the long tail, not week one.
+Unknown and needs telemetry, not analysis: what share of players hit the bug.
+
+**Method changes.**
+- **The placebo rule was applied wrongly and cost us this finding.** A scan
+  across 78 cut dates is a correction for *searching*. When the date comes from
+  a deploy log or a bug report, no search happened and no penalty is owed.
+  New rule: **I picked the date → I owe a control. The date came from a deploy
+  log or feedback → I don't.**
+- A placebo drawn from the same series has no true nulls when the phenomenon
+  recurs — June ranked above 22 Aug because June is another instance, not noise.
+- Every prior test detected **steps**. A bug needing a rejoin to clear produces
+  a **ramp**. Nothing in the suite could see one.
+
+**Also true, and against the update theory — keep it:** July bounce hit 18.7%
+and reach then *doubled* (4.0M → 7.4M). Bounce alone does not predict a
+pullback. Waterslide shipped on 14 of 31 August days, so timing alone can never
+carry an update claim — the mechanism has to.
+
+**Seal (10638354731), absolute numbers, not percentiles.** 38.9% of first
+sessions end inside 180s. The **61–180s band at 24.2% is the worst in the
+portfolio** (median 14.8%). It is the only game with a genuine rising trend:
+27.8% (16 Aug) → 41.6% (30 Aug), monotone, both bands. Onboarding is *fine* —
+`ReachedDriveway` 97.2%, `DrivewaySealed` 94.3% — so the loss is post-tutorial,
+which matches Ren's play test exactly. My earlier "within benchmark, therefore
+acceptable" read was wrong: a cohort percentile is not a health verdict.
+**Not yet controlled for audience mix — that is the one check owed.**
+
+**Seal, before it reaches Nina's dev team:** our data holds BOTH 63% and 97% for
+`ReachedDriveway` in the same 4-day window. The 63% series is a query whose
+`FunnelName` filter carries three funnel names at once
+(`FUNNEL_TYPE_ONBOARDING/Progression/MapReach 2`) — a rate pooled across three
+funnels. Settle which one the dashboard shows before a restructure is costed on it.
+
+**Verity (10565445771) — the live intervention.** Return loop collapsing while
+the first session improves: D2–7 play-days 0.67 → 0.22 (**−67%**), D2–7 playtime
+8.8 → 2.3 min (**−74%**), 19 Aug → 3 Sep, with `<60s` bounce *improving*
+16.0% → 15.9% and PTR flat. 2.3 min is a player spending their messages and
+leaving. Ren has asked Nina for a message-economy fix (offline regen / guaranteed
+refill on return) as early as Tue 8 Sep.
+
+**Four collection defects — why the chain above is unreproducible from our files.**
+1. **Feedback is only ever grabbed for the current window and overwritten.**
+   Waterslide holds **8 entries, 1–4 Sep**. The 21–24 Aug raft reports exist only
+   in Ren's webarchives. **Highest-value fix: backfill historical feedback.**
+2. **Funnels are stored at `METRIC_GRANULARITY_NONE`** — 5 aggregate points per
+   game, each over that grab's whole window (the `date` column is the window
+   *start*). The latest window is 4 days; earlier ones ~28. Comparing them is
+   comparing incomparable windows. `default-plan.ts:559-562` already has
+   `ONE_DAY` funnel templates marked `optional`, so their failures report as
+   "n/a" and they have never populated. **Test whether the gateway serves them.**
+3. **`update-watch/SKILL.md` has no bounce and no RFY signal.** Stage 2 is
+   "errors, crashes, server health, concurrents — nothing else". A shop-scroll
+   bug throws no error. `Waterslide Update Watch 2026-08-14` — "v1698 broke
+   nothing" — is logged **HELD** and should be reopened: bounce went 10.0%
+   (8 Aug) → 13.6% (15 Aug) and never returned. `SKILL.md:71` also claims daily
+   funnel completion is available, which (2) contradicts.
+4. No regime / no-recovery test anywhere in the suite.
+
+**Repo change:** `data/games/` is no longer gitignored. All 734MB (1,231 files)
+now travels with the repo, on Ren's instruction — a device switch used to leave
+the new machine with no CSVs. `series.json` is 479MB of that; the largest single
+file is `10192528661/series.json` at **97.9MB against GitHub's 100MB hard
+limit** — the next grab that grows it will make the push fail. Fix when it
+happens: Git LFS, or split series.json per metric.
+
+**Flagged, not fixed:** `web/.opencloud-key` is tracked and already on `origin`
+(committed deliberately in `eac6577`). The key is in GitHub history; deletion
+does not un-leak it. **Rotate it.**
+
+**Next:** (a) backfill historical feedback across 12 games; (b) test ONE_DAY
+funnels; (c) same deploy-log-anchored read on Seal and Monkey — dates from
+`place-versions.md`, never scanned; (d) clean-room structure under
+`analysis/clean_room/` with the panel self-test (panel value == raw `Total` row,
+per game × metric × date) that would have caught the `is_headline` defect.
+
+## 2026-09-04 (late) — the portfolio has no stock; phases 0-8 complete
+
+**State:** branch `grabber-correctness` · 28 ahead of main · **UNPUSHED** · clean
+**Gates:** audit-plan 180/0 · test 51/51 · verify 23/2/8 (documented KNOWN_OPEN)
+**Landed:** phases 0-8 in `analysis/` (panel, pullback, track_a, phase34, phase5,
+phase6, phase7, survival, post28) + two artifacts + `data/verify/ccu-exports/`.
+**THE HEADLINE, and it reframes everything:** a new player is active **2-4 days
+total** over 30, so `DAU ≈ new/day × 2.5`. There is no accumulated base. Peak CCU
+was a *flow rate* Roblox granted, never a level the game reached — so it cannot
+be "held". D7 at each game's own peak was 1.0-4.7%; **Poison Treats hit
+2,601,126 DAU on a D7 of 1.16%**. Retention was never good, which is why nothing
+preceded the pullbacks: nothing about the games changed, the traffic did.
+**Loss is at visit 2-3**, not across week one: 30-50% survive d1->d2, ~50%
+d2->d3, then flat at 72-97% by day 5. Floor varies 6x — Seal 2.12%, Verity
+1.15%, Banana 0.84%, Waterslide 0.68%, Climb Up Mtn 0.36%.
+**But it is GENRE-NORMAL** — Verity ABOVE p90 on D1 and D7, Seal p50-p90 on both.
+Beating it means outperforming the genre, a design problem, **not a bug hunt.**
+Benchmarks exist for only 4 of 12 games; do not generalise further.
+**Learned → routed:** CCU as a headline metric + the half-hour accumulation rule
++ Saturday admin-abuse poisoning (Brainrot +159.5%, Knife Farm +28.3%) →
+`SKILL.md` §0a2. Platform method (within-platform delta + feedback text, never
+levels) → §0b. Everything claim-level → `DIAGNOSIS_LOG.md`.
+**Retracted (9 today; full list with causes in `DIAGNOSIS_LOG.md`):**
+1. "Only Moon Incremental has funnels" — seven games had them.
+2. "Plane Training is the strongest funnel candidate" — 14 daily dates, from 2025.
+3. "Banana Monkey's funnel died 18 July" — 7 non-zero days of 54; never worked.
+4. "The publish log is truncated on 10 of 12" — it is per-place, and I misread it.
+5. "Don't Wake Police / Climb Up Mtn have stale logs" — they genuinely stopped shipping.
+6. "`--lifetime` = 2021-01-01" — over-wide windows 400 the behavioural metrics.
+7. "Similar post-peak slopes = a shared external cause" — calendar r = +0.028.
+8. **The whole panel** — `is_headline()` passed filter-only series, so
+   `DailyActiveUsers` was the `IsNewUser=Returning` slice on all 12 games.
+9. "No behavioural signal leads a pullback" — placebo was unfair; now inconclusive.
+**Open:** Seal's mobile UI is the revised priority (Computer churns SLOWEST,
+-71% vs Phone -83%, despite 50% of Computer feedback naming performance).
+No data on any 2M-CCU comparator — unanswerable, do not speculate.
+**Wake:** **2026-09-05** — post-update read on the five 2026-09-04 ships (DAU,
+revenue, session, RFY). **2026-09-06** — D1 for those cohorts. Tripwires are
+pre-registered in `baselines/*-2026-09-04-*.md`; mark each OK/WATCH/FIX/NO DATA
+**before** looking for causes.
+**Next:** instrument visit 2 on ONE game (Seal — best floor, best economics).
+Two events: session-2 arrival, first meaningful action in session 2. Nothing in
+the portfolio measures the place where the loss actually happens.
+
+---
+
+## 2026-09-04 — 12-game panel built; three negatives that reshape the brief
+
+**State:** branch `grabber-correctness` · 90 ahead of main · **15 unpushed** ·
+dirty: `analysis/panel/*.csv`, `analysis/skeptic/` (4 subagents live at write time)
+**Gates:** `checkpoint light` — not re-measured. Last measured 2026-09-04 earlier:
+verify 23/2/8 (exit 1, documented `KNOWN_OPEN`) · audit-plan 180/0 · test 51/51
+**Landed:** portfolio 8 → **12 games**, all lifetime-grabbed via the new Playwright
+path (`npm run grab -- <id> --lifetime`). Canonical panel `analysis/panel/`:
+3,186 game-days × 76 aggregate metrics, with source/platform/funnel in separate
+long tables. Five pre-update baselines frozen for the 2026-09-04 ships.
+**Learned → routed:**
+- Funnels + RFY are the diagnostic pair; never declare a metric absent without
+  listing the files → `liveops-diagnosis/SKILL.md` §0a + memory
+- Technical rung clamped to its retention horizon (a 976-day window went
+  2,438 → 230 requests, zero data lost) → `CLAUDE.md`
+- F19, learned templates carrying other games' dimension values → `CLAUDE.md`
+- Supabase is LIVE on this machine, not the documented placeholder → `CLAUDE.md`
+- Every claim's fate → `DIAGNOSIS_LOG.md` (new, indexed from `CLAUDE.md`)
+**Retracted:**
+1. "Moon Incremental is the only game with real funnel instrumentation, so
+   locating new-player churn needs dev work." — **seven** games carry funnel
+   data; six were usable. Generalised from one grab report's discovery line.
+2. "Plane Training is the strongest candidate for a funnel read." — its 51 steps
+   are almost all `NONE` granularity; only 14 daily dates exist, from July 2025.
+   A step count is not a time series.
+3. "The publish log is truncated at 100 on 10 of 12 games." — it is not
+   truncated. `place-versions.csv` holds rows for EVERY place and versions are
+   per-place; sorting by timestamp mixes a root publish with a sub-place save.
+4. "Don't Wake Police and Climb Up Mountain have stale logs on live games." —
+   both genuinely **stopped shipping** (2026-02-14, 2026-05-24); feedback
+   confirms players on those versions for months after.
+5. "`--lifetime` should start 2021-01-01." — an over-wide window makes the
+   gateway 400 the behavioural metrics. It cost DAU 15 × 400 and 44 days of a
+   161-day span until it resolved the real creation date.
+6. (2026-09-02 artifact) "Similar post-peak slopes are what a shared external
+   cause looks like." — Phase 6: calendar-aligned residual reach r = **+0.035**.
+   The shape is shared; the timing is not.
+**Three negatives, each placebo- or null-controlled:**
+- No behavioural signal leads a pullback (Track A, 6 pre-RFY events, placebo
+  1.31 vs real 2.00 LEADS/window — no separation)
+- No RFY signal leads one either (2026-09-03, Brainrot + Waterslide)
+- No calendar clustering (Phase 6); lifecycle alignment r = +0.266, p = 0.035
+  against a peak-shuffled null → **strong**, not confirmed
+**Open:**
+- A subagent claimed "the panel's headline series is wrong for five metrics". I
+  could not reproduce it (zero metrics on 9963622286 have >1 series passing
+  `is_headline()`). **Next action: read the skeptic's `analysis/skeptic/review.md`
+  and analyst B's reply before trusting Track A or Phase 6.**
+- Phases 3, 4, 5, 7, 8 not started. Phase 7 (prediction) looks unpromising —
+  two independent tests say the signal it would learn is not there.
+- 4 subagents were rate-limited mid-run and resumed; outputs land in
+  `analysis/games/` and `analysis/skeptic/`.
+**Wake:** **2026-09-05** — first honest post-update read for the five 2026-09-04
+ships (DAU, revenue, session, RFY). **2026-09-06** — D1 for those cohorts.
+Tripwires are pre-registered in `baselines/*-2026-09-04-*.md`; mark each
+OK/WATCH/FIX/NO DATA *before* looking for causes.
+**Next:** fold the subagent outputs in — starting with the panel-headline
+challenge, which is load-bearing for everything after Phase 1.
+
 ## 2026-08-28 — update baselines for two publishes; the async-empty trap is wider than F22 said
 
 **State:** branch `grabber-correctness` · 70 ahead of `main` · **8 unpushed, still 6 BEHIND `origin/grabber-correctness`** — unchanged since 08-26, reconcile before pushing · dirty: 2 new `baseline/` folders, 3 new `tools/`, 2 raw bundles, 1 platform snapshot, `baseline/README.md`, 2 grab-report.json

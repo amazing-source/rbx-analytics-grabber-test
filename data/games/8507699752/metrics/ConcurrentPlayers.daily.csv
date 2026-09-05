@@ -1,0 +1,4 @@
+date,series,value,agg,samples,partial
+2026-09-01,Total,166.065598290593,max,24,
+2026-09-02,Total,122.514285714281,max,24,
+2026-09-03,Total,119.911120823627,max,23,true

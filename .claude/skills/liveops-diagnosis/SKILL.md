@@ -15,6 +15,128 @@ don't know yet". This skill is the method that keeps the difference visible.
 > receives — use the **`update-watch`** skill, and come back here when
 > something has actually moved.
 
+## 0a. Funnels + RFY are the diagnosis — open here, every time
+
+**Before the headline metrics.** DAU, revenue and reach tell you *that*
+something moved. The pair that tells you *what to do* is:
+
+- **Funnels — WHERE players churn.** `FunnelUserStepCompletionRate`,
+  `FunnelUserChurnRate`, `FunnelUserTotalCount`, broken down by `FunnelName` +
+  `FunnelStep`, **at `ONE_DAY`** (at `NONE` the gateway returns one aggregate and
+  "did this change on date D" becomes unanswerable). **Segment by `Platform`** —
+  a step that collapses on Phone but not Computer names both the defect and the
+  device, and is the most actionable shape available.
+- **RFY — WHAT ROBLOX SAW.** A funnel break visible in `RFYDuration0To60`
+  (first-play bounce) or `RFYD1Playtime` is one the recommender can rank on; one
+  that is not is a product problem with no distribution consequence. Different
+  reports, both worth writing.
+
+**NEVER claim a game lacks funnels — or any metric — without listing the files.**
+
+    ls data/games/<id>/metrics/Funnel*.csv
+
+Thirty seconds. On 2026-09-04 I twice told Ren the portfolio had no funnel
+instrumentation and that measuring new-player churn would need dev work. **Seven
+games had it**, some for weeks: Verity 36 steps, Brainrot 28, Seal 17,
+Waterslide 15 (`Tutorial_Main_1_StartSwim`, a textbook onboarding funnel),
+Banana Monkey 7, KameHameHa 5. I had read one grab report's "Discovered
+dimension values" line and generalised. **A wrong "we cannot measure this" is
+worse than a wrong number — it closes a line of enquiry instead of opening one.**
+
+Step names come from `displayValue`; bare integers (Moon Incremental) make a
+funnel much weaker than a shorter named one. Funnel names are developer-defined
+and per-universe — never carry one game's to another (F19). RFY series reach
+back only ~125 days (2026-05-01 on every game), so grab often.
+
+## 0a2. CCU is a headline metric. Open with it.
+
+Ren, 2026-09-04: *"ccu needs to be more included in ur diagnoses, its really
+important and i feel like u leave it out."* Correct — several analyses in this
+repo led with DAU and reach and mentioned CCU only in passing.
+
+**Why it earns top billing:** it is the number everyone can see (it is on the
+game's own page), it moves with everything downstream, and the collapse is
+legible without any statistics. Measured across the portfolio, decay from each
+game's own CCU peak:
+
+| game | peak CCU | %/day | half-life | now, % of peak |
+|---|---|---|---|---|
+| Verity | 20,213 | −8.6% | 8d | 27.2% |
+| Brainrot | 27,322 | −5.9% | 11d | 3.5% |
+| Banana Monkey | 21,935 | −5.5% | 12d | 8.7% |
+| Knife Farm | 2,552 | −4.2% | 16d | 13.2% |
+| Waterslide | 17,155 | −3.2% | 21d | 15.3% |
+
+**Every game runs the same shape** — a constant-percentage decay with a half-life
+of one to three weeks. That is the portfolio's defining pattern and CCU shows it
+more plainly than any other series.
+
+**Which CCU series to use, and this matters:**
+
+| series | granularity | use for | trap |
+|---|---|---|---|
+| `PeakConcurrentPlayers` | `ONE_DAY` | nothing, alone | **F15** — it is a SUM of per-platform peaks and overstates. Never quote it for a day in progress |
+| `ConcurrentPlayers` | `ONE_HOUR` | trends, diurnal shape | the clean series; ~1,000 points per game |
+| `PeakConcurrentPlayers` | `HALF_HOUR` | incidents, intraday | see the accumulation rule below |
+| dashboard CSV export | any | ground truth | cell-exact against our data; the only route to *today* |
+
+**The half-hour "gimmick", resolved 2026-09-04.** Each individual GRAB returns
+only about the last 24 hours at `HALF_HOUR` — the gateway clamps it regardless of
+the window asked for. But the stored series MERGES across grabs, so half-hour
+history accumulates with grab frequency. Measured: Brainrot holds **28 days** of
+half-hour CCU (1,374 points, 2026-08-07 → 09-04) because it has been grabbed
+often; Seal holds **5 days** because it was added recently. So it is not "only
+the 1d window" — it is 1 day per grab, compounding. **Another reason to grab
+daily.**
+
+**Saturday poisoning.** Admin-abuse events inflate Saturday CCU on some games.
+Measured against each game's own Fri/Sun neighbours: **Brainrot +159.5%**,
+Knife Farm +28.3%, Verity +13.5%, Banana +2.5%, Seal +2.0%, Waterslide −6.8%.
+On Brainrot and Knife Farm, **exclude Saturdays outright** from any CCU trend —
+do not average them in.
+
+**One caveat on the "CCU is the best indicator" claim, tested not assumed.**
+Correlating daily log-changes against revenue, DAU edges CCU on 4 of 5 games
+(Verity 0.813 vs 0.680; Banana 0.785 vs 0.663; Brainrot 0.655 vs 0.547;
+Waterslide 0.868 vs 0.843; Knife Farm is the exception, 0.171 vs 0.231). Both
+are strong. Lead with CCU because it is legible and public; corroborate with DAU
+because it tracks revenue marginally better.
+
+## 0b. Platform questions: within-platform delta + feedback text, never levels
+
+**Never compare a metric's LEVEL across platforms.** Players self-select onto a
+device, so Computer and Mobile populations differ before your game does anything
+— comparing their session lengths is the same error as comparing benchmark
+percentiles across games ([[never-compare-benchmark-percentiles-across-games]]).
+
+Measured 2026-09-04 on Seal A Driveway (10638354731), where Ren reported the
+game was near-unplayable for Computer players:
+
+| instrument | says |
+|---|---|
+| cross-platform LEVELS | Computer has the **longest** sessions (19.9 vs 14.4 min) and the best D1 — "Computer is fine" |
+| within-platform DELTA vs its own baseline | Computer −3.5% D1, Mobile −5.1% — "Computer is fine, slightly better than mobile" |
+| **feedback text by device** | **Computer 7/14 (50%) mention lag/fps/freeze/crash; Mobile 2/22 (9%)** — a 5.5x concentration |
+
+All three are correct measurements. The first two are the wrong instrument.
+
+**The mechanism is survivorship.** Players a performance problem drives away stop
+appearing in per-player averages — the defect removes its own victims from the
+denominator. So a real platform defect can leave engagement metrics *looking
+better* on the affected platform, because only the tolerant players remain.
+
+**The procedure:**
+1. Group `Phone` + `Tablet` as **Mobile** — they are one platform class and
+   splitting them halves your n for no gain.
+2. Compare each platform against **its own earlier baseline**, never against
+   another platform.
+3. Cross-check `feedback.csv` `comment` text grouped by the `device` column.
+   Performance language (`lag|fps|frame|freez|stutter|crash|glitch|unplayable`)
+   concentrated on one device is the finding the metrics cannot show.
+4. Report the churn cost as **unmeasurable**, not zero. You can establish that a
+   platform-specific defect exists; you cannot size it from retained players.
+5. Feedback n is usually small (14 rows carried the Seal finding). Say the n.
+
 ## 0. Earn the right to quote a number
 
 Do this before any analysis. It takes a minute and it has already caught a

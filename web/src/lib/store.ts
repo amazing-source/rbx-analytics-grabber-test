@@ -3,7 +3,8 @@
 // bypasses RLS, so all of this is server-only.
 
 import { supabase } from "./supabase";
-import { parseCaptures, type Capture, type Snapshot } from "./parse-captures";
+import { parseCaptures, type Capture, type Snapshot, templateKey } from "./parse-captures";
+import { retargetLearnedQuery } from "./retarget-templates";
 import {
   buildSeedTemplates,
   DISCOVER_DIMENSIONS,
@@ -221,8 +222,28 @@ function alignWindow(granularity: string | undefined, startTime: string, endTime
 // kept because a smaller window always succeeds where a larger one does — the
 // only cost is request count. Raise it to 28 only after a grab report shows a
 // 28-day crash chunk returning data across a long span.
+
 const MAX_CRASH_WINDOW_DAYS = 7;
 const MAX_PERF_WINDOW_DAYS = 28;
+
+// How far back the data still EXISTS. Different question from the window caps
+// above: those are how much you may ask for at once, these are how much Roblox
+// still stores. Measured 2026-08-09 by a chunked 430-request grab of 9963622286
+// back to 2026-03-23 — crash/perf served nothing older than 2026-07-11 (~30d),
+// ErrorCount nothing older than 2026-06-15 (~56d, a chunk boundary, so the true
+// horizon is 56-84d). 242 of that grab's 245 failures were 400s on chunks older
+// than these lines. Behavioural, retention, monetization and reach have NO
+// horizon — they served back to launch.
+//
+// Generous on purpose: over-asking by a few chunks costs seconds, under-asking
+// loses history that can never be recovered. Set RBX_NO_HORIZON=1 to disable
+// and tile the whole span (what the grabber did before 2026-09-03).
+const HORIZON_PERF_DAYS = 35;
+const HORIZON_ERRORS_DAYS = 90;
+
+function horizonDays(metric: string): number {
+  return metric === "ErrorCount" ? HORIZON_ERRORS_DAYS : HORIZON_PERF_DAYS;
+}
 
 const CRASH_METRICS = new Set([
   "ServerCrashCount",
@@ -445,6 +466,7 @@ export function getAnnotationRequests(
   }));
 }
 
+
 export async function getGrabPlan(
   universeId: string,
   startTime: string,
@@ -460,6 +482,30 @@ export async function getGrabPlan(
     );
   }
 
+  // `grab_templates` is keyed on the template alone and is NOT scoped by
+  // universe, so every game's learned templates pool together. Dimension NAMES
+  // are stable across universes but their VALUES are not, and a learned
+  // template carries the values it was captured with. Replaying Verity's
+  // `FunnelName: Conversation` against another game returns a valid 200 with
+  // zero rows — indistinguishable from "this game does not use funnels", which
+  // is precisely the false finding CLAUDE.md exists to prevent. Measured
+  // 2026-09-03 on 10192528661: 910 of 1000 learned templates carried foreign
+  // values, producing 314 empty-200 funnel requests under 14 funnel names that
+  // belong to other games, plus a Place filter naming Waterslide's seven places
+  // (403). Re-target to THIS universe's discovered values, or drop.
+  let retargeted = 0;
+  let droppedForeign = 0;
+  const foreignDims = new Set<string>();
+  const retarget = (q: SeedTemplate["query"]) => {
+    const r = retargetLearnedQuery(q, discovered);
+    if (r.query === null) {
+      foreignDims.add((r as { dimension: string }).dimension);
+      return null;
+    }
+    if ((r as { changed: boolean }).changed) retargeted++;
+    return r.query;
+  };
+
   let learned = 0;
   try {
     const { data, error } = await supabase
@@ -471,12 +517,21 @@ export async function getGrabPlan(
       // Live tiles poll at minute granularity for a single instant — replaying
       // one over a multi-week window is meaningless, so drop those.
       if (q?.granularity === "METRIC_GRANULARITY_ONE_MINUTE") continue;
-      merged.set(t.key as string, {
-        key: t.key as string,
+      const rq = retarget(q);
+      if (!rq) {
+        droppedForeign++;
+        continue;
+      }
+      // Re-targeting changes what the request IS, so it must change the key too
+      // — otherwise two universes' versions of the same template collide and
+      // whichever loaded last wins.
+      const key = templateKey(t.kind as "metric" | "benchmark", rq as Parameters<typeof templateKey>[1]);
+      merged.set(key, {
+        key,
         kind: t.kind as "metric" | "benchmark",
         metric: t.metric as string,
         resourceType: (t.resource_type as string) ?? "RESOURCE_TYPE_UNIVERSE",
-        query: q,
+        query: rq,
         // learned templates are harvested from real captured requests —
         // observed by definition
         provenance: "observed",
@@ -488,6 +543,18 @@ export async function getGrabPlan(
     warnings.push(`could not load learned templates (${(e as Error).message}); using the built-in plan only`);
   }
 
+  if (droppedForeign || retargeted) {
+    warnings.push(
+      `learned templates re-scoped to this universe: ${retargeted} re-targeted, ` +
+        `${droppedForeign} dropped for carrying values this universe does not have` +
+        (foreignDims.size ? ` (${[...foreignDims].sort().join(", ")})` : "") +
+        `. grab_templates is shared across every game and dimension VALUES are ` +
+        `per-universe, so replaying another game's FunnelName or Place returns a ` +
+        `valid 200 with zero rows — which reads as "this game does not use the ` +
+        `feature". A dropped template is not a gap in this game's data.`
+    );
+  }
+
   const requests: GrabRequest[] = [
     ...getPlaceVersionRequests(discovered?.__places ?? []),
     ...getReviewRequests(discovered?.__places ?? [], startTime, endTime),
@@ -495,6 +562,8 @@ export async function getGrabPlan(
   ];
   const metricNames = new Set<string>();
   let chunked = 0;
+  const clampedMetrics = new Set<string>();
+  let clampedDays = 0;
 
   for (const t of merged.values()) {
     const rt = t.resourceType;
@@ -518,11 +587,29 @@ export async function getGrabPlan(
       const cap = maxWindowDays(t.metric, t.query);
       // Sub-daily templates are already clamped by alignWindow (half-hour to the
       // final 24h), so chunking them yields exactly one window.
+      // A capped template is a technical one, and technical data ages out. Tiling
+      // the whole span asks Roblox for months it deleted: every chunk older than
+      // the horizon is a guaranteed 400, indistinguishable in a grab report from
+      // a game that never crashed. Clamp FIRST, then chunk what is left.
+      //
+      // This is NOT "solve a 400 by shortening the grab" (see CLAUDE.md) — that
+      // rule is about the window CAP and it still holds: everything inside the
+      // horizon is still tiled at 7d/28d and still fully retrieved. Nothing that
+      // exists is dropped.
+      const horizon = cap && !process.env.RBX_NO_HORIZON ? horizonDays(t.metric) : null;
+      const inHorizon = horizon ? clampToRecent(aligned, horizon) : aligned;
+      if (horizon && inHorizon.startTime !== aligned.startTime) {
+        clampedMetrics.add(t.metric);
+        clampedDays = Math.max(
+          clampedDays,
+          Math.round((Date.parse(inHorizon.startTime) - Date.parse(aligned.startTime)) / 86_400_000)
+        );
+      }
       const windows = !cap
         ? [aligned]
         : gran === "METRIC_GRANULARITY_NONE" || !gran
-        ? [clampToRecent(aligned, cap)]   // one aggregate stays one aggregate
-        : chunkWindow(aligned.startTime, aligned.endTime, cap, gran);
+        ? [clampToRecent(inHorizon, cap)]   // one aggregate stays one aggregate
+        : chunkWindow(inHorizon.startTime, inHorizon.endTime, cap, gran);
       if (windows.length > 1) chunked += windows.length - 1;
       for (const w of windows) {
         const q = { ...(t.query as Record<string, unknown>), ...w };
@@ -542,6 +629,19 @@ export async function getGrabPlan(
         });
       }
     }
+  }
+
+  if (clampedMetrics.size) {
+    warnings.push(
+      `technical rung clamped to its retention horizon: ${clampedMetrics.size} ` +
+        `metrics asked over the last ${HORIZON_PERF_DAYS}d (perf/crash) / ` +
+        `${HORIZON_ERRORS_DAYS}d (errors) instead of the full span, dropping ` +
+        `${clampedDays} days of window that Roblox no longer stores. Measured ` +
+        `2026-08-09: crash/perf serve ~30d, ErrorCount ~56d, and older chunks ` +
+        `400. THIS IS A GAP IN COVERAGE, NOT AN ABSENCE OF INCIDENTS — a ` +
+        `technical question about a period further back is unanswerable, and ` +
+        `must not be read as health. RBX_NO_HORIZON=1 restores the full tiling.`
+    );
   }
 
   if (chunked) {

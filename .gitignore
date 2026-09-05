@@ -5,46 +5,25 @@
 .env*.local
 
 # Client analytics — real revenue, DAU and retention for Indigo's games.
-# Internal private repo, so the irreplaceable parts are committed and only the
-# regenerable ones are ignored:
+# Internal private repo, and ALL of it is committed as of 2026-09-05.
 #
-#   data/raw/     COMMITTED. The untouched capture bundles. These cannot be
-#                 re-created: Roblox drops performance/error data after a few
-#                 months (Climb Up Mountain's is already unrecoverable), and a
-#                 delisted game takes everything with it. 8MB, worth it.
-#   data/verify/  COMMITTED. Ground-truth dashboard exports + the coverage and
-#                 inventory measurements. The harness is useless without them.
-#   data/games/   IGNORED. Fully regenerable — see HANDOFF.md, one command per
-#                 bundle in data/raw/. 21MB of derived output, no need to ship.
-/data/*
-!/data/verify/
-!/data/raw/
-# data/exports/ COMMITTED. Creator Dashboard downloads — error message TEXT and
-#               player comment TEXT. The API serves neither: the MessageHash
-#               dimension lookup 500s on every game, so a manual export is the
-#               only route to error text. Not regenerable from data/raw/, and
-#               not re-downloadable once a version ages out of the dashboard.
-!/data/exports/
-# data/platform/ COMMITTED. Snapshots of the public Roblox discovery board and
-#                its combined CCU. A snapshot is a MOMENT — there is no API that
-#                serves last Tuesday's board, so one that is not committed is
-#                gone. This is the series that answers "did the platform shrink
-#                or did we lose share", which on 2026-08-25 was unanswerable for
-#                exactly this reason.
-!/data/platform/
-# grab-report.json records what each grab ASKED for and what came back. It is
-# not derivable from the raw bundles (a request that failed left no capture),
-# and `npm run audit-plan` reads it to tell a proven query shape from a guess.
-# Without it a fresh clone reports false "stale claim" failures.
-!/data/games/
-/data/games/*/*
-!/data/games/*/grab-report.json
-# code-reads.md is NOT regenerable from data/raw/ — it is read out of the live
-# place through Studio at one PlaceVersion, and that version moves. It travels.
-!/data/games/*/code-reads.md
+# This used to ignore data/games/ on the grounds that it was "fully regenerable"
+# from data/raw/. That was wrong in practice: a device switch left the new
+# machine with no CSVs until every bundle was re-ingested, and the analysis
+# surface people actually read (metrics/*.csv, summary.md, feedback.md,
+# grab-report.md, place-versions.*) lived only on one laptop. The dataset is the
+# product here — it travels with the repo, and it grows.
+#
+#   data/raw/    the untouched capture bundles. Cannot be re-created: Roblox
+#                drops performance/error data after ~30d and errors after ~56d.
+#   data/games/  the exported analysis surface, including series.json.
+#   data/verify/ ground-truth dashboard exports + coverage measurements.
 
-# Raw capture dumps at the repo root (same reason)
-rbx-grab-*.json
+# Playwright's dedicated grab profile. Normally lives outside the repo
+# (~/.rbx-grab-profile) but RBX_GRAB_PROFILE can point anywhere — a browser
+# profile holds a live Roblox session cookie and must never be committable.
+.rbx-grab-profile/
+**/.rbx-grab-profile/
 
 # Node / Next
 node_modules/
@@ -64,3 +43,8 @@ Thumbs.db
 # Scratch
 *.log
 
+# Pure caches — rebuild in seconds from data/games/*/metrics/*.csv, which now
+# travel. Not "data"; regenerate with `python analysis/load.py`.
+/analysis/analytics.duckdb
+/analysis/__pycache__/
+__pycache__/

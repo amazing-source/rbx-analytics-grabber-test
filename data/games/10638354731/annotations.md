@@ -1,0 +1,59 @@
+# Timeline annotations — universe 10638354731
+
+Native Roblox annotations, by annotationType. This is the authoritative platform-side signal — cross-reference incident dates here BEFORE attributing a spike to a deploy or to Roblox. A type absent from this file returned no rows in the grabbed window.
+
+## annotationType=1 (1)
+
+- `{"id":"cb944396-3802-4e60-8117-5d312d6f1fe0","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":98991689056922}},"createdUtcTime":"2026-08-09T05:38:16.739Z"}`
+
+## annotationType=4 (11)
+
+- `{"id":"05ac6de1-9f36-46b3-8d76-93c1a05c0f08","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[87377026865201,110020616135335,132231183266615,100445662484035,70795922266029]}},"createdUtcTime":"2026-08-14T01:58:54.403Z"}`
+- `{"id":"b69596ef-51bb-460b-be98-d81e90adacb7","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[113434646084723,83500778259474,70795922266029,87377026865201,117284092819257]}},"createdUtcTime":"2026-08-19T20:56:20.871Z"}`
+- `{"id":"e2d4a36c-f117-465e-9792-d8c57bf5a54f","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[70795922266029,87772573311555,78644997708228,112903093360536]}},"createdUtcTime":"2026-08-20T22:55:55.812Z"}`
+- `{"id":"7d3632da-6ee1-4f67-8363-65cc4bd3c89b","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[109825760841126,123554146514610,104946119085226,70795922266029]}},"createdUtcTime":"2026-08-22T13:16:38.465Z"}`
+- `{"id":"0ebe1831-4572-4db6-b63a-f73ba01aa58e","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[109825760841126,123554146514610,87377026865201,104946119085226,70795922266029]}},"createdUtcTime":"2026-08-22T14:56:17.911Z"}`
+- `{"id":"36a12324-9306-4342-a2c5-beb48fa3d7e6","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[135964055242817,100131703028459,96297804606171,126746918528819,70795922266029]}},"createdUtcTime":"2026-08-23T16:45:18.637Z"}`
+- `{"id":"2cab63cc-bda3-4522-b1cf-e32b515ab213","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[84287664104314,122435711357504,70795922266029,127276902558865,101120022432597]}},"createdUtcTime":"2026-08-24T18:46:20.411Z"}`
+- `{"id":"3a7f2054-c64c-417f-8c7f-7d0ad422d2aa","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[70795922266029,137679368076746,106454828283719,124624723962269,116915955328829]}},"createdUtcTime":"2026-08-26T18:54:15.619Z"}`
+- `{"id":"3442e7a2-2bb8-43be-a4e1-704eca154818","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[70795922266029,118453955456894,76963574181065,72586981758926,124277976066265]}},"createdUtcTime":"2026-08-29T11:43:31.489Z"}`
+- `{"id":"6bda6834-f704-468a-b200-42a3655df1fe","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[70795922266029,134319945519071,91352870169212,130814708900523,80443484103085]}},"createdUtcTime":"2026-08-31T10:04:13.807Z"}`
+- `{"id":"c756b4f0-968a-425e-a74d-68aa7aef0233","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[70795922266029,110002613309243,72388341994081,130984386413706,90096105200140]}},"createdUtcTime":"2026-09-01T06:34:54.031Z"}`
+
+## annotationType=8 (2)
+
+- `{"id":"a64908a0-d014-4bd2-8912-8aec447eeae6","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":5407192803946137000,"eventName":"FIRST UPDATE","imageAssetId":134514492659322,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-08-28T18:00:24.994Z"}`
+- `{"id":"8fc128d0-11f1-4b71-aa01-c7a8507eb7a1","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":5407192803946137000,"eventName":"FIRST UPDATE","imageAssetId":134514492659322,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-08-31T19:00:24.994Z"}`
+
+## annotationType=10 (26)
+
+- `{"id":"91a90403-7869-46fc-ab79-8c83bc3fe4a8","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":732}},"createdUtcTime":"2026-07-28T16:00:31.292Z"}`
+- `{"id":"07462e6b-a53e-47b2-8332-9b042d4f3d68","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":732}},"createdUtcTime":"2026-07-28T16:00:58.933Z"}`
+- `{"id":"d358e983-2f30-47e8-9184-fae92d294ace","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":732}},"createdUtcTime":"2026-07-28T22:33:22.661Z"}`
+- `{"id":"aa99c798-9bed-4a91-a55b-0f7a060abe85","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":733}},"createdUtcTime":"2026-08-03T21:24:46.264Z"}`
+- `{"id":"d8bc16f9-bc8d-43aa-9541-50aa829795a0","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":733}},"createdUtcTime":"2026-08-05T16:16:28.743Z"}`
+- `{"id":"16a2aa0d-8d6d-4cc6-89fb-19b460048d07","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":733}},"createdUtcTime":"2026-08-05T23:10:19.260Z"}`
+- `{"id":"8afa2fd7-77a0-4309-b9b1-4db4d94794c2","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":733}},"createdUtcTime":"2026-08-05T23:12:34.085Z"}`
+- `{"id":"cac3da7d-fbe2-4f52-bb53-a89c8220aa0f","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":734}},"createdUtcTime":"2026-08-11T17:25:24.363Z"}`
+- `{"id":"fd332525-0392-4cd8-b9e7-e8ffa1c7c2c0","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":734}},"createdUtcTime":"2026-08-11T18:57:09.613Z"}`
+- `{"id":"459a5056-147b-4cfa-ba3f-c228b4567c92","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":734}},"createdUtcTime":"2026-08-12T16:00:21.666Z"}`
+- `{"id":"c87118f7-83d6-4a28-8d22-5e7cdc74de1c","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":735}},"createdUtcTime":"2026-08-17T21:15:23.623Z"}`
+- `{"id":"d068b0f5-f242-4956-97bd-14cd90b25104","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":735}},"createdUtcTime":"2026-08-18T16:00:30.956Z"}`
+- `{"id":"dba7efeb-c081-4d6e-b82f-8d139b2fc05a","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":735}},"createdUtcTime":"2026-08-18T16:00:58.575Z"}`
+- `{"id":"ce26d9b9-53c7-4657-92d3-412df6b7b763","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":735}},"createdUtcTime":"2026-08-19T18:47:16.657Z"}`
+- `{"id":"d01da2fe-bb9e-4fcd-9bd4-c56c87304670","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":735}},"createdUtcTime":"2026-08-21T23:27:56.281Z"}`
+- `{"id":"665849a2-5030-4d75-92f7-a83844835c25","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":735}},"createdUtcTime":"2026-08-23T04:59:47.669Z"}`
+- `{"id":"8a2ee647-d196-4e42-b5e0-980bc5149cdb","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":735}},"createdUtcTime":"2026-08-24T01:24:39.051Z"}`
+- `{"id":"82d72258-0d94-4325-9339-10bc98b1aeaa","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":736}},"createdUtcTime":"2026-08-25T16:23:21.556Z"}`
+- `{"id":"ad28cfe5-1895-4403-9a2d-a15960021012","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":736}},"createdUtcTime":"2026-08-25T17:32:11.169Z"}`
+- `{"id":"37ef7e7d-0380-45f6-b2aa-b0696fd3e493","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":735}},"createdUtcTime":"2026-08-26T16:00:21.534Z"}`
+- `{"id":"5dd36fd3-4f0c-41a1-9a92-857e7dbb1a8c","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":736}},"createdUtcTime":"2026-08-26T23:08:12.067Z"}`
+- `{"id":"bc2d0fe7-f8f3-4279-818f-790f583a8e72","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":736}},"createdUtcTime":"2026-08-27T17:04:57.102Z"}`
+- `{"id":"0bda04eb-09ba-4ddd-96f9-78b60251b60b","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":736}},"createdUtcTime":"2026-08-27T21:08:10.722Z"}`
+- `{"id":"934dbfaa-d68e-4b6d-97d8-031d7067d33c","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":737}},"createdUtcTime":"2026-09-01T22:41:03.152Z"}`
+- `{"id":"ca4ce2a5-38e1-478d-ad81-bd007d91cdfa","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":737}},"createdUtcTime":"2026-09-02T22:33:35.412Z"}`
+- `{"id":"7bd0f81f-e425-49b8-8c4b-256cf11a50d7","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":737}},"createdUtcTime":"2026-09-02T22:38:44.676Z"}`
+
+## annotationType=11 (1)
+
+- `{"id":"34f39caa-7cc7-4fae-8a46-2037080a3093","annotationType":"ANNOTATION_TYPE_GAME_PREVIEW_VIDEO_STATE_CHANGE","metadata":{"gamePreviewVideoStateChange":{"videoAssetId":132415964188947,"universeId":10638354731,"gamePreviewVideoStateType":"GAME_PREVIEW_VIDEO_STATE_TYPE_DISCOVERABLE"}},"createdUtcTime":"2026-09-01T17:48:52.348Z"}`

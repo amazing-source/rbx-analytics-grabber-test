@@ -1,0 +1,15 @@
+date,series,value,agg,samples,partial
+2026-09-01,Total,8223,sum,24,
+2026-09-02,Total,6199,sum,24,
+2026-09-03,Total,5409,sum,21,true
+2026-09-01,ProductType: CommissionAvatar,53,sum,3,true
+2026-09-02,ProductType: CommissionAvatar,0,sum,19,true
+2026-09-01,ProductType: DevProduct,7515,sum,24,
+2026-09-02,ProductType: DevProduct,5508,sum,24,
+2026-09-03,ProductType: DevProduct,5081,sum,21,true
+2026-09-01,ProductType: GamePass,468,sum,24,
+2026-09-02,ProductType: GamePass,583,sum,24,
+2026-09-03,ProductType: GamePass,130,sum,19,true
+2026-09-01,ProductType: PrivateServer,187,sum,24,
+2026-09-02,ProductType: PrivateServer,108,sum,24,
+2026-09-03,ProductType: PrivateServer,198,sum,19,true

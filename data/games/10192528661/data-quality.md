@@ -1,0 +1,35 @@
+# Data quality — universe 10192528661
+
+Events that make a stored number less trustworthy than it looks. `implausible` = a value outside its unit's plausible range, kept but flagged.
+
+`revision` = the gateway re-served an already-settled point with a **materially** different value (>1%; sub-1% recomputation drift on averaged metrics is normal and is not logged). The FIRST settled read is kept and the later one recorded here.
+
+> **Open question — do not assume the kept value is the right one.** Keeping the first read was chosen after a re-grab replaced a dashboard-confirmed R$3,092 hour with R$747 seven minutes later. Wider evidence complicates that: the largest divergences run the other way (`ItemMonetizationRevenue` 353 → 21,835), which looks like back-fill, and against the dashboard's own export our kept value is sometimes the low one. For any metric labelled *Realtime*, treat a revision row as "this hour is disputed", check the dashboard, and do not build a conclusion on it either way.
+
+| Kind | Metric | Series | Point | Detail | Observed |
+|---|---|---|---|---|---|
+| revision | MonthlyActiveUsers | Locale: fr_fr | 2026-06-06T00:00:00Z | settled point re-served as 3848 (captured 2026-09-03T21:45:44.629Z); kept 3806 (captured 2026-09-03T19:18:04.259Z) | 2026-09-03T21:46Z |
+| revision | MonthlyActiveUsers | Locale: pl_pl | 2026-06-14T00:00:00Z | settled point re-served as 3563 (captured 2026-09-03T21:45:44.629Z); kept 3527 (captured 2026-09-03T19:18:04.259Z) | 2026-09-03T21:46Z |
+| revision | MonthlyActiveUsers | Country: FR | 2026-08-30T00:00:00Z | settled point re-served as 3230 (captured 2026-09-03T21:45:46.646Z); kept 3263 (captured 2026-09-03T19:18:05.911Z) | 2026-09-03T21:46Z |
+| revision | MonthlyActiveUsers | Country: MX | 2026-08-05T00:00:00Z | settled point re-served as 4896 (captured 2026-09-03T21:45:46.646Z); kept 4957 (captured 2026-09-03T19:18:05.911Z) | 2026-09-03T21:46Z |
+| revision | MonthlyActiveUsers | Country: SA | 2026-06-05T00:00:00Z | settled point re-served as 3064 (captured 2026-09-03T21:45:46.646Z); kept 3031 (captured 2026-09-03T19:18:05.911Z) | 2026-09-03T21:46Z |
+| revision | MonthlyActiveUsers | Country: LA | 2026-07-17T00:00:00Z | settled point re-served as 2470 (captured 2026-09-03T21:45:46.646Z); kept 2442 (captured 2026-09-03T19:18:05.911Z) | 2026-09-03T21:46Z |
+| revision | MonthlyActiveUsers | Country: GT | 2026-06-25T00:00:00Z | settled point re-served as 2446 (captured 2026-09-03T21:45:46.646Z); kept 2421 (captured 2026-09-03T19:18:05.911Z) | 2026-09-03T21:46Z |
+| revision | MonthlyActiveUsers | Country: GT | 2026-07-10T00:00:00Z | settled point re-served as 2214 (captured 2026-09-03T21:45:46.646Z); kept 2192 (captured 2026-09-03T19:18:05.911Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Place=71469476498100 | 2026-08-30T00:00:00Z | settled point re-served as 851.0211639914376 (captured 2026-09-03T21:46:30.110Z); kept 811.7904576237759 (captured 2026-09-03T19:19:33.011Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Place=71469476498100 | 2026-08-31T00:00:00Z | settled point re-served as 759.6417034247684 (captured 2026-09-03T21:46:30.110Z); kept 740.2848611130743 (captured 2026-09-03T19:19:33.011Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Place=71469476498100 | 2026-09-02T00:00:00Z | settled point re-served as 754.6180006660245 (captured 2026-09-03T21:46:30.110Z); kept 773.9054907509646 (captured 2026-09-03T19:19:33.011Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: Computer · Place=71469476498100 | 2026-08-29T00:00:00Z | settled point re-served as 867.4212196914027 (captured 2026-09-03T21:46:30.286Z); kept 1012.8340786319884 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: Computer · Place=71469476498100 | 2026-09-01T00:00:00Z | settled point re-served as 1036.261904761905 (captured 2026-09-03T21:46:30.286Z); kept 1057.7034632034633 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: Computer · Place=71469476498100 | 2026-09-02T00:00:00Z | settled point re-served as 845.4851116625312 (captured 2026-09-03T21:46:30.286Z); kept 854.4296939619521 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: Console · Place=71469476498100 | 2026-08-30T00:00:00Z | settled point re-served as 1028.5290068829863 (captured 2026-09-03T21:46:30.286Z); kept 915.1248770894761 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: Console · Place=71469476498100 | 2026-09-02T00:00:00Z | settled point re-served as 927.1023255813953 (captured 2026-09-03T21:46:30.286Z); kept 1061.5257142857142 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: Phone · Place=71469476498100 | 2026-08-29T00:00:00Z | settled point re-served as 738.4390887777959 (captured 2026-09-03T21:46:30.286Z); kept 728.8236253196854 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: Phone · Place=71469476498100 | 2026-09-01T00:00:00Z | settled point re-served as 711.9637094943392 (captured 2026-09-03T21:46:30.286Z); kept 688.2795643204722 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: TV · Place=71469476498100 | 2026-08-29T00:00:00Z | settled point re-served as 159.625 (captured 2026-09-03T21:46:30.286Z); kept 121.8125 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: TV · Place=71469476498100 | 2026-08-30T00:00:00Z | settled point re-served as 86 (captured 2026-09-03T21:46:30.286Z); kept 85 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: TV · Place=71469476498100 | 2026-08-31T00:00:00Z | settled point re-served as 86 (captured 2026-09-03T21:46:30.286Z); kept 85 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: TV · Place=71469476498100 | 2026-09-01T00:00:00Z | settled point re-served as 86 (captured 2026-09-03T21:46:30.286Z); kept 85 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: VR · Place=71469476498100 | 2026-08-31T00:00:00Z | settled point re-served as 710.6153846153846 (captured 2026-09-03T21:46:30.286Z); kept 663.125 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: VR · Place=71469476498100 | 2026-09-01T00:00:00Z | settled point re-served as 884 (captured 2026-09-03T21:46:30.286Z); kept 872.4583333333334 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |
+| revision | SessionDurationSecondsAvg | Platform: VR · Place=71469476498100 | 2026-09-02T00:00:00Z | settled point re-served as 265 (captured 2026-09-03T21:46:30.286Z); kept 316.5833333333333 (captured 2026-09-03T19:19:34.272Z) | 2026-09-03T21:46Z |

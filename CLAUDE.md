@@ -13,6 +13,12 @@ the full spec; this file is the day-to-day reference.
 >   `.claude/SESSION_LOG.md` first** (newest entry), then verify it against the
 >   gates before trusting it — that is `checkpoint resume`. The log is written
 >   by the `checkpoint` skill; run it whenever you stop or switch devices.
+> - **Before writing ANY diagnosis, read `DIAGNOSIS_LOG.md`** — one row per
+>   claim delivered to Ren and what happened to it, plus the six recurring
+>   failure modes and the control that catches each. Every retraction in this
+>   repo's history is one of those six. Append to it whenever a diagnosis ships
+>   or a claim changes status; the session log is per-session and does not carry
+>   the thread across deliverables.
 > - **`baseline/` holds every frozen "before" state — read `baseline/README.md`
 >   first; it is the index and carries the method.** Two kinds live there:
 >   **handover** baselines (a game newly taken on, diagnosed full-life) and
@@ -54,8 +60,9 @@ the full spec; this file is the day-to-day reference.
 >   2026-08-08T00:00, and (2) `ErrorCount` half-hour, where 144 of 147 cells
 >   match and the 3 that don't are all the 08:00 bucket at the export window's
 >   own edge — the CSV holds a partial bucket, our later read holds the settled
->   one. `npm run audit-plan` → 140 templates, 0 failures. `npm test` → 44 pass
->   (re-measured 2026-08-23; was 41).
+>   one. `npm run audit-plan` → 175 templates, 0 failures (140 before the RFY
+>   signals landed 2026-08-31; 41 upgradable tags are not failures).
+>   `npm test` → 44 pass.
 >   A change that moves a number without moving these is unproven.
 > - **Both universes were re-grabbed post-fix on 2026-08-08** — that closed the
 >   last verification item. 9963622286's crash history is now present
@@ -115,20 +122,29 @@ reached Roblox must not be lost to a database being down (it has been).
   The only part of `data/` that is committed.
 Offline path, no server or DB: `cd web && npm run ingest:file -- <raw.json>`.
 
-## Running the app — one command, and Supabase is meant to be dead
+## Running the app — one command; check whether Supabase is alive
 `cd web && npm run dev` → http://localhost:3000. That is the whole procedure.
 Deps are installed and `web/.env.local` is already correct, so there is nothing
-to discover first: no run-skill to hunt for, no route listing, no API smoke
-test. **Supabase is a deliberate placeholder** (`https://placeholder.supabase.co`)
-and there is no project behind it, so every DB-backed route (`/api/games`,
-`/api/overview`, `/api/series`, …) answers `TypeError: fetch failed` / 500.
-**That is the steady state, not a bug** — the file mirror above is the real
-sink, and the architecture is out of scope. The var must *exist* but may point
-nowhere: `src/lib/supabase.ts` throws at module-import time when it is unset,
-while a dead URL imports fine and only fails on an actual query. So never empty
-it and never "fix" it by provisioning a project. `/` renders the dashboard shell
-with empty tiles and a red error line, because the client chains every fetch off
-`/api/games`. That is a running app.
+to discover first: no run-skill to hunt for, no route listing, no API smoke test.
+
+**CORRECTED 2026-09-03: Supabase is LIVE on this machine.** `web/.env.local`
+points at a real project and `grab_templates` holds 1,000 rows. This file used
+to state flatly that Supabase was a deliberate placeholder
+(`https://placeholder.supabase.co`) with no project behind it, so that every
+DB-backed route answered `TypeError: fetch failed` and that was "the steady
+state, not a bug". That may still describe the other machine — **do not assume
+either way; read `SUPABASE_URL` before claiming a DB route is expected to
+fail.** Believing the database was dead is what let F19 (below) sit unnoticed:
+a live, unscoped `grab_templates` table was pooling every game's learned query
+shapes, and nobody looked because the DB "wasn't real".
+
+The var must *exist* whichever it is: `src/lib/supabase.ts` throws at
+module-import time when unset, while a dead URL imports fine and only fails on
+an actual query. So never empty it. The **file mirror in `data/` is the real
+sink** either way, and the architecture is out of scope — do not re-plumb it.
+If the DB is dead, `/` renders the dashboard shell with empty tiles and a red
+error line because the client chains every fetch off `/api/games`. That is still
+a running app.
 
 ## The three gates
 Run from `web/`. Any change to what the numbers say must keep all three green,
@@ -187,7 +203,11 @@ and a change that fixes a number should move one of them.
   (a version appearing = a ship) and by `ErrorMessage` is bug discovery.
 - IGNORE as noise: `translations-cdn.roblox.com`, `barista-feature-flags`,
   `product-experimentation-platform`.
-- Test universe: KameHameHa Walls For Brainrots = `10192528661`, genre `simulation`.
+- `10192528661` (KameHameHa Walls For Brainrots, genre `simulation`) is a
+  **portfolio game**, not a scratch universe. It was labelled "test universe"
+  here from the earliest sessions and that label is wrong — corrected
+  2026-09-03 by Ren. Treat its data as production: it is in the lifetime
+  dataset grab alongside the other titles.
 
 ## Open Cloud serves the same numbers — verified 2026-08-19, do not re-derive
 Roblox shipped an official, key-authenticated analytics READ API (beta). It is
@@ -348,6 +368,51 @@ supported for metric X" — us asking wrong, never the data missing. Handled in
 now — a game could sit marked "watched" for weeks with no grab behind it.
 `intervalHours` wins over `dailyGrab` (which means 24h); the floor is 1h.
 `RBX_SCHEDULER=off`, or `schedulerEnabled: false` in the config, stops it.
+
+## Driving a browser grab without clicking (2026-09-03)
+
+Playwright launches Chrome with the unpacked extension and fires the SAME
+message the dashboard's "Grab now" button sends. It is not a second grab
+implementation and not the scheduler.
+
+    npm run grab:doctor                     # check every precondition first
+    npm run grab:login                      # ONE TIME: log into Roblox
+    npm run grab -- 9963622286 --lifetime
+    npm run grab -- 9963622286 10030829154 --start 2026-01-01 --end 2026-09-04
+    npm run grab -- --all --days 60
+
+**Prefer this over Open Cloud for dataset runs.** No 30-POST/min ceiling, and it
+is the only path returning feedback content, annotations, genre benchmarks,
+place-versions and error `MessageHash` text.
+
+**Naming trap:** `background.js` routes BOTH the one-time grab and the scheduler
+through `runScheduledGrab()`. The name is wrong — it just means "run a grab",
+and the comment there says so. The one-time dated grab is `collector-cmd / pull`
+with `{universes, start, end}`; `background.js` opens its own create.roblox.com
+tab via `ensureDashboardTab()`. Do not read the function name as "this is the
+scheduler" (I did, and confused a whole exchange).
+
+**The profile is dedicated and lives OUTSIDE the repo** (`~/.rbx-grab-profile`,
+override with `RBX_GRAB_PROFILE`), so the daily Chrome stays open and untouched.
+`.gitignore` blocks it anywhere in the tree: a profile holds a live session
+cookie. **Nothing in `scripts/browser-context.ts` reads or exports that cookie —
+no `context.cookies()`, no `storageState()`** — and it must stay that way, per
+the standing rule on `.ROBLOSECURITY`. Chrome holds the session; we only drive
+the window.
+
+MV3 extensions need a **persistent context and a real head**; `headless: true`
+drops them silently, which looks exactly like a broken extension. The unpacked
+extension's id derives from its path, so it is read off the service worker at
+runtime rather than hardcoded.
+
+**Completion is detected from `data/raw/`, not the message reply.** A lifetime
+grab outlives the service worker's message channel, so awaiting the reply would
+report a dead channel as a failed grab. Live progress comes from `schedule:get`,
+which is where the collector forwards its own status line.
+
+`npm run grab` refuses to start if the web app is not answering — the collector
+POSTs captures to it, so a grab without the app runs to completion and lands
+nowhere. That is the most expensive possible failure.
 
 ## Alerting fires on the weekday baseline, never a threshold (2026-08-19)
 
@@ -518,6 +583,36 @@ games are disjoint: Brainrot ~v400-599, Banana Monkey ~v1143-1242, Knife Farm
 paths** in the message, or for feedback exports — which carry no version at
 all — **match the comment text against `data/games/<id>/feedback.csv`**,
 which is exact.
+
+## Learned templates are shared across every game — F19, fixed 2026-09-03
+
+`grab_templates` is keyed on the template alone and is **not scoped by
+universe**, so every game's learned shapes pool into one table and are merged
+into every other game's plan. Dimension NAMES are stable; their VALUES are not.
+
+Measured on 10192528661's lifetime grab: **910 of 1,000 learned templates
+carried another game's values.** That produced 314 empty-200 funnel requests
+under 14 funnel names belonging to other titles (`Conversation`, `MessagePack`,
+`Notebook`, `BaseUpgrades`, `MapReach`…) on a universe whose only funnel is
+`FUNNEL_TYPE_ONBOARDING`, plus a `Place` filter naming Waterslide's seven places
+(403). **An empty 200 reads exactly like "this game does not use the feature"** —
+the automatic version of the hardcoded-`FunnelName` defect this file already
+warns about.
+
+`retargetLearnedQuery()` in `src/lib/retarget-templates.ts` now rewrites a
+learned template's universe-scoped values to the current universe's discovered
+ones, or drops the template when discovery has none. Kept out of `store.ts`
+because that module imports Supabase and throws at import time without env.
+Scoped dimensions: `Place`, `PlaceVersion`, `FirstSeenPlaceVersion`,
+`FunnelName`, `FunnelStep`, `MessageHash`, `AvatarItemId`. The `MessageHash
+NOT_CONTAINS -1` sentinel is not a universe value and survives untouched.
+Re-scoping changes the request, so the template key is recomputed — otherwise
+two universes' versions collide and whichever loaded last wins. Every drop and
+re-target is reported in the plan's warnings. Encoded as **F19** in the suite.
+
+Against the live table for 10192528661: 226 kept, **732 re-targeted**, 42
+dropped (`FunnelStep`, which this universe never discovered because its
+`dimensions by FunnelStep` request 403s).
 
 ## The grab plan is seeded, not discovered
 `web/src/lib/default-plan.ts` holds all 49 metrics Roblox serves, as query

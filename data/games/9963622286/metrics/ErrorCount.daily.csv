@@ -1,0 +1,112 @@
+date,series,value,agg,samples,partial
+2026-08-05,Total,8060848,sum,25,true
+2026-08-06,Total,17824810,sum,48,
+2026-08-07,Total,7738435,sum,24,true
+2026-08-10,"FirstSeenPlaceVersion=575, Place=99255447043899",30161,sum,26,true
+2026-08-11,"FirstSeenPlaceVersion=575, Place=99255447043899",50935,sum,48,
+2026-08-12,"FirstSeenPlaceVersion=575, Place=99255447043899",16668,sum,24,true
+2026-08-05,LogSource: Client,7563584,sum,25,true
+2026-08-06,LogSource: Client,16803365,sum,48,
+2026-08-07,LogSource: Client,7264338,sum,24,true
+2026-08-10,"LogSource: Client · FirstSeenPlaceVersion=575, Place=99255447043899",2203,sum,26,true
+2026-08-11,"LogSource: Client · FirstSeenPlaceVersion=575, Place=99255447043899",4082,sum,48,
+2026-08-12,"LogSource: Client · FirstSeenPlaceVersion=575, Place=99255447043899",1944,sum,23,true
+2026-08-05,LogSource: Client · Place=99255447043899,7563584,sum,25,true
+2026-08-06,LogSource: Client · Place=99255447043899,16803365,sum,48,
+2026-08-07,LogSource: Client · Place=99255447043899,14747353,sum,48,
+2026-08-08,LogSource: Client · Place=99255447043899,20691144,sum,48,
+2026-08-09,LogSource: Client · Place=99255447043899,13187023,sum,48,
+2026-08-10,LogSource: Client · Place=99255447043899,9898302,sum,48,
+2026-08-11,LogSource: Client · Place=99255447043899,9538306,sum,48,
+2026-08-12,LogSource: Client · Place=99255447043899,5638877,sum,48,true
+2026-08-13,LogSource: Client · Place=99255447043899,3971539,sum,48,true
+2026-08-14,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-08-15,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-08-16,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-08-17,LogSource: Client · Place=99255447043899,9998248,sum,48,
+2026-08-18,LogSource: Client · Place=99255447043899,169479,sum,48,
+2026-08-19,LogSource: Client · Place=99255447043899,9710200,sum,48,
+2026-08-20,LogSource: Client · Place=99255447043899,239351,sum,48,
+2026-08-21,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-08-22,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-08-23,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-08-24,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-08-25,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-08-26,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-08-27,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-08-28,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-08-29,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-08-30,LogSource: Client · Place=99255447043899,3607768,sum,48,true
+2026-08-31,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-09-01,LogSource: Client · Place=99255447043899,1992766,sum,48,
+2026-09-02,LogSource: Client · Place=99255447043899,30418,sum,48,
+2026-09-03,LogSource: Client · Place=99255447043899,1674301,sum,48,true
+2026-09-04,LogSource: Client · Place=99255447043899,1353418,sum,29,true
+2026-08-05,LogSource: Server,497264,sum,25,true
+2026-08-06,LogSource: Server,1021445,sum,48,
+2026-08-07,LogSource: Server,474097,sum,24,true
+2026-08-10,"LogSource: Server · FirstSeenPlaceVersion=575, Place=99255447043899",27958,sum,26,true
+2026-08-11,"LogSource: Server · FirstSeenPlaceVersion=575, Place=99255447043899",46853,sum,48,
+2026-08-12,"LogSource: Server · FirstSeenPlaceVersion=575, Place=99255447043899",14724,sum,24,true
+2026-08-05,LogSource: Server · Place=99255447043899,497264,sum,25,true
+2026-08-06,LogSource: Server · Place=99255447043899,1021445,sum,48,
+2026-08-07,LogSource: Server · Place=99255447043899,989346,sum,48,
+2026-08-08,LogSource: Server · Place=99255447043899,1738783,sum,48,
+2026-08-09,LogSource: Server · Place=99255447043899,835621,sum,48,
+2026-08-10,LogSource: Server · Place=99255447043899,634722,sum,48,
+2026-08-11,LogSource: Server · Place=99255447043899,670375,sum,48,
+2026-08-12,LogSource: Server · Place=99255447043899,375185,sum,48,true
+2026-08-13,LogSource: Server · Place=99255447043899,241496,sum,48,true
+2026-08-14,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-08-15,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-08-16,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-08-17,LogSource: Server · Place=99255447043899,11701012,sum,48,
+2026-08-18,LogSource: Server · Place=99255447043899,209617,sum,48,
+2026-08-19,LogSource: Server · Place=99255447043899,9920477,sum,48,
+2026-08-20,LogSource: Server · Place=99255447043899,193611,sum,48,
+2026-08-21,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-08-22,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-08-23,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-08-24,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-08-25,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-08-26,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-08-27,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-08-28,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-08-29,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-08-30,LogSource: Server · Place=99255447043899,230260,sum,48,true
+2026-08-31,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-09-01,LogSource: Server · Place=99255447043899,149709,sum,48,
+2026-09-02,LogSource: Server · Place=99255447043899,2616,sum,48,
+2026-09-03,LogSource: Server · Place=99255447043899,113790,sum,48,true
+2026-09-04,LogSource: Server · Place=99255447043899,93739,sum,29,true
+2026-08-05,Place=99255447043899,8060848,sum,25,true
+2026-08-06,Place=99255447043899,17824810,sum,48,
+2026-08-07,Place=99255447043899,15736699,sum,48,
+2026-08-08,Place=99255447043899,22429927,sum,48,
+2026-08-09,Place=99255447043899,14022644,sum,48,
+2026-08-10,Place=99255447043899,10533024,sum,48,
+2026-08-11,Place=99255447043899,10208681,sum,48,
+2026-08-12,Place=99255447043899,6014062,sum,48,true
+2026-08-13,Place=99255447043899,4213035,sum,48,true
+2026-08-14,Place=99255447043899,0,sum,48,
+2026-08-15,Place=99255447043899,0,sum,48,
+2026-08-16,Place=99255447043899,0,sum,48,
+2026-08-17,Place=99255447043899,21699260,sum,48,
+2026-08-18,Place=99255447043899,379096,sum,48,
+2026-08-19,Place=99255447043899,19630677,sum,48,
+2026-08-20,Place=99255447043899,432962,sum,48,
+2026-08-21,Place=99255447043899,0,sum,48,
+2026-08-22,Place=99255447043899,0,sum,48,
+2026-08-23,Place=99255447043899,0,sum,48,
+2026-08-24,Place=99255447043899,0,sum,48,
+2026-08-25,Place=99255447043899,0,sum,48,
+2026-08-26,Place=99255447043899,0,sum,48,
+2026-08-27,Place=99255447043899,0,sum,48,
+2026-08-28,Place=99255447043899,0,sum,48,
+2026-08-29,Place=99255447043899,0,sum,48,
+2026-08-30,Place=99255447043899,3838028,sum,48,true
+2026-08-31,Place=99255447043899,0,sum,48,
+2026-09-01,Place=99255447043899,2142475,sum,48,
+2026-09-02,Place=99255447043899,33034,sum,48,
+2026-09-03,Place=99255447043899,1788091,sum,48,true
+2026-09-04,Place=99255447043899,1447157,sum,29,true

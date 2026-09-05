@@ -15,6 +15,7 @@ import os from "node:os";
 import path from "node:path";
 
 import { parseCaptures, type Capture } from "../parse-captures";
+import { retargetLearnedQuery } from "../retarget-templates";
 import {
   exportToFiles,
   detectIncidents,
@@ -316,7 +317,7 @@ describe("G8 — the technical rung is chunked into legal windows", () => {
       );
   });
 
-  test("the chunks tile the full span with no hole", async () => {
+  test("the chunks tile the asked span with no hole", async () => {
     const plan = await planFor(LONG_START, LONG_END);
     // ServerCrashCount has several templates (plain, by Platform, by CrashType)
     // and each tiles the span independently — group by template, not by metric,
@@ -341,8 +342,25 @@ describe("G8 — the technical rung is chunked into legal windows", () => {
     assert.ok(byTemplate.size > 0, "expected at least one ServerCrashCount template");
     for (const [base, ws] of byTemplate) {
       const windows = ws.sort((a, b) => a.startTime.localeCompare(b.startTime));
-      assert.equal(windows[0].startTime, LONG_START, `${base}: first chunk must start at the grab start`);
+      // Since 2026-09-03 the technical rung is clamped to its retention
+      // horizon before chunking (crash/perf ~30d, ErrorCount ~56d — measured;
+      // older chunks are guaranteed 400s for data Roblox deleted). So the
+      // tiling starts at the horizon, not at the grab start. What must still
+      // hold is that it reaches the END and has no hole — a hole is a day we
+      // silently never asked for.
       assert.equal(windows.at(-1)!.endTime, LONG_END, `${base}: last chunk must reach the grab end`);
+      assert.ok(
+        Date.parse(windows[0].startTime) >= Date.parse(LONG_START),
+        `${base}: tiling must not start before the grab start`,
+      );
+      const askedDays = Math.round(
+        (Date.parse(LONG_END) - Date.parse(windows[0].startTime)) / 86_400_000,
+      );
+      assert.ok(
+        askedDays >= 30,
+        `${base}: clamped to ${askedDays}d — crash data is served for ~30d, so a ` +
+          `tighter clamp silently drops history that exists`,
+      );
       for (let i = 1; i < windows.length; i++) {
         const gap = Date.parse(windows[i].startTime) - Date.parse(windows[i - 1].endTime);
         // Exactly one day: the gateway is inclusive on both ends, so sharing a
@@ -354,6 +372,41 @@ describe("G8 — the technical rung is chunked into legal windows", () => {
           `${base}: chunk ${i} must start exactly one interval after chunk ${i - 1} ends`,
         );
       }
+    }
+  });
+
+  test("the horizon clamp is REPORTED, never silent", async () => {
+    const plan = await planFor(LONG_START, LONG_END);
+    const w = (plan.warnings ?? []).join(" | ");
+    assert.match(
+      w,
+      /clamped to its retention horizon/,
+      "an unreported clamp reads as a metric the game never had",
+    );
+    assert.match(
+      w,
+      /NOT AN ABSENCE OF INCIDENTS/,
+      "the warning must say absence of coverage is not evidence of health",
+    );
+  });
+
+  test("RBX_NO_HORIZON restores full-span tiling", async () => {
+    process.env.RBX_NO_HORIZON = "1";
+    try {
+      const plan = await planFor(LONG_START, LONG_END);
+      const starts = (plan.requests as { id: string; metric: string | null; body: unknown }[])
+        .filter((r) => r.metric === "ServerCrashCount")
+        .map((r) => (r.body as { query?: { startTime?: string; granularity?: string } })?.query)
+        .filter((q) => q?.granularity === "METRIC_GRANULARITY_ONE_DAY")
+        .map((q) => q!.startTime!)
+        .sort();
+      assert.equal(
+        starts[0],
+        LONG_START,
+        "with the clamp off, the tiling must still cover the whole span as it did before",
+      );
+    } finally {
+      delete process.env.RBX_NO_HORIZON;
     }
   });
 
@@ -640,4 +693,76 @@ describe("G10 — the Open Cloud path merges into the gateway's series, not besi
     ) as GameExport;
     return { game, dir };
   }
+});
+
+// F19 — learned templates carry another game's dimension VALUES.
+// `grab_templates` is keyed on the template and NOT scoped by universe, so
+// every game's learned templates pool. Measured 2026-09-03 on 10192528661:
+// 910 of 1000 rows carried foreign values, producing 314 empty-200 funnel
+// requests under 14 funnel names belonging to other games, plus a Place filter
+// naming Waterslide's seven places (403). An empty 200 reads exactly like
+// "this game does not use the feature" — the false finding this repo exists to
+// prevent, generated automatically.
+describe("F19 — a learned template never carries another universe's values", () => {
+  const MINE = { __places: ["71469476498100"], FunnelName: ["FUNNEL_TYPE_ONBOARDING"] };
+
+  test("a foreign FunnelName is DROPPED, not replayed into an empty 200", () => {
+    const q = {
+      metric: "FunnelUserStepCompletionRate",
+      granularity: "METRIC_GRANULARITY_ONE_DAY",
+      filter: [{ dimension: "FunnelName", values: ["Conversation"] }],
+    };
+    const r = retargetLearnedQuery(q, { ...MINE, FunnelName: [] } as never);
+    assert.equal(r.query, null, "no funnel discovered here — the template must be dropped");
+  });
+
+  test("a foreign FunnelName is re-targeted when this universe has its own", () => {
+    const q = {
+      metric: "FunnelUserStepCompletionRate",
+      granularity: "METRIC_GRANULARITY_ONE_DAY",
+      filter: [{ dimension: "FunnelName", values: ["MessagePack"] }],
+    };
+    const r = retargetLearnedQuery(q, MINE as never);
+    assert.ok(r.query, "should re-target, not drop");
+    const f = (r.query as { filter: { dimension: string; values: string[] }[] }).filter;
+    assert.deepEqual(f[0].values, ["FUNNEL_TYPE_ONBOARDING"], "must use THIS universe's funnel");
+  });
+
+  test("Waterslide's seven places never reach another universe", () => {
+    const q = {
+      metric: "ClientCrashRate15m",
+      granularity: "METRIC_GRANULARITY_ONE_DAY",
+      filter: [{ dimension: "Place", values: ["87388097381958", "94401613935841"] }],
+    };
+    const r = retargetLearnedQuery(q, MINE as never);
+    const f = (r.query as { filter: { dimension: string; values: string[] }[] }).filter;
+    assert.deepEqual(f[0].values, ["71469476498100"], "Place must be re-targeted to our own place");
+  });
+
+  test("a non-scoped dimension is left alone", () => {
+    const q = {
+      metric: "DailyActiveUsers",
+      granularity: "METRIC_GRANULARITY_ONE_DAY",
+      filter: [{ dimension: "AcquisitionSource", values: ["HomeRecommendation", "Search"] }],
+    };
+    const r = retargetLearnedQuery(q, MINE as never);
+    const f = (r.query as { filter: { dimension: string; values: string[] }[] }).filter;
+    assert.deepEqual(
+      f[0].values,
+      ["HomeRecommendation", "Search"],
+      "AcquisitionSource values are platform-wide, not per-universe",
+    );
+  });
+
+  test("the MessageHash NOT_CONTAINS -1 sentinel survives untouched", () => {
+    const q = {
+      metric: "ErrorCount",
+      granularity: "METRIC_GRANULARITY_NONE",
+      filter: [{ dimension: "MessageHash", values: ["-1"], operation: "FILTER_OPERATION_NOT_CONTAINS" }],
+    };
+    const r = retargetLearnedQuery(q, MINE as never);
+    assert.ok(r.query, "-1 is a sentinel, not a universe value — must not drop the template");
+    const f = (r.query as { filter: { values: string[] }[] }).filter;
+    assert.deepEqual(f[0].values, ["-1"]);
+  });
 });

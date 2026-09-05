@@ -1,0 +1,334 @@
+<title>What Twelve Games Actually Told Us</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo:wght@500;700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  --ground:#f6f7f9;--surface:#fff;--surface-2:#eef1f5;--plate:#fbfcfd;
+  --ink:#11151b;--ink-2:#4d5765;--ink-3:#7d8795;
+  --rule:#dde1e7;--rule-2:#c3cad3;
+  --accent:#1d5c9e;--accent-soft:#e5eef7;
+  --good:#0f6f5c;--good-soft:#e0f0ec;
+  --warn:#9a6212;--warn-soft:#f6ecd9;
+  --bad:#a53a2f;--bad-soft:#f7e5e3;
+  --unk:#5b5379;--unk-soft:#eceaf2;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#0f1216;--surface:#171b21;--surface-2:#1f242c;--plate:#141821;
+  --ink:#eef1f5;--ink-2:#aab4c1;--ink-3:#7d8795;
+  --rule:#282e37;--rule-2:#39414c;
+  --accent:#6aa6e0;--accent-soft:#152532;
+  --good:#4cbfa5;--good-soft:#10241f;
+  --warn:#d9a44b;--warn-soft:#2a2113;
+  --bad:#e08278;--bad-soft:#2c1917;
+  --unk:#a49ac9;--unk-soft:#1e1b28;}}
+:root[data-theme="dark"]{
+  --ground:#0f1216;--surface:#171b21;--surface-2:#1f242c;--plate:#141821;
+  --ink:#eef1f5;--ink-2:#aab4c1;--ink-3:#7d8795;
+  --rule:#282e37;--rule-2:#39414c;
+  --accent:#6aa6e0;--accent-soft:#152532;
+  --good:#4cbfa5;--good-soft:#10241f;
+  --warn:#d9a44b;--warn-soft:#2a2113;
+  --bad:#e08278;--bad-soft:#2c1917;
+  --unk:#a49ac9;--unk-soft:#1e1b28;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:400 16.5px/1.62 "Source Serif 4",Georgia,serif;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px 90px}
+.col{max-width:70ch}
+h1,h2,h3,.mono,.eyebrow,th,.chip{font-family:Chivo,"Helvetica Neue",Arial,sans-serif}
+.mono,code,.dt{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
+h1{font-weight:900;font-size:clamp(34px,5.4vw,54px);line-height:1.04;letter-spacing:-.022em;margin:0 0 14px;text-wrap:balance}
+h2{font-weight:700;font-size:25px;letter-spacing:-.012em;margin:0;text-wrap:balance}
+h3{font-weight:700;font-size:17.5px;margin:0 0 8px;text-wrap:balance}
+p{margin:0 0 14px}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+header{padding:64px 0 34px;border-bottom:2px solid var(--ink)}
+.lede{font-size:19.5px;line-height:1.55;color:var(--ink-2);max-width:66ch;margin:16px 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:26px;margin-top:30px;padding-top:22px;border-top:1px solid var(--rule)}
+.meta div{display:flex;flex-direction:column;gap:3px}
+.meta .k{font-family:Chivo,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.meta .v{font-family:"JetBrains Mono",monospace;font-size:14.5px;font-weight:500}
+section{padding:44px 0;border-bottom:1px solid var(--rule)}
+.sechead{display:flex;align-items:baseline;gap:14px;margin-bottom:20px}
+.sechead .tag{font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:700;color:var(--accent);flex:none}
+.chip{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2.5px 8px;border-radius:3px;white-space:nowrap;vertical-align:2px}
+.c-conf{background:var(--good-soft);color:var(--good)}
+.c-strong{background:var(--accent-soft);color:var(--accent)}
+.c-sugg{background:var(--warn-soft);color:var(--warn)}
+.c-no{background:var(--bad-soft);color:var(--bad)}
+.c-unk{background:var(--unk-soft);color:var(--unk)}
+.tw{overflow-x:auto;margin:20px 0;border:1px solid var(--rule);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+caption{text-align:left;font-family:Chivo,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);padding:13px 16px 0}
+th{font-family:Chivo,sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;padding:11px 12px;border-bottom:1px solid var(--rule-2);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+td{padding:8px 12px;text-align:right;border-bottom:1px solid var(--rule);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td.l,th.l{text-align:left;white-space:normal}
+.dim{color:var(--ink-3)}.pos{color:var(--good)}.neg{color:var(--bad)}.wrn{color:var(--warn)}
+.note{background:var(--plate);border:1px solid var(--rule);padding:14px 16px;margin:14px 0;font-size:15px;color:var(--ink-2)}
+.note b{color:var(--ink)}
+.kill{background:var(--surface);border:1px solid var(--rule-2);border-left:4px solid var(--accent);padding:22px 26px;margin:24px 0}
+.act{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:20px 0;border-top:1px solid var(--rule)}
+.act:first-of-type{border-top:none}
+.act .who{font-family:Chivo,sans-serif;font-weight:700;font-size:16px}
+.act .who span{display:block;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:400;color:var(--ink-3);margin-top:3px}
+.act dl{margin:10px 0 0;display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:14.5px}
+.act dt{font-family:Chivo,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+.act dd{margin:0;color:var(--ink-2)}
+code{font-size:.88em;background:var(--surface-2);padding:1.5px 5px;border-radius:3px}
+footer{padding:40px 0 0;color:var(--ink-3);font-size:14.5px}
+@media (max-width:640px){.act{grid-template-columns:1fr;gap:8px}.wrap{padding:0 18px 60px}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Indigo LiveOps · 12-game panel · phases 0–8 · 4 September 2026</div>
+  <h1>What Twelve Games Actually Told Us</h1>
+  <p class="lede">Four controlled negatives, two real defects, and one prediction attempt that
+  lost to a coin flip. The useful result is not a leading indicator — it is knowing which
+  questions this data can never answer, and where the money actually is.</p>
+  <div class="meta">
+    <div><span class="k">Panel</span><span class="v">3,191 game-days</span></div>
+    <div><span class="k">Pullback events</span><span class="v">17 across 11 games</span></div>
+    <div><span class="k">Retractions today</span><span class="v">8</span></div>
+    <div><span class="k">Settled through</span><span class="v">2026-09-03</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="sechead"><span class="tag">01</span><h2>The four negatives</h2></div>
+  <p class="col">Each is placebo- or null-controlled. Together they say that <b>nothing we
+  currently measure gives usable advance warning of a Home pullback</b> — which is a finding,
+  not a failure, because it redirects effort away from prediction.</p>
+  <div class="tw"><table>
+    <thead><tr><th class="l">Question</th><th class="l">Answer</th><th class="l">Control that makes it credible</th><th>Label</th></tr></thead>
+    <tbody>
+      <tr><td class="l">Does an RFY signal lead the pullback?</td><td class="l">No — 1 marginal hit in 32 tests</td><td class="l">Symmetric lag search, Sidak-corrected</td><td><span class="chip c-strong">strong</span></td></tr>
+      <tr><td class="l">Does a behavioural signal lead it?</td><td class="l"><b>Unresolved</b> — 2.25 vs 1.12 LEADS/window</td><td class="l">Placebo cut dates; fairer placebo gives p=0.022</td><td><span class="chip c-sugg">inconclusive</span></td></tr>
+      <tr><td class="l">Do the games fall together on the calendar?</td><td class="l">No — mean pairwise r = <b>+0.028</b></td><td class="l">Trend + weekday residualised</td><td><span class="chip c-strong">strong</span></td></tr>
+      <tr><td class="l">Can we predict a pullback 7 days out?</td><td class="l">No — mean AUC <b>0.416</b>, worse than chance</td><td class="l">Leave-one-game-out; beaten by reach baseline (0.627)</td><td><span class="chip c-strong">strong</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="col">What <em>does</em> hold: the games share a <b>lifecycle shape at different offsets</b>
+  (lifecycle-aligned r = +0.266, p = 0.045 against a peak-shuffled null). The same arc, each on its
+  own clock. <span class="chip c-strong">strong</span></p>
+  <div class="note col"><b>One genuine calendar effect.</b> Over <span class="mono">2026-08-12 → 08-24</span>
+  all ten observed games sat below their own residual mean simultaneously (z = −1.49). Mid-August,
+  consistent with seasonality. The reference span is only 2026-05-29 → 09-01, so this is August
+  against a mostly-recent baseline, and the skeptic puts the corrected significance nearer 0.14
+  than 0.01. <span class="chip c-sugg">suggestive</span></div>
+</section>
+
+<section>
+  <div class="sechead"><span class="tag">02</span><h2>What actually survived: quality holds under expansion</h2></div>
+  <p class="col">The one clean, repeated result across the whole study. When Roblox scales an
+  experience, the marginal player does <em>not</em> behave worse on eight of eleven games. Bounce
+  falls, playtime rises, play-days rise. Only PTR dilutes — which Roblox documents as normal
+  during expansion.</p>
+  <p class="col"><b>Waterslide is the sharpest case:</b> it lost <b>79.8%</b> of its Home reach while
+  D8–28 play days moved −2.8%, PTR rose 3.4% and first-play bounce <em>improved</em> 9.6%. Everything
+  Roblox says it ranks on was flat or better through an 80% withdrawal.</p>
+  <div class="note col"><b>Three games read as "fails at scale" and I do not believe the label.</b>
+  Poison Treats, Plane Training and Don't Wake Police are the three oldest games, whose RFY series
+  exist only during their long decline tail. In a shrinking game the survivors are more committed,
+  so engagement per player rises as reach falls — producing exactly the negative correlation the
+  test reads as failure. That is core-hardening, the mirror image of dilution, and this test cannot
+  separate them. <span class="chip c-unk">unresolved</span></div>
+</section>
+
+<section>
+  <div class="sechead"><span class="tag">03</span><h2>Two defects the funnels found</h2></div>
+  <h3>Seal A Driveway — map progression collapsing, and it is not the update</h3>
+  <div class="tw"><table>
+    <caption>MapReach 2 — all four steps degraded significantly</caption>
+    <thead><tr><th class="l">Step</th><th>baseline</th><th>later</th><th>z</th></tr></thead>
+    <tbody>
+      <tr><td class="l">EstateDistrict</td><td>0.2247</td><td class="neg">0.1302</td><td class="neg">−3.7</td></tr>
+      <tr><td class="l">RetailPark</td><td>0.0427</td><td class="neg">0.0162</td><td class="neg">−4.3</td></tr>
+      <tr><td class="l">Airport</td><td>0.0106</td><td class="neg">0.0026</td><td class="neg">−3.5</td></tr>
+      <tr><td class="l">ParkingGarage</td><td>0.0017</td><td class="neg">0.0003</td><td class="neg">−2.2</td></tr>
+    </tbody>
+  </table></div>
+  <p class="col">Its <b>onboarding funnel improved</b> over the same window (Complete 0.658 → 0.715),
+  so this is not a broken tutorial: players finish onboarding and then fail to get past the first map.
+  Dated daily, the slide starts <b>2026-08-20/21</b> (peak 0.2582) and runs smoothly to 0.0997 by
+  09-03 — <b>−61%</b>. <b>v908 shipped 2026-08-28, a week into it, with no step at that date.</b>
+  Onset precedes exposure, so the update is ruled out. <span class="chip c-conf">confirmed</span></p>
+  <p class="col">The producer's report that <em>the truck tank runs out too fast</em> is a mechanism
+  that fits exactly — a progression blocker a broadening audience will not tolerate.
+  <span class="chip c-sugg">mechanism suggestive</span></p>
+
+  <h3 style="margin-top:26px">Seal — a Computer performance problem the metrics cannot see</h3>
+  <div class="tw"><table>
+    <thead><tr><th class="l">Instrument</th><th class="l">Says</th></tr></thead>
+    <tbody>
+      <tr><td class="l">Cross-platform levels</td><td class="l">Computer is healthiest — 19.9 min sessions vs Mobile 14.4, best D1</td></tr>
+      <tr><td class="l">Within-platform delta</td><td class="l">Computer −3.5% D1, Mobile −5.1% — Computer degraded <em>less</em></td></tr>
+      <tr><td class="l"><b>Feedback text by device</b></td><td class="l"><b>Computer 7/14 (50%) mention lag/fps/freeze/crash; Mobile 2/22 (9%)</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="col">All three are correct measurements; the first two are the wrong instrument. The
+  mechanism is <b>survivorship</b> — a performance defect removes its own victims from the
+  denominator, so the affected platform can look <em>better</em> on per-player averages. The defect
+  is real; its cost is <span class="chip c-unk">unmeasurable</span> from retained players.
+  n = 14 Computer comments.</p>
+</section>
+
+<section>
+  <div class="sechead"><span class="tag">04</span><h2>Where the money is: acquisition</h2></div>
+  <p class="col"><b>Home recommendation is 59–83% of DAU on every one of the twelve games.</b> That
+  dependency is the portfolio's defining structural fact, and it is not a lever anyone controls.</p>
+  <p class="col"><b>Search is the highest-quality channel on almost every game</b> — best D7, best
+  7-day playtime, best 30-day revenue per user — and it is 0.1–6% of new users. On Knife Farm,
+  Search delivers D7 of 4.35% against Home's 3.64% and R$6.41 per user against R$3.71.
+  <span class="chip c-conf">confirmed</span></p>
+  <div class="note col"><b>A discrepancy I could not resolve, recorded rather than smoothed.</b>
+  The NONE-granularity acquisition table says Sponsored Ads is 36–98% of
+  <span class="mono">UniqueUsersWithPlaySessions</span> on five games while Home is 0.1–23%. DAU by
+  source says Home is 59–83% everywhere and Sponsored 0–2.3%. Most likely the first counts NEW users
+  and paid traffic delivers many one-visit players who never accumulate into DAU — consistent with
+  Sponsored's worse D7 and playtime wherever it appears. <b>Not verified.</b> I nearly published
+  "Poison Treats is a paid-acquisition game" off the first table alone; the second says Home is
+  59.2% of its DAU.</div>
+</section>
+
+<section>
+  <div class="sechead"><span class="tag">05</span><h2>Intervention map</h2></div>
+  <p class="col">Each pattern with the action, the metric that must move if we are right, the
+  maturation-aware wait, and the result that falsifies it. Waits come from the audit: D1 is readable
+  at +2 days, D2–7 and D7 at +8, D30 at +31. Anything judged sooner is judged on an immature cohort.</p>
+  <div class="tw"><table>
+    <thead><tr><th class="l">Pattern</th><th class="l">Action</th><th class="l">Should move</th><th>Wait</th><th class="l">Falsified if</th></tr></thead>
+    <tbody>
+      <tr><td class="l">PTR down, downstream healthy</td><td class="l">Packaging: thumbnail, icon, title. <b>Not gameplay.</b></td><td class="l">qPTR per creative</td><td>7d</td><td class="l">qPTR flat across all variants</td></tr>
+      <tr><td class="l">PTR down <em>during</em> a reach surge</td><td class="l">Nothing. Documented dilution.</td><td class="l">—</td><td>14d</td><td class="l">bounce rises and play-days fall too</td></tr>
+      <tr><td class="l">Bounce &lt;60s up, PTR flat</td><td class="l">Load time, first 30s, expectation mismatch</td><td class="l"><span class="mono">RFYDuration0To60</span></td><td>2d</td><td class="l">bounce unchanged after ship</td></tr>
+      <tr><td class="l">Feedback perf language on one device</td><td class="l">Device QA — <b>ignore the per-player averages</b></td><td class="l">complaint share on that device</td><td>14d</td><td class="l">share unchanged post-fix</td></tr>
+      <tr><td class="l">Onboarding fine, progression step falls</td><td class="l">Remove the progression blocker</td><td class="l">that step's completion</td><td>8d</td><td class="l">step flat after the change</td></tr>
+      <tr><td class="l">D1 fine, D2–7 falls</td><td class="l">Reason to return; content depth</td><td class="l"><span class="mono">RFYD2To7PlayDays</span></td><td>8d</td><td class="l">D2–7 flat while D1 holds</td></tr>
+      <tr><td class="l">Payer CVR high, ARPPU low</td><td class="l">Price ladder above the current ceiling</td><td class="l">ARPPU</td><td>8d</td><td class="l">ARPPU flat, CVR falls</td></tr>
+      <tr><td class="l">All signals stable, reach falls</td><td class="l"><b>Nothing product-side.</b> Report as external.</td><td class="l">—</td><td>—</td><td class="l">a signal is found to have moved first</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="sechead"><span class="tag">06</span><h2>Per game</h2></div>
+
+  <div class="act"><div class="who">Seal A Driveway<span>10638354731</span></div><div>
+    <b>Two actions, and this is the highest-value game on the page</b> — it earns 3.5× the ARPDAU of
+    anything else in the portfolio.
+    <dl>
+      <dt>Do</dt><dd>Find and remove the first-map progression blocker. The truck-tank capacity is the
+      named candidate. Separately, run Computer-specific performance QA.</dd>
+      <dt>Verify</dt><dd><span class="mono">EstateDistrict</span> completion back above 0.20; Computer
+      performance-complaint share back under 20%</dd>
+      <dt>Wait</dt><dd>8 days for the funnel, 14 for feedback volume</dd>
+      <dt>Falsified if</dt><dd>EstateDistrict stays under 0.13 after the tank change — then the blocker
+      is elsewhere and the dilution reading is right</dd>
+    </dl></div></div>
+
+  <div class="act"><div class="who">+1 Banana Monkey<span>10399712766</span></div><div>
+    <b>Instrument before diagnosing.</b> D2–7 play days fell 35% alongside a −47% reach pullback on a
+    game with no reported bugs — and the funnel ends at <span class="mono">Collected a Banana</span>,
+    roughly the first thirty seconds.
+    <dl>
+      <dt>Do</dt><dd>Extend the funnel past the first minute — first upgrade, first return session.
+      Nothing else can locate this loss.</dd>
+      <dt>Verify</dt><dd>steps exist and fire on &gt;50% of days</dd>
+      <dt>Wait</dt><dd>14 days to accumulate a baseline</dd>
+      <dt>Falsified if</dt><dd>new steps show no drop-off — then the loss is post-session and the
+      candidate is content depth, not onboarding</dd>
+    </dl></div></div>
+
+  <div class="act"><div class="who">Climb Waterslide<span>10030829154</span></div><div>
+    <b>Monetization structure, not the tutorial.</b> The tutorial is stable — nothing moved (all
+    |z| &lt; 1.5). Its losses are persistent levels: step 4→5 <span class="mono">ToRaftShop</span>
+    −15.1%, step 10 <span class="mono">BuyEgg</span> −11.8%.
+    <dl>
+      <dt>Do</dt><dd>Build a price ladder. 3.1% of players pay — near four times the rest of the
+      portfolio — and it takes R$21 from each, 66% below its cohort median, 88% from one-shot dev products.</dd>
+      <dt>Verify</dt><dd>ARPPU above R$26 with payer CVR holding above 2.4%</dd>
+      <dt>Wait</dt><dd>8 days</dd>
+      <dt>Falsified if</dt><dd>ARPPU rises but payer CVR falls below 2.4% — that is cannibalisation, not a ladder</dd>
+    </dl></div></div>
+
+  <div class="act"><div class="who">Become a Brainrot<span>9963622286</span></div><div>
+    <b>The fix worked; the cliff remains.</b> Rebirth1 went 0.309 → 0.434 (z +2.7) and Rebirth2–4 all
+    +2.7 to +3.0, consistent with the 2026-08-07 repair of the v546 regression.
+    <dl>
+      <dt>Do</dt><dd>Attack <span class="mono">FirstMorph → Rebirth1</span>, which still loses 63.8% of
+      the cohort — the largest single structural loss in the portfolio.</dd>
+      <dt>Verify</dt><dd>Rebirth1 completion above 0.50</dd>
+      <dt>Wait</dt><dd>8 days</dd>
+      <dt>Falsified if</dt><dd>Rebirth1 rises but D2–7 play days do not — then the rebirth gate was not
+      what was holding retention</dd>
+    </dl></div></div>
+
+  <div class="act"><div class="who">Verity Companion<span>10565445771</span></div><div>
+    <b>The cap, and a corrected baseline.</b> D1 is ~14.6% — <em>ordinary</em>, statistically the same
+    as Brainrot's 14.3%. An earlier "+115%, best hook in the portfolio" reading was a cohort artifact
+    and is retracted.
+    <dl>
+      <dt>Do</dt><dd>Raise or restructure the message cap. It is the most-named complaint in 2,097
+      comments (8.6%), and at least one player states it stopped them buying.</dd>
+      <dt>Verify</dt><dd>session length above 9.5 min and cohort day-2 survival above 0.42</dd>
+      <dt>Wait</dt><dd>8 days</dd>
+      <dt>Falsified if</dt><dd>sessions lengthen but day-3 survival does not — then the cap truncates
+      sessions without being what stops people returning</dd>
+    </dl></div></div>
+
+  <div class="act"><div class="who">The three frozen games<span>8669915245 · 9758414065 · 10192528661</span></div><div>
+    <b>Don't Wake The Police, Climb Up Mountain, KameHameHa Walls have stopped shipping</b> — last
+    publishes 2026-02-14, 2026-05-24 and 2026-07-17, with feedback confirming players stayed on those
+    versions for months after.
+    <dl>
+      <dt>Do</dt><dd>Decide explicitly whether each is funded or retired. They are also the panel's only
+      untreated controls — worth keeping grabbed for exactly that reason.</dd>
+      <dt>Verify</dt><dd>—</dd>
+      <dt>Wait</dt><dd>—</dd>
+      <dt>Falsified if</dt><dd>—</dd>
+    </dl></div></div>
+</section>
+
+<section>
+  <div class="sechead"><span class="tag">07</span><h2>Instrumentation we are missing</h2></div>
+  <div class="tw"><table>
+    <thead><tr><th class="l">Gap</th><th class="l">Consequence</th><th class="l">Fix owner</th></tr></thead>
+    <tbody>
+      <tr><td class="l">RFY signals start 2026-05-01 on every game</td><td class="l">6 of 17 pullbacks predate them entirely. Plane Training has 538 days of DAU and 126 of RFY.</td><td class="l">Roblox — permanent</td></tr>
+      <tr><td class="l">Technical history ages out (~30d crash/perf, ~56d errors)</td><td class="l">8–551 blind days per game. "Did something break?" is unanswerable before ~July 2026.</td><td class="l">Grab cadence</td></tr>
+      <tr><td class="l">Funnels end in the first minute on most games</td><td class="l">D2–7 losses are unlocatable. Banana Monkey is the clearest case.</td><td class="l">Studio — in-game code</td></tr>
+      <tr><td class="l">Error <span class="mono">MessageHash</span> → text lookup never polls</td><td class="l">Signatures have volumes and no words on all 12 games.</td><td class="l">Grabber</td></tr>
+      <tr><td class="l">No competition or Discovery-side data</td><td class="l">Every external explanation caps at "consistent with".</td><td class="l">Unavailable</td></tr>
+      <tr><td class="l">Revenue by country not pulled</td><td class="l">The market-mix explanation for ARPPU gaps stays untested.</td><td class="l">Grabber — one template</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <div class="sechead"><span class="tag">08</span><h2>What to automate</h2></div>
+  <p class="col">Ranked by what this study actually needed and had to do by hand.</p>
+  <ol class="col">
+    <li><b>Daily grabs on every game.</b> Technical history ages out at 30 days and RFY at ~125.
+    Everything not captured before it ages out is gone permanently, and three games in this panel
+    have blind periods longer than a year.</li>
+    <li><b>Funnel-step density monitoring.</b> A step that stops firing looks identical to a step
+    players stopped reaching. A weekly check for steps whose non-zero rate drops below 50% would have
+    caught this without a false alarm.</li>
+    <li><b>Publish-triggered baselines.</b> The pre-update snapshot is the only grab that cannot be
+    reconstructed afterwards, and it is the one most often skipped.</li>
+    <li><b>Feedback text classification by device.</b> The Seal Computer finding came from 14 comments
+    and no metric could see it. This is cheap and no dashboard does it.</li>
+    <li><b>An objective pullback detector</b> on the J0 rule, alerting when a game crosses it — not to
+    predict, which fails, but to date the event consistently instead of by eye.</li>
+  </ol>
+</section>
+
+<footer>
+  <p class="col">Every figure is reproducible from <span class="mono">analysis/</span> — panel builder,
+  pullback detector, phases 3–7 and the skeptic's review, all committed. Eight claims were retracted
+  during this study, including the panel that phases 2 and 6 originally ran on; the retractions and
+  their causes are in <span class="mono">DIAGNOSIS_LOG.md</span>. Gates at time of writing: verify
+  23/2/8 (documented), audit-plan 180/0, test 51/51.</p>
+</footer>
+</div>
