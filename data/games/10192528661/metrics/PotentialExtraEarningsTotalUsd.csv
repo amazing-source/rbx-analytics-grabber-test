@@ -1,0 +1,2 @@
+date,ts,granularity,series,value,status,captured_at,partial
+2026-08-07,2026-08-07T00:00:00Z,METRIC_GRANULARITY_NONE,Total,0,DATA_STATUS_INVALID,2026-09-03T21:46:01.171Z,

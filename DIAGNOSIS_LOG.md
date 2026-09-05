@@ -253,6 +253,50 @@ and **the instrumentation cannot locate where that loss happens** — the funnel
 ends long before the players do. That is a real gap, and it is the honest
 version of what I said: not a broken funnel, a short one.
 
+## 2026-09-05 — the Waterslide counterexample was an averaging artefact
+
+**RETRACTED: "Waterslide lost 79.8% of Home reach while its D8-28 signals moved
+-3%."** Delivered 09-03 as finding 09's flagship evidence that quality holds
+while Roblox withdraws reach. The -3% was a pre/post average over a window that
+straddled the break. By day: **0.115 -> 0.093, -19%, starting 25 Aug** - exactly
+when cohorts arriving 17-21 Aug reach their D8 window, which is the lag a
+progression bug shipped on 21 Aug must produce.
+
+**REOPENED: `Waterslide Update Watch 2026-08-14` ("v1698 broke nothing"),
+previously HELD.** True about crashes and server errors, silent about
+progression - which is all the watch checks. First-play bounce went 10.0%
+(8 Aug) -> 13.6% (15 Aug) and never returned.
+
+**NARROWED: "Seal's bounce is within benchmark."** A cohort percentile is not a
+health verdict. Absolute: **38.9% of first sessions end inside 180s**, and the
+61-180s band at **24.2% is the worst in the portfolio** (median 14.8%), rising
+27.8% -> 41.6% between 16 and 30 Aug. Onboarding completes fine
+(`ReachedDriveway` 97.2%), so the loss is post-tutorial. Owed: an audience-mix
+control.
+
+**OPEN, and urgent before it reaches a dev team:** our data holds both **63% and
+97%** for Seal's `ReachedDriveway` in the same window. The 63% series pools three
+funnel names in one `FunnelName` filter. Settle against the dashboard.
+
+**Failure mode 7 - a control applied to a hypothesis that was never searched.**
+A placebo across every cut date corrects for *searching*. When the date comes
+from a deploy log or a bug report, no search happened and no penalty is owed. I
+charged the 21 Aug ship the scan penalty (rank 16/78, p=0.21) and buried a real
+finding. Compounding it: a placebo drawn from the same series has no true nulls
+when the phenomenon recurs - June outranked 22 Aug because June is another
+instance. **Control: state where the date came from before choosing the test.
+I picked it -> control owed. A deploy log or feedback picked it -> none.**
+
+**Failure mode 8 - every test detects steps; bugs that need a rejoin produce
+ramps.** Nothing in the suite could see a two-week monotone deterioration, which
+is what both Seal's bounce and Waterslide's D8-28 actually are.
+
+**Still true and kept, against the update theory:** July bounce hit 18.7% and
+reach then doubled. Bounce alone does not predict a pullback. Waterslide shipped
+on 14 of 31 August days, so timing alone can never carry an update claim.
+
+---
+
 ## Recurring failure modes, and the control that catches each
 
 | # | Failure mode | Where it has bitten | The control |

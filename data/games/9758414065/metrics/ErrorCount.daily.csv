@@ -1,0 +1,4 @@
+date,series,value,agg,samples,partial
+2026-09-03,LogSource: Client · Place=137768115850394,12168,sum,44,true
+2026-09-03,LogSource: Server · Place=137768115850394,55779,sum,44,true
+2026-09-03,Place=137768115850394,67947,sum,44,true
