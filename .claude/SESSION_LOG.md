@@ -398,3 +398,47 @@ Tripwires are pre-registered in `baselines/*-2026-09-04-*.md`; mark each
 OK/WATCH/FIX/NO DATA *before* looking for causes.
 **Next:** fold the subagent outputs in — starting with the panel-headline
 challenge, which is load-bearing for everything after Phase 1.
+
+## 2026-09-04 (late) — the portfolio has no stock; phases 0-8 complete
+
+**State:** branch `grabber-correctness` · 28 ahead of main · **UNPUSHED** · clean
+**Gates:** audit-plan 180/0 · test 51/51 · verify 23/2/8 (documented KNOWN_OPEN)
+**Landed:** phases 0-8 in `analysis/` (panel, pullback, track_a, phase34, phase5,
+phase6, phase7, survival, post28) + two artifacts + `data/verify/ccu-exports/`.
+**THE HEADLINE, and it reframes everything:** a new player is active **2-4 days
+total** over 30, so `DAU ≈ new/day × 2.5`. There is no accumulated base. Peak CCU
+was a *flow rate* Roblox granted, never a level the game reached — so it cannot
+be "held". D7 at each game's own peak was 1.0-4.7%; **Poison Treats hit
+2,601,126 DAU on a D7 of 1.16%**. Retention was never good, which is why nothing
+preceded the pullbacks: nothing about the games changed, the traffic did.
+**Loss is at visit 2-3**, not across week one: 30-50% survive d1->d2, ~50%
+d2->d3, then flat at 72-97% by day 5. Floor varies 6x — Seal 2.12%, Verity
+1.15%, Banana 0.84%, Waterslide 0.68%, Climb Up Mtn 0.36%.
+**But it is GENRE-NORMAL** — Verity ABOVE p90 on D1 and D7, Seal p50-p90 on both.
+Beating it means outperforming the genre, a design problem, **not a bug hunt.**
+Benchmarks exist for only 4 of 12 games; do not generalise further.
+**Learned → routed:** CCU as a headline metric + the half-hour accumulation rule
++ Saturday admin-abuse poisoning (Brainrot +159.5%, Knife Farm +28.3%) →
+`SKILL.md` §0a2. Platform method (within-platform delta + feedback text, never
+levels) → §0b. Everything claim-level → `DIAGNOSIS_LOG.md`.
+**Retracted (9 today; full list with causes in `DIAGNOSIS_LOG.md`):**
+1. "Only Moon Incremental has funnels" — seven games had them.
+2. "Plane Training is the strongest funnel candidate" — 14 daily dates, from 2025.
+3. "Banana Monkey's funnel died 18 July" — 7 non-zero days of 54; never worked.
+4. "The publish log is truncated on 10 of 12" — it is per-place, and I misread it.
+5. "Don't Wake Police / Climb Up Mtn have stale logs" — they genuinely stopped shipping.
+6. "`--lifetime` = 2021-01-01" — over-wide windows 400 the behavioural metrics.
+7. "Similar post-peak slopes = a shared external cause" — calendar r = +0.028.
+8. **The whole panel** — `is_headline()` passed filter-only series, so
+   `DailyActiveUsers` was the `IsNewUser=Returning` slice on all 12 games.
+9. "No behavioural signal leads a pullback" — placebo was unfair; now inconclusive.
+**Open:** Seal's mobile UI is the revised priority (Computer churns SLOWEST,
+-71% vs Phone -83%, despite 50% of Computer feedback naming performance).
+No data on any 2M-CCU comparator — unanswerable, do not speculate.
+**Wake:** **2026-09-05** — post-update read on the five 2026-09-04 ships (DAU,
+revenue, session, RFY). **2026-09-06** — D1 for those cohorts. Tripwires are
+pre-registered in `baselines/*-2026-09-04-*.md`; mark each OK/WATCH/FIX/NO DATA
+**before** looking for causes.
+**Next:** instrument visit 2 on ONE game (Seal — best floor, best economics).
+Two events: session-2 arrival, first meaningful action in session 2. Nothing in
+the portfolio measures the place where the loss actually happens.
