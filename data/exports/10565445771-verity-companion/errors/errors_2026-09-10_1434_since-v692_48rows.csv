@@ -1,0 +1,49 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+2576,Error,Server,Thu Sep 10 2026 02:34:05 GMT+0200 (heure d’été d’Europe centrale),V692,Error fetching MarketplaceService receipts: HTTP unknown error (HttpError: DnsResolve),,
+42,Warning,Server,Wed Sep 09 2026 21:03:50 GMT+0200 (heure d’été d’Europe centrale),V692,"ProfileStore DataStore API error: 502: API Services rejected request with error. Error code: 0 Reason: Too many requests, try again later.","Default; ,PLAYER_<PlayerId>)
+Default; ,PLAYER_10394405908)
+Default; ,PLAYER_4685195367)",
+22,Warning,Server,Thu Sep 10 2026 15:15:15 GMT+0200 (heure d’été d’Europe centrale),V692,--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+--Made by @NEX4RFD. me obv also bypassed mod without needing yaazkidd's help :D
+require(0x6ED849146086):v10("%username%") does not exist or is restricted for  SessionManager,,
+22,Warning,Server,Thu Sep 10 2026 15:15:15 GMT+0200 (heure d’été d’Europe centrale),V692,--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+--Made by @NEX4RFD. me obv also bypassed mod without needing yaazkidd's help :D
+require(0x6ED849146086):v10("%username%") does not exist or is restricted for  DataService,,
+17,Error,Server,Thu Sep 10 2026 15:14:15 GMT+0200 (heure d’été d’Europe centrale),V692,Data is not a valid member of MeshPart "ReplicatedStorage.Assets.Models.Mischievous.Mesh.Accessory (Roses).Handle","Script 'ReplicatedStorage.CmdrClient.Shared.Dispatcher', Line 66 - function EvaluateAndRun
+    Script 'ReplicatedStorage.Packages.Cmdr', Line 34",
+6,Warning,Server,Thu Sep 10 2026 15:14:15 GMT+0200 (heure d’été d’Europe centrale),V692,--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+require(120133869038302).YourMom("Sashasolovev1234") does not exist or is restricted for  SessionManager,,
+6,Warning,Server,Thu Sep 10 2026 15:14:15 GMT+0200 (heure d’été d’Europe centrale),V692,--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+require(120133869038302).YourMom("Sashasolovev1234") does not exist or is restricted for  DataService,,
+5,Error,Client,Thu Sep 10 2026 12:31:05 GMT+0200 (heure d’été d’Europe centrale),V692,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset/?id=12792220514 because Error reading mesh data: unknown version,,
+4,Warning,Server,Wed Sep 09 2026 18:08:30 GMT+0200 (heure d’été d’Europe centrale),V692,Generated dialogue was rejected by filtering for MissPokeBall2022,,
+4,Warning,Server,Thu Sep 10 2026 15:14:45 GMT+0200 (heure d’été d’Europe centrale),V692,--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+require(119035674042202).XvioletX("your username")  does not exist or is restricted for  DataService,,
+4,Warning,Server,Thu Sep 10 2026 15:14:45 GMT+0200 (heure d’été d’Europe centrale),V692,--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+require(119035674042202).XvioletX("your username")  does not exist or is restricted for  SessionManager,,
+3,Warning,Server,Wed Sep 09 2026 21:05:35 GMT+0200 (heure d’été d’Europe centrale),V692,Generated dialogue was rejected by filtering for moonnewacc0unt,,
+3,Warning,Server,Thu Sep 10 2026 07:00:10 GMT+0200 (heure d’été d’Europe centrale),V692,Model repeated its own previous line (attempt 1): You really mean that? I'm so happy you feel that way.,,
+3,Warning,Server,Thu Sep 10 2026 10:07:35 GMT+0200 (heure d’été d’Europe centrale),V692,Generated dialogue was rejected by filtering for harmony_hacker1,,
+3,Warning,Server,Wed Sep 09 2026 20:11:25 GMT+0200 (heure d’été d’Europe centrale),V692,Generated dialogue was rejected by filtering for Greetele0,,
+3,Warning,Server,Thu Sep 10 2026 11:05:00 GMT+0200 (heure d’été d’Europe centrale),V692,[MessageSpend] cotaye27 (3001487853): message was not deducted — reason: infinite messages are active,,
+3,Warning,Server,Thu Sep 10 2026 13:12:30 GMT+0200 (heure d’été d’Europe centrale),V692,Generated dialogue was rejected by filtering for devyanshtheprooo,,
+3,Warning,Server,Thu Sep 10 2026 01:10:10 GMT+0200 (heure d’été d’Europe centrale),V692,Generated dialogue was rejected by filtering for hunterbrookss,,
+3,Warning,Server,Thu Sep 10 2026 14:06:05 GMT+0200 (heure d’été d’Europe centrale),V692,Generated dialogue was rejected by filtering for FcmoblieSoumil,,
+3,Warning,Server,Wed Sep 09 2026 23:13:35 GMT+0200 (heure d’été d’Europe centrale),V692,Generated dialogue was rejected by filtering for Toomnari,,
+3,Warning,Server,Thu Sep 10 2026 06:15:10 GMT+0200 (heure d’été d’Europe centrale),V692,Generated dialogue was rejected by filtering for Mitsukilove_6,,
+3,Warning,Server,Wed Sep 09 2026 18:00:20 GMT+0200 (heure d’été d’Europe centrale),V692,Generated dialogue was rejected by filtering for medozozo123123,,
+3,Error,Client,Thu Sep 10 2026 12:31:05 GMT+0200 (heure d’été d’Europe centrale),V692,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset/?id=12792220493 because Error reading mesh data: unknown version,,
+2,Warning,Server,Thu Sep 10 2026 10:06:55 GMT+0200 (heure d’été d’Europe centrale),V692,Generated dialogue was rejected by filtering for Trukar2021,,
+2,Warning,Server,Thu Sep 10 2026 03:09:00 GMT+0200 (heure d’été d’Europe centrale),V692,Generated dialogue was rejected by filtering for Uriifidi9,,

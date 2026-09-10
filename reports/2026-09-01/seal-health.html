@@ -1,0 +1,551 @@
+<title>Seal A Driveway Health Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;700&display=swap">
+
+<style>
+:root{
+  --ground:#E6E8E7;
+  --surface:#FAFBFA;
+  --surface-2:#EDF0EE;
+  --ink:#14181A;
+  --ink-2:#3C464B;
+  --muted:#69747A;
+  --rule:#C7CFCC;
+  --rule-soft:#DCE1DF;
+  --accent:#B85C00;
+  --accent-soft:#F4E4D2;
+
+  --crit:#A82B21;   --crit-bg:#F7E2E0;
+  --high:#8A5A00;   --high-bg:#F6E9D2;
+  --med:#2F6B57;    --med-bg:#DFEEE8;
+  --info:#4C5A67;   --info-bg:#E3E8EC;
+
+  --bad:#A82B21;    --bad-bg:#FBF0EF;
+  --good:#2F6B57;   --good-bg:#EEF6F3;
+
+  --code-bg:#F2F5F3;
+  --measure:66ch;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0F1214;
+    --surface:#161A1C;
+    --surface-2:#1D2326;
+    --ink:#E8EDEB;
+    --ink-2:#B2BCC0;
+    --muted:#849197;
+    --rule:#2A3236;
+    --rule-soft:#212829;
+    --accent:#E89A4A;
+    --accent-soft:#32241A;
+
+    --crit:#F08A7E;  --crit-bg:#37201D;
+    --high:#E2B25F;  --high-bg:#312818;
+    --med:#6FC3A4;   --med-bg:#152F29;
+    --info:#9DAAB4;  --info-bg:#1E262B;
+
+    --bad:#F08A7E;   --bad-bg:#2A1B19;
+    --good:#6FC3A4;  --good-bg:#152A24;
+
+    --code-bg:#1B2124;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0F1214;
+  --surface:#161A1C;
+  --surface-2:#1D2326;
+  --ink:#E8EDEB;
+  --ink-2:#B2BCC0;
+  --muted:#849197;
+  --rule:#2A3236;
+  --rule-soft:#212829;
+  --accent:#E89A4A;
+  --accent-soft:#32241A;
+
+  --crit:#F08A7E;  --crit-bg:#37201D;
+  --high:#E2B25F;  --high-bg:#312818;
+  --med:#6FC3A4;   --med-bg:#152F29;
+  --info:#9DAAB4;  --info-bg:#1E262B;
+
+  --bad:#F08A7E;   --bad-bg:#2A1B19;
+  --good:#6FC3A4;  --good-bg:#152A24;
+
+  --code-bg:#1B2124;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground);
+  color:var(--ink-2);
+  font-family:"Source Serif 4",Georgia,serif;
+  font-size:16.5px;
+  line-height:1.62;
+  margin:0;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px 90px}
+
+/* ---------- masthead ---------- */
+.mast{padding:56px 0 30px;border-bottom:3px solid var(--ink);margin-bottom:38px}
+.eyebrow{
+  font-family:"Archivo",system-ui,sans-serif;font-size:11.5px;font-weight:600;
+  letter-spacing:.19em;text-transform:uppercase;color:var(--accent);margin:0 0 16px;
+}
+h1{
+  font-family:"Archivo",system-ui,sans-serif;font-weight:800;
+  font-size:clamp(34px,6vw,58px);line-height:1.04;letter-spacing:-.022em;
+  color:var(--ink);margin:0 0 20px;text-wrap:balance;
+}
+.stand{font-size:19px;color:var(--ink-2);max-width:var(--measure);margin:0 0 26px}
+.meta{
+  display:flex;flex-wrap:wrap;gap:9px;
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11.5px;color:var(--muted);
+}
+.meta span{border:1px solid var(--rule);padding:4px 9px;white-space:nowrap}
+
+/* ---------- verdict ---------- */
+.verdict{
+  background:var(--surface);border:1px solid var(--rule);
+  border-left:5px solid var(--accent);padding:26px 28px;margin:0 0 46px;
+}
+.verdict h2{
+  font-family:"Archivo",system-ui,sans-serif;font-size:12px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 14px;
+}
+.verdict p{margin:0 0 13px;max-width:var(--measure)}
+.verdict p:last-child{margin-bottom:0}
+.verdict b{color:var(--ink);font-weight:600}
+
+/* ---------- sections ---------- */
+.sec{
+  font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-size:12.5px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink);
+  margin:0 0 24px;padding-bottom:9px;border-bottom:2px solid var(--ink);
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+}
+.sec span{color:var(--muted);font-weight:500;letter-spacing:.07em}
+section{margin:0 0 58px}
+h3{
+  font-family:"Archivo",system-ui,sans-serif;font-weight:700;
+  font-size:clamp(20px,2.4vw,25px);line-height:1.2;letter-spacing:-.012em;
+  color:var(--ink);margin:0 0 12px;text-wrap:balance;
+}
+h4{
+  font-family:"Archivo",system-ui,sans-serif;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:600;color:var(--muted);margin:26px 0 11px;
+}
+p{margin:0 0 16px;max-width:var(--measure)}
+.lede{font-size:18px;color:var(--ink-2)}
+strong{color:var(--ink);font-weight:600}
+code.inl{
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.87em;
+  background:var(--surface-2);padding:1px 5px;color:var(--ink);
+}
+a{color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--accent)}
+a:hover{color:var(--accent)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- tables ---------- */
+.dwrap{overflow-x:auto;margin:0 0 22px;border:1px solid var(--rule-soft);background:var(--surface)}
+table{
+  border-collapse:collapse;width:100%;
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.6px;
+  font-variant-numeric:tabular-nums;min-width:520px;
+}
+th{
+  text-align:left;font-weight:700;color:var(--muted);font-size:10.5px;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:11px 14px;border-bottom:1px solid var(--rule);white-space:nowrap;
+}
+td{padding:8px 14px;border-bottom:1px solid var(--rule-soft);color:var(--ink-2);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.lbl{color:var(--ink);font-weight:700;white-space:normal;min-width:190px}
+td.num{text-align:right}
+td.neg{color:var(--bad);font-weight:700;text-align:right}
+td.pos{color:var(--good);font-weight:700;text-align:right}
+td.em{color:var(--ink);font-weight:700}
+tr.rule td{border-bottom:1px solid var(--rule)}
+.caption{
+  font-family:"Archivo",system-ui,sans-serif;font-size:12px;color:var(--muted);
+  margin:-10px 0 26px;max-width:var(--measure);
+}
+
+/* ---------- chips ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 13px}
+.chip{
+  font-family:"Archivo",system-ui,sans-serif;font-size:10.5px;font-weight:600;
+  letter-spacing:.11em;text-transform:uppercase;padding:4px 9px;white-space:nowrap;
+}
+.c-crit{background:var(--crit-bg);color:var(--crit)}
+.c-high{background:var(--high-bg);color:var(--high)}
+.c-med{background:var(--med-bg);color:var(--med)}
+.c-info{background:var(--info-bg);color:var(--info)}
+.c-new{background:var(--accent-soft);color:var(--accent)}
+.c-file{
+  background:transparent;color:var(--muted);border:1px solid var(--rule);
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:400;
+  letter-spacing:0;text-transform:none;
+}
+
+/* ---------- fault card ---------- */
+.fault{background:var(--surface);border:1px solid var(--rule);margin:0 0 30px}
+.fault.new{border-left:5px solid var(--accent)}
+.fault .head{padding:22px 26px 18px;border-bottom:1px solid var(--rule-soft)}
+.fault .body{padding:22px 26px 26px}
+.fault .head p:last-child{margin-bottom:0}
+
+pre{
+  margin:0 0 18px;background:var(--code-bg);border:1px solid var(--rule-soft);
+  border-left:3px solid var(--rule);padding:14px 16px;overflow-x:auto;
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.4px;
+  line-height:1.6;color:var(--ink);tab-size:2;
+}
+pre .ln{color:var(--muted);user-select:none}
+pre .cm{color:var(--muted);font-style:italic}
+pre .hl{color:var(--bad);font-weight:700}
+pre .ok{color:var(--good);font-weight:700}
+.pane-tag{
+  font-family:"Archivo",system-ui,sans-serif;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:600;margin:0 0 8px;
+}
+.pane-tag.now{color:var(--bad)}
+.pane-tag.fix{color:var(--good)}
+pre.now{border-left-color:var(--bad);background:var(--bad-bg)}
+pre.fix{border-left-color:var(--good);background:var(--good-bg)}
+
+.caveat{
+  border-top:1px solid var(--rule-soft);margin-top:20px;padding-top:16px;
+  font-size:15.5px;color:var(--muted);max-width:var(--measure);
+}
+.caveat b{color:var(--ink-2);font-weight:600}
+
+ol.acts{max-width:var(--measure);padding-left:0;list-style:none;counter-reset:a;margin:0}
+ol.acts li{
+  counter-increment:a;position:relative;padding:0 0 20px 46px;margin:0;
+}
+ol.acts li::before{
+  content:counter(a);position:absolute;left:0;top:1px;
+  font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;
+  color:var(--accent);border:1px solid var(--rule);width:28px;height:28px;
+  display:flex;align-items:center;justify-content:center;
+}
+ol.acts li b{color:var(--ink)}
+
+.foot{
+  margin-top:64px;padding-top:22px;border-top:3px solid var(--ink);
+  font-family:"Archivo",system-ui,sans-serif;font-size:13.5px;color:var(--muted);
+  max-width:var(--measure);
+}
+.foot p{margin:0 0 10px;max-width:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">Seal A Driveway &middot; LiveOps health check</p>
+  <h1>The CCU is real, and it is not Seal's fault</h1>
+  <p class="stand">Concurrents are down 53% on matched time-of-day slots. Four of five portfolio games hit their lowest reading on record today, so the fall is not this game breaking. What <em>is</em> Seal's own is the first session &mdash; and the mobile tutorial sits on top of the pour button.</p>
+  <div class="meta">
+    <span>Universe 10638354731</span>
+    <span>Place 120014184236770</span>
+    <span>Live build v908</span>
+    <span>Read 2026-09-01 14:05 UTC</span>
+    <span>Source read: dev place, read-only</span>
+  </div>
+</header>
+
+<div class="verdict">
+  <h2>The short version</h2>
+  <p><b>CCU is genuinely low, and it is not normal &mdash; but it is not a Seal event.</b> Today's mean over the 29 elapsed half-hour slots is <b>2,111</b> against a 7-day baseline of 4,539: <b>&minus;53.5%</b>. On the same window Brainrot is &minus;45.2%, Banana Monkey &minus;36.9% and Waterslide &minus;28.2% &mdash; and all three are at <b>rank 27 of 27</b>, their lowest reading in the whole series. Verity alone holds at &minus;7.6%. Five games do not break the same morning.</p>
+  <p><b>The public board did not move nearly enough to explain it.</b> Combined CCU across the discovery sorts is 7,739,431 today against 7,537,949 on 08-25 at a comparable hour &mdash; up 2.7%. Excluding <code class="inl">Steal An Egg</code>, which now holds <b>21.6%</b> of the entire board (12.2% on 08-25), the rest of the board is down about 10% since 08-28. Our four are down 29&ndash;54%. The board explains a slice, not the fall.</p>
+  <p><b>Nothing in the v908 build is breaking the game.</b> <code class="inl">ClientCrashRate15m</code> has fallen every day (0.53% &rarr; 0.42%), <code class="inl">OomUnexpectedExits</code> 135 &rarr; 80, <code class="inl">ClientFpsP10</code> 45.3 &rarr; 48.3. The errors-per-CCU spike of 08-30 cleared on its own. Revenue rose every day through 08-30 and <code class="inl">PayingUsers</code> is up 36% since the publish.</p>
+  <p><b>Seal's own problem is the first session, it is getting worse daily, and the mechanism is now named in source.</b> 41.6% of Recommended-For-You first plays end inside three minutes, up from 34.5% a week ago. The tutorial card is the only major UI in the game that does not shrink with the viewport, and on a phone it is drawn on top of the pour button.</p>
+</div>
+
+<!-- ============================================================ -->
+<section>
+  <h2 class="sec">1 &middot; The concurrents reading <span>matched slots, not day totals</span></h2>
+
+  <p class="lede">Every figure below is the mean over the same 29 elapsed half-hour slots (00:00&ndash;14:00 UTC) on every day compared, so today's part-day is never measured against whole ones and the time-of-day shape divides out.</p>
+
+  <h4>Today against the portfolio</h4>
+  <div class="dwrap"><table>
+    <thead><tr>
+      <th>Game</th><th>Universe</th><th class="num">Today</th><th class="num">7-day base</th>
+      <th class="num">vs base</th><th>Rank on this window</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="lbl">Seal A Driveway</td><td>10638354731</td><td class="num em">2,111</td><td class="num">4,539</td><td class="neg">&minus;53.5%</td><td>11 of 20</td></tr>
+      <tr><td class="lbl">Become a Brainrot</td><td>9963622286</td><td class="num">795</td><td class="num">1,450</td><td class="neg">&minus;45.2%</td><td class="em">27 of 27 &mdash; lowest</td></tr>
+      <tr><td class="lbl">Banana Monkey Destruction</td><td>10399712766</td><td class="num">2,372</td><td class="num">3,758</td><td class="neg">&minus;36.9%</td><td class="em">27 of 27 &mdash; lowest</td></tr>
+      <tr><td class="lbl">Climb Waterslide and Slide</td><td>10030829154</td><td class="num">1,712</td><td class="num">2,384</td><td class="neg">&minus;28.2%</td><td class="em">27 of 27 &mdash; lowest</td></tr>
+      <tr><td class="lbl">Verity Companion</td><td>10565445771</td><td class="num">3,769</td><td class="num">4,079</td><td class="neg">&minus;7.6%</td><td>14 of 27</td></tr>
+    </tbody>
+  </table></div>
+  <p class="caption">Seal ranks mid-table only because it was a few hundred CCU in mid-August; against its own recent level it is the worst of the five. Verity is the outlier that did <em>not</em> fall &mdash; and Verity is the one game that shipped a fix (v680, the Mystic Library one-token fix) on 08-31.</p>
+
+  <h4>Seal's own slide &mdash; five days, one direction</h4>
+  <div class="dwrap"><table>
+    <thead><tr><th>Day</th><th class="num">Mean CCU, 00:00&ndash;14:00</th><th class="num">Day on day</th></tr></thead>
+    <tbody>
+      <tr><td class="lbl">2026-08-28 Fri</td><td class="num em">5,725</td><td class="num">peak</td></tr>
+      <tr><td class="lbl">2026-08-29 Sat</td><td class="num">5,339</td><td class="neg">&minus;6.7%</td></tr>
+      <tr><td class="lbl">2026-08-30 Sun</td><td class="num">4,902</td><td class="neg">&minus;8.2%</td></tr>
+      <tr><td class="lbl">2026-08-31 Mon</td><td class="num">3,393</td><td class="neg">&minus;30.8%</td></tr>
+      <tr><td class="lbl">2026-09-01 Tue</td><td class="num em">2,111</td><td class="neg">&minus;37.8%</td></tr>
+    </tbody>
+  </table></div>
+  <p>The two steep days are 08-31 and 09-01 &mdash; and those are the two days the rest of the portfolio fell as well. The 29th and 30th were a gentle give-back of the publish-week spike. Read as one series it is a slow decline that a sharp portfolio-wide event landed on top of.</p>
+
+  <h4>The per-slot deficit is a bowl, not a step</h4>
+  <p>Against the median of the last 14 days, the deficit runs &minus;22% at 00:00, deepens to &minus;52% at 06:30, then lifts back to &minus;30% to &minus;35% across the whole afternoon &mdash; the last four slots read &minus;30%, &minus;32%, &minus;33%, &minus;35%. A break inside the game costs the same share of players in every slot. A deficit that deepens through the UTC small hours and recovers as the main play hours arrive is a discovery-and-audience shape, and it appeared on several unrelated games at once.</p>
+
+  <p><strong>The headline &minus;53.5% is therefore harder on the game than the live picture is.</strong> It averages a very deep overnight deficit into a much shallower afternoon one. Judged only on the hours that carry the audience, Seal is running about a third below its recent normal, not a half.</p>
+
+  <div class="caveat">
+    <b>One honest limit on the board comparison.</b> The platform snapshots were taken at different times of day &mdash; 08-25 at 14:33Z, 08-28 at 15:31Z, today at 13:35Z. The 08-29 snapshot at 11:17Z is not comparable and is excluded. Board CCU moves by hour, so treat the 2.7% and &minus;4.5% as approximate. They do not need to be precise to carry the point: nothing on the board moved 50%.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2 class="sec">2 &middot; What is actually eroding <span>reach, appeal, funnel</span></h2>
+
+  <p class="lede">Behavioural metrics lag about two days, so the newest settled day here is 08-30. Every rate below is settled; none of it depends on today.</p>
+
+  <h4>Impressions plateaued; everything under them kept falling</h4>
+  <div class="dwrap"><table>
+    <thead><tr><th>Series</th><th class="num">08-25</th><th class="num">08-27</th><th class="num">08-28</th><th class="num">08-29</th><th class="num">08-30</th><th class="num">Move</th></tr></thead>
+    <tbody>
+      <tr class="rule"><td class="lbl">UniqueUsersWithImpressions<br><span style="font-weight:400;color:var(--muted)">how many people saw the game</span></td><td class="num">2,140,285</td><td class="num">3,137,925</td><td class="num em">4,890,448</td><td class="num">4,009,382</td><td class="num">3,975,300</td><td class="neg">&minus;19% off peak</td></tr>
+      <tr><td class="lbl">EndToEndCVR<br><span style="font-weight:400;color:var(--muted)">saw it &rarr; played it</span></td><td class="num">10.40%</td><td class="num">10.49%</td><td class="num">10.12%</td><td class="num">9.55%</td><td class="num em">9.24%</td><td class="neg">&minus;12%</td></tr>
+      <tr><td class="lbl">RFYPlayThroughRate<br><span style="font-weight:400;color:var(--muted)">the recommendation feed's own conversion</span></td><td class="num">2.81%</td><td class="num">2.77%</td><td class="num">2.31%</td><td class="num">2.02%</td><td class="num em">1.94%</td><td class="neg">&minus;31%</td></tr>
+      <tr><td class="lbl">RFYQualifiedPTR</td><td class="num">1.84%</td><td class="num">1.76%</td><td class="num">1.40%</td><td class="num">1.22%</td><td class="num em">1.13%</td><td class="neg">&minus;39%</td></tr>
+      <tr class="rule"><td class="lbl">RFYDuration0To60<br><span style="font-weight:400;color:var(--muted)">quit inside one minute</span></td><td class="num">13.14%</td><td class="num">13.40%</td><td class="num">14.51%</td><td class="num">14.58%</td><td class="num em">15.20%</td><td class="neg">+16%</td></tr>
+      <tr><td class="lbl">RFYDuration61To180<br><span style="font-weight:400;color:var(--muted)">quit between one and three minutes</span></td><td class="num">21.31%</td><td class="num">23.02%</td><td class="num">24.89%</td><td class="num">25.03%</td><td class="num em">26.36%</td><td class="neg">+24%</td></tr>
+      <tr class="rule"><td class="lbl"><strong>Gone inside three minutes</strong></td><td class="num em">34.45%</td><td class="num em">36.42%</td><td class="num em">39.40%</td><td class="num em">39.61%</td><td class="num em">41.56%</td><td class="neg">+21%</td></tr>
+      <tr><td class="lbl">RFYD1Playtime<br><span style="font-weight:400;color:var(--muted)">minutes on day one</span></td><td class="num">16.41</td><td class="num">15.10</td><td class="num">13.66</td><td class="num">14.35</td><td class="num em">13.98</td><td class="neg">&minus;15%</td></tr>
+      <tr><td class="lbl">ForwardD1Retention</td><td class="num">13.52%</td><td class="num">12.71%</td><td class="num em">11.19%</td><td class="num">11.68%</td><td class="num">&mdash;</td><td class="neg">&minus;14%</td></tr>
+    </tbody>
+  </table></div>
+
+  <p><strong>You asked whether the metrics really say players leave after about three minutes. They do, and it is worse than when the defect report said it.</strong> <code class="inl">RFYDuration0To60</code> plus <code class="inl">RFYDuration61To180</code> is <strong>41.6%</strong> on 08-30 &mdash; up from 39.6% on 08-29 and 34.5% a week before. Two in five people who arrive from the recommendation feed are gone before three minutes have passed.</p>
+
+  <p>That is a ranking spiral, not a coincidence. Recommended-For-You allocates impressions on play-through and playtime; both fell; impressions came off the 08-28 peak and stopped growing; and because conversion kept falling underneath them, the CCU falls faster than the impressions do. When impressions dropped 18% on 08-29, play-through fell a further 12.5% instead of recovering &mdash; so dilution from the scale-up is not the whole story.</p>
+
+  <h4>The funnel loses most of its people at the first step</h4>
+  <div class="dwrap"><table>
+    <thead><tr><th>FunnelCohortCompletionRate</th><th class="num">08-22</th><th class="num">08-26</th><th class="num">08-29</th><th class="num">08-31</th><th class="num">Change</th></tr></thead>
+    <tbody>
+      <tr><td class="lbl">1 &nbsp;Started</td><td class="num">100.0</td><td class="num">100.0</td><td class="num">100.0</td><td class="num">100.0</td><td class="num">&mdash;</td></tr>
+      <tr><td class="lbl">2 &nbsp;ReachedDriveway</td><td class="num em">68.6</td><td class="num">66.2</td><td class="num">63.5</td><td class="num em">62.0</td><td class="neg">&minus;6.6 pp</td></tr>
+      <tr><td class="lbl">3 &nbsp;PouredOut</td><td class="num">44.5</td><td class="num">41.8</td><td class="num">39.9</td><td class="num">38.9</td><td class="neg">&minus;5.6 pp</td></tr>
+      <tr><td class="lbl">4 &nbsp;FirstPass</td><td class="num">41.3</td><td class="num">38.8</td><td class="num">36.3</td><td class="num">35.1</td><td class="neg">&minus;6.2 pp</td></tr>
+      <tr><td class="lbl">5 &nbsp;DrivewaySealed</td><td class="num">39.6</td><td class="num">36.9</td><td class="num">34.1</td><td class="num">32.9</td><td class="neg">&minus;6.7 pp</td></tr>
+      <tr><td class="lbl">6 &nbsp;Complete</td><td class="num">48.8</td><td class="num">45.6</td><td class="num">41.5</td><td class="num">39.1</td><td class="neg">&minus;9.7 pp</td></tr>
+    </tbody>
+  </table></div>
+  <p class="caption">Every step declines together and has since 08-22, six days before the publish &mdash; so no single step broke. But the largest single drop-off in the game is <strong>Started &rarr; ReachedDriveway</strong>: 38% of people who start the funnel never reach a driveway at all, against 31.4% ten days ago. The newest two days settle up 1&ndash;4 pp on this game, so read 08-31 as provisional.</p>
+
+  <h4>The counter-story: money is fine</h4>
+  <div class="dwrap"><table>
+    <thead><tr><th>Series</th><th class="num">08-27</th><th class="num">08-28</th><th class="num">08-29</th><th class="num">08-30</th><th class="num">27&rarr;30</th></tr></thead>
+    <tbody>
+      <tr><td class="lbl">DailyRevenue (R$)</td><td class="num">689,309</td><td class="num">718,003</td><td class="num">810,220</td><td class="num em">822,060</td><td class="pos">+19.3%</td></tr>
+      <tr><td class="lbl">PayingUsers</td><td class="num">3,894</td><td class="num">4,265</td><td class="num">4,820</td><td class="num em">5,315</td><td class="pos">+36.5%</td></tr>
+      <tr><td class="lbl">PayingUsersCVR</td><td class="num">1.09%</td><td class="num">0.79%</td><td class="num">1.16%</td><td class="num em">1.29%</td><td class="pos">+18.3%</td></tr>
+      <tr><td class="lbl">AverageRevenuePerUser</td><td class="num">1.9260</td><td class="num">1.3348</td><td class="num">1.9450</td><td class="num em">1.9957</td><td class="pos">+3.6%</td></tr>
+      <tr><td class="lbl">DailyActiveUsers</td><td class="num">356,255</td><td class="num">533,776</td><td class="num">417,306</td><td class="num">411,920</td><td class="pos">+15.6%</td></tr>
+    </tbody>
+  </table></div>
+  <p>ARPDAU is the growth-proof number and it is up. The v908 cash packs are still working. <strong>The people who get past the first three minutes monetize better than they ever have</strong> &mdash; which is precisely why the first three minutes are worth fixing rather than tolerating.</p>
+
+  <h4>The technical rung is clean</h4>
+  <div class="dwrap"><table>
+    <thead><tr><th>Series</th><th class="num">08-27</th><th class="num">08-29</th><th class="num">08-30</th><th class="num">08-31</th><th class="num">Direction</th></tr></thead>
+    <tbody>
+      <tr><td class="lbl">ClientCrashRate15m</td><td class="num">0.48%</td><td class="num">0.45%</td><td class="num">0.42%</td><td class="num">0.46%</td><td class="pos">improving</td></tr>
+      <tr><td class="lbl">OomUnexpectedExits</td><td class="num">135</td><td class="num">189</td><td class="num">152</td><td class="num">80</td><td class="pos">improving</td></tr>
+      <tr><td class="lbl">ClientFpsP10</td><td class="num">45.32</td><td class="num">46.63</td><td class="num">47.70</td><td class="num">48.28</td><td class="pos">improving</td></tr>
+      <tr><td class="lbl">Errors per CCU</td><td class="num">1,361.9</td><td class="num">1,590.6</td><td class="num em">1,977.6</td><td class="num">1,410.7</td><td class="pos">spike cleared</td></tr>
+    </tbody>
+  </table></div>
+  <p class="caption">The errors-per-CCU tripwire that fired on 08-30 at +45.2% resolved without intervention &mdash; 08-31 is +3.6% and today +13.5% over the frozen 08-27 baseline. It was bursty, not a step. Note <code class="inl">ClientFpsP10</code> is the aggregate tenth percentile; it does not contradict the desktop-specific lag below, which is a CPU-time problem on a subset of machines.</p>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2 class="sec">3 &middot; The fault ledger, re-checked in source <span>read-only, dev place</span></h2>
+
+  <p class="lede">All ten faults from the v908 defect report were re-read line by line. <strong>Not one has been fixed.</strong> Line numbers still match the report exactly, which means the dev place has not moved on any of these files.</p>
+
+  <div class="dwrap"><table>
+    <thead><tr><th>#</th><th>Fault</th><th>Where</th><th>Severity</th><th>Status today</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="lbl">Truck tank capacity is set once, before upgrades load</td><td>TruckServer:906</td><td style="color:var(--crit);font-weight:700">Critical</td><td>Still present</td></tr>
+      <tr><td>2</td><td class="lbl">The pump drains the tank it is sold to fill</td><td>TruckServer:1783</td><td style="color:var(--high);font-weight:700">High</td><td>Still present</td></tr>
+      <tr><td>3</td><td class="lbl">Desktop has no performance preset</td><td>DrivewayClient:179</td><td style="color:var(--high);font-weight:700">High</td><td>Still present</td></tr>
+      <tr><td>4</td><td class="lbl">The blade sweep has no frame budget</td><td>SurfaceGrid:1596</td><td style="color:var(--high);font-weight:700">High</td><td>Still present</td></tr>
+      <tr><td>5</td><td class="lbl">Showroom plate quotes studs/second, not mph</td><td>DealershipSigns:70</td><td style="color:var(--med);font-weight:700">Medium</td><td>Still present</td></tr>
+      <tr><td>6</td><td class="lbl">Cistern advertises a tank it does not have</td><td>Rigs:222&ndash;230</td><td style="color:var(--med);font-weight:700">Medium</td><td>Still present</td></tr>
+      <tr><td>7</td><td class="lbl">Sealing silently disabled by a place setting</td><td>DrivewaySurface:44&ndash;57</td><td style="color:var(--med);font-weight:700">Medium</td><td>Still present &amp; still firing</td></tr>
+      <tr><td>8</td><td class="lbl">No truck can fill its own speedometer</td><td>Shell:1551&ndash;1552</td><td style="color:var(--med);font-weight:700">Medium</td><td>Still present</td></tr>
+      <tr><td>9</td><td class="lbl">District gate asks for a rebirth without saying how many</td><td>Sections:120</td><td style="color:var(--info);font-weight:700">Low</td><td>Still present</td></tr>
+      <tr><td>10</td><td class="lbl">Camera zoom range can invert</td><td>Shell:3354, 3362</td><td style="color:var(--med);font-weight:700">Medium</td><td>Still present &mdash; and the report's key claim now verified</td></tr>
+    </tbody>
+  </table></div>
+
+  <p>On fault 10 the report said it was <em>suspected</em> because it rested on <code class="inl">Shell:_freeMouse</code> being the only code that writes the camera zoom properties. That is now confirmed: a scan of all 121 scripts in the place finds writes to <code class="inl">CameraMinZoomDistance</code> and <code class="inl">CameraMaxZoomDistance</code> in <strong>Shell alone</strong>, at lines 3351, 3355, 3362, 3366 and 3390. Two players reported the symptom this week &mdash; <em>&ldquo;my mouse wont unlock, it just kept making my screen move, and yes, i did unshift it&rdquo;</em>.</p>
+
+  <p>Fault 7 is still producing events at v890&ndash;v908: <code class="inl">EditableImage is not accessible</code> 516, <code class="inl">[DrivewaySealer] Sealing is disabled</code> 391, <code class="inl">WritePixelsBuffer&hellip;within bounds</code> 398. It is still one checkbox in Game Settings &rarr; Security.</p>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2 class="sec">4 &middot; The eleventh fault <span>not in the defect report</span></h2>
+
+  <div class="fault new">
+    <div class="head">
+      <div class="chips">
+        <span class="chip c-crit">Critical</span>
+        <span class="chip c-new">New finding</span>
+        <span class="chip c-file">UIKit:94&ndash;95 &middot; TutorialClient:930&ndash;943 &middot; DrivewayClient:1416&ndash;1426</span>
+      </div>
+      <h3>The tutorial card does not scale to the screen, and on a phone it covers the pour button</h3>
+      <p>Reports, this week alone: <em>&ldquo;The tutorial blocks the entire bottom half of the screen&rdquo;</em>; <em>&ldquo;Why is the tut all in my face cant see or click on what im supposed to&rdquo;</em>; <em>&ldquo;The tutoria in front of the inventory box makes it difficult to start play and confusing&rdquo;</em>; <em>&ldquo;It told me to press pour and pressed pour about 50 times and it still wouldn't work&rdquo;</em>; <em>&ldquo;couldnt even pour out the sealer&rdquo;</em>; <em>&ldquo;I couldn't see what I was doing when doing the tutorial because it's so big and in my view of what I'm doing; maybe make it smaller?&rdquo;</em></p>
+    </div>
+    <div class="body">
+      <p>The HUD has a viewport fit scale. <strong>The tutorial is not on it.</strong> <code class="inl">UIKit</code> and <code class="inl">Shell</code> both compute a shared scale that shrinks every block down to 0.45&times; on a small screen. <code class="inl">TutorialClient</code> requires <code class="inl">UIKit</code> for styling helpers but never subscribes to the fit hook &mdash; there is no <code class="inl">onFit</code> and no <code class="inl">fitNow</code> anywhere in the file. Its two <code class="inl">UIScale</code> objects are fixed constants: <code class="inl">cardScale</code> is an animation pop at 0.94, <code class="inl">bannerScale</code> is a flat 0.6.</p>
+
+      <p class="pane-tag now">&minus; The shared scale the tutorial does not use</p>
+<pre class="now"><span class="ln">  94</span> <span class="cm">-- UIKit.lua (and Shell.lua:241, identical)</span>
+<span class="ln">  94</span> local DESIGN_W, DESIGN_H = 1280, 720
+<span class="ln">  95</span> local FIT_FLOOR = 0.45
+<span class="ln"> 115</span> fitNow = math.clamp(math.min(v.X / DESIGN_W, v.Y / DESIGN_H), FIT_FLOOR, 1)
+<span class="ln">    </span> <span class="cm">-- every Shell block shrinks with this. The tutorial card does not.</span></pre>
+
+      <p class="pane-tag now">&minus; The card, sized in raw pixels against the raw viewport</p>
+<pre class="now"><span class="ln"> 385</span> card.Size = UDim2.fromOffset(460, 0)
+<span class="ln"> 386</span> card.AutomaticSize = Enum.AutomaticSize.Y   <span class="cm">-- height grows with content, unscaled</span>
+<span class="ln"> 389</span> card.ZIndex = 30
+<span class="ln"> 764</span> local CARD_MAX  = 460
+<span class="ln"> 768</span> local CARD_MIN  = 300
+<span class="ln">    </span>
+<span class="ln"> 930</span> if gap &gt;= CARD_MIN then
+<span class="ln"> 931</span>   w = math.min(CARD_MAX, gap)
+<span class="ln"> 932</span>   x = math.clamp(vp.X * 0.5, left + w * 0.5, vp.X - right - w * 0.5)
+<span class="ln"> 933</span>   y = 14
+<span class="ln"> 934</span> else
+<span class="hl"> 935</span>   w = math.min(CARD_MAX, vp.X - 32)   <span class="cm">-- near the full width of a phone</span>
+<span class="hl"> 936</span>   x = vp.X * 0.5                      <span class="cm">-- centred</span>
+<span class="hl"> 939</span>   y = area.AbsolutePosition.Y + area.AbsoluteSize.Y + 7  <span class="cm">-- dropped down the screen</span>
+<span class="ln"> 942</span> end
+<span class="ln"> 943</span> card.Size = UDim2.fromOffset(math.floor(w), 0)</pre>
+
+      <p class="pane-tag now">&minus; The pour button, also in raw pixels, in the bottom-right corner</p>
+<pre class="now"><span class="ln">1416</span> local RAIL_CLEAR = 104 + 16
+<span class="ln">1417</span> local POUR_PX = 120           <span class="cm">-- was Roblox's ~70; this is the primary action</span>
+<span class="ln">1419</span> local CTRL_BOTTOM = 26
+<span class="ln">1425</span> btn.Size = UDim2.fromOffset(POUR_PX, POUR_PX)
+<span class="ln">1426</span> btn.Position = UDim2.new(1, -RAIL_CLEAR, 1, -CTRL_BOTTOM)</pre>
+
+      <h4>The overlap, on a 568 &times; 320 phone viewport</h4>
+      <div class="dwrap"><table>
+        <thead><tr><th>Element</th><th>Horizontal span</th><th>Vertical span</th><th>Layer</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl">Tutorial card</td><td class="em">x 54 &rarr; 514</td><td>from below the Area block, growing downward</td><td class="em">DisplayOrder 25, ZIndex 30</td></tr>
+          <tr><td class="lbl">Pour button</td><td class="em">x 328 &rarr; 448</td><td>y 174 &rarr; 294</td><td>CoreGui touch controls</td></tr>
+          <tr><td class="lbl">Shell HUD</td><td colspan="2">scales to 0.45&times;</td><td>DisplayOrder 20</td></tr>
+        </tbody>
+      </table></div>
+      <p>The card is 460 px wide on a 568 px screen &mdash; <strong>81% of the width</strong> &mdash; and the pour button's entire horizontal span sits inside it. The three tutorial layers are <code class="inl">SealerTutorial</code> at DisplayOrder <strong>25</strong>, <code class="inl">SealerTutorialPointer</code> at <strong>26</strong> and <code class="inl">SealerTutorialBanner</code> at <strong>27</strong>, all above the <code class="inl">SealerShell</code> HUD at <strong>20</strong> and above the CoreGui touch controls. The card's interior is opaque and carries <code class="inl">Active = true</code> buttons, so where it overlaps it does not merely obscure the pour button &mdash; it takes the tap.</p>
+
+      <p class="pane-tag fix">+ The shape of the fix</p>
+<pre class="fix"><span class="cm">-- 1. Put the tutorial on the same scale as everything else.</span>
+<span class="ok">UIKit.onFit(function(fit, vp)</span>
+<span class="ok">  cardScale.Scale = fit          -- not a fixed 0.94</span>
+<span class="ok">  bannerScale.Scale = 0.6 * fit  -- not a fixed 0.6</span>
+<span class="ok">end)</span>
+
+<span class="cm">-- 2. Never let the card enter the touch-control corner. The controls own</span>
+<span class="cm">--    a fixed 240 x 146 px box at the bottom right; reserve it.</span>
+<span class="ok">local CTRL_BOX = Vector2.new(RAIL_CLEAR + POUR_PX, POUR_PX + CTRL_BOTTOM)</span>
+<span class="ok">-- clamp the card's bottom edge above vp.Y - CTRL_BOX.Y whenever</span>
+<span class="ok">-- UserInputService.TouchEnabled, or dock it to the top on touch.</span>
+
+<span class="cm">-- 3. On the narrow branch, dock rather than centre: the card belongs</span>
+<span class="cm">--    at the top of a phone screen, not across the middle of it.</span></pre>
+
+      <div class="caveat">
+        <b>Why this is worth more than its severity chip suggests.</b> It sits on the majority platform, at the exact step the funnel loses most of its people (<code class="inl">Started &rarr; ReachedDriveway</code>, 38% lost), and it converts a tutorial into a wall. It is also the cheapest thing on this page to fix &mdash; three small changes in one file, no data migration, no balance implications.
+      </div>
+    </div>
+  </div>
+
+  <h4>Supporting signatures from the error exports</h4>
+  <div class="dwrap"><table>
+    <thead><tr><th>Signature</th><th class="num">Events</th><th>First seen</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td class="lbl">ContextActionService could not find the function passed in</td><td class="num em">117,938,514</td><td>V488</td><td><code class="inl">DrivewayClient:1513</code> calls <code class="inl">UnbindAction</code> unconditionally on every equip and unequip, including when nothing is bound. Biggest signature in the game by 5&times;.</td></tr>
+      <tr><td class="lbl">DataStore request was added to queue&hellip;further requests will be dropped</td><td class="num em">238,793</td><td>V345</td><td><strong>Save loss.</strong> Matches five player reports this week of progress reset on rejoin. Not in the defect report.</td></tr>
+      <tr><td class="lbl">Player appears to be spamming remote events</td><td class="num">157,852</td><td>V884</td><td>Server-side throttle tripping &mdash; a client is firing a remote too often.</td></tr>
+      <tr><td class="lbl">[Sealer] no touch button for SealerUse; falling back to raw touch</td><td class="num">95,068</td><td>V493</td><td>The game's own warning: a touch player was left without a pour button and fell back to raw touch.</td></tr>
+      <tr><td class="lbl">Equipped is not a valid member of Humanoid</td><td class="num">48,094</td><td>V884</td><td>A plain coding error &mdash; <code class="inl">Equipped</code> is on <code class="inl">Tool</code>, not <code class="inl">Humanoid</code>.</td></tr>
+      <tr><td class="lbl">Native code generation of SurfaceGrid failed</td><td class="num">44,026</td><td>V582</td><td>The hottest module in the game cannot be natively compiled, so it runs interpreted. Makes fault 4 worse than measured.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>One thing this read could not settle</h4>
+  <p>The largest game-owned error introduced by v908 is <code class="inl">DrivewayClient:2924: invalid argument #3 to 'clamp'</code>, 3,933 events, first seen at V908. <strong>It cannot be diagnosed from the dev place.</strong> Line 2924 there is <code class="inl">math.clamp(rigState.tank / (rigState.tankMax * 0.12), 0.45, 1)</code> &mdash; literal bounds, which can never throw that error. Every other clamp in the file was checked and every bound is a safe constant: <code class="inl">SEALER_MAX_SKIP</code> 3, <code class="inl">SEALER_FRAME_MAX</code> 3, <code class="inl">ENDLESS_MAX_PTS</code> 16, <code class="inl">Config.PourTiltYawMax</code> 65.</p>
+  <p>So the live v908 build and this dev place differ in <code class="inl">DrivewayClient</code>, even though they agree at lines 179, 906, 1596 and 2908. Settling it needs the live place opened, or the v908 source. Three CoreGui render-step signatures at V901 account for 47,163 events &mdash; 74% of the v890&ndash;v908 export &mdash; and are Roblox's own code, though something in ours is likely provoking them.</p>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2 class="sec">5 &middot; What the players are saying <span>308 comments, 08-14 &rarr; 09-01</span></h2>
+
+  <p class="lede">The downvote share has sat between 75% and 88% every day since 08-21. That is itself a ranking input, and it is not improving.</p>
+
+  <div class="dwrap"><table>
+    <thead><tr><th>Theme</th><th class="num">08-22</th><th class="num">08-25</th><th class="num">08-28</th><th class="num">08-29</th><th class="num">08-30</th><th class="num">08-31</th><th>Shape</th></tr></thead>
+    <tbody>
+      <tr><td class="lbl">AI art / thumbnail / &ldquo;not what was advertised&rdquo;</td><td class="num">6</td><td class="num">9</td><td class="num">8</td><td class="num">4</td><td class="num">6</td><td class="num">2</td><td>chronic</td></tr>
+      <tr><td class="lbl">Lag and performance</td><td class="num">4</td><td class="num">3</td><td class="num">2</td><td class="num">2</td><td class="num">&mdash;</td><td class="num">1</td><td>chronic</td></tr>
+      <tr><td class="lbl">Tutorial UI blocking the screen</td><td class="num">1</td><td class="num">&mdash;</td><td class="num">2</td><td class="num em">5</td><td class="num">3</td><td class="num">1</td><td>chronic</td></tr>
+      <tr><td class="lbl">Progress reset / save loss</td><td class="num">1</td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td>chronic</td></tr>
+      <tr><td class="lbl">Rebirth took my money</td><td class="num">2</td><td class="num">1</td><td class="num">1</td><td class="num em">4</td><td class="num">2</td><td class="num">1</td><td>chronic</td></tr>
+      <tr><td class="lbl">Cannot pour / cannot complete a house</td><td class="num">2</td><td class="num">1</td><td class="num">&mdash;</td><td class="num">1</td><td class="num">2</td><td class="num">2</td><td>chronic</td></tr>
+    </tbody>
+  </table></div>
+
+  <p><strong>Every theme is chronic, and none of them steps.</strong> That matters for the CCU question: the AI-art backlash in particular runs at two to nine comments a day across the whole window, so it is a persistent drag on the vote ratio but it is <em>not</em> the trigger for the 08-31/09-01 fall. Nothing in the written feedback changed shape on the days the concurrents did.</p>
+
+  <p>Two clusters deserve to be lifted out because they are not in the defect report and both are material: <strong>progress reset on rejoin</strong> (<em>&ldquo;i did allot of work to make allmost ALL OF THE ROAD BUT THEN I PLAY A NEW GAME BUT WHEN I JOIN BACK ITS ALL RESETED&rdquo;</em>) which lines up with the 238,793 DataStore queue warnings, and <strong>rebirth consuming money without consent</strong> (<em>&ldquo;I had so much money and I didn't say that I would rebirth&rdquo;</em>).</p>
+</section>
+
+<!-- ============================================================ -->
+<section>
+  <h2 class="sec">6 &middot; What to do <span>ranked by mechanism, not by event count</span></h2>
+
+  <ol class="acts">
+    <li><b>Put the tutorial on the shared fit scale and keep it out of the touch-control corner.</b> One file, three changes. It sits on the majority platform at the step that loses 38% of starts, and it is the only finding here that plausibly moves the play-through rate this week.</li>
+    <li><b>Turn on Mesh &amp; Image APIs.</b> Game Settings &rarr; Security. One checkbox, needs a republish, still producing 1,305 events across three signatures at v890&ndash;v908. Free.</li>
+    <li><b>Fix the tank capacity recompute (fault 1).</b> Still the only Critical on the board, still unfixed, and it is a paid-for upgrade that visibly does nothing until the player re-summons.</li>
+    <li><b>Investigate the DataStore write queue.</b> 238,793 dropped-request warnings and five independent player reports of lost progress. This is a save-loss mechanism and it is not in the defect report.</li>
+    <li><b>Get the live v908 source for <code style="font-family:'JetBrains Mono',monospace;font-size:.9em">DrivewayClient</code>,</b> or open the live place, so the 3,933-event clamp error introduced by v908 can be located. The dev place cannot answer it.</li>
+    <li><b>Add the desktop quality preset (fault 3) and the blade stride (fault 4).</b> Both High, both confirmed, both still costing a good PC its frame rate. Lower priority than the tutorial only because they cost more to do and affect fewer first sessions.</li>
+  </ol>
+
+  <div class="caveat" style="margin-top:34px">
+    <b>The publish hold, and the tension in it.</b> The standing decision was to ship nothing before <strong>2026-09-05</strong>, because <code class="inl">ForwardD7Retention</code> for the D3/D7 rework can only be read that day and a new <code class="inl">PlaceVersion</code> would sit across it. That hold was set when CCU was 5,000 and rising. It is now 2,111 and falling for the fifth day. Shipping the tutorial fix costs one confounded retention read; not shipping it costs four more days at 41.6% three-minute bounce. The recommendation is to <b>ship it and accept the confound</b> &mdash; but that is a call for the producer, not for this report, and it is the only place here where the two standing rules genuinely conflict.
+  </div>
+</section>
+
+<div class="foot">
+  <p><b>Method.</b> Metrics pulled from the Roblox Open Cloud analytics API on 2026-09-01, 164 requests, 135 returning data. CCU read from matched half-hour slots bounded by the current UTC hour, never day totals. Platform board from the public discovery endpoints, no authenticated request. Funnels pulled at <code class="inl">OneDay</code> broken down by <code class="inl">FunnelStep</code> with no <code class="inl">FunnelName</code> filter, polled to completion.</p>
+  <p><b>Source.</b> Read in Roblox Studio against the dev place, <b>read-only &mdash; nothing was modified, and nothing was added.</b> 121 scripts scanned. Line numbers are from that place and may drift from live v908; match on surrounding code, not the number.</p>
+  <p><b>Two limits worth carrying.</b> Behavioural metrics lag about two days, so 08-31 and 09-01 are absent from every behavioural table by design, not by omission. Dashboard error-export counts rank and date signatures; they do not count affected players.</p>
+</div>
+
+</div>

@@ -1,0 +1,12 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+58,Warning,Server,Fri Sep 04 2026 19:35:50 GMT+0200 (heure d’été d’Europe centrale),V1246,"[Medal] API error: 404  {""httpStatusCode"":404,""errorId"":1,""errorMessage"":""The requested entity could not be found"",""additionalInfo"":[]}",,
+39,Error,Client,Fri Sep 04 2026 19:38:40 GMT+0200 (heure d’été d’Europe centrale),V1246,ReplicatedStorage.Client.Modules.UI.CratesController:856: attempt to index nil with 'CameraSubject',"Script 'ReplicatedStorage.Client.Modules.UI.CratesController', Line 856 - function restoreSceneCamera
+    Script 'ReplicatedStorage.Client.Modules.UI.CratesController', Line 910 - function updateHitbox",
+2,Error,Client,Fri Sep 04 2026 21:50:45 GMT+0200 (heure d’été d’Europe centrale),V1246,ReplicatedStorage.Client.Modules.UI.CratesController:856: attempt to index nil with 'CameraSubject',"Script 'ReplicatedStorage.Client.Modules.UI.CratesController', Line 856 - function restoreSceneCamera
+    Script 'ReplicatedStorage.Client.Modules.UI.CratesController', Line 910",
+1,Error,Client,Fri Sep 04 2026 20:51:15 GMT+0200 (heure d’été d’Europe centrale),V1246,Script timeout: exhausted allowed execution time,"Script 'Players.<Player>.PlayerGui.MenuHUD.CratesScene.Crates.MainFrame.Soon.Inner.CanvasGroup.Sunburst.LocalScript', Line 1",
+1,Warning,Server,Fri Sep 04 2026 19:48:25 GMT+0200 (heure d’été d’Europe centrale),V1246,[Medal] API error: 503  upstream connect error or disconnect/reset before headers. reset reason: remote connection failure,,
+1,Warning,Client,Wed Sep 09 2026 08:31:05 GMT+0200 (heure d’été d’Europe centrale),V1246,Script has run for over 38.659 seconds and may timeout,"Script 'Players.<Player>.PlayerScripts.RbxCharacterSounds', Line 383",
+1,Warning,Client,Wed Sep 09 2026 12:05:20 GMT+0200 (heure d’été d’Europe centrale),V1246,Script has run for over 30.136 seconds and may timeout,"Script 'ReplicatedStorage.Client.Modules.UI.EffectsHudController', Line 97 - function flyToTarget",
+1,Warning,Server,Fri Sep 04 2026 20:42:00 GMT+0200 (heure d’été d’Europe centrale),V1246,[Medal] API error: 503  upstream connect error or disconnect/reset before headers. reset reason: connection timeout,,
+1,Warning,Client,Wed Sep 09 2026 12:08:10 GMT+0200 (heure d’été d’Europe centrale),V1246,Script has run for over 31.077 seconds and may timeout,"Script 'Players.<Player>.PlayerScripts.RbxCharacterSounds', Line 361",

@@ -1,0 +1,184 @@
+<title>Two Updates at T+3d</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#F5F7FA; --surface:#FFFFFF; --surface-2:#E9EEF4;
+  --ink:#131920; --ink-2:#434D5B; --ink-3:#6A7584;
+  --rule:#D9E0E9; --rule-2:#BFC9D6;
+  --ok:#1B6F47; --ok-bg:#E3F2EA;
+  --watch:#8A5B0C; --watch-bg:#FBF0DC;
+  --fix:#A6332A; --fix-bg:#FBE6E3;
+  --accent:#2F5D7C; --accent-soft:#E2ECF3;
+  --verity:#4A4884; --seal:#8A5A24;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ground:#0E1218; --surface:#161B22; --surface-2:#1D242D;
+  --ink:#E5EAF1; --ink-2:#AEB8C5; --ink-3:#7D8897;
+  --rule:#262E39; --rule-2:#37414D;
+  --ok:#57C08C; --ok-bg:#12291F; --watch:#DCA748; --watch-bg:#2C2314;
+  --fix:#EC8175; --fix-bg:#301A18;
+  --accent:#7FB3D5; --accent-soft:#16222C;
+  --verity:#A5A2E4; --seal:#D9A05B;
+}}
+:root[data-theme="dark"]{
+  --ground:#0E1218; --surface:#161B22; --surface-2:#1D242D;
+  --ink:#E5EAF1; --ink-2:#AEB8C5; --ink-3:#7D8897;
+  --rule:#262E39; --rule-2:#37414D;
+  --ok:#57C08C; --ok-bg:#12291F; --watch:#DCA748; --watch-bg:#2C2314;
+  --fix:#EC8175; --fix-bg:#301A18;
+  --accent:#7FB3D5; --accent-soft:#16222C;
+  --verity:#A5A2E4; --seal:#D9A05B;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);
+  font-family:"Source Serif 4",Georgia,serif;font-size:16.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:44px 26px 88px}
+h1,h2,h3,.lab,.chip,table,.card h3{font-family:Archivo,"Helvetica Neue",Arial,sans-serif}
+h1{font-size:2.5rem;line-height:1.06;font-weight:700;margin:0 0 8px;letter-spacing:-.025em;text-wrap:balance}
+h2{font-size:1.2rem;font-weight:600;margin:50px 0 12px;letter-spacing:-.01em;text-wrap:balance;
+   padding-bottom:8px;border-bottom:2px solid var(--rule-2)}
+p{margin:0 0 13px;max-width:66ch}
+ul{margin:0 0 13px;padding-left:21px;max-width:66ch}
+li{margin:0 0 8px}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.87em;
+  background:var(--surface-2);padding:.1em .34em;border-radius:3px}
+a{color:var(--accent)}
+.lab{font-size:.69rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.mast{border-top:5px solid var(--accent);padding-top:20px}
+.sub{font-size:1.1rem;color:var(--ink-2);max-width:62ch;margin:10px 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:6px 24px;margin-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:.77rem;color:var(--ink-2)}
+.meta b{color:var(--ink);font-weight:500}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:28px 0}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:9px;
+  padding:20px 22px;border-top:4px solid var(--c);display:flex;flex-direction:column}
+.card.v{--c:var(--verity)} .card.s{--c:var(--seal)}
+.card h3{margin:2px 0 8px;font-size:1.14rem;letter-spacing:-.01em}
+.card .hd{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-3)}
+.card p{font-size:.95rem;margin:0 0 12px;flex:1}
+.card .go{font-family:Archivo,sans-serif;font-weight:600;font-size:.85rem;text-decoration:none;color:var(--c)}
+.card .go:hover{text-decoration:underline}
+.scroll{overflow-x:auto;margin:14px 0;border:1px solid var(--rule);border-radius:7px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.84rem}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--rule);white-space:nowrap}
+thead th{background:var(--surface-2);font-weight:600;font-size:.69rem;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-2)}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+td.wrap-c{white-space:normal;min-width:230px;font-family:"Source Serif 4",serif;font-size:.93rem;line-height:1.45}
+.up{color:var(--ok);font-weight:600} .dn{color:var(--fix);font-weight:600}
+.chip{display:inline-block;font-size:.64rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  padding:3px 8px;border-radius:3px}
+.c-ok{background:var(--ok-bg);color:var(--ok)}
+.c-fix{background:var(--fix-bg);color:var(--fix)}
+.call{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--accent);
+  border-radius:0 7px 7px 0;padding:15px 19px;margin:18px 0}
+.call.fix{border-left-color:var(--fix)}
+.call .lab{display:block;margin-bottom:5px}
+.call p:last-child{margin-bottom:0}
+.foot{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:.73rem;color:var(--ink-3);line-height:1.65}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* metric identity: the Roblox series name is the row subject, the gloss supports it */
+td.mcell{white-space:normal;min-width:200px}
+.mn{font-family:"IBM Plex Mono",monospace;font-size:.8rem;font-weight:500;
+  color:var(--accent);letter-spacing:-.01em;overflow-wrap:anywhere}
+.gl{display:block;font-family:"Source Serif 4",Georgia,serif;font-size:.85rem;
+  color:var(--ink-3);margin-top:2px}
+.chip.done{background:var(--ok-bg);color:var(--ok)}
+
+@media (max-width:640px){.wrap{padding:28px 15px 60px}h1{font-size:1.95rem}body{font-size:16px}}
+</style>
+
+<div class="wrap">
+
+<div class="mast">
+  <span class="lab">Verity &amp; Seal &middot; three days after the 28 August updates</span>
+  <h1>Both builds are safe. Both games are losing players somewhere else.</h1>
+  <p class="sub">Neither update broke anything and one of them made real money. The work now is in two different places — and they are opposite places, which is the useful thing this read produced.</p>
+  <div class="meta">
+    <span>both at <b>100% adoption</b></span>
+    <span>first clean day of data <b>29 Aug</b>, available today</span>
+    <span>read <b>31 Aug</b></span>
+  </div>
+</div>
+
+<div class="cards">
+  <div class="card v">
+    <span class="hd">Verity Companion &middot; v679</span>
+    <h3>Nobody comes back on day two</h3>
+    <p>The update is clean, sentiment turned positive, and the Mystery Library fix shipped today in <b>v680</b>. But only <b>35 of every 100</b> day-1 players return on day 2 — worst in the portfolio, and it has never been better than 42% — while <span class="mn">RFYD2To7PlayDays</span> is <b>down 36%</b>. There is no daily reward and no offline progress in the game at all.</p>
+    <a class="go" href="https://claude.ai/code/artifact/e3559b2c-0401-41bc-9d03-c1d78bf6f727">Read the Verity plan &rarr;</a>
+  </div>
+  <div class="card s">
+    <span class="hd">Seal A Driveway &middot; v908</span>
+    <h3>The tutorial is losing our best customers</h3>
+    <p>Cash packs beat their target three times over — <span class="mn">DailyRevenue</span> <b>+19.3%</b>, <span class="mn">PayingUsers</span> <b>+36%</b>. But <b>39 in 100</b> new players never reach a driveway, <b>four in ten</b> quit inside three minutes, and net rating per player is <b>down 84%</b>. We now know why, and it is the tutorial.</p>
+    <a class="go" href="https://claude.ai/code/artifact/0eacd493-3d0c-47d5-a1ca-34a24061f650">Read the Seal plan &rarr;</a>
+  </div>
+</div>
+
+<h2>The two games are failing in opposite places</h2>
+<p>Roblox ranks a game for the Recommended-For-You surface on a set of signals about how people actually play it. We pulled all twenty for the first time on 31 August, and they say these two games have inverted problems.</p>
+
+<div class="scroll"><table>
+<thead><tr><th>Signal</th><th class="num">Verity</th><th class="num">Seal</th><th>What it measures</th></tr></thead>
+<tbody>
+<tr><td class="mcell"><span class="mn">RFYPlayThroughRate</span></td><td class="num up">+51%</td><td class="num dn">&minus;31%</td><td class="wrap-c">See it, then play it — does the store page work</td></tr>
+<tr><td class="mcell"><span class="mn">RFYDuration0To60</span></td><td class="num up">&minus;8%</td><td class="num dn">+23%</td><td class="wrap-c">Quit inside a minute — does the opening work</td></tr>
+<tr><td class="mcell"><span class="mn">RFYD1Playtime</span></td><td class="num">&minus;1%</td><td class="num dn">&minus;16%</td><td class="wrap-c">Minutes on day one — does the first session work</td></tr>
+<tr><td class="mcell"><span class="mn">RFYD2To7PlayDays</span></td><td class="num dn">&minus;36%</td><td class="num">flat</td><td class="wrap-c">Days played after the first — do they come back</td></tr>
+<tr><td class="mcell"><span class="mn">RFYD2To7Playtime</span></td><td class="num dn">&minus;40%</td><td class="num">flat</td><td class="wrap-c">Minutes when they do come back</td></tr>
+</tbody>
+</table></div>
+
+<p><b>Verity&rsquo;s front door works and its back door is open. Seal&rsquo;s is the reverse.</b> They need opposite fixes: Verity needs a reason to return tomorrow, Seal needs the first three minutes to land. A single &ldquo;improve retention&rdquo; instruction would send both studios at the wrong half of their own problem.</p>
+
+<p>This also tells us what to expect. Roblox reduces a game&rsquo;s promotion <em>after</em> these signals fall, not before — so on both games the traffic movement is a consequence of the product, and more of it should be expected unless the underlying signal turns.</p>
+
+<div class="call">
+  <span class="lab">Seal&rsquo;s cause is no longer a guess</span>
+  <p>At the two-day read we said the fix had to wait on player feedback. It does not. The <a href="https://claude.ai/code/artifact/bd164212-5432-42f8-99f6-334d1ba346d0">defect report read against v908</a> traced ten faults to source, and two of them — <b>no desktop performance preset</b> and <b>an unbounded squeegee sweep</b> — land squarely on the first minutes. Two more are known from playing the build and are not in that report: <b>the mobile tutorial UI is too large</b>, and <b>the tutorial takes about three minutes to reach the core verb</b>. That last one and the 39.6% who quit inside three minutes are the same event described from opposite sides.</p>
+</div>
+
+<h2>What we want to do</h2>
+<div class="scroll"><table>
+<thead><tr><th>Game</th><th>Action</th><th>Expected</th><th>Guardrail</th></tr></thead>
+<tbody>
+<tr><td>Verity</td><td class="wrap-c"><b>Daily reward + offline messages</b>, capped ~15, shipped through the Configs API starting at 8</td><td class="wrap-c">Day-2 hold 35% &rarr; 45%; roughly +3.5% players</td><td class="wrap-c"><span class="mn">DevProduct</span> revenue per DAU stays at or above R$0.144</td></tr>
+<tr><td>Verity</td><td class="wrap-c"><b>Mystery Library fix</b> — <span class="chip done">shipped in v680, 31 Aug 15:00 UTC</span></td><td class="wrap-c">Deploy-introduced <span class="mn">ErrorCount</span> below 500/day, readable 1 Sep</td><td class="wrap-c">The feature actually renders</td></tr>
+<tr><td>Seal</td><td class="wrap-c"><b>Cut the tutorial to the core verb</b> — sealing inside the first minute — and shrink the mobile panel</td><td class="wrap-c"><code>ReachedDriveway</code> drop-off 34% &rarr; under 20%</td><td class="wrap-c">&mdash;</td></tr>
+<tr><td>Seal</td><td class="wrap-c"><b>Desktop quality preset + a frame budget on the blade</b></td><td class="wrap-c">Removes the measured cause of first-minute lag on weak machines</td><td class="wrap-c">Preset applies at join, not mid-session</td></tr>
+<tr><td>Seal</td><td class="wrap-c"><b>Turn on Mesh &amp; Image APIs</b> in Game Settings</td><td class="wrap-c">Removes a warning sitting on the core verb</td><td class="wrap-c">Needs a republish — see below</td></tr>
+<tr><td>Seal</td><td class="wrap-c"><b>Hold the next publish until 5 Sep</b> if it can wait</td><td class="wrap-c">Protects the only read of the D3/D7 reward rework</td><td class="wrap-c">&mdash;</td></tr>
+</tbody>
+</table></div>
+
+<div class="call fix">
+  <span class="lab">One thing we had wrong, and it changes urgency</span>
+  <p>We previously told you that retention work takes about four weeks to show up in Roblox&rsquo;s promotion, because the signal window is 28 days. <b>That was our inference and Roblox&rsquo;s own documentation contradicts it</b> — the ranking does not wait for a full 28 days, and shorter-term signals count from a player&rsquo;s first sessions.</p>
+  <p style="margin-top:9px">Practically: <b>a fix shipped this week starts counting this week.</b> There is no reason to pace these against a late-September horizon.</p>
+</div>
+
+<h2>The calendar</h2>
+<div class="scroll"><table>
+<thead><tr><th>When</th><th>Game</th><th>What we will know</th></tr></thead>
+<tbody>
+<tr><td class="mono">1 Sep</td><td>Verity</td><td class="wrap-c">Whether v680 took the <span class="mn">MysticLibraryService</span> errors to near zero.</td></tr>
+<tr><td class="mono">1 Sep</td><td>Both</td><td class="wrap-c">Whether two one-day wobbles were real or weekday noise.</td></tr>
+<tr><td class="mono">on download</td><td>Seal</td><td class="wrap-c">The written feedback export — which tutorial problem players name themselves, and in what order.</td></tr>
+<tr><td class="mono">3 Sep</td><td>Verity</td><td class="wrap-c">Whether story completion held up — <code>Ending Completed</code> needs a five-day-old cohort.</td></tr>
+<tr><td class="mono">5 Sep</td><td>Seal</td><td class="wrap-c">Whether the D3/D7 reward rework worked. <b>Nothing should publish over this.</b></td></tr>
+<tr><td class="mono">5 Sep</td><td>Both</td><td class="wrap-c">Whether the RFY signal falls survive the audiences growing.</td></tr>
+</tbody>
+</table></div>
+
+<div class="foot">
+Read 31 Aug, from a full Open Cloud re-grab of both games. 29 August is the first full UTC day containing no pre-update players; behavioural metrics lag about two days, so it only became readable this morning.<br>
+Headline figures are the empty-breakdown <code>Total</code> series; partial and gap-filled points are excluded.<br>
+The RFY signals are six days of data on two games with no prior baseline — enough to plan against, not yet enough to call a trend. Full metric tables and method are in each game&rsquo;s baseline record.
+</div>
+
+</div>

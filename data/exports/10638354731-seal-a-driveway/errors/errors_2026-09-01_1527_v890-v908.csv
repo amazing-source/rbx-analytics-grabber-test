@@ -1,0 +1,61 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+15721,Error,Client,Sun Aug 23 2026 06:09:45 GMT+0200 (heure d’été d’Europe centrale),V901,RunService:fireRenderStepEarlyFunctions unexpected error while invoking callback: CoreGui.4820.2298626:2830: attempt to call a nil value,,
+15721,Error,Client,Sun Aug 23 2026 06:09:45 GMT+0200 (heure d’été d’Europe centrale),V901,RunService:fireRenderStepEarlyFunctions unexpected error while invoking callback: CoreGui.4820.2298626:2836: attempt to call a nil value,,
+15721,Error,Client,Sun Aug 23 2026 06:09:45 GMT+0200 (heure d’été d’Europe centrale),V901,RunService:fireRenderStepEarlyFunctions unexpected error while invoking callback: CoreGui.4820.2298626:2907: attempt to call a nil value,,
+3933,Error,Client,Mon Aug 31 2026 21:16:40 GMT+0200 (heure d’été d’Europe centrale),V908,Players.<Player>.PlayerScripts.DrivewayClient:2924: invalid argument #3 to 'clamp' (max must be greater than or equal to min),"Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 2924",
+1888,Error,Client,Tue Aug 18 2026 23:44:05 GMT+0200 (heure d’été d’Europe centrale),V901,Maximum event re-entrancy depth exceeded for BindableEvent.Event when calling anonymous function on line 513 in CoreGui.RobloxGui.Modules.Settings.Pages.GameSettings,,
+1697,Error,Client,Wed Aug 19 2026 20:01:45 GMT+0200 (heure d’été d’Europe centrale),V901,Failed to load sound: HTTP 503 (Service Unavailable),rbxassetid://10066921516
+rbxassetid://105224765745546
+rbxassetid://121062914999809
+rbxassetid://122209060222267
+rbxassetid://125536723574585
+rbxassetid://138901430543017
+rbxassetid://87494453896821
+rbxassetid://89595070232351
+rbxassetid://99678007903413,
+703,Error,Client,Wed Aug 19 2026 20:21:50 GMT+0200 (heure d’été d’Europe centrale),V901,Failed to load sound: HTTP 502 (Bad Gateway or Proxy Error),rbxassetid://10066921516
+rbxassetid://105224765745546
+rbxassetid://122209060222267
+rbxassetid://125536723574585
+rbxassetid://138901430543017
+rbxassetid://99678007903413,
+669,Warning,Server,Tue Aug 18 2026 14:17:00 GMT+0200 (heure d’été d’Europe centrale),V892,Unreliable Event dropped as its payload is too large. Consider reducing the total size of the arguments. Payload went over by: 14 bytes,,
+668,Error,Client,Sat Aug 29 2026 14:58:15 GMT+0200 (heure d’été d’Europe centrale),V908,Cannot require a RobloxScript module from a non RobloxScript context,"Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 322 - function registerSlab
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 782 - function pumpBuilds
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 2222",
+633,Error,Client,Sun Aug 23 2026 06:07:45 GMT+0200 (heure d’été d’Europe centrale),V901,SpeechToText : request failed HTTP 429 (Too Many Requests),,
+541,Error,Client,Tue Aug 25 2026 01:27:50 GMT+0200 (heure d’été d’Europe centrale),V901,Failed to load sound: TlsVerificationFail,rbxassetid://10066921516: HttpError
+rbxassetid://121062914999809: HttpError
+rbxassetid://122209060222267: HttpError
+rbxassetid://138901430543017: HttpError
+rbxassetid://9112831284: HttpError
+rbxassetid://99678007903413: HttpError,
+516,Error,Client,Tue Aug 18 2026 23:22:50 GMT+0200 (heure d’été d’Europe centrale),V901,EditableImage is not accessible. Go to the Security Tab in Experience Settings to enable this API.,,
+507,Warning,Server,Tue Aug 18 2026 06:12:25 GMT+0200 (heure d’été d’Europe centrale),V892,[TruckServer] a rig was 4.76 studs into the ground -- lifted out,,
+460,Warning,Server,Tue Aug 18 2026 01:33:20 GMT+0200 (heure d’été d’Europe centrale),V892,[TruckServer] a rig was 1.91 studs into the ground -- lifted out,,
+447,Warning,Server,Tue Aug 18 2026 12:14:35 GMT+0200 (heure d’été d’Europe centrale),V892,[TruckServer] a rig was 3.33 studs into the ground -- lifted out,,
+446,Error,Client,Wed Aug 26 2026 17:25:35 GMT+0200 (heure d’été d’Europe centrale),V901,Failed to load sound: Authentication required to access Asset.,rbxassetid://105224765745546
+rbxassetid://121062914999809
+rbxassetid://1347153667
+rbxassetid://74354585591493
+rbxassetid://89595070232351,
+439,Error,Client,Sat Aug 22 2026 15:23:35 GMT+0200 (heure d’été d’Europe centrale),V901,Failed to load sound: HTTP 429,rbxassetid://121062914999809
+rbxassetid://138901430543017
+rbxassetid://71482635231754
+rbxassetid://7381723941
+rbxassetid://87494453896821
+rbxassetid://9117210574
+rbxassetid://9120650049
+rbxassetid://99678007903413,
+426,Error,Client,Tue Aug 18 2026 12:05:30 GMT+0200 (heure d’été d’Europe centrale),V901,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'ReplicatedStorage.SqueegeeBattle.BattleUI', Line 201",
+424,Warning,Server,Mon Aug 17 2026 23:15:10 GMT+0200 (heure d’été d’Europe centrale),V890,[TruckServer] a rig was 1.74 studs into the ground -- lifted out,,
+398,Error,Client,Mon Aug 17 2026 22:38:00 GMT+0200 (heure d’été d’Europe centrale),V890,EditableImage:WritePixelsBuffer expects position   size to be within EditableImage bounds,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceRenderer', Line 565 - function Paint
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 877 - function SetDetail
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 888 - function updateDetail
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 902",
+398,Warning,Server,Tue Aug 18 2026 14:36:25 GMT+0200 (heure d’été d’Europe centrale),V892,[TruckServer] a rig was 3.32 studs into the ground -- lifted out,,
+391,Warning,Client,Tue Aug 18 2026 23:22:50 GMT+0200 (heure d’été d’Europe centrale),V901,"[DrivewaySealer] Sealing is disabled: this place cannot use the Editable Image/Mesh APIs.
+  Fix: File > Game Settings > Security > turn on ""Allow Mesh & Image APIs"", then republish.",,
+388,Warning,Server,Tue Aug 18 2026 02:39:20 GMT+0200 (heure d’été d’Europe centrale),V892,[TruckServer] a rig was 1.57 studs into the ground -- lifted out,,
+367,Warning,Server,Tue Aug 18 2026 01:39:40 GMT+0200 (heure d’été d’Europe centrale),V892,[TruckServer] a rig was 1.90 studs into the ground -- lifted out,,
+364,Error,Client,Sat Aug 29 2026 05:07:10 GMT+0200 (heure d’été d’Europe centrale),V908,Maximum event re-entrancy depth exceeded for ScriptContext.Error when calling anonymous function on line 5 in CorePackages.Workspace.Packages._Workspace.ExpChatShared.ExpChatShared.watchForErrors,,

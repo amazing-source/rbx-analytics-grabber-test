@@ -1,0 +1,44 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+42677,Error,Client,Sat Sep 05 2026 15:10:30 GMT+0200 (heure d’été d’Europe centrale),V914,StarterPlayer.PlayerModule.CameraModule.VehicleCamera:173: assertion failed!,"Script 'StarterPlayer.PlayerModule.CameraModule.VehicleCamera', Line 173 - function Update
+    Script 'StarterPlayer.PlayerModule.CameraModule', Line 558 - function Update
+    Script 'StarterPlayer.PlayerModule', Line 114",
+42677,Error,Client,Sat Sep 05 2026 15:10:30 GMT+0200 (heure d’été d’Europe centrale),V914,RunService:fireRenderStepEarlyFunctions unexpected error while invoking callback: StarterPlayer.PlayerModule.CameraModule.VehicleCamera:173: assertion failed!,,
+35040,Error,Client,Wed Sep 02 2026 03:11:35 GMT+0200 (heure d’été d’Europe centrale),V908,Not running script because past shutdown deadline (when calling anonymous function on line 377 in Players.<Player>.PlayerScripts.RbxCharacterSounds),,
+14016,Error,Client,Wed Sep 02 2026 03:11:35 GMT+0200 (heure d’été d’Europe centrale),V908,Not running script because past shutdown deadline (when calling anonymous function on line 158 in ReplicatedStorage.DrivewaySealer.SqueegeePose),,
+12429,Error,Client,Sat Sep 05 2026 18:58:30 GMT+0200 (heure d’été d’Europe centrale),V914,EditableImage is not accessible. Go to the Security Tab in Experience Settings to enable this API.,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceRenderer', Line 565 - function Paint
+    Script 'ReplicatedStorage.DrivewayRace.RaceSurface', Line 363 - function Render
+    Script 'Players.<Player>.PlayerScripts.DrivewayRaceClient', Line 293",
+10584,Error,Server,Wed Aug 19 2026 17:35:25 GMT+0200 (heure d’été d’Europe centrale),V901,DataStoreService: InternalServerError: An internal server error occurred. API: IncrementAsync,MapReach_v2,
+7056,Error,Client,Wed Sep 02 2026 03:11:35 GMT+0200 (heure d’été d’Europe centrale),V908,Not running script because past shutdown deadline (when calling anonymous function on line 186 in Players.<Player>.PlayerScripts.VipStandClient),,
+7056,Error,Client,Tue Aug 25 2026 12:36:20 GMT+0200 (heure d’été d’Europe centrale),V901,Not running script because past shutdown deadline (when calling anonymous function on line 270 in Players.<Player>.PlayerScripts.SectionHelpClient),,
+7056,Error,Client,Wed Sep 02 2026 03:11:35 GMT+0200 (heure d’été d’Europe centrale),V908,Not running script because past shutdown deadline (when calling anonymous function on line 2150 in Players.<Player>.PlayerScripts.DrivewayClient),,
+7056,Error,Client,Wed Sep 02 2026 03:11:35 GMT+0200 (heure d’été d’Europe centrale),V908,Not running script because past shutdown deadline (when calling anonymous function on line 144 in ReplicatedStorage.DrivewayRace.RaceUI),,
+7056,Error,Client,Wed Sep 02 2026 03:11:35 GMT+0200 (heure d’été d’Europe centrale),V908,Not running script because past shutdown deadline (when calling anonymous function on line 246 in Players.<Player>.PlayerScripts.SqueegeeBattleClient),,
+7056,Error,Client,Wed Sep 02 2026 03:11:35 GMT+0200 (heure d’été d’Europe centrale),V908,Not running script because past shutdown deadline (when calling anonymous function on line 259 in Players.<Player>.PlayerScripts.DrivewayRaceClient),,
+7056,Error,Client,Tue Aug 25 2026 12:36:20 GMT+0200 (heure d’été d’Europe centrale),V901,Not running script because past shutdown deadline (when calling anonymous function on line 830 in Players.<Player>.PlayerScripts.RemoteToolsClient),,
+7056,Error,Client,Tue Aug 25 2026 12:36:20 GMT+0200 (heure d’été d’Europe centrale),V901,Not running script because past shutdown deadline (when calling anonymous function on line 200 in ReplicatedStorage.SqueegeeBattle.BattleUI),,
+7056,Error,Client,Sat Aug 22 2026 13:20:10 GMT+0200 (heure d’été d’Europe centrale),V901,Not running script because past shutdown deadline (when calling anonymous function on line 99 in CorePackages.Packages._Index.Rodux.Rodux.Store),,
+7008,Error,Client,Sat Aug 22 2026 13:20:10 GMT+0200 (heure d’été d’Europe centrale),V901,Not running script because past shutdown deadline (when calling anonymous function on line 42 in StarterPlayer.PlayerModule.CameraModule.VehicleCamera),,
+5112,Error,Client,Wed Sep 02 2026 03:11:35 GMT+0200 (heure d’été d’Europe centrale),V908,Not running script because past shutdown deadline (when calling toolKeyFrameReachedFunc on line 673 in Workspace.<Player>.Animate),,
+3933,Error,Client,Mon Aug 31 2026 21:16:40 GMT+0200 (heure d’été d’Europe centrale),V908,Players.<Player>.PlayerScripts.DrivewayClient:2924: invalid argument #3 to 'clamp' (max must be greater than or equal to min),"Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 2924",
+2026,Error,Client,Wed Aug 19 2026 20:01:45 GMT+0200 (heure d’été d’Europe centrale),V901,Failed to load sound: HTTP 503 (Service Unavailable),rbxassetid://10066921516
+rbxassetid://105224765745546
+rbxassetid://121062914999809
+rbxassetid://122209060222267
+rbxassetid://125536723574585
+rbxassetid://138901430543017
+rbxassetid://87494453896821
+rbxassetid://89595070232351
+rbxassetid://99678007903413,
+1765,Error,Client,Wed Sep 02 2026 03:11:35 GMT+0200 (heure d’été d’Europe centrale),V908,Not running script because past shutdown deadline (when calling hook on line 471 in Players.<Player>.PlayerScripts.SealerUIClient),,
+1289,Warning,Server,Wed Aug 19 2026 20:35:15 GMT+0200 (heure d’été d’Europe centrale),V901,"[MapReach] <Player> counted to 1 but the mark did not save, so they may be counted again: 502: API Services rejected request with error. Error code: 0 Reason: An internal server error occurred.",,
+1173,Error,Client,Sat Aug 29 2026 14:58:15 GMT+0200 (heure d’été d’Europe centrale),V908,Cannot require a RobloxScript module from a non RobloxScript context,"Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 322 - function registerSlab
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 782 - function pumpBuilds
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 2222",
+539,Error,Client,Tue Aug 18 2026 23:44:05 GMT+0200 (heure d’été d’Europe centrale),V901,Maximum event re-entrancy depth exceeded for BindableEvent.Event when calling anonymous function on line 513 in CoreGui.RobloxGui.Modules.Settings.Pages.GameSettings,,
+408,Warning,Server,Sat Sep 05 2026 19:01:10 GMT+0200 (heure d’été d’Europe centrale),V914,[UpgradeService] save failed for <Player> after 3 tries: 502: API Services rejected request with error. Error code: 9 Reason: The request rate exceeds the allowed maximum for the datastore.,,
+309,Error,Client,Tue Aug 25 2026 01:27:50 GMT+0200 (heure d’été d’Europe centrale),V901,Failed to load sound: TlsVerificationFail,rbxassetid://10066921516: HttpError
+rbxassetid://122209060222267: HttpError
+rbxassetid://138901430543017: HttpError
+rbxassetid://9112831284: HttpError
+rbxassetid://99678007903413: HttpError,

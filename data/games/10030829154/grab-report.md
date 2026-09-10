@@ -1,9 +1,9 @@
 # Grab report — universe 10030829154
 
-- Window: **2026-09-01 → 2026-09-05**
-- Plan source: seed+learned
-- Discovered dimension values: **__places**: 87388097381958, 94401613935841, 100407536317236, 109025676702094, 111157217779261, 128451475320872, 139617346573330 · **FunnelStep**: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 · **PlaceVersion**: 10, 106, 1716, 215, 3, 443, 73 · **FunnelName**: TutorialFunnel · **Place**: 139617346573330, 109025676702094, 111157217779261, 100407536317236, 87388097381958, 128451475320872, 94401613935841 · **FirstSeenPlaceVersion**: 1304, 348, 125, 2, 34, 1618, 213, 62, 414, 104, 71, 4, 8, 339, 1294, 441, 1708, 3, 1681, 1421, 1669, 1300, 1698, 1716, 1360, 1679, 1677, 372, 157, 1691, 73, 41, 147, 433, 50, 1590, 439, 205, 1715, 1344, 63, 215, 428, 443, 1685, 434, 437, 382, 1596, 98, 364, 68, 5, 202, 210, 1705, 106, 1683, 206, 412, 209, 188, 97, 10, 64, 139, 169, 84, 1607, 440, 101, 99, 102, 207, 212, 1594, 70, 67, 394, 435, 66, 186, 65, 402, 1706, 401, 1711, 436, 7, 176, 100, 208
-- Requested 296 · **224 returned data** · 52 empty · 30 failed — of which 0 aged out (data Roblox no longer stores) and **15 on observed/proven shapes (look here first)**
+- Window: **2026-08-27 → 2026-09-10**
+- Plan source: seed
+- Discovered dimension values: **__places**: 76865069793948, 87388097381958, 94401613935841, 100407536317236, 109025676702094, 111157217779261, 128451475320872, 139617346573330 · **FunnelName**: TutorialFunnel · **FunnelStep**: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 · **PlaceVersion**: 10, 104, 105, 106, 107, 11, 1711, 1715, 1716, 1719, 2, 213, 214, 215, 216, 3, 4, 441, 442, 443, 444, 71, 72, 73, 74, 8, 9 · **Place**: 139617346573330, 109025676702094, 111157217779261, 100407536317236, 87388097381958, 128451475320872, 94401613935841 · **FirstSeenPlaceVersion**: 1304, 348, 125, 2, 1618, 213, 34, 62, 414, 104, 71, 8, 4, 339, 1294, 441, 1708, 3, 1681, 1669, 1300, 1421, 1360, 1698, 1679, 1677, 1719, 1716, 372, 1344, 1715, 147, 433, 428, 50, 439, 1691, 1590, 157, 205, 382, 437, 1685, 98, 41, 74, 216, 444, 434, 63, 364, 1683, 188, 215, 5, 1596, 107, 210, 106, 84, 202, 394, 11, 102, 212, 412, 435, 440, 443, 65, 70, 101, 206, 97, 209, 1607, 1705, 10, 68, 99, 64, 67, 73, 139, 169, 186, 402, 7, 66, 100, 207, 436, 1706
+- Requested 221 · **171 returned data** · 33 empty · 27 failed — of which 0 aged out (data Roblox no longer stores) and **6 on observed/proven shapes (look here first)**
 
 ## Failed — observed/proven shapes (real problems)
 
@@ -13,19 +13,10 @@ The dashboard itself sends these shapes (or they have returned data before). A f
 |---|---|---|---|---|---|
 | — | dimensions | by MessageHash | 500 | observed | — |
 | — | annotations | — | 400 | proven | — |
-| L7AverageForwardD1Retention | metric | ONE_DAY | 400 | observed | — |
-| L7AveragePlayTimeMinutesPerDAU | metric | ONE_DAY | 400 | observed | — |
-| L7AverageDailyActiveUsers | metric | ONE_DAY | 400 | observed | — |
-| L7AverageDailyRevenue | metric | ONE_DAY | 400 | observed | — |
-| MonthlyActiveUsers | benchmark | — | 500 | observed | — |
-| L7AverageDailyActiveUsers | benchmark | — | 404 | observed | — |
-| L7AverageDailyRevenue | benchmark | — | 404 | observed | — |
-| ItemTotalCreatorEarning | metric | NONE · by AvatarItemId+AvatarItemTargetType | 403 | observed | — |
-| ItemTotalTransactionCount | metric | NONE · by AvatarItemId+AvatarItemTargetType | 403 | observed | — |
-| L7AverageUniqueUsersWithPlaySessions | metric | ONE_DAY · where IsNewUser=New | 400 | observed | — |
-| L7AverageForwardD1Retention | metric | ONE_DAY · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Others/Friends/Search | 400 | observed | — |
-| L7AverageUniqueUsersWithPlaySessions | metric | ONE_DAY · by AcquisitionSource · where IsNewUser=New | 400 | observed | — |
-| L7AverageForwardD1Retention | metric | ONE_DAY · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Friends/Others/Search/Charts | 400 | observed | — |
+| ClientCpuTimeAvg | metric | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 500 | observed | — |
+| ClientCpuTimeAvg | metric | ONE_DAY · by ClientCpuTimeCategory · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 500 | observed | — |
+| L7AverageDailyActiveUsers | benchmark | — | 404 | proven | — |
+| L7AverageDailyRevenue | benchmark | — | 404 | proven | — |
 
 ## Failed — inferred shapes (probably not valid here)
 
@@ -35,18 +26,24 @@ Query shapes we constructed without a captured example. A failure usually means 
 |---|---|---|---|---|---|
 | — | placeVersions | — | 500 | yes | — |
 | — | placeVersions | — | 500 | yes | — |
+| — | placeVersions | — | 500 | yes | — |
+| — | placeVersions | — | 500 | yes | — |
 | ForwardD1Retention | metric | ONE_DAY · by PlaceVersion | 400 | yes | — |
+| DailyCohortRetention | metric | ONE_DAY · by CohortDay | 400 | yes | — |
 | WeeklyCohortRetention | metric | ONE_DAY · by CohortDay | 400 | yes | — |
+| L7AverageForwardD1Retention | metric | ONE_DAY | 400 | yes | — |
 | L7AverageForwardD1Retention | metric | ONE_DAY · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 400 | yes | — |
 | DailyActiveUsers | metric | ONE_DAY · by PlaceVersion | 400 | yes | — |
 | AverageSessionLengthMinutes | metric | ONE_DAY · by PlaceVersion | 400 | yes | — |
+| L7AveragePlayTimeMinutesPerDAU | metric | ONE_DAY | 400 | yes | — |
+| L7AverageDailyActiveUsers | metric | ONE_DAY | 400 | yes | — |
 | L7AverageUniqueUsersWithPlaySessions | metric | ONE_DAY · by AcquisitionSource · where IsNewUser=New | 400 | yes | — |
 | DailyRevenue | metric | ONE_DAY · by PlaceVersion | 400 | yes | — |
+| L7AverageDailyRevenue | metric | ONE_DAY | 400 | yes | — |
 | FunnelUserChurnRate | metric | ONE_DAY · by FunnelStep · where FunnelName=TutorialFunnel | 400 | yes | — |
 | FunnelUserStepCompletionRate | metric | ONE_DAY · by FunnelStep · where FunnelName=TutorialFunnel | 400 | yes | — |
 | FunnelUserOverallCompletionRate | metric | ONE_DAY · where FunnelName=TutorialFunnel | 400 | yes | — |
 | FunnelUserTotalCount | metric | ONE_DAY · by FunnelStep · where FunnelName=TutorialFunnel | 400 | yes | — |
-| FunnelCohortSessionCompletionRate | metric | ONE_DAY · by FunnelStep · where FunnelName=TutorialFunnel | 500 | yes | — |
 | — | metadata | — | 404 | **no** | — |
 
 ## Returned 200 but no data points
@@ -55,9 +52,10 @@ Query shapes we constructed without a captured example. A failure usually means 
 
 | Metric | Shape |
 |---|---|
+| — | by CustomField1 |
 | — | by CustomField2 |
 | — | by CustomField3 |
-| — | by CustomField1 |
+| — | — |
 | — | — |
 | — | — |
 | — | — |
@@ -67,7 +65,6 @@ Query shapes we constructed without a captured example. A failure usually means 
 | annotation:PLACE_ICON | — |
 | — | — |
 | — | — |
-| annotation:PLACE_THUMBNAIL | — |
 | — | — |
 | annotation:FUNNEL | — |
 | — | — |
@@ -76,263 +73,191 @@ Query shapes we constructed without a captured example. A failure usually means 
 | — | — |
 | — | — |
 | annotation:CREATOR_REGEX_CHANGE | — |
-| Attribution7DPayerConversionRatio | ONE_DAY |
 | Attribution30DRobuxPerUser | ONE_DAY |
-| Attribution7DPlaytimePerUserInMinutes | ONE_DAY |
-| Attribution7DRobuxPerUser | ONE_DAY |
 | Attribution30DPayerConversionRatio | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others |
-| Attribution7DPlaytimePerUserInMinutes | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others |
 | Attribution30DRobuxPerUser | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others |
-| AttributionD7RetentionRatio | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others |
-| Attribution7DRobuxPerUser | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others |
-| Attribution7DPayerConversionRatio | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others |
-| ForwardD7Retention | ONE_DAY |
-| ForwardD7Retention | ONE_DAY · by Platform |
 | ForwardD30Retention | ONE_DAY |
-| ServerCrashCount | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
-| ServerCrashCount | ONE_DAY · by CrashType · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
-| AttributionD7RetentionRatio | ONE_DAY |
-| ServerCrashCount | HALF_HOUR · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
-| ServerCrashCount | HALF_HOUR · by CrashType · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
-| ForwardD7Retention | — |
+| ServerCrashCount | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
+| ServerCrashCount | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
+| ServerCrashCount | ONE_DAY · by CrashType · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
+| ServerCrashCount | ONE_DAY · by CrashType · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
+| ServerCrashCount | HALF_HOUR · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
+| ServerCrashCount | HALF_HOUR · by CrashType · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
 | ForwardD30Retention | — |
 | DauMauStickiness | — |
-| ServerCrashCount | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
-| ServerCrashCount | ONE_DAY · by CrashType · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
-| ServerCrashCount | HALF_HOUR · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
-| Attribution30DRobuxPerUser | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others |
-| Attribution7DPlaytimePerUserInMinutes | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others |
-| AttributionD7RetentionRatio | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others |
-| ServerCrashCount | HALF_HOUR · by CrashType · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 |
-| Attribution7DPayerConversionRatio | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others |
-| Attribution7DRobuxPerUser | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others |
-| Attribution30DPayerConversionRatio | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others |
 
 ## Returned data
 
 | Metric | Shape | Points |
 |---|---|---|
-| — | — | 7 |
-| — | by FunnelStep | 15 |
-| — | by PlaceVersion | 7 |
-| — | by FunnelName | 1 |
-| — | by Place | 7 |
-| — | by FirstSeenPlaceVersion | 92 |
-| — | — | 10 |
-| — | — | 100 |
-| — | — | 73 |
-| — | — | 3 |
 | — | — | 8 |
+| — | by FunnelName | 1 |
+| — | by FunnelStep | 15 |
+| — | by PlaceVersion | 27 |
+| — | by Place | 7 |
+| — | by FirstSeenPlaceVersion | 93 |
+| — | — | 1 |
+| — | — | 11 |
+| — | — | 4 |
+| — | — | 30 |
 | — | — | 100 |
 | — | — | 1 |
-| annotation:ENGINE_RELEASE | — | 3 |
-| annotation:EXPERIENCE_EVENT_STATE | — | 2 |
-| Attribution1DPayerConversionRatio | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 6 |
+| annotation:ENGINE_RELEASE | — | 10 |
+| annotation:EXPERIENCE_EVENT_STATE | — | 8 |
+| annotation:PLACE_THUMBNAIL | — | 4 |
 | Attribution1DPayerConversionRatio | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 6 |
 | Attribution1DRobuxPerUser | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 6 |
-| Attribution1DRobuxPerUser | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 6 |
-| AttributionD1RetentionRatio | ONE_DAY | 1 |
-| AveragePlayTimeMinutesPerDAU | ONE_DAY | 3 |
-| AveragePlayTimeMinutesPerDAU | — | 4 |
-| AverageRevenuePerPayingUser | ONE_DAY | 3 |
-| AverageRevenuePerPayingUser | — | 4 |
-| AverageRevenuePerUser | ONE_DAY | 3 |
-| AverageRevenuePerUser | — | 4 |
-| AverageSessionLengthMinutes | ONE_DAY | 3 |
-| AverageSessionLengthMinutes | ONE_DAY · where IsNewUser=Returning | 3 |
-| AverageSessionLengthMinutes | ONE_DAY · where IsNewUser=New | 3 |
-| AverageSessionLengthMinutes | ONE_DAY · by Platform | 18 |
-| AverageSessionLengthMinutes | — | 4 |
-| AverageSessionLengthMinutes | ONE_DAY · where IsNewUser=New | 3 |
-| AverageSessionLengthMinutes | ONE_DAY · where IsNewUser=Returning | 3 |
-| ClientCpuTimeAvg | ONE_DAY · by ClientCpuTimeCategory · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 20 |
-| ClientCpuTimeAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 4 |
-| ClientCpuTimeAvg | ONE_DAY · by ClientCpuTimeCategory · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 20 |
-| ClientCpuTimeAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 4 |
-| ClientCrashCount | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| ClientCrashCount | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 25 |
-| ClientCrashCount | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| ClientCrashCount | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 25 |
-| ClientCrashRate15m | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| ClientCrashRate15m | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| ClientCrashRate15m | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| ClientCrashRate15m | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| ClientFpsAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| ClientFpsAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| ClientFpsP10 | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| ClientFpsP10 | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| ClientFpsP10 | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| ClientFpsP10 | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| ClientMemoryUsageAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| ClientMemoryUsageAvg | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| ClientMemoryUsageAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| ClientMemoryUsageAvg | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| ClientMemoryUsagePercentageAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| ClientMemoryUsagePercentageAvg | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| ClientMemoryUsagePercentageAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| ClientMemoryUsagePercentageAvg | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| CpuCoreUtilization | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 3 |
-| CpuCoreUtilization | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 3 |
-| CpuTimeAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 3 |
-| CpuTimeAvg | ONE_DAY · by CpuTimeCategory · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 15 |
-| CpuTimeAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 3 |
-| CpuTimeAvg | ONE_DAY · by CpuTimeCategory · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 15 |
-| DailyActiveUsers | ONE_DAY · by Locale | 150 |
-| DailyActiveUsers | ONE_DAY · by Country | 602 |
-| DailyActiveUsers | ONE_DAY · by AgeGroupV2 | 21 |
-| DailyActiveUsers | ONE_DAY · by Gender | 9 |
-| DailyActiveUsers | ONE_DAY | 3 |
-| DailyActiveUsers | ONE_DAY · where IsNewUser=Returning | 3 |
-| DailyActiveUsers | ONE_DAY · where IsNewUser=New | 3 |
-| DailyActiveUsers | ONE_DAY · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 18 |
-| DailyActiveUsers | ONE_DAY · by Platform | 18 |
-| DailyActiveUsers | — | 2 |
-| DailyActiveUsers | ONE_DAY · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Friends/Others/Search/Charts | 15 |
-| DailyActiveUsers | NONE · by AcquisitionSource · where IsNewUser=New | 5 |
-| DailyActiveUsers | ONE_DAY · where IsNewUser=Returning | 3 |
-| DailyActiveUsers | ONE_DAY · where IsNewUser=New | 3 |
-| DailyActiveUsers | ONE_DAY · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 18 |
-| DailyCohortRetention | ONE_DAY · by CohortDay | 3 |
-| DailyRevenue | ONE_DAY · by RevenueSource | 12 |
-| DailyRevenue | ONE_DAY · by BalanceType | 6 |
-| DailyRevenue | ONE_DAY | 3 |
-| DailyRevenue | — | 2 |
-| DauMauStickiness | ONE_DAY | 3 |
+| Attribution7DPayerConversionRatio | ONE_DAY | 7 |
+| Attribution7DPayerConversionRatio | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 5 |
+| Attribution7DPlaytimePerUserInMinutes | ONE_DAY | 7 |
+| Attribution7DPlaytimePerUserInMinutes | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 5 |
+| Attribution7DRobuxPerUser | ONE_DAY | 7 |
+| Attribution7DRobuxPerUser | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 5 |
+| AttributionD1RetentionRatio | ONE_DAY | 12 |
+| AttributionD7RetentionRatio | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 5 |
+| AttributionD7RetentionRatio | ONE_DAY | 6 |
+| AveragePlayTimeMinutesPerDAU | ONE_DAY | 13 |
+| AveragePlayTimeMinutesPerDAU | — | 26 |
+| AverageRevenuePerPayingUser | ONE_DAY | 13 |
+| AverageRevenuePerPayingUser | — | 26 |
+| AverageRevenuePerUser | ONE_DAY | 13 |
+| AverageRevenuePerUser | — | 26 |
+| AverageSessionLengthMinutes | ONE_DAY | 13 |
+| AverageSessionLengthMinutes | ONE_DAY · where IsNewUser=New | 13 |
+| AverageSessionLengthMinutes | ONE_DAY · by Platform | 79 |
+| AverageSessionLengthMinutes | ONE_DAY · where IsNewUser=Returning | 13 |
+| AverageSessionLengthMinutes | — | 26 |
+| ClientCrashCount | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 8 |
+| ClientCrashCount | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 7 |
+| ClientCrashCount | ONE_DAY · by Platform · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 40 |
+| ClientCrashCount | ONE_DAY · by Platform · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 35 |
+| ClientCrashRate15m | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 8 |
+| ClientCrashRate15m | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 7 |
+| ClientCrashRate15m | ONE_DAY · by Platform · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 48 |
+| ClientCrashRate15m | ONE_DAY · by Platform · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 42 |
+| ClientFpsAvg | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 15 |
+| ClientFpsP10 | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 15 |
+| ClientFpsP10 | ONE_DAY · by Platform · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 90 |
+| ClientMemoryUsageAvg | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 15 |
+| ClientMemoryUsageAvg | ONE_DAY · by Platform · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 90 |
+| ClientMemoryUsagePercentageAvg | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 15 |
+| ClientMemoryUsagePercentageAvg | ONE_DAY · by Platform · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 90 |
+| CpuCoreUtilization | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 14 |
+| CpuTimeAvg | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 14 |
+| CpuTimeAvg | ONE_DAY · by CpuTimeCategory · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 70 |
+| DailyActiveUsers | ONE_DAY · by AgeGroupV2 | 91 |
+| DailyActiveUsers | ONE_DAY · by Gender | 39 |
+| DailyActiveUsers | ONE_DAY · by Locale | 650 |
+| DailyActiveUsers | ONE_DAY · by Country | 2559 |
+| DailyActiveUsers | ONE_DAY | 13 |
+| DailyActiveUsers | ONE_DAY · where IsNewUser=New | 13 |
+| DailyActiveUsers | ONE_DAY · where IsNewUser=Returning | 13 |
+| DailyActiveUsers | ONE_DAY · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 78 |
+| DailyActiveUsers | ONE_DAY · by Platform | 79 |
+| DailyActiveUsers | — | 13 |
+| DailyRevenue | ONE_DAY | 13 |
+| DailyRevenue | ONE_DAY · by RevenueSource | 56 |
+| DailyRevenue | ONE_DAY · by BalanceType | 26 |
+| DailyRevenue | — | 13 |
+| DauMauStickiness | ONE_DAY | 13 |
 | EndToEndCVR | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others,IsNewUser=New | 5 |
-| EndToEndCVR | ONE_DAY | 2 |
-| EndToEndCVR | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others,IsNewUser=New | 5 |
-| ErrorCount | ONE_DAY | 4 |
-| ErrorCount | ONE_DAY · by LogSource | 8 |
-| ErrorCount | NONE · by MessageHash · where MessageHash=-1,Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 500 |
-| ErrorCount | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 4 |
-| ErrorCount | ONE_DAY · by LogSource · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 8 |
-| ErrorCount | NONE · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330,FirstSeenPlaceVersion=1716 | 1 |
-| ErrorCount | HALF_HOUR · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 29 |
-| ErrorCount | HALF_HOUR · by LogSource · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 58 |
-| ErrorCount | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 4 |
-| ErrorCount | ONE_DAY · by LogSource · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 8 |
-| ErrorCount | NONE · by MessageHash · where MessageHash=-1,Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 500 |
-| ErrorCount | NONE · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330,FirstSeenPlaceVersion=1304/348/125/2/34/1618/213/62/414/104/71/4/8/339/1294/441/1708/3/1681/1421/1669/1300/1698/1716/1360/1679/1677/372/157/1691/73/41/147/433/50/1590/439/205/1715/1344/63/215/428/443/1685/434/437/382/1596/98/364/68/5/202/210/1705/106/1683/206/412/209/188/97/10/64/139/169/84/1607/440/101/99/102/207/212/1594/70/67/394/435/66/186/65/402/1706/401/1711/436/7/176/100/208 | 1 |
-| ErrorCount | HALF_HOUR · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 29 |
-| ErrorCount | HALF_HOUR · by LogSource · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 58 |
-| EventAvgDailyActiveUsers | ONE_DAY | 2 |
-| EventAvgDailyRevenue | ONE_DAY | 2 |
-| EventAvgDailyUserPlaytimeMinutes | ONE_DAY | 2 |
-| EventAvgRevenuePerDailyActiveUser | ONE_DAY | 2 |
-| ForwardD1Retention | ONE_DAY | 2 |
-| ForwardD1Retention | ONE_DAY · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 12 |
-| ForwardD1Retention | ONE_DAY · by Platform | 12 |
-| ForwardD1Retention | — | 2 |
-| ForwardD1Retention | ONE_DAY · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Friends/Others/Search/Charts | 10 |
-| ForwardD1Retention | ONE_DAY · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 12 |
-| FunnelCohortCompletionRate | ONE_DAY · by FunnelStep · where FunnelName=TutorialFunnel | 60 |
-| FunnelCohortCompletionRate | ONE_DAY · by FunnelStep · where FunnelName=TutorialFunnel | 60 |
-| FunnelCohortSessionCompletionRate | ONE_DAY · by FunnelStep · where FunnelName=TutorialFunnel | 60 |
-| FunnelStepChurnRate | NONE · by FunnelStep · where FunnelName=TutorialFunnel | 15 |
+| EndToEndCVR | ONE_DAY | 14 |
+| ErrorCount | ONE_DAY | 2 |
+| ErrorCount | ONE_DAY · by LogSource | 4 |
+| ErrorCount | NONE · by MessageHash · where MessageHash=-1,Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 463 |
+| ErrorCount | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 2 |
+| ErrorCount | ONE_DAY · by LogSource · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 4 |
+| ErrorCount | NONE · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330,FirstSeenPlaceVersion=1719 | 1 |
+| ErrorCount | HALF_HOUR · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 37 |
+| ErrorCount | HALF_HOUR · by LogSource · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 74 |
+| EventAvgDailyActiveUsers | ONE_DAY | 13 |
+| EventAvgDailyRevenue | ONE_DAY | 13 |
+| EventAvgDailyUserPlaytimeMinutes | ONE_DAY | 13 |
+| EventAvgRevenuePerDailyActiveUser | ONE_DAY | 13 |
+| ForwardD1Retention | ONE_DAY | 12 |
+| ForwardD1Retention | ONE_DAY · by Platform | 74 |
+| ForwardD1Retention | ONE_DAY · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 72 |
+| ForwardD1Retention | — | 24 |
+| ForwardD7Retention | ONE_DAY | 6 |
+| ForwardD7Retention | ONE_DAY · by Platform | 37 |
+| ForwardD7Retention | — | 12 |
+| FunnelCohortCompletionRate | ONE_DAY · by FunnelStep · where FunnelName=TutorialFunnel | 225 |
+| FunnelCohortSessionCompletionRate | ONE_DAY · by FunnelStep · where FunnelName=TutorialFunnel | 225 |
 | FunnelStepChurnRate | NONE · by FunnelStep · where FunnelName=TutorialFunnel | 15 |
 | FunnelStepCompletionRate | NONE · by FunnelStep · where FunnelName=TutorialFunnel | 15 |
-| FunnelStepCompletionRate | NONE · by FunnelStep · where FunnelName=TutorialFunnel | 15 |
-| FunnelStepOverallCompletionRate | NONE · where FunnelName=TutorialFunnel | 1 |
 | FunnelStepOverallCompletionRate | NONE · where FunnelName=TutorialFunnel | 1 |
 | FunnelStepTotalCount | NONE · by FunnelStep · where FunnelName=TutorialFunnel | 15 |
-| FunnelStepTotalCount | NONE · where FunnelName=TutorialFunnel | 1 |
-| FunnelStepTotalCount | NONE · by FunnelStep · where FunnelName=TutorialFunnel | 15 |
-| FunnelUserChurnRate | NONE · by FunnelStep · where FunnelName=TutorialFunnel | 15 |
-| FunnelUserChurnRate | NONE · by FunnelStep · where FunnelStep=1/2/3/4/5/6/7/8/9/10/11/12/13/14/15,FunnelName=TutorialFunnel | 15 |
 | FunnelUserChurnRate | NONE · by FunnelStep · where FunnelName=TutorialFunnel | 15 |
 | FunnelUserOverallCompletionRate | NONE · where FunnelName=TutorialFunnel | 1 |
-| FunnelUserOverallCompletionRate | NONE · by FunnelStep · where FunnelStep=1/2/3/4/5/6/7/8/9/10/11/12/13/14/15,FunnelName=TutorialFunnel | 15 |
-| FunnelUserOverallCompletionRate | NONE · where FunnelName=TutorialFunnel | 1 |
 | FunnelUserStepCompletionRate | NONE · by FunnelStep · where FunnelName=TutorialFunnel,FunnelStep=1/2/3/4/5/6/7/8/9/10/11/12/13/14/15 | 15 |
-| FunnelUserStepCompletionRate | NONE · by FunnelStep · where FunnelStep=1/2/3/4/5/6/7/8/9/10/11/12/13/14/15,FunnelName=TutorialFunnel | 15 |
-| FunnelUserStepCompletionRate | NONE · by FunnelStep · where FunnelName=TutorialFunnel,FunnelStep=1/2/3/4/5/6/7/8/9/10/11/12/13/14/15 | 15 |
-| FunnelUserStepCompletionRate | NONE · by FunnelStep · where FunnelName=TutorialFunnel | 15 |
-| FunnelUserTotalCount | NONE · where FunnelName=TutorialFunnel | 1 |
-| FunnelUserTotalCount | NONE · by FunnelStep · where FunnelName=TutorialFunnel | 15 |
-| FunnelUserTotalCount | NONE · by FunnelStep · where FunnelStep=1/2/3/4/5/6/7/8/9/10/11/12/13/14/15,FunnelName=TutorialFunnel | 15 |
 | FunnelUserTotalCount | NONE · by FunnelStep · where FunnelName=TutorialFunnel | 15 |
 | FunnelUserTotalCount | NONE · where FunnelName=TutorialFunnel | 1 |
-| ItemMonetizationRevenue | ONE_HOUR | 86 |
-| ItemMonetizationRevenue | ONE_HOUR · by ProductType | 324 |
-| L7AveragePlayTimeMinutesPerDAU | — | 4 |
-| MemoryUsageAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 4 |
-| MemoryUsageAvg | ONE_DAY · by MemoryUsageCategory · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 20 |
-| MemoryUsageAvg | NONE · by ServerAgeBucket · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 9 |
-| MemoryUsageAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 4 |
-| MemoryUsageAvg | ONE_DAY · by MemoryUsageCategory · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 20 |
-| MemoryUsageAvg | NONE · by ServerAgeBucket · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 9 |
-| MonthlyActiveUsers | ONE_DAY · by Locale | 150 |
-| MonthlyActiveUsers | ONE_DAY · by AgeGroupV2 | 21 |
-| MonthlyActiveUsers | ONE_DAY · by Country | 602 |
-| MonthlyActiveUsers | ONE_DAY · by Gender | 9 |
-| MonthlyActiveUsers | ONE_DAY | 3 |
-| OomUnexpectedExits | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| OomUnexpectedExits | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 17 |
-| OomUnexpectedExits | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| OomUnexpectedExits | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 17 |
-| PayingUsers | ONE_DAY | 3 |
-| PayingUsers | — | 2 |
-| PayingUsersCVR | ONE_DAY | 3 |
-| PayingUsersCVR | ONE_DAY · by Platform | 18 |
-| PayingUsersCVR | — | 4 |
-| PeakConcurrentPlayers | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| PeakConcurrentPlayers | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| PeakConcurrentPlayers | HALF_HOUR · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| PeakConcurrentPlayers | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| PeakConcurrentPlayers | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| PeakConcurrentPlayers | HALF_HOUR · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| PlayerFeedbackVotesCount | ONE_DAY | 3 |
+| ItemMonetizationRevenue | ONE_HOUR | 199 |
+| ItemMonetizationRevenue | ONE_HOUR · by ProductType | 752 |
+| L7AveragePlayTimeMinutesPerDAU | — | 26 |
+| MemoryUsageAvg | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 15 |
+| MemoryUsageAvg | ONE_DAY · by MemoryUsageCategory · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 75 |
+| MemoryUsageAvg | NONE · by ServerAgeBucket · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 9 |
+| MonthlyActiveUsers | ONE_DAY · by Country | 2559 |
+| MonthlyActiveUsers | ONE_DAY · by Locale | 650 |
+| MonthlyActiveUsers | ONE_DAY · by Gender | 39 |
+| MonthlyActiveUsers | ONE_DAY · by AgeGroupV2 | 91 |
+| MonthlyActiveUsers | ONE_DAY | 13 |
+| MonthlyActiveUsers | — | 13 |
+| OomUnexpectedExits | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 7 |
+| OomUnexpectedExits | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 8 |
+| OomUnexpectedExits | ONE_DAY · by Platform · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 29 |
+| OomUnexpectedExits | ONE_DAY · by Platform · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 19 |
+| PayingUsers | ONE_DAY | 13 |
+| PayingUsers | — | 13 |
+| PayingUsersCVR | ONE_DAY · by Platform | 79 |
+| PayingUsersCVR | ONE_DAY | 13 |
+| PayingUsersCVR | — | 26 |
+| PeakConcurrentPlayers | ONE_DAY · by Platform · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 90 |
+| PeakConcurrentPlayers | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 15 |
+| PeakConcurrentPlayers | HALF_HOUR · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 49 |
+| PlayerFeedbackVotesCount | ONE_DAY | 14 |
 | PotentialExtraEarningsTotalUsd | NONE | 1 |
-| RFYD1CoplayDays | ONE_DAY | 3 |
-| RFYD1Playtime | ONE_DAY | 3 |
-| RFYD1QualifiedPlaySessions | ONE_DAY | 3 |
-| RFYD1RobuxSpend | ONE_DAY | 3 |
-| RFYD1SpendDay | ONE_DAY | 3 |
-| RFYD2To7CoplayDays | ONE_DAY | 3 |
-| RFYD2To7PlayDays | ONE_DAY | 3 |
-| RFYD2To7Playtime | ONE_DAY | 3 |
-| RFYD2To7QualifiedPlaySessions | ONE_DAY | 3 |
-| RFYD2To7RobuxSpend | ONE_DAY | 3 |
-| RFYD2To7SpendDays | ONE_DAY | 3 |
-| RFYD8To28CoplayDays | ONE_DAY | 3 |
-| RFYD8To28PlayDays | ONE_DAY | 3 |
-| RFYD8To28Playtime | ONE_DAY | 3 |
-| RFYD8To28QualifiedPlaySessions | ONE_DAY | 3 |
-| RFYD8To28RobuxSpend | ONE_DAY | 3 |
-| RFYD8To28SpendDays | ONE_DAY | 3 |
-| RFYDuration0To60 | ONE_DAY | 3 |
-| RFYDuration61To180 | ONE_DAY | 3 |
-| RFYL7PlayDays | ONE_DAY | 3 |
-| RFYL7PlayDays | — | 4 |
-| RFYPlayThroughRate | ONE_DAY | 3 |
-| RFYQualifiedPTR | ONE_DAY | 3 |
-| RFYUniqueNotInterestedUsersPerMillionImpressions | ONE_DAY | 3 |
-| RSVPCount | ONE_DAY | 2 |
-| ServerFrameRateP10 | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| ServerFrameRateP10 | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| SessionDurationSecondsAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| SessionDurationSecondsAvg | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| SessionDurationSecondsAvg | ONE_DAY · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 5 |
-| SessionDurationSecondsAvg | ONE_DAY · by Platform · where Place=87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 30 |
-| TotalPlayTimeHours | ONE_DAY | 3 |
-| TotalPlayTimeHours | — | 2 |
+| RFYD1CoplayDays | ONE_DAY | 14 |
+| RFYD1Playtime | ONE_DAY | 14 |
+| RFYD1QualifiedPlaySessions | ONE_DAY | 14 |
+| RFYD1RobuxSpend | ONE_DAY | 14 |
+| RFYD1SpendDay | ONE_DAY | 14 |
+| RFYD2To7CoplayDays | ONE_DAY | 14 |
+| RFYD2To7PlayDays | ONE_DAY | 14 |
+| RFYD2To7Playtime | ONE_DAY | 14 |
+| RFYD2To7QualifiedPlaySessions | ONE_DAY | 14 |
+| RFYD2To7RobuxSpend | ONE_DAY | 14 |
+| RFYD2To7SpendDays | ONE_DAY | 14 |
+| RFYD8To28CoplayDays | ONE_DAY | 14 |
+| RFYD8To28PlayDays | ONE_DAY | 14 |
+| RFYD8To28Playtime | ONE_DAY | 14 |
+| RFYD8To28QualifiedPlaySessions | ONE_DAY | 14 |
+| RFYD8To28RobuxSpend | ONE_DAY | 14 |
+| RFYD8To28SpendDays | ONE_DAY | 14 |
+| RFYDuration0To60 | ONE_DAY | 14 |
+| RFYDuration61To180 | ONE_DAY | 14 |
+| RFYL7PlayDays | ONE_DAY | 14 |
+| RFYL7PlayDays | — | 26 |
+| RFYPlayThroughRate | ONE_DAY | 14 |
+| RFYQualifiedPTR | ONE_DAY | 14 |
+| RFYUniqueNotInterestedUsersPerMillionImpressions | ONE_DAY | 14 |
+| RSVPCount | ONE_DAY | 13 |
+| ServerFrameRateP10 | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 15 |
+| SessionDurationSecondsAvg | ONE_DAY · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 15 |
+| SessionDurationSecondsAvg | ONE_DAY · by Platform · where Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330 | 90 |
+| TotalPlayTimeHours | ONE_DAY | 13 |
+| TotalPlayTimeHours | — | 13 |
 | TotalSessionsEndedInBucket | NONE · by SessionTimeBucket | 61 |
-| UniqueUsersWithImpressions | ONE_DAY · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 2 |
-| UniqueUsersWithImpressions | ONE_DAY · by AcquisitionSource | 12 |
-| UniqueUsersWithImpressions | ONE_DAY | 2 |
-| UniqueUsersWithImpressions | ONE_DAY · by AcquisitionSource · where IsNewUser=New | 10 |
-| UniqueUsersWithImpressions | ONE_DAY · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 2 |
-| UniqueUsersWithImpressions | ONE_DAY · where AcquisitionSource=HomeRecommendation/Friends/Others/Search/Charts | 2 |
-| UniqueUsersWithImpressions | ONE_DAY · where AcquisitionSource=HomeRecommendation | 2 |
-| UniqueUsersWithImpressions | ONE_DAY · by AcquisitionSource · where IsNewUser=New | 10 |
-| UniqueUsersWithPlaySessions | ONE_DAY · by AcquisitionSource · where IsNewUser=New | 10 |
-| UniqueUsersWithPlaySessions | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 5 |
-| UniqueUsersWithPlaySessions | ONE_DAY | 2 |
-| UniqueUsersWithPlaySessions | ONE_DAY · where IsNewUser=New | 2 |
-| UniqueUsersWithPlaySessions | ONE_DAY · by AcquisitionSource · where IsNewUser=New | 10 |
-| UniqueUsersWithPlaySessions | ONE_DAY · where IsNewUser=New | 2 |
-| UniqueUsersWithPlaySessions | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 5 |
-| UsersJoinedFromNotifications | ONE_DAY | 2 |
-| Visits | ONE_DAY · by Platform | 18 |
-| Visits | ONE_DAY | 3 |
-| Visits | — | 2 |
+| UniqueUsersWithImpressions | ONE_DAY | 14 |
+| UniqueUsersWithImpressions | ONE_DAY · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 14 |
+| UniqueUsersWithImpressions | ONE_DAY · by AcquisitionSource | 84 |
+| UniqueUsersWithImpressions | ONE_DAY · by AcquisitionSource · where IsNewUser=New | 70 |
+| UniqueUsersWithPlaySessions | NONE · by AcquisitionSource · where AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others | 7 |
+| UniqueUsersWithPlaySessions | ONE_DAY · by AcquisitionSource · where IsNewUser=New | 66 |
+| UniqueUsersWithPlaySessions | ONE_DAY · where IsNewUser=New | 14 |
+| UniqueUsersWithPlaySessions | ONE_DAY | 14 |
+| UsersJoinedFromNotifications | ONE_DAY | 13 |
+| Visits | ONE_DAY | 13 |
+| Visits | ONE_DAY · by Platform | 79 |
+| Visits | — | 13 |

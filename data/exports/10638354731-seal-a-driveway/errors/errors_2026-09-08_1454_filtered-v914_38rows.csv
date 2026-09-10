@@ -1,0 +1,39 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+13,Error,Client,Mon Sep 07 2026 20:14:45 GMT+0200 (heure d’été d’Europe centrale),V914,Maximum event re-entrancy depth exceeded for Object.CameraSubjectChanged when calling anonymous function on line 660 in CoreGui.RobloxGui.Modules.Common.Locales.en-us,,
+7,Error,Client,Mon Sep 07 2026 22:04:00 GMT+0200 (heure d’été d’Europe centrale),V914,WrapDefomer SkinningTransfer Error for 'Workspace.LaffiTaffi24.Accessory (Eyelashes_1).Handle': "No valid targets with any UV coverage were found.",,
+4,Error,Client,Mon Sep 07 2026 21:03:00 GMT+0200 (heure d’été d’Europe centrale),V914,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset/?id=135020737027093 because Error reading mesh data: unknown version,,
+3,Error,Client,Sat Sep 05 2026 01:07:25 GMT+0200 (heure d’été d’Europe centrale),V914,ReplicatedStorage.DrivewaySealer.SurfaceGrid:748: Script timeout: exhausted allowed execution time,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceGrid', Line 1111 - function _stepRect
+    Script 'ReplicatedStorage.DrivewaySealer.SurfaceGrid', Line 748 - function Step
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 1085 - function Step
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 3664",
+2,Error,Client,Fri Sep 04 2026 23:04:10 GMT+0200 (heure d’été d’Europe centrale),V914,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'ReplicatedStorage.SealerUI.Shell', Line 4801",
+2,Warning,Server,Sat Sep 05 2026 02:13:50 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Street.RoadBulb but the server had only seen 0.74 coverage (needs 0.93) -- not paid and NOT recorded,,
+2,Error,Client,Mon Sep 07 2026 21:03:00 GMT+0200 (heure d’été d’Europe centrale),V914,HSRDataContentProvider failed to process https://assetdelivery.roblox.com/v1/asset?id=135132340607335 because Unrecognized format: \xabKTX 20\xbb << file header,,
+2,Error,Client,Sun Sep 06 2026 04:23:15 GMT+0200 (heure d’été d’Europe centrale),V914,ReplicatedStorage.DrivewaySealer.DrivewaySurface:1136: Script timeout: exhausted allowed execution time,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceRenderer', Line 390 - function Paint
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 1136 - function Render
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 3776",
+1,Error,Client,Sat Sep 05 2026 22:00:50 GMT+0200 (heure d’été d’Europe centrale),V914,ReplicatedStorage.DrivewaySealer.DrivewaySurface:1003: Script timeout: exhausted allowed execution time,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceGrid', Line 2200 - function LooseVolume
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 1003 - function LooseVolume
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 4030",
+1,Warning,Client,Tue Sep 08 2026 02:13:40 GMT+0200 (heure d’été d’Europe centrale),V914,Script has run for over 30.196 seconds and may timeout,"Script 'Workspace.<Player>.Animate', Line 970",
+1,Error,Client,Tue Sep 08 2026 12:52:15 GMT+0200 (heure d’été d’Europe centrale),V914,ReplicatedStorage.DrivewaySealer.RigController:992: Script timeout: exhausted allowed execution time,"Script 'ReplicatedStorage.DrivewaySealer.RigMarker', Line 521 - function Update
+    Script 'ReplicatedStorage.DrivewaySealer.RigController', Line 992 - function _marker
+    Script 'ReplicatedStorage.DrivewaySealer.RigController', Line 1016 - function Update
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 2406",
+1,Warning,Server,Tue Sep 08 2026 03:14:00 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_106.Walkway but the server had only seen 0.61 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Client,Tue Sep 08 2026 05:22:35 GMT+0200 (heure d’été d’Europe centrale),V914,Script has run for over 30.358 seconds and may timeout,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceGrid', Line 2016 - function Coverage
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 1159 - function Coverage
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 2380",
+1,Warning,Server,Tue Sep 08 2026 00:04:30 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_112.Driveway but the server had only seen 0.92 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Server,Mon Sep 07 2026 21:25:05 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.EstateDistrict.Driveways.Drive_Blackthorn but the server had only seen 0.78 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Server,Tue Sep 08 2026 13:01:15 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_108.Driveway but the server had only seen 0.07 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Client,Tue Sep 08 2026 15:13:20 GMT+0200 (heure d’été d’Europe centrale),V914,Script has run for over 33.190 seconds and may timeout,"Script 'Players.<Player>.PlayerScripts.VipStandClient', Line 212",
+1,Warning,Server,Mon Sep 07 2026 22:15:25 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_112.Walkway but the server had only seen 0.60 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Client,Tue Sep 08 2026 09:05:50 GMT+0200 (heure d’été d’Europe centrale),V914,Script has run for over 39.245 seconds and may timeout,"Script 'Players.<Player>.PlayerScripts.RemoteToolsClient', Line 744 - function poseRig
+    Script 'Players.<Player>.PlayerScripts.RemoteToolsClient', Line 857",
+1,Error,Client,Fri Sep 04 2026 23:04:10 GMT+0200 (heure d’été d’Europe centrale),V914,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'ReplicatedStorage.SealerUI.SkinCase', Line 741",
+1,Warning,Server,Tue Sep 08 2026 13:01:00 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_106.Driveway but the server had only seen 0.65 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Server,Tue Sep 08 2026 13:00:30 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_110.Walkway but the server had only seen 0.66 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Server,Mon Sep 07 2026 17:04:20 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_102.Walkway but the server had only seen 0.13 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Server,Tue Sep 08 2026 13:03:00 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.EstateDistrict.Driveways.Drive_Casa but the server had only seen 0.09 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Server,Tue Sep 08 2026 13:03:00 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.EstateDistrict.Driveways.Drive_Casa but the server had only seen 0.02 coverage (needs 0.93) -- not paid and NOT recorded,,

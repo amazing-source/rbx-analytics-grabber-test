@@ -1,0 +1,50 @@
+<h2>Funnels</h2>
+<p>Both funnels pulled per funnel name, so nothing is blended across them. Pre-window 31 Aug &ndash; 3 Sep, post-window 5 &ndash; 7 Sep, complete days.</p>
+
+<div class="tablewrap"><table>
+<caption>Per-funnel completion</caption>
+<thead><tr><th>Funnel &middot; step</th><th class="n">31 Aug &ndash; 3 Sep</th><th class="n">5 &ndash; 7 Sep</th><th class="n">Change</th></tr></thead>
+<tbody>
+<tr><td class="name">PlayerProgression &middot; OnboardingComplete</td><td class="n">100.0%</td><td class="n">100.0%</td><td class="n">0.0pp</td></tr>
+<tr><td class="name">PlayerProgression &middot; FirstMorph</td><td class="n">99.5%</td><td class="n">99.5%</td><td class="n">0.0pp</td></tr>
+<tr><td class="name">PlayerProgression &middot; Rebirth1</td><td class="n">45.1%</td><td class="n">47.3%</td><td class="n">+2.3pp</td></tr>
+<tr><td class="name">PlayerProgression &middot; Rebirth2</td><td class="n">35.7%</td><td class="n">38.2%</td><td class="n">+2.5pp</td></tr>
+<tr><td class="name">BaseUpgrades &middot; BaseUpgrade10</td><td class="n">74.0%</td><td class="n">75.2%</td><td class="n">+1.2pp</td></tr>
+<tr><td class="name">BaseUpgrades &middot; BaseUpgrade19</td><td class="n">44.3%</td><td class="n">45.8%</td><td class="n">+1.5pp</td></tr>
+</tbody></table></div>
+
+<div class="note">
+  <span class="lbl">Two things that would corrupt this table if ignored</span>
+  <p><strong>Merged funnels attach the wrong labels.</strong> The public analytics API will only serve funnel steps merged across funnels by step index. Merged, this game's two funnels blend into one and a &ldquo;BaseUpgrade20&rdquo; row appears carrying data even though that step has none. Every figure above is pulled per funnel name through the browser path instead.</p>
+  <p><strong>The newest two cohort days always read low on deep steps</strong>, because a cohort needs time to reach them. Both are excluded from the means above.</p>
+</div>
+
+<h2>A quest that pays for returning ran through this window</h2>
+<div class="note warn">
+  <span class="lbl">Read D1 with this in front of you</span>
+  <p>The 04.09 build added a <strong>4-day quest track offered only to new players</strong>, with a Day&nbsp;3 reward for coming back. While each cohort's timer is running, <strong>D1 through D4 measure reward-claiming as well as engagement</strong>. D1 read <strong>19.19% on 4 September</strong>, the highest value in 28 days, against a 14.94% pre-update week.</p>
+  <p>This is stated as a property of the measurement, not as a judgement about the number. What would separate the two: D1 for cohorts arriving <em>after</em> the quest stops being offered, or D1 split by whether the player was eligible for it. Neither is available yet.</p>
+</div>
+
+<h2>Concurrents</h2>
+<div class="kpirow">
+  <div class="kpi"><div class="k">Mean CCU before</div><div class="v">1.43K</div><div class="s">Sat&ndash;Mon 29&ndash;31 Aug</div></div>
+  <div class="kpi"><div class="k">Mean CCU after</div><div class="v">1.27K</div><div class="s">Sat&ndash;Mon 5&ndash;7 Sep</div></div>
+  <div class="kpi"><div class="k">Change</div><div class="v down">&minus;11.3%</div><div class="s">same hours both sides</div></div>
+  <div class="kpi"><div class="k">Range across hours</div><div class="v">&minus;26% to +3%</div><div class="s">best and worst hour of the 24</div></div>
+</div>
+<p>On matched half-hour slots, 00:00&ndash;12:00 UTC, 8 September averaged <strong>803 concurrents</strong>, rank 25 of 27 days and &minus;16.4% against the last seven. Two figures worth having beside it: <strong>5 and 6 September (1,422 and 1,335) were this game's highest days since 30 August</strong>, both well above the 1&ndash;3 September range of 712&ndash;807; and the per-slot deficit on 8 September <em>narrows</em> through the morning, from &minus;33% at 00:00 to &minus;10% at 12:00.</p>
+
+<h2>Events and creative changes in the window</h2>
+<p>Timeline facts from Roblox's annotation feed and the deploy log, recorded so that anything reach-shaped or Saturday-shaped can be read against them.</p>
+<div class="tablewrap"><table>
+<caption>Recorded events, 29 Aug &ndash; 8 Sep</caption>
+<thead><tr><th>When (UTC)</th><th>What</th></tr></thead>
+<tbody>
+<tr><td class="name">Every Saturday 15:00&ndash;16:00</td><td>Scripted admin-abuse hour, including 29 Aug and 5 Sep &mdash; present on both sides of the matched-weekday windows</td></tr>
+<tr><td class="name">04 Sep 12:17:52</td><td><span class="ver">v608</span> publishes &mdash; the only September publish on this game</td></tr>
+<tr><td class="name">05 Sep 08:56 &ndash; 16:06</td><td><strong>Twelve</strong> place-icon changes logged, an icon A/B run</td></tr>
+</tbody></table></div>
+
+<h2>Client CPU against Roblox's published target</h2>
+<p>Client CPU per frame moved <strong>34.95 ms &rarr; 28.78 ms</strong> on matched weekdays. Roblox publishes a target of <strong>under 16 ms per frame</strong>, which is what 60 FPS costs, so this game sits about 1.8&times; over that budget. <code>ClientFpsP10</code> at 26 is the lowest of the five games in this set.</p>

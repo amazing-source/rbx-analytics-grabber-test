@@ -13,6 +13,10 @@ the full spec; this file is the day-to-day reference.
 >   `.claude/SESSION_LOG.md` first** (newest entry), then verify it against the
 >   gates before trusting it — that is `checkpoint resume`. The log is written
 >   by the `checkpoint` skill; run it whenever you stop or switch devices.
+> - **Code work on a game's scripts lives in `DEV_LOG.md`, and is NOT analytics.**
+>   Separate thread, its own rules (edits only ever in a test COPY, ask before
+>   each one). Do not pull it into a diagnosis; do not let a diagnosis pull from
+>   it except where a defect became a finding.
 > - **Before writing ANY diagnosis, read `DIAGNOSIS_LOG.md`** — one row per
 >   claim delivered to Ren and what happened to it, plus the six recurring
 >   failure modes and the control that catches each. Every retraction in this
@@ -37,20 +41,36 @@ the full spec; this file is the day-to-day reference.
 >   **v908** (21:00). The last three were reported a day late and baselined
 >   2026-08-29 at T+13–15h; all three are at **100% adoption** of the new build,
 >   so reads from 08-29 are clean.
->   **The first genuinely post-update UTC day is 2026-08-29 for the evening
->   three — read it on 08-30.**
+>   **ALL FOUR LIVE-UPDATE GAMES WERE GRADED AT T+2d ON 2026-08-30** (Brainrot
+>   not re-read). Every build is at **100% adoption** and **nothing in the four
+>   is breaking a game**. Scored tripwire tables are in each `BASELINE.md` under
+>   *Post-update read — 2026-08-30 T+2d*; the index summary is in
+>   `baseline/README.md`. One FIX and it is the same one as 08-29 — Verity's
+>   `MysticLibraryService:144`, deploy-introduced errors **2,069 → 7,244** with
+>   no decay, one-token fix still unshipped. Seal's tripwire 5 fired
+>   (errors/CCU 1,786.5 vs a 1,550 ceiling) but v908 introduced 416 of 8.6M
+>   events and the rise is bursty, not a step — it needs a `MessageHash` export.
+>   **CORRECTION to all five baselines: they say monetization / session length /
+>   DAU are "first readable 08-29 or 08-30". They are not.** Behavioural metrics
+>   lag ~2 days, so on 08-30 the newest served behavioural day was still
+>   **08-28** — a publish day on every one of them. **The first clean
+>   behavioural day is 08-29 and it lands 08-31.** The technical rung and the
+>   funnels *are* settled for 08-29. To read DAU inside the lag, project from
+>   `UniqueUsersWithPlaySessions`, which is served and tracks DAU at
+>   **0.995–1.003 ± 0.006–0.011** — good to about ±1%. `tools/post-update.js`.
 >   **Not one of the five can be judged on DAU or CCU.** Brainrot, Verity and
 >   Waterslide are all in declines that predate their publish; Monkey was already
 >   recovering; Seal is diluting through a +364% w/w scale-up. Retention, funnel
 >   step rates, errors per player and the monetization *rates* are what test them
 >   — see each `BASELINE.md`.
->   At T+13–15h, errors per concurrent player on matched elapsed slots against
->   the mean of the two pre-update days: Verity **−0.9%**, Seal **+1.8%**,
->   Waterslide **−4.7%**. Nothing broken on the evidence available.
->   **The open blocker on all five is error message TEXT** — every game's newest
->   dashboard export predates even the build that was live *before* its update,
->   so the "new signature on this version" tripwire cannot be evaluated at all
->   without a fresh export per game.
+>   **The open blocker is still error message TEXT, now on three games.** The
+>   `MessageHash` lookup 500s on every universe, so a dashboard export is the
+>   only route to a message body. Needed: **Banana Monkey filtered to v1244**
+>   (this game has *never* had an error export filed — `data/exports/10399712766-…`
+>   has no `errors/` folder at all, and its v1244-introduced errors are rising
+>   at flat 100% adoption: 30 → 128 → 1,308); **Seal filtered to v908 for
+>   08-30** (which pre-existing signature is bursting); and confirmation that
+>   Verity's library fix ships.
 > - **Three gates — run them before and after any change** (measured
 >   2026-08-10, not copied):
 >   `npm run verify -- ../data/verify/9610561918/` → 23 pass · **2 fail** · 8 skip
@@ -94,6 +114,31 @@ the full spec; this file is the day-to-day reference.
 > 9963622286 one typo killed both a viewport preview (cosmetic, dropped) and a
 > purchase prompt (revenue, kept). Rank by mechanism, never by event count — the
 > loudest signature in an export is routinely the cheapest one.
+
+
+## Reports are DESCRIPTIVE as of 2026-09-09 — no diagnosis in a game doc
+
+Ren decided this after two diagnoses were retracted in one session. A game report
+carries **series, deltas, charts, availability and provenance**. It carries no
+causal claim, no verdict chip, no ranked severity, no recommendation and no
+watchlist. **No error signatures, no code references and no bug claims at all** —
+unless Ren names the bug first. If interpretation is ever wanted again it goes in
+its own labelled section, never inside a sentence that also carries a measurement.
+
+Also asked for explicitly: **show day-on-day, same weekday** (last Friday against
+this Friday) as its own table, not collapsed into a matched-window mean. And do
+not describe controlling for weekday as taking it "out of the comparison" — that
+reads as discarding it.
+
+    node tools/panel-duck.js      # corpus CSVs -> DuckDB -> analysis/panel-duck/
+    node tools/render-reports.js  # the five per-game pages
+    node tools/render-cover.js    # the index
+
+`panel-duck.js` is the single SQL view every figure comes from, behind four
+mandatory filters — ONE_DAY granularity, headline series only (`Total` or a bare
+`Place=` filter), no `FILLED_ZERO`, no `partial`. 24,426 rows, 75 metrics, five
+universes. Per-game content the panel cannot hold (funnels, revenue-source splits)
+lives in `tools/report-extras/<game>.html` and is injected into the page.
 
 ## What this is
 Internal tool for Indigo: pull ALL Creator Dashboard metrics for an owned Roblox
@@ -480,32 +525,8 @@ bites only in the hours those players were online. A deficit that deepens
 monotonically across the UTC morning on several unrelated games is not three
 simultaneous breaks.
 
-    npm run platform-ccu [-- --top 40]
-
-Snapshots the **whole public Roblox discovery board** — every game across the
-`explore-api` sorts with its live CCU, plus creation dates — into
-`data/platform/`, and diffs against earlier snapshots. Public unauthenticated
-endpoints only; no cookie is read or sent. It exists because "is it us or the
-platform" was **unanswerable on 2026-08-25**: all four games sat ~50% down with
-the mechanism clearly exposure (impressions −28…−46% against conversion
-−8…−20%), and separating "the audience shrank" from "a mega-hit took the
-surface" needs total board CCU *over time*, which no API serves retroactively.
-First snapshot 2026-08-25T14:33Z — 269 games, 7,537,949 combined CCU, with
-`Steal An Egg` (universe 10563114921, created 2026-07-25, public launch ~20 Aug)
-at **917K = 12.2% of the entire board**. **Snapshots are committed** via
-`!/data/platform/` in `.gitignore` — a snapshot is a moment, and an uncommitted
-one is gone. Run it daily or the series never accumulates.
-
-**Second snapshot 2026-08-28T15:31Z — 275 games, 8,101,577 CCU, the board UP
-7.5% in three days**, with `Steal An Egg` at **1,355,686 = 16.7%** (from 12.2%).
-So the series now answers its own question for the first time: on 2026-08-28
-**the board was growing while the portfolio was not**, which kills any
-"seasonality" or "Roblox is quiet" explanation for a portfolio-wide deficit and
-is consistent with a single mega-hit continuing to take the surface. Two points
-is still a line, not a trend — keep running it daily.
-
-Both read Open Cloud or public endpoints directly and never the corpus CSVs —
-see F18 above for why that is mandatory rather than a preference. Behavioural metrics (DAU, revenue,
+`ccu-baseline` reads Open Cloud directly and never the corpus CSVs — see F18
+above for why that is mandatory rather than a preference. Behavioural metrics (DAU, revenue,
 payers, session length) **lag ~2 days**, while CCU and the crash/error metrics
 are current to the hour; when the two disagree about how recent "today" is, it
 is the lag, not a gap. To answer a revenue question inside that lag, project
@@ -575,6 +596,25 @@ stay committed because the API serves **neither** error text nor comment text:
 the async `MessageHash` lookup answers HTTP 500 on all four universes, so a
 dashboard export is the only route to a message body. F17 in
 `data/verify/COVERAGE.md`.
+
+**The export is no longer a manual click (2026-09-08).**
+
+    npm run export:errors -- <universeId> [--version v608] [--all]
+
+Playwright drives the logged-in dashboard at `/analytics/errors`, clicks the
+page's own `aria-label="Export your data to a .CSV file"` button, captures the
+download and files it under `data/exports/<id>-<slug>/errors/` named
+`errors_<date>_<HHMM>_<version band read from the file>_<n>rows.csv` — the band
+is read out of the file rather than guessed, so nothing lands unattributable.
+Same security posture as `npm run grab`: it drives the window, and nothing in
+`browser-context.ts` reads or exports the session cookie.
+
+**Pass `--version`.** The page defaults to *Last 1 day, all versions*, which is
+not the window a post-update read wants — and the unfiltered export differs per
+game depending on what the page happened to load. The picker lists labels as
+`V608`; the flag accepts `608`, `v608` or `V608`. Known gap: Waterslide
+(multi-place) did not offer `v1719` in the picker, so it still needs the
+unfiltered export or a manual pick.
 
 Roblox puts no universe id in these filenames. Attribute by evidence:
 **version band** (`First seen version` vs `place-versions.csv` — the four

@@ -372,8 +372,8 @@ resolve most alarms before any code is opened.
 1. **Is it real?** `npm run ccu-baseline -- <id>`. Matched half-hour slots
    against the same slots on prior days, so a part-finished day is never
    measured against whole ones. Most "we dropped 50%" alarms die here.
-2. **Is it us, or everyone?** Run it across every game in the portfolio, and
-   check `npm run platform-ccu` history. **If they moved together there is no
+2. **Is it us, or everyone?** Run it across every game in the portfolio.
+   **If they moved together there is no
    bug in any of them** and nothing in the code will explain it. On 2026-08-25
    five unrelated universes — including a dead one at ~10 CCU — fell together
    on 24 Aug; crash rates, session length and impression-to-play conversion

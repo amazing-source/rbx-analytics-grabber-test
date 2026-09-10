@@ -1,0 +1,207 @@
+<title>Update 04.09 Across Five Games</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F2F4F7; --panel:#FFFFFF; --sunk:#E8ECF1;
+  --ink:#141922; --body:#2A323D; --muted:#5F6B7A; --faint:#8793A2;
+  --rule:#D6DDE6; --rule-soft:#E6EBF1;
+  --pos:#16704A; --neg:#A82A20; --dim:#8793A2;
+  --shadow:0 1px 2px rgba(20,25,34,.05), 0 8px 24px -16px rgba(20,25,34,.30);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --ground:#0E1218; --panel:#161C25; --sunk:#1E2632;
+  --ink:#EDF1F6; --body:#C3CCD8; --muted:#8B98A8; --faint:#6B7889;
+  --rule:#2A3441; --rule-soft:#212A35;
+  --pos:#5EC894; --neg:#F08276; --dim:#6B7889;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+}}
+:root[data-theme="dark"]{
+  --ground:#0E1218; --panel:#161C25; --sunk:#1E2632;
+  --ink:#EDF1F6; --body:#C3CCD8; --muted:#8B98A8; --faint:#6B7889;
+  --rule:#2A3441; --rule-soft:#212A35;
+  --pos:#5EC894; --neg:#F08276; --dim:#6B7889;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--body);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;padding:0 20px 96px}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2,h3,h4,th,td,.chip,.mname,.mval,.gname{font-family:Archivo,"Helvetica Neue",Arial,sans-serif}
+th,td,.n{font-variant-numeric:tabular-nums}
+.ver,.eyebrow,code,.wowsub{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+header.masthead{border-top:5px solid var(--accent);padding:34px 0 26px}
+.eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-text);font-weight:600}
+h1{font-size:clamp(29px,4.4vw,43px);line-height:1.07;letter-spacing:-.022em;color:var(--ink);
+  font-weight:700;margin:.28em 0 .18em;text-wrap:balance}
+.dek{font-size:19px;color:var(--muted);max-width:64ch;margin:0 0 22px}
+.factbar{display:flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:3px;
+  background:var(--panel);overflow:hidden;box-shadow:var(--shadow);margin:0}
+.fact{flex:1 1 170px;padding:12px 16px;border-right:1px solid var(--rule-soft)}
+.fact:last-child{border-right:0}
+.fact dt{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 4px}
+.fact dd{margin:0;font-family:Archivo,sans-serif;font-size:15.5px;font-weight:600;color:var(--ink);
+  font-variant-numeric:tabular-nums}
+h2{font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:600;
+  margin:54px 0 4px;padding-bottom:9px;border-bottom:1px solid var(--rule)}
+h3{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-text);
+  font-weight:600;margin:28px 0 10px}
+p{margin:0 0 14px;max-width:76ch}
+a{color:var(--accent-text);text-underline-offset:2px}
+strong{font-weight:600;color:var(--ink)}
+ul,ol{margin:0 0 16px;padding-left:22px} li{margin:0 0 7px}
+code{font-size:12px;color:var(--muted)}
+code.dim{color:var(--dim);font-size:11px}
+.ver{display:inline-block;background:var(--sunk);color:var(--ink);border-radius:2px;
+  padding:1px 6px;font-size:12px;font-weight:500}
+/* small multiples */
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:12px;margin:0 0 8px}
+.mcard{background:var(--panel);border:1px solid var(--rule);border-radius:3px;padding:12px 13px 10px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:5px}
+.mtop{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.mname{font-size:13px;font-weight:600;color:var(--ink);line-height:1.25}
+.mval{font-size:16px;font-weight:700;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.mmeta{font-size:10.5px;color:var(--faint);word-break:break-all;line-height:1.3}
+.mmeta code{font-size:10.5px;color:var(--faint)}
+.mcard svg{display:block;height:54px;width:100%}
+.sparkempty{height:54px;display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;color:var(--faint);background:var(--sunk);border-radius:2px}
+.mfoot{font-size:11.5px;color:var(--muted);line-height:1.35}
+.mup{color:var(--pos);font-weight:600} .mdown{color:var(--neg);font-weight:600}
+.mflat{color:var(--dim);font-weight:600}
+/* tables */
+.tablewrap{overflow-x:auto;margin:14px 0 8px;border:1px solid var(--rule);border-radius:3px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:560px}
+caption{caption-side:top;text-align:left;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding:11px 14px 2px}
+th{text-align:left;font-weight:600;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--rule);white-space:nowrap;background:var(--sunk)}
+td{padding:8px 12px;border-bottom:1px solid var(--rule-soft);color:var(--body);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;white-space:nowrap}
+td.name{color:var(--ink);font-weight:500}
+td.n.flat{color:var(--dim)}
+td.dimcell{font-size:10.5px;color:var(--faint);line-height:1.5}
+td.dimcell code{font-size:10.5px}
+tr.rule-row td{background:var(--sunk);font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+tr.pubrow td{background:var(--sunk)}
+.wowsub{display:block;font-size:10.5px;font-weight:500;margin-top:2px;color:var(--muted)}
+.note{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--accent);
+  border-radius:3px;padding:16px 18px;margin:20px 0;font-size:15.5px;box-shadow:var(--shadow);max-width:76ch}
+.note .lbl{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);display:block;margin-bottom:6px}
+.note p:last-child{margin-bottom:0}
+.gamelist{display:grid;gap:14px;margin:20px 0}
+.gcard{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--rule);
+  border-left:4px solid var(--accent);border-radius:3px;padding:16px 20px;box-shadow:var(--shadow);
+  transition:transform .12s ease}
+.gcard:hover{transform:translateY(-1px)}
+.gcard .gtop{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:4px}
+.gcard .gname{font-size:19px;font-weight:600;color:var(--ink);letter-spacing:-.012em}
+.gcard .gsum{font-size:15px;color:var(--body);margin:0}
+footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--rule);font-size:13px;color:var(--faint)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:620px){
+  body{font-size:16px;padding:0 14px 72px}
+  .fact{flex:1 1 100%;border-right:0;border-bottom:1px solid var(--rule-soft)}
+  .mgrid{grid-template-columns:1fr 1fr}
+}
+
+:root{--accent:#33404F;--accent-text:#33404F;
+--s9963622286:#847a26;--s10399712766:#b04c17;--s10030829154:#af7a18;--s10565445771:#be7413;--s10638354731:#b75f15;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--accent:#9FB0C4;--accent-text:#C3CCD8;
+--s9963622286:#b4b664;--s10399712766:#ea9562;--s10030829154:#d6af51;--s10565445771:#e4a94d;--s10638354731:#e79f58;}}
+:root[data-theme="dark"]{--accent:#9FB0C4;--accent-text:#C3CCD8;
+--s9963622286:#b4b664;--s10399712766:#ea9562;--s10030829154:#d6af51;--s10565445771:#e4a94d;--s10638354731:#e79f58;}
+</style>
+
+<div class="wrap">
+<header class="masthead">
+  <div class="eyebrow">Data report &middot; five universes &middot; built 09 Sep 2026</div>
+  <h1>Update 04.09: what the series did on all five games</h1>
+  <p class="dek">All five shipped inside eight hours on 4 September and all five reached 100% adoption by 5&ndash;7 September. This is the index. It reports the movement on each game and how every number was derived; each linked report does the same in full. None of them draws a conclusion about cause.</p>
+  <dl class="factbar">
+    <div class="fact"><dt>Panel</dt><dd>24,426 rows</dd></div>
+    <div class="fact"><dt>Metrics</dt><dd>75</dd></div>
+    <div class="fact"><dt>Grabbed</dt><dd>09 Sep 12:05&ndash;12:16 UTC</dd></div>
+    <div class="fact"><dt>Behavioural to</dt><dd>07 Sep</dd></div>
+    <div class="fact"><dt>Technical to</dt><dd>08 Sep</dd></div>
+  </dl>
+</header>
+
+<h2>What shipped</h2>
+<div class="tablewrap"><table>
+<caption>From <code>develop.roblox.com</code> saved-versions, root place, published builds only</caption>
+<thead><tr><th>Game</th><th>Universe</th><th>Version</th><th>Published (UTC)</th><th class="n">Adoption</th></tr></thead>
+<tbody>
+<tr><td class="name">Become a Brainrot</td><td><code>9963622286</code></td><td><span class="ver">v608</span></td><td>04 Sep 12:17:52</td><td class="n">100% by 05 Sep</td></tr>
+<tr><td class="name">+1 Banana Monkey Destruction</td><td><code>10399712766</code></td><td><span class="ver">v1246</span></td><td>04 Sep 17:35:02</td><td class="n">100% by 05 Sep</td></tr>
+<tr><td class="name">Climb Waterslide and Slide</td><td><code>10030829154</code></td><td><span class="ver">v1719</span> + 6 sub-places</td><td>04 Sep 19:12:51</td><td class="n">100% by 05 Sep</td></tr>
+<tr><td class="name">Verity Companion [AI]</td><td><code>10565445771</code></td><td><span class="ver">v684</span></td><td>04 Sep 19:40:46</td><td class="n">100% by 07 Sep</td></tr>
+<tr><td class="name">Seal A Driveway</td><td><code>10638354731</code></td><td><span class="ver">v914</span></td><td>04 Sep 20:22:33</td><td class="n">100% by 05 Sep</td></tr>
+</tbody></table></div>
+<p>Verity is the one game where later builds land inside the read window: <span class="ver">v688</span> on 6 September and <span class="ver">v689</span> / <span class="ver">v690</span> on 8 September. Only 5 September is a clean <span class="ver">v684</span> day on that game.</p>
+
+<h2>Daily active users, indexed</h2>
+<p>Each game's DAU divided by its own value on 25 August, so five games of very different size share one axis and every line starts at 100. The dashed rule is the 4 September publish. <strong>Colour runs green to red on where each game ended</strong> &mdash; green is holding its level, red is the deepest drop &mdash; so the line colour is the verdict on the level, and the name and number at the right tell you which game is which.</p>
+<div class="tablewrap" style="padding:10px 12px 4px"><svg viewBox="0 0 940 310" width="100%" height="auto" role="img"
+    aria-label="Daily active users for five games, each indexed to 100 on 25 August, through 7 September"
+    style="display:block"><line x1="52" y1="258.0" x2="782.0" y2="258.0" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="261.5" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">0</text><line x1="52" y1="231.8" x2="782.0" y2="231.8" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="235.3" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">25</text><line x1="52" y1="205.6" x2="782.0" y2="205.6" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="209.1" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">50</text><line x1="52" y1="179.3" x2="782.0" y2="179.3" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="182.8" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">75</text><line x1="52" y1="153.1" x2="782.0" y2="153.1" stroke="var(--rule)" stroke-width="1"/><text x="44" y="156.6" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">100</text><line x1="52" y1="126.9" x2="782.0" y2="126.9" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="130.4" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">125</text><line x1="52" y1="100.7" x2="782.0" y2="100.7" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="104.2" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">150</text><line x1="52" y1="74.4" x2="782.0" y2="74.4" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="77.9" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">175</text><line x1="52" y1="48.2" x2="782.0" y2="48.2" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="51.7" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">200</text><line x1="52" y1="22.0" x2="782.0" y2="22.0" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="25.5" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">225</text>
+    <line x1="613.5" y1="22" x2="613.5" y2="258" stroke="var(--rule)" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="607.5" y="16" fill="var(--muted)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">04 Sep publishes</text>
+    <path d="M52.0 153.1 L108.2 154.1 L164.3 170.9 L220.5 171.7 L276.6 136.0 L332.8 145.4 L388.9 181.0 L445.1 199.8 L501.2 189.1 L557.4 201.9 L613.5 185.1 L669.7 140.4 L725.8 166.6 L782.0 187.2" fill="none" stroke="var(--s9963622286)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M52.0 153.1 L108.2 157.9 L164.3 151.2 L220.5 165.6 L276.6 142.8 L332.8 110.7 L388.9 156.5 L445.1 185.8 L501.2 199.2 L557.4 208.8 L613.5 212.2 L669.7 206.0 L725.8 226.3 L782.0 233.8" fill="none" stroke="var(--s10399712766)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M52.0 153.1 L108.2 167.5 L164.3 154.0 L220.5 173.7 L276.6 155.1 L332.8 139.5 L388.9 158.1 L445.1 180.5 L501.2 172.9 L557.4 176.8 L613.5 191.7 L669.7 173.3 L725.8 183.3 L782.0 200.4" fill="none" stroke="var(--s10030829154)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M52.0 153.1 L108.2 182.2 L164.3 195.9 L220.5 188.2 L276.6 164.6 L332.8 175.5 L388.9 202.1 L445.1 189.8 L501.2 208.9 L557.4 203.2 L613.5 176.6 L669.7 174.3 L725.8 190.2 L782.0 209.1" fill="none" stroke="var(--s10565445771)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M52.0 153.1 L108.2 100.6 L164.3 104.5 L220.5 28.1 L276.6 78.2 L332.8 80.6 L388.9 151.2 L445.1 191.4 L501.2 207.3 L557.4 199.5 L613.5 209.9 L669.7 200.8 L725.8 213.4 L782.0 221.9" fill="none" stroke="var(--s10638354731)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="782.0" cy="187.2" r="4" fill="var(--s9963622286)" stroke="var(--panel)" stroke-width="2"/><circle cx="782.0" cy="233.8" r="4" fill="var(--s10399712766)" stroke="var(--panel)" stroke-width="2"/><circle cx="782.0" cy="200.4" r="4" fill="var(--s10030829154)" stroke="var(--panel)" stroke-width="2"/><circle cx="782.0" cy="209.1" r="4" fill="var(--s10565445771)" stroke="var(--panel)" stroke-width="2"/><circle cx="782.0" cy="221.9" r="4" fill="var(--s10638354731)" stroke="var(--panel)" stroke-width="2"/><text x="791.0" y="191.2" fill="var(--s9963622286)" font-size="11.5" font-family="Archivo,sans-serif" font-weight="600">Brainrot 67</text><text x="791.0" y="208.2" fill="var(--s10030829154)" font-size="11.5" font-family="Archivo,sans-serif" font-weight="600">Waterslide 55</text><text x="791.0" y="225.2" fill="var(--s10565445771)" font-size="11.5" font-family="Archivo,sans-serif" font-weight="600">Verity 47</text><text x="791.0" y="242.2" fill="var(--s10638354731)" font-size="11.5" font-family="Archivo,sans-serif" font-weight="600">Seal 34</text><text x="791.0" y="259.2" fill="var(--s10399712766)" font-size="11.5" font-family="Archivo,sans-serif" font-weight="600">Banana Monkey 23</text><text x="52.0" y="276" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">08-25</text><text x="220.5" y="276" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">08-28</text><text x="388.9" y="276" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">08-31</text><text x="557.4" y="276" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">09-03</text><text x="725.8" y="276" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">09-06</text><text x="782.0" y="276" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">09-07</text>
+    <text x="417" y="306" fill="var(--faint)" font-size="10.5" text-anchor="middle"
+      font-family="'IBM Plex Mono',monospace">DAU indexed to 100 on 25 Aug &middot; UTC</text></svg></div>
+
+<h2>All five, matched weekdays</h2>
+<p>Each cell is the mean of <strong>5, 6 and 7 September</strong>, with the change underneath against <strong>29, 30 and 31 August</strong> &mdash; Friday, Saturday and Sunday on both sides, so the weekday mix is identical in the two windows and neither contains the publish day. A change under 2% is greyed rather than called flat. Each game's own report carries the same comparison per metric plus a full week-over-week table.</p>
+<div class="tablewrap"><table>
+<caption>5&ndash;7 Sep mean, and the change against 29&ndash;31 Aug</caption>
+<thead><tr><th>Metric</th><th class="n">Become a Brainrot</th><th class="n">Banana Monkey Destruction</th><th class="n">Waterslide</th><th class="n">Verity</th><th class="n">Seal A Driveway</th></tr></thead>
+<tbody><tr><td class="name">Daily active users<br><code class="dim">DailyActiveUsers</code></td><td class="n">111,227<span class="wowsub mdown">-10.2%</span></td><td class="n">90,757<span class="wowsub mdown">-70.3%</span></td><td class="n">115,980<span class="wowsub mdown">-32.5%</span></td><td class="n">433,988<span class="wowsub mdown">-13.6%</span></td><td class="n">106,709<span class="wowsub mdown">-70.3%</span></td></tr>
+<tr><td class="name">Unique users who saw it<br><code class="dim">UniqueUsersWithImpressions</code></td><td class="n">1,628,869<span class="wowsub mdown">-8.3%</span></td><td class="n">2,275,207<span class="wowsub mdown">-56.9%</span></td><td class="n">3,207,058<span class="wowsub mdown">-11.7%</span></td><td class="n">6,184,818<span class="wowsub mdown">-4.0%</span></td><td class="n">1,765,541<span class="wowsub mdown">-52.0%</span></td></tr>
+<tr><td class="name">Peak concurrents<br><code class="dim">PeakConcurrentPlayers</code></td><td class="n">2,415<span class="wowsub mdown">-28.0%</span></td><td class="n">1,419<span class="wowsub mdown">-72.8%</span></td><td class="n">&mdash;<span class="wowsub">not held</span></td><td class="n">5,339<span class="wowsub mdown">-8.8%</span></td><td class="n">2,110<span class="wowsub mdown">-65.9%</span></td></tr>
+<tr><td class="name">Session length (min)<br><code class="dim">AverageSessionLengthMinutes</code></td><td class="n">10.36<span class="wowsub mflat">-0.4%</span></td><td class="n">12.58<span class="wowsub mdown">-10.8%</span></td><td class="n">14.36<span class="wowsub mflat">-0.7%</span></td><td class="n">8.61<span class="wowsub mup">+4.3%</span></td><td class="n">15.56<span class="wowsub mup">+3.9%</span></td></tr>
+<tr><td class="name">D1 retention<br><code class="dim">ForwardD1Retention</code></td><td class="n">15.79%<span class="wowsub mup">+15.3%</span></td><td class="n">11.04%<span class="wowsub mdown">-17.3%</span></td><td class="n">11.79%<span class="wowsub mdown">-5.4%</span></td><td class="n">12.43%<span class="wowsub mflat">-0.6%</span></td><td class="n">10.92%<span class="wowsub mup">+5.7%</span></td></tr>
+<tr><td class="name">Daily revenue (R$)<br><code class="dim">DailyRevenue</code></td><td class="n">63,877<span class="wowsub mup">+3.0%</span></td><td class="n">77,597<span class="wowsub mdown">-66.7%</span></td><td class="n">70,911<span class="wowsub mdown">-33.2%</span></td><td class="n">290,277<span class="wowsub mup">+25.1%</span></td><td class="n">296,965<span class="wowsub mdown">-58.9%</span></td></tr>
+<tr><td class="name">Payer conversion<br><code class="dim">PayingUsersCVR</code></td><td class="n">1.11%<span class="wowsub mup">+16.0%</span></td><td class="n">1.47%<span class="wowsub mdown">-11.0%</span></td><td class="n">2.84%<span class="wowsub mdown">-4.5%</span></td><td class="n">1.08%<span class="wowsub mup">+42.2%</span></td><td class="n">1.95%<span class="wowsub mup">+51.8%</span></td></tr>
+<tr><td class="name">Revenue per player<br><code class="dim">AverageRevenuePerUser</code></td><td class="n">0.560<span class="wowsub mup">+14.5%</span></td><td class="n">0.892<span class="wowsub mup">+18.0%</span></td><td class="n">0.613<span class="wowsub mflat">-0.7%</span></td><td class="n">0.666<span class="wowsub mup">+45.2%</span></td><td class="n">2.767<span class="wowsub mup">+36.2%</span></td></tr></tbody></table></div>
+
+<div class="note">
+  <span class="lbl">One gap in that table, stated rather than hidden</span>
+  <p>Waterslide holds <strong>60</strong> of the 75 metrics the other four have, and <code>PeakConcurrentPlayers</code> is one of the missing ones, so its concurrents cell reads &ldquo;not held&rdquo; rather than zero. An absent metric and a metric reading zero are different things and the panel keeps them different.</p>
+</div>
+
+<h2>The five reports</h2>
+<div class="gamelist"><a class="gcard" href="https://claude.ai/code/artifact/a9c32121-7f9d-4dd6-bbe9-f7ae4c6de292" style="border-left-color:#847a26">
+    <div class="gtop"><span class="gname">Become a Brainrot</span> <span class="ver">v608</span></div>
+    <p class="gsum">Published 2026-09-04 12:17:52 UTC &middot; 170 days in the panel &middot;
+      111,227 DAU on the 5&ndash;7 Sep mean. Daily series, week-over-week
+      by weekday, funnels and the full metric grid.</p></a>
+<a class="gcard" href="https://claude.ai/code/artifact/ae8bd250-e1ff-4872-b92c-0d4184997aaa" style="border-left-color:#b04c17">
+    <div class="gtop"><span class="gname">+1 Banana Monkey Destruction</span> <span class="ver">v1246</span></div>
+    <p class="gsum">Published 2026-09-04 17:35:02 UTC &middot; 74 days in the panel &middot;
+      90,757 DAU on the 5&ndash;7 Sep mean. Daily series, week-over-week
+      by weekday, funnels and the full metric grid.</p></a>
+<a class="gcard" href="https://claude.ai/code/artifact/7b7662cb-afaf-43cc-ba5c-f6d478fd4b04" style="border-left-color:#af7a18">
+    <div class="gtop"><span class="gname">Climb Waterslide and Slide</span> <span class="ver">v1719</span></div>
+    <p class="gsum">Published 2026-09-04 19:12:51 UTC &middot; 141 days in the panel &middot;
+      115,980 DAU on the 5&ndash;7 Sep mean. Daily series, week-over-week
+      by weekday, funnels and the full metric grid.</p></a>
+<a class="gcard" href="https://claude.ai/code/artifact/cb89ffd1-4aa3-4453-8d63-8ff0115b11ec" style="border-left-color:#be7413">
+    <div class="gtop"><span class="gname">Verity Companion [AI]</span> <span class="ver">v684</span></div>
+    <p class="gsum">Published 2026-09-04 19:40:46 UTC &middot; 47 days in the panel &middot;
+      433,988 DAU on the 5&ndash;7 Sep mean. Daily series, week-over-week
+      by weekday, funnels and the full metric grid.</p></a>
+<a class="gcard" href="https://claude.ai/code/artifact/d9087fe8-6118-40ff-b1e0-cff6258eb3a5" style="border-left-color:#b75f15">
+    <div class="gtop"><span class="gname">Seal A Driveway</span> <span class="ver">v914</span></div>
+    <p class="gsum">Published 2026-09-04 20:22:33 UTC &middot; 39 days in the panel &middot;
+      106,709 DAU on the 5&ndash;7 Sep mean. Daily series, week-over-week
+      by weekday, funnels and the full metric grid.</p></a></div>
+
+<footer>Five universes &middot; browser grab 09 Sep 2026, 12:05&ndash;12:16 UTC &middot; behavioural metrics settled to 07 Sep, technical to 08 Sep.</footer>
+</div>

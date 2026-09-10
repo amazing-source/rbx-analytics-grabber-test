@@ -325,3 +325,186 @@ on 14 of 31 August days, so timing alone can never carry an update claim.
   corpus (restated up to 21×, always upward). Any report quoting it is wrong in
   the same direction. Decide whether it switches to last-write-wins.
 - **F13 / F15** unfixed and F13 not encoded as a test.
+
+---
+
+## 2026-09-08 — Update 04.09, five games, and a spec-mapping error
+
+Five builds shipped inside eight hours on 2026-09-04 and all five were graded at
+T+4d from one browser grab each (08 Sep 12:38-12:44 UTC, window 12 Aug - 9 Sep;
+1,307 requests, 1,071 with data). Reports published as six artifacts (cover +
+one per game). Gates on the day: `npm test` 51/51 · `audit-plan` 180 templates,
+0 failures · `verify` 24 pass / 2 fail / 7 skip.
+
+| Game | Version | Published UTC | Verdict |
+|---|---|---|---|
+| Brainrot `9963622286` | v608 | 04 Sep 12:17:52 | **OK.** Nothing broken; CVR +17.2%, Rebirth1 +2.3pp; D1 rise contaminated by the new 4-day quest |
+| Banana Monkey `10399712766` | v1246 | 04 Sep 17:35:02 | **WATCH.** Technically cleanest; decline began 31 Aug; sessions ~7% below trend on all 3 post days |
+| Waterslide `10030829154` | v1719 | 04 Sep 19:12:51 | **FIX (chronic).** Build clean; the 23 Aug raft-shop `CanvasPosition` defect is still live — 9 reports across 5 builds |
+| Verity `10565445771` | v684 → v688 06 Sep | 04 Sep 19:40:46 | **OK + WATCH.** CVR +45.2%, DevProduct +57%; first-play bounce is a ramp from 01 Sep |
+| Seal `10638354731` | v914 | 04 Sep 20:22:33 | **FIX.** Onboarding completion 68.1→74.0%; v914 introduced DataStore save failures |
+
+**RETRACTED IN-SESSION, before delivery — the spec mapping.** I credited v684
+with Verity's daily/returning-player rewards and the 99R personalities, and v914
+with Seal's sealer colours, friend-invite boost and like/group reward. **All six
+are unreleased** — Verity's block is a later update, Seal's is headed
+*Update 10.09*. Ren caught it: *"the date is literally written"*. The
+measurements were unaffected; every attribution built on them was. Re-cut: v684
+is alternative endings + the skins shop, v914 is mobile UI + squeegee VFX +
+rebirth UI + the tutorial rework.
+
+Once re-cut, the Verity result got **stronger and more specific**: the free skin
+unlocks at "over 50 messages", and the share of message-senders reaching 50 went
+7.1% → 10.5% on matched Saturdays. The mechanism names its own threshold. Ren's
+cannibalisation worry is about the *unreleased* block, so the report now carries
+a pre-registered four-row baseline instead of an answer.
+
+**Two more in-session retractions:**
+
+1. **Verity's bounce rise is a ramp, not a step.** Read from the publish onward
+   it looks like a clean break at v684 (z 3.55, 3.40). Printing the pre-update
+   days shows it climbing from 01 Sep — three days earlier, alongside thumbnail
+   swaps on 01 and 02 Sep and the v680 publish on 31 Aug. Failure mode 3 + 8.
+   The claim is now "v684 did not start it and may have steepened it".
+2. **Brainrot's funnel did not collapse.** Merged across funnels by step index,
+   its deep steps appeared to fall 11pp over the newest three days. Pulled per
+   funnel name, `BaseUpgrade20` has no data at all and every real step is flat
+   or up — the merged view attaches one funnel's label to another's numbers on
+   immature cohort days.
+
+**Method gain worth keeping: the gateway path DOES serve a working `FunnelName`
+filter.** `CLAUDE.md` records that the filter returns 0 series always — that is
+true on **Open Cloud only**. The browser path returns 36 daily points per
+(FunnelName, FunnelStep), which un-blends every funnel on every game. It is what
+settled Seal's 63%-vs-97% `ReachedDriveway` ambiguity (97.4% is Onboarding; 63%
+was the merged blend) and what produced the per-funnel tables in all five
+reports. `/tmp/pf.js` reads it straight out of `series.json`.
+
+**New failure mode for the table below — 9. An attribution built on an unchecked
+premise.** Every number can be right and the finding still wrong, because the
+thing it is attributed to does not exist. Control: name the shipped list at the
+top of the report, cross-check the date header against `place-versions.csv` and
+the `EXPERIENCE_EVENT_STATE` annotation, and exclude anything marked DELAYED or
+PAUSED inside a shipped block.
+
+**Still blocked on all five: error message TEXT.** `MessageHash` 500s on every
+universe. Seal has a 05 Sep v914 export and it is the only reason that report
+can name its defect. Verity is 6 builds stale, Waterslide predates the build,
+Brainrot is 8 builds stale, and **Banana Monkey has still never had one filed**.
+
+---
+
+## 2026-09-09 — the record-low CCU read, and the first measured floor
+
+Ren: *"ccu for verity, seal and monkey are looking critical rn, all time low
+pretty sure... theres no way were this low in ccu."* Then, mid-read: *"even
+become a brainrot is higher than monkey and seal, if u told me that 1 week ago i
+wouldve js laughed at ur face."*
+
+**Both observations were correct and the second one is the finding.**
+
+| Date | Deliverable | Headline claim | Status | Notes |
+|---|---|---|---|---|
+| 09-09 | `One Curve, Five Games` (cover) | The lows are real, but it is one decay curve at five speeds, not five incidents. Brainrot is above Monkey and Seal because it reached its floor first, not because it improved. | **OPEN** | Rests on 5 games' full-life weekly DAU. Brainrot flat at 84–97K for a fortnight after −90.7% off peak; Monkey is already *below* it at 61K. The floor generalisation is n=1 and is flagged as such in the report. |
+| 09-09 | `Banana Monkey Bounce Break` | The only genuine product regression of the five. `RFYDuration0To60` = 13.54% on 07-09, **lifetime max, z = +3.20** on a 50-day window; session length 12.27 min, lifetime low. | **OPEN** | Strengthened by an inversion argument: bounce and reach normally move oppositely on this game (bounce was at its *lowest*, 7.8–9.5%, during the 8–11M impression push). Both now move together, which the dilution story cannot produce. Not dated to a build — bounce ramps across v1244 and v1246 rather than stepping at either, and the report says so. |
+| 09-09 | `Seal A Driveway Listing Collapse` | The game is fine and improving; Home click-to-play fell 8.47% → 2.76% between 28 Aug and 02 Sep, then plateaued. | **OPEN** | Five instruments say the game did not regress (bounce −6.0%, session +2.3%, D1 playtime +4.6%, playtime/DAU +1.1%, payer CVR +58%). Thumbnail revert proposed as the discriminating experiment; explicitly labelled circumstantial. |
+| 09-09 | `Verity Free Messages at T+1d` | All four pre-registered cannibalisation rows are **NO DATA**; first honest read is 11 Sep. | **HELD** | This is the pre-registration working as designed. v689/v690 shipped 08-09 10:07/10:47 UTC; the money rung reads to 09-07, entirely pre-publish. |
+
+**Caught before it shipped — the failure mode was #4, an instrument fault read as
+a game event.** Verity's `ClientFpsP10` for 09-08 reads **9.71** against 45.30 the
+day before, and memory 0.044 against 0.216. The build had shipped that morning,
+so the obvious write-up was "the free-message update destroyed client
+performance." It is a **Roblox telemetry fault**: the same ~78% collapse appears
+on *all five* universes on 09-08, session length and crash rate stay flat on every
+one, memory falls *with* FPS, every `Platform` slice drops by the same ratio, and
+09-09 recovers with no publish. Open Cloud serves the identical values, so it is
+not our pipeline. Logged as **F28** in `data/verify/COVERAGE.md` and in Verity's
+`data-quality.md`.
+
+**The general rule this adds:** a technical regression that appears on every
+unrelated universe at once is an instrument fault, not five incidents. It is the
+cheapest cross-check in the file and it costs one query per game.
+
+**One claim deliberately NOT made.** The first pass computed a
+d-log-impressions vs d-log-CVR correlation to argue Seal's listing lost appeal.
+On a clean post-launch window it is r = +0.30 at n = 15, which supports nothing,
+and the earlier r = −0.86 was contaminated by Seal's own launch ramp. Dropped
+rather than reported. The Home-surface conversion *level* carries the Seal claim
+instead, and that is a measurement rather than an inference.
+
+**Method note — the funnel could not localise Monkey.** Its instrumented funnel
+is three steps (`Joined`, `Punched`, `Collected a Banana`), all firing in the
+first seconds and all at 92–96%. A player completes all three and still leaves
+inside 60s. **The instrumentation stops before the place the player is lost**,
+which is why a real, large, lifetime-extreme regression produced no funnel
+signal, no error and no crash. Recorded as the cheapest fix on that game.
+
+### 2026-09-09, same session — both game diagnoses reversed by Ren's hands-on knowledge
+
+| Claim | Status | What happened |
+|---|---|---|
+| "Banana Monkey is the only game of five with a genuine product regression" (bounce 13.54%, lifetime max, z = +3.20) | **RETRACTED** | Ren: *"i did play monkey for 60 s and didnt see anything once agian, the game is literally fine."* Correct. Bucketing post-peak days by decay depth, **Brainrot ran 15.06% mean / 17.93% worst bounce at the same depth where Monkey now runs 12.63% / 13.54%** — Monkey's all-time worst is better than the control's average, and Brainrot then recovered to 12.79% unaided. Bounce rises monotonically with decay depth on both games. |
+| "Seal A Driveway is fine, do not bug-hunt" | **RETRACTED** | Ren: *"seal still has the performance issues, and a progression blocker, like the airport road cannot be completed, its the last one, it blocks u from rebirthing."* All confirmed in the game's own log. |
+
+**Failure mode: a z-score against a game's own history, on a game riding a
+lifecycle curve.** The 50-day window used for Monkey's mean was dominated by its
+peak, when reach was huge and bounce structurally low. Every day of the decline
+then reads as an outlier, and I reported the artifact as a defect. **The fix is a
+control game at the same decay depth**, which this portfolio now has because
+Brainrot completed the curve first. This is a NEW recurring failure mode and it is
+not in the existing six — closest is "wrong baseline", but the specific trap is
+that the baseline is *internally* valid and still wrong.
+
+**Second lesson, and it is the same one as 2026-08-10 §5b:** four other tests on
+Monkey all came back negative (errors down, crashes down, v1246 export 882
+events, funnel flat, FPS up on every platform, D1 fell *hardest on Computer*
+which excludes a render regression). I read that as an unexplained absence and
+went looking harder, instead of treating it as agreement. **Converging negatives
+are a result.** Ren has now played Monkey twice on my prompting and found nothing
+both times; that is two people-hours spent on a defect the data never supported.
+
+---
+
+## 2026-09-09 — Seal A Driveway: the coverage blocker (CONFIRMED, code-level)
+
+Found by searching the filed error exports after Ren named the symptom. The game
+prints its own diagnosis:
+
+    [DrivewayServer] <Player> finished Workspace.Airport.Taxiways.Taxiway_B
+    but the server had only seen 0.90 coverage (needs 0.93)
+    -- not paid and NOT recorded
+
+**Mechanism:** the client decides a surface is finished; the server keeps an
+independent coverage figure and requires **0.93**; when it falls short the
+completion is discarded — no payment, no record. The airport taxiway misses by
+three points, which is exactly a road that can never be completed.
+
+**Breadth:** in the 09-09 export filtered to v914, **24 of 25 signatures are this
+warning**, across Neighbourhood, EstateDistrict, RetailPark and Airport. Two
+distinct regimes: near misses at 0.83–0.92 (server slightly pessimistic) and
+0.01–0.34 (server effectively blind to the work).
+
+**Volume is NOT measurable from the export and must not be quoted.** The message
+embeds both the surface name and the coverage value, so one defect shreds into
+two dozen signatures that consume the entire ~25-row cap — the classic
+userId-bearing-message truncation, in a new form. Breadth is established; depth
+is not.
+
+**It explains three things previously filed separately:** Ren's rebirth block;
+the 09-08 feedback *"terrible game i rebirth and all money has gone"* and 09-06
+*"WHY DOESNT TS SAVE?? LIKE WHAT"*; and `RFYD2To7PlayDays` −26.5% on matched
+weekdays, which the first version of this session's Seal report dismissed as a
+mild caveat.
+
+**Why the aggregates said the game was healthy:** survivorship. Bounce improved
+6.0%, session +2.3%, payer CVR +58% — because a player blocked at the airport
+leaves the denominator of every per-player average. **An aggregate cannot see a
+defect that removes its own victims**, which is the same mechanism recorded for
+Seal's Computer performance problem on 2026-09-04.
+
+**Second defect, separate:** `VehicleCamera:173: assertion failed!` at 42,677
+events paired with `RunService:fireRenderStepEarlyFunctions unexpected error` at
+42,677 — the same throw, **on RenderStep, once per frame**. Plus
+`EditableImage is not accessible. Go to the Security Tab in Experience Settings`
+at 12,429, which names its own one-toggle fix and sits plausibly upstream of the
+coverage shortfall (untested — flagged as a hypothesis, not a chain).

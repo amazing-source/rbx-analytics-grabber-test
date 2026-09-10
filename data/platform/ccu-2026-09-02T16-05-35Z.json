@@ -1,0 +1,5018 @@
+{
+ "capturedAt": "2026-09-02T16:05:35Z",
+ "total": 6640062,
+ "count": 272,
+ "games": [
+  {
+   "universeId": 10563114921,
+   "rootPlaceId": 107778070777162,
+   "name": "Steal An Egg",
+   "playerCount": 1412573,
+   "totalUpVotes": 1039818,
+   "totalDownVotes": 72300,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2026-07-25"
+  },
+  {
+   "universeId": 1686885941,
+   "rootPlaceId": 4924922222,
+   "name": "Brookhaven 🏡RP",
+   "playerCount": 414875,
+   "totalUpVotes": 8498623,
+   "totalDownVotes": 1395201,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2020-04-21"
+  },
+  {
+   "universeId": 994732206,
+   "rootPlaceId": 2753915549,
+   "name": "Blox Fruits",
+   "playerCount": 334344,
+   "totalUpVotes": 12566215,
+   "totalDownVotes": 1053585,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "RPG",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2019-01-16"
+  },
+  {
+   "universeId": 66654135,
+   "rootPlaceId": 142823291,
+   "name": "Murder Mystery 2",
+   "playerCount": 296292,
+   "totalUpVotes": 10484894,
+   "totalDownVotes": 1056766,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2014-01-18"
+  },
+  {
+   "universeId": 383310974,
+   "rootPlaceId": 920587237,
+   "name": "[☀️] Adopt Me!",
+   "playerCount": 226928,
+   "totalUpVotes": 9408717,
+   "totalDownVotes": 1510134,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2017-07-14"
+  },
+  {
+   "universeId": 9584852943,
+   "rootPlaceId": 95082159892680,
+   "name": "[G2] +1 Speed Keyboard Escape | Candy & Chocolate",
+   "playerCount": 214866,
+   "totalUpVotes": 9511277,
+   "totalDownVotes": 279434,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2026-01-18"
+  },
+  {
+   "universeId": 7326934954,
+   "rootPlaceId": 79546208627805,
+   "name": "[🪶] 99 Nights in the Forest 🔦",
+   "playerCount": 187813,
+   "totalUpVotes": 5330340,
+   "totalDownVotes": 560917,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2025-03-04"
+  },
+  {
+   "universeId": 6035872082,
+   "rootPlaceId": 17625359962,
+   "name": "RIVALS",
+   "playerCount": 183517,
+   "totalUpVotes": 10461430,
+   "totalDownVotes": 693416,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2024-05-26"
+  },
+  {
+   "universeId": 6701277882,
+   "rootPlaceId": 121864768012064,
+   "name": "[🐉UPD] Fish It! 🐟",
+   "playerCount": 116970,
+   "totalUpVotes": 1340155,
+   "totalDownVotes": 276996,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2024-10-21"
+  },
+  {
+   "universeId": 3508322461,
+   "rootPlaceId": 9391468976,
+   "name": "[REGISTER] Jujutsu Shenanigans",
+   "playerCount": 110574,
+   "totalUpVotes": 2533673,
+   "totalDownVotes": 399538,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-playing-now",
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2022-04-17"
+  },
+  {
+   "universeId": 7709344486,
+   "rootPlaceId": 109983668079237,
+   "name": "[🐝] Steal a Brainrot",
+   "playerCount": 95379,
+   "totalUpVotes": 15379373,
+   "totalDownVotes": 2655300,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2025-05-16"
+  },
+  {
+   "universeId": 5203828273,
+   "rootPlaceId": 15101393044,
+   "name": "[🌴] Dress To Impress",
+   "playerCount": 75887,
+   "totalUpVotes": 3943655,
+   "totalDownVotes": 412298,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2023-10-18"
+  },
+  {
+   "universeId": 10148749921,
+   "rootPlaceId": 78515283254292,
+   "name": "Animal Hospital (Anomaly) 🧪",
+   "playerCount": 69518,
+   "totalUpVotes": 1224435,
+   "totalDownVotes": 76375,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-05-10"
+  },
+  {
+   "universeId": 6331902150,
+   "rootPlaceId": 18687417158,
+   "name": "[🌴 UPD] Forsaken",
+   "playerCount": 68989,
+   "totalUpVotes": 2357328,
+   "totalDownVotes": 429043,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2024-07-28"
+  },
+  {
+   "universeId": 2440500124,
+   "rootPlaceId": 6516141723,
+   "name": "DOORS 👔",
+   "playerCount": 68838,
+   "totalUpVotes": 4641944,
+   "totalDownVotes": 350421,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2021-03-14"
+  },
+  {
+   "universeId": 3317771874,
+   "rootPlaceId": 8737899170,
+   "name": "🍀 [LUCKY BLOCK] Pet Simulator 99! 🎯",
+   "playerCount": 67179,
+   "totalUpVotes": 3060753,
+   "totalDownVotes": 169784,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2022-02-05"
+  },
+  {
+   "universeId": 10539411000,
+   "rootPlaceId": 92637789841354,
+   "name": "🍂 Clean all the leaves!",
+   "playerCount": 65248,
+   "totalUpVotes": 77685,
+   "totalDownVotes": 11917,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Adventure",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2026-07-21"
+  },
+  {
+   "universeId": 2711375305,
+   "rootPlaceId": 7041939546,
+   "name": "Catalog Avatar Creator",
+   "playerCount": 64129,
+   "totalUpVotes": 2955162,
+   "totalDownVotes": 198000,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Shopping",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2021-07-03"
+  },
+  {
+   "universeId": 6739698191,
+   "rootPlaceId": 93978595733734,
+   "name": "[CURE] Violence District",
+   "playerCount": 57922,
+   "totalUpVotes": 712744,
+   "totalDownVotes": 52023,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-playing-now",
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2024-10-31"
+  },
+  {
+   "universeId": 5750914919,
+   "rootPlaceId": 16732694052,
+   "name": "Fisch 🐋 [SEI WHALE]",
+   "playerCount": 57210,
+   "totalUpVotes": 2980893,
+   "totalDownVotes": 307035,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2024-03-13"
+  },
+  {
+   "universeId": 10144280947,
+   "rootPlaceId": 114697347887839,
+   "name": "🐒 +1 Speed Monkey Escape",
+   "playerCount": 51964,
+   "totalUpVotes": 1838530,
+   "totalDownVotes": 36701,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-05-09"
+  },
+  {
+   "universeId": 3808081382,
+   "rootPlaceId": 10449761463,
+   "name": "The Strongest Battlegrounds",
+   "playerCount": 51777,
+   "totalUpVotes": 5268785,
+   "totalDownVotes": 1015470,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-playing-now",
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2022-08-02"
+  },
+  {
+   "universeId": 703124385,
+   "rootPlaceId": 1962086868,
+   "name": "Tower of Hell",
+   "playerCount": 51740,
+   "totalUpVotes": 4324567,
+   "totalDownVotes": 1554044,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Obby & Platformer",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2018-06-18"
+  },
+  {
+   "universeId": 4839802560,
+   "rootPlaceId": 13967668166,
+   "name": "LifeTogether 🏠 RP",
+   "playerCount": 45999,
+   "totalUpVotes": 923939,
+   "totalDownVotes": 97248,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2023-07-05"
+  },
+  {
+   "universeId": 5361032378,
+   "rootPlaceId": 15532962292,
+   "name": "Sol's RNG [ Summer Event 🏖️]",
+   "playerCount": 44625,
+   "totalUpVotes": 1408479,
+   "totalDownVotes": 133374,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2023-12-03"
+  },
+  {
+   "universeId": 3240075297,
+   "rootPlaceId": 8481844229,
+   "name": "Berry Avenue 🏠 RP",
+   "playerCount": 43293,
+   "totalUpVotes": 1129181,
+   "totalDownVotes": 183716,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2022-01-07"
+  },
+  {
+   "universeId": 7613921865,
+   "rootPlaceId": 84515722934860,
+   "name": "Anime Expeditions [Summer Siege🎣]",
+   "playerCount": 41204,
+   "totalUpVotes": 264332,
+   "totalDownVotes": 11134,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Strategy",
+   "sorts": [
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2025-04-28"
+  },
+  {
+   "universeId": 9931749389,
+   "rootPlaceId": 77649408247578,
+   "name": "[Northern Lands] Dungeon Quest Reborn",
+   "playerCount": 40317,
+   "totalUpVotes": 59894,
+   "totalDownVotes": 3552,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "RPG",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2026-03-24"
+  },
+  {
+   "universeId": 2668101271,
+   "rootPlaceId": 6961824067,
+   "name": "Fling Things and People",
+   "playerCount": 36714,
+   "totalUpVotes": 924946,
+   "totalDownVotes": 227093,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2021-06-16"
+  },
+  {
+   "universeId": 7219654364,
+   "rootPlaceId": 135856908115931,
+   "name": "[🌌DUELS] Murderers VS Sheriffs",
+   "playerCount": 35611,
+   "totalUpVotes": 237965,
+   "totalDownVotes": 34488,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2025-02-09"
+  },
+  {
+   "universeId": 9167377564,
+   "rootPlaceId": 70411440483149,
+   "name": "100 Days At Sea",
+   "playerCount": 33991,
+   "totalUpVotes": 595900,
+   "totalDownVotes": 17155,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2025-11-14"
+  },
+  {
+   "universeId": 10690360998,
+   "rootPlaceId": 126870639873289,
+   "name": "Jump for Animals!",
+   "playerCount": 33534,
+   "totalUpVotes": 4669,
+   "totalDownVotes": 265,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-08-12"
+  },
+  {
+   "universeId": 3647333358,
+   "rootPlaceId": 9872472334,
+   "name": "Evade ",
+   "playerCount": 33458,
+   "totalUpVotes": 3197626,
+   "totalDownVotes": 207449,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2022-06-10"
+  },
+  {
+   "universeId": 10144587520,
+   "rootPlaceId": 125039473548047,
+   "name": "[UPD📚] Anime Card Farm",
+   "playerCount": 30813,
+   "totalUpVotes": 86805,
+   "totalDownVotes": 2097,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2026-05-09"
+  },
+  {
+   "universeId": 6931042565,
+   "rootPlaceId": 73956553001240,
+   "name": "[UPD] Volleyball Legends",
+   "playerCount": 30453,
+   "totalUpVotes": 2520295,
+   "totalDownVotes": 125627,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2024-12-17"
+  },
+  {
+   "universeId": 7585140258,
+   "rootPlaceId": 118418618261207,
+   "name": "RUNAWAYS [beta]",
+   "playerCount": 30378,
+   "totalUpVotes": 230489,
+   "totalDownVotes": 9508,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2025-04-23"
+  },
+  {
+   "universeId": 1202096104,
+   "rootPlaceId": 3351674303,
+   "name": "Driving Empire [PORSCHE UPDATE✨] ",
+   "playerCount": 28662,
+   "totalUpVotes": 2507364,
+   "totalDownVotes": 186905,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2019-06-23"
+  },
+  {
+   "universeId": 2619619496,
+   "rootPlaceId": 6872265039,
+   "name": "BedWars [🐦‍⬛Raven Re-Release]",
+   "playerCount": 28401,
+   "totalUpVotes": 2463155,
+   "totalDownVotes": 530880,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Action",
+   "sorts": [
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2021-05-27"
+  },
+  {
+   "universeId": 6765805766,
+   "rootPlaceId": 104715542330896,
+   "name": "BlockSpin 🔪 ",
+   "playerCount": 28266,
+   "totalUpVotes": 268611,
+   "totalDownVotes": 73691,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2024-11-06"
+  },
+  {
+   "universeId": 7436755782,
+   "rootPlaceId": 126884695634066,
+   "name": "[🌱] Grow a Garden 🌶️",
+   "playerCount": 27931,
+   "totalUpVotes": 9414096,
+   "totalDownVotes": 1052523,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2025-03-25"
+  },
+  {
+   "universeId": 10338952197,
+   "rootPlaceId": 94640181989498,
+   "name": "Grow a Chicken Fighter",
+   "playerCount": 27030,
+   "totalUpVotes": 327893,
+   "totalDownVotes": 6960,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-06-16"
+  },
+  {
+   "universeId": 4949420752,
+   "rootPlaceId": 14315258385,
+   "name": "Realistic Street Soccer",
+   "playerCount": 25949,
+   "totalUpVotes": 470107,
+   "totalDownVotes": 84961,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2023-08-04"
+  },
+  {
+   "universeId": 5578556129,
+   "rootPlaceId": 16146832113,
+   "name": "Anime Vanguards: Holy Retribution",
+   "playerCount": 24410,
+   "totalUpVotes": 2583433,
+   "totalDownVotes": 87160,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 12,
+   "ageRecommendationDisplayName": "Age Rating: 12+",
+   "contentMaturity": "vng-rating-override",
+   "genreL1": "Strategy",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2024-01-28"
+  },
+  {
+   "universeId": 1831550657,
+   "rootPlaceId": 5233782396,
+   "name": "🦌 Creatures of Sonaria 🍃 Survive Kaiju Animals",
+   "playerCount": 24209,
+   "totalUpVotes": 1400914,
+   "totalDownVotes": 114678,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-playing-now",
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2020-06-25"
+  },
+  {
+   "universeId": 10502841145,
+   "rootPlaceId": 102072869879193,
+   "name": "[QUINQUES] Anime Astral Simulator",
+   "playerCount": 23264,
+   "totalUpVotes": 31364,
+   "totalDownVotes": 1015,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2026-07-14"
+  },
+  {
+   "universeId": 10410945205,
+   "rootPlaceId": 90086669327265,
+   "name": "+1 Cut Grass Adventure",
+   "playerCount": 23149,
+   "totalUpVotes": 82470,
+   "totalDownVotes": 2507,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2026-06-28"
+  },
+  {
+   "universeId": 9294074907,
+   "rootPlaceId": 90568084448279,
+   "name": "[FPS] One Tap",
+   "playerCount": 23016,
+   "totalUpVotes": 188842,
+   "totalDownVotes": 25611,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2025-12-04"
+  },
+  {
+   "universeId": 10440833423,
+   "rootPlaceId": 74102906764176,
+   "name": "Greedy Growers 🌱",
+   "playerCount": 22886,
+   "totalUpVotes": 476964,
+   "totalDownVotes": 11066,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-07-03"
+  },
+  {
+   "universeId": 5569032992,
+   "rootPlaceId": 16116270224,
+   "name": "🌻 Dandy's World [ALPHA]",
+   "playerCount": 22777,
+   "totalUpVotes": 1669477,
+   "totalDownVotes": 259584,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2024-01-26"
+  },
+  {
+   "universeId": 10261267004,
+   "rootPlaceId": 98800969324557,
+   "name": "[🚨] Storage Hunters: Open World",
+   "playerCount": 22470,
+   "totalUpVotes": 104811,
+   "totalDownVotes": 5999,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-06-02"
+  },
+  {
+   "universeId": 601130232,
+   "rootPlaceId": 1537690962,
+   "name": "Bee Swarm Simulator",
+   "playerCount": 22111,
+   "totalUpVotes": 3017136,
+   "totalDownVotes": 139574,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2018-03-21"
+  },
+  {
+   "universeId": 5995470825,
+   "rootPlaceId": 17516596118,
+   "name": "🔥Hypershot",
+   "playerCount": 22025,
+   "totalUpVotes": 1790374,
+   "totalDownVotes": 102232,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2024-05-17"
+  },
+  {
+   "universeId": 4777817887,
+   "rootPlaceId": 13772394625,
+   "name": "Blade Ball",
+   "playerCount": 21972,
+   "totalUpVotes": 8405146,
+   "totalDownVotes": 583691,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2023-06-17"
+  },
+  {
+   "universeId": 4658598196,
+   "rootPlaceId": 13379208636,
+   "name": "Attack on Titan Revolution",
+   "playerCount": 21352,
+   "totalUpVotes": 1393675,
+   "totalDownVotes": 58185,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "RPG",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2023-05-07"
+  },
+  {
+   "universeId": 9780429221,
+   "rootPlaceId": 98894876188248,
+   "name": "Cheating During Testing [BETA]",
+   "playerCount": 21125,
+   "totalUpVotes": 30327,
+   "totalDownVotes": 6730,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2026-02-22"
+  },
+  {
+   "universeId": 9592387369,
+   "rootPlaceId": 123847390309161,
+   "name": "[DAILY] Spiral Difficulty Chart Obby",
+   "playerCount": 20905,
+   "totalUpVotes": 27577,
+   "totalDownVotes": 6704,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Obby & Platformer",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2026-01-20"
+  },
+  {
+   "universeId": 372226183,
+   "rootPlaceId": 893973440,
+   "name": "Flee the Facility",
+   "playerCount": 20801,
+   "totalUpVotes": 2775328,
+   "totalDownVotes": 238269,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2017-07-01"
+  },
+  {
+   "universeId": 10460801145,
+   "rootPlaceId": 103037106396302,
+   "name": "TROLL Hug Tower",
+   "playerCount": 20697,
+   "totalUpVotes": 55493,
+   "totalDownVotes": 8711,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Obby & Platformer",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-07-07"
+  },
+  {
+   "universeId": 7108384194,
+   "rootPlaceId": 120700541929930,
+   "name": "[👽NOW] Knife VS Gun DUELS",
+   "playerCount": 20693,
+   "totalUpVotes": 116669,
+   "totalDownVotes": 19550,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2025-01-19"
+  },
+  {
+   "universeId": 10200395747,
+   "rootPlaceId": 97598239454123,
+   "name": "Grow a Garden 2",
+   "playerCount": 20398,
+   "totalUpVotes": 717720,
+   "totalDownVotes": 97283,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-05-21"
+  },
+  {
+   "universeId": 10475794799,
+   "rootPlaceId": 83038462357724,
+   "name": "[UPD] Dig & Clean 🧼",
+   "playerCount": 20371,
+   "totalUpVotes": 183670,
+   "totalDownVotes": 6844,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-07-09"
+  },
+  {
+   "universeId": 9978329815,
+   "rootPlaceId": 74188431054457,
+   "name": "Mukbang Game [Testing] 🍩🥟🍵!",
+   "playerCount": 19980,
+   "totalUpVotes": 261789,
+   "totalDownVotes": 19487,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-04-02"
+  },
+  {
+   "universeId": 10155360168,
+   "rootPlaceId": 126987974021910,
+   "name": "Illegal Soccer",
+   "playerCount": 19576,
+   "totalUpVotes": 6195,
+   "totalDownVotes": 1076,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2026-05-12"
+  },
+  {
+   "universeId": 10551595617,
+   "rootPlaceId": 133294838637122,
+   "name": "⚽ Jump To Steal Soccer Players ⚽",
+   "playerCount": 19434,
+   "totalUpVotes": 23308,
+   "totalDownVotes": 4156,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-07-23"
+  },
+  {
+   "universeId": 10336278580,
+   "rootPlaceId": 122572082932179,
+   "name": "[💎] Sell Ores ⛏️",
+   "playerCount": 19271,
+   "totalUpVotes": 142263,
+   "totalDownVotes": 1526,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2026-06-16"
+  },
+  {
+   "universeId": 10004244222,
+   "rootPlaceId": 89469502395769,
+   "name": "Kick a Lucky Block",
+   "playerCount": 19222,
+   "totalUpVotes": 1275479,
+   "totalDownVotes": 65312,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-04-07"
+  },
+  {
+   "universeId": 7008097940,
+   "rootPlaceId": 99567941238278,
+   "name": "[🥇] Ink Game",
+   "playerCount": 19136,
+   "totalUpVotes": 1229517,
+   "totalDownVotes": 321893,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Party & Casual",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2024-12-31"
+  },
+  {
+   "universeId": 10399136326,
+   "rootPlaceId": 108567435288296,
+   "name": "Anime Ability Arena",
+   "playerCount": 18146,
+   "totalUpVotes": 55216,
+   "totalDownVotes": 6438,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2026-06-26"
+  },
+  {
+   "universeId": 10577588270,
+   "rootPlaceId": 97824450589417,
+   "name": "🦸 +1 Superhero Evolution",
+   "playerCount": 16915,
+   "totalUpVotes": 58570,
+   "totalDownVotes": 1139,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2026-07-27"
+  },
+  {
+   "universeId": 2992873140,
+   "rootPlaceId": 7711635737,
+   "name": "Emergency Hamburg",
+   "playerCount": 16687,
+   "totalUpVotes": 486438,
+   "totalDownVotes": 81775,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2021-10-11"
+  },
+  {
+   "universeId": 9561553764,
+   "rootPlaceId": 120851538706364,
+   "name": "Murder Duels",
+   "playerCount": 16429,
+   "totalUpVotes": 203706,
+   "totalDownVotes": 12452,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2026-01-14"
+  },
+  {
+   "universeId": 6325068386,
+   "rootPlaceId": 18668065416,
+   "name": "[NEL 2.5] Blue Lock: Rivals",
+   "playerCount": 16245,
+   "totalUpVotes": 10169467,
+   "totalDownVotes": 354399,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2024-07-26"
+  },
+  {
+   "universeId": 2936053166,
+   "rootPlaceId": 7554888362,
+   "name": "[🦑] Squid Game X",
+   "playerCount": 16223,
+   "totalUpVotes": 1456239,
+   "totalDownVotes": 97882,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Party & Casual",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2021-09-24"
+  },
+  {
+   "universeId": 10199301628,
+   "rootPlaceId": 128784467030899,
+   "name": "Merge a Nuke!",
+   "playerCount": 16140,
+   "totalUpVotes": 732610,
+   "totalDownVotes": 39210,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-05-21"
+  },
+  {
+   "universeId": 210851291,
+   "rootPlaceId": 537413528,
+   "name": "Build A Boat For Treasure",
+   "playerCount": 15989,
+   "totalUpVotes": 3638037,
+   "totalDownVotes": 258031,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2016-11-02"
+  },
+  {
+   "universeId": 4293374620,
+   "rootPlaceId": 12177325772,
+   "name": "FIFA Super Soccer",
+   "playerCount": 15909,
+   "totalUpVotes": 450249,
+   "totalDownVotes": 102147,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2023-01-16"
+  },
+  {
+   "universeId": 648454481,
+   "rootPlaceId": 1730877806,
+   "name": "[🐆LEOPARD🐆] Grand Piece Online",
+   "playerCount": 15842,
+   "totalUpVotes": 1064603,
+   "totalDownVotes": 120621,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "RPG",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "top-revisited"
+   ],
+   "created": "2018-05-06"
+  },
+  {
+   "universeId": 7018190066,
+   "rootPlaceId": 116495829188952,
+   "name": "Dead Rails",
+   "playerCount": 15292,
+   "totalUpVotes": 3333776,
+   "totalDownVotes": 266762,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 18,
+   "ageRecommendationDisplayName": "Age Rating: 18+",
+   "contentMaturity": "vng-rating-override",
+   "genreL1": "Adventure",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2025-01-01"
+  },
+  {
+   "universeId": 88070565,
+   "rootPlaceId": 185655149,
+   "name": "[🪑] Welcome to Bloxburg ",
+   "playerCount": 15206,
+   "totalUpVotes": 5624586,
+   "totalDownVotes": 733679,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2014-11-04"
+  },
+  {
+   "universeId": 10755851371,
+   "rootPlaceId": 73684184132617,
+   "name": "kevin game",
+   "playerCount": 15117,
+   "totalUpVotes": 6154,
+   "totalDownVotes": 1067,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-trending",
+    "up-and-coming",
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2026-08-23"
+  },
+  {
+   "universeId": 10057403337,
+   "rootPlaceId": 84556640895285,
+   "name": "[⚔️] Deagle Arena",
+   "playerCount": 15099,
+   "totalUpVotes": 55382,
+   "totalDownVotes": 7866,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-04-19"
+  },
+  {
+   "universeId": 10173311467,
+   "rootPlaceId": 137228775845999,
+   "name": "Ghost Driver [PRE-ALPHA]",
+   "playerCount": 14859,
+   "totalUpVotes": 394227,
+   "totalDownVotes": 7359,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2026-05-16"
+  },
+  {
+   "universeId": 7554119808,
+   "rootPlaceId": 75387700043737,
+   "name": "🛍️ My Avatar!",
+   "playerCount": 14664,
+   "totalUpVotes": 135810,
+   "totalDownVotes": 13674,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Shopping",
+   "sorts": [
+    "top-playing-now",
+    "fun-with-friends"
+   ],
+   "created": "2025-04-17"
+  },
+  {
+   "universeId": 10628907188,
+   "rootPlaceId": 124293095895786,
+   "name": "[UPD] Stream A Cheese Pull!",
+   "playerCount": 14552,
+   "totalUpVotes": 15227,
+   "totalDownVotes": 1796,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "up-and-coming",
+    "top-playing-now"
+   ],
+   "created": "2026-08-04"
+  },
+  {
+   "universeId": 9656201728,
+   "rootPlaceId": 106484206883664,
+   "name": "Dungeon Lootr [🎉RELEASE]",
+   "playerCount": 14263,
+   "totalUpVotes": 17826,
+   "totalDownVotes": 689,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "RPG",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2026-01-31"
+  },
+  {
+   "universeId": 10648820673,
+   "rootPlaceId": 116497287371701,
+   "name": "[🔥] Karinderya!",
+   "playerCount": 14169,
+   "totalUpVotes": 37735,
+   "totalDownVotes": 1441,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "up-and-coming",
+    "top-playing-now"
+   ],
+   "created": "2026-08-07"
+  },
+  {
+   "universeId": 5650396773,
+   "rootPlaceId": 16389395869,
+   "name": "a dusty trip  [🚗CAR]",
+   "playerCount": 14154,
+   "totalUpVotes": 2021491,
+   "totalDownVotes": 222265,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Adventure",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2024-02-16"
+  },
+  {
+   "universeId": 9098570654,
+   "rootPlaceId": 90148635862803,
+   "name": "[UPD] 🧟 Survive the Apocalypse",
+   "playerCount": 13820,
+   "totalUpVotes": 182669,
+   "totalDownVotes": 11461,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2025-11-04"
+  },
+  {
+   "universeId": 7398552394,
+   "rootPlaceId": 107467295209358,
+   "name": "A desrt [SANDBOX]",
+   "playerCount": 13663,
+   "totalUpVotes": 121283,
+   "totalDownVotes": 14271,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Adventure",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2025-03-18"
+  },
+  {
+   "universeId": 4568630521,
+   "rootPlaceId": 13076380114,
+   "name": "[💥] Heroes Battlegrounds",
+   "playerCount": 13040,
+   "totalUpVotes": 1121067,
+   "totalDownVotes": 189212,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending",
+    "top-playing-now",
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2023-04-11"
+  },
+  {
+   "universeId": 2851381018,
+   "rootPlaceId": 7305309231,
+   "name": "Taxi Boss 🚖",
+   "playerCount": 12942,
+   "totalUpVotes": 654064,
+   "totalDownVotes": 44154,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2021-08-22"
+  },
+  {
+   "universeId": 1268927906,
+   "rootPlaceId": 3623096087,
+   "name": "💪Muscle Legends ",
+   "playerCount": 12676,
+   "totalUpVotes": 1152796,
+   "totalDownVotes": 154224,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "top-playing-now"
+   ],
+   "created": "2019-08-09"
+  },
+  {
+   "universeId": 6774320049,
+   "rootPlaceId": 122485613019196,
+   "name": "Dubai 🏡RP [Kids! 👶]",
+   "playerCount": 12434,
+   "totalUpVotes": 76162,
+   "totalDownVotes": 10096,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-playing-now"
+   ],
+   "created": "2024-11-09"
+  },
+  {
+   "universeId": 4987856151,
+   "rootPlaceId": 14438406081,
+   "name": "Wanted [🔍UPDATE]",
+   "playerCount": 11920,
+   "totalUpVotes": 329250,
+   "totalDownVotes": 10234,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending",
+    "fun-with-friends"
+   ],
+   "created": "2023-08-14"
+  },
+  {
+   "universeId": 7633926880,
+   "rootPlaceId": 114234929420007,
+   "name": "[UPDATE!] BloxStrike",
+   "playerCount": 11908,
+   "totalUpVotes": 578164,
+   "totalDownVotes": 31369,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2025-05-02"
+  },
+  {
+   "universeId": 7089588429,
+   "rootPlaceId": 131378148336503,
+   "name": "(EVENT x LIMITED UPDATE 🇮🇩) Drag Drive Simulator",
+   "playerCount": 11906,
+   "totalUpVotes": 180616,
+   "totalDownVotes": 7975,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "top-revisited"
+   ],
+   "created": "2025-01-15"
+  },
+  {
+   "universeId": 1176784616,
+   "rootPlaceId": 3260590327,
+   "name": "[NEW BOSS]  Tower Defense Simulator",
+   "playerCount": 11771,
+   "totalUpVotes": 2063791,
+   "totalDownVotes": 128141,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Strategy",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2019-06-05"
+  },
+  {
+   "universeId": 9051406594,
+   "rootPlaceId": 94217045453265,
+   "name": "[BATTLEPASS ⭐️] Dueling Grounds ⚔️ ",
+   "playerCount": 11311,
+   "totalUpVotes": 1794430,
+   "totalDownVotes": 66785,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2025-10-28"
+  },
+  {
+   "universeId": 10544327471,
+   "rootPlaceId": 104809044319701,
+   "name": "+1 Phonk Evolution",
+   "playerCount": 11286,
+   "totalUpVotes": 25716,
+   "totalDownVotes": 478,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-07-21"
+  },
+  {
+   "universeId": 4348829796,
+   "rootPlaceId": 12355337193,
+   "name": "Murderers VS Sheriffs DUELS",
+   "playerCount": 11006,
+   "totalUpVotes": 562853,
+   "totalDownVotes": 104068,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2023-02-02"
+  },
+  {
+   "universeId": 10430413968,
+   "rootPlaceId": 95417153338993,
+   "name": "Squishy Ball Tower",
+   "playerCount": 10595,
+   "totalUpVotes": 11270,
+   "totalDownVotes": 2526,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Obby & Platformer",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2026-07-02"
+  },
+  {
+   "universeId": 10664667515,
+   "rootPlaceId": 103138601755519,
+   "name": "+1 Dino Evolution",
+   "playerCount": 10525,
+   "totalUpVotes": 4967,
+   "totalDownVotes": 436,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-08-09"
+  },
+  {
+   "universeId": 9534705677,
+   "rootPlaceId": 122446657157717,
+   "name": "[🔥UPD] Sniper Arena",
+   "playerCount": 10510,
+   "totalUpVotes": 244067,
+   "totalDownVotes": 22334,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2026-01-10"
+  },
+  {
+   "universeId": 1526814825,
+   "rootPlaceId": 4639625707,
+   "name": "[THERMAL] War Tycoon",
+   "playerCount": 10359,
+   "totalUpVotes": 1096130,
+   "totalDownVotes": 104457,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "fun-with-friends"
+   ],
+   "created": "2020-01-29"
+  },
+  {
+   "universeId": 10700505394,
+   "rootPlaceId": 74341114342499,
+   "name": "+1 Long Arm Toy Escape!",
+   "playerCount": 10185,
+   "totalUpVotes": 20991,
+   "totalDownVotes": 1212,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-08-14"
+  },
+  {
+   "universeId": 10698216738,
+   "rootPlaceId": 95409544559668,
+   "name": "Military Army Tycoon",
+   "playerCount": 10178,
+   "totalUpVotes": 20663,
+   "totalDownVotes": 614,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Simulation",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-08-13"
+  },
+  {
+   "universeId": 10230942274,
+   "rootPlaceId": 110175021189594,
+   "name": "Ability Arena 💥",
+   "playerCount": 9982,
+   "totalUpVotes": 203197,
+   "totalDownVotes": 14715,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2026-05-27"
+  },
+  {
+   "universeId": 10001039611,
+   "rootPlaceId": 76838459031868,
+   "name": "just an innocent game",
+   "playerCount": 9925,
+   "totalUpVotes": 14105,
+   "totalDownVotes": 5337,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2026-04-06"
+  },
+  {
+   "universeId": 6945584306,
+   "rootPlaceId": 94647229517154,
+   "name": "[🌱QOL] Azure Latch",
+   "playerCount": 9714,
+   "totalUpVotes": 1593562,
+   "totalDownVotes": 52274,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "top-trending",
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2024-12-20"
+  },
+  {
+   "universeId": 1000233041,
+   "rootPlaceId": 2768379856,
+   "name": "3008 [2.74]",
+   "playerCount": 9540,
+   "totalUpVotes": 1996410,
+   "totalDownVotes": 180003,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-trending",
+    "fun-with-friends"
+   ],
+   "created": "2019-01-20"
+  },
+  {
+   "universeId": 9582986239,
+   "rootPlaceId": 74729868188364,
+   "name": "Fish an Anime RNG 🎲",
+   "playerCount": 9393,
+   "totalUpVotes": 24085,
+   "totalDownVotes": 1320,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2026-01-18"
+  },
+  {
+   "universeId": 1235188606,
+   "rootPlaceId": 3475397644,
+   "name": "[EVENT ☀️] Dragon Adventures 🐉",
+   "playerCount": 8983,
+   "totalUpVotes": 1108787,
+   "totalDownVotes": 78173,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "RPG",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2019-07-15"
+  },
+  {
+   "universeId": 245662005,
+   "rootPlaceId": 606849621,
+   "name": "Jailbreak",
+   "playerCount": 8951,
+   "totalUpVotes": 5793815,
+   "totalDownVotes": 810668,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2017-01-06"
+  },
+  {
+   "universeId": 9641502068,
+   "rootPlaceId": 112731528776884,
+   "name": "[TRADING HUB] KNIFE DUELS",
+   "playerCount": 8622,
+   "totalUpVotes": 157598,
+   "totalDownVotes": 11749,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2026-01-29"
+  },
+  {
+   "universeId": 6760085372,
+   "rootPlaceId": 128451689942376,
+   "name": "[♾️GOJO V2] Jujutsu: Zero",
+   "playerCount": 8532,
+   "totalUpVotes": 212543,
+   "totalDownVotes": 10249,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "RPG",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2024-11-04"
+  },
+  {
+   "universeId": 10756011174,
+   "rootPlaceId": 77108422251420,
+   "name": "[✨] Search For The Needle",
+   "playerCount": 8317,
+   "totalUpVotes": 5353,
+   "totalDownVotes": 230,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Adventure",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-08-23"
+  },
+  {
+   "universeId": 73885730,
+   "rootPlaceId": 155615604,
+   "name": "Prison Life",
+   "playerCount": 8147,
+   "totalUpVotes": 1528322,
+   "totalDownVotes": 268019,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2014-05-02"
+  },
+  {
+   "universeId": 321778215,
+   "rootPlaceId": 735030788,
+   "name": "Royale🌺High",
+   "playerCount": 8125,
+   "totalUpVotes": 3257209,
+   "totalDownVotes": 534717,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-trending",
+    "top-revisited"
+   ],
+   "created": "2017-04-10"
+  },
+  {
+   "universeId": 10577682617,
+   "rootPlaceId": 122507029092776,
+   "name": "Build a +1 Obby",
+   "playerCount": 7868,
+   "totalUpVotes": 1121,
+   "totalDownVotes": 465,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-07-27"
+  },
+  {
+   "universeId": 10604772590,
+   "rootPlaceId": 116070952245255,
+   "name": "Build Base to Survive VERITY",
+   "playerCount": 7760,
+   "totalUpVotes": 11253,
+   "totalDownVotes": 1990,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2026-07-31"
+  },
+  {
+   "universeId": 6749060816,
+   "rootPlaceId": 132352755769957,
+   "name": "Asylum Life 🔊",
+   "playerCount": 7741,
+   "totalUpVotes": 291620,
+   "totalDownVotes": 58065,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-trending",
+    "fun-with-friends"
+   ],
+   "created": "2024-11-02"
+  },
+  {
+   "universeId": 10195997258,
+   "rootPlaceId": 112781315318195,
+   "name": "[🔨] Pull a Lucky Fish",
+   "playerCount": 7698,
+   "totalUpVotes": 63368,
+   "totalDownVotes": 3098,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2026-05-20"
+  },
+  {
+   "universeId": 9872734936,
+   "rootPlaceId": 70435795041539,
+   "name": "[TUNING] Junk Mechanics",
+   "playerCount": 7678,
+   "totalUpVotes": 28767,
+   "totalDownVotes": 4204,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2026-03-12"
+  },
+  {
+   "universeId": 6682487255,
+   "rootPlaceId": 110829983956014,
+   "name": "[ 🪄🎩] Anime Card Clash",
+   "playerCount": 7075,
+   "totalUpVotes": 424790,
+   "totalDownVotes": 10746,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2024-10-16"
+  },
+  {
+   "universeId": 10637513477,
+   "rootPlaceId": 73613510857111,
+   "name": "🐿+1 Speed Squirrel Escape",
+   "playerCount": 6768,
+   "totalUpVotes": 8707,
+   "totalDownVotes": 1439,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-08-05"
+  },
+  {
+   "universeId": 3730079862,
+   "rootPlaceId": 10165583746,
+   "name": "Examination",
+   "playerCount": 6642,
+   "totalUpVotes": 134315,
+   "totalDownVotes": 10944,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-trending",
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2022-07-09"
+  },
+  {
+   "universeId": 1278035280,
+   "rootPlaceId": 3663340706,
+   "name": "Warrior Cats: Ultimate Edition",
+   "playerCount": 6623,
+   "totalUpVotes": 493171,
+   "totalDownVotes": 36760,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2019-08-15"
+  },
+  {
+   "universeId": 10571722689,
+   "rootPlaceId": 130641102725850,
+   "name": "🌌 Agartha 🌌 Mog or Die ",
+   "playerCount": 6621,
+   "totalUpVotes": 29762,
+   "totalDownVotes": 2866,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2026-07-26"
+  },
+  {
+   "universeId": 4750561026,
+   "rootPlaceId": 13687899540,
+   "name": "Cold War [WEATHER & MINIMAP]",
+   "playerCount": 6570,
+   "totalUpVotes": 80457,
+   "totalDownVotes": 15524,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2023-06-08"
+  },
+  {
+   "universeId": 10634461028,
+   "rootPlaceId": 71704434889758,
+   "name": "(EARLY TESTING) Drive A Kukirin!",
+   "playerCount": 6567,
+   "totalUpVotes": 7218,
+   "totalDownVotes": 650,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "up-and-coming"
+   ],
+   "created": "2026-08-05"
+  },
+  {
+   "universeId": 10404519332,
+   "rootPlaceId": 82712304391069,
+   "name": "🪓 Carve Wood!",
+   "playerCount": 6549,
+   "totalUpVotes": 17208,
+   "totalDownVotes": 4152,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2026-06-27"
+  },
+  {
+   "universeId": 6215986499,
+   "rootPlaceId": 18335956021,
+   "name": "Grand Blue [Early Access]",
+   "playerCount": 6546,
+   "totalUpVotes": 65431,
+   "totalDownVotes": 658,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2024-07-04"
+  },
+  {
+   "universeId": 8356066619,
+   "rootPlaceId": 71132543521245,
+   "name": "[🌑UPD 3.75⚔️] Anime Squadron",
+   "playerCount": 6508,
+   "totalUpVotes": 86553,
+   "totalDownVotes": 4341,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Strategy",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2025-08-05"
+  },
+  {
+   "universeId": 10246108265,
+   "rootPlaceId": 113987393426315,
+   "name": "[UPD] Navy War",
+   "playerCount": 6485,
+   "totalUpVotes": 48760,
+   "totalDownVotes": 1681,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Strategy",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2026-05-30"
+  },
+  {
+   "universeId": 7856039629,
+   "rootPlaceId": 128119795963270,
+   "name": "🏆 Murder Mystery DUELS",
+   "playerCount": 6469,
+   "totalUpVotes": 27684,
+   "totalDownVotes": 3539,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2025-06-06"
+  },
+  {
+   "universeId": 1054526971,
+   "rootPlaceId": 2916899287,
+   "name": "Blackhawk Rescue Mission 5",
+   "playerCount": 6288,
+   "totalUpVotes": 610307,
+   "totalDownVotes": 66962,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2019-03-03"
+  },
+  {
+   "universeId": 7883776681,
+   "rootPlaceId": 90906407195271,
+   "name": "[UPD🏸] Racket Rivals ",
+   "playerCount": 6254,
+   "totalUpVotes": 1175863,
+   "totalDownVotes": 61564,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2025-06-10"
+  },
+  {
+   "universeId": 10674300622,
+   "rootPlaceId": 97090732168175,
+   "name": "The Locust's Manor",
+   "playerCount": 6230,
+   "totalUpVotes": 8848,
+   "totalDownVotes": 603,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-trending",
+    "up-and-coming"
+   ],
+   "created": "2026-08-10"
+  },
+  {
+   "universeId": 10471583973,
+   "rootPlaceId": 125496078313264,
+   "name": "2 PLAYER Evolution Tycoon 🛸",
+   "playerCount": 6169,
+   "totalUpVotes": 33352,
+   "totalDownVotes": 3049,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2026-07-09"
+  },
+  {
+   "universeId": 6385532960,
+   "rootPlaceId": 18852831741,
+   "name": "[GENERATION 2 + PUBLIC RELEASE] Ryujin",
+   "playerCount": 6161,
+   "totalUpVotes": 43464,
+   "totalDownVotes": 2738,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2024-08-07"
+  },
+  {
+   "universeId": 10546705891,
+   "rootPlaceId": 87046419551816,
+   "name": "[UPDATE 🛫] Bumpy Flight",
+   "playerCount": 6043,
+   "totalUpVotes": 27532,
+   "totalDownVotes": 3948,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "up-and-coming"
+   ],
+   "created": "2026-07-22"
+  },
+  {
+   "universeId": 10440342381,
+   "rootPlaceId": 106838580527183,
+   "name": "Voxels",
+   "playerCount": 5967,
+   "totalUpVotes": 10767,
+   "totalDownVotes": 4552,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2026-07-03"
+  },
+  {
+   "universeId": 3990106548,
+   "rootPlaceId": 11158043705,
+   "name": "Baddies 💅",
+   "playerCount": 5867,
+   "totalUpVotes": 471508,
+   "totalDownVotes": 94917,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2022-10-03"
+  },
+  {
+   "universeId": 4983034985,
+   "rootPlaceId": 14422394494,
+   "name": "Conquer The World WW2 [🛡️]",
+   "playerCount": 5852,
+   "totalUpVotes": 110168,
+   "totalDownVotes": 26321,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Strategy",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2023-08-13"
+  },
+  {
+   "universeId": 4342047058,
+   "rootPlaceId": 12334109280,
+   "name": "Guts & Blackpowder",
+   "playerCount": 5679,
+   "totalUpVotes": 513898,
+   "totalDownVotes": 31940,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2023-01-31"
+  },
+  {
+   "universeId": 7178032757,
+   "rootPlaceId": 74260430392611,
+   "name": "[🏭] Rebirth Champions: Ultimate",
+   "playerCount": 5611,
+   "totalUpVotes": 231213,
+   "totalDownVotes": 5841,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2025-02-01"
+  },
+  {
+   "universeId": 10060242820,
+   "rootPlaceId": 129253568870286,
+   "name": "Bonk & Block [5v5]",
+   "playerCount": 5518,
+   "totalUpVotes": 20247,
+   "totalDownVotes": 6791,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Shooter",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2026-04-20"
+  },
+  {
+   "universeId": 8813969120,
+   "rootPlaceId": 127089247654125,
+   "name": "[LAUNCH CONTROL UPDATE] TR Legacy",
+   "playerCount": 5491,
+   "totalUpVotes": 67790,
+   "totalDownVotes": 2208,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2025-09-27"
+  },
+  {
+   "universeId": 10529067596,
+   "rootPlaceId": 138363592957250,
+   "name": "⛳ Hit a Golf Ball",
+   "playerCount": 5425,
+   "totalUpVotes": 5790,
+   "totalDownVotes": 666,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2026-07-19"
+  },
+  {
+   "universeId": 16680835,
+   "rootPlaceId": 21532277,
+   "name": "Notoriety: A PAYDAY® Experience",
+   "playerCount": 5335,
+   "totalUpVotes": 591806,
+   "totalDownVotes": 47583,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2010-01-29"
+  },
+  {
+   "universeId": 10153098880,
+   "rootPlaceId": 108307565942574,
+   "name": "Heroes RNG 🏹",
+   "playerCount": 5332,
+   "totalUpVotes": 47888,
+   "totalDownVotes": 1828,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2026-05-11"
+  },
+  {
+   "universeId": 10643795368,
+   "rootPlaceId": 73897506680154,
+   "name": "Idle Mafia Game",
+   "playerCount": 5269,
+   "totalUpVotes": 5961,
+   "totalDownVotes": 849,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-08-06"
+  },
+  {
+   "universeId": 10675029591,
+   "rootPlaceId": 135830878717711,
+   "name": "+1 Spider Evolution ",
+   "playerCount": 5176,
+   "totalUpVotes": 44672,
+   "totalDownVotes": 531,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-08-10"
+  },
+  {
+   "universeId": 10754208508,
+   "rootPlaceId": 83238501165241,
+   "name": "🔍 Find the Needle!",
+   "playerCount": 5141,
+   "totalUpVotes": 9343,
+   "totalDownVotes": 585,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Adventure",
+   "sorts": [
+    "top-trending",
+    "up-and-coming"
+   ],
+   "created": "2026-08-22"
+  },
+  {
+   "universeId": 2682938349,
+   "rootPlaceId": 6989310863,
+   "name": "Wild Horse Islands",
+   "playerCount": 5117,
+   "totalUpVotes": 249903,
+   "totalDownVotes": 21088,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2021-06-22"
+  },
+  {
+   "universeId": 9965411707,
+   "rootPlaceId": 76911729991355,
+   "name": "[UPD 3🌙] Noob Incremental",
+   "playerCount": 4681,
+   "totalUpVotes": 71159,
+   "totalDownVotes": 2744,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2026-03-30"
+  },
+  {
+   "universeId": 9362896961,
+   "rootPlaceId": 76285745979410,
+   "name": "[Summer⛱️] Anime Card Collection",
+   "playerCount": 4678,
+   "totalUpVotes": 596131,
+   "totalDownVotes": 9131,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2025-12-15"
+  },
+  {
+   "universeId": 10737798435,
+   "rootPlaceId": 78724109436030,
+   "name": "Flatten The Mountain",
+   "playerCount": 4627,
+   "totalUpVotes": 11350,
+   "totalDownVotes": 995,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "up-and-coming"
+   ],
+   "created": "2026-08-18"
+  },
+  {
+   "universeId": 10632524471,
+   "rootPlaceId": 74569490529875,
+   "name": "Merge & Dig Simulator!",
+   "playerCount": 4410,
+   "totalUpVotes": 6045,
+   "totalDownVotes": 330,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-08-04"
+  },
+  {
+   "universeId": 1281592938,
+   "rootPlaceId": 3678761576,
+   "name": "[🛡️FACTIONS🛡️] ENTRENCHED 🥀",
+   "playerCount": 4402,
+   "totalUpVotes": 451330,
+   "totalDownVotes": 38169,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2019-08-18"
+  },
+  {
+   "universeId": 7629331599,
+   "rootPlaceId": 129827112113663,
+   "name": "Prospecting! 💎",
+   "playerCount": 4353,
+   "totalUpVotes": 328004,
+   "totalDownVotes": 12156,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2025-05-02"
+  },
+  {
+   "universeId": 6583326485,
+   "rootPlaceId": 118367369949006,
+   "name": "Ground War",
+   "playerCount": 4350,
+   "totalUpVotes": 73897,
+   "totalDownVotes": 20272,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2024-09-21"
+  },
+  {
+   "universeId": 1393178180,
+   "rootPlaceId": 4299508195,
+   "name": "[🚗Update] Polish Car Driving",
+   "playerCount": 4323,
+   "totalUpVotes": 90653,
+   "totalDownVotes": 15151,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2019-11-04"
+  },
+  {
+   "universeId": 10494847029,
+   "rootPlaceId": 105767799784652,
+   "name": "Clean the WORLD! [PRESTIGE!]",
+   "playerCount": 4237,
+   "totalUpVotes": 19742,
+   "totalDownVotes": 1939,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "up-and-coming"
+   ],
+   "created": "2026-07-13"
+  },
+  {
+   "universeId": 578392296,
+   "rootPlaceId": 1458767429,
+   "name": "ABA",
+   "playerCount": 4169,
+   "totalUpVotes": 507515,
+   "totalDownVotes": 120845,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2018-02-25"
+  },
+  {
+   "universeId": 911750776,
+   "rootPlaceId": 2551991523,
+   "name": "Broken Bones IV",
+   "playerCount": 4108,
+   "totalUpVotes": 1396809,
+   "totalDownVotes": 185149,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2018-11-07"
+  },
+  {
+   "universeId": 6174994284,
+   "rootPlaceId": 18214855317,
+   "name": "Savannah Life",
+   "playerCount": 4034,
+   "totalUpVotes": 293522,
+   "totalDownVotes": 19095,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2024-06-26"
+  },
+  {
+   "universeId": 10189903609,
+   "rootPlaceId": 91704854174760,
+   "name": "Finish The Word! [ SUMMER ]",
+   "playerCount": 4017,
+   "totalUpVotes": 68027,
+   "totalDownVotes": 6600,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Puzzle",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2026-05-19"
+  },
+  {
+   "universeId": 10635348596,
+   "rootPlaceId": 127775478639865,
+   "name": "[UPD2] Machine Party 💥",
+   "playerCount": 3975,
+   "totalUpVotes": 6745,
+   "totalDownVotes": 1251,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending",
+    "up-and-coming"
+   ],
+   "created": "2026-08-05"
+  },
+  {
+   "universeId": 9162763535,
+   "rootPlaceId": 112838150455902,
+   "name": "Encounters SMASH Battles",
+   "playerCount": 3944,
+   "totalUpVotes": 16147,
+   "totalDownVotes": 4628,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2025-11-14"
+  },
+  {
+   "universeId": 6010232141,
+   "rootPlaceId": 17556820024,
+   "name": "Untitled Fling Game",
+   "playerCount": 3816,
+   "totalUpVotes": 97306,
+   "totalDownVotes": 29484,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2024-05-20"
+  },
+  {
+   "universeId": 3317679266,
+   "rootPlaceId": 8737602449,
+   "name": "PLS DONATE 💸",
+   "playerCount": 3674,
+   "totalUpVotes": 3680461,
+   "totalDownVotes": 276623,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Social",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2022-02-05"
+  },
+  {
+   "universeId": 10583634958,
+   "rootPlaceId": 127103413498148,
+   "name": "[MUTATIONS] Collect The Alphabet",
+   "playerCount": 3616,
+   "totalUpVotes": 6004,
+   "totalDownVotes": 1527,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-07-28"
+  },
+  {
+   "universeId": 1742264997,
+   "rootPlaceId": 5041144419,
+   "name": "SCP: Roleplay",
+   "playerCount": 3575,
+   "totalUpVotes": 669515,
+   "totalDownVotes": 72683,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2020-05-16"
+  },
+  {
+   "universeId": 6619936488,
+   "rootPlaceId": 104841616983113,
+   "name": "San Aurie",
+   "playerCount": 3520,
+   "totalUpVotes": 35449,
+   "totalDownVotes": 5490,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2024-09-30"
+  },
+  {
+   "universeId": 9662130710,
+   "rootPlaceId": 100911362514791,
+   "name": "[🔥UPD] Phonk Slap 🎵",
+   "playerCount": 3486,
+   "totalUpVotes": 27740,
+   "totalDownVotes": 2286,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2026-02-01"
+  },
+  {
+   "universeId": 892043755,
+   "rootPlaceId": 2512643572,
+   "name": "[🤖ROBOT] Bubble Gum Simulator",
+   "playerCount": 3449,
+   "totalUpVotes": 1054594,
+   "totalDownVotes": 136778,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2018-10-23"
+  },
+  {
+   "universeId": 6275120808,
+   "rootPlaceId": 18519254033,
+   "name": "[ALCHEMIST RELEASE] Jump Showdown",
+   "playerCount": 3372,
+   "totalUpVotes": 241676,
+   "totalDownVotes": 70196,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending",
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2024-07-16"
+  },
+  {
+   "universeId": 1016936714,
+   "rootPlaceId": 2809202155,
+   "name": "[QOL] Your Bizarre Adventure",
+   "playerCount": 3367,
+   "totalUpVotes": 1444847,
+   "totalDownVotes": 180640,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "RPG",
+   "sorts": [
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2019-02-02"
+  },
+  {
+   "universeId": 7934320560,
+   "rootPlaceId": 70400654680508,
+   "name": "Five Nights TD 2 [New Merchant Units]",
+   "playerCount": 3302,
+   "totalUpVotes": 161511,
+   "totalDownVotes": 7817,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Strategy",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2025-06-17"
+  },
+  {
+   "universeId": 3359505957,
+   "rootPlaceId": 8884433153,
+   "name": "Collect All Pets!",
+   "playerCount": 3301,
+   "totalUpVotes": 125996,
+   "totalDownVotes": 9854,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2022-02-20"
+  },
+  {
+   "universeId": 2350840700,
+   "rootPlaceId": 6349094071,
+   "name": "[UPDATE 9!] Project Flight | Alpha",
+   "playerCount": 3286,
+   "totalUpVotes": 142247,
+   "totalDownVotes": 12265,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-trending",
+    "top-revisited"
+   ],
+   "created": "2021-02-05"
+  },
+  {
+   "universeId": 3846592040,
+   "rootPlaceId": 10595058975,
+   "name": "[Withered Grove 🧿] Arcane Lineage",
+   "playerCount": 3244,
+   "totalUpVotes": 62855,
+   "totalDownVotes": 17192,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "RPG",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2022-08-14"
+  },
+  {
+   "universeId": 7414497778,
+   "rootPlaceId": 95721658376580,
+   "name": "[MTC] Multicrew Tank Combat",
+   "playerCount": 2956,
+   "totalUpVotes": 68182,
+   "totalDownVotes": 13054,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2025-03-22"
+  },
+  {
+   "universeId": 3913007563,
+   "rootPlaceId": 10834586502,
+   "name": "The Battle Bricks",
+   "playerCount": 2925,
+   "totalUpVotes": 179072,
+   "totalDownVotes": 32796,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Strategy",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2022-09-06"
+  },
+  {
+   "universeId": 10299762956,
+   "rootPlaceId": 93400241783915,
+   "name": "[UPD 1.5.8] WW3 Commander",
+   "playerCount": 2851,
+   "totalUpVotes": 93219,
+   "totalDownVotes": 4748,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2026-06-10"
+  },
+  {
+   "universeId": 5026122481,
+   "rootPlaceId": 14564651437,
+   "name": "Death in the Box",
+   "playerCount": 2787,
+   "totalUpVotes": 156842,
+   "totalDownVotes": 15975,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2023-08-25"
+  },
+  {
+   "universeId": 7569509385,
+   "rootPlaceId": 108730407897379,
+   "name": "Amber Alert 3.0",
+   "playerCount": 2765,
+   "totalUpVotes": 105004,
+   "totalDownVotes": 13902,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2025-04-20"
+  },
+  {
+   "universeId": 8524572339,
+   "rootPlaceId": 99449877692519,
+   "name": "bridger: WESTERN (CMOON)",
+   "playerCount": 2686,
+   "totalUpVotes": 79157,
+   "totalDownVotes": 21435,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2025-08-23"
+  },
+  {
+   "universeId": 3047037061,
+   "rootPlaceId": 7871169780,
+   "name": "bLockerman's Minesweeper",
+   "playerCount": 2675,
+   "totalUpVotes": 80917,
+   "totalDownVotes": 12783,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Puzzle",
+   "sorts": [
+    "top-trending",
+    "top-revisited"
+   ],
+   "created": "2021-11-01"
+  },
+  {
+   "universeId": 5829613337,
+   "rootPlaceId": 16991287194,
+   "name": "[🔮] 2omething evil will happen",
+   "playerCount": 2653,
+   "totalUpVotes": 354240,
+   "totalDownVotes": 28198,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2024-04-03"
+  },
+  {
+   "universeId": 5580972377,
+   "rootPlaceId": 16154918775,
+   "name": "[UPD] 💥 BUCKSHOT",
+   "playerCount": 2627,
+   "totalUpVotes": 667071,
+   "totalDownVotes": 24050,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Strategy",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2024-01-28"
+  },
+  {
+   "universeId": 9517627739,
+   "rootPlaceId": 88033955914813,
+   "name": "FUT ⚽ [OFFSIDES] 🎉",
+   "playerCount": 2617,
+   "totalUpVotes": 70119,
+   "totalDownVotes": 7585,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2026-01-07"
+  },
+  {
+   "universeId": 4181957649,
+   "rootPlaceId": 11815767793,
+   "name": "Ultimate Battlegrounds",
+   "playerCount": 2539,
+   "totalUpVotes": 404039,
+   "totalDownVotes": 84538,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2022-12-13"
+  },
+  {
+   "universeId": 10548784271,
+   "rootPlaceId": 111035930019117,
+   "name": "[🌳] My Timber Pets!",
+   "playerCount": 2501,
+   "totalUpVotes": 21177,
+   "totalDownVotes": 313,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-07-22"
+  },
+  {
+   "universeId": 4582358979,
+   "rootPlaceId": 13127800756,
+   "name": "Arm Wrestle Simulator",
+   "playerCount": 2479,
+   "totalUpVotes": 1241975,
+   "totalDownVotes": 67189,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2023-04-14"
+  },
+  {
+   "universeId": 7935634976,
+   "rootPlaceId": 102871156420149,
+   "name": "The Lost Front [ATTACHMENTS]",
+   "playerCount": 2417,
+   "totalUpVotes": 72575,
+   "totalDownVotes": 15488,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2025-06-17"
+  },
+  {
+   "universeId": 6190071862,
+   "rootPlaceId": 18259975825,
+   "name": "Grave/Digger",
+   "playerCount": 2362,
+   "totalUpVotes": 80299,
+   "totalDownVotes": 10993,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2024-06-29"
+  },
+  {
+   "universeId": 1001911915,
+   "rootPlaceId": 2772610559,
+   "name": "Farming and Friends",
+   "playerCount": 2332,
+   "totalUpVotes": 271674,
+   "totalDownVotes": 35678,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2019-01-21"
+  },
+  {
+   "universeId": 10598641427,
+   "rootPlaceId": 109129552698918,
+   "name": "WEST WOOD: REMAKE [BETA]",
+   "playerCount": 2286,
+   "totalUpVotes": 9934,
+   "totalDownVotes": 757,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-trending",
+    "up-and-coming",
+    "fun-with-friends"
+   ],
+   "created": "2026-07-30"
+  },
+  {
+   "universeId": 7069852763,
+   "rootPlaceId": 103589142326933,
+   "name": "Car Crash Simulator V3",
+   "playerCount": 2211,
+   "totalUpVotes": 66307,
+   "totalDownVotes": 12625,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2025-01-11"
+  },
+  {
+   "universeId": 4938220315,
+   "rootPlaceId": 14279693118,
+   "name": "[NEW MODE] Skibi Defense",
+   "playerCount": 2198,
+   "totalUpVotes": 187722,
+   "totalDownVotes": 15457,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Strategy",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2023-08-01"
+  },
+  {
+   "universeId": 9063977758,
+   "rootPlaceId": 119116892854064,
+   "name": "[REVERT] Debt Hunt 🐺",
+   "playerCount": 2181,
+   "totalUpVotes": 2152,
+   "totalDownVotes": 533,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Survival",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2025-10-30"
+  },
+  {
+   "universeId": 10171934713,
+   "rootPlaceId": 110806816173057,
+   "name": "[UDP11.3] +1 DMG Per Revive[💀]",
+   "playerCount": 2166,
+   "totalUpVotes": 63130,
+   "totalDownVotes": 2753,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2026-05-15"
+  },
+  {
+   "universeId": 6375110339,
+   "rootPlaceId": 18816315817,
+   "name": "[ Mafia ] ST : Blockade Battlefront",
+   "playerCount": 2152,
+   "totalUpVotes": 68588,
+   "totalDownVotes": 5956,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2024-08-05"
+  },
+  {
+   "universeId": 1709917610,
+   "rootPlaceId": 4972273297,
+   "name": "Regretevator [ ELEVATOR SIMULATOR ]",
+   "playerCount": 2116,
+   "totalUpVotes": 401701,
+   "totalDownVotes": 44727,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Party & Casual",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2020-05-02"
+  },
+  {
+   "universeId": 1312971993,
+   "rootPlaceId": 3823781113,
+   "name": "[🍀] Saber Simulator",
+   "playerCount": 2110,
+   "totalUpVotes": 570010,
+   "totalDownVotes": 90743,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2019-09-07"
+  },
+  {
+   "universeId": 10263732883,
+   "rootPlaceId": 139063887391814,
+   "name": "[UPD 1.5] TBOD^2 [Tycoon But One Dropper: SQUARED]",
+   "playerCount": 2109,
+   "totalUpVotes": 4602,
+   "totalDownVotes": 827,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-06-03"
+  },
+  {
+   "universeId": 7208219743,
+   "rootPlaceId": 128039018996175,
+   "name": "The Walking Dead Online",
+   "playerCount": 2080,
+   "totalUpVotes": 15302,
+   "totalDownVotes": 4095,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2025-02-07"
+  },
+  {
+   "universeId": 110181652,
+   "rootPlaceId": 277751860,
+   "name": "Epic Minigames ✨",
+   "playerCount": 2050,
+   "totalUpVotes": 2264680,
+   "totalDownVotes": 235590,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Party & Casual",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2015-07-29"
+  },
+  {
+   "universeId": 9885372266,
+   "rootPlaceId": 82797688803922,
+   "name": "Unseen Liminality [Beta]",
+   "playerCount": 1982,
+   "totalUpVotes": 128878,
+   "totalDownVotes": 9145,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Adventure",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2026-03-15"
+  },
+  {
+   "universeId": 1008451066,
+   "rootPlaceId": 2788229376,
+   "name": "Da Hood",
+   "playerCount": 1978,
+   "totalUpVotes": 1295210,
+   "totalDownVotes": 541589,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2019-01-27"
+  },
+  {
+   "universeId": 1494262959,
+   "rootPlaceId": 4588604953,
+   "name": "Criminality",
+   "playerCount": 1960,
+   "totalUpVotes": 368459,
+   "totalDownVotes": 120783,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2020-01-10"
+  },
+  {
+   "universeId": 9948575164,
+   "rootPlaceId": 120841752776030,
+   "name": "[👽] Merge Shop",
+   "playerCount": 1951,
+   "totalUpVotes": 128620,
+   "totalDownVotes": 5326,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Puzzle",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2026-03-27"
+  },
+  {
+   "universeId": 2404080894,
+   "rootPlaceId": 6447798030,
+   "name": "Funky Friday",
+   "playerCount": 1950,
+   "totalUpVotes": 1969574,
+   "totalDownVotes": 214213,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2021-02-26"
+  },
+  {
+   "universeId": 1946714362,
+   "rootPlaceId": 5571328985,
+   "name": "[🐢] Bloodlines",
+   "playerCount": 1914,
+   "totalUpVotes": 43039,
+   "totalDownVotes": 9589,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "RPG",
+   "sorts": [
+    "fun-with-friends",
+    "top-revisited"
+   ],
+   "created": "2020-08-16"
+  },
+  {
+   "universeId": 6726637224,
+   "rootPlaceId": 71600459831333,
+   "name": "[🏖️] Street Life Remastered 🔥",
+   "playerCount": 1907,
+   "totalUpVotes": 162950,
+   "totalDownVotes": 24420,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2024-10-27"
+  },
+  {
+   "universeId": 4743794878,
+   "rootPlaceId": 13664698400,
+   "name": "The Classic Soccer",
+   "playerCount": 1843,
+   "totalUpVotes": 24783,
+   "totalDownVotes": 4604,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2023-06-05"
+  },
+  {
+   "universeId": 10628006421,
+   "rootPlaceId": 139705352041000,
+   "name": "[🤍] Chiidoku",
+   "playerCount": 1810,
+   "totalUpVotes": 4977,
+   "totalDownVotes": 447,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Puzzle",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-08-04"
+  },
+  {
+   "universeId": 2471084,
+   "rootPlaceId": 13822889,
+   "name": "🌳 Lumber Tycoon 2",
+   "playerCount": 1803,
+   "totalUpVotes": 2023722,
+   "totalDownVotes": 284054,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2009-07-30"
+  },
+  {
+   "universeId": 10013052337,
+   "rootPlaceId": 90198315559220,
+   "name": "[1 day] Titans ultra boss rush",
+   "playerCount": 1801,
+   "totalUpVotes": 3497,
+   "totalDownVotes": 705,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2026-04-09"
+  },
+  {
+   "universeId": 6949043989,
+   "rootPlaceId": 119167442172024,
+   "name": "KLASE",
+   "playerCount": 1745,
+   "totalUpVotes": 1456,
+   "totalDownVotes": 550,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2024-12-21"
+  },
+  {
+   "universeId": 4019583467,
+   "rootPlaceId": 11276071411,
+   "name": "NPC or DIE! 💢",
+   "playerCount": 1684,
+   "totalUpVotes": 634624,
+   "totalDownVotes": 48892,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2022-10-15"
+  },
+  {
+   "universeId": 300039023,
+   "rootPlaceId": 696347899,
+   "name": "Stepford County Railway 🚉",
+   "playerCount": 1681,
+   "totalUpVotes": 174482,
+   "totalDownVotes": 28835,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2017-03-15"
+  },
+  {
+   "universeId": 107172930,
+   "rootPlaceId": 263761432,
+   "name": "Horrific Housing",
+   "playerCount": 1620,
+   "totalUpVotes": 740454,
+   "totalDownVotes": 206678,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Survival",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2015-06-27"
+  },
+  {
+   "universeId": 807930589,
+   "rootPlaceId": 2317712696,
+   "name": "The Wild West",
+   "playerCount": 1594,
+   "totalUpVotes": 624222,
+   "totalDownVotes": 89033,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2018-09-05"
+  },
+  {
+   "universeId": 4557322431,
+   "rootPlaceId": 13042495892,
+   "name": "[EYE OF CORRUPTION] Project: Afternight",
+   "playerCount": 1570,
+   "totalUpVotes": 92493,
+   "totalDownVotes": 8801,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-trending",
+    "top-revisited"
+   ],
+   "created": "2023-04-08"
+  },
+  {
+   "universeId": 1271059807,
+   "rootPlaceId": 3631820248,
+   "name": "[✨UPDATE] Stevos Gems Eras Roleplay",
+   "playerCount": 1535,
+   "totalUpVotes": 80290,
+   "totalDownVotes": 8120,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2019-08-10"
+  },
+  {
+   "universeId": 9911988958,
+   "rootPlaceId": 91203203156283,
+   "name": "[SOUL] Spin a Fem! 🎲",
+   "playerCount": 1531,
+   "totalUpVotes": 154211,
+   "totalDownVotes": 7518,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2026-03-20"
+  },
+  {
+   "universeId": 3168615253,
+   "rootPlaceId": 8260276694,
+   "name": "[UPDATE] Ability Wars",
+   "playerCount": 1489,
+   "totalUpVotes": 446140,
+   "totalDownVotes": 113291,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2021-12-15"
+  },
+  {
+   "universeId": 1053132402,
+   "rootPlaceId": 2913303231,
+   "name": "Obby Creator",
+   "playerCount": 1413,
+   "totalUpVotes": 296970,
+   "totalDownVotes": 71213,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2019-03-02"
+  },
+  {
+   "universeId": 10761687472,
+   "rootPlaceId": 113481077323469,
+   "name": "Scream And Run [RELEASE]",
+   "playerCount": 1412,
+   "totalUpVotes": 1987,
+   "totalDownVotes": 252,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Survival",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-08-25"
+  },
+  {
+   "universeId": 7950997475,
+   "rootPlaceId": 77021749781226,
+   "name": "[Kurona] Blue Lock: Skibidi",
+   "playerCount": 1407,
+   "totalUpVotes": 18424,
+   "totalDownVotes": 2929,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2025-06-19"
+  },
+  {
+   "universeId": 7265339759,
+   "rootPlaceId": 94987506187454,
+   "name": "REDLINER [⚡UZI]",
+   "playerCount": 1377,
+   "totalUpVotes": 122369,
+   "totalDownVotes": 13659,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Shooter",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2025-02-19"
+  },
+  {
+   "universeId": 4676287985,
+   "rootPlaceId": 13438553315,
+   "name": "Decaying Winter",
+   "playerCount": 1364,
+   "totalUpVotes": 120234,
+   "totalDownVotes": 11026,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Shooter",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2023-05-14"
+  },
+  {
+   "universeId": 4497460596,
+   "rootPlaceId": 12847474373,
+   "name": "MORPH WORLD! 😁[VERITY HYBRIDS]",
+   "playerCount": 1331,
+   "totalUpVotes": 91615,
+   "totalDownVotes": 14655,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Adventure",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2023-03-20"
+  },
+  {
+   "universeId": 9878210988,
+   "rootPlaceId": 125633828844867,
+   "name": "Overhang",
+   "playerCount": 1325,
+   "totalUpVotes": 2896,
+   "totalDownVotes": 750,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Obby & Platformer",
+   "sorts": [
+    "top-trending"
+   ],
+   "created": "2026-03-14"
+  },
+  {
+   "universeId": 358276974,
+   "rootPlaceId": 863266079,
+   "name": "Apocalypse Rising 2",
+   "playerCount": 1236,
+   "totalUpVotes": 256660,
+   "totalDownVotes": 41407,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2017-06-11"
+  },
+  {
+   "universeId": 6395392848,
+   "rootPlaceId": 18882681365,
+   "name": "La Cueva ZuaZua [LPMX]",
+   "playerCount": 1082,
+   "totalUpVotes": 4968,
+   "totalDownVotes": 503,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2024-08-10"
+  },
+  {
+   "universeId": 10649457157,
+   "rootPlaceId": 109547184439419,
+   "name": "AI Interrogation 📁",
+   "playerCount": 1077,
+   "totalUpVotes": 20039,
+   "totalDownVotes": 7673,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Puzzle",
+   "sorts": [
+    "top-trending",
+    "up-and-coming"
+   ],
+   "created": "2026-08-07"
+  },
+  {
+   "universeId": 6745933496,
+   "rootPlaceId": 99342262733194,
+   "name": "[SUMMER] Randomizer: Redux",
+   "playerCount": 1064,
+   "totalUpVotes": 32789,
+   "totalDownVotes": 12277,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Shooter",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2024-11-01"
+  },
+  {
+   "universeId": 3747388906,
+   "rootPlaceId": 10228136016,
+   "name": "[🚁HELI] Fallen Survival🏹",
+   "playerCount": 985,
+   "totalUpVotes": 45957,
+   "totalDownVotes": 8024,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2022-07-15"
+  },
+  {
+   "universeId": 10647180866,
+   "rootPlaceId": 76717770497649,
+   "name": "[Pets 🐷] Pay Your Debts!",
+   "playerCount": 941,
+   "totalUpVotes": 9191,
+   "totalDownVotes": 1418,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "up-and-coming"
+   ],
+   "created": "2026-08-07"
+  },
+  {
+   "universeId": 6738135827,
+   "rootPlaceId": 70970763145070,
+   "name": "[🌱🌋] Choose Your Power",
+   "playerCount": 923,
+   "totalUpVotes": 69714,
+   "totalDownVotes": 21239,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2024-10-30"
+  },
+  {
+   "universeId": 7585079192,
+   "rootPlaceId": 116766451305209,
+   "name": "Anime Story 2: Worlds Collide",
+   "playerCount": 849,
+   "totalUpVotes": 128189,
+   "totalDownVotes": 2939,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2025-04-23"
+  },
+  {
+   "universeId": 9229146348,
+   "rootPlaceId": 130522875331172,
+   "name": "JUST ONE MORE ASYM [Wrecker Update]",
+   "playerCount": 790,
+   "totalUpVotes": 14989,
+   "totalDownVotes": 3689,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2025-11-23"
+  },
+  {
+   "universeId": 1718755273,
+   "rootPlaceId": 4991214437,
+   "name": "town",
+   "playerCount": 758,
+   "totalUpVotes": 135294,
+   "totalDownVotes": 44729,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Shooter",
+   "sorts": [
+    "fun-with-friends"
+   ],
+   "created": "2020-05-06"
+  },
+  {
+   "universeId": 1087859240,
+   "rootPlaceId": 3016661674,
+   "name": "[☀️] Rogue Lineage",
+   "playerCount": 757,
+   "totalUpVotes": 118407,
+   "totalDownVotes": 23265,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "RPG",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2019-03-29"
+  },
+  {
+   "universeId": 10090818841,
+   "rootPlaceId": 87821625819447,
+   "name": "[ FREE AVA + X250 ] MOUNT RAGNAR: REBORN",
+   "playerCount": 699,
+   "totalUpVotes": 2146,
+   "totalDownVotes": 709,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Obby & Platformer",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2026-04-27"
+  },
+  {
+   "universeId": 8488806742,
+   "rootPlaceId": 73526576502092,
+   "name": "Sonic.EXE: The Disaster Eclipsed v1.4",
+   "playerCount": 662,
+   "totalUpVotes": 40109,
+   "totalDownVotes": 7410,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2025-08-19"
+  },
+  {
+   "universeId": 10638048650,
+   "rootPlaceId": 79704041227603,
+   "name": "SpinPractices",
+   "playerCount": 613,
+   "totalUpVotes": 254,
+   "totalDownVotes": 91,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2026-08-05"
+  },
+  {
+   "universeId": 7350402084,
+   "rootPlaceId": 133253166104607,
+   "name": "🔨RO-Scale Sandbox🔨",
+   "playerCount": 592,
+   "totalUpVotes": 8095,
+   "totalDownVotes": 1270,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2025-03-09"
+  },
+  {
+   "universeId": 10202515720,
+   "rootPlaceId": 112050560592995,
+   "name": "Undertale Multiverse Simulator 1.5",
+   "playerCount": 591,
+   "totalUpVotes": 2169,
+   "totalDownVotes": 261,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "Action",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2026-05-22"
+  },
+  {
+   "universeId": 9219838330,
+   "rootPlaceId": 116276659864007,
+   "name": "[SHIN REWORK] Project Mirror Labyrinth",
+   "playerCount": 585,
+   "totalUpVotes": 106718,
+   "totalDownVotes": 2912,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "RPG",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2025-11-22"
+  },
+  {
+   "universeId": 3289847355,
+   "rootPlaceId": 8646026339,
+   "name": "Tower Creator",
+   "playerCount": 489,
+   "totalUpVotes": 15632,
+   "totalDownVotes": 3653,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2022-01-26"
+  },
+  {
+   "universeId": 5839302258,
+   "rootPlaceId": 17027058704,
+   "name": "Spectral Fades REMAKE",
+   "playerCount": 483,
+   "totalUpVotes": 15285,
+   "totalDownVotes": 1711,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2024-04-05"
+  },
+  {
+   "universeId": 1374118848,
+   "rootPlaceId": 4195834406,
+   "name": "Dragon Generations",
+   "playerCount": 439,
+   "totalUpVotes": 155286,
+   "totalDownVotes": 21398,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "RPG",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2019-10-24"
+  },
+  {
+   "universeId": 8824087733,
+   "rootPlaceId": 70539431141054,
+   "name": "RF Fan Leagues",
+   "playerCount": 397,
+   "totalUpVotes": 3857,
+   "totalDownVotes": 566,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2025-09-28"
+  },
+  {
+   "universeId": 5488708927,
+   "rootPlaceId": 15873244701,
+   "name": "The Eternal Abyss",
+   "playerCount": 377,
+   "totalUpVotes": 5522,
+   "totalDownVotes": 944,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Obby & Platformer",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2024-01-04"
+  },
+  {
+   "universeId": 123956318,
+   "rootPlaceId": 334730614,
+   "name": "Kaizen [RP]",
+   "playerCount": 364,
+   "totalUpVotes": 78214,
+   "totalDownVotes": 17709,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2015-12-21"
+  },
+  {
+   "universeId": 1775919872,
+   "rootPlaceId": 5116869569,
+   "name": "🔥 Doodle World! ",
+   "playerCount": 364,
+   "totalUpVotes": 227149,
+   "totalDownVotes": 18904,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "RPG",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2020-05-31"
+  },
+  {
+   "universeId": 8570876289,
+   "rootPlaceId": 118582391303761,
+   "name": "UNTITLED RPG GAME",
+   "playerCount": 362,
+   "totalUpVotes": 21191,
+   "totalDownVotes": 5004,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Mild",
+   "contentMaturity": "mild",
+   "genreL1": "RPG",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2025-08-28"
+  },
+  {
+   "universeId": 2618786652,
+   "rootPlaceId": 6870736769,
+   "name": "[WEREWOLF] Daybreak ",
+   "playerCount": 276,
+   "totalUpVotes": 72393,
+   "totalDownVotes": 11188,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Survival",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2021-05-27"
+  },
+  {
+   "universeId": 10245012052,
+   "rootPlaceId": 75882626617183,
+   "name": "Dan FFA",
+   "playerCount": 276,
+   "totalUpVotes": 1028,
+   "totalDownVotes": 206,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2026-05-30"
+  },
+  {
+   "universeId": 1316421563,
+   "rootPlaceId": 3840352284,
+   "name": "Volleyball 4.2",
+   "playerCount": 265,
+   "totalUpVotes": 172822,
+   "totalDownVotes": 17997,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2019-09-08"
+  },
+  {
+   "universeId": 5291633415,
+   "rootPlaceId": 15341793633,
+   "name": "[RP] Mythage",
+   "playerCount": 224,
+   "totalUpVotes": 7493,
+   "totalDownVotes": 813,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2023-11-12"
+  },
+  {
+   "universeId": 4096039463,
+   "rootPlaceId": 11534222714,
+   "name": "Attack on Titan: Freedom War",
+   "playerCount": 219,
+   "totalUpVotes": 25686,
+   "totalDownVotes": 7483,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Moderate",
+   "contentMaturity": "moderate",
+   "genreL1": "Action",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2022-11-12"
+  },
+  {
+   "universeId": 5315312115,
+   "rootPlaceId": 15405900187,
+   "name": "[RP] Pine Ridge",
+   "playerCount": 167,
+   "totalUpVotes": 14613,
+   "totalDownVotes": 2182,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Roleplay & Avatar Sim",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2023-11-19"
+  },
+  {
+   "universeId": 9865604662,
+   "rootPlaceId": 128369064996026,
+   "name": "VEF",
+   "playerCount": 130,
+   "totalUpVotes": 979,
+   "totalDownVotes": 109,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Sports & Racing",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2026-03-11"
+  },
+  {
+   "universeId": 10452420697,
+   "rootPlaceId": 126821001007479,
+   "name": "[EA] Combined Arms",
+   "playerCount": 113,
+   "totalUpVotes": 4308,
+   "totalDownVotes": 190,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Simulation",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2026-07-05"
+  },
+  {
+   "universeId": 7444113888,
+   "rootPlaceId": 119011107416066,
+   "name": "[ToCaV, ToSP, ToT:C] Tower Game",
+   "playerCount": 100,
+   "totalUpVotes": 3902,
+   "totalDownVotes": 1019,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Obby & Platformer",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2025-03-27"
+  },
+  {
+   "universeId": 170935858,
+   "rootPlaceId": 447213146,
+   "name": "Aircraft Development / Rank Picker",
+   "playerCount": 19,
+   "totalUpVotes": 21836,
+   "totalDownVotes": 2217,
+   "isSponsored": false,
+   "nativeAdData": "",
+   "minimumAge": 0,
+   "ageRecommendationDisplayName": "Maturity: Minimal",
+   "contentMaturity": "minimal",
+   "genreL1": "Entertainment",
+   "sorts": [
+    "top-revisited"
+   ],
+   "created": "2016-07-02"
+  }
+ ]
+}

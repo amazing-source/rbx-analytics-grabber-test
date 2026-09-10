@@ -472,3 +472,223 @@ the obvious place for a zoom override, and this game's whole loop is driving.
 | 13 | D7 | **NO DATA** until 09-05 |
 
 _Read 2026-08-29 ~14:20 UTC._
+
+---
+
+## Post-update read — 2026-08-30 T+2d. Tripwire 5 FIRED; v908 is not the cause
+
+Full Open Cloud re-grab 2026-08-30 16:27–16:33 UTC, window 08-03 → 08-31.
+**107 of 128 requests returned data, 0 failures on observed/proven shapes.**
+Gates: `npm test` 44/44 · `audit-plan` 140 templates, 0 failures · `verify`
+23/2/8 (the held pair).
+
+**v908 is at 100% adoption** on 08-29 and 08-30 (15,140,926 / 11,532,104 events
+against v901 = 69 / 3).
+
+### The scale-up peaked on 08-28 and is unwinding
+
+| date | DAU | PCU | impressions | errors/CCU | votes |
+|---|---|---|---|---|---|
+| 08-27 (baseline) | 356,255 | 6,417 | — | 1,165.4 | +146 |
+| 08-28 (publish day) | **533,776** | **8,968** | 4.89M | 1,325.9 | +76 |
+| **08-29** | **~419,000** *(projected)* | 6,823 | **4.01M** (−18.0%) | 1,316.0 | +27 |
+| 08-30 (part day) | — | — | — | **1,786.5** | — |
+
+DAU for 08-29 is projected from `UniqueUsersWithPlaySessions` (418,800) at a
+ratio of 0.9966 ± 0.010 — **±1.0%**. Impressions −18% and sessions −22.7% say
+the pullback is **reach**, the same mechanism as the rise.
+
+### Tripwire status at T+2d
+
+| # | Signal | Value | Status |
+|---|---|---|---|
+| **1** | **DevProduct share of revenue** | 5.3% → **8.7%** (R$36,416 → **R$62,617**, +72%, while GamePass was flat +0.3%) | **SUCCESS THRESHOLD MET — but see the caveat** |
+| 2 | PayingUsersCVR | **0.79%** (08-28) vs 0.95% floor | **WATCH** — one day, 87% pre-update, and dilution-exempt |
+| 3 | ARPPU | **R$168.35** (08-28) vs R$150 floor | OK |
+| 4 | ARPDAU | **R$1.3348** (08-28) vs R$1.50 floor | **WATCH** — one day, at +50% DAU in that day alone |
+| **5** | **Errors per concurrent player** | 1,165 → 1,326 → 1,316 → **1,786.5** (08-30) vs **1,550 ceiling** | **FIRED** |
+| 6 | New signature on v908 | `>= 908`: 25 → 1,007 → 416 | **CLEAR** — 0.003% of the day, and falling |
+| 7 | ClientCrashRate15m | **0.45%** (08-29) | OK (ceiling 0.67%) |
+| 8 | OOM per 1,000 PCU | 21.0 → 26.1 → **27.7** | **WATCH** — ceiling 31, still the fastest-moving row |
+| 9 | Crash count per 1,000 PCU | **298** (08-29) | OK (ceiling 400) |
+| 10 | ClientFpsP10 | **46.63** (08-29) | OK (floor 40) |
+| 11 | Session length | **13.90** (08-28) vs 14.0 floor | **WATCH** — one day, 87% pre-update |
+| 12 | ForwardD1Retention | 12.71% (08-27) | **NO DATA** until 08-31 |
+| 13 | ForwardD7Retention | — | **NO DATA** until 09-05 |
+| 14 | Funnel `ReachedDriveway` / `Complete` | **−4.1 pp / −5.5 pp** on 08-28 | **WATCH** — uniform dilution, not a step break |
+| 15 | Other steps >5 pp down | none | OK |
+| 16 | Feedback votes | +146 → +76 → **+27** | OK, but decaying |
+
+### Tripwire 5 fired, and the cause is not the new build
+
+Three facts separate them. **v908-introduced errors are 416 events on 08-30** —
+0.003% of the day, and *down* from 1,007. The rise is in pre-existing
+signatures. **It is bursty, not a step**: on matched half-hour slots against
+08-27, 03:30 ran 3.32×, 07:00 3.06× and 11:00 3.02×, while 07:30–10:00 ran
+*below* 08-27 (0.86–0.97×). A regression in a shipped build costs the same share
+of every bucket. **And CCU fell while errors rose** — 4,804 mean CCU on 08-30
+against 5,129 on 08-29 — so the ratio moved on both terms.
+
+**This needs a `MessageHash`-level read, which the API cannot serve** (the async
+dimension lookup 500s on this universe). **Export *Errors and warnings by count*
+filtered to v908 for 08-30** — that is the only route to which signature is
+bursting.
+
+### The DevProduct caveat, and it is load-bearing
+
+**08-28 is 87% pre-update** — v908 published at 21:00 UTC. A DevProduct share
+that doubles on that day **cannot be attributed to v908**. Either the cash-pack
+products were enabled on an earlier build, or the mix shifted with the audience.
+Per-DAU the split is unambiguous — GamePass revenue per DAU fell 33% while
+DevProduct rose 15% — so something real changed in the mix, but not on this
+build's evidence. **08-29 is the first clean day and its revenue lands 08-31.**
+
+_Read 2026-08-30 ~17:00 UTC._
+
+---
+
+## Post-update read — 2026-08-31 T+3d. The update worked; tripwire 5 cleared itself
+
+Full Open Cloud re-grab 2026-08-31 13:05–13:14 UTC, window 08-04 → 09-01.
+**203 requests, 135 returned data, 5 failed.** Gates on the day: `npm test`
+44/44 · `npm run audit-plan` **175 templates**, 0 failures · `npm run verify`
+23 pass / 2 fail / 8 skip (the held pair).
+
+**2026-08-29 is the first clean day and its revenue landed this morning** — the
+DevProduct attribution that was explicitly unresolvable at T+2d is now settled.
+
+### The monetization update, on the clean day
+
+| measure | 08-27 | 08-28 (87% pre) | **08-29** | 08-30 |
+|---|---|---|---|---|
+| DevProduct revenue | R$36,416 | R$62,617 | **R$205,595** | R$202,296 |
+| DevProduct share | 5.3% | 8.7% | **25.4%** | 24.6% |
+| GamePass revenue | R$651,525 | R$653,749 | R$602,926 | R$617,720 |
+| **Total revenue** | R$689,309 | R$718,003 | **R$810,220** | **R$822,060** |
+| PayingUsersCVR | 1.09% | 0.79% | 1.16% | **1.29%** |
+| Paying users | 3,894 | 4,265 | 4,820 | **5,315** |
+| ARPPU | R$177.02 | R$168.35 | R$168.10 | R$154.67 |
+| ARPDAU | R$1.9260 | R$1.3348 | R$1.9450 | **R$1.9957** |
+
+**+465% DevProduct revenue, +17.5% total, +36% payers, at slightly lower DAU.**
+GamePass gave back 5% — real but modest cannibalisation. The pre-registered
+failure case (ARPPU < R$150 *while* CVR ≤ 1.09%) did not occur: cheap packs
+**recruited** payers rather than discounting existing ones.
+
+### Tripwire status at T+3d
+
+| # | Signal | Value | Status |
+|---|---|---|---|
+| **1** | **DevProduct share** | 5.3% → **25.4%** / 24.6% | **SUCCESS** (bar 8%) — attribution now confirmed on a clean day |
+| **2** | **PayingUsersCVR** | **1.16%** (08-29), **1.29%** (08-30) | **SUCCESS** (floor 0.95%, success mark 1.25%) |
+| 3 | ARPPU | R$168.10 → **R$154.67** | OK — failure case needed CVR ≤1.09% too; conversion rose |
+| 4 | ARPDAU | **R$1.9450** / **R$1.9957** | OK (floor 1.50) — above the 08-27 baseline |
+| **5** | **Errors per concurrent player** | 1,786.5 (08-30) → **1,222.8** (08-31) | **CLEARED** — was FIRED; ceiling 1,550 |
+| 6 | New signature on v908 | 25 → 1,007 → **563** | OK — decaying, a deploy artefact |
+| 7 | ClientCrashRate15m | **0.42%** (08-30) | OK (ceiling 0.67%) — best in window |
+| 8 | OOM per 1,000 PCU | 27.7 → **21.7** | **OK** — was WATCH; back to the 21.0 baseline |
+| 9 | Crash count per 1,000 PCU | **265** (08-30) | OK (ceiling 400) |
+| 10 | ClientFpsP10 | **47.70** (08-30) | OK (floor 40) — best in window |
+| 11 | Session length | **15.01** (08-29), 14.78 (08-30) | **OK** — was WATCH (floor 14.0) |
+| **12** | **ForwardD1Retention** | 11.19% (08-28), **11.68%** (08-29) | **FIRED** — below the 12.4% floor two days; qualified below |
+| 13 | ForwardD7Retention | — | **NO DATA** until 2026-09-05 |
+| 14 | Funnel `ReachedDriveway` / `Complete` | 60.8% / 37.5% (08-31) | **OK** — below mean but *decelerating*; second clause not met |
+| 15 | Other steps >5 pp down | all move together | OK |
+| 16 | Feedback votes | +146 → +76 → **+27** | OK, still positive, decaying |
+
+**Tripwire 5 was a one-day burst.** The T+2d call ("bursty, not a step, and
+v908 is not the cause") is confirmed: it returned to +4.9% over baseline on its
+own with no intervention. The requested v908-filtered export for 08-30 is now a
+post-mortem, not urgent.
+
+**Tripwire 14 is saved by its second clause**, which is why the clause was
+written:
+
+| step | slope 08-20 → 08-28 | slope 08-28 → 08-31 | verdict |
+|---|---|---|---|
+| `ReachedDriveway` | −0.98 pp/day | **−0.73 pp/day** | decelerating |
+| `Complete` | −1.20 pp/day | −1.27 pp/day | unchanged within noise |
+
+Every step declines together and has since 08-20, eight days before the publish
+— dilution from the scale-up, not a step break. The newest two days are also
+biased ~1–4 pp low on this game and settle up, and the pre-update mean is
+itself the mean of a falling series.
+
+**Tripwire 12 fired as written; three things qualify it.** 08-28 is 87%
+pre-update; the turn is on **08-26** (14.11% → 12.71% → 11.19%), two days
+before the publish; and 08-29 is already recovering off the trough. By source
+(08-27 → 08-29): Home 13.20 → 12.07, Friends 9.24 → 8.59, Others 11.40 → 10.80,
+Search flat. A fall on 3 of 4 sources rules out traffic mix — **the game is
+holding fewer of everyone — but it began before v908.**
+
+### The finding: appeal eroding at the first session
+
+First pull of the 20 RFY ranking signals:
+
+| signal | 08-24 | 08-26 | 08-27 | 08-28 | 08-29 | move |
+|---|---|---|---|---|---|---|
+| `RFYPlayThroughRate` | 2.93% | 2.83% | 2.77% | 2.31% | **2.02%** | **−31%** |
+| `RFYDuration0To60` | 11.87% | 13.60% | 13.40% | 14.51% | **14.58%** | **+23%** |
+| `RFYDuration61To180` | 21.04% | 22.55% | 23.02% | 24.89% | **25.03%** | **+19%** |
+| `RFYD1Playtime` | 17.00 | 15.40 | 15.10 | 13.66 | **14.35** | **−16%** |
+| `RFYD2To7PlayDays` | 0.349 | 0.394 | 0.369 | 0.333 | 0.341 | flat |
+| `RFYL7PlayDays` | 1.324 | 1.376 | 1.354 | 1.322 | 1.329 | flat |
+
+**Nearly 40% of RFY first plays now end inside three minutes** (14.58% + 25.03%),
+up from 32.9% a week earlier. Return play is flat — **the exact inverse of
+Verity**, and it needs the opposite fix.
+
+**Dilution tested and rejected as the whole story:** a reach doubling
+mechanically lowers play-through, but when impressions fell 18% on 08-29, PTR
+fell a further 12.5% instead of recovering. Six days, one game, no baseline —
+a watch item, not yet a trend.
+
+### What to act on
+
+1. **The first three minutes, not the funnel.** The funnel steps dilute
+   uniformly and name no defect; the bounce signals say players leave before the
+   core verb.
+2. **Ship nothing else before 09-05 if it can wait** — a new `PlaceVersion`
+   between now and then sits between the D3/D7 rework and the only day it can
+   be read on.
+3. `[DrivewaySealer] Sealing is disabled` still names its own fix (Game Settings
+   → Security → allow Mesh & Image APIs). Low volume, core verb, free.
+
+Report: https://claude.ai/code/artifact/0eacd493-3d0c-47d5-a1ca-34a24061f650
+
+_Read 2026-08-31 ~13:30 UTC._
+
+### Update — 2026-08-31 ~17:00 UTC. The first-session cause is named, not pending
+
+The T+3d report said the fix waited on the written feedback export. It does not.
+The v908 defect report
+(https://claude.ai/code/artifact/bd164212-5432-42f8-99f6-334d1ba346d0) traced
+**10 faults to source, 9 confirmed**, and three sit on the first session:
+
+- `DrivewayClient:179` — **no desktop quality preset.** Touch gets a coarser
+  grid and ~4x less per-frame work; desktop has no rung below maximum. Measured:
+  `Script_DrivewayClient` is **72-85% of the whole foreground thread** and the
+  engine classified **100% of frames CPU-bound**, GPU never past 2.3 ms.
+- `SurfaceGrid:1596` — **the blade sweep is exempt from the frame budget.**
+  0.9 ms on a bare slab, **12 ms flooded**, and **2.8x** when swept diagonally.
+  Reproduces on a stock blade at level one.
+- `DrivewaySurface:56` — sealing disabled by a place setting; the warning names
+  its own fix. Minority path, core verb, one checkbox, needs a republish.
+
+**Two further issues, observed in play and NOT in that report:**
+
+1. **The mobile tutorial UI is too large.** It obscures what it points at, on
+   the majority platform, at the exact step the funnel loses players.
+2. **The tutorial takes about three minutes to reach the core verb.** This and
+   `RFYDuration0To60` + `RFYDuration61To180` = **39.6%** are the same event
+   described from opposite sides. This is the finding the data was pointing at.
+
+**Two figures corrected in the report.** Total revenue 08-27 to 08-30 is
+**+19.3%** (689,309 to 822,060) on **16% MORE** DAU (356,255 to 411,920), not
+fewer — the earlier "+17.5% on fewer daily players" mixed the 08-29 total with
+the 08-28 DAU. **ARPDAU +3.6% (1.9260 to 1.9957) is the growth-proof number.**
+And errors per CCU on 08-30 is **1,786**; 1,223 is the 08-31 clearing value.
+
+Report republished at the same URL, with every Roblox series name restored and
+the tripwire scoring taken out (producer asked for metric names, not glosses):
+https://claude.ai/code/artifact/0eacd493-3d0c-47d5-a1ca-34a24061f650

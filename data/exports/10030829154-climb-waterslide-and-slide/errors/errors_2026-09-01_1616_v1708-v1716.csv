@@ -1,0 +1,48 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+3228959,Error,Server,Mon Aug 24 2026 21:49:25 GMT+0200 (heure d’été d’Europe centrale),V1708,Failed to load sound: Asset is not approved for the requester,rbxassetid://138118304933431,
+9130,Error,Client,Fri Aug 28 2026 22:50:20 GMT+0200 (heure d’été d’Europe centrale),V1715,MuFa is not a valid member of Folder "ReplicatedStorage.Model","Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 35 - function setupRaftView
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 66 - function ensureRaftViewInitialized
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 312 - function updateListItem
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 519 - function RefreshList
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 616 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop', Line 78 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.UIMgr', Line 78 - function Open",
+497,Error,Client,Fri Aug 28 2026 22:51:45 GMT+0200 (heure d’été d’Europe centrale),V1715,Players.<Player>.PlayerScripts.UI.GoShop_Raft:102: attempt to index nil with 'Get',"Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 102 - function RefreshList
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 616 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop', Line 78 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.UIMgr', Line 78 - function Open",
+382,Warning,Client,Fri Aug 28 2026 22:50:25 GMT+0200 (heure d’été d’Europe centrale),V1715,Egg model not found: Egg1,,
+317,Error,Client,Sun Aug 23 2026 13:16:00 GMT+0200 (heure d’été d’Europe centrale),V1708,Players.<Player>.PlayerScripts.UI.GoShop_Raft:102: attempt to index nil with 'Get',"Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 102 - function RefreshList
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 619 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop', Line 78 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.UIMgr', Line 78 - function Open",
+299,Error,Client,Wed Aug 26 2026 09:00:10 GMT+0200 (heure d’été d’Europe centrale),V1711,WrapDefomer SkinningTransfer Error for 'Workspace.Maryam0098h.Accessory (RightShoeAccessory).Handle': "Could not find nearest triangle in cage-to-mesh projection.",,
+178,Error,Client,Fri Aug 28 2026 23:50:00 GMT+0200 (heure d’été d’Europe centrale),V1716,Players.<Player>.PlayerScripts.UI.Teleport:12: attempt to index nil with 'Get',"Script 'Players.<Player>.PlayerScripts.UI.Teleport', Line 12 - function updateCard
+    Script 'Players.<Player>.PlayerScripts.UI.Teleport', Line 86 - function RefreshView
+    Script 'Players.<Player>.PlayerScripts.UI.Teleport', Line 145 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.UIMgr', Line 78 - function Open",
+152,Error,Server,Mon Aug 31 2026 18:46:30 GMT+0200 (heure d’été d’Europe centrale),V1716,"ReplicatedStorage.ToolScripts.CopyTableScript:5: invalid argument #1 to 'pairs' (table expected, got nil)","Script 'ReplicatedStorage.ToolScripts.CopyTableScript', Line 5 - function DeepCopy
+    Script 'ServerScriptService.Manager.Common.GamePassMgr', Line 57 - function GetData
+    Script 'ServerScriptService.Entity.PlayerData', Line 356 - function ToDictionary
+    Script 'ServerScriptService.Service.Common.PlayerService', Line 210 - function Update
+    Script 'ServerScriptService.ServerInit', Line 97",
+126,Warning,Client,Fri Aug 28 2026 22:50:45 GMT+0200 (heure d’été d’Europe centrale),V1715,Egg model not found: Egg2,,
+113,Error,Client,Sun Aug 30 2026 09:42:10 GMT+0200 (heure d’été d’Europe centrale),V1716,WrapDefomer SkinningTransfer Error for 'Workspace.knitcami.Accessory (Eyelashes).Handle': "No valid targets with any UV coverage were found.",,
+112,Warning,Client,Fri Aug 28 2026 22:50:45 GMT+0200 (heure d’été d’Europe centrale),V1715,Egg model not found: Egg3,,
+109,Warning,Server,Sat Aug 29 2026 00:33:05 GMT+0200 (heure d’été d’Europe centrale),V1716,[SaveLoadDataMgr] SavePlayerData attempt 1/3 failed: UserId=<PlayerId> err=502: API Services rejected request with error. Error code: 0 Reason: An internal server error occurred.,,
+41,Warning,Client,Fri Aug 28 2026 22:50:30 GMT+0200 (heure d’été d’Europe centrale),V1715,Egg model not found: Egg8,,
+19,Error,Client,Sat Aug 29 2026 02:55:55 GMT+0200 (heure d’été d’Europe centrale),V1716,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerGui.GoShop.Frame.Seat.ScrollingFrame.Raft_87.Seat.TexName.Limited.持续旋转', Line 7",
+15,Error,Client,Fri Aug 28 2026 04:25:20 GMT+0200 (heure d’été d’Europe centrale),V1711,WrapDefomer SkinningTransfer Error for 'Workspace.Rafts.7752202460.BearRigs.BearRig_2.LeftShoe.Handle': "No valid targets with any UV coverage were found.",,
+15,Error,Client,Fri Aug 28 2026 04:25:20 GMT+0200 (heure d’été d’Europe centrale),V1711,WrapDefomer SkinningTransfer Error for 'Workspace.Rafts.7752202460.BearRigs.BearRig_2.RightShoe.Handle': "No valid targets with any UV coverage were found.",,
+14,Error,Client,Sat Aug 29 2026 02:55:55 GMT+0200 (heure d’été d’Europe centrale),V1716,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerGui.GoShop.Frame.Seat.ScrollingFrame.Raft_84.Seat.TexName.Limited.持续旋转', Line 7",
+14,Error,Client,Sat Aug 29 2026 02:55:55 GMT+0200 (heure d’été d’Europe centrale),V1716,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerGui.GoShop.Frame.Seat.ScrollingFrame.Raft_81.Seat.TexName.Limited.持续旋转', Line 7",
+14,Error,Client,Sat Aug 29 2026 02:55:55 GMT+0200 (heure d’été d’Europe centrale),V1716,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerGui.GoShop.Frame.Seat.ScrollingFrame.Raft_82.Seat.TexName.Limited.持续旋转', Line 7",
+14,Error,Client,Sat Aug 29 2026 02:55:55 GMT+0200 (heure d’été d’Europe centrale),V1716,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerGui.GoShop.Frame.Seat.ScrollingFrame.Raft_83.Seat.TexName.Limited.持续旋转', Line 7",
+14,Error,Client,Sat Aug 29 2026 02:55:55 GMT+0200 (heure d’été d’Europe centrale),V1716,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerGui.GoShop.Frame.Seat.ScrollingFrame.Raft_85.Seat.TexName.Limited.持续旋转', Line 7",
+13,Error,Client,Sat Aug 29 2026 03:30:10 GMT+0200 (heure d’été d’Europe centrale),V1716,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerGui.GoShop.Frame.Seat.ScrollingFrame.Raft_86.Seat.TexName.Limited.持续旋转', Line 7",
+12,Error,Client,Mon Aug 31 2026 11:48:05 GMT+0200 (heure d’été d’Europe centrale),V1716,WrapDefomer SkinningTransfer Error for 'Workspace.Suzuka1122113.Accessory (RightShoeAccessory).Handle': "Could not find nearest triangle in cage-to-mesh projection.",,
+12,Error,Server,Sat Aug 29 2026 17:10:35 GMT+0200 (heure d’été d’Europe centrale),V1716,"ReplicatedStorage.ToolScripts.CopyTableScript:5: invalid argument #1 to 'pairs' (table expected, got nil)","Script 'ReplicatedStorage.ToolScripts.CopyTableScript', Line 5 - function DeepCopy
+    Script 'ServerScriptService.Manager.Common.GamePassMgr', Line 53 - function GetSaveData
+    Script 'ServerScriptService.Common.Manager.Common.SaveLoadDataMgr', Line 84 - function SavePlayerData
+    Script 'ServerScriptService.Service.Common.PlayerService', Line 172",
+11,Error,Client,Tue Aug 25 2026 15:11:00 GMT+0200 (heure d’été d’Europe centrale),V1711,WrapDefomer SkinningTransfer Error for 'Workspace.<Player>.Accessory (RightShoeAccessory).Handle': "Could not find nearest triangle in cage-to-mesh projection.",,

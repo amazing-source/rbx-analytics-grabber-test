@@ -1,0 +1,675 @@
+<title>Verity v684 Post-Update</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F2F4F7; --panel:#FFFFFF; --sunk:#E8ECF1;
+  --ink:#141922; --body:#2A323D; --muted:#5F6B7A; --faint:#8793A2;
+  --rule:#D6DDE6; --rule-soft:#E6EBF1;
+  --pos:#16704A; --neg:#A82A20; --dim:#8793A2;
+  --shadow:0 1px 2px rgba(20,25,34,.05), 0 8px 24px -16px rgba(20,25,34,.30);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --ground:#0E1218; --panel:#161C25; --sunk:#1E2632;
+  --ink:#EDF1F6; --body:#C3CCD8; --muted:#8B98A8; --faint:#6B7889;
+  --rule:#2A3441; --rule-soft:#212A35;
+  --pos:#5EC894; --neg:#F08276; --dim:#6B7889;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+}}
+:root[data-theme="dark"]{
+  --ground:#0E1218; --panel:#161C25; --sunk:#1E2632;
+  --ink:#EDF1F6; --body:#C3CCD8; --muted:#8B98A8; --faint:#6B7889;
+  --rule:#2A3441; --rule-soft:#212A35;
+  --pos:#5EC894; --neg:#F08276; --dim:#6B7889;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--body);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;padding:0 20px 96px}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2,h3,h4,th,td,.chip,.mname,.mval,.gname{font-family:Archivo,"Helvetica Neue",Arial,sans-serif}
+th,td,.n{font-variant-numeric:tabular-nums}
+.ver,.eyebrow,code,.wowsub{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+header.masthead{border-top:5px solid var(--accent);padding:34px 0 26px}
+.eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-text);font-weight:600}
+h1{font-size:clamp(29px,4.4vw,43px);line-height:1.07;letter-spacing:-.022em;color:var(--ink);
+  font-weight:700;margin:.28em 0 .18em;text-wrap:balance}
+.dek{font-size:19px;color:var(--muted);max-width:64ch;margin:0 0 22px}
+.factbar{display:flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:3px;
+  background:var(--panel);overflow:hidden;box-shadow:var(--shadow);margin:0}
+.fact{flex:1 1 170px;padding:12px 16px;border-right:1px solid var(--rule-soft)}
+.fact:last-child{border-right:0}
+.fact dt{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);margin:0 0 4px}
+.fact dd{margin:0;font-family:Archivo,sans-serif;font-size:15.5px;font-weight:600;color:var(--ink);
+  font-variant-numeric:tabular-nums}
+h2{font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:600;
+  margin:54px 0 4px;padding-bottom:9px;border-bottom:1px solid var(--rule)}
+h3{font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-text);
+  font-weight:600;margin:28px 0 10px}
+p{margin:0 0 14px;max-width:76ch}
+a{color:var(--accent-text);text-underline-offset:2px}
+strong{font-weight:600;color:var(--ink)}
+ul,ol{margin:0 0 16px;padding-left:22px} li{margin:0 0 7px}
+code{font-size:12px;color:var(--muted)}
+code.dim{color:var(--dim);font-size:11px}
+.ver{display:inline-block;background:var(--sunk);color:var(--ink);border-radius:2px;
+  padding:1px 6px;font-size:12px;font-weight:500}
+/* small multiples */
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:12px;margin:0 0 8px}
+.mcard{background:var(--panel);border:1px solid var(--rule);border-radius:3px;padding:12px 13px 10px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:5px}
+.mtop{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.mname{font-size:13px;font-weight:600;color:var(--ink);line-height:1.25}
+.mval{font-size:16px;font-weight:700;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.mmeta{font-size:10.5px;color:var(--faint);word-break:break-all;line-height:1.3}
+.mmeta code{font-size:10.5px;color:var(--faint)}
+.mcard svg{display:block;height:54px;width:100%}
+.sparkempty{height:54px;display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;color:var(--faint);background:var(--sunk);border-radius:2px}
+.mfoot{font-size:11.5px;color:var(--muted);line-height:1.35}
+.mup{color:var(--pos);font-weight:600} .mdown{color:var(--neg);font-weight:600}
+.mflat{color:var(--dim);font-weight:600}
+/* tables */
+.tablewrap{overflow-x:auto;margin:14px 0 8px;border:1px solid var(--rule);border-radius:3px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:560px}
+caption{caption-side:top;text-align:left;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding:11px 14px 2px}
+th{text-align:left;font-weight:600;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--rule);white-space:nowrap;background:var(--sunk)}
+td{padding:8px 12px;border-bottom:1px solid var(--rule-soft);color:var(--body);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;white-space:nowrap}
+td.name{color:var(--ink);font-weight:500}
+td.n.flat{color:var(--dim)}
+td.dimcell{font-size:10.5px;color:var(--faint);line-height:1.5}
+td.dimcell code{font-size:10.5px}
+tr.rule-row td{background:var(--sunk);font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+tr.pubrow td{background:var(--sunk)}
+.wowsub{display:block;font-size:10.5px;font-weight:500;margin-top:2px;color:var(--muted)}
+.note{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--accent);
+  border-radius:3px;padding:16px 18px;margin:20px 0;font-size:15.5px;box-shadow:var(--shadow);max-width:76ch}
+.note .lbl{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);display:block;margin-bottom:6px}
+.note p:last-child{margin-bottom:0}
+.gamelist{display:grid;gap:14px;margin:20px 0}
+.gcard{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--rule);
+  border-left:4px solid var(--accent);border-radius:3px;padding:16px 20px;box-shadow:var(--shadow);
+  transition:transform .12s ease}
+.gcard:hover{transform:translateY(-1px)}
+.gcard .gtop{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:4px}
+.gcard .gname{font-size:19px;font-weight:600;color:var(--ink);letter-spacing:-.012em}
+.gcard .gsum{font-size:15px;color:var(--body);margin:0}
+footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--rule);font-size:13px;color:var(--faint)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:620px){
+  body{font-size:16px;padding:0 14px 72px}
+  .fact{flex:1 1 100%;border-right:0;border-bottom:1px solid var(--rule-soft)}
+  .mgrid{grid-template-columns:1fr 1fr}
+}
+
+:root{--accent:#57387F;--accent-text:#57387F}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--accent:#B79BE0;--accent-text:#B79BE0}}
+:root[data-theme="dark"]{--accent:#B79BE0;--accent-text:#B79BE0}
+</style>
+
+<div class="wrap">
+<header class="masthead">
+  <div class="eyebrow">Data report &middot; universe 10565445771 &middot; built 09 Sep 2026</div>
+  <h1>Verity Companion [AI]: what the series did around v684</h1>
+  <p class="dek">Every number here is a settled daily headline point pulled through one SQL view over the corpus. This document reports the movement and how it was measured. It draws no conclusion about cause.</p>
+  <dl class="factbar">
+    <div class="fact"><dt>Version</dt><dd><span class="ver">v684</span></dd></div>
+    <div class="fact"><dt>Published (UTC)</dt><dd>2026-09-04 19:40:46</dd></div>
+    <div class="fact"><dt>Days in panel</dt><dd>47</dd></div>
+    <div class="fact"><dt>Series span</dt><dd>2026-07-24 &rarr; 2026-09-08</dd></div>
+  </dl>
+</header>
+
+<h2>The window at a glance</h2>
+<p>Each panel is the last 28 served days for that metric on its own scale, with the v684 publish marked as a dashed rule. The figure top-right is the newest settled value; the figure underneath compares <strong>08-29&ndash;08-31</strong> against <strong>09-05&ndash;09-07</strong>, Friday to Sunday on both sides, so the weekday mix is identical in both windows. A week-over-week table follows below. <p>Later builds on this game inside the read window: <span class="ver">v688</span> 2026-09-06, <span class="ver">v689</span> 2026-09-08, <span class="ver">v690</span> 2026-09-08. Days after those dates are not a clean <span class="ver">v684</span> read.</p></p>
+<h3>Reach</h3><div class="mgrid"><div class="mcard">
+        <div class="mtop"><span class="mname">Unique users who saw it</span>
+          <span class="mval">5,186,387</span></div>
+        <div class="mmeta"><code>UniqueUsersWithImpressions</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="UniqueUsersWithImpressions, last 28 days, 220053 to 14609314">
+    <path d="M6.0 48.0 L15.2 47.8 L24.4 47.3 L33.6 44.7 L42.7 41.4 L51.9 36.2 L61.1 32.0 L70.3 24.7 L79.5 28.2 L88.7 18.6 L97.9 15.7 L107.0 12.5 L116.2 6.0 L125.4 13.8 L134.6 21.7 L143.8 29.2 L153.0 32.0 L162.1 27.2 L171.3 25.4 L180.5 29.3 L189.7 34.9 L198.9 34.6 L208.1 37.4 L217.3 34.9 L226.4 27.7 L235.6 27.4 L244.8 30.8 L254.0 33.5 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 48.0 L15.2 47.8 L24.4 47.3 L33.6 44.7 L42.7 41.4 L51.9 36.2 L61.1 32.0 L70.3 24.7 L79.5 28.2 L88.7 18.6 L97.9 15.7 L107.0 12.5 L116.2 6.0 L125.4 13.8 L134.6 21.7 L143.8 29.2 L153.0 32.0 L162.1 27.2 L171.3 25.4 L180.5 29.3 L189.7 34.9 L198.9 34.6 L208.1 37.4 L217.3 34.9 L226.4 27.7 L235.6 27.4 L244.8 30.8 L254.0 33.5" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="33.5" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mdown">-4.0%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Unique users who played</span>
+          <span class="mval">325,403</span></div>
+        <div class="mmeta"><code>UniqueUsersWithPlaySessions</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="UniqueUsersWithPlaySessions, last 28 days, 32017 to 1273540">
+    <path d="M6.0 48.0 L15.2 47.6 L24.4 46.8 L33.6 42.0 L42.7 37.7 L51.9 33.6 L61.1 29.8 L70.3 15.5 L79.5 21.8 L88.7 12.5 L97.9 11.0 L107.0 10.3 L116.2 6.0 L125.4 20.5 L134.6 26.0 L143.8 32.4 L153.0 35.5 L162.1 33.9 L171.3 28.2 L180.5 31.0 L189.7 36.8 L198.9 34.1 L208.1 38.2 L217.3 36.9 L226.4 30.9 L235.6 30.6 L244.8 34.4 L254.0 38.1 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 48.0 L15.2 47.6 L24.4 46.8 L33.6 42.0 L42.7 37.7 L51.9 33.6 L61.1 29.8 L70.3 15.5 L79.5 21.8 L88.7 12.5 L97.9 11.0 L107.0 10.3 L116.2 6.0 L125.4 20.5 L134.6 26.0 L143.8 32.4 L153.0 35.5 L162.1 33.9 L171.3 28.2 L180.5 31.0 L189.7 36.8 L198.9 34.1 L208.1 38.2 L217.3 36.9 L226.4 30.9 L235.6 30.6 L244.8 34.4 L254.0 38.1" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="38.1" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mdown">-13.7%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Impression to play</span>
+          <span class="mval">5.34%</span></div>
+        <div class="mmeta"><code>EndToEndCVR</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="EndToEndCVR, last 28 days, 0.05340546742081642 to 0.1436588317155838">
+    <path d="M6.0 10.9 L15.2 6.3 L24.4 12.6 L33.6 6.0 L42.7 13.7 L51.9 26.6 L61.1 29.3 L70.3 20.5 L79.5 23.5 L88.7 27.2 L97.9 30.0 L107.0 32.9 L116.2 35.5 L125.4 42.8 L134.6 41.8 L143.8 42.0 L153.0 43.9 L162.1 47.8 L171.3 40.4 L180.5 39.3 L189.7 40.7 L198.9 34.9 L208.1 39.6 L217.3 42.1 L226.4 42.2 L235.6 42.9 L244.8 44.4 L254.0 48.0 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 10.9 L15.2 6.3 L24.4 12.6 L33.6 6.0 L42.7 13.7 L51.9 26.6 L61.1 29.3 L70.3 20.5 L79.5 23.5 L88.7 27.2 L97.9 30.0 L107.0 32.9 L116.2 35.5 L125.4 42.8 L134.6 41.8 L143.8 42.0 L153.0 43.9 L162.1 47.8 L171.3 40.4 L180.5 39.3 L189.7 40.7 L198.9 34.9 L208.1 39.6 L217.3 42.1 L226.4 42.2 L235.6 42.9 L244.8 44.4 L254.0 48.0" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="48.0" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mdown">-15.1%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">RFY play-through rate</span>
+          <span class="mval">1.42%</span></div>
+        <div class="mmeta"><code>RFYPlayThroughRate</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="RFYPlayThroughRate, last 28 days, 0.013008877635002136 to 0.08085828274488449">
+    <path d="M6.0 6.0 L15.2 13.2 L24.4 28.1 L33.6 35.5 L42.7 40.4 L51.9 42.9 L61.1 42.7 L70.3 37.3 L79.5 38.3 L88.7 42.8 L97.9 46.8 L107.0 45.3 L116.2 46.3 L125.4 48.0 L134.6 46.1 L143.8 45.4 L153.0 45.6 L162.1 46.0 L171.3 43.9 L180.5 44.2 L189.7 42.6 L198.9 39.8 L208.1 42.1 L217.3 43.9 L226.4 46.3 L235.6 47.5 L244.8 46.2 L254.0 47.3 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 6.0 L15.2 13.2 L24.4 28.1 L33.6 35.5 L42.7 40.4 L51.9 42.9 L61.1 42.7 L70.3 37.3 L79.5 38.3 L88.7 42.8 L97.9 46.8 L107.0 45.3 L116.2 46.3 L125.4 48.0 L134.6 46.1 L143.8 45.4 L153.0 45.6 L162.1 46.0 L171.3 43.9 L180.5 44.2 L189.7 42.6 L198.9 39.8 L208.1 42.1 L217.3 43.9 L226.4 46.3 L235.6 47.5 L244.8 46.2 L254.0 47.3" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="47.3" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mdown">-27.4%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Daily active users</span>
+          <span class="mval">317,673</span></div>
+        <div class="mmeta"><code>DailyActiveUsers</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="DailyActiveUsers, last 28 days, 31803 to 1281398">
+    <path d="M6.0 48.0 L15.2 47.6 L24.4 46.9 L33.6 42.0 L42.7 37.9 L51.9 33.8 L61.1 29.8 L70.3 15.0 L79.5 21.8 L88.7 13.0 L97.9 11.5 L107.0 10.4 L116.2 6.0 L125.4 20.6 L134.6 26.2 L143.8 32.5 L153.0 35.5 L162.1 33.8 L171.3 28.7 L180.5 31.1 L189.7 36.9 L198.9 34.2 L208.1 38.4 L217.3 37.1 L226.4 31.3 L235.6 30.8 L244.8 34.3 L254.0 38.4 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 48.0 L15.2 47.6 L24.4 46.9 L33.6 42.0 L42.7 37.9 L51.9 33.8 L61.1 29.8 L70.3 15.0 L79.5 21.8 L88.7 13.0 L97.9 11.5 L107.0 10.4 L116.2 6.0 L125.4 20.6 L134.6 26.2 L143.8 32.5 L153.0 35.5 L162.1 33.8 L171.3 28.7 L180.5 31.1 L189.7 36.9 L198.9 34.2 L208.1 38.4 L217.3 37.1 L226.4 31.3 L235.6 30.8 L244.8 34.3 L254.0 38.4" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="38.4" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mdown">-13.6%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Peak concurrents</span>
+          <span class="mval">2,557</span></div>
+        <div class="mmeta"><code>PeakConcurrentPlayers</code> &middot; to 09-08</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="PeakConcurrentPlayers, last 28 days, 704.3371933619239 to 20212.87852841459">
+    <path d="M6.0 48.0 L15.2 43.5 L24.4 30.0 L33.6 35.7 L42.7 33.3 L51.9 27.2 L61.1 18.5 L70.3 26.9 L79.5 6.0 L88.7 18.4 L97.9 18.1 L107.0 18.2 L116.2 29.0 L125.4 34.1 L134.6 38.3 L143.8 40.1 L153.0 39.0 L162.1 33.4 L171.3 36.9 L180.5 40.5 L189.7 37.4 L198.9 40.9 L208.1 37.7 L217.3 31.7 L226.4 33.9 L235.6 38.5 L244.8 41.6 L254.0 44.0 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="217.3" y1="2" x2="217.3" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 48.0 L15.2 43.5 L24.4 30.0 L33.6 35.7 L42.7 33.3 L51.9 27.2 L61.1 18.5 L70.3 26.9 L79.5 6.0 L88.7 18.4 L97.9 18.1 L107.0 18.2 L116.2 29.0 L125.4 34.1 L134.6 38.3 L143.8 40.1 L153.0 39.0 L162.1 33.4 L171.3 36.9 L180.5 40.5 L189.7 37.4 L198.9 40.9 L208.1 37.7 L217.3 31.7 L226.4 33.9 L235.6 38.5 L244.8 41.6 L254.0 44.0" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="44.0" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mdown">-8.8%</span> vs matched days before</div>
+      </div></div>
+<h3>Engagement</h3><div class="mgrid"><div class="mcard">
+        <div class="mtop"><span class="mname">Session length</span>
+          <span class="mval">8.31</span></div>
+        <div class="mmeta"><code>AverageSessionLengthMinutes</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="AverageSessionLengthMinutes, last 28 days, 8.01948356628418 to 10.195645332336426">
+    <path d="M6.0 20.4 L15.2 20.6 L24.4 19.5 L33.6 6.0 L42.7 10.1 L51.9 17.8 L61.1 22.6 L70.3 26.4 L79.5 32.9 L88.7 34.7 L97.9 34.4 L107.0 38.2 L116.2 40.5 L125.4 43.1 L134.6 45.0 L143.8 47.3 L153.0 48.0 L162.1 41.6 L171.3 42.1 L180.5 43.3 L189.7 45.0 L198.9 38.7 L208.1 39.4 L217.3 34.8 L226.4 30.6 L235.6 33.6 L244.8 34.0 L254.0 42.4 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 20.4 L15.2 20.6 L24.4 19.5 L33.6 6.0 L42.7 10.1 L51.9 17.8 L61.1 22.6 L70.3 26.4 L79.5 32.9 L88.7 34.7 L97.9 34.4 L107.0 38.2 L116.2 40.5 L125.4 43.1 L134.6 45.0 L143.8 47.3 L153.0 48.0 L162.1 41.6 L171.3 42.1 L180.5 43.3 L189.7 45.0 L198.9 38.7 L208.1 39.4 L217.3 34.8 L226.4 30.6 L235.6 33.6 L244.8 34.0 L254.0 42.4" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="42.4" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mup">+4.3%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Playtime per player</span>
+          <span class="mval">12.46</span></div>
+        <div class="mmeta"><code>AveragePlayTimeMinutesPerDAU</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="AveragePlayTimeMinutesPerDAU, last 28 days, 11.470769882202148 to 18.705303192138672">
+    <path d="M6.0 14.2 L15.2 14.2 L24.4 16.6 L33.6 7.9 L42.7 6.0 L51.9 19.8 L61.1 25.5 L70.3 27.1 L79.5 33.0 L88.7 33.9 L97.9 32.0 L107.0 37.6 L116.2 39.1 L125.4 42.6 L134.6 44.6 L143.8 46.0 L153.0 48.0 L162.1 46.0 L171.3 41.7 L180.5 43.3 L189.7 46.1 L198.9 42.8 L208.1 43.1 L217.3 42.9 L226.4 37.3 L235.6 35.7 L244.8 38.6 L254.0 42.3 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 14.2 L15.2 14.2 L24.4 16.6 L33.6 7.9 L42.7 6.0 L51.9 19.8 L61.1 25.5 L70.3 27.1 L79.5 33.0 L88.7 33.9 L97.9 32.0 L107.0 37.6 L116.2 39.1 L125.4 42.6 L134.6 44.6 L143.8 46.0 L153.0 48.0 L162.1 46.0 L171.3 41.7 L180.5 43.3 L189.7 46.1 L198.9 42.8 L208.1 43.1 L217.3 42.9 L226.4 37.3 L235.6 35.7 L244.8 38.6 L254.0 42.3" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="42.3" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mup">+6.8%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">D1 retention</span>
+          <span class="mval">10.99%</span></div>
+        <div class="mmeta"><code>ForwardD1Retention</code> &middot; to 09-06</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="ForwardD1Retention, last 28 days, 0.1049792692065239 to 0.24755965173244476">
+    <path d="M6.0 20.3 L15.2 17.6 L24.4 22.5 L33.6 6.0 L42.7 8.9 L51.9 15.4 L61.1 33.5 L70.3 24.6 L79.5 27.8 L88.7 29.3 L97.9 22.6 L107.0 27.3 L116.2 32.3 L125.4 42.9 L134.6 37.0 L143.8 36.3 L153.0 41.9 L162.1 38.5 L171.3 41.5 L180.5 38.4 L189.7 48.0 L198.9 39.9 L208.1 41.2 L217.3 40.7 L226.4 35.1 L235.6 30.4 L244.8 38.0 L254.0 46.5 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="235.6" y1="2" x2="235.6" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 20.3 L15.2 17.6 L24.4 22.5 L33.6 6.0 L42.7 8.9 L51.9 15.4 L61.1 33.5 L70.3 24.6 L79.5 27.8 L88.7 29.3 L97.9 22.6 L107.0 27.3 L116.2 32.3 L125.4 42.9 L134.6 37.0 L143.8 36.3 L153.0 41.9 L162.1 38.5 L171.3 41.5 L180.5 38.4 L189.7 48.0 L198.9 39.9 L208.1 41.2 L217.3 40.7 L226.4 35.1 L235.6 30.4 L244.8 38.0 L254.0 46.5" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="46.5" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mflat">-0.6%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">First play under 60s</span>
+          <span class="mval">16.85%</span></div>
+        <div class="mmeta"><code>RFYDuration0To60</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="RFYDuration0To60, last 28 days, 0.13396093249320984 to 0.21587008237838745">
+    <path d="M6.0 18.0 L15.2 21.5 L24.4 6.0 L33.6 14.6 L42.7 18.2 L51.9 26.3 L61.1 25.3 L70.3 31.9 L79.5 34.5 L88.7 30.2 L97.9 32.9 L107.0 35.1 L116.2 34.7 L125.4 35.1 L134.6 34.0 L143.8 36.0 L153.0 38.0 L162.1 48.0 L171.3 41.9 L180.5 43.5 L189.7 43.0 L198.9 38.9 L208.1 35.3 L217.3 35.1 L226.4 34.5 L235.6 28.4 L244.8 29.4 L254.0 30.3 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 18.0 L15.2 21.5 L24.4 6.0 L33.6 14.6 L42.7 18.2 L51.9 26.3 L61.1 25.3 L70.3 31.9 L79.5 34.5 L88.7 30.2 L97.9 32.9 L107.0 35.1 L116.2 34.7 L125.4 35.1 L134.6 34.0 L143.8 36.0 L153.0 38.0 L162.1 48.0 L171.3 41.9 L180.5 43.5 L189.7 43.0 L198.9 38.9 L208.1 35.3 L217.3 35.1 L226.4 34.5 L235.6 28.4 L244.8 29.4 L254.0 30.3" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="30.3" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mup">+18.2%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">First play 61 to 180s</span>
+          <span class="mval">13.32%</span></div>
+        <div class="mmeta"><code>RFYDuration61To180</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="RFYDuration61To180, last 28 days, 0.0934624969959259 to 0.14248064160346985">
+    <path d="M6.0 32.3 L15.2 30.6 L24.4 35.0 L33.6 44.4 L42.7 48.0 L51.9 28.5 L61.1 38.4 L70.3 36.3 L79.5 32.2 L88.7 32.6 L97.9 33.7 L107.0 24.5 L116.2 15.2 L125.4 13.1 L134.6 11.1 L143.8 6.4 L153.0 6.0 L162.1 11.2 L171.3 10.4 L180.5 12.1 L189.7 7.7 L198.9 15.9 L208.1 21.1 L217.3 21.5 L226.4 28.5 L235.6 24.6 L244.8 20.2 L254.0 13.9 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 32.3 L15.2 30.6 L24.4 35.0 L33.6 44.4 L42.7 48.0 L51.9 28.5 L61.1 38.4 L70.3 36.3 L79.5 32.2 L88.7 32.6 L97.9 33.7 L107.0 24.5 L116.2 15.2 L125.4 13.1 L134.6 11.1 L143.8 6.4 L153.0 6.0 L162.1 11.2 L171.3 10.4 L180.5 12.1 L189.7 7.7 L198.9 15.9 L208.1 21.1 L217.3 21.5 L226.4 28.5 L235.6 24.6 L244.8 20.2 L254.0 13.9" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="13.9" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mdown">-8.0%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Play days, D2 to D7</span>
+          <span class="mval">0.255</span></div>
+        <div class="mmeta"><code>RFYD2To7PlayDays</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="RFYD2To7PlayDays, last 25 days, 0.21425722539424896 to 0.6725494861602783">
+    <path d="M6.0 12.5 L16.3 32.2 L26.7 14.4 L37.0 11.4 L47.3 15.6 L57.7 6.0 L68.0 16.0 L78.3 24.2 L88.7 34.5 L99.0 29.5 L109.3 32.3 L119.7 32.5 L130.0 31.3 L140.3 34.2 L150.7 41.5 L161.0 44.9 L171.3 42.9 L181.7 43.0 L192.0 44.6 L202.3 42.7 L212.7 47.2 L223.0 46.3 L233.3 48.0 L243.7 43.8 L254.0 44.2 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="223.0" y1="2" x2="223.0" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 12.5 L16.3 32.2 L26.7 14.4 L37.0 11.4 L47.3 15.6 L57.7 6.0 L68.0 16.0 L78.3 24.2 L88.7 34.5 L99.0 29.5 L109.3 32.3 L119.7 32.5 L130.0 31.3 L140.3 34.2 L150.7 41.5 L161.0 44.9 L171.3 42.9 L181.7 43.0 L192.0 44.6 L202.3 42.7 L212.7 47.2 L223.0 46.3 L233.3 48.0 L243.7 43.8 L254.0 44.2" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="44.2" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mdown">-7.2%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Play days per 7</span>
+          <span class="mval">1.25</span></div>
+        <div class="mmeta"><code>RFYL7PlayDays</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="RFYL7PlayDays, last 28 days, 0 to 1.6436139345169067">
+    <path d="M6.0 48.0 L15.2 48.0 L24.4 48.0 L33.6 8.4 L42.7 12.8 L51.9 7.8 L61.1 7.1 L70.3 8.1 L79.5 6.0 L88.7 8.4 L97.9 10.5 L107.0 13.4 L116.2 12.1 L125.4 12.8 L134.6 12.9 L143.8 12.6 L153.0 13.3 L162.1 15.3 L171.3 16.2 L180.5 15.7 L189.7 15.8 L198.9 16.2 L208.1 15.7 L217.3 16.9 L226.4 16.6 L235.6 17.1 L244.8 15.9 L254.0 16.1 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 48.0 L15.2 48.0 L24.4 48.0 L33.6 8.4 L42.7 12.8 L51.9 7.8 L61.1 7.1 L70.3 8.1 L79.5 6.0 L88.7 8.4 L97.9 10.5 L107.0 13.4 L116.2 12.1 L125.4 12.8 L134.6 12.9 L143.8 12.6 L153.0 13.3 L162.1 15.3 L171.3 16.2 L180.5 15.7 L189.7 15.8 L198.9 16.2 L208.1 15.7 L217.3 16.9 L226.4 16.6 L235.6 17.1 L244.8 15.9 L254.0 16.1" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="16.1" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mflat">-1.5%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">DAU over MAU</span>
+          <span class="mval">2.86%</span></div>
+        <div class="mmeta"><code>DauMauStickiness</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="DauMauStickiness, last 28 days, 0.028556205332279205 to 0.5722617506980896">
+    <path d="M6.0 23.7 L15.2 24.1 L24.4 22.3 L33.6 6.0 L42.7 10.2 L51.9 15.5 L61.1 20.5 L70.3 17.0 L79.5 28.9 L88.7 28.5 L97.9 31.7 L107.0 34.1 L116.2 35.0 L125.4 41.0 L134.6 43.2 L143.8 45.3 L153.0 46.3 L162.1 46.0 L171.3 44.9 L180.5 45.7 L189.7 47.2 L198.9 46.7 L208.1 47.7 L217.3 47.5 L226.4 46.3 L235.6 46.3 L244.8 47.1 L254.0 48.0 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 23.7 L15.2 24.1 L24.4 22.3 L33.6 6.0 L42.7 10.2 L51.9 15.5 L61.1 20.5 L70.3 17.0 L79.5 28.9 L88.7 28.5 L97.9 31.7 L107.0 34.1 L116.2 35.0 L125.4 41.0 L134.6 43.2 L143.8 45.3 L153.0 46.3 L162.1 46.0 L171.3 44.9 L180.5 45.7 L189.7 47.2 L198.9 46.7 L208.1 47.7 L217.3 47.5 L226.4 46.3 L235.6 46.3 L244.8 47.1 L254.0 48.0" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="48.0" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mdown">-28.5%</span> vs matched days before</div>
+      </div></div>
+<h3>Monetization</h3><div class="mgrid"><div class="mcard">
+        <div class="mtop"><span class="mname">Daily revenue (R$)</span>
+          <span class="mval">211,878</span></div>
+        <div class="mmeta"><code>DailyRevenue</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="DailyRevenue, last 28 days, 50172 to 609239">
+    <path d="M6.0 48.0 L15.2 46.6 L24.4 43.8 L33.6 27.1 L42.7 16.1 L51.9 24.3 L61.1 21.3 L70.3 8.4 L79.5 18.9 L88.7 11.6 L97.9 6.0 L107.0 9.3 L116.2 6.9 L125.4 26.1 L134.6 31.9 L143.8 35.5 L153.0 37.6 L162.1 36.5 L171.3 30.4 L180.5 32.6 L189.7 40.1 L198.9 35.3 L208.1 39.4 L217.3 38.1 L226.4 28.3 L235.6 23.1 L244.8 31.0 L254.0 35.9 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 48.0 L15.2 46.6 L24.4 43.8 L33.6 27.1 L42.7 16.1 L51.9 24.3 L61.1 21.3 L70.3 8.4 L79.5 18.9 L88.7 11.6 L97.9 6.0 L107.0 9.3 L116.2 6.9 L125.4 26.1 L134.6 31.9 L143.8 35.5 L153.0 37.6 L162.1 36.5 L171.3 30.4 L180.5 32.6 L189.7 40.1 L198.9 35.3 L208.1 39.4 L217.3 38.1 L226.4 28.3 L235.6 23.1 L244.8 31.0 L254.0 35.9" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="35.9" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mup">+25.1%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Paying users</span>
+          <span class="mval">3,370</span></div>
+        <div class="mmeta"><code>PayingUsers</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="PayingUsers, last 28 days, 542 to 9803">
+    <path d="M6.0 48.0 L15.2 47.4 L24.4 45.0 L33.6 34.0 L42.7 25.2 L51.9 28.6 L61.1 22.4 L70.3 10.1 L79.5 19.9 L88.7 10.5 L97.9 6.7 L107.0 10.6 L116.2 6.0 L125.4 24.4 L134.6 29.4 L143.8 34.3 L153.0 36.8 L162.1 37.2 L171.3 30.4 L180.5 31.3 L189.7 37.8 L198.9 32.5 L208.1 37.1 L217.3 36.1 L226.4 27.2 L235.6 22.2 L244.8 29.5 L254.0 35.2 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 48.0 L15.2 47.4 L24.4 45.0 L33.6 34.0 L42.7 25.2 L51.9 28.6 L61.1 22.4 L70.3 10.1 L79.5 19.9 L88.7 10.5 L97.9 6.7 L107.0 10.6 L116.2 6.0 L125.4 24.4 L134.6 29.4 L143.8 34.3 L153.0 36.8 L162.1 37.2 L171.3 30.4 L180.5 31.3 L189.7 37.8 L198.9 32.5 L208.1 37.1 L217.3 36.1 L226.4 27.2 L235.6 22.2 L244.8 29.5 L254.0 35.2" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="35.2" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mup">+24.2%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Payer conversion</span>
+          <span class="mval">1.06%</span></div>
+        <div class="mmeta"><code>PayingUsersCVR</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="PayingUsersCVR, last 28 days, 0.006453589536249638 to 0.018237128853797913">
+    <path d="M6.0 10.3 L15.2 14.7 L24.4 6.0 L33.6 9.6 L42.7 11.4 L51.9 33.4 L61.1 32.6 L70.3 39.7 L79.5 41.4 L88.7 41.8 L97.9 40.3 L107.0 43.8 L116.2 43.7 L125.4 46.8 L134.6 46.7 L143.8 45.3 L153.0 44.5 L162.1 48.0 L171.3 45.1 L180.5 42.9 L189.7 43.5 L198.9 39.1 L208.1 38.3 L217.3 39.2 L226.4 36.4 L235.6 30.2 L244.8 33.7 L254.0 33.2 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 10.3 L15.2 14.7 L24.4 6.0 L33.6 9.6 L42.7 11.4 L51.9 33.4 L61.1 32.6 L70.3 39.7 L79.5 41.4 L88.7 41.8 L97.9 40.3 L107.0 43.8 L116.2 43.7 L125.4 46.8 L134.6 46.7 L143.8 45.3 L153.0 44.5 L162.1 48.0 L171.3 45.1 L180.5 42.9 L189.7 43.5 L198.9 39.1 L208.1 38.3 L217.3 39.2 L226.4 36.4 L235.6 30.2 L244.8 33.7 L254.0 33.2" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="33.2" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mup">+42.2%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Revenue per player</span>
+          <span class="mval">0.667</span></div>
+        <div class="mmeta"><code>AverageRevenuePerUser</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="AverageRevenuePerUser, last 28 days, 0.3888533413410187 to 1.6079397201538086">
+    <path d="M6.0 7.0 L15.2 6.6 L24.4 6.0 L33.6 7.6 L42.7 12.3 L51.9 33.8 L61.1 37.0 L70.3 41.7 L79.5 42.8 L88.7 44.3 L97.9 42.6 L107.0 44.5 L116.2 45.4 L125.4 47.5 L134.6 48.0 L143.8 46.2 L153.0 45.3 L162.1 45.9 L171.3 45.2 L180.5 45.0 L189.7 46.6 L198.9 44.3 L208.1 43.8 L217.3 43.7 L226.4 41.0 L235.6 37.2 L244.8 39.7 L254.0 38.4 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 7.0 L15.2 6.6 L24.4 6.0 L33.6 7.6 L42.7 12.3 L51.9 33.8 L61.1 37.0 L70.3 41.7 L79.5 42.8 L88.7 44.3 L97.9 42.6 L107.0 44.5 L116.2 45.4 L125.4 47.5 L134.6 48.0 L143.8 46.2 L153.0 45.3 L162.1 45.9 L171.3 45.2 L180.5 45.0 L189.7 46.6 L198.9 44.3 L208.1 43.8 L217.3 43.7 L226.4 41.0 L235.6 37.2 L244.8 39.7 L254.0 38.4" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="38.4" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mup">+45.2%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Revenue per payer</span>
+          <span class="mval">62.9</span></div>
+        <div class="mmeta"><code>AverageRevenuePerPayingUser</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="AverageRevenuePerPayingUser, last 28 days, 55.277469635009766 to 100.71701049804688">
+    <path d="M6.0 13.5 L15.2 6.0 L24.4 17.6 L33.6 15.2 L42.7 20.3 L51.9 29.1 L61.1 38.3 L70.3 39.1 L79.5 39.1 L88.7 43.0 L97.9 40.7 L107.0 39.6 L116.2 42.8 L125.4 44.0 L134.6 46.4 L143.8 42.7 L153.0 40.9 L162.1 34.9 L171.3 39.4 L180.5 43.2 L189.7 47.6 L198.9 48.0 L208.1 47.6 L217.3 45.9 L226.4 42.7 L235.6 42.4 L244.8 43.6 L254.0 41.0 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 13.5 L15.2 6.0 L24.4 17.6 L33.6 15.2 L42.7 20.3 L51.9 29.1 L61.1 38.3 L70.3 39.1 L79.5 39.1 L88.7 43.0 L97.9 40.7 L107.0 39.6 L116.2 42.8 L125.4 44.0 L134.6 46.4 L143.8 42.7 L153.0 40.9 L162.1 34.9 L171.3 39.4 L180.5 43.2 L189.7 47.6 L198.9 48.0 L208.1 47.6 L217.3 45.9 L226.4 42.7 L235.6 42.4 L244.8 43.6 L254.0 41.0" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="41.0" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mflat">+1.9%</span> vs matched days before</div>
+      </div></div>
+<h3>Technical</h3><div class="mgrid"><div class="mcard">
+        <div class="mtop"><span class="mname">Client crash rate</span>
+          <span class="mval">0.30%</span></div>
+        <div class="mmeta"><code>ClientCrashRate15m</code> &middot; to 09-08</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="ClientCrashRate15m, last 28 days, 0.002242029482344875 to 0.0031640338271776286">
+    <path d="M6.0 33.4 L15.2 29.8 L24.4 45.2 L33.6 48.0 L42.7 45.3 L51.9 42.8 L61.1 30.8 L70.3 30.6 L79.5 32.4 L88.7 21.8 L97.9 6.0 L107.0 38.5 L116.2 34.1 L125.4 25.0 L134.6 13.6 L143.8 22.8 L153.0 6.5 L162.1 20.1 L171.3 28.8 L180.5 10.7 L189.7 22.3 L198.9 22.7 L208.1 11.5 L217.3 16.2 L226.4 24.3 L235.6 32.5 L244.8 28.8 L254.0 12.2 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="217.3" y1="2" x2="217.3" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 33.4 L15.2 29.8 L24.4 45.2 L33.6 48.0 L42.7 45.3 L51.9 42.8 L61.1 30.8 L70.3 30.6 L79.5 32.4 L88.7 21.8 L97.9 6.0 L107.0 38.5 L116.2 34.1 L125.4 25.0 L134.6 13.6 L143.8 22.8 L153.0 6.5 L162.1 20.1 L171.3 28.8 L180.5 10.7 L189.7 22.3 L198.9 22.7 L208.1 11.5 L217.3 16.2 L226.4 24.3 L235.6 32.5 L244.8 28.8 L254.0 12.2" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="12.2" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mdown">-6.7%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Client FPS, 10th pct</span>
+          <span class="mval">9.7</span></div>
+        <div class="mmeta"><code>ClientFpsP10</code> &middot; to 09-08</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="ClientFpsP10, last 28 days, 9.706811906688731 to 49.36720051391855">
+    <path d="M6.0 6.0 L15.2 7.2 L24.4 6.0 L33.6 9.3 L42.7 8.2 L51.9 9.4 L61.1 10.3 L70.3 10.1 L79.5 10.5 L88.7 10.6 L97.9 11.7 L107.0 10.4 L116.2 10.4 L125.4 10.7 L134.6 10.1 L143.8 11.7 L153.0 11.4 L162.1 10.5 L171.3 10.2 L180.5 10.6 L189.7 10.4 L198.9 11.7 L208.1 13.1 L217.3 11.7 L226.4 13.1 L235.6 11.4 L244.8 10.3 L254.0 48.0 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="217.3" y1="2" x2="217.3" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 6.0 L15.2 7.2 L24.4 6.0 L33.6 9.3 L42.7 8.2 L51.9 9.4 L61.1 10.3 L70.3 10.1 L79.5 10.5 L88.7 10.6 L97.9 11.7 L107.0 10.4 L116.2 10.4 L125.4 10.7 L134.6 10.1 L143.8 11.7 L153.0 11.4 L162.1 10.5 L171.3 10.2 L180.5 10.6 L189.7 10.4 L198.9 11.7 L208.1 13.1 L217.3 11.7 L226.4 13.1 L235.6 11.4 L244.8 10.3 L254.0 48.0" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="48.0" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mdown">-2.4%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Out-of-memory exits</span>
+          <span class="mval">71</span></div>
+        <div class="mmeta"><code>OomUnexpectedExits</code> &middot; to 09-08</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="OomUnexpectedExits, last 28 days, 14 to 400">
+    <path d="M6.0 48.0 L15.2 47.8 L24.4 44.4 L33.6 39.4 L42.7 37.9 L51.9 26.7 L61.1 12.0 L70.3 20.3 L79.5 10.2 L88.7 12.1 L97.9 10.5 L107.0 6.0 L116.2 14.9 L125.4 25.2 L134.6 32.4 L143.8 35.2 L153.0 35.5 L162.1 30.0 L171.3 36.2 L180.5 36.7 L189.7 39.0 L198.9 39.0 L208.1 37.2 L217.3 28.5 L226.4 29.7 L235.6 34.7 L244.8 37.9 L254.0 41.8 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="217.3" y1="2" x2="217.3" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 48.0 L15.2 47.8 L24.4 44.4 L33.6 39.4 L42.7 37.9 L51.9 26.7 L61.1 12.0 L70.3 20.3 L79.5 10.2 L88.7 12.1 L97.9 10.5 L107.0 6.0 L116.2 14.9 L125.4 25.2 L134.6 32.4 L143.8 35.2 L153.0 35.5 L162.1 30.0 L171.3 36.2 L180.5 36.7 L189.7 39.0 L198.9 39.0 L208.1 37.2 L217.3 28.5 L226.4 29.7 L235.6 34.7 L244.8 37.9 L254.0 41.8" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="41.8" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mflat">+1.4%</span> vs matched days before</div>
+      </div>
+<div class="mcard">
+        <div class="mtop"><span class="mname">Logged events</span>
+          <span class="mval">1,641,887</span></div>
+        <div class="mmeta"><code>ErrorCount</code> &middot; to 09-07</div>
+        <svg viewBox="0 0 260 54" width="100%" height="auto" preserveAspectRatio="none" role="img"
+    aria-label="ErrorCount, last 28 days, 94251 to 5574106">
+    <path d="M6.0 48.0 L15.2 47.6 L24.4 45.1 L33.6 31.9 L42.7 30.4 L51.9 20.9 L61.1 22.3 L70.3 12.3 L79.5 6.0 L88.7 20.0 L97.9 15.4 L107.0 12.5 L116.2 13.6 L125.4 24.9 L134.6 33.8 L143.8 36.7 L153.0 39.7 L162.1 36.8 L171.3 32.2 L180.5 36.8 L189.7 38.7 L198.9 36.0 L208.1 34.8 L217.3 38.9 L226.4 32.2 L235.6 15.3 L244.8 32.6 L254.0 36.1 L254.0 48 L6.0 48 Z" fill="var(--accent)" fill-opacity="0.10"/><line x1="226.4" y1="2" x2="226.4" y2="52" stroke="var(--rule)" stroke-width="1" stroke-dasharray="3 2"/>
+    <path d="M6.0 48.0 L15.2 47.6 L24.4 45.1 L33.6 31.9 L42.7 30.4 L51.9 20.9 L61.1 22.3 L70.3 12.3 L79.5 6.0 L88.7 20.0 L97.9 15.4 L107.0 12.5 L116.2 13.6 L125.4 24.9 L134.6 33.8 L143.8 36.7 L153.0 39.7 L162.1 36.8 L171.3 32.2 L180.5 36.8 L189.7 38.7 L198.9 36.0 L208.1 34.8 L217.3 38.9 L226.4 32.2 L235.6 15.3 L244.8 32.6 L254.0 36.1" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="254.0" cy="36.1" r="2.6" fill="var(--accent)"/>
+  </svg>
+        <div class="mfoot"><span class="mup">+61.5%</span> vs matched days before</div>
+      </div></div>
+
+<h2>Week over week, same weekday</h2>
+<p>Every one of the last 14 served days against <strong>the same weekday seven days earlier</strong> &mdash; this Friday against last Friday, this Monday against last Monday. These games have a strong weekly shape, so a day-on-day comparison against yesterday mostly measures the day of the week; pairing like weekdays removes that and leaves the week-on-week move.</p>
+<div class="tablewrap"><table>
+<caption>Each cell: the day's value, and its change against the same weekday a week before</caption>
+<thead><tr><th>Day</th><th class="n">DAU</th><th class="n">CCU</th><th class="n">Impressions</th><th class="n">Revenue</th><th class="n">Session</th><th class="n">D1</th></tr></thead>
+<tbody><tr><td class="name">08-26 <strong>Wed</strong></td><td class="n">492,355<span class="wowsub mdown">-39.3% vs 08-19</span></td><td class="n">5,208<span class="wowsub mdown">-50.3% vs 08-19</span></td><td class="n">6,663,053<span class="wowsub mdown">-4.9% vs 08-19</span></td><td class="n">217,008<span class="wowsub mdown">-50.4% vs 08-19</span></td><td class="n">8.06<span class="wowsub mdown">-8.5% vs 08-19</span></td><td class="n">12.55%<span class="wowsub mdown">-25.4% vs 08-19</span></td></tr>
+<tr><td class="name">08-27 <strong>Thu</strong></td><td class="n">403,311<span class="wowsub mdown">-62.5% vs 08-20</span></td><td class="n">4,387<span class="wowsub mdown">-78.3% vs 08-20</span></td><td class="n">5,717,348<span class="wowsub mdown">-44.4% vs 08-20</span></td><td class="n">189,161<span class="wowsub mdown">-64.6% vs 08-20</span></td><td class="n">8.02<span class="wowsub mdown">-7.9% vs 08-20</span></td><td class="n">13.74%<span class="wowsub mdown">-28.2% vs 08-20</span></td></tr>
+<tr><td class="name">08-28 <strong>Fri</strong></td><td class="n">453,701<span class="wowsub mdown">-59.4% vs 08-21</span></td><td class="n">4,879<span class="wowsub mdown">-66.3% vs 08-21</span></td><td class="n">7,356,725<span class="wowsub mdown">-34.8% vs 08-21</span></td><td class="n">203,470<span class="wowsub mdown">-66.6% vs 08-21</span></td><td class="n">8.35<span class="wowsub mdown">-4.3% vs 08-21</span></td><td class="n">12.71%<span class="wowsub mdown">-27.5% vs 08-21</span></td></tr>
+<tr><td class="name">08-29 <strong>Sat</strong></td><td class="n">606,962<span class="wowsub mdown">-47.3% vs 08-22</span></td><td class="n">7,504<span class="wowsub mdown">-48.5% vs 08-22</span></td><td class="n">7,971,960<span class="wowsub mdown">-35.7% vs 08-22</span></td><td class="n">284,819<span class="wowsub mdown">-49.6% vs 08-22</span></td><td class="n">8.33<span class="wowsub mdown">-2.4% vs 08-22</span></td><td class="n">13.76%<span class="wowsub mdown">-13.1% vs 08-22</span></td></tr>
+<tr><td class="name">08-30 <strong>Sun</strong></td><td class="n">535,950<span class="wowsub mdown">-58.2% vs 08-23</span></td><td class="n">5,861<span class="wowsub mdown">-59.7% vs 08-23</span></td><td class="n">6,640,890<span class="wowsub mdown">-54.5% vs 08-23</span></td><td class="n">255,562<span class="wowsub mdown">-57.2% vs 08-23</span></td><td class="n">8.27<span class="wowsub mflat">-1.7% vs 08-23</span></td><td class="n">10.50%<span class="wowsub mdown">-14.2% vs 08-23</span></td></tr>
+<tr><td class="name">08-31 <strong>Mon</strong></td><td class="n">363,428<span class="wowsub mdown">-57.0% vs 08-24</span></td><td class="n">4,202<span class="wowsub mdown">-55.9% vs 08-24</span></td><td class="n">4,711,614<span class="wowsub mdown">-60.5% vs 08-24</span></td><td class="n">155,974<span class="wowsub mdown">-54.4% vs 08-24</span></td><td class="n">8.17<span class="wowsub mflat">-1.2% vs 08-24</span></td><td class="n">13.26%<span class="wowsub mdown">-6.8% vs 08-24</span></td></tr>
+<tr><td class="name">09-01 <strong>Tue</strong></td><td class="n">443,014<span class="wowsub mdown">-35.0% vs 08-25</span></td><td class="n">5,623<span class="wowsub mdown">-21.5% vs 08-25</span></td><td class="n">4,800,604<span class="wowsub mdown">-48.0% vs 08-25</span></td><td class="n">219,341<span class="wowsub mdown">-17.2% vs 08-25</span></td><td class="n">8.50<span class="wowsub mup">+4.0% vs 08-25</span></td><td class="n">12.80%<span class="wowsub mdown">-11.5% vs 08-25</span></td></tr>
+<tr><td class="name">09-02 <strong>Wed</strong></td><td class="n">318,696<span class="wowsub mdown">-35.3% vs 08-26</span></td><td class="n">4,018<span class="wowsub mdown">-22.8% vs 08-26</span></td><td class="n">3,858,352<span class="wowsub mdown">-42.1% vs 08-26</span></td><td class="n">164,214<span class="wowsub mdown">-24.3% vs 08-26</span></td><td class="n">8.47<span class="wowsub mup">+5.1% vs 08-26</span></td><td class="n">12.97%<span class="wowsub mup">+3.4% vs 08-26</span></td></tr>
+<tr><td class="name">09-03 <strong>Thu</strong></td><td class="n">356,036<span class="wowsub mdown">-11.7% vs 08-27</span></td><td class="n">5,493<span class="wowsub mup">+25.2% vs 08-27</span></td><td class="n">4,720,124<span class="wowsub mdown">-17.4% vs 08-27</span></td><td class="n">182,583<span class="wowsub mdown">-3.5% vs 08-27</span></td><td class="n">8.70<span class="wowsub mup">+8.5% vs 08-27</span></td><td class="n">14.87%<span class="wowsub mup">+8.2% vs 08-27</span></td></tr>
+<tr class="pubrow"><td class="name">09-04 <strong>Fri</strong> <span class="ver">v684</span></td><td class="n">528,419<span class="wowsub mup">+16.5% vs 08-28</span></td><td class="n">8,269<span class="wowsub mup">+69.5% vs 08-28</span></td><td class="n">7,187,456<span class="wowsub mdown">-2.3% vs 08-28</span></td><td class="n">312,780<span class="wowsub mup">+53.7% vs 08-28</span></td><td class="n">8.92<span class="wowsub mup">+6.8% vs 08-28</span></td><td class="n">16.47%<span class="wowsub mup">+29.6% vs 08-28</span></td></tr>
+<tr><td class="name">09-05 <strong>Sat</strong></td><td class="n">543,761<span class="wowsub mdown">-10.4% vs 08-29</span></td><td class="n">7,245<span class="wowsub mdown">-3.4% vs 08-29</span></td><td class="n">7,268,108<span class="wowsub mdown">-8.8% vs 08-29</span></td><td class="n">381,978<span class="wowsub mup">+34.1% vs 08-29</span></td><td class="n">8.77<span class="wowsub mup">+5.3% vs 08-29</span></td><td class="n">13.88%<span class="wowsub mflat">+0.9% vs 08-29</span></td></tr>
+<tr><td class="name">09-06 <strong>Sun</strong></td><td class="n">440,531<span class="wowsub mdown">-17.8% vs 08-30</span></td><td class="n">5,114<span class="wowsub mdown">-12.7% vs 08-30</span></td><td class="n">6,099,960<span class="wowsub mdown">-8.1% vs 08-30</span></td><td class="n">276,975<span class="wowsub mup">+8.4% vs 08-30</span></td><td class="n">8.74<span class="wowsub mup">+5.8% vs 08-30</span></td><td class="n">10.99%<span class="wowsub mup">+4.7% vs 08-30</span></td></tr>
+<tr><td class="name">09-07 <strong>Mon</strong></td><td class="n">317,673<span class="wowsub mdown">-12.6% vs 08-31</span></td><td class="n">3,660<span class="wowsub mdown">-12.9% vs 08-31</span></td><td class="n">5,186,387<span class="wowsub mup">+10.1% vs 08-31</span></td><td class="n">211,878<span class="wowsub mup">+35.8% vs 08-31</span></td><td class="n">8.31<span class="wowsub mflat">+1.7% vs 08-31</span></td><td class="n">—</td></tr>
+<tr><td class="name">09-08 <strong>Tue</strong></td><td class="n">—</td><td class="n">2,557<span class="wowsub mdown">-54.5% vs 09-01</span></td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr></tbody></table></div>
+
+<h2>Three days before against three days after</h2>
+<p>The same idea collapsed to one number per metric: mean of 2026-08-29, 2026-08-30, 2026-08-31 against mean of 2026-09-05, 2026-09-06, 2026-09-07 &mdash; Friday, Saturday and Sunday on both sides, so the weekday mix is identical in the two windows. Neither window contains the publish day. A change under 2% is greyed rather than called flat.</p>
+<div class="tablewrap"><table>
+<caption>Fri&ndash;Sun before vs Fri&ndash;Sun after &middot; settled ONE_DAY headline points</caption>
+<thead><tr><th>Metric</th><th class="n">08-29&ndash;08-31</th><th class="n">09-05&ndash;09-07</th><th class="n">Change</th><th class="n">Reads to</th></tr></thead>
+<tbody><tr class="rule-row"><td colspan="5">Reach</td></tr><tr><td class="name">Unique users who saw it<br><code class="dim">UniqueUsersWithImpressions</code></td>
+        <td class="n">6,441,488</td><td class="n">6,184,818</td><td class="n ">-4.0%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">Unique users who played<br><code class="dim">UniqueUsersWithPlaySessions</code></td>
+        <td class="n">505,338</td><td class="n">435,886</td><td class="n ">-13.7%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">Impression to play<br><code class="dim">EndToEndCVR</code></td>
+        <td class="n">7.03%</td><td class="n">5.97%</td><td class="n ">-15.1%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">RFY play-through rate<br><code class="dim">RFYPlayThroughRate</code></td>
+        <td class="n">2.02%</td><td class="n">1.47%</td><td class="n ">-27.4%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">Daily active users<br><code class="dim">DailyActiveUsers</code></td>
+        <td class="n">502,113</td><td class="n">433,988</td><td class="n ">-13.6%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">Peak concurrents<br><code class="dim">PeakConcurrentPlayers</code></td>
+        <td class="n">5,856</td><td class="n">5,339</td><td class="n ">-8.8%</td>
+        <td class="n">09-08</td></tr>
+<tr class="rule-row"><td colspan="5">Engagement</td></tr><tr><td class="name">Session length<br><code class="dim">AverageSessionLengthMinutes</code></td>
+        <td class="n">8.26</td><td class="n">8.61</td><td class="n ">+4.3%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">Playtime per player<br><code class="dim">AveragePlayTimeMinutesPerDAU</code></td>
+        <td class="n">12.21</td><td class="n">13.04</td><td class="n ">+6.8%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">D1 retention<br><code class="dim">ForwardD1Retention</code></td>
+        <td class="n">12.51%</td><td class="n">12.43%</td><td class="n flat">-0.6%</td>
+        <td class="n">09-06</td></tr>
+<tr><td class="name">First play under 60s<br><code class="dim">RFYDuration0To60</code></td>
+        <td class="n">14.41%</td><td class="n">17.03%</td><td class="n ">+18.2%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">First play 61 to 180s<br><code class="dim">RFYDuration61To180</code></td>
+        <td class="n">13.77%</td><td class="n">12.66%</td><td class="n ">-8.0%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">Play days, D2 to D7<br><code class="dim">RFYD2To7PlayDays</code></td>
+        <td class="n">0.262</td><td class="n">0.243</td><td class="n ">-7.2%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">Play days per 7<br><code class="dim">RFYL7PlayDays</code></td>
+        <td class="n">1.26</td><td class="n">1.24</td><td class="n flat">-1.5%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">DAU over MAU<br><code class="dim">DauMauStickiness</code></td>
+        <td class="n">5.57%</td><td class="n">3.98%</td><td class="n ">-28.5%</td>
+        <td class="n">09-07</td></tr>
+<tr class="rule-row"><td colspan="5">Monetization</td></tr><tr><td class="name">Daily revenue (R$)<br><code class="dim">DailyRevenue</code></td>
+        <td class="n">232,118</td><td class="n">290,277</td><td class="n ">+25.1%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">Paying users<br><code class="dim">PayingUsers</code></td>
+        <td class="n">3,813</td><td class="n">4,737</td><td class="n ">+24.2%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">Payer conversion<br><code class="dim">PayingUsersCVR</code></td>
+        <td class="n">0.76%</td><td class="n">1.08%</td><td class="n ">+42.2%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">Revenue per player<br><code class="dim">AverageRevenuePerUser</code></td>
+        <td class="n">0.459</td><td class="n">0.666</td><td class="n ">+45.2%</td>
+        <td class="n">09-07</td></tr>
+<tr><td class="name">Revenue per payer<br><code class="dim">AverageRevenuePerPayingUser</code></td>
+        <td class="n">60.2</td><td class="n">61.4</td><td class="n flat">+1.9%</td>
+        <td class="n">09-07</td></tr>
+<tr class="rule-row"><td colspan="5">Technical</td></tr><tr><td class="name">Client crash rate<br><code class="dim">ClientCrashRate15m</code></td>
+        <td class="n">0.29%</td><td class="n">0.27%</td><td class="n ">-6.7%</td>
+        <td class="n">09-08</td></tr>
+<tr><td class="name">Client FPS, 10th pct<br><code class="dim">ClientFpsP10</code></td>
+        <td class="n">45.2</td><td class="n">44.1</td><td class="n ">-2.4%</td>
+        <td class="n">09-08</td></tr>
+<tr><td class="name">Out-of-memory exits<br><code class="dim">OomUnexpectedExits</code></td>
+        <td class="n">140</td><td class="n">142</td><td class="n flat">+1.4%</td>
+        <td class="n">09-08</td></tr>
+<tr><td class="name">Logged events<br><code class="dim">ErrorCount</code></td>
+        <td class="n">1,673,043</td><td class="n">2,702,528</td><td class="n ">+61.5%</td>
+        <td class="n">09-07</td></tr></tbody></table></div>
+
+<h2>Daily series, last 21 days</h2>
+<div class="tablewrap"><table>
+<caption>Settled daily headline points &middot; the publish row is shaded</caption>
+<thead><tr><th>Date</th><th class="n">DAU</th><th class="n">CCU</th><th class="n">Impressions</th><th class="n">Imp→play</th><th class="n">Revenue</th><th class="n">Payer CVR</th><th class="n">Session</th><th class="n">D1</th></tr></thead>
+<tbody><tr><td class="name">08-19 Wed</td><td class="n">811,716</td><td class="n">10,483</td><td class="n">7,004,914</td><td class="n">10.60%</td><td class="n">437,384</td><td class="n">0.83%</td><td class="n">8.80</td><td class="n">16.83%</td></tr>
+<tr><td class="name">08-20 Thu</td><td class="n">1,074,422</td><td class="n">20,213</td><td class="n">10,277,547</td><td class="n">9.81%</td><td class="n">534,431</td><td class="n">0.82%</td><td class="n">8.71</td><td class="n">19.13%</td></tr>
+<tr><td class="name">08-21 Fri</td><td class="n">1,118,833</td><td class="n">14,476</td><td class="n">11,284,003</td><td class="n">9.21%</td><td class="n">609,239</td><td class="n">0.86%</td><td class="n">8.73</td><td class="n">17.53%</td></tr>
+<tr><td class="name">08-22 Sat</td><td class="n">1,150,857</td><td class="n">14,576</td><td class="n">12,393,197</td><td class="n">8.60%</td><td class="n">565,175</td><td class="n">0.76%</td><td class="n">8.53</td><td class="n">15.83%</td></tr>
+<tr><td class="name">08-23 Sun</td><td class="n">1,281,398</td><td class="n">14,540</td><td class="n">14,609,314</td><td class="n">8.03%</td><td class="n">596,703</td><td class="n">0.77%</td><td class="n">8.41</td><td class="n">12.23%</td></tr>
+<tr><td class="name">08-24 Mon</td><td class="n">845,920</td><td class="n">9,519</td><td class="n">11,932,351</td><td class="n">6.47%</td><td class="n">342,125</td><td class="n">0.68%</td><td class="n">8.28</td><td class="n">14.23%</td></tr>
+<tr><td class="name">08-25 Tue</td><td class="n">681,316</td><td class="n">7,166</td><td class="n">9,224,616</td><td class="n">6.67%</td><td class="n">264,932</td><td class="n">0.68%</td><td class="n">8.17</td><td class="n">14.47%</td></tr>
+<tr><td class="name">08-26 Wed</td><td class="n">492,355</td><td class="n">5,208</td><td class="n">6,663,053</td><td class="n">6.63%</td><td class="n">217,008</td><td class="n">0.72%</td><td class="n">8.06</td><td class="n">12.55%</td></tr>
+<tr><td class="name">08-27 Thu</td><td class="n">403,311</td><td class="n">4,387</td><td class="n">5,717,348</td><td class="n">6.21%</td><td class="n">189,161</td><td class="n">0.74%</td><td class="n">8.02</td><td class="n">13.74%</td></tr>
+<tr><td class="name">08-28 Fri</td><td class="n">453,701</td><td class="n">4,879</td><td class="n">7,356,725</td><td class="n">5.38%</td><td class="n">203,470</td><td class="n">0.65%</td><td class="n">8.35</td><td class="n">12.71%</td></tr>
+<tr><td class="name">08-29 Sat</td><td class="n">606,962</td><td class="n">7,504</td><td class="n">7,971,960</td><td class="n">6.97%</td><td class="n">284,819</td><td class="n">0.73%</td><td class="n">8.33</td><td class="n">13.76%</td></tr>
+<tr><td class="name">08-30 Sun</td><td class="n">535,950</td><td class="n">5,861</td><td class="n">6,640,890</td><td class="n">7.22%</td><td class="n">255,562</td><td class="n">0.79%</td><td class="n">8.27</td><td class="n">10.50%</td></tr>
+<tr><td class="name">08-31 Mon</td><td class="n">363,428</td><td class="n">4,202</td><td class="n">4,711,614</td><td class="n">6.90%</td><td class="n">155,974</td><td class="n">0.77%</td><td class="n">8.17</td><td class="n">13.26%</td></tr>
+<tr><td class="name">09-01 Tue</td><td class="n">443,014</td><td class="n">5,623</td><td class="n">4,800,604</td><td class="n">8.15%</td><td class="n">219,341</td><td class="n">0.90%</td><td class="n">8.50</td><td class="n">12.80%</td></tr>
+<tr><td class="name">09-02 Wed</td><td class="n">318,696</td><td class="n">4,018</td><td class="n">3,858,352</td><td class="n">7.14%</td><td class="n">164,214</td><td class="n">0.92%</td><td class="n">8.47</td><td class="n">12.97%</td></tr>
+<tr><td class="name">09-03 Thu</td><td class="n">356,036</td><td class="n">5,493</td><td class="n">4,720,124</td><td class="n">6.62%</td><td class="n">182,583</td><td class="n">0.89%</td><td class="n">8.70</td><td class="n">14.87%</td></tr>
+<tr class="pubrow"><td class="name">09-04 Fri <span class="ver">v684</span></td><td class="n">528,419</td><td class="n">8,269</td><td class="n">7,187,456</td><td class="n">6.58%</td><td class="n">312,780</td><td class="n">0.97%</td><td class="n">8.92</td><td class="n">16.47%</td></tr>
+<tr><td class="name">09-05 Sat</td><td class="n">543,761</td><td class="n">7,245</td><td class="n">7,268,108</td><td class="n">6.45%</td><td class="n">381,978</td><td class="n">1.14%</td><td class="n">8.77</td><td class="n">13.88%</td></tr>
+<tr><td class="name">09-06 Sun</td><td class="n">440,531</td><td class="n">5,114</td><td class="n">6,099,960</td><td class="n">6.12%</td><td class="n">276,975</td><td class="n">1.05%</td><td class="n">8.74</td><td class="n">10.99%</td></tr>
+<tr><td class="name">09-07 Mon</td><td class="n">317,673</td><td class="n">3,660</td><td class="n">5,186,387</td><td class="n">5.34%</td><td class="n">211,878</td><td class="n">1.06%</td><td class="n">8.31</td><td class="n">—</td></tr>
+<tr><td class="name">09-08 Tue</td><td class="n">—</td><td class="n">2,557</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr></tbody></table></div>
+
+<h2>What reads to when</h2>
+<p>The data frontier differs by metric, so it is computed per series rather than assumed for the game.</p>
+<div class="tablewrap"><table>
+<caption>Newest settled day, by metric</caption>
+<thead><tr><th>Newest day</th><th class="n">Metrics</th><th>Which</th></tr></thead>
+<tbody><tr><td class="name">2026-09-08</td><td class="n">4</td><td class="dimcell"><code>PeakConcurrentPlayers</code> <code>ClientCrashRate15m</code> <code>ClientFpsP10</code> <code>OomUnexpectedExits</code></td></tr>
+<tr><td class="name">2026-09-07</td><td class="n">18</td><td class="dimcell"><code>UniqueUsersWithImpressions</code> <code>UniqueUsersWithPlaySessions</code> <code>EndToEndCVR</code> <code>RFYPlayThroughRate</code> <code>DailyActiveUsers</code> <code>AverageSessionLengthMinutes</code> <code>AveragePlayTimeMinutesPerDAU</code> <code>RFYDuration0To60</code> <code>RFYDuration61To180</code> <code>RFYD2To7PlayDays</code> <code>RFYL7PlayDays</code> <code>DauMauStickiness</code> <code>DailyRevenue</code> <code>PayingUsers</code> <code>PayingUsersCVR</code> <code>AverageRevenuePerUser</code> <code>AverageRevenuePerPayingUser</code> <code>ErrorCount</code></td></tr>
+<tr><td class="name">2026-09-06</td><td class="n">1</td><td class="dimcell"><code>ForwardD1Retention</code></td></tr></tbody></table></div>
+
+<h2>Funnels and revenue mix</h2>
+<p>These series are specific to this game and are not in the shared panel above, because the funnel and revenue-source breakdowns are pulled per funnel name through the browser path rather than from the headline series. They are carried forward unchanged from the 8 September read.</p>
+
+<h3>Revenue by source</h3>
+<div class="tablewrap"><table>
+<caption>Matched weekday &middot; Sat 29 Aug against Sat 5 Sep, Sun 30 Aug against Sun 6 Sep &middot; R$</caption>
+<thead><tr><th>Source</th><th class="n">Sat 29 Aug</th><th class="n">Sat 5 Sep</th><th class="n">Sun 30 Aug</th><th class="n">Sun 6 Sep</th><th class="n">Mean change</th></tr></thead>
+<tbody>
+<tr><td class="name">Dev Product <span style="color:var(--muted);font-weight:400">(message packs, consumables)</span></td><td class="n">107,900</td><td class="n">190,500</td><td class="n">99,500</td><td class="n">137,300</td><td class="n">+57.3%</td></tr>
+<tr><td class="name">Game Pass</td><td class="n">176,800</td><td class="n">190,700</td><td class="n">156,000</td><td class="n">139,500</td><td class="n">&minus;1.4%</td></tr>
+<tr><td class="name">Dev Product share of total</td><td class="n">37.9%</td><td class="n">49.9%</td><td class="n">38.9%</td><td class="n">49.6%</td><td class="n">+11.4pp</td></tr>
+</tbody></table></div>
+
+<h3>Messages funnel &mdash; how far senders get</h3>
+<p>Of everyone who sends a first message, the share reaching each milestone. Matched weekdays, three pairs.</p>
+<div class="tablewrap"><table>
+<caption>Share of message-senders reaching each milestone</caption>
+<thead><tr><th>Milestone</th><th class="n">Sat 29 Aug</th><th class="n">Sat 5 Sep</th><th class="n">Sun 30 Aug</th><th class="n">Sun 6 Sep</th><th class="n">Mon 31 Aug</th><th class="n">Mon 7 Sep</th></tr></thead>
+<tbody>
+<tr><td class="name">10 sent</td><td class="n">67.2%</td><td class="n">72.9%</td><td class="n">67.1%</td><td class="n">71.8%</td><td class="n">66.2%</td><td class="n">70.1%</td></tr>
+<tr><td class="name">25 sent</td><td class="n">43.0%</td><td class="n">48.2%</td><td class="n">44.0%</td><td class="n">46.3%</td><td class="n">42.8%</td><td class="n">43.5%</td></tr>
+<tr><td class="name">50 sent</td><td class="n">7.1%</td><td class="n">10.5%</td><td class="n">7.7%</td><td class="n">9.3%</td><td class="n">7.7%</td><td class="n">7.4%</td></tr>
+<tr><td class="name">100 sent</td><td class="n">0.7%</td><td class="n">1.3%</td><td class="n">0.8%</td><td class="n">1.0%</td><td class="n">0.8%</td><td class="n">0.6%</td></tr>
+</tbody></table></div>
+
+<h3>MessagePack funnel</h3>
+<p>Cumulative completion from <em>Ran Out</em> = 100%. <em>Ran Out</em> is the moment a player reaches zero messages; the two steps after it are the prompt and the purchase.</p>
+<div class="tablewrap"><table>
+<caption>Cumulative completion from &ldquo;Ran Out&rdquo;</caption>
+<thead><tr><th>Step</th><th class="n">Sat 29 Aug</th><th class="n">Sat 5 Sep</th><th class="n">Sun 30 Aug</th><th class="n">Sun 6 Sep</th><th class="n">Mon 31 Aug</th><th class="n">Mon 7 Sep</th></tr></thead>
+<tbody>
+<tr><td class="name">Prompt Opened</td><td class="n">15.3%</td><td class="n">11.9%</td><td class="n">12.7%</td><td class="n">10.9%</td><td class="n">12.3%</td><td class="n">13.8%</td></tr>
+<tr><td class="name">Purchased</td><td class="n">1.0%</td><td class="n">1.2%</td><td class="n">1.0%</td><td class="n">1.1%</td><td class="n">0.9%</td><td class="n">1.3%</td></tr>
+<tr><td class="name">Prompt &rarr; purchase</td><td class="n">6.5%</td><td class="n">10.1%</td><td class="n">7.9%</td><td class="n">10.1%</td><td class="n">7.3%</td><td class="n">9.4%</td></tr>
+</tbody></table></div>
+
+<h3>Session survival</h3>
+<p>Share of all joins still playing at each mark, by day.</p>
+<div class="tablewrap"><table>
+<caption>Share of joins still in session</caption>
+<thead><tr><th>Mark</th><th class="n">01 Sep</th><th class="n">02 Sep</th><th class="n">03 Sep</th><th class="n">04 Sep</th><th class="n">05 Sep</th><th class="n">06 Sep</th><th class="n">07 Sep</th></tr></thead>
+<tbody>
+<tr><td class="name">1 minute</td><td class="n">92.1%</td><td class="n">91.9%</td><td class="n">92.1%</td><td class="n">91.7%</td><td class="n">88.2%</td><td class="n">87.5%</td><td class="n">90.6%</td></tr>
+<tr><td class="name">5 minutes</td><td class="n">66.4%</td><td class="n">67.3%</td><td class="n">68.4%</td><td class="n">68.8%</td><td class="n">59.8%</td><td class="n">58.1%</td><td class="n">65.3%</td></tr>
+<tr><td class="name">20 minutes</td><td class="n">12.2%</td><td class="n">12.9%</td><td class="n">13.3%</td><td class="n">13.3%</td><td class="n">12.0%</td><td class="n">10.6%</td><td class="n">12.5%</td></tr>
+</tbody></table></div>
+
+<h2>AI reply volume and unit cost</h2>
+<p>Counted from the <em>Delivered</em> funnel step: <strong>269,965,808</strong> events across the 27 served days of the grab window, about <strong>10.0 million replies a day</strong>. 99.6% of submitted messages are accepted and 98.9% are delivered.</p>
+<div class="tablewrap"><table>
+<caption>Inference cost at two quoted rates &middot; revenue basis R$330K/day at the 0.0035 DevEx rate, about $34.7K/month</caption>
+<thead><tr><th>Rate</th><th class="n">Per day</th><th class="n">Per month</th><th class="n">Share of DevEx revenue</th></tr></thead>
+<tbody>
+<tr><td class="name">$0.01 per 1,000 queries</td><td class="n">$100</td><td class="n">$3,000</td><td class="n">8.7%</td></tr>
+<tr><td class="name">$0.001 per 1,000 queries</td><td class="n">$10</td><td class="n">$300</td><td class="n">0.87%</td></tr>
+</tbody></table></div>
+
+<div class="tablewrap"><table>
+<caption>Unit economics of one delivered message &middot; R$ at the 0.0035 DevEx rate</caption>
+<thead><tr><th>Line</th><th class="n">At $0.01/1,000</th><th class="n">At $0.001/1,000</th><th>How it is derived</th></tr></thead>
+<tbody>
+<tr><td class="name">Inference cost per message</td><td class="n">0.0029</td><td class="n">0.00029</td><td>Unit price &divide; DevEx rate</td></tr>
+<tr><td class="name">Revenue per message</td><td class="n">0.016</td><td class="n">0.016</td><td>R$164K/day &divide; 10.0M replies/day</td></tr>
+<tr><td class="name">Revenue per run-out</td><td class="n">0.080</td><td class="n">0.080</td><td>R$164K/day &divide; 2.06M run-outs/day</td></tr>
+<tr><td class="name">Ratio, revenue per message to inference cost</td><td class="n">5.6&times;</td><td class="n">56&times;</td><td>The two rows above</td></tr>
+</tbody></table></div>
+
+<div class="note">
+  <span class="lbl">Three limits on the cost figures</span>
+  <p><strong>Revenue per message is an upper bound on displacement.</strong> It assumes every free message replaces a bought one. Only 1.1&ndash;1.3% of run-outs convert, so most messages go to players who would not have bought. The true figure sits between the two columns, nearer the floor.</p>
+  <p><strong>LLM APIs bill per token, not per query.</strong> A per-query rate is a stand-in; the driver is prompt plus completion tokens per reply, and the skins change the persona text, which moves the prompt side without changing the message count. The invoice is the only exact source.</p>
+  <p><strong>10.0M/day is a window average</strong> across 12 Aug &ndash; 8 Sep, not a post-update-only figure. Per-player consumption rose while DAU fell over that window, so the current daily number is close to it but not split out.</p>
+</div>
+
+<h2>Per-funnel completion</h2>
+<p>Pulled with the <code>FunnelName</code> filter through the browser path, so no rate is blended across funnels. Carried forward from the 8 September read.</p>
+<div class="tablewrap"><table>
+<caption>Completion rate per funnel step, by day</caption>
+<thead><tr><th>Funnel &middot; step</th><th class="n">28 Aug</th><th class="n">03 Sep</th><th class="n">04 Sep</th><th class="n">05 Sep</th><th class="n">06 Sep</th></tr></thead>
+<tbody>
+<tr><td class="name">Ending &middot; Completed</td><td class="n">71.7%</td><td class="n">79.5%</td><td class="n">80.7%</td><td class="n">85.3%</td><td class="n">82.7%</td></tr>
+<tr><td class="name">Onboarding &middot; Day 5 Reached</td><td class="n">38.2%</td><td class="n">44.3%</td><td class="n">46.8%</td><td class="n">47.5%</td><td class="n">45.0%</td></tr>
+<tr><td class="name">Onboarding &middot; First Message Sent</td><td class="n">90.6%</td><td class="n">93.0%</td><td class="n">93.4%</td><td class="n">92.9%</td><td class="n">92.2%</td></tr>
+<tr><td class="name">Conversation &middot; Delivered</td><td class="n">98.8%</td><td class="n">99.0%</td><td class="n">99.0%</td><td class="n">98.9%</td><td class="n">98.9%</td></tr>
+<tr><td class="name">EndingOthers &middot; Completed</td><td class="n">38.7%</td><td class="n">24.4%</td><td class="n">24.2%</td><td class="n">21.3%</td><td class="n">19.5%</td></tr>
+<tr><td class="name">Notebook &middot; Purchased</td><td class="n">0.2%</td><td class="n">0.2%</td><td class="n">0.3%</td><td class="n">0.3%</td><td class="n">0.3%</td></tr>
+</tbody></table></div>
+
+<h2>Player feedback volume</h2>
+<p>2,316 comments in the grab window, 140 of them since 5 September. Downvote share of comments moved <strong>76.8% &rarr; 73.6%</strong>, and net votes were positive on 5&ndash;6 September after a run of negative days. Comments mentioning the message limit were 12.3% of the total before and 10.7% after.</p>
+<h2>Concurrent players</h2>
+<p>Hourly concurrents, read straight from the analytics API rather than the stored half-hour rows. The dashed red line is the publish.</p>
+<div class="tablewrap" style="padding:10px 12px 4px"><svg viewBox="0 0 940 230" width="100%" height="auto" role="img" aria-label="Hourly concurrent players across the publish" style="display:block">
+<rect x="0" y="0" width="940" height="230" fill="none"/><line x1="52" y1="200.0" x2="926" y2="200.0" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="203.5" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">0</text><line x1="52" y1="107.0" x2="926" y2="107.0" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="110.5" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">4.50K</text><line x1="52" y1="14.0" x2="926" y2="14.0" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="17.5" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">9.00K</text><line x1="52.0" y1="14" x2="52.0" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="111.9" y1="14" x2="111.9" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="171.9" y1="14" x2="171.9" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="231.8" y1="14" x2="231.8" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="291.7" y1="14" x2="291.7" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="351.7" y1="14" x2="351.7" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="411.6" y1="14" x2="411.6" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="471.5" y1="14" x2="471.5" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="531.5" y1="14" x2="531.5" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="591.4" y1="14" x2="591.4" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="651.3" y1="14" x2="651.3" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="711.2" y1="14" x2="711.2" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="771.2" y1="14" x2="771.2" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="831.1" y1="14" x2="831.1" y2="200" stroke="var(--rule-soft)" stroke-width="1"/><line x1="891.0" y1="14" x2="891.0" y2="200" stroke="var(--rule-soft)" stroke-width="1"/>
+<path d="M52.0 49.8 L54.5 89.8 L57.0 103.6 L59.5 120.0 L62.0 125.0 L64.5 128.8 L67.0 124.5 L69.5 114.3 L72.0 100.4 L74.5 91.5 L77.0 85.6 L79.5 71.8 L82.0 64.2 L84.5 58.7 L87.0 55.0 L89.5 56.5 L92.0 57.5 L94.5 51.9 L96.9 53.6 L99.4 70.8 L101.9 76.5 L104.4 71.5 L106.9 67.2 L109.4 69.6 L111.9 69.7 L114.4 99.6 L116.9 114.0 L119.4 134.0 L121.9 141.0 L124.4 144.9 L126.9 138.0 L129.4 125.4 L131.9 115.1 L134.4 112.0 L136.9 106.6 L139.4 101.4 L141.9 96.9 L144.4 92.4 L146.9 93.9 L149.4 97.4 L151.9 115.4 L154.4 120.0 L156.9 125.7 L159.4 126.0 L161.9 121.5 L164.4 118.3 L166.9 126.1 L169.4 120.8 L171.9 121.8 L174.4 127.7 L176.9 140.8 L179.4 152.8 L181.9 162.8 L184.3 160.9 L186.8 157.4 L189.3 152.5 L191.8 143.9 L194.3 135.4 L196.8 131.4 L199.3 127.3 L201.8 122.4 L204.3 120.7 L206.8 122.2 L209.3 125.8 L211.8 129.6 L214.3 129.3 L216.8 131.5 L219.3 134.5 L221.8 130.1 L224.3 126.7 L226.8 113.9 L229.3 109.3 L231.8 118.7 L234.3 133.4 L236.8 136.4 L239.3 144.1 L241.8 149.2 L244.3 147.7 L246.8 145.0 L249.3 138.3 L251.8 128.2 L254.3 126.2 L256.8 123.0 L259.3 113.9 L261.8 105.4 L264.3 103.4 L266.8 99.2 L269.3 107.0 L271.7 111.0 L274.2 111.0 L276.7 127.7 L279.2 127.9 L281.7 106.1 L284.2 111.7 L286.7 107.6 L289.2 114.4 L291.7 111.6 L294.2 109.6 L296.7 109.5 L299.2 98.4 L301.7 100.6 L304.2 122.5 L306.7 119.0 L309.2 115.8 L311.7 112.1 L314.2 107.9 L316.7 103.5 L319.2 99.5 L321.7 85.9 L324.2 66.3 L326.7 50.5 L329.2 44.9 L331.7 51.3 L334.2 57.8 L336.7 64.4 L339.2 64.6 L341.7 73.6 L344.2 85.5 L346.7 96.1 L349.2 96.0 L351.7 92.7 L354.2 102.6 L356.7 101.6 L359.1 102.6 L361.6 109.7 L364.1 112.8 L366.6 123.0 L369.1 113.5 L371.6 115.1 L374.1 112.2 L376.6 111.0 L379.1 110.5 L381.6 104.2 L384.1 90.6 L386.6 83.1 L389.1 78.9 L391.6 82.9 L394.1 83.2 L396.6 88.9 L399.1 96.3 L401.6 104.9 L404.1 119.2 L406.6 125.5 L409.1 128.1 L411.6 129.0 L414.1 146.1 L416.6 154.6 L419.1 160.6 L421.6 165.1 L424.1 162.5 L426.6 160.0 L429.1 152.5 L431.6 145.8 L434.1 140.5 L436.6 135.8 L439.1 122.8 L441.6 115.6 L444.1 113.8 L446.5 113.2 L449.0 114.1 L451.5 120.3 L454.0 134.7 L456.5 137.2 L459.0 139.8 L461.5 140.3 L464.0 138.7 L466.5 129.9 L469.0 132.2 L471.5 137.1 L474.0 148.0 L476.5 139.6 L479.0 151.5 L481.5 155.3 L484.0 153.1 L486.5 144.3 L489.0 133.1 L491.5 123.1 L494.0 115.3 L496.5 104.4 L499.0 100.4 L501.5 93.5 L504.0 95.1 L506.5 83.8 L509.0 93.2 L511.5 101.6 L514.0 112.8 L516.5 122.8 L519.0 130.5 L521.5 131.3 L524.0 125.5 L526.5 111.1 L529.0 112.3 L531.5 106.8 L533.9 134.2 L536.4 144.3 L538.9 151.2 L541.4 167.1 L543.9 166.3 L546.4 162.5 L548.9 157.8 L551.4 151.7 L553.9 147.1 L556.4 135.0 L558.9 130.1 L561.4 121.6 L563.9 117.0 L566.4 117.0 L568.9 136.4 L571.4 145.5 L573.9 150.1 L576.4 153.4 L578.9 158.2 L581.4 150.1 L583.9 148.3 L586.4 143.8 L588.9 138.2 L591.4 133.8 L593.9 147.8 L596.4 154.2 L598.9 158.9 L601.4 164.2 L603.9 165.7 L606.4 163.3 L608.9 157.9 L611.4 154.2 L613.9 150.7 L616.4 146.3 L618.9 139.2 L621.3 133.6 L623.8 130.6 L626.3 127.8 L628.8 131.7 L631.3 133.5 L633.8 120.5 L636.3 113.8 L638.8 123.6 L641.3 122.1 L643.8 118.2 L646.3 107.4 L648.8 95.4 L651.3 86.5 L653.8 136.2 L656.3 139.0 L658.8 146.9 L661.3 147.1 L663.8 146.5 L666.3 143.5 L668.8 137.4 L671.3 134.5 L673.8 126.9 L676.3 117.8 L678.8 107.7 L681.3 86.3 L683.8 52.2 L686.3 51.0 L688.8 60.8 L691.3 66.4 L693.8 74.1 L696.3 76.5 L698.8 80.1 L701.3 69.2 L703.8 74.1 L706.3 60.9 L708.7 45.0 L711.2 29.1 L713.7 106.4 L716.2 109.2 L718.7 109.8 L721.2 111.9 L723.7 112.8 L726.2 104.6 L728.7 101.1 L731.2 92.8 L733.7 89.8 L736.2 84.3 L738.7 78.8 L741.2 68.2 L743.7 50.3 L746.2 51.4 L748.7 89.2 L751.2 90.1 L753.7 99.1 L756.2 99.1 L758.7 94.8 L761.2 102.5 L763.7 109.3 L766.2 110.9 L768.7 98.4 L771.2 89.8 L773.7 122.6 L776.2 113.1 L778.7 112.9 L781.2 122.1 L783.7 127.8 L786.2 123.7 L788.7 124.9 L791.2 120.5 L793.7 120.0 L796.1 120.2 L798.6 121.3 L801.1 112.8 L803.6 94.3 L806.1 105.4 L808.6 101.2 L811.1 106.9 L813.6 106.1 L816.1 111.4 L818.6 114.4 L821.1 120.1 L823.6 129.2 L826.1 130.3 L828.6 131.6 L831.1 130.9 L833.6 128.8 L836.1 138.1 L838.6 143.5 L841.1 151.6 L843.6 153.0 L846.1 156.0 L848.6 159.0 L851.1 159.6 L853.6 158.1 L856.1 158.9 L858.6 155.5 L861.1 150.8 L863.6 138.3 L866.1 134.2 L868.6 128.6 L871.1 124.4 L873.6 126.3 L876.1 128.6 L878.6 132.3 L881.1 138.0 L883.5 143.5 L886.0 144.0 L888.5 146.0 L891.0 147.1 L893.5 159.8 L896.0 165.8 L898.5 170.1 L901.0 158.5 L903.5 160.4 L906.0 159.6 L908.5 159.5 L911.0 166.7 L913.5 163.5 L916.0 160.7 L918.5 147.4 L921.0 149.0 L923.5 147.3 L926.0 148.2 L926.0 200.0 L52.0 200.0 Z" fill="var(--accent)" fill-opacity="0.13"/>
+<path d="M52.0 49.8 L54.5 89.8 L57.0 103.6 L59.5 120.0 L62.0 125.0 L64.5 128.8 L67.0 124.5 L69.5 114.3 L72.0 100.4 L74.5 91.5 L77.0 85.6 L79.5 71.8 L82.0 64.2 L84.5 58.7 L87.0 55.0 L89.5 56.5 L92.0 57.5 L94.5 51.9 L96.9 53.6 L99.4 70.8 L101.9 76.5 L104.4 71.5 L106.9 67.2 L109.4 69.6 L111.9 69.7 L114.4 99.6 L116.9 114.0 L119.4 134.0 L121.9 141.0 L124.4 144.9 L126.9 138.0 L129.4 125.4 L131.9 115.1 L134.4 112.0 L136.9 106.6 L139.4 101.4 L141.9 96.9 L144.4 92.4 L146.9 93.9 L149.4 97.4 L151.9 115.4 L154.4 120.0 L156.9 125.7 L159.4 126.0 L161.9 121.5 L164.4 118.3 L166.9 126.1 L169.4 120.8 L171.9 121.8 L174.4 127.7 L176.9 140.8 L179.4 152.8 L181.9 162.8 L184.3 160.9 L186.8 157.4 L189.3 152.5 L191.8 143.9 L194.3 135.4 L196.8 131.4 L199.3 127.3 L201.8 122.4 L204.3 120.7 L206.8 122.2 L209.3 125.8 L211.8 129.6 L214.3 129.3 L216.8 131.5 L219.3 134.5 L221.8 130.1 L224.3 126.7 L226.8 113.9 L229.3 109.3 L231.8 118.7 L234.3 133.4 L236.8 136.4 L239.3 144.1 L241.8 149.2 L244.3 147.7 L246.8 145.0 L249.3 138.3 L251.8 128.2 L254.3 126.2 L256.8 123.0 L259.3 113.9 L261.8 105.4 L264.3 103.4 L266.8 99.2 L269.3 107.0 L271.7 111.0 L274.2 111.0 L276.7 127.7 L279.2 127.9 L281.7 106.1 L284.2 111.7 L286.7 107.6 L289.2 114.4 L291.7 111.6 L294.2 109.6 L296.7 109.5 L299.2 98.4 L301.7 100.6 L304.2 122.5 L306.7 119.0 L309.2 115.8 L311.7 112.1 L314.2 107.9 L316.7 103.5 L319.2 99.5 L321.7 85.9 L324.2 66.3 L326.7 50.5 L329.2 44.9 L331.7 51.3 L334.2 57.8 L336.7 64.4 L339.2 64.6 L341.7 73.6 L344.2 85.5 L346.7 96.1 L349.2 96.0 L351.7 92.7 L354.2 102.6 L356.7 101.6 L359.1 102.6 L361.6 109.7 L364.1 112.8 L366.6 123.0 L369.1 113.5 L371.6 115.1 L374.1 112.2 L376.6 111.0 L379.1 110.5 L381.6 104.2 L384.1 90.6 L386.6 83.1 L389.1 78.9 L391.6 82.9 L394.1 83.2 L396.6 88.9 L399.1 96.3 L401.6 104.9 L404.1 119.2 L406.6 125.5 L409.1 128.1 L411.6 129.0 L414.1 146.1 L416.6 154.6 L419.1 160.6 L421.6 165.1 L424.1 162.5 L426.6 160.0 L429.1 152.5 L431.6 145.8 L434.1 140.5 L436.6 135.8 L439.1 122.8 L441.6 115.6 L444.1 113.8 L446.5 113.2 L449.0 114.1 L451.5 120.3 L454.0 134.7 L456.5 137.2 L459.0 139.8 L461.5 140.3 L464.0 138.7 L466.5 129.9 L469.0 132.2 L471.5 137.1 L474.0 148.0 L476.5 139.6 L479.0 151.5 L481.5 155.3 L484.0 153.1 L486.5 144.3 L489.0 133.1 L491.5 123.1 L494.0 115.3 L496.5 104.4 L499.0 100.4 L501.5 93.5 L504.0 95.1 L506.5 83.8 L509.0 93.2 L511.5 101.6 L514.0 112.8 L516.5 122.8 L519.0 130.5 L521.5 131.3 L524.0 125.5 L526.5 111.1 L529.0 112.3 L531.5 106.8 L533.9 134.2 L536.4 144.3 L538.9 151.2 L541.4 167.1 L543.9 166.3 L546.4 162.5 L548.9 157.8 L551.4 151.7 L553.9 147.1 L556.4 135.0 L558.9 130.1 L561.4 121.6 L563.9 117.0 L566.4 117.0 L568.9 136.4 L571.4 145.5 L573.9 150.1 L576.4 153.4 L578.9 158.2 L581.4 150.1 L583.9 148.3 L586.4 143.8 L588.9 138.2 L591.4 133.8 L593.9 147.8 L596.4 154.2 L598.9 158.9 L601.4 164.2 L603.9 165.7 L606.4 163.3 L608.9 157.9 L611.4 154.2 L613.9 150.7 L616.4 146.3 L618.9 139.2 L621.3 133.6 L623.8 130.6 L626.3 127.8 L628.8 131.7 L631.3 133.5 L633.8 120.5 L636.3 113.8 L638.8 123.6 L641.3 122.1 L643.8 118.2 L646.3 107.4 L648.8 95.4 L651.3 86.5 L653.8 136.2 L656.3 139.0 L658.8 146.9 L661.3 147.1 L663.8 146.5 L666.3 143.5 L668.8 137.4 L671.3 134.5 L673.8 126.9 L676.3 117.8 L678.8 107.7 L681.3 86.3 L683.8 52.2 L686.3 51.0 L688.8 60.8 L691.3 66.4 L693.8 74.1 L696.3 76.5 L698.8 80.1 L701.3 69.2 L703.8 74.1 L706.3 60.9 L708.7 45.0 L711.2 29.1 L713.7 106.4 L716.2 109.2 L718.7 109.8 L721.2 111.9 L723.7 112.8 L726.2 104.6 L728.7 101.1 L731.2 92.8 L733.7 89.8 L736.2 84.3 L738.7 78.8 L741.2 68.2 L743.7 50.3 L746.2 51.4 L748.7 89.2 L751.2 90.1 L753.7 99.1 L756.2 99.1 L758.7 94.8 L761.2 102.5 L763.7 109.3 L766.2 110.9 L768.7 98.4 L771.2 89.8 L773.7 122.6 L776.2 113.1 L778.7 112.9 L781.2 122.1 L783.7 127.8 L786.2 123.7 L788.7 124.9 L791.2 120.5 L793.7 120.0 L796.1 120.2 L798.6 121.3 L801.1 112.8 L803.6 94.3 L806.1 105.4 L808.6 101.2 L811.1 106.9 L813.6 106.1 L816.1 111.4 L818.6 114.4 L821.1 120.1 L823.6 129.2 L826.1 130.3 L828.6 131.6 L831.1 130.9 L833.6 128.8 L836.1 138.1 L838.6 143.5 L841.1 151.6 L843.6 153.0 L846.1 156.0 L848.6 159.0 L851.1 159.6 L853.6 158.1 L856.1 158.9 L858.6 155.5 L861.1 150.8 L863.6 138.3 L866.1 134.2 L868.6 128.6 L871.1 124.4 L873.6 126.3 L876.1 128.6 L878.6 132.3 L881.1 138.0 L883.5 143.5 L886.0 144.0 L888.5 146.0 L891.0 147.1 L893.5 159.8 L896.0 165.8 L898.5 170.1 L901.0 158.5 L903.5 160.4 L906.0 159.6 L908.5 159.5 L911.0 166.7 L913.5 163.5 L916.0 160.7 L918.5 147.4 L921.0 149.0 L923.5 147.3 L926.0 148.2" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="700.4" y1="14" x2="700.4" y2="200" stroke="var(--fix)" stroke-width="1.5" stroke-dasharray="4 3"/><text x="706.4" y="26" fill="var(--fix)" font-size="10.5" font-family="'IBM Plex Mono',monospace">publish</text><text x="111.9" y="216" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">08-26</text><text x="231.8" y="216" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">08-28</text><text x="351.7" y="216" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">08-30</text><text x="531.5" y="216" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">09-02</text><text x="651.3" y="216" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">09-04</text><text x="771.2" y="216" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">09-06</text><text x="891.0" y="216" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">09-08</text></svg></div>
+<p style="font-size:13.5px;color:var(--muted);margin-top:4px">Hourly concurrents, 25 August – 8 September, UTC.</p>
+
+<h4>Before and after, hour by hour</h4>
+<p>Each point is the mean concurrents in that UTC hour, averaged over Saturday–Monday before the publish (29–31 Aug) and the same three weekdays after it (5–7 Sep). Matching both the hour and the weekday removes the daily and weekly shape, which a raw day-total comparison cannot.</p>
+<div class="tablewrap" style="padding:10px 12px 4px"><svg viewBox="0 0 940 210" width="100%" height="auto" role="img" aria-label="Mean concurrent players by hour of day, before and after the update" style="display:block">
+<line x1="52" y1="180.0" x2="820" y2="180.0" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="183.5" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">0</text><line x1="52" y1="97.0" x2="820" y2="97.0" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="100.5" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">3.25K</text><line x1="52" y1="14.0" x2="820" y2="14.0" stroke="var(--rule-soft)" stroke-width="1"/><text x="44" y="17.5" fill="var(--faint)" font-size="10.5" text-anchor="end" font-family="'IBM Plex Mono',monospace">6.50K</text>
+<path d="M52.0 70.1 L85.4 80.4 L118.8 83.5 L152.2 81.8 L185.6 87.5 L219.0 96.7 L252.3 98.4 L285.7 90.1 L319.1 86.5 L352.5 81.4 L385.9 77.1 L419.3 69.9 L452.7 58.8 L486.1 44.3 L519.5 34.5 L552.9 30.8 L586.3 37.7 L619.7 46.4 L653.0 52.5 L686.4 56.7 L719.8 64.2 L753.2 74.3 L786.6 77.6 L820.0 79.6" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="4 3" stroke-linejoin="round"/>
+<path d="M52.0 35.8 L85.4 80.2 L118.8 81.3 L152.2 83.7 L185.6 91.7 L219.0 95.0 L252.3 91.1 L285.7 91.5 L319.1 86.4 L352.5 84.4 L385.9 82.6 L419.3 79.3 L452.7 69.5 L486.1 49.4 L519.5 52.7 L552.9 64.3 L586.3 65.2 L619.7 69.4 L653.0 72.5 L686.4 73.6 L719.8 81.4 L753.2 90.2 L786.6 91.5 L820.0 87.7" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linejoin="round"/>
+<text x="52.0" y="196" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">00</text><text x="152.2" y="196" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">03</text><text x="252.3" y="196" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">06</text><text x="352.5" y="196" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">09</text><text x="452.7" y="196" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">12</text><text x="552.9" y="196" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">15</text><text x="653.0" y="196" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">18</text><text x="753.2" y="196" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">21</text><text x="436" y="208" fill="var(--faint)" font-size="10.5" text-anchor="middle" font-family="'IBM Plex Mono',monospace">hour of day, UTC</text>
+<line x1="828" y1="34" x2="850" y2="34" stroke="var(--muted)" stroke-width="1.8" stroke-dasharray="4 3"/><text x="856" y="38" fill="var(--muted)" font-size="11.5" font-family="Archivo,sans-serif">before</text><line x1="828" y1="54" x2="850" y2="54" stroke="var(--accent)" stroke-width="2.2"/><text x="856" y="58" fill="var(--ink)" font-size="11.5" font-family="Archivo,sans-serif">after</text><text x="828" y="76" fill="var(--faint)" font-size="10" font-family="'IBM Plex Mono',monospace">29–31 Aug</text><text x="828" y="90" fill="var(--faint)" font-size="10" font-family="'IBM Plex Mono',monospace">5–7 Sep</text></svg></div>
+<div class="kpirow">
+  <div class="kpi"><div class="k">Mean CCU before</div><div class="v">4.34K</div><div class="s">Sat–Mon 29–31 Aug</div></div>
+  <div class="kpi"><div class="k">Mean CCU after</div><div class="v">4.03K</div><div class="s">Sat–Mon 5–7 Sep</div></div>
+  <div class="kpi"><div class="k">Change</div><div class="v down">-7.1%</div><div class="s">same hours both sides</div></div>
+  <div class="kpi"><div class="k">Range across hours</div><div class="v">-22% to +31%</div><div class="s">best and worst hour of the 24</div></div>
+</div>
+
+<h2>How this was built</h2>
+<p>One browser grab per universe on 09 September 2026, a 28-day pass followed by a trailing 3-day pass, because a long window drops the newest day. The corpus CSVs are then loaded into DuckDB and every figure on this page comes from a single view, <code>panel</code>, built with four filters:</p>
+<div class="tablewrap"><table>
+<caption>tools/panel-duck.js &middot; the filters between the corpus and every number here</caption>
+<thead><tr><th>Filter</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td class="name"><code>granularity = 'METRIC_GRANULARITY_ONE_DAY'</code></td><td>One CSV holds minute, half-hour and daily rows under the same date. Without this a half-hour bucket overwrites the daily value.</td></tr>
+<tr><td class="name"><code>series = 'Total'</code> or <code>'Place=&lt;id&gt;'</code></td><td>The headline series is the one with no breakdown. A <code>Place</code> filter still covers the whole game; an <code>AcquisitionSource</code> or <code>Platform</code> row is a slice and is excluded here.</td></tr>
+<tr><td class="name"><code>status &lt;&gt; 'FILLED_ZERO'</code></td><td>A synthesised zero standing in for a row the API omitted. Not a reading.</td></tr>
+<tr><td class="name"><code>partial IS NOT TRUE</code></td><td>An interval that had not finished when it was captured.</td></tr>
+</tbody></table></div>
+<p>Panel totals: <strong>24,426 rows</strong> across <strong>75 metrics</strong> and five universes, written to <code>analysis/panel-duck/panel.parquet</code>. Gates on the day: <code>npm test</code> 51/51, <code>npm run audit-plan</code> 180 templates / 0 failures, <code>npm run verify</code> 24 pass / 2 fail / 7 skip with both failures the documented held pair.</p>
+
+<div class="note">
+  <span class="lbl">Two things this page deliberately does not do</span>
+  <p>It does not attribute any movement to the build, and it does not rank anything by severity. Both windows are shown so the reader can see the level before the publish as well as after it, and every metric is printed whether it moved or not.</p>
+  <p>One measurement caveat that does belong here: <strong>08 September client FPS and memory are not usable on any game</strong>. The same ~78% drop appears on all five universes on that date while session length and crash rate stay flat, and the following day recovers. Those cells are excluded.</p>
+</div>
+
+<footer>Universe 10565445771 &middot; browser grab 09 Sep 2026 &middot; panel built with DuckDB from <code>data/games/10565445771/metrics/*.csv</code> &middot; <code>tools/panel-duck.js</code> and <code>tools/render-reports.js</code>.</footer>
+</div>

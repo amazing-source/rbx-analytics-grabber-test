@@ -243,3 +243,71 @@ Signature volumes as captured: [`../../data/games/10399712766/errors.md`](../../
    this build — see `data/games/10399712766/`. If v1244 touched anything in the
    purchase path, say so, because that history makes the monetization tripwires
    harder to read.
+
+---
+
+## Post-update read — 2026-08-30 T+2d. The recovery resumed; one WATCH
+
+Full Open Cloud re-grab 2026-08-30 16:07–16:14 UTC, window 08-03 → 08-31.
+**132 of 144 requests returned data**; the single failure on an observed shape is
+a poll HTTP 500 on `FunnelUserTotalCount`, not a fact about the game. Gates:
+`npm test` 44/44 · `audit-plan` 140 templates, 0 failures · `verify` 23/2/8.
+
+**v1244 is at 100% adoption** on 08-29 and 08-30 (2,148,528 / 1,823,618 events
+against v1241 = 6 / 0). The grab report's `PlaceVersion` discovery list still
+tops out at v1241 — that is a stale template value, not the live state.
+
+### Tripwire 13 was the one that mattered, and it reads CLEAR
+
+| date | DAU | PCU (matched slots) | ARPDAU | CVR | errors/CCU |
+|---|---|---|---|---|---|
+| 08-26 | 252,338 | 3,539 | 0.3445 | 0.83% | 302.0 |
+| 08-27 (baseline) | 269,321 | 3,947 | 0.3375 | 0.82% | 336.9 |
+| 08-28 (publish day) | **232,987** | 3,316 | **0.3648** | **0.90%** | 330.7 |
+| **08-29** | **~287,700** *(projected)* | 3,740 | — | — | **270.4** |
+| 08-30 (part day) | — | **4,882** | — | — | 278.3 |
+
+**08-28's DAU of 232,987 is below the 250,000 tripwire, and it is not the
+answer.** That day is 58% pre-update, and 08-29 — the first full day on v1244 —
+projects to **287,732 ± 0.6%** from `UniqueUsersWithPlaySessions` (286,343 at a
+ratio of 0.9950 ± 0.006). That is **above 08-27's 269,321**, i.e. a new
+post-trough high, and matched-slot CCU has now risen three days running to
+**4,882 — the highest since 08-23**. The recovery v1244 could have killed is
+instead continuing.
+
+### Tripwire status at T+2d
+
+| # | Signal | Value | Status |
+|---|---|---|---|
+| 1 | ErrorCount / day | **2.15M** (08-29) | OK (ceiling 4.5M) |
+| 2 | Errors per concurrent player | 336.9 → 330.7 → **270.4** → 278.3 | **OK** — −19.7% on the baseline |
+| **3** | **New signature on v1244** | `>= 1244`: 30 → 128 → **1,308** | **WATCH — rising at 100% adoption** |
+| 4 | ClientCrashCount | **1,886** (08-29) | OK (ceiling 2,700) |
+| 5 | ClientCrashRate15m | **0.63%** (08-29) | OK (ceiling 0.95%), better than the 0.68% baseline |
+| 6 | OomUnexpectedExits | **285** (08-29) | OK (ceiling 400) |
+| 7 | ClientFpsP10 | **31.69** (08-29) | OK (floor 27) |
+| 8 | Client memory % | **23.53%** (08-29) | OK (ceiling 27%) |
+| 9 | Session length | **14.13** (08-28) | OK (floor 13.2) |
+| 10 | ForwardD1Retention | 13.53% (08-27) | **NO DATA** until 08-31 |
+| 11 | ARPDAU | **R$0.3648** (08-28), up from 0.3375 | **OK — still improving** |
+| 12 | PayingUsersCVR | **0.90%** (08-28), up from 0.82% | **OK — still improving** |
+| **13** | **DAU recovery holds** | **~287,700** projected for 08-29 | **CLEAR on the projection** |
+| 14 | Funnel `Punched` | **96.0%** (08-29) vs 96.1% mean | OK |
+| 15 | Funnel `Collected a Banana` | **95.2%** (08-29) vs 95.2% mean | OK |
+| 16 | ServerCrashCount | 0 across 08-25…08-27, none since | OK (ceiling 50) |
+| 17 | Downvote rate | votes 725 → 609 → **859**, net positive | **NO DATA** — needs the up/down split |
+
+### The one thing to watch
+
+**v1244-introduced errors are rising while adoption is flat at 100%**: 30 on the
+publish day, 128 on 08-29, **1,308** on a part-day 08-30. Adoption completed on
+08-29, so this is not the ramp. It is 0.07% of the day's 1.82M errors — far too
+small to be a finding on volume — but the *shape* is the discriminator this
+routine relies on: a deploy artefact decays, a live defect does not.
+
+**This game still has no error export ever filed** — `data/exports/10399712766-banana-monkey-destruction/`
+holds a `feedback/` folder and no `errors/` — so there is no message text and
+tripwire 3 cannot be closed. **Export *Errors and warnings by count* filtered to
+v1244** — one export closes it.
+
+_Read 2026-08-30 ~17:00 UTC._

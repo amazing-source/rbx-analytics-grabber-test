@@ -1,0 +1,36 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+741,Error,Server,Thu Sep 10 2026 02:34:15 GMT+0200 (heure d’été d’Europe centrale),V914,Error fetching MarketplaceService receipts: HTTP unknown error (HttpError: DnsResolve),,
+468,Warning,Server,Thu Sep 10 2026 02:34:15 GMT+0200 (heure d’été d’Europe centrale),V914,[PassService] Could not read VIP for <Player> (attempt 1): MarketplaceService::userOwnsGamePassAsync - GetGamePassOwnership failed: HTTP request failed: DnsResolve,,
+468,Warning,Server,Thu Sep 10 2026 02:34:15 GMT+0200 (heure d’été d’Europe centrale),V914,[PassService] Could not read CyberRig for <Player> (attempt 1): MarketplaceService::userOwnsGamePassAsync - GetGamePassOwnership failed: HTTP request failed: DnsResolve,,
+467,Warning,Server,Thu Sep 10 2026 02:34:15 GMT+0200 (heure d’été d’Europe centrale),V914,[PassService] Could not read DoubleCash for <Player> (attempt 1): MarketplaceService::userOwnsGamePassAsync - GetGamePassOwnership failed: HTTP request failed: DnsResolve,,
+466,Warning,Server,Thu Sep 10 2026 02:34:15 GMT+0200 (heure d’été d’Europe centrale),V914,[PassService] Could not read TruckBlade for <Player> (attempt 1): MarketplaceService::userOwnsGamePassAsync - GetGamePassOwnership failed: HTTP request failed: DnsResolve,,
+464,Warning,Server,Thu Sep 10 2026 02:34:25 GMT+0200 (heure d’été d’Europe centrale),V914,[PassService] Could not read TruckPour for <Player> (attempt 1): MarketplaceService::userOwnsGamePassAsync - GetGamePassOwnership failed: HTTP request failed: DnsResolve,,
+464,Warning,Server,Thu Sep 10 2026 02:34:25 GMT+0200 (heure d’été d’Europe centrale),V914,[PassService] Could not read PermanentRig for <Player> (attempt 1): MarketplaceService::userOwnsGamePassAsync - GetGamePassOwnership failed: HTTP request failed: DnsResolve,,
+462,Warning,Server,Thu Sep 10 2026 02:34:25 GMT+0200 (heure d’été d’Europe centrale),V914,[PassService] Could not read InstantFill for <Player> (attempt 1): MarketplaceService::userOwnsGamePassAsync - GetGamePassOwnership failed: HTTP request failed: DnsResolve,,
+10,Warning,Client,Wed Sep 09 2026 00:14:35 GMT+0200 (heure d’été d’Europe centrale),V914,[Shell] could not read the Bank Roll price: MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed with status code: 503,,
+10,Warning,Client,Wed Sep 09 2026 00:14:35 GMT+0200 (heure d’été d’Europe centrale),V914,[Shell] could not read the The Vault price: MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed with status code: 503,,
+10,Warning,Client,Wed Sep 09 2026 00:14:35 GMT+0200 (heure d’été d’Europe centrale),V914,[Shell] could not read the Pocket Wad price: MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed with status code: 503,,
+10,Warning,Client,Wed Sep 09 2026 00:14:35 GMT+0200 (heure d’été d’Europe centrale),V914,[Shell] could not read the Briefcase price: MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed with status code: 503,,
+10,Warning,Client,Wed Sep 09 2026 00:14:35 GMT+0200 (heure d’été d’Europe centrale),V914,[Shell] could not read the Cash Pallet price: MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed with status code: 503,,
+3,Error,Client,Wed Sep 09 2026 03:00:00 GMT+0200 (heure d’été d’Europe centrale),V914,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerScripts.SealerUIClient', Line 482 - function hook",
+2,Error,Client,Thu Sep 10 2026 01:41:05 GMT+0200 (heure d’été d’Europe centrale),V914,WrapDefomer SkinningTransfer Error for 'Workspace.camilaisxs.Accessory (Eyelashes).Handle': "No valid targets with any UV coverage were found.",,
+1,Warning,Server,Thu Sep 10 2026 16:12:40 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_112.Walkway but the server had only seen 0.56 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Client,Wed Sep 09 2026 19:06:25 GMT+0200 (heure d’été d’Europe centrale),V914,Script has run for over 32.393 seconds and may timeout,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceGrid', Line 1112 - function _stepRect
+    Script 'ReplicatedStorage.DrivewaySealer.SurfaceGrid', Line 748 - function Step
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 1097 - function Step
+    Script 'Players.<Player>.PlayerScripts.AfkClient', Line 785 - function frame
+    Script 'Players.<Player>.PlayerScripts.AfkClient', Line 1087",
+1,Warning,Server,Mon Sep 07 2026 09:32:05 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_106.Walkway but the server had only seen 0.68 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Client,Thu Sep 10 2026 11:36:40 GMT+0200 (heure d’été d’Europe centrale),V914,Script has run for over 30.154 seconds and may timeout,"Script 'ReplicatedStorage.DrivewaySealer.ToolBuilder', Line 209 - function seatSkin
+    Script 'ReplicatedStorage.DrivewaySealer.ToolBuilder', Line 248 - function setBladeWidth
+    Script 'Players.<Player>.PlayerScripts.RemoteToolsClient', Line 218 - function pose
+    Script 'Players.<Player>.PlayerScripts.RemoteToolsClient', Line 834",
+1,Error,Client,Sat Sep 05 2026 01:07:25 GMT+0200 (heure d’été d’Europe centrale),V914,ReplicatedStorage.DrivewaySealer.SurfaceGrid:748: Script timeout: exhausted allowed execution time,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceGrid', Line 1111 - function _stepRect
+    Script 'ReplicatedStorage.DrivewaySealer.SurfaceGrid', Line 748 - function Step
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 1085 - function Step
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 3664",
+1,Error,Client,Thu Sep 10 2026 03:17:25 GMT+0200 (heure d’été d’Europe centrale),V914,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset?id=102766540475346 because Error reading mesh data: unknown version,,
+1,Warning,Client,Thu Sep 10 2026 12:49:20 GMT+0200 (heure d’été d’Europe centrale),V914,[Shell] could not read the Cash Pallet price: MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: ConnectFail,,
+1,Warning,Server,Thu Sep 10 2026 15:18:20 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_110.Walkway but the server had only seen 0.54 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Server,Thu Sep 10 2026 14:19:55 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_104.Walkway but the server had only seen 0.18 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Client,Thu Sep 10 2026 12:49:20 GMT+0200 (heure d’été d’Europe centrale),V914,[Shell] could not read the Briefcase price: MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: ConnectFail,,

@@ -1,0 +1,34 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+42677,Error,Client,Sat Sep 05 2026 15:10:30 GMT+0200 (heure d’été d’Europe centrale),V914,StarterPlayer.PlayerModule.CameraModule.VehicleCamera:173: assertion failed!,"Script 'StarterPlayer.PlayerModule.CameraModule.VehicleCamera', Line 173 - function Update
+    Script 'StarterPlayer.PlayerModule.CameraModule', Line 558 - function Update
+    Script 'StarterPlayer.PlayerModule', Line 114",
+42677,Error,Client,Sat Sep 05 2026 15:10:30 GMT+0200 (heure d’été d’Europe centrale),V914,RunService:fireRenderStepEarlyFunctions unexpected error while invoking callback: StarterPlayer.PlayerModule.CameraModule.VehicleCamera:173: assertion failed!,,
+12429,Error,Client,Sat Sep 05 2026 18:58:30 GMT+0200 (heure d’été d’Europe centrale),V914,EditableImage is not accessible. Go to the Security Tab in Experience Settings to enable this API.,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceRenderer', Line 565 - function Paint
+    Script 'ReplicatedStorage.DrivewayRace.RaceSurface', Line 363 - function Render
+    Script 'Players.<Player>.PlayerScripts.DrivewayRaceClient', Line 293",
+408,Warning,Server,Sat Sep 05 2026 19:01:10 GMT+0200 (heure d’été d’Europe centrale),V914,[UpgradeService] save failed for <Player> after 3 tries: 502: API Services rejected request with error. Error code: 9 Reason: The request rate exceeds the allowed maximum for the datastore.,,
+217,Error,Server,Sat Sep 05 2026 19:01:00 GMT+0200 (heure d’été d’Europe centrale),V914,DataStoreService: DatastoreThrottled: The request rate exceeds the allowed maximum for the datastore. API: IncrementAsync,MapReach_v2,
+147,Warning,Server,Sat Sep 05 2026 19:01:15 GMT+0200 (heure d’été d’Europe centrale),V914,[MapReach] Neighbourhood count failed for <Player>: 502: API Services rejected request with error. Error code: 9 Reason: The request rate exceeds the allowed maximum for the datastore.,,
+63,Warning,Server,Sat Sep 05 2026 19:01:05 GMT+0200 (heure d’été d’Europe centrale),V914,"[MapReach] <Player> counted to 1 but the mark did not save, so they may be counted again: 502: API Services rejected request with error. Error code: 9 Reason: The request rate exceeds the allowed maximum for the datastore.",,
+44,Warning,Server,Sat Sep 05 2026 19:01:00 GMT+0200 (heure d’été d’Europe centrale),V914,[MapReach] EstateDistrict count failed for <Player>: 502: API Services rejected request with error. Error code: 9 Reason: The request rate exceeds the allowed maximum for the datastore.,,
+13,Warning,Server,Sat Sep 05 2026 19:01:20 GMT+0200 (heure d’été d’Europe centrale),V914,[MapReach] RetailPark count failed for <Player>: 502: API Services rejected request with error. Error code: 9 Reason: The request rate exceeds the allowed maximum for the datastore.,,
+12,Warning,Server,Sat Sep 05 2026 10:18:00 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_104.Driveway but the server had only seen 0.11 coverage (needs 0.93) -- not paid and NOT recorded,,
+8,Warning,Server,Sat Sep 05 2026 19:02:00 GMT+0200 (heure d’été d’Europe centrale),V914,"[MapReach] <Player> counted to 2 but the mark did not save, so they may be counted again: 502: API Services rejected request with error. Error code: 9 Reason: The request rate exceeds the allowed maximum for the datastore.",,
+4,Warning,Server,Sat Sep 05 2026 04:03:20 GMT+0200 (heure d’été d’Europe centrale),V914,[UpgradeService] receipt with no pending upgrade for <Player>,,
+3,Error,Client,Fri Sep 04 2026 23:04:10 GMT+0200 (heure d’été d’Europe centrale),V914,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'ReplicatedStorage.SealerUI.Shell', Line 4801",
+3,Error,Client,Fri Sep 04 2026 23:04:10 GMT+0200 (heure d’été d’Europe centrale),V914,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'ReplicatedStorage.SealerUI.SkinCase', Line 741",
+2,Error,Client,Sat Sep 05 2026 18:54:30 GMT+0200 (heure d’été d’Europe centrale),V914,WrapDefomer SkinningTransfer Error for 'Workspace.xAvacdox.Accessory (EyelashAccessory).Handle': "No valid targets with any UV coverage were found.",,
+2,Error,Client,Fri Sep 04 2026 23:03:20 GMT+0200 (heure d’été d’Europe centrale),V914,WrapDefomer SkinningTransfer Error for 'Workspace.Licorne221290.Accessory (Eyelashes_1).Handle': "No valid targets with any UV coverage were found.",,
+2,Error,Client,Sat Sep 05 2026 18:54:30 GMT+0200 (heure d’été d’Europe centrale),V914,WrapDefomer SkinningTransfer Error for 'Workspace.xAvacdox.Accessory (EyebrowAccessory).Handle': "No valid targets with any UV coverage were found.",,
+2,Error,Client,Fri Sep 04 2026 23:04:10 GMT+0200 (heure d’été d’Europe centrale),V914,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'ReplicatedStorage.SealerUI.Shell', Line 3107",
+2,Warning,Server,Sat Sep 05 2026 18:03:45 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.EstateDistrict.Street.Carriageway but the server had only seen 0.14 coverage (needs 0.93) -- not paid and NOT recorded,,
+2,Warning,Server,Sat Sep 05 2026 04:04:25 GMT+0200 (heure d’été d’Europe centrale),V914,[TruckServer] a rig was 7.05 studs into the ground -- lifted out,,
+2,Error,Client,Sat Sep 05 2026 02:09:00 GMT+0200 (heure d’été d’Europe centrale),V914,ReplicatedStorage.DrivewaySealer.Economy:101: attempt to index nil with 'Parent',"Script 'ReplicatedStorage.DrivewaySealer.Economy', Line 101 - function multiplierOf
+    Script 'ReplicatedStorage.DrivewaySealer.Economy', Line 150 - function jobBase
+    Script 'ReplicatedStorage.DrivewaySealer.Economy', Line 162 - function payout
+    Script 'ReplicatedStorage.DrivewaySealer.ScoreModel', Line 197 - function Value
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 4072",
+2,Warning,Server,Sat Sep 05 2026 15:03:20 GMT+0200 (heure d’été d’Europe centrale),V914,[DrivewayServer] <Player> finished Workspace.Airport.Taxiways.Taxiway_B but the server had only seen 0.90 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Error,Server,Sat Sep 05 2026 19:06:35 GMT+0200 (heure d’été d’Europe centrale),V914,ReceiptId 45d2d1d8e9cc489e9ae6ef19ca73214c already being processed.,,
+1,Error,Client,Sat Sep 05 2026 14:41:25 GMT+0200 (heure d’été d’Europe centrale),V914,HSRDataContentProvider failed to process https://assetdelivery.roblox.com/v1/asset?id=9231913062 because Unrecognized format: #EXTM3U\x0a << file header,,
+1,Error,Client,Sat Sep 05 2026 14:41:25 GMT+0200 (heure d’été d’Europe centrale),V914,HSRDataContentProvider failed to process https://assetdelivery.roblox.com/v1/asset?id=16300671238 because Unrecognized format: #EXTM3U\x0a << file header,,

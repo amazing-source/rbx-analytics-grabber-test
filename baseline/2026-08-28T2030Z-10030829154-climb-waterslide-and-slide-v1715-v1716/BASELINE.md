@@ -493,3 +493,81 @@ corpus headline for this universe is the all-places total, which confirms the
 | 12–15 | tutorial funnel and D1 | **NO DATA** until 08-31 |
 
 _Read 2026-08-29 ~14:20 UTC._
+
+---
+
+## Post-update read — 2026-08-30 T+2d. The hotfix held; cleanest of the batch
+
+Full Open Cloud re-grab 2026-08-30 16:22–16:27 UTC, window 08-03 → 08-31.
+**118 of 129 requests returned data, 0 failures on observed/proven shapes.**
+Gates: `npm test` 44/44 · `audit-plan` 140 templates, 0 failures · `verify`
+23/2/8 (the held pair). **v1716 at 100% adoption** (v1711 = 38 events on 08-29,
+0 on 08-30).
+
+### The decline has stopped
+
+| date | DAU | PCU | errors/CCU | crash rate | CpuAvg | votes |
+|---|---|---|---|---|---|---|
+| 08-27 (baseline) | 166,737 | 3,467 | 578.7 | 0.35% | **33.03** *(anomalous)* | +370 |
+| 08-28 (publish day) | 135,134 | 2,617 | 707.3 | 0.33% | 16.16 | +320 |
+| **08-29** | **~165,000** *(projected)* | 3,091 | **649.9** | **0.32%** | **11.66** | +384 |
+| 08-30 (part day) | — | — | **646.3** | — | — | — |
+
+DAU 08-29 projected from `UniqueUsersWithPlaySessions` (165,475) at ratio
+1.0027 ± 0.011 → **165,029 ± 1.1%**, i.e. **level with 08-27 and +22% on 08-28**.
+Matched-slot CCU has risen three days running (1,925 → 2,441 → **2,871**).
+
+### Tripwire status at T+2d
+
+| # | Signal | Value | Status |
+|---|---|---|---|
+| 1 | Errors per concurrent player | **649.9** (08-29), 646.3 (08-30) | OK (ceiling 800) |
+| 2 | ErrorCount / day | **3.18M** (08-29) | OK (ceiling 4.5M) |
+| **3** | **New signature on v1715/v1716** | `>= 1715`: 9,826 → 410 → **379**. `>= 1716` alone: 31 → 270 → **255** | **CLEAR — the hotfix held** |
+| 4 | ClientCrashRate15m | **0.32%** (08-29) | OK (ceiling 0.49%) |
+| 5 | Crash count per 1,000 PCU | **319** (08-29) | OK (ceiling 420) |
+| 6 | OOM per 1,000 PCU | 80.2 → 83.3 → **90.3** | OK (ceiling 120), drifting up |
+| **7** | **`ClientCpuTimeAvg`** | 16.16 (08-28) → **11.66** (08-29) | **OK — and it settles the 08-27 question** |
+| 8 | ClientFpsP10 | 36.17 → 36.51 → **32.89** | **WATCH** — floor is 32, this is 0.89 above it |
+| 9 | Session length | **13.62** (08-28) vs 13.2 floor | **WATCH** — one day, and 08-28 is 85% pre-update |
+| 10 | ARPDAU | **R$0.5344** (08-28), up from 0.4462 | OK |
+| 11 | PayingUsersCVR | **2.66%** (08-28), up from 2.43% | OK |
+| 12 | Funnel `Tutorial_Main_5_ToRaftShop` | **83.2%** (08-29), 83.3% (08-30) vs 82.1% mean | **OK — but defect 3 is NOT fixed** (success mark was >90%) |
+| 13 | Funnel step 15, end to end | **50.3%** (08-29) vs 44.7% floor | OK |
+| 14 | Any other of 15 steps | **all 15 at or above their pre-update mean** on 08-29 | OK |
+| 15 | ForwardD1Retention | 12.41% (08-27) | **NO DATA** until 08-31 |
+| 16 | Feedback votes | **+384** (08-29) | OK |
+
+**The 08-27 `ClientCpuTimeAvg` spike was a one-day event, confirmed.** 33.03 on
+08-27, then 16.16 and **11.66** — back inside the 10.5–13.0 band the baseline
+told us to score against. Tripwire 7 needed ">20 on two consecutive settled
+days"; it never got one. The contaminated baseline row can be retired.
+
+**The whole tutorial funnel recovered from its publish-day dip.** Every one of
+the 15 steps read below its mean on 08-28 and every one is back at or above it
+on 08-29 — that is the shape of a publish-day disturbance, not a broken step.
+
+### Omatsuri is still outside the grab plan, and the cause is now known
+
+| place | 08-27 | 08-28 | 08-29 | 08-30 |
+|---|---|---|---|---|
+| ROOT | 1,987,442 | 1,645,625 | 2,025,411 | 1,658,733 |
+| **Omatsuri `128451475320872`** | **—** | **6,172** | **86,850** | **72,219** |
+
+It has settled as the **fifth-largest error source on the universe, above
+Hawaii**, and it still has no per-place error or perf shape.
+
+**Root cause of the coverage gap — `web/src/lib/opencloud-run.ts:77`.** The
+guard reads the corpus place list and returns early whenever one exists, so
+`fetchPlaces()` is **never called again** and a place added after the first grab
+can never enter the plan. `develop.roblox.com` lists all seven for this universe
+today; the grab discovered six, exactly as it did on 08-29. The intent (a 500
+must not lose a known place) is right; the implementation makes the corpus a
+permanent ceiling. **The fix is a union, not a short-circuit** — fetch, then
+merge over the corpus list. Not applied here.
+
+Note the daily headline is unaffected: the seven places sum to 3,182,099 on
+08-29 against the corpus `ErrorCount` of 3.18M, so totals already include
+Omatsuri. What is missing is anything place-scoped about it.
+
+_Read 2026-08-30 ~17:00 UTC._

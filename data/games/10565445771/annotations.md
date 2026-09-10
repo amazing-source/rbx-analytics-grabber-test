@@ -6,7 +6,7 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 
 - `{"id":"e65cc0ee-7da7-4413-97fc-23f768081b5b","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":131868887894724}},"createdUtcTime":"2026-08-01T16:59:05.330Z"}`
 
-## annotationType=4 (12)
+## annotationType=4 (14)
 
 - `{"id":"3844c5be-fcad-43aa-895e-15a06ae62ff9","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[123150031142431,103296861565886,108184908897761]}},"createdUtcTime":"2026-08-06T06:43:39.122Z"}`
 - `{"id":"2bc08b02-31b5-48a4-88bf-4c2e4cf4b58d","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[108439054379200,103722456312183,103296861565886,126060496402269,91113162023091]}},"createdUtcTime":"2026-08-13T20:22:45.098Z"}`
@@ -20,13 +20,20 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"ff3bcdac-708c-4d19-a6ef-e4b3e22917f4","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[108183636835506,101942832652140,85427619492031,82268268810767,109928402351472]}},"createdUtcTime":"2026-08-31T20:39:01.453Z"}`
 - `{"id":"eea69149-7d15-4f4c-aacc-26ad9cb3d06c","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[108183636835506,118124881227305,137255690783624,109928402351472,119503375892944]}},"createdUtcTime":"2026-09-01T10:48:48.750Z"}`
 - `{"id":"f29956ff-f0a8-4b08-9e6a-ef30580d94d1","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[85427619492031,137255690783624,109928402351472,108183636835506,118124881227305]}},"createdUtcTime":"2026-09-02T08:22:26.307Z"}`
+- `{"id":"928544d0-cdda-456e-acad-00c217ab9781","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[85427619492031,109928402351472,94846133485362,108183636835506,118124881227305]}},"createdUtcTime":"2026-09-06T21:37:53.230Z"}`
+- `{"id":"dee1e1d6-2be2-40ec-81dd-437abadcd4b5","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[94846133485362,108183636835506,85427619492031,117274232600623,136205170738467]}},"createdUtcTime":"2026-09-08T19:41:48.528Z"}`
 
-## annotationType=8 (2)
+## annotationType=6 (1)
+
+- `{"id":"3739b75a-0392-4ddc-9007-ee4f588164ab","annotationType":"ANNOTATION_TYPE_BENCHMARK_CHANGE","metadata":{"benchmarkChange":{"fromBenchmarkType":"GENRE","toBenchmarkType":"SIMILARITY"}},"createdUtcTime":"2026-09-03T00:00:00Z"}`
+
+## annotationType=8 (3)
 
 - `{"id":"4616ec03-d640-491f-99a5-618a480d492b","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":6830638690952414000,"eventName":"NEW EVENT","imageAssetId":83400477487805,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-08-28T18:00:01.856Z"}`
 - `{"id":"e9894a00-90bd-4132-87ed-36a2ad369565","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":6830638690952414000,"eventName":"NEW EVENT","imageAssetId":83400477487805,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-08-30T18:00:01.856Z"}`
+- `{"id":"969cab02-1c91-411b-b211-be93a0405df3","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":5079414372019865000,"eventName":"NEW UPDATE","imageAssetId":102605718109389,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-04T19:00:03.777Z"}`
 
-## annotationType=10 (28)
+## annotationType=10 (33)
 
 - `{"id":"91a90403-7869-46fc-ab79-8c83bc3fe4a8","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":732}},"createdUtcTime":"2026-07-28T16:00:31.292Z"}`
 - `{"id":"07462e6b-a53e-47b2-8332-9b042d4f3d68","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":732}},"createdUtcTime":"2026-07-28T16:00:58.933Z"}`
@@ -56,6 +63,11 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"5db6a3bc-8472-4119-85ad-b66e844e0194","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":732}},"createdUtcTime":"2026-07-27T22:52:58.183Z"}`
 - `{"id":"ca4ce2a5-38e1-478d-ad81-bd007d91cdfa","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":737}},"createdUtcTime":"2026-09-02T22:33:35.412Z"}`
 - `{"id":"7bd0f81f-e425-49b8-8c4b-256cf11a50d7","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":737}},"createdUtcTime":"2026-09-02T22:38:44.676Z"}`
+- `{"id":"e3f047dd-4d1e-4140-8598-9a4e1cf808fc","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":738}},"createdUtcTime":"2026-09-08T22:36:27.790Z"}`
+- `{"id":"ed5e4aeb-b6cd-41dd-9b43-16e7ccdf20a0","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":738}},"createdUtcTime":"2026-09-08T23:33:12.094Z"}`
+- `{"id":"29f7b13a-a483-404c-a100-1a2851c4fee6","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":738}},"createdUtcTime":"2026-09-09T16:47:36.304Z"}`
+- `{"id":"390d21b0-c464-49a3-be1f-7343300a8f5c","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":738}},"createdUtcTime":"2026-09-09T18:19:11.651Z"}`
+- `{"id":"2c423c5b-0d32-4c7b-82f6-a4f711c9950a","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":738}},"createdUtcTime":"2026-09-09T22:30:35.962Z"}`
 
 ## annotationType=11 (1)
 

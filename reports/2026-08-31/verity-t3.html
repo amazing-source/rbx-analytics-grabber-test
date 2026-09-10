@@ -1,0 +1,240 @@
+<title>Verity v679 at T+3d</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#F6F8FB; --surface:#FFFFFF; --surface-2:#EEF2F7;
+  --ink:#151A21; --ink-2:#454E5C; --ink-3:#6C7787;
+  --rule:#DCE2EA; --rule-2:#C3CCD8;
+  --ok:#1B6F47; --ok-bg:#E3F2EA;
+  --watch:#8A5B0C; --watch-bg:#FBF0DC;
+  --fix:#A6332A; --fix-bg:#FBE6E3;
+  --accent:#4A4884; --accent-soft:#EAE9F4;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ground:#10141A; --surface:#171C24; --surface-2:#1E242E;
+  --ink:#E6EBF2; --ink-2:#AFB9C6; --ink-3:#7E8998;
+  --rule:#28303B; --rule-2:#39434F;
+  --ok:#57C08C; --ok-bg:#12291F; --watch:#DCA748; --watch-bg:#2C2314;
+  --fix:#EC8175; --fix-bg:#301A18;
+  --accent:#A5A2E4; --accent-soft:#1D1C2E;
+}}
+:root[data-theme="dark"]{
+  --ground:#10141A; --surface:#171C24; --surface-2:#1E242E;
+  --ink:#E6EBF2; --ink-2:#AFB9C6; --ink-3:#7E8998;
+  --rule:#28303B; --rule-2:#39434F;
+  --ok:#57C08C; --ok-bg:#12291F; --watch:#DCA748; --watch-bg:#2C2314;
+  --fix:#EC8175; --fix-bg:#301A18;
+  --accent:#A5A2E4; --accent-soft:#1D1C2E;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);
+  font-family:"Source Serif 4",Georgia,serif;font-size:16.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:44px 26px 88px}
+h1,h2,h3,.lab,.chip,table{font-family:Archivo,"Helvetica Neue",Arial,sans-serif}
+h1{font-size:2.3rem;line-height:1.08;font-weight:700;margin:0 0 8px;letter-spacing:-.022em;text-wrap:balance}
+h2{font-size:1.2rem;font-weight:600;margin:48px 0 12px;letter-spacing:-.01em;text-wrap:balance;
+   padding-bottom:8px;border-bottom:2px solid var(--rule-2)}
+h3{font-size:1rem;font-weight:600;margin:26px 0 6px}
+p{margin:0 0 13px;max-width:66ch}
+ul,ol{margin:0 0 13px;padding-left:21px;max-width:66ch}
+li{margin:0 0 8px}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.87em;
+  background:var(--surface-2);padding:.1em .34em;border-radius:3px}
+.lab{font-size:.69rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.mast{border-top:5px solid var(--accent);padding-top:20px}
+.sub{font-size:1.06rem;color:var(--ink-2);max-width:62ch;margin:8px 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:6px 24px;margin-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:.77rem;color:var(--ink-2)}
+.meta b{color:var(--ink);font-weight:500}
+.scroll{overflow-x:auto;margin:14px 0;border:1px solid var(--rule);border-radius:7px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.84rem}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--rule);white-space:nowrap}
+thead th{background:var(--surface-2);font-weight:600;font-size:.69rem;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-2)}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+td.wrap-c{white-space:normal;min-width:250px;font-family:"Source Serif 4",serif;font-size:.93rem;line-height:1.45}
+tr.hl td{background:var(--accent-soft)}
+.up{color:var(--ok);font-weight:600} .dn{color:var(--fix);font-weight:600}
+.chip{display:inline-block;font-size:.64rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  padding:3px 8px;border-radius:3px}
+.c-ok{background:var(--ok-bg);color:var(--ok)}
+.c-watch{background:var(--watch-bg);color:var(--watch)}
+.c-fix{background:var(--fix-bg);color:var(--fix)}
+.call{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--accent);
+  border-radius:0 7px 7px 0;padding:15px 19px;margin:18px 0}
+.call.fix{border-left-color:var(--fix)}
+.call.ok{border-left-color:var(--ok)}
+.call .lab{display:block;margin-bottom:5px}
+.call p:last-child{margin-bottom:0}
+.act{background:var(--surface);border:1px solid var(--rule);border-radius:9px;padding:20px 22px;margin:16px 0}
+.act h3{margin:0 0 8px;font-size:1.08rem}
+.act .tag{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-3);
+  display:block;margin-bottom:10px;letter-spacing:.02em}
+.act p:last-child{margin-bottom:0}
+.foot{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:.73rem;color:var(--ink-3);line-height:1.65}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* metric identity: the Roblox series name is the row subject, the gloss supports it */
+td.mcell{white-space:normal;min-width:215px}
+.mn{font-family:"IBM Plex Mono",monospace;font-size:.8rem;font-weight:500;
+  color:var(--accent);letter-spacing:-.01em;overflow-wrap:anywhere}
+.gl{display:block;font-family:"Source Serif 4",Georgia,serif;font-size:.85rem;
+  color:var(--ink-3);margin-top:2px}
+.chip.done{background:var(--ok-bg);color:var(--ok)}
+
+@media (max-width:640px){.wrap{padding:28px 15px 60px}h1{font-size:1.8rem}body{font-size:16px}}
+</style>
+
+<div class="wrap">
+
+<div class="mast">
+  <span class="lab">Verity Companion &middot; three days after v679</span>
+  <h1>The update is fine. Nobody comes back on day two.</h1>
+  <p class="sub">v679 did no harm and several things improved. Players arrive, enjoy one session, and do not return — and that is now costing us distribution, not just retention.</p>
+  <div class="meta">
+    <span>v678 &rarr; <b>v679</b>, published <b>28 Aug 19:00 UTC</b></span>
+    <span><b>v680</b> shipped <b>31 Aug ~15:00 UTC</b></span>
+    <span>first clean day <b>29 Aug</b> &middot; read <b>31 Aug</b></span>
+  </div>
+</div>
+
+<h2>What moved since the baseline</h2>
+<p>Every figure is the <code>Total</code> series — no breakdown slice — comparing <b>27 Aug</b>, the last day that closed before the publish, with <b>30 Aug</b>, the newest settled day.</p>
+<div class="scroll"><table>
+<thead><tr><th>Metric</th><th class="num">27 Aug</th><th class="num">30 Aug</th><th>Reading</th></tr></thead>
+<tbody>
+<tr><td class="mcell"><span class="mn">DailyActiveUsers</span><span class="gl">players per day</span></td><td class="num">403,311</td><td class="num">535,950</td><td class="wrap-c"><span class="up">+33%</span> — a reach recovery, not the build.</td></tr>
+<tr><td class="mcell"><span class="mn">DailyRevenue</span><span class="gl">Robux per day</span></td><td class="num">R$189,161</td><td class="num">R$255,562</td><td class="wrap-c"><span class="up">+35%</span>, slightly ahead of the player growth.</td></tr>
+<tr><td class="mcell"><span class="mn">AverageRevenuePerUser</span><span class="gl">ARPDAU</span></td><td class="num">R$0.4684</td><td class="num">R$0.4768</td><td class="wrap-c"><span class="up">+1.8%</span> — growth did not dilute spending.</td></tr>
+<tr><td class="mcell"><span class="mn">PayingUsersCVR</span><span class="gl">share of players who buy</span></td><td class="num">0.744%</td><td class="num">0.789%</td><td class="wrap-c"><span class="up">Up</span>, after dipping to 0.645% on publish day.</td></tr>
+<tr><td class="mcell"><span class="mn">AverageSessionLengthMinutes</span></td><td class="num">8.02</td><td class="num">8.27</td><td class="wrap-c"><span class="up">Up</span>. People stay slightly longer.</td></tr>
+<tr><td class="mcell"><span class="mn">ClientCrashRate15m</span> / <span class="mn">ClientFpsP10</span></td><td class="num">0.279% / 43.9</td><td class="num">0.261% / 45.4</td><td class="wrap-c"><span class="up">Both improved</span>. The build is technically clean.</td></tr>
+<tr><td class="mcell">Up/down votes<span class="gl">net per day, from the feedback export</span></td><td class="num">&minus;45</td><td class="num">+69</td><td class="wrap-c"><span class="up">Turned positive</span> after the update.</td></tr>
+<tr><td class="mcell"><span class="mn">ForwardD1Retention</span><span class="gl">27 Aug cohort &rarr; 29 Aug cohort</span></td><td class="num">13.74%</td><td class="num">13.76%</td><td class="wrap-c">Flat, and flat on every <span class="mn">AcquisitionSource</span> — the build did no harm.</td></tr>
+<tr class="hl"><td class="mcell"><span class="mn">DailyCohortRetention</span> CohortDay&nbsp;2<span class="gl">27 Aug cohort &rarr; 28 Aug cohort</span></td><td class="num">5.75%</td><td class="num">4.46%</td><td class="wrap-c"><b>Only 35 of every 100 day-1 players come back on day 2.</b> Worst in the portfolio.</td></tr>
+<tr class="hl"><td class="mcell"><span class="mn">RFYD2To7PlayDays</span><span class="gl">days played in the week after the first</span></td><td class="num">0.365</td><td class="num">0.248</td><td class="wrap-c"><span class="dn">&minus;36% in five days.</span> A direct Roblox ranking input.</td></tr>
+</tbody>
+</table></div>
+
+<div class="call">
+  <span class="lab">One correction to the day-2 number</span>
+  <p>Read alone, 5.75% &rarr; 4.46% looks like a fall the update caused. It is not. Across seven cohorts <span class="mn">DailyCohortRetention</span> CohortDay&nbsp;2 has sat between <b>4.46% and 5.76%</b>, and the day-2-over-day-1 ratio between <b>30% and 42%</b>, with no trend either way. The 28 Aug cohort at 35.1% is mid-range for this game.</p>
+  <p style="margin-top:9px"><b>The problem is the level, not the movement.</b> Every other game in the portfolio holds 43–49% of its day-1 players into day 2. Verity has never held more than 42%, on any cohort we hold.</p>
+</div>
+
+<div class="scroll"><table>
+<thead><tr><th>Cohort</th><th class="num">Day 1</th><th class="num">Day 2</th><th class="num">Day 2 &divide; Day 1</th></tr></thead>
+<tbody>
+<tr><td class="mono">22 Aug</td><td class="num">15.83%</td><td class="num">4.77%</td><td class="num">30.1%</td></tr>
+<tr><td class="mono">23 Aug</td><td class="num">12.23%</td><td class="num">4.91%</td><td class="num">40.2%</td></tr>
+<tr><td class="mono">24 Aug</td><td class="num">14.23%</td><td class="num">5.17%</td><td class="num">36.3%</td></tr>
+<tr><td class="mono">25 Aug</td><td class="num">14.47%</td><td class="num">4.96%</td><td class="num">34.3%</td></tr>
+<tr><td class="mono">26 Aug</td><td class="num">12.55%</td><td class="num">5.01%</td><td class="num">39.9%</td></tr>
+<tr><td class="mono">27 Aug</td><td class="num">13.74%</td><td class="num">5.75%</td><td class="num">41.9%</td></tr>
+<tr class="hl"><td class="mono">28 Aug <b>(v679)</b></td><td class="num">12.71%</td><td class="num">4.46%</td><td class="num"><b>35.1%</b></td></tr>
+<tr><td class="mono">29 Aug</td><td class="num">13.76%</td><td class="num">&mdash;</td><td class="num">reads 1 Sep</td></tr>
+</tbody>
+</table></div>
+
+<h2>What is actually happening</h2>
+<p>Roblox ranks a game for the Recommended-For-You surface on a set of signals about how people actually play it. We pulled all twenty for the first time on 31 Aug, and they split cleanly at the boundary between the first session and the second.</p>
+<div class="scroll"><table>
+<thead><tr><th>Signal</th><th class="num">24 Aug</th><th class="num">29 Aug</th><th class="num">Move</th><th>What it measures</th></tr></thead>
+<tbody>
+<tr><td class="mcell"><span class="mn">RFYPlayThroughRate</span></td><td class="num">1.30%</td><td class="num">1.96%</td><td class="num up">+51%</td><td class="wrap-c">See it, then play it. The store page is working better.</td></tr>
+<tr><td class="mcell"><span class="mn">RFYDuration0To60</span></td><td class="num">15.91%</td><td class="num">14.58%</td><td class="num up">&minus;8%</td><td class="wrap-c">Quit inside a minute. Fewer bounces — the opening is fine.</td></tr>
+<tr><td class="mcell"><span class="mn">RFYD1Playtime</span></td><td class="num">13.08</td><td class="num">12.93</td><td class="num">&minus;1%</td><td class="wrap-c">Minutes on day one. Flat.</td></tr>
+<tr class="hl"><td class="mcell"><span class="mn">RFYD2To7PlayDays</span></td><td class="num">0.385</td><td class="num">0.248</td><td class="num dn">&minus;36%</td><td class="wrap-c"><b>Days played after the first. They do not come back.</b></td></tr>
+<tr class="hl"><td class="mcell"><span class="mn">RFYD2To7Playtime</span></td><td class="num">3.99</td><td class="num">2.39</td><td class="num dn">&minus;40%</td><td class="wrap-c"><b>And when they do, they stay less.</b></td></tr>
+<tr><td class="mcell"><span class="mn">RFYL7PlayDays</span></td><td class="num">1.378</td><td class="num">1.243</td><td class="num dn">&minus;10%</td><td class="wrap-c">Days played across the week, all cohorts blended.</td></tr>
+</tbody>
+</table></div>
+
+<p>So the problem is not appeal, and it is not the build. <b>People arrive, enjoy one session, and never come back.</b> There is nothing in the game that asks them to — no daily reward, no offline progress, no reason to open it tomorrow rather than next week.</p>
+
+<p>This matters beyond retention. Roblox states that an impressions decline typically <em>follows</em> a fall in play days and playtime per user. <span class="mn">RFYD2To7PlayDays</span> is down 36% and still falling, so <b>we should expect less traffic in the coming weeks unless it turns</b>. The fall starts 27 August, the day before the update — v679 did not cause it and will not fix it.</p>
+
+<div class="call">
+  <span class="lab">Stated confound</span>
+  <p>Play-days-per-user is diluted by new players, and <span class="mn">DailyActiveUsers</span> rose 50% across this window. Against that reading: the signal held 0.38–0.40 on 24–26 Aug at <em>higher</em> DAU — 845K on 24 Aug — and kept falling on 29 Aug. Six days, one game, no prior baseline: <b>strong enough to plan against, not yet strong enough to call a trend.</b> The next grab confirms it or kills it.</p>
+</div>
+
+<h2>What we want to do about it</h2>
+
+<div class="act">
+  <span class="lab">Priority 1</span>
+  <h3>Give players a reason to come back tomorrow</h3>
+  <span class="tag">daily reward + offline accrual, both paid in messages</span>
+  <p>Two mechanics, both small: a <b>daily login reward</b> of messages, and <b>offline accrual</b> — roughly one message per 30 minutes away, capped at about 15. The cap is the important part: it fills in about seven hours, so it rewards coming back tomorrow and gives nothing to someone who leaves the game open.</p>
+  <p style="margin-top:10px">This is aimed squarely at the day-2 gap. Verity is the only game in the portfolio with no daily-reset mechanic at all, and the only one holding under 43% into day 2.</p>
+</div>
+
+<div class="call fix">
+  <span class="lab">The catch, and it is a real one</span>
+  <p><b>Messages are almost the entire business, so giving them away is giving away the product.</b> This is the thing to get right, and it is worth being precise about how much room there is.</p>
+</div>
+
+<h3>How much cannibalisation we can afford</h3>
+<p>Two facts make the trade better than it first looks. <span class="mn">PayingUsersCVR</span> is 0.79%, so <b>99.2% of players never spend anything</b> — free messages to them cost nothing. And <b>61% of revenue is <span class="mn">GamePass</span></b>, a permanent unlock a daily grant does not substitute for; only the 39% that is <span class="mn">DevProduct</span> message packs is exposed. Sized against 30 Aug: DAU 535,950, revenue R$255,562, of which DevProduct is R$99,505.</p>
+
+<p>The upside is modelled from this game&rsquo;s own measured cohort curve. <code>1 + &Sigma;(D1..D6)</code> reproduces <span class="mn">RFYL7PlayDays</span> to within 0.7% — predicted 1.251 against a measured 1.243 — so the model is validated on Verity before being used on it.</p>
+
+<div class="scroll"><table>
+<thead><tr><th>If day-2 hold goes to&hellip;</th><th class="num">Play days per user</th><th class="num">Extra players</th><th>Pays for a DevProduct loss of</th></tr></thead>
+<tbody>
+<tr><td>35.1% (now)</td><td class="num">1.251</td><td class="num">&mdash;</td><td class="wrap-c">&mdash;</td></tr>
+<tr><td>40%</td><td class="num">1.278</td><td class="num">+2.1%</td><td class="wrap-c">5%</td></tr>
+<tr class="hl"><td><b>45% (portfolio median)</b></td><td class="num">1.295</td><td class="num">+3.5%</td><td class="wrap-c"><b>9%</b></td></tr>
+<tr><td>50%</td><td class="num">1.313</td><td class="num">+4.9%</td><td class="wrap-c">13%</td></tr>
+</tbody>
+</table></div>
+
+<p>So bringing day-2 hold up to the portfolio median pays for itself as long as message-pack revenue falls by <b>less than 9%</b>. Anything better than that is profit — and none of this counts the ranking benefit of a higher <span class="mn">RFYD2To7PlayDays</span>, which is a direct input and currently &minus;36%. That upside is real but unsized; do not promise it.</p>
+
+<div class="act">
+  <span class="lab">How to build it safely</span>
+  <h3>Ship the grant as a dial, not a number</h3>
+  <span class="tag">start at 8 messages &middot; raise toward 15 only while the guardrail holds</span>
+  <p>Roblox&rsquo;s Configs API changes values like this <b>without publishing an update</b> — it propagates in about five minutes, keeps a version history, and rolls back instantly. Put the grant size behind it rather than hard-coding it.</p>
+  <p style="margin-top:10px">Start conservative at <b>8 messages</b>, hold 48 hours, and raise toward 15 only while the guardrail holds. If it moves the wrong way, it is one config change to undo — not a rollback.</p>
+</div>
+
+<div class="scroll"><table>
+<thead><tr><th>Role</th><th>Metric</th><th class="num">Target / limit</th></tr></thead>
+<tbody>
+<tr><td>Mechanism</td><td class="mcell"><span class="mn">DailyCohortRetention</span> CohortDay&nbsp;2 &divide; CohortDay&nbsp;1</td><td class="num">35% &rarr; <b>45%</b> within two weeks</td></tr>
+<tr><td>Mechanism</td><td class="mcell"><span class="mn">RFYD2To7PlayDays</span></td><td class="num">0.248 &rarr; <b>0.32+</b></td></tr>
+<tr><td>Guardrail</td><td class="mcell"><span class="mn">DevProduct</span> revenue per <span class="mn">DailyActiveUsers</span></td><td class="num">hold at or above <b>R$0.144</b></td></tr>
+</tbody>
+</table></div>
+<p>The guardrail sits 20% below today&rsquo;s R$0.186 — comfortably outside the 9% the mechanic needs to stay inside, so it fires well before the trade goes negative.</p>
+
+<div class="act">
+  <span class="lab">Priority 2 &nbsp;<span class="chip done">Shipped</span></span>
+  <h3>The Mystery Library fix is live in v680</h3>
+  <span class="tag">MysticLibraryService line 144 &middot; <code>:FireAllClients(</code> &rarr; <code>:Fire(</code></span>
+  <p>v680 first appears in the error log at <b>31 Aug 15:00 UTC</b>, so the fix has been live about two hours at the time of this read. That is not long enough to score it.</p>
+  <p style="margin-top:10px">What it has to beat: <span class="mn">ErrorCount</span> filtered to <span class="mn">FirstSeenPlaceVersion &ge; 678</span> — the errors this deploy introduced — ran <b>2,069 &rarr; 7,244 &rarr; 6,253</b> across 28–30 Aug with no sign of decay, which is what marked it live rather than a deploy artefact. Today stands at 3,457 on a part-day about 71% elapsed, of which only the last tenth is post-fix, so it says nothing yet. <b>Read it on 1 September: below 500/day means the fix landed.</b> The second check is that the Mystery Library actually renders — the failure was silent to everyone except the log.</p>
+</div>
+
+<h2>What we are still waiting on</h2>
+<div class="scroll"><table>
+<thead><tr><th>When</th><th>What we will know</th></tr></thead>
+<tbody>
+<tr><td class="mono">1 Sep</td><td class="wrap-c">Whether v680 took the <span class="mn">MysticLibraryService</span> errors to near zero — the first full day on the fixed build.</td></tr>
+<tr><td class="mono">1 Sep</td><td class="wrap-c">The 29 Aug cohort&rsquo;s day-2 hold, and whether a one-day error spike on the 31st was real or a quiet Monday.</td></tr>
+<tr><td class="mono">3 Sep</td><td class="wrap-c">Whether story completion held up. <span class="mn">FunnelCohortCompletionRate</span> at the <code>Ending Completed</code> step needs a five-day-old cohort and cannot be read before then.</td></tr>
+<tr><td class="mono">5 Sep</td><td class="wrap-c">Whether the <span class="mn">RFYD2To7PlayDays</span> fall survives the audience growing 50% in a week.</td></tr>
+</tbody>
+</table></div>
+
+<div class="foot">
+Read 31 Aug, from a full Open Cloud re-grab of 338 requests over the window 4 Aug – 1 Sep. 29 August is the first full UTC day containing no pre-update players; behavioural metrics lag about two days, so it only became readable this morning.<br>
+Headline figures are the empty-breakdown <code>Total</code> series; partial and gap-filled points are excluded. <span class="mn">ForwardD1Retention</span> and <span class="mn">DailyCohortRetention</span> CohortDay 1 are the same series and agree to every decimal.<br>
+The RFY signals are six days of data on one game with no prior baseline — enough to plan against, not yet enough to call a trend.
+</div>
+
+</div>

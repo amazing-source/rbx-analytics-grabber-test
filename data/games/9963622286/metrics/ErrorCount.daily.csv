@@ -41,7 +41,13 @@ date,series,value,agg,samples,partial
 2026-09-01,LogSource: Client · Place=99255447043899,1992766,sum,48,
 2026-09-02,LogSource: Client · Place=99255447043899,30418,sum,48,
 2026-09-03,LogSource: Client · Place=99255447043899,1674301,sum,48,true
-2026-09-04,LogSource: Client · Place=99255447043899,1353418,sum,29,true
+2026-09-04,LogSource: Client · Place=99255447043899,1353418,sum,48,true
+2026-09-05,LogSource: Client · Place=99255447043899,3385713,sum,48,true
+2026-09-06,LogSource: Client · Place=99255447043899,0,sum,48,
+2026-09-07,LogSource: Client · Place=99255447043899,2433265,sum,48,
+2026-09-08,LogSource: Client · Place=99255447043899,1265875,sum,48,true
+2026-09-09,LogSource: Client · Place=99255447043899,2171207,sum,48,
+2026-09-10,LogSource: Client · Place=99255447043899,38416,sum,1,true
 2026-08-05,LogSource: Server,497264,sum,25,true
 2026-08-06,LogSource: Server,1021445,sum,48,
 2026-08-07,LogSource: Server,474097,sum,24,true
@@ -78,7 +84,13 @@ date,series,value,agg,samples,partial
 2026-09-01,LogSource: Server · Place=99255447043899,149709,sum,48,
 2026-09-02,LogSource: Server · Place=99255447043899,2616,sum,48,
 2026-09-03,LogSource: Server · Place=99255447043899,113790,sum,48,true
-2026-09-04,LogSource: Server · Place=99255447043899,93739,sum,29,true
+2026-09-04,LogSource: Server · Place=99255447043899,93739,sum,48,true
+2026-09-05,LogSource: Server · Place=99255447043899,1619135,sum,48,true
+2026-09-06,LogSource: Server · Place=99255447043899,0,sum,48,
+2026-09-07,LogSource: Server · Place=99255447043899,158199,sum,48,
+2026-09-08,LogSource: Server · Place=99255447043899,71094,sum,48,true
+2026-09-09,LogSource: Server · Place=99255447043899,126200,sum,48,
+2026-09-10,LogSource: Server · Place=99255447043899,3027,sum,1,true
 2026-08-05,Place=99255447043899,8060848,sum,25,true
 2026-08-06,Place=99255447043899,17824810,sum,48,
 2026-08-07,Place=99255447043899,15736699,sum,48,
@@ -109,4 +121,10 @@ date,series,value,agg,samples,partial
 2026-09-01,Place=99255447043899,2142475,sum,48,
 2026-09-02,Place=99255447043899,33034,sum,48,
 2026-09-03,Place=99255447043899,1788091,sum,48,true
-2026-09-04,Place=99255447043899,1447157,sum,29,true
+2026-09-04,Place=99255447043899,1447157,sum,48,true
+2026-09-05,Place=99255447043899,5004848,sum,48,true
+2026-09-06,Place=99255447043899,0,sum,48,
+2026-09-07,Place=99255447043899,2591464,sum,48,
+2026-09-08,Place=99255447043899,1336969,sum,48,true
+2026-09-09,Place=99255447043899,2297407,sum,48,
+2026-09-10,Place=99255447043899,41443,sum,1,true

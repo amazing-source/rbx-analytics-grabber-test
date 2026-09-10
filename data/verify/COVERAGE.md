@@ -797,3 +797,98 @@ This also answers question 3 of the Brainrot baseline, which asked whether
 anything changed on 08-27 on that game specifically: it was not that game alone,
 but it was not portfolio-wide either. **Unexplained; two data points, not a
 trend.** Re-check whether either game returns to its old band.
+
+### F27 — a long grab window silently drops the newest day (gateway path)
+
+**Measured 2026-09-08, twice, nine minutes apart on the same universe.**
+
+| grab | window | newest `DailyActiveUsers` day |
+|---|---|---|
+| 13:34 UTC | `--start 2026-08-12 --end 2026-09-09` | **2026-09-06** |
+| 13:43 UTC | `--start 2026-09-05 --end 2026-09-08` | **2026-09-07** (84,405) |
+
+The end date is not the cause — the wide grab asked for a *later* end and still
+stopped a day earlier. Open Cloud served 09-07 for the same metric at 13:31, and
+its value matches the narrow grab's cell for cell, so the day exists and the
+wide gateway ask is what loses it. Reproduced on all five portfolio universes:
+the 28-day pass returned 09-06, a 3-day pass returned 09-07 on every one.
+
+**Blast radius.** It is the *newest* day, so it hits exactly the read a
+post-update watch depends on, and it is invisible — a missing right edge looks
+like Roblox's own reporting lag rather than a grab artefact. This pass reported
+"behavioural metrics stop at 09-06" for four games when DAU, session length,
+playtime per DAU and stickiness were all available for 09-07; that is one of
+three post-update days thrown away, and on Banana Monkey the recovered day moved
+matched-weekday session length from −9.2% to **−10.8%** and turned a 2-pair
+comparison into a 3-pair one.
+
+**Workaround in use:** run a short trailing-window grab (`--start <today-3>
+--end <today>`) after the long one. The corpus merges them and the newest day
+lands. **Not fixed**, and not yet encoded as a test.
+
+**Audit that catches it:** `node tools/freshness.js` prints the newest settled
+`ONE_DAY` headline point for every metric per game. The frontier is per-metric —
+on 2026-09-08 it was 09-07 for 46 metrics, 09-06 for 15, 09-05 for D1 and 08-30
+for D7. Run it before writing any post-update table; assuming a single frontier
+date for all metrics is what caused the loss above.
+
+## F28 — Roblox's own client-perf telemetry is degenerate for 2026-09-08 on ALL five games
+
+Measured 2026-09-09 12:0xZ, corpus **and** a live Open Cloud re-read (identical
+values, so this is Roblox's store, not our pipeline).
+
+| game | `ClientFpsP10` 09-07 -> 09-08 | `ClientMemoryUsagePercentageAvg` 09-07 -> 09-08 |
+|---|---|---|
+| Verity 10565445771 | 45.30 -> **9.71** | 0.2161 -> **0.0440** |
+| Seal 10638354731 | 48.02 -> **10.57** | 0.1979 -> **0.0420** |
+| Monkey 10399712766 | 33.20 -> **6.88** | 0.2459 -> **0.0462** |
+| Waterslide 10030829154 | 33.80 -> **8.11** | 0.2326 -> **0.0565** |
+| Brainrot 9963622286 | 26.93 -> **3.16** | 0.3122 -> **0.0421** |
+
+**It is an artifact, and four independent checks say so:**
+1. `SessionDurationSecondsAvg` and `ClientCrashRate15m` are flat on all five for
+   the same day. Verity's `OomUnexpectedExits` *fell* 107 -> 71. A game truly at
+   P10 = 9.7 FPS cannot hold session length and crash rate steady.
+2. Memory falls *with* FPS. A real frame-rate collapse raises memory pressure.
+3. Every `Platform` slice falls by the same ratio (Verity Computer 41.97 ->
+   10.72, Console 51.89 -> 21.32) — a sampling signature, not a device one.
+4. 09-09 recovers to 41.40 on Verity with no intervening publish.
+   `ErrorCount` for 09-08 is absent entirely on all five.
+
+**Why it matters:** Verity shipped v689/v690 on the morning of 09-08. Read
+naively, one Roblox telemetry gap would have been reported as that build
+destroying client performance — and as four other studios' builds doing the same
+thing on the same day. **Never quote 09-08 client FPS or memory.** The rule that
+catches this class generally: a technical regression that appears on every
+unrelated universe at once is an instrument fault, not five incidents.
+
+## F29 — per-signature error data exists only for ~the last 24h, by EITHER route
+
+Measured 2026-09-09 on 10399712766, trying to answer "how many times has the
+`CratesController:856` error fired since the v1246 publish (04 Sep 17:35 UTC)".
+**It is unanswerable.** Four independent routes, all clamped to roughly one day:
+
+| Route | Result |
+|---|---|
+| Dashboard export, page picker driven to **Last 7 days**, version filter applied **before** it | CSV **byte-identical** to the 1-day export |
+| Same, version filter applied **after** the range | Byte-identical again |
+| Same **Last 7 days** click with **no** version filter | **54,772** events, against **314,346** in the previous day's 1-day export — fewer, not more, and matching the last-24h figure from the API |
+| Open Cloud `ErrorCount`, `granularity: None`, `breakdown: ["MessageHash"]`, 4.8-day window | **54,175** vs **53,111** for a 1-day window — silently clamped |
+| Same query over a **historical** 24h window (09-07 14:53 → 09-08 14:53) | **EMPTY**, after three spaced retries |
+
+So the range picker changes the page and does **not** change the export, and the
+API serves per-signature error volumes only for the current ~24h. A `--range`
+flag was added to `export-errors.ts` during this investigation and **removed
+again**, because a control that silently does nothing is worse than no control;
+the finding is documented in that script's `--help` instead.
+
+**Consequence for the watch:** an error signature's history cannot be
+reconstructed after the fact. `errors_<date>_<time>_…csv` files ARE the series —
+each one is a day that cannot be re-fetched. **Export daily on any game under
+watch**, or the question "was this worse last week" has no answer. The evidence
+file for this finding is
+`data/exports/10399712766-banana-monkey-destruction/errors/errors_2026-09-09_1310_v178-v1246_92rows_F29-7d-click-ignored.csv`.
+
+Note the aggregate `ErrorCount` metric is unaffected — it chunks and holds ~56
+days in the corpus. It is only the **per-`MessageHash`** breakdown, and the
+dashboard export that carries the message text, that are limited to a day.

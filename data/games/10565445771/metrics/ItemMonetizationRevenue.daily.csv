@@ -33,7 +33,13 @@ date,series,value,agg,samples,partial
 2026-09-01,Total,219557,sum,24,
 2026-09-02,Total,153889,sum,24,
 2026-09-03,Total,182583,sum,24,
-2026-09-04,Total,112111,sum,14,true
+2026-09-04,Total,309118,sum,24,
+2026-09-05,Total,382738,sum,24,
+2026-09-06,Total,277150,sum,24,
+2026-09-07,Total,212136,sum,24,
+2026-09-08,Total,124537,sum,24,
+2026-09-09,Total,87872,sum,24,
+2026-09-10,Total,1943,sum,1,true
 2026-08-04,ProductType: CommissionAvatar,0,sum,24,
 2026-08-05,ProductType: CommissionAvatar,0,sum,24,
 2026-08-06,ProductType: CommissionAvatar,0,sum,24,
@@ -65,7 +71,13 @@ date,series,value,agg,samples,partial
 2026-09-01,ProductType: CommissionAvatar,330,sum,24,
 2026-09-02,ProductType: CommissionAvatar,0,sum,24,
 2026-09-03,ProductType: CommissionAvatar,276,sum,24,
-2026-09-04,ProductType: CommissionAvatar,0,sum,14,true
+2026-09-04,ProductType: CommissionAvatar,81,sum,24,
+2026-09-05,ProductType: CommissionAvatar,781,sum,24,
+2026-09-06,ProductType: CommissionAvatar,234,sum,24,
+2026-09-07,ProductType: CommissionAvatar,214,sum,24,
+2026-09-08,ProductType: CommissionAvatar,0,sum,24,
+2026-09-09,ProductType: CommissionAvatar,0,sum,24,
+2026-09-10,ProductType: CommissionAvatar,0,sum,1,true
 2026-08-01,ProductType: DevProduct,4,sum,24,
 2026-08-02,ProductType: DevProduct,10,sum,24,
 2026-08-03,ProductType: DevProduct,0,sum,24,
@@ -100,7 +112,13 @@ date,series,value,agg,samples,partial
 2026-09-01,ProductType: DevProduct,94626,sum,24,
 2026-09-02,ProductType: DevProduct,64848,sum,24,
 2026-09-03,ProductType: DevProduct,73129,sum,24,
-2026-09-04,ProductType: DevProduct,43687,sum,14,true
+2026-09-04,ProductType: DevProduct,130179,sum,24,
+2026-09-05,ProductType: DevProduct,190729,sum,24,
+2026-09-06,ProductType: DevProduct,137438,sum,24,
+2026-09-07,ProductType: DevProduct,104391,sum,24,
+2026-09-08,ProductType: DevProduct,58303,sum,24,
+2026-09-09,ProductType: DevProduct,41622,sum,24,
+2026-09-10,ProductType: DevProduct,525,sum,1,true
 2026-08-05,ProductType: GamePass,217,sum,24,
 2026-08-06,ProductType: GamePass,621,sum,24,
 2026-08-07,ProductType: GamePass,2246,sum,24,
@@ -131,4 +149,10 @@ date,series,value,agg,samples,partial
 2026-09-01,ProductType: GamePass,124601,sum,24,
 2026-09-02,ProductType: GamePass,89041,sum,24,
 2026-09-03,ProductType: GamePass,109178,sum,24,
-2026-09-04,ProductType: GamePass,68424,sum,14,true
+2026-09-04,ProductType: GamePass,178858,sum,24,
+2026-09-05,ProductType: GamePass,191228,sum,24,
+2026-09-06,ProductType: GamePass,139478,sum,24,
+2026-09-07,ProductType: GamePass,107531,sum,24,
+2026-09-08,ProductType: GamePass,66234,sum,24,
+2026-09-09,ProductType: GamePass,46250,sum,24,
+2026-09-10,ProductType: GamePass,1418,sum,1,true

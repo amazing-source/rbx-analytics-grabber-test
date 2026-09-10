@@ -1,0 +1,258 @@
+<title>Seal A Driveway v908 at T+3d</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#F8F7F4; --surface:#FFFFFF; --surface-2:#F0EDE7;
+  --ink:#1B1813; --ink-2:#4F4A41; --ink-3:#777064;
+  --rule:#E2DDD3; --rule-2:#CBC4B6;
+  --ok:#1B6F47; --ok-bg:#E3F2EA;
+  --watch:#8A5B0C; --watch-bg:#FBF0DC;
+  --fix:#A6332A; --fix-bg:#FBE6E3;
+  --accent:#8A5A24; --accent-soft:#F5EADC;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ground:#15130F; --surface:#1D1A15; --surface-2:#26221B;
+  --ink:#F0ECE4; --ink-2:#BDB5A8; --ink-3:#8B8377;
+  --rule:#332E26; --rule-2:#453E33;
+  --ok:#57C08C; --ok-bg:#12291F; --watch:#DCA748; --watch-bg:#2C2314;
+  --fix:#EC8175; --fix-bg:#301A18;
+  --accent:#D9A05B; --accent-soft:#2A2015;
+}}
+:root[data-theme="dark"]{
+  --ground:#15130F; --surface:#1D1A15; --surface-2:#26221B;
+  --ink:#F0ECE4; --ink-2:#BDB5A8; --ink-3:#8B8377;
+  --rule:#332E26; --rule-2:#453E33;
+  --ok:#57C08C; --ok-bg:#12291F; --watch:#DCA748; --watch-bg:#2C2314;
+  --fix:#EC8175; --fix-bg:#301A18;
+  --accent:#D9A05B; --accent-soft:#2A2015;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);
+  font-family:"Source Serif 4",Georgia,serif;font-size:16.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:44px 26px 88px}
+h1,h2,h3,.lab,.chip,table{font-family:Archivo,"Helvetica Neue",Arial,sans-serif}
+h1{font-size:2.3rem;line-height:1.08;font-weight:700;margin:0 0 8px;letter-spacing:-.022em;text-wrap:balance}
+h2{font-size:1.2rem;font-weight:600;margin:48px 0 12px;letter-spacing:-.01em;text-wrap:balance;
+   padding-bottom:8px;border-bottom:2px solid var(--rule-2)}
+h3{font-size:1rem;font-weight:600;margin:26px 0 6px}
+p{margin:0 0 13px;max-width:66ch}
+ul,ol{margin:0 0 13px;padding-left:21px;max-width:66ch}
+li{margin:0 0 8px}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.87em;
+  background:var(--surface-2);padding:.1em .34em;border-radius:3px}
+.lab{font-size:.69rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.mast{border-top:5px solid var(--accent);padding-top:20px}
+.sub{font-size:1.06rem;color:var(--ink-2);max-width:62ch;margin:8px 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:6px 24px;margin-top:14px;
+  font-family:"IBM Plex Mono",monospace;font-size:.77rem;color:var(--ink-2)}
+.meta b{color:var(--ink);font-weight:500}
+.scroll{overflow-x:auto;margin:14px 0;border:1px solid var(--rule);border-radius:7px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.84rem}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--rule);white-space:nowrap}
+thead th{background:var(--surface-2);font-weight:600;font-size:.69rem;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-2)}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+td.wrap-c{white-space:normal;min-width:250px;font-family:"Source Serif 4",serif;font-size:.93rem;line-height:1.45}
+tr.hl td{background:var(--accent-soft)}
+.up{color:var(--ok);font-weight:600} .dn{color:var(--fix);font-weight:600}
+.chip{display:inline-block;font-size:.64rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  padding:3px 8px;border-radius:3px}
+.c-ok{background:var(--ok-bg);color:var(--ok)}
+.c-watch{background:var(--watch-bg);color:var(--watch)}
+.c-fix{background:var(--fix-bg);color:var(--fix)}
+.call{background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--accent);
+  border-radius:0 7px 7px 0;padding:15px 19px;margin:18px 0}
+.call.fix{border-left-color:var(--fix)}
+.call.ok{border-left-color:var(--ok)}
+.call .lab{display:block;margin-bottom:5px}
+.call p:last-child{margin-bottom:0}
+.act{background:var(--surface);border:1px solid var(--rule);border-radius:9px;padding:20px 22px;margin:16px 0}
+.act h3{margin:0 0 8px;font-size:1.08rem}
+.act .tag{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-3);
+  display:block;margin-bottom:10px}
+.act p:last-child{margin-bottom:0}
+.funnel{margin:16px 0;display:flex;flex-direction:column;gap:7px}
+.fr{display:grid;grid-template-columns:158px 1fr 62px;align-items:center;gap:12px;font-size:.85rem}
+.fr .nm{font-family:"IBM Plex Mono",monospace;font-size:.76rem;color:var(--ink-2);text-align:right;
+  overflow-wrap:anywhere}
+.fr .bar{height:22px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+.fr .bar i{display:block;height:100%;background:var(--accent);opacity:.75}
+.fr.drop .bar i{background:var(--fix);opacity:.8}
+.fr .pc{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:.82rem;font-weight:600}
+.foot{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:.73rem;color:var(--ink-3);line-height:1.65}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* metric identity: the Roblox series name is the row subject, the gloss supports it */
+td.mcell{white-space:normal;min-width:215px}
+.mn{font-family:"IBM Plex Mono",monospace;font-size:.8rem;font-weight:500;
+  color:var(--accent);letter-spacing:-.01em;overflow-wrap:anywhere}
+.gl{display:block;font-family:"Source Serif 4",Georgia,serif;font-size:.85rem;
+  color:var(--ink-3);margin-top:2px}
+.faults{display:flex;flex-direction:column;gap:0;margin:14px 0;border:1px solid var(--rule);
+  border-radius:7px;background:var(--surface);overflow:hidden}
+.fault{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding:13px 18px;
+  border-bottom:1px solid var(--rule)}
+.fault:last-child{border-bottom:none}
+.fault .sv{font-family:Archivo,sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;padding:3px 7px;border-radius:3px;align-self:start;white-space:nowrap}
+.fault .ti{font-weight:600;font-family:Archivo,sans-serif;font-size:.95rem}
+.fault .wh{grid-column:2;font-size:.9rem;color:var(--ink-2);line-height:1.45}
+.fault .wh code{font-size:.8rem}
+.s-crit{background:var(--fix-bg);color:var(--fix)}
+.s-high{background:var(--watch-bg);color:var(--watch)}
+
+@media (max-width:640px){.wrap{padding:28px 15px 60px}h1{font-size:1.8rem}body{font-size:16px}
+  .fr{grid-template-columns:118px 1fr 52px;gap:8px}
+  .fault{grid-template-columns:1fr}.fault .wh{grid-column:1}}
+</style>
+
+<div class="wrap">
+
+<div class="mast">
+  <span class="lab">Seal A Driveway &middot; three days after v908</span>
+  <h1>The cash packs worked. The tutorial is losing the players they would sell to.</h1>
+  <p class="sub">v908 is the most successful monetization change in the portfolio this month. In the same window, the first three minutes got measurably worse and player sentiment fell off a cliff.</p>
+  <div class="meta">
+    <span>v901 &rarr; <b>v908</b>, published <b>28 Aug 21:00 UTC</b></span>
+    <span>first clean day <b>29 Aug</b> &middot; read <b>31 Aug</b></span>
+    <span>100% adoption</span>
+  </div>
+</div>
+
+<h2>What moved since the baseline</h2>
+<p>Every figure is the <code>Total</code> series — no breakdown slice — comparing <b>27 Aug</b>, the last day that closed before the publish, with <b>30 Aug</b>, the newest settled day.</p>
+<div class="scroll"><table>
+<thead><tr><th>Metric</th><th class="num">27 Aug</th><th class="num">30 Aug</th><th>Reading</th></tr></thead>
+<tbody>
+<tr class="hl"><td class="mcell"><span class="mn">ItemMonetizationRevenue</span> &middot; DevProduct<span class="gl">the new cash packs</span></td><td class="num">R$36,416</td><td class="num">R$202,296</td><td class="wrap-c"><span class="up">+456%.</span> The packs are selling hard.</td></tr>
+<tr class="hl"><td class="mcell">DevProduct share of revenue</td><td class="num">5.3%</td><td class="num">24.6%</td><td class="wrap-c">The build aimed at 8%. <b>It cleared that three times over.</b></td></tr>
+<tr><td class="mcell"><span class="mn">DailyRevenue</span></td><td class="num">R$689,309</td><td class="num">R$822,060</td><td class="wrap-c"><span class="up">+19.3%</span> total.</td></tr>
+<tr><td class="mcell"><span class="mn">AverageRevenuePerUser</span><span class="gl">ARPDAU — the growth-proof version</span></td><td class="num">R$1.9260</td><td class="num">R$1.9957</td><td class="wrap-c"><span class="up">+3.6%.</span> <span class="mn">DailyActiveUsers</span> also rose 16%, so this is the number that proves it, not the total.</td></tr>
+<tr><td class="mcell"><span class="mn">PayingUsers</span> / <span class="mn">PayingUsersCVR</span></td><td class="num">3,894 / 1.088%</td><td class="num">5,315 / 1.290%</td><td class="wrap-c"><span class="up">+36% buyers.</span> Cheap packs recruited new payers rather than discounting old ones.</td></tr>
+<tr><td class="mcell"><span class="mn">AverageRevenuePerPayingUser</span><span class="gl">ARPPU</span></td><td class="num">R$177.02</td><td class="num">R$154.67</td><td class="wrap-c">Down — <b>as intended.</b> More people paying less each.</td></tr>
+<tr><td class="mcell"><span class="mn">ItemMonetizationRevenue</span> &middot; GamePass</td><td class="num">R$651,525</td><td class="num">R$617,720</td><td class="wrap-c">&minus;5%. Real but modest cannibalisation, far outweighed.</td></tr>
+<tr><td class="mcell"><span class="mn">ClientCrashRate15m</span> / <span class="mn">ClientFpsP10</span></td><td class="num">0.475% / 45.3</td><td class="num">0.419% / 47.7</td><td class="wrap-c"><span class="up">Both best in the window.</span></td></tr>
+<tr><td class="mcell"><span class="mn">ErrorCount</span> per concurrent player</td><td class="num">1,163</td><td class="num">1,786</td><td class="wrap-c">A one-day burst. Back to 1,223 on the 31st — <span class="up">cleared on its own</span>, not the build.</td></tr>
+<tr class="hl"><td class="mcell">Up/down votes<span class="gl">net per 100k players, from the feedback export</span></td><td class="num">+41</td><td class="num">+6.5</td><td class="wrap-c"><b>Down 84% per player.</b> Downvotes nearly catching upvotes.</td></tr>
+<tr class="hl"><td class="mcell"><span class="mn">FunnelCohortCompletionRate</span> &middot; <code>ReachedDriveway</code><span class="gl">27 Aug &rarr; 31 Aug</span></td><td class="num">64.7%</td><td class="num">60.8%</td><td class="wrap-c"><b>39 in every 100 new players never reach a driveway.</b></td></tr>
+<tr><td class="mcell"><span class="mn">ForwardD1Retention</span><span class="gl">27 Aug cohort &rarr; 29 Aug cohort</span></td><td class="num">12.71%</td><td class="num">11.68%</td><td class="wrap-c">Down, but the turn is 26 Aug — two days before the publish.</td></tr>
+</tbody>
+</table></div>
+
+<div class="call ok">
+  <span class="lab">Settled today</span>
+  <p>At the two-day read we could not credit v908 for the revenue jump, because publish day was 87% pre-update. <b>29 August is the first clean day and it confirms it</b> — DevProduct share went 8.7% to 25.4% on the first full day of the new build and held there. The result is real and it belongs to this update.</p>
+</div>
+
+<h2>The problem: players are leaving before they seal anything</h2>
+<p>Three separate measurements say the same thing, and none of them depends on the others.</p>
+
+<h3>1. A third of new players never reach the driveway</h3>
+<div class="funnel">
+  <div class="fr"><span class="nm">Neighbourhood</span><span class="bar"><i style="width:100%"></i></span><span class="pc">100%</span></div>
+  <div class="fr drop"><span class="nm">ReachedDriveway</span><span class="bar"><i style="width:65.6%"></i></span><span class="pc">65.6%</span></div>
+  <div class="fr"><span class="nm">PouredOut</span><span class="bar"><i style="width:63.6%"></i></span><span class="pc">63.6%</span></div>
+  <div class="fr"><span class="nm">FirstPass</span><span class="bar"><i style="width:92.8%"></i></span><span class="pc">92.8%</span></div>
+  <div class="fr"><span class="nm">DrivewaySealed</span><span class="bar"><i style="width:94.7%"></i></span><span class="pc">94.7%</span></div>
+  <div class="fr"><span class="nm">Complete</span><span class="bar"><i style="width:79.6%"></i></span><span class="pc">79.6%</span></div>
+</div>
+<p class="lab">Share of the previous step who reach the next one</p>
+<p>Once a player actually starts sealing, they finish — 93% and 95% on the middle steps. <b>The loss is almost entirely at one step: getting from spawn to a driveway to work on.</b> That is the single biggest lever on this game, and it has fallen every day since 20 August.</p>
+
+<h3>2. Four in ten quit within three minutes</h3>
+<p>Two of the Roblox ranking signals measure exactly this. <span class="mn">RFYDuration0To60</span> — players who leave inside a minute — went 11.87% to <b>14.58%</b> across the week. <span class="mn">RFYDuration61To180</span> — the next two minutes — went 21.04% to <b>25.03%</b>. Together that is <b>39.6% of first plays ending inside three minutes, up from 32.9%</b>. Meanwhile <span class="mn">RFYPlayThroughRate</span> fell 31% and <span class="mn">RFYD1Playtime</span> fell 16%, while the return signals stayed flat — the exact inverse of Verity.</p>
+
+<h3>3. Sentiment has collapsed</h3>
+<p>Net rating per 100,000 players ran 70–130 for most of August. It is now <b>6.5</b> — a fall of roughly 90%, meaning downvotes have almost caught up with upvotes. Lifetime the game sits at <b>43% downvotes</b>. This turned at the same time as the funnel step and the bounce rate, which is what makes the three readings one finding rather than three.</p>
+
+<div class="call fix">
+  <span class="lab">Worth being clear about</span>
+  <p><b>None of this is v908&rsquo;s doing.</b> All three measures turned on 25–26 August, two to three days before the update shipped. The monetization change is clean; it landed on a game whose front door was already deteriorating.</p>
+</div>
+
+<h2>We already know what is wrong with the first three minutes</h2>
+<p>This is no longer a question waiting on player feedback. The <a href="https://claude.ai/code/artifact/bd164212-5432-42f8-99f6-334d1ba346d0">defect report read against v908</a> traced <b>ten faults to source, nine of them confirmed</b>, and three of those sit directly on the first session. Two further problems are known from playing the build and are not in that report.</p>
+
+<div class="faults">
+  <div class="fault">
+    <span class="sv s-high">Confirmed</span>
+    <span class="ti">Desktop has no performance preset</span>
+    <span class="wh"><code>DrivewayClient:179</code> — touch devices get a coarser grid and roughly 4&times; less work per frame. Desktop always runs maximum settings with no rung below it. Measured: <code>Script_DrivewayClient</code> is <b>72–85% of the whole foreground thread</b>, and the engine classified 100% of frames as CPU-bound. A weak PC is unplayable while a phone is fine.</span>
+  </div>
+  <div class="fault">
+    <span class="sv s-high">Confirmed</span>
+    <span class="ti">The squeegee sweep has no frame budget</span>
+    <span class="wh"><code>SurfaceGrid:1596</code> — the blade pass is deliberately exempt from the frame budget, so it is the one path that can run long: 0.9 ms on a bare slab, <b>12 ms on a flooded one</b>, and 2.8&times; worse when the player sweeps diagonally. This is the &ldquo;it only lags when you use the squeegee&rdquo; report, and it reproduces on a stock blade at level one.</span>
+  </div>
+  <div class="fault">
+    <span class="sv s-high">New</span>
+    <span class="ti">The tutorial UI is too large on mobile</span>
+    <span class="wh">Not in the defect report — found in play. On a phone the tutorial panel takes enough of the screen that the thing it is pointing at is hard to see or reach. Mobile is the majority platform, and this sits on the exact step the funnel says players fail.</span>
+  </div>
+  <div class="fault">
+    <span class="sv s-crit">New</span>
+    <span class="ti">The tutorial takes about three minutes to reach the core verb</span>
+    <span class="wh">Also found in play. <b>This is the finding the data was pointing at all along:</b> 39.6% of first plays end inside three minutes, and the tutorial does not get a player to sealing a driveway inside that window. The two numbers describe the same event from opposite sides.</span>
+  </div>
+  <div class="fault">
+    <span class="sv s-high">Confirmed</span>
+    <span class="ti">Sealing silently disabled by a place setting</span>
+    <span class="wh"><code>DrivewaySurface:56</code> logs <code>[DrivewaySealer] Sealing is disabled: this place cannot use the Editable Image/Mesh APIs</code> — the warning names its own fix. A minority path, but it sits on the core verb, and it costs one checkbox.</span>
+  </div>
+</div>
+
+<h2>What we want to do about it</h2>
+
+<div class="act">
+  <span class="lab">Priority 1</span>
+  <h3>Cut the tutorial to the core verb, and fix its mobile layout</h3>
+  <span class="tag">target: <code>ReachedDriveway</code> drop-off 34% &rarr; under 20%</span>
+  <p>Get a player pouring sealer on a driveway <b>inside the first minute</b>, not the third. Everything else the tutorial teaches — trucks, upgrades, districts, rebirths — can be taught after the player has done the thing the game is named after. On mobile the panel has to shrink enough that the target it points at stays visible and reachable.</p>
+  <p style="margin-top:10px">This is the only step in the funnel that loses meaningful numbers, it is the step players complain about, and it sits in front of the packs that are now selling well. Roughly <b>390,000 players a day enter this funnel and about 134,000 of them never reach a driveway</b> — <b>every one recovered is a player the new monetization can reach.</b> We are deliberately not putting a Robux figure on that: we cannot yet measure what a recovered player is worth against one who was always going to bounce.</p>
+</div>
+
+<div class="act">
+  <span class="lab">Priority 2</span>
+  <h3>Give desktop a quality preset, and put a frame budget on the blade</h3>
+  <span class="tag">DrivewayClient:179 &middot; SurfaceGrid:1596 &middot; both confirmed in the defect report</span>
+  <p>These two are the measured reason the first minutes feel bad on a weak machine, and they compound the tutorial problem — a player who is lagging during a three-minute tutorial is the most likely person in the game to leave inside three minutes.</p>
+  <p style="margin-top:10px">Both fixes are written out in the <a href="https://claude.ai/code/artifact/bd164212-5432-42f8-99f6-334d1ba346d0">defect report</a>, with the caveat that the preset must be applied at join — <code>CellSize</code> is baked into every grid at construction — and that the blade should be <em>strided</em>, not frame-skipped, so the tool keeps the responsiveness the exemption exists to protect.</p>
+</div>
+
+<div class="act">
+  <span class="lab">Priority 3 &middot; free, one setting</span>
+  <h3>Turn on Mesh &amp; Image APIs</h3>
+  <span class="tag">Game Settings &rarr; Security &rarr; Allow Mesh &amp; Image APIs</span>
+  <p>One checkbox, and the warning names it exactly. Note that it needs a republish to take effect, which puts it in the queue below — it is the first thing that will want to jump it.</p>
+</div>
+
+<div class="act">
+  <span class="lab">A decision, not a task</span>
+  <h3>Hold the next publish until 5 September if it can wait</h3>
+  <span class="tag">protects the only read of the D3/D7 reward rework</span>
+  <p>The reward rework that shipped in v908 can only be judged on 5 September, when <span class="mn">ForwardD7Retention</span> matures for its cohort. A new <span class="mn">PlaceVersion</span> before then sits across that measurement and we lose the answer permanently.</p>
+  <p style="margin-top:10px">The tutorial work will not be ready before the 5th anyway, so in practice this costs us only the Mesh &amp; Image toggle. <b>Our recommendation: hold it.</b> The sealing warning is a minority path and the reward read is a one-time opportunity. If something genuinely urgent must ship, ship it — but do that knowingly.</p>
+</div>
+
+<h2>What we are still waiting on</h2>
+<div class="scroll"><table>
+<thead><tr><th>When</th><th>What we will know</th></tr></thead>
+<tbody>
+<tr><td class="mono">on download</td><td class="wrap-c">The written feedback export — it will say which of the tutorial problems players name themselves, and rank them.</td></tr>
+<tr><td class="mono">1 Sep</td><td class="wrap-c">Whether the <span class="mn">ForwardD1Retention</span> dip is a trend or the low point of the traffic surge.</td></tr>
+<tr><td class="mono">5 Sep</td><td class="wrap-c">Whether the D3/D7 reward rework worked. <b>Do not publish over this.</b></td></tr>
+<tr><td class="mono">5 Sep</td><td class="wrap-c">Whether the <span class="mn">RFYDuration0To60</span> and <span class="mn">RFYDuration61To180</span> rises are real or an effect of being shown to twice as many people.</td></tr>
+</tbody>
+</table></div>
+
+<div class="foot">
+Read 31 Aug, from a full Open Cloud re-grab of 203 requests over the window 4 Aug – 1 Sep. 29 August is the first full UTC day containing no pre-update players; behavioural metrics lag about two days, so it only became readable this morning.<br>
+Funnel percentages are the share of the previous step and are merged across all four funnels, because Open Cloud accepts no working <code>FunnelName</code> filter — treat them as the shape of the drop-off rather than one funnel&rsquo;s exact rate.<br>
+The bounce and sentiment readings are six days each with no prior baseline — strong enough to act on, not yet a proven trend. The two tutorial faults are observed in play, not measured.
+</div>
+
+</div>

@@ -24,16 +24,17 @@
     "anomaly-places": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/anomaly-places.ts",
     "notify-test": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/notify-test.ts",
     "ccu-baseline": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/ccu-baseline.ts",
-    "platform-ccu": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/platform-ccu.ts",
     "grab": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/grab.ts",
     "grab:login": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/grab-login.ts",
     "chunk-cost": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/chunk-cost.ts",
     "rebuild-report": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/rebuild-report.ts",
     "grab:doctor": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/grab-doctor.ts",
-    "find-games": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/find-games.ts"
+    "find-games": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/find-games.ts",
+    "export:errors": "node --no-warnings=MODULE_TYPELESS_PACKAGE_JSON scripts/export-errors.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
+    "duckdb": "^1.4.4",
     "next": "16.2.9",
     "pg": "^8.22.0",
     "react": "19.2.4",

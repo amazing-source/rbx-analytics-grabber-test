@@ -94,6 +94,53 @@ One coverage gap turned real: Waterslide's undiscovered seventh place,
 `128451475320872` (*Omatsuri*), went **0 → 6,172 → 44,288** errors across
 08-27/28/29 and is the only place on that universe rising while every other falls.
 
+### Post-update read, 2026-08-30 ~17:00 UTC — T+2d, all four graded
+
+Full Open Cloud re-grab of all four live-update games (Brainrot not re-read this
+pass). Each game's own `BASELINE.md` carries the scored tripwire table under
+*Post-update read — 2026-08-30 T+2d*. Report:
+[Four Updates at T+2d](https://claude.ai/code/artifact/beff0382-c871-4ebb-a665-fe1611a674e6).
+
+| Game | Worst status | The reading |
+|---|---|---|
+| **Verity** | **FIX** | `MysticLibraryService:144` unchanged — deploy-introduced errors **2,069 → 7,244**, no decay. Everything else clear; DAU reversed to ~618,500 and votes turned positive |
+| **Seal** | WATCH | Tripwire 5 **fired** (errors/CCU 1,786.5 vs 1,550) but v908 introduced 416 of 8.6M events and the rise is bursty, not a step. DevProduct share 5.3% → **8.7%** on an 87%-pre-update day |
+| **Waterslide** | WATCH | Cleanest. v1715 hotfix confirmed (9,826 → 379), all 15 tutorial steps recovered, the 08-27 CPU spike resolved as a one-day event |
+| **Monkey** | WATCH | Recovery held — 08-29 projects to ~287,700, above the pre-update peak. v1244-introduced errors rising at 100% adoption (30 → 128 → 1,308) |
+
+**All four builds are at 100% adoption.** Gates on the day: `npm test` 44/44 ·
+`npm run audit-plan` 140 templates, 0 failures · `npm run verify` 23/2/8.
+
+**A correction this pass produced, and it applies to every baseline in the
+batch.** All five say monetization, session length and DAU are *"first readable
+08-29 / 08-30"*. **They are not.** Behavioural metrics lag ~2 days, so on 08-30
+the newest served day for DAU, revenue, payers, ARPDAU, CVR and session length is
+**08-28** — a publish day on all four. **The first clean behavioural day is
+08-29 and it lands 08-31.** The technical rung and the funnels *are* settled for
+08-29, which is enough to answer "did we break it".
+
+**Reading DAU inside the lag.** `UniqueUsersWithPlaySessions` is served for 08-29
+and tracks DAU at **0.995–1.003 ± 0.006–0.011** across the four games, so it
+projects DAU to about ±1%. Every 08-29 DAU figure in these reads is that
+projection and is labelled as one. New tool: `tools/post-update.js`.
+
+**New tools from this pass** — all read Open Cloud directly, never the corpus
+half-hour rows (F18): `tools/post-update.js` (the settled daily table + every
+metric's newest two days), `tools/errors-per-ccu.js` (the matched-slot
+errors-per-player tripwire; reproduces the frozen 168.3 as 168.5),
+`tools/deploy-errors.js` (`FirstSeenPlaceVersion >=` for all four),
+`tools/funnels-post.js`, `tools/halfhour-profile.js` (spike vs step),
+`tools/post-extras.js` (per-place errors, `RevenueSource`, version adoption).
+
+**One open defect in the grabber itself.** `web/src/lib/opencloud-run.ts:77`
+returns the corpus place list early whenever one exists, so `fetchPlaces()` is
+never called again and a place added after the first grab can never enter the
+plan. That is why Waterslide's **Omatsuri** `128451475320872` — now the
+fifth-largest error source on that universe (0 → 6,172 → 86,850 → 72,219) —
+still has no per-place shape. The fix is a union, not a short-circuit. Not
+applied.
+
+
 ### What each folder holds
 
 Same layout as the 08-28 batch below, plus `ccu-baseline-2026-08-29.txt`.

@@ -1,0 +1,106 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+1070929,Warning,Client,,V404,trying to set locked parent!,,
+736056,Error,Client,Thu Jul 09 2026 15:00:05 GMT+0200 (heure d’été d’Europe centrale),V499,Failed to load sound: Asset is not approved for the requester,rbxassetid://120032784680199
+rbxassetid://121336636707861,
+146124,Warning,Client,,V404,Infinite yield possible on WaitForChild,Players.<Player>:WaitForChild("StarterPackTimer")
+Players.<Player>.PlayerGui:WaitForChild("Confetti")
+Players.<Player>.PlayerGui:WaitForChild("MainFrame")
+Players.<Player>.PlayerGui:WaitForChild("SpeedGain")
+Workspace.<Player>.Animate:WaitForChild("PlayEmote")
+Workspace.Locations.3.Guards.<Player>:WaitForChild("Head"),
+120899,Error,Client,,V404,MeshContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=102326839877719
+https://assetdelivery.roblox.com/v1/asset?id=106393949744504
+https://assetdelivery.roblox.com/v1/asset?id=111407917497011
+https://assetdelivery.roblox.com/v1/asset?id=114843293553191
+https://assetdelivery.roblox.com/v1/asset?id=1192459566
+https://assetdelivery.roblox.com/v1/asset?id=84012664316054
+https://assetdelivery.roblox.com/v1/asset?id=92629609163937
+https://assetdelivery.roblox.com/v1/asset/?id=113610068782089
+https://assetdelivery.robloxapp.vnggames.com/v1/asset?id=92629609163937,
+103928,Error,Client,Fri Jul 31 2026 21:00:05 GMT+0200 (heure d’été d’Europe centrale),V552,Players.<Player>.PlayerGui.MainFrame.StoreFrames.SeasonPass.RewardsFrame.Rewards.ContentFrame.LocalScript,,
+77946,Error,Client,,V404,SocialService:PromptRsvpToEventAsync Event has already started.,"Script 'Players.<Player>.PlayerScripts.PromptEvent', Line 26",
+67106,Error,Client,,V404,Failed to load animation with sanitized ID. Animation failed to load,rbxassetid://100130898761850
+rbxassetid://11600206437
+rbxassetid://124851007703731
+rbxassetid://125008738962008
+rbxassetid://125766582338778
+rbxassetid://138379317397326
+rbxassetid://2506281703
+rbxassetid://84907664075516
+rbxassetid://90345323785020
+rbxassetid://97256610009860,
+33772,Error,Client,,V404,Failed to load sound: Timedout,rbxassetid://100619504934608: HttpError
+rbxassetid://105871524427076: HttpError
+rbxassetid://121885310530542: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://128351756710303: HttpError
+rbxassetid://133664122932845: HttpError
+rbxassetid://136847919947471: HttpError
+rbxassetid://9045766377: HttpError,
+27440,Warning,Client,,V404,"Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will not be played.","http://www.roblox.com/asset/?id=10921258489,<Player>
+http://www.roblox.com/asset/?id=10921259953,<Player>
+http://www.roblox.com/asset/?id=507765000,<Player>
+http://www.roblox.com/asset/?id=507765644,<Player>
+http://www.roblox.com/asset/?id=507766388,<Player>",
+21409,Warning,Client,Fri Aug 21 2026 22:00:05 GMT+0200 (heure d’été d’Europe centrale),V596,[BonusEventVisuals] Particle effect not found: CircusEvent,,
+20581,Error,Client,,V404,Remote event invocation queue exhausted; did you forget to implement OnClientEvent? (events dropped),ReplicatedStorage.Events.LevelUp,
+13210,Error,Server,Thu Jul 09 2026 15:00:10 GMT+0200 (heure d’été d’Europe centrale),V499,Failed to load sound: Asset is not approved for the requester,rbxassetid://120032784680199,
+8260,Error,Server,Sat Aug 08 2026 02:20:05 GMT+0200 (heure d’été d’Europe centrale),V576,Downloading asset failed. Is the asset id correct and is the asset type "Model"?,88606953333971,
+8176,Error,Client,,V404,Failed to load object. PBR textures may not be visible in game.,lieszer.Accessory (dark_fae).Handle.SurfaceAppearance
+Players.<Player>.PlayerGui.MainFrame.LeftGui.StopConveyor.Frame.MainLabel.Chimpanzini Bananini.WorldModel.Chimpanzini Bananini.Cube.001.SurfaceAppearance
+Workspace.<Player>.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.1234566987jihow0.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Alexis92tralalero9.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.BobalooJ.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Brilliam7.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Hoanghai4160.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.LBram5818.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.SAMMY986512.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.wdfdefff345566.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.wehhdhjdhdi.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.zuizerzhd.Accessory (dark_fae).Handle.SurfaceAppearance,
+5539,Warning,Server,Sun Aug 16 2026 12:00:30 GMT+0200 (heure d’été d’Europe centrale),V587,[AnimalModule] Unknown trait: RAINBOW,,
+4609,Warning,Client,Sun Aug 16 2026 12:00:40 GMT+0200 (heure d’été d’Europe centrale),V587,[AnimalModule] Unknown trait: RAINBOW,,
+4025,Warning,Server,Fri Aug 21 2026 22:00:05 GMT+0200 (heure d’été d’Europe centrale),V596,[BonusEventVisuals] Particle effect not found: CircusEvent,,
+3938,Error,Client,,V404,"Unable to assign property Image. ContentId expected, got nil","Script 'Players.<Player>.PlayerGui.MainFrame.LocationsFrame.PlayerBar.BarController', Line 33 - function createPlayerFrame",
+3460,Error,Client,,V404,Failed to load sound: ConnectFail,rbxassetid://100619504934608: HttpError
+rbxassetid://105065468655111: HttpError
+rbxassetid://107776727447557: HttpError
+rbxassetid://121336636707861: HttpError
+rbxassetid://121885310530542: HttpError
+rbxassetid://133946015052315: HttpError
+rbxassetid://408524543: HttpError,
+3001,Error,Client,,V404,Failed to load sound: DnsResolve,rbxasset://sounds/action_falling.ogg: HttpError
+rbxassetid://120032784680199: HttpError
+rbxassetid://1210852193: HttpError
+rbxassetid://121336636707861: HttpError
+rbxassetid://128351756710303: HttpError
+rbxassetid://139117624240827: HttpError
+rbxassetid://1840443935: HttpError
+rbxassetid://89182523909168: HttpError,
+2717,Warning,Client,Fri Aug 21 2026 22:01:00 GMT+0200 (heure d’été d’Europe centrale),V596,Need 2500 Circus Coins! You have 0,,
+2683,Error,Client,,V404,Failed to load sound: NetFail,rbxassetid://105871524427076: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://133664122932845: HttpError
+rbxassetid://133946015052315: HttpError
+rbxassetid://136119448397324: HttpError
+rbxassetid://140045094283652: HttpError
+rbxassetid://359623376: HttpError
+rbxassetid://80977935658780: HttpError,
+2473,Error,Client,,V404,Failed to load sound: HTTP 429 (Too Many Requests),rbxasset://sounds/action_falling.ogg
+rbxassetid://100619504934608
+rbxassetid://107776727447557
+rbxassetid://120032784680199
+rbxassetid://133946015052315
+rbxassetid://80977935658780
+rbxassetid://89182523909168,
+2017,Warning,Server,,V404,"Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will not be played.","http://www.roblox.com/asset/?id=10921242013,<Player>
+http://www.roblox.com/asset/?id=10921301576,<Player>
+http://www.roblox.com/asset/?id=507766388,<Player>",
+1786,Error,Client,,V404,Failed to load sound: Unable to download sound data,rbxassetid://105065468655111
+rbxassetid://105871524427076
+rbxassetid://124984738215587
+rbxassetid://133664122932845
+rbxassetid://1836009208
+rbxassetid://1837768517
+rbxassetid://1840443935,

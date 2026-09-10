@@ -1,0 +1,95 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+117938514,Warning,Client,Tue Aug 11 2026 06:56:05 GMT+0200 (heure d’été d’Europe centrale),V488,"ContextActionService could not find the function passed in, doing nothing.",,
+22312613,Warning,Client,Thu Aug 13 2026 16:30:15 GMT+0200 (heure d’été d’Europe centrale),V639,"Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will not be played.","http://www.roblox.com/asset/?id=10921257536,<Player>
+http://www.roblox.com/asset/?id=10921258489,<Player>
+http://www.roblox.com/asset/?id=507765000,<Player>
+http://www.roblox.com/asset/?id=507766388,<Player>",
+372899,Error,Client,Wed Aug 12 2026 18:41:00 GMT+0200 (heure d’été d’Europe centrale),V582,MeshContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=100921058567886
+https://assetdelivery.roblox.com/v1/asset?id=101241484603339
+https://assetdelivery.roblox.com/v1/asset?id=121869072107090
+https://assetdelivery.roblox.com/v1/asset?id=138639929485890
+https://assetdelivery.roblox.com/v1/asset?id=18640275851
+https://assetdelivery.roblox.com/v1/asset?id=82581610516276
+https://assetdelivery.roblox.com/v1/asset/?id=102205697083583
+https://assetdelivery.roblox.com/v1/asset/?id=104097513573657
+https://assetdelivery.roblox.com/v1/asset/?id=12547437572
+https://assetdelivery.roblox.com/v1/asset/?id=12748974718
+https://assetdelivery.roblox.com/v1/asset/?id=15725927818
+https://assetdelivery.roblox.com/v1/asset/?id=8917438041,
+306561,Error,Client,Wed Aug 12 2026 18:57:25 GMT+0200 (heure d’été d’Europe centrale),V582,Failed to load object. PBR textures may not be visible in game.,Handle.SurfaceAppearance
+Workspace.<Player>.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Iovingmimi.RightLowerArm.SurfaceAppearance
+Workspace.Karivelis.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Masha_beskachy12.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.ok_boomer19992.Head.SurfaceAppearance
+Workspace.Pedrocas6707.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Snozeshh.Accessory (dark_fae).Handle.SurfaceAppearance,
+238793,Warning,Server,Sun Aug 09 2026 08:17:45 GMT+0200 (heure d’été d’Europe centrale),V345,"DataStore request was added to queue. If request queue fills, further requests will be dropped. Try sending fewer requests.",Key = d_Neighbourhood
+Key = p_<PlayerId>,
+211289,Error,Client,Wed Aug 12 2026 18:41:00 GMT+0200 (heure d’été d’Europe centrale),V582,Failed to load animation with sanitized ID. Animation failed to load,rbxassetid://102357151005774
+rbxassetid://10921306285
+rbxassetid://11600206437
+rbxassetid://507765644
+rbxassetid://507766388
+rbxassetid://507766666
+rbxassetid://75404600797329
+rbxassetid://88763136693023,
+157852,Warning,Server,Mon Aug 17 2026 07:53:45 GMT+0200 (heure d’été d’Europe centrale),V884,Player appears to be spamming remote events.,,
+133539,Error,Client,Wed Aug 12 2026 19:35:55 GMT+0200 (heure d’été d’Europe centrale),V582,Failed to load sound: Timedout,rbxassetid://121062914999809: HttpError
+rbxassetid://4612374036: HttpError
+rbxassetid://71482635231754: HttpError
+rbxassetid://87494453896821: HttpError
+rbxassetid://9112831284: HttpError
+rbxassetid://9114887497: HttpError
+rbxassetid://9117210574: HttpError
+rbxassetid://9126173766: HttpError,
+100367,Warning,Server,Sat Aug 15 2026 08:35:10 GMT+0200 (heure d’été d’Europe centrale),V791,[TruckServer] a rig was 5.15 studs into the ground -- lifted out,,
+95068,Warning,Client,Tue Aug 11 2026 07:44:45 GMT+0200 (heure d’été d’Europe centrale),V493,[Sealer] no touch button for SealerUse; falling back to raw touch so the tools still work,,
+61193,Error,Client,Wed Aug 12 2026 19:25:15 GMT+0200 (heure d’été d’Europe centrale),V582,HSRDataContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=101275035395678
+https://assetdelivery.roblox.com/v1/asset?id=102208282443362
+https://assetdelivery.roblox.com/v1/asset?id=102730227649926
+https://assetdelivery.roblox.com/v1/asset?id=106159241538925
+https://assetdelivery.roblox.com/v1/asset?id=113226696005710
+https://assetdelivery.roblox.com/v1/asset?id=11572032122
+https://assetdelivery.roblox.com/v1/asset?id=11583674605
+https://assetdelivery.roblox.com/v1/asset?id=72153185424821
+https://assetdelivery.roblox.com/v1/asset?id=86137303494274
+https://assetdelivery.roblox.com/v1/asset?id=9274124494,
+56006,Error,Client,Wed Aug 12 2026 22:40:40 GMT+0200 (heure d’été d’Europe centrale),V591,Failed to load sound: DnsResolve,rbxassetid://121062914999809: HttpError
+rbxassetid://122209060222267: HttpError
+rbxassetid://125536723574585: HttpError
+rbxassetid://7381723941: HttpError
+rbxassetid://87494453896821: HttpError
+rbxassetid://9114519460: HttpError
+rbxassetid://99678007903413: HttpError,
+48094,Error,Client,Mon Aug 17 2026 03:02:00 GMT+0200 (heure d’été d’Europe centrale),V884,Equipped is not a valid member of Humanoid "Workspace.<Player>.Humanoid","Script 'Players.<Player>.PlayerScripts.DuelClient', Line 410",
+44026,Warning,Client,Wed Aug 12 2026 18:32:15 GMT+0200 (heure d’été d’Europe centrale),V582,Native code generation of script =ReplicatedStorage.DrivewaySealer.SurfaceGrid failed:  Native code generation is not supported on this device.,,
+43907,Error,Client,Wed Aug 12 2026 23:44:40 GMT+0200 (heure d’été d’Europe centrale),V594,Failed to load sound: ConnectFail,rbxassetid://10066921516: HttpError
+rbxassetid://122209060222267: HttpError
+rbxassetid://125536723574585: HttpError
+rbxassetid://138901430543017: HttpError
+rbxassetid://74354585591493: HttpError
+rbxassetid://89595070232351: HttpError
+rbxassetid://9114519460: HttpError
+rbxassetid://99678007903413: HttpError,
+33944,Error,Client,Wed Aug 12 2026 19:06:40 GMT+0200 (heure d’été d’Europe centrale),V582,Failed to load sound: NetFail,rbxassetid://122209060222267: HttpError
+rbxassetid://71482635231754: HttpError
+rbxassetid://87494453896821: HttpError
+rbxassetid://9113846675: HttpError
+rbxassetid://9120564419: HttpError
+rbxassetid://9120590097: HttpError
+rbxassetid://99678007903413: HttpError,
+32626,Warning,Server,Sat Aug 15 2026 16:21:40 GMT+0200 (heure d’été d’Europe centrale),V825,[TruckServer] a rig was 5.16 studs into the ground -- lifted out,,
+31397,Warning,Server,Sat Aug 15 2026 08:42:40 GMT+0200 (heure d’été d’Europe centrale),V791,[TruckServer] a rig was 5.14 studs into the ground -- lifted out,,
+20637,Error,Client,Wed Aug 12 2026 23:40:35 GMT+0200 (heure d’été d’Europe centrale),V594,Failed to load sound: OutOfMemory,rbxassetid://122209060222267: HttpError
+rbxassetid://125536723574585: HttpError
+rbxassetid://138901430543017: HttpError
+rbxassetid://71482635231754: HttpError
+rbxassetid://87494453896821: HttpError
+rbxassetid://9114519460: HttpError,
+15721,Error,Client,Sun Aug 23 2026 06:09:45 GMT+0200 (heure d’été d’Europe centrale),V901,RunService:fireRenderStepEarlyFunctions unexpected error while invoking callback: CoreGui.4820.2298626:2830: attempt to call a nil value,,
+15721,Error,Client,Sun Aug 23 2026 06:09:45 GMT+0200 (heure d’été d’Europe centrale),V901,RunService:fireRenderStepEarlyFunctions unexpected error while invoking callback: CoreGui.4820.2298626:2836: attempt to call a nil value,,
+15721,Error,Client,Sun Aug 23 2026 06:09:45 GMT+0200 (heure d’été d’Europe centrale),V901,RunService:fireRenderStepEarlyFunctions unexpected error while invoking callback: CoreGui.4820.2298626:2907: attempt to call a nil value,,
+15311,Error,Client,Thu Aug 13 2026 05:16:10 GMT+0200 (heure d’été d’Europe centrale),V622,raiseTeleportInitFailedEvent: Teleport failed because A Http error has occurred. Please close the client and try again. (Failure),,
+13963,Warning,Server,Sat Aug 15 2026 05:33:10 GMT+0200 (heure d’été d’Europe centrale),V791,[TruckServer] a rig was 5.18 studs into the ground -- lifted out,,
+12064,Warning,Server,Sat Aug 15 2026 18:35:15 GMT+0200 (heure d’été d’Europe centrale),V825,[TruckServer] a rig was 5.17 studs into the ground -- lifted out,,

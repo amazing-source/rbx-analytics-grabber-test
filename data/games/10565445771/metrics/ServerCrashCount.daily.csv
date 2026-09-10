@@ -1,3 +1,19 @@
 date,series,value,agg,samples,partial
-2026-08-30,CrashType: Runtime · Place=74542317333958,1,sum,1,true
-2026-08-30,Place=74542317333958,1,sum,1,true
+2026-08-30,CrashType: Runtime · Place=74542317333958,1,sum,22,true
+2026-08-31,CrashType: Runtime · Place=74542317333958,0,sum,48,
+2026-09-01,CrashType: Runtime · Place=74542317333958,0,sum,48,
+2026-09-02,CrashType: Runtime · Place=74542317333958,0,sum,48,
+2026-09-03,CrashType: Runtime · Place=74542317333958,0,sum,48,
+2026-09-04,CrashType: Runtime · Place=74542317333958,0,sum,48,
+2026-09-05,CrashType: Runtime · Place=74542317333958,0,sum,48,
+2026-09-06,CrashType: Runtime · Place=74542317333958,0,sum,48,
+2026-09-07,CrashType: Runtime · Place=74542317333958,2,sum,35,true
+2026-08-30,Place=74542317333958,1,sum,22,true
+2026-08-31,Place=74542317333958,0,sum,48,
+2026-09-01,Place=74542317333958,0,sum,48,
+2026-09-02,Place=74542317333958,0,sum,48,
+2026-09-03,Place=74542317333958,0,sum,48,
+2026-09-04,Place=74542317333958,0,sum,48,
+2026-09-05,Place=74542317333958,0,sum,48,
+2026-09-06,Place=74542317333958,0,sum,48,
+2026-09-07,Place=74542317333958,2,sum,35,true

@@ -638,3 +638,247 @@ quota, and the symptom is players getting canned lines instead of generated ones
 
 Full write-up, including the reskin scope, is in the separate
 `verity-reskin` repo (`TRANSFER-GUIDE.md` §6).
+
+---
+
+## Post-update read — 2026-08-30 T+2d. Tripwire 7 STILL LIVE; everything else clear
+
+Full Open Cloud re-grab 2026-08-30 16:14–16:22 UTC, window 08-03 → 08-31.
+**119 of 128 requests returned data, 0 failures on observed/proven shapes.**
+Gates on the day: `npm test` 44/44 · `npm run audit-plan` 140 templates, 0
+failures · `npm run verify` 23 pass / 2 fail / 8 skip (the held pair).
+
+**v679 is at 100% adoption** on 08-29 and 08-30 (`ErrorCount` by `PlaceVersion`:
+v679 2,155,547 / 1,090,508 against v664 = 0). Reads from 08-29 are clean.
+
+### The headline: the decline reversed, and it was not this build
+
+| date | DAU | PCU | errors/CCU | crash rate | votes |
+|---|---|---|---|---|---|
+| 08-27 (baseline) | 403,311 | 4,387 | 168.5 | 0.28% | **−45** |
+| 08-28 (publish day) | 453,701 | 4,879 | 170.2 | 0.31% | **+49** |
+| **08-29** (first full post day) | **~618,500** *(projected)* | **7,504** | **173.0** | **0.28%** | **+69** |
+| 08-30 (part day) | — | — | **146.4** | — | — |
+
+**DAU on 08-29 is a projection, not a reading.** Behavioural metrics lag ~2 days
+and 08-29 is not served yet. `UniqueUsersWithPlaySessions` **is** served and
+tracks DAU at 0.9966 ± 0.0068 over the last 12 days, so 616,396 sessions →
+**618,500 DAU ± 0.7%**. Impressions rose 8.4% and end-to-end conversion 29.4% on
+the same day, so the mechanism is reach returning, not a build effect.
+
+### Tripwire status at T+2d
+
+| # | Signal | Value | Status |
+|---|---|---|---|
+| 1 | DevProduct per DAU | R$0.1803 → **R$0.1568** (08-28, −13%) | **WATCH** — floor is R$0.144, 1 day, 08-29 not served |
+| 2 | Session length | 8.02 → **8.35** (08-28) | **OK** — rising toward the 8.8 success mark |
+| 3 | ARPDAU | **R$0.4485** (08-28) | OK (floor 0.42) |
+| 4 | PayingUsersCVR | **0.65%** (08-28) | **WATCH** — floor 0.66%, one day, and 08-28 is 81% pre-update |
+| 5 | Errors per concurrent player | **173.0** (08-29), 146.4 (08-30) | **OK** — ceiling 210 |
+| 6 | 08:30/09:00 spike recurring | **21,267 / 20,479** on 08-30 vs 193,526 / 117,321 on 08-29 | **CLEAR** — did not recur, so not a scheduled job |
+| **7** | **New signature on v679** | `>= 678`: 2,069 → **7,244** → 4,925 (part day) | **FIX — STILL LIVE** |
+| 8 | ClientCrashRate15m | **0.28%** (08-29) | OK (ceiling 0.39%) |
+| 9 | ClientCrashCount | 2,559 raw, but **341/1k PCU vs 363** at baseline | **OK** — the row is exempt at +53% DAU and improves normalised |
+| 10 | OomUnexpectedExits | 178 raw, **23.7/1k PCU vs 30.1** | OK |
+| 11 | ClientFpsP10 | **45.14** (08-29) | OK (floor 39) |
+| 12 | ForwardD1Retention | 13.74% (08-27) | **NO DATA** until 08-31 |
+| 13 | Funnel `Ending Completed` | **12.6%** on 08-28 vs 13.8% floor | **WATCH, not FIX** — see below |
+| 14 | Funnel `Delivered` | **66.8%** (08-28), 67.6% (08-29) vs 63.4% floor | **OK** — the conversation mechanic is intact |
+| 15 | Other steps >5 pp down | `Day 4` −8.3 pp, `Day 5` −7.8 pp on 08-28 | **WATCH** — same cause as 13 |
+| 16 | Feedback votes | −45 → **+49 → +69** | **CLEAR** — turned positive, a success signal |
+
+### Why tripwire 13 is not scored as a break
+
+`Ending Completed`, `Day 4 Reached` and `Day 5 Reached` are cohort steps: a
+cohort dated 08-29 has had one day to reach "Day 5". Their recent values are
+**structurally left-censored**, and re-reading the same dates proves it settles
+upward — 08-27 read 16.1% in the baseline pull and reads **16.4%** now, 08-28
+read 11.9% and reads **12.6%** now. The steps that are *not* cohort-gated all
+moved the other way on 08-29: `First Reply Received` **+4.6 pp**, `Day 2
+Reached` **+4.4 pp**, `Day 3 Reached` **+2.8 pp**, `Accepted` +0.6 pp. A broken
+conversation loop cannot raise its own early steps.
+
+The honest statement is that **the deep steps are not measurable on a cohort
+younger than about five days**, and the tripwire as written cannot tell that
+apart from a break. Re-read 09-02 when the 08-28 cohort has matured.
+
+### What to act on
+
+**`MysticLibraryService:144` is unchanged and still firing.** Two days after the
+publish the deploy-introduced count is 7,244 on the first full day and tracking
+the same on 08-30 — no decay whatever. The one-token fix (`:FireAllClients(` →
+`:Fire(`) is in the root-cause section above and has not shipped.
+
+_Read 2026-08-30 ~17:00 UTC._
+
+---
+
+## Post-update read — 2026-08-31 T+3d. Build clean; the problem is the return loop
+
+Full Open Cloud re-grab 2026-08-31 12:49–13:05 UTC, window 08-04 → 09-01.
+**338 requests, 280 returned data, 5 failed.** Gates on the day: `npm test`
+44/44 · `npm run audit-plan` **175 templates** (up from 140 — the RFY,
+demographic and acquisition metrics landed 08-31), 0 failures · `npm run verify`
+23 pass / 2 fail / 8 skip (the held pair).
+
+**2026-08-29 is the first UTC day with no pre-update players in it, and it only
+became readable this morning.** Four rows that were NO DATA at T+2d now have
+answers.
+
+### Tripwire status at T+3d
+
+| # | Signal | Value | Status |
+|---|---|---|---|
+| 1 | DevProduct per DAU | **R$0.1778** (08-29), **R$0.1857** (08-30) | **OK** — was WATCH; back above the R$0.180 baseline |
+| 2 | Session length | **8.33** (08-29), 8.27 (08-30) | OK (floor 7.2; 8.8 success mark not reached) |
+| 3 | ARPDAU | **R$0.4693** (08-29), **R$0.4768** (08-30) | OK (floor 0.42) — highest in the window |
+| 4 | PayingUsersCVR | **0.73%** (08-29), **0.79%** (08-30) | **OK** — was WATCH (floor 0.66%) |
+| 5 | Errors per concurrent player | 146.4 (08-30) → **219.2** (08-31) | **WATCH** — ceiling 210, one day, denominator-driven |
+| 6 | 08:30/09:00 spike recurring | did not recur | CLEAR |
+| **7** | **New signature on v679** | `>= 678`: 2,069 → 7,244 → 6,253 → **2,695** (part-day, ~56% elapsed ⇒ ~4,800/day) | **FIX — STILL LIVE, 3 days** |
+| 8 | ClientCrashRate15m | **0.28%** (08-29), **0.26%** (08-30) | OK (ceiling 0.39%) |
+| 9 | ClientCrashCount / 1k PCU | **350** (08-30) vs 363 baseline | OK |
+| 10 | OomUnexpectedExits / 1k PCU | **20.5** (08-30) vs 30.1 baseline | OK (ceiling 31) |
+| 11 | ClientFpsP10 | **45.38** (08-30) | OK (floor 39) |
+| **12** | **ForwardD1Retention** | **13.76%** (08-29) | **OK — FIRST READ** (floor 11.3%) |
+| 13 | Funnel `Ending Completed` | 6.8% (08-31) | **NO DATA** — cohort left-censoring, re-read 09-03 |
+| **14** | **Funnel `Delivered`** | **67.2%** (08-29), 66.1% (08-31) | **OK — FIRST READ** (floor 63.4%) |
+| 15 | Other steps >5 pp down | deep steps censored; shallow steps rose | NO DATA |
+| 16 | Feedback votes | −45 → +49 → **+69** | CLEAR |
+
+**Tripwire 5 is denominator-driven, not an error rise.** Over identical
+00:00–11:00 slots, errors fell 14% while mean CCU fell **43%** (4,440 → 2,547).
+The threshold requires the level to be *sustained*; one day is not. Today's CCU
+is **−28.6% against the same weekday**, rank 17 of 27, with a broad −45…−63%
+per-slot deficit — a smaller audience, not an hour-specific loss.
+
+**Tripwire 13 still cannot be scored, and the same dates keep settling upward** —
+08-27 read 16.1% → 16.4% → **16.5%**; 08-28 read 11.9% → 12.6% → **12.8%**.
+On mature days only, ending completion fell 25.1% (08-18) → 17.7% (08-26):
+**a real decline that predates v679 by over a week.**
+
+**D1 is flat on every acquisition source** (08-27 → 08-29): Home 14.20 → 14.23,
+Friends 12.03 → 12.01, Others 12.07 → 11.64, Search 17.47 → 15.68. Not mix,
+and not a build regression.
+
+### The finding: first sessions fine, return loop failing
+
+First pull of the 20 RFY ranking signals (added to the plan 2026-08-31):
+
+| signal | 08-24 | 08-26 | 08-27 | 08-28 | 08-29 | move |
+|---|---|---|---|---|---|---|
+| `RFYPlayThroughRate` | 1.30% | 1.72% | 1.68% | 1.62% | **1.96%** | **+51%** |
+| `RFYDuration0To60` | 15.91% | 15.73% | 15.35% | 13.40% | 14.58% | −8% (better) |
+| `RFYD1Playtime` | 13.08 | 12.52 | 12.24 | 12.48 | 12.93 | −1% |
+| `RFYD2To7PlayDays` | 0.385 | 0.396 | 0.365 | 0.285 | **0.248** | **−36%** |
+| `RFYD2To7Playtime` | 3.99 | 4.18 | 3.76 | 2.93 | **2.39** | **−40%** |
+| `RFYL7PlayDays` | 1.378 | 1.386 | 1.360 | 1.280 | 1.243 | −10% |
+
+Every first-session signal flat or improving; every return signal collapsing,
+starting **08-27, before the publish**. Roblox states an impression decline
+typically *follows* a fall in play days / playtime per user, so the reach
+movement is a consequence of the product here, not a cause.
+
+**Confound, stated:** play days per user is diluted by new-user influx and DAU
+rose 50% across the window. Against it: the metric held 0.38–0.40 on 08-24–26
+at *higher* DAU (845K on 08-24), and kept falling on 08-29. **Six days, one
+game, no baseline — confirm on the next grab before calling it a finding.**
+
+### Correction to a documented method
+
+`UniqueUsersWithPlaySessions` as a DAU proxy is documented in `CLAUDE.md` as
+good to ~±1%. The T+2d projection was **618,500 ±0.7%**; actual 08-29 DAU is
+**606,962** — **1.9% high, outside its own error bar**. The same proxy landed
++0.4% on Seal. It degrades on a surging day, which is when it gets used.
+
+### Tooling gap found
+
+Every funnel series the scheduled grab stores is at `NONE` granularity with a
+`FunnelName` filter. **`FunnelCohortCompletionRate` at `OneDay` — the only
+series that dates a break, and what tripwires 13–15 are set on — is not in the
+corpus** and must be pulled separately (`tools/t3-funnel-pull.js`).
+
+### What to act on
+
+**`MysticLibraryService:144` is unchanged after three days.** One token:
+`:FireAllClients(` → `:Fire(`. Success metric: deploy-introduced count below
+500/day within 24h of the ship. Guardrail: the Mystery Library actually renders
+— the current failure is silent to everyone except the log.
+
+Report: https://claude.ai/code/artifact/e3559b2c-0401-41bc-9d03-c1d78bf6f727
+
+_Read 2026-08-31 ~13:30 UTC._
+
+### Costing the daily/offline reward proposal — 2026-08-31
+
+The studio's proposal is a daily login reward plus offline accrual (~1 message
+per 30 min, capped ~15), both paid in **messages — which are almost the entire
+business**, so the mechanic gives away the product. Sized against 08-30:
+
+DAU 535,950 · revenue R$255,541 · **DevProduct R$99,505 (38.9%)** ·
+GamePass R$156,031 (61.1%) · conversion 0.79% ⇒ **99.21% never pay anything**.
+
+Only the DevProduct side is exposed — GamePass is a permanent unlock a daily
+grant does not substitute for, and the 99.21% were never going to buy.
+
+| DevProduct loss | R$/day | DAU rise needed to break even |
+|---|---|---|
+| 5% | 4,975 | +1.9% |
+| **10%** | **9,951** | **+3.9%** |
+| 15% | 14,926 | +5.8% |
+| 20% | 19,901 | +7.8% |
+
+Upside modelled from the measured cohort curve. `1 + Σ(D1..D6)` reproduces
+`RFYL7PlayDays` to within 0.7% (predicted 1.251 vs measured 1.243), so the model
+is validated on this game before being used:
+
+| D2 hold | play days/user | DAU | pays for a DevProduct loss of |
+|---|---|---|---|
+| 35.1% (now) | 1.251 | — | — |
+| 40% | 1.278 | +2.1% | 5% |
+| **45%** (portfolio median) | **1.295** | **+3.5%** | **9%** |
+| 50% | 1.313 | +4.9% | 13% |
+
+**So the mechanic pays for itself provided DevProduct revenue falls less than
+~9%.** The RFY ranking benefit from a higher `RFYD2To7PlayDays` — which is a
+direct ranking input and is currently −36% — is upside on top and is NOT sized;
+do not promise it.
+
+**Ship it through the Configs API, not as a constant.** Live balance change with
+no republish, ~5 min propagation, version history, instant rollback. Start at
+**8 messages**, hold 48h, raise toward 15 only while the guardrail holds.
+
+- **Mechanism metrics:** `DailyCohortRetention` CohortDay 2 (35.1% → 45%) and
+  `RFYD2To7PlayDays` (0.248 → 0.32+).
+- **Guardrail:** DevProduct revenue per DAU ≥ **R$0.144** — not a new number,
+  it is tripwire 1 on this baseline, and it sits at a 20% fall, comfortably
+  outside the 9% the mechanic needs.
+
+Producer brief: https://claude.ai/code/artifact/e3559b2c-0401-41bc-9d03-c1d78bf6f727
+
+### Update — 2026-08-31 ~17:00 UTC. v680 shipped; the library fix is live
+
+`node tools/deploy-log.js 10565445771 74542317333958` at 16:57Z: **v680 first
+appears in the error log at 2026-08-31 15:00 UTC** (4 half-hour buckets, 79,004
+errors). The studio confirms the `MysticLibraryService:144` one-token fix is in
+it.
+
+**Not yet scoreable, and do not report it as fixed.** `ErrorCount` at
+`FirstSeenPlaceVersion >= 678` for 08-31 is **3,457** on a part-day about 71%
+elapsed, of which only the last ~2h is post-fix (28-30 Aug ran 2,069 / 7,244 /
+6,253). **Score it 2026-09-01: below 500/day means the fix landed.** Second
+check: the Mystery Library actually renders.
+
+**Correction carried into the report — the day-2 hold is a LEVEL problem, not a
+fall.** `DailyCohortRetention` CohortDay 2 over CohortDay 1, by cohort: 08-22
+30.1%, 08-23 40.2%, 08-24 36.3%, 08-25 34.3%, 08-26 39.9%, 08-27 41.9%, **08-28
+35.1%**. The v679 cohort is mid-range; this game has never exceeded 42%. Reading
+5.75% to 4.46% as a decline was wrong — those are two different cohorts inside
+one noise band.
+
+Also confirmed from the CSVs: **`ForwardD1Retention` and `DailyCohortRetention`
+CohortDay 1 are the same series**, agreeing to every decimal on 08-27/28/29.
+
+Report republished at the same URL, with every Roblox series name restored and
+the tripwire scoring taken out (producer asked for metric names, not glosses):
+https://claude.ai/code/artifact/e3559b2c-0401-41bc-9d03-c1d78bf6f727

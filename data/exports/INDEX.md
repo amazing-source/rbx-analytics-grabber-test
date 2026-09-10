@@ -172,3 +172,28 @@ game in this corpus — Verity 1.18M, Waterslide 2.98M, Seal 12.56M, Banana Monk
 2.36M, Brainrot 3.24M on 08-27. Volume that low suggests a **development place**
 rather than a live one. Held in the session scratchpad rather than filed to a
 game folder, because a wrong attribution is worse than an unfiled export.
+
+## Added 2026-09-01
+
+Seal A Driveway (`10638354731`) — the CCU health check:
+
+- `errors/errors_2026-09-01_1527_v890-v908.csv` — 25 rows, **63,866 events**,
+  the v908 slice. Three CoreGui render-step signatures are 74% of it; the new
+  v908 game-owned one is `DrivewayClient:2924 invalid argument #3 to clamp`
+  (3,933).
+- `errors/errors_2026-09-01_1527_all-time_v345-v901.csv` — the unfiltered
+  ranking back to v345, for signatures that predate the v890 band.
+- `feedback/feedback_2026-09-01_1526_aug14-sep01.csv` — 308 comments.
+- `feedback/feedback_2026-08-31_1612_aug14-aug31.csv` — 294 comments, the
+  2026-08-31 download, filed late.
+
+Verity (`10565445771`):
+
+- `metrics/errors-halfhour_2026-08-29_1803_aug27-aug29_FILTERED-unknown_14750ev.csv`
+  — half-hour series, 14,750 events over 08-27→08-29. Downloaded 18:03 on
+  2026-08-29, two minutes after the `v678-v679` 6,159-event export and five
+  before the unfiltered half-hour one, so it is **a filtered slice whose filter
+  was not recorded**. Do not read it as a total.
+
+Deleted on filing: 12 byte-identical re-downloads of files already under
+`data/exports/` (md5-matched before removal).
