@@ -508,3 +508,57 @@ events paired with `RunService:fireRenderStepEarlyFunctions unexpected error` at
 `EditableImage is not accessible. Go to the Security Tab in Experience Settings`
 at 12,429, which names its own one-toggle fix and sits plausibly upstream of the
 coverage shortfall (untested — flagged as a hypothesis, not a chain).
+
+## 2026-09-10 — Seal A Driveway: "the thumbnails are mid" — TESTED, DID NOT SURVIVE
+
+Ren's theory, in their words: PTR declining, lots of thumbnail complaints in
+feedback, and drops "kinda around new thumbnails". Two of the three premises are
+true and the causal claim is not. Method now in `liveops-diagnosis` §3f.
+
+**Confirmed — the creative is AI, and players resent it.** 7 of 197 feedback rows
+name it unprompted: *"Gameplay 10/10. Thumbnail AI/10"*, *"Delete AI thumbnail"*,
+*"advertise your experience properly. The actual gameplay looks nothing like the
+photos"*, *"it looks nothing like the photo"*. Fetched the images off the
+annotations' asset IDs and confirmed by eye — photoreal renders with blocky
+Roblox hands composited in. **13 thumbnail swaps in 26 days** (08-14 → 09-08),
+one anchor asset (`70795922266029`) present in all 13.
+
+**Confirmed — PTR fell**, 13.13% → 1.31%. But `corr(PTR, log impressions) =
+-0.720` and impressions went 279k → 4.89M over the same leg, so most of it is
+the denominator.
+
+**KILLED — "drops around new thumbnails".** 10 of 11 swaps are followed by lower
+PTR, mean **-25.3%**, which looks conclusive. Against the base rate of non-swap
+days it is **-18.9%**, so **z = -1.16, indistinguishable**. Ordinary days did the
+same thing because PTR fell monotonically all window. Same test on
+`RFYUniqueNotInterestedUsersPerMillionImpressions`: z = -0.69, and that metric —
+already per-million-impressions, so reach-immune — trends **-1.85/week at
+r = -0.19**, i.e. the listing is *not* being rejected more.
+
+**Bounce is not usable evidence here, and Ren is the one who caught it.** I
+argued the creative "attracts fine but they bounce". Bounce is conditional on
+conversion — you cannot bounce out of a game you never joined — and Roblox scopes
+the signal to RFY-organic traffic only, the exact population a reach expansion
+dilutes. `corr(bounce<60s, log impressions) = +0.691`. A matched-reach residual
+survives at **+1.38pp, 5/5 pairs**, but n=5. Not enough to carry a claim.
+
+**What it actually is: the product, across every channel.** D1 by
+`AcquisitionSource`, early 08-16..08-24 vs late 09-01..09-09 —
+HomeRecommendation -20.6%, Others -28.6%, **Friends -26.3%**, Search -31.7%.
+All clear 4 sd against their own volatility and 9 sd against binomial noise.
+**`Friends` never sees a thumbnail** (social invite) and **Search went looking
+for the game by name**; both fell harder than the reach-expanded source. Creative
+ruled out, composition ruled out, cause global to the game. Window contains the
+v908 publish, the `FIRST UPDATE` (08-28→08-31) and `NEW UPDATE` (09-04→09-07)
+events, and the frame-rate collapse fixed the same day.
+
+**My own error, corrected mid-thread:** I called HomeRecommendation "least
+affected" off relative change while its z was the *largest* of the four. z
+measures confidence (it scales with n), relative change measures effect size.
+For a composition question the instrument is effect size; for "did it move", z.
+Ren also correctly predicted Search would be noisiest — own sd 3.32pp vs Home's
+1.10pp, exactly 3x — it just still clears at 4.5 sd.
+
+**Open:** whether one thumbnail depicting a pothole drain-and-fill mechanic
+matches anything in the game. Not in the codebase I read; §5b says that judgement
+belongs to someone who plays. Asked, unanswered.

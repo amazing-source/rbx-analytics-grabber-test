@@ -72,17 +72,17 @@ the full spec; this file is the day-to-day reference.
 >   08-30** (which pre-existing signature is bursting); and confirmation that
 >   Verity's library fix ships.
 > - **Three gates — run them before and after any change** (measured
->   2026-08-10, not copied):
->   `npm run verify -- ../data/verify/9610561918/` → 23 pass · **2 fail** · 8 skip
+>   2026-09-10, not copied):
+>   `npm run verify -- ../data/verify/9610561918/` → 24 pass · **2 fail** · 7 skip
 >   and **exits 1**. BOTH fails are documented and held in the test's
 >   `KNOWN_OPEN`, so `npm test` stays green while `verify` exits 1 — that is the
 >   expected state, not a regression: (1) the disputed realtime-revenue hour
 >   2026-08-08T00:00, and (2) `ErrorCount` half-hour, where 144 of 147 cells
 >   match and the 3 that don't are all the 08:00 bucket at the export window's
 >   own edge — the CSV holds a partial bucket, our later read holds the settled
->   one. `npm run audit-plan` → 175 templates, 0 failures (140 before the RFY
+>   one. `npm run audit-plan` → 180 templates, 0 failures (140 before the RFY
 >   signals landed 2026-08-31; 41 upgradable tags are not failures).
->   `npm test` → 44 pass.
+>   `npm test` → 51 pass.
 >   A change that moves a number without moving these is unproven.
 > - **Both universes were re-grabbed post-fix on 2026-08-08** — that closed the
 >   last verification item. 9963622286's crash history is now present

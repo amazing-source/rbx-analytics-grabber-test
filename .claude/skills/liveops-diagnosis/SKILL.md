@@ -955,6 +955,104 @@ And **the 12.11%–18.73% D1 figure that appears in Roblox's own documentation i
 an example explaining how to read the percentile UI, not a target.** Do not
 hardcode it; it is the single most quotable-looking number in the docs.
 
+## 3f. Testing a "the creative is bad" theory — the three traps
+
+This arrives as "PTR is falling and we're getting thumbnail complaints, is the
+art the problem?" Measured end-to-end on `10638354731` 2026-09-10 and the theory
+did not survive, so run these before agreeing with it.
+
+**1. PTR falls mechanically when reach widens — check the denominator first.**
+`corr(RFYPlayThroughRate, log impressions) = -0.720`, and over the same leg
+impressions went 279k → 4.89M while PTR went 13.13% → 2.31%. A 20x reach
+expansion shows the listing to a progressively less-targeted audience, so
+conversion per impression falls with no creative change at all. **Two legs are
+worth separating:** on the growth leg the fall is largely the denominator; if
+impressions and PTR fall *together* on the decay leg, that part is real.
+
+**2. Event-study a creative swap against the BASE RATE of ordinary days, or you
+will confirm anything.** Annotations date every swap
+(`ANNOTATION_TYPE_PLACE_THUMBNAIL`, plus `_PLACE_ICON` and
+`_GAME_PREVIEW_VIDEO_STATE_CHANGE`). Seal swapped thumbnails **13 times in 26
+days** and 10 of 11 testable swaps were followed by lower PTR, mean **-25.3%** —
+which looks conclusive and is worthless: PTR was falling monotonically all
+window, so *every* date shows it. Against non-swap days the same statistic is
+**-18.9%**, i.e. **z = -1.16, indistinguishable**. Same test on
+`RFYUniqueNotInterestedUsersPerMillionImpressions`: z = -0.69.
+
+**3. `RFYUniqueNotInterestedUsersPerMillionImpressions` is the denominator-immune
+listing-rejection metric — use it instead of PTR.** It is already per-million-
+impressions, so reach expansion cannot move it. On Seal it trended
+**-1.85/week (r = -0.19)**, i.e. flat: the listing was *not* being rejected more
+over time, while PTR fell 10x.
+
+**BOUNCE CANNOT SETTLE A CREATIVE QUESTION, and this is the subtle one.**
+`RFYDuration0To60` / `RFYDuration61To180` look like the perfect instrument —
+rates, so arithmetically immune to the PTR denominator. They are not usable
+here, for two compounding reasons:
+
+- **Bounce is conditional on conversion.** To bounce, a player must first join,
+  which means PTR already delivered them. It is stage 2 of one funnel, not an
+  independent channel — so "the thumbnail attracts fine but they bounce" is not
+  two pieces of evidence.
+- **Roblox scopes the signal to RFY-organic traffic only** — *"Each signal is
+  based on users who organically joined from the Recommended for You sort on
+  Home"* (`create.roblox.com/docs/discovery`). That is precisely the population
+  a reach expansion dilutes. Measured: `corr(bounce<60s, log impressions) =
+  +0.691`.
+
+A bounce rise is produced *identically* by the creative attracting badly-matched
+players and by Roblox showing the game to badly-matched players. A matched-reach
+comparison (days at within-12% impression levels, early vs late) recovers a
+residual — **+1.38pp, 5/5 pairs positive** — but n=5 and the reach-controlled
+residual trend is only +0.317pp/week at r = +0.269. Too thin to carry a claim.
+
+**THE TEST THAT WORKS: D1 by `AcquisitionSource`, and `Friends` is the control.**
+Friends traffic arrives by social invite and **never sees a thumbnail**, and
+Search traffic went looking for the game by name. If D1 falls on those, the
+creative cannot be the cause. Measured on Seal, early 08-16..08-24 vs late
+09-01..09-09:
+
+| source | DAU/day | early | late | rel | z vs own sd |
+|---|---|---|---|---|---|
+| HomeRecommendation | 75,457 | 14.69% | 11.67% | **-20.6%** | -7.2 |
+| Others | 17,396 | 11.99% | 8.56% | -28.6% | -6.8 |
+| **Friends** | 11,789 | 10.15% | 7.48% | **-26.3%** | **-6.2** |
+| Search | 6,826 | 17.94% | 12.26% | **-31.7%** | -4.5 |
+
+Every source fell, all clearing 4 sd against their own day-to-day volatility and
+9 sd against their binomial noise floor. Creative ruled out (Friends fell),
+composition ruled out (the reach-expanded source fell **least** in effect size).
+Per §3 that is the signature of a cause global to the game.
+
+**Separate EFFECT SIZE from CONFIDENCE when comparing sources — I conflated them
+and got the ordering backwards.** A high-volume source has a tiny noise floor,
+so its z is large from precision, not from a large move: HomeRecommendation's
+z = -7.2 is the *strongest* signal while being the *smallest* relative fall.
+For "is this composition", the right instrument is **relative change**, because
+dilution should hit the expanded source hardest in magnitude. For "did it move
+at all", use z. Saying "Home fell least" without that distinction is wrong.
+
+**A small-volume source is genuinely noisier — size it, do not assume.** Search's
+own day-to-day sd is **3.32pp** against HomeRecommendation's **1.10pp**, exactly
+3x, so its larger raw drop deserves discounting. Report each delta in units of
+that source's own sd *and* its binomial floor `sqrt(p(1-p)/n)`; a few thousand
+DAU is plenty for a stable rate, a few hundred is not.
+
+**Read the feedback text, and read the images.** Thumbnail asset IDs are in the
+annotations; `https://thumbnails.roblox.com/v1/assets?assetIds=<ids>&size=768x432&format=Png`
+returns fetchable CDN URLs, so the creative can be inspected directly rather
+than inferred. On Seal, 7 of 197 feedback rows named AI-generated art unprompted
+(*"it looks nothing like the photo"*, *"Gameplay 10/10. Thumbnail AI/10"*) and
+the images confirmed it — photoreal renders with Roblox hands composited in.
+**That is a real brand finding and it is a separate item from the reach
+diagnosis.** Report both; do not let the confirmed one borrow the unproven one's
+causal claim.
+
+**And per §5b, whether the creative MATCHES the game is not yours to judge.**
+One Seal thumbnail depicted a pothole drain-and-fill mechanic absent from the
+codebase — but only someone who plays can confirm that. Surface the image and
+ask.
+
 ## 3c. Traffic mix vs gameplay — the test Roblox shipped for exactly this
 
 **Shipped 2025-10-16** ("Analytics: View retention by acquisition source and

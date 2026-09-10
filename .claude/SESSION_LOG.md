@@ -1121,3 +1121,32 @@ and now logs only >1%.
 `PlayerProgression` and 20 steps; returned-data counts 80/120 → 127/156 and
 82/119 → 155/186; annotation enumeration found
 `ANNOTATION_TYPE_ENGINE_RELEASE`, the genuine "was it Roblox?" signal.
+
+## 2026-09-10 — Seal's frame collapse fixed in a test copy; the thumbnail theory tested and killed
+
+**State:** branch `grabber-correctness` · 116 ahead of `main` · **unpushed** (origin at `5b9ccc6`, local `4cda3df`) · dirty: `CLAUDE.md`, `DIAGNOSIS_LOG.md`, `.claude/skills/liveops-diagnosis/SKILL.md`, `.claude/skills/code-diagnosis/` (new), `data/games/10638354731/code-reads.md` (new)
+**Gates:** verify 24 pass/2 fail/7 skip (exit 1) · audit-plan 180 templates, 0 failures, 41 upgradable (exit 0) · test 51/51 (exit 0) — measured today; **CLAUDE.md said 23/2/8, 175, 44 and has been corrected**
+**Landed:** Seal's wet-driveway frame collapse fixed in place `129941005706105` (test copy, **not live**) — frame p50 76.9 → 19.1 ms with the whole first zone flooded. Four edits across `SurfaceGrid` and `DrivewayClient`, both parse-checked. Artifact: `claude.ai/code/artifact/79302a91-ac05-4498-91d3-7083876443de` (v3).
+**Learned → routed:**
+- Testing a "the creative is bad" theory, incl. the `Friends`-as-control test and the bounce trap → `liveops-diagnosis` **§3f** (new)
+- General code/bug/health-check method — evidence rules, the three questions that expose a fake budget, bug classes a source read misses, health-check ordering → `.claude/skills/code-diagnosis/SKILL.md` (**new skill**; replaced a first draft that was wrongly scoped to performance only)
+- Seal's solver internals, live constants, quality presets, the fix and what is untested → `data/games/10638354731/code-reads.md` (**new**)
+- The thumbnail claim's full disposition → `DIAGNOSIS_LOG.md` 2026-09-10
+
+**Retracted:**
+1. *"The thumbnails aren't failing to attract — PTR opened at 13%, the cost is immediately after, in bounce."* — **Ren caught it.** Bounce is conditional on conversion (you cannot bounce out of a game you never joined), and Roblox scopes the signal to RFY-organic traffic only, which is exactly the population a 20x reach expansion dilutes. `corr(bounce<60s, log impressions) = +0.691`. Bounce cannot settle a creative question at all.
+2. *"HomeRecommendation fell least, so composition is ruled out."* — Read off relative change while its z was the **largest** of the four sources. z scales with n and measures confidence; relative change measures effect size. Use effect size for composition, z for "did it move".
+3. *"The band split and the surfaces round-robin are independent, so isolate them for clean attribution."* — `SOLVE_MS` is spent **per grid**, so frame cost is that budget times the awake grid count. Either fix alone measures as zero. Cost a whole test round; three prior fix rounds (mine and the studio's) failed the same way.
+4. *"`SOLVE_MIN_CELLS` is too low and `_solveNs` is trapped high by a small-batch feedback loop."* — Measured `_solveNs` 89.5 (converged correctly), budget 33,028 against a 24,480-cell region. **Banding was not engaging at all** on a driveway. Predicted before reading, and the prediction was wrong.
+5. *"Widen `PourRadius` to get the bigger puddle cheaply."* — `Config:621` names it the one fix NOT available: at 3.00 the puddle already lands 6 studs against a 6.4-stud stock blade, and anything wider leaves a rind the starting squeegee cannot reach. **Grep the constant's own comment first.**
+6. *"Code quality doesn't cause the decline — the portfolio's decline is discovery-and-retention shaped."* — **Ren corrected the mechanism.** Impressions are retention-fed, so launch-quality defects that suppress D1/D2 propagate into impression withdrawal. The defects are upstream of the reach collapse, not a parallel story.
+
+**Open:**
+- Seal fix untested on every other `SurfaceGrid` consumer — Duel, Squeegee Battle, Race, AFK yard, rebirth restore, pail HUD. Next: exercise each in the test copy before anything ships.
+- `Dbg*` attributes written to `workspace` from `SurfaceGrid:Step` in the test copy — **strip before reuse**.
+- `SEALER_FRAME_MAX = 3` in the test copy (1 in DEV) — open paint-budget feedback loop, one-token fix, deliberately not applied so it did not confound the measurement.
+- Does a Seal thumbnail depict a pothole drain-and-fill mechanic that exists? Asked Ren, unanswered. §5b — not my judgement.
+- Ren's scope pitch to Nina (community management + acquisition input + mandatory funnel instrumentation) drafted in their voice, not yet sent.
+
+**Wake:** **2026-09-11** — the D+7 post-update grab for 5 games, possibly 6 with Knife Farm. Ren also wants the 09-04 diagnosis set consolidated into ONE current document. Scope confirmed as `analysis/reports-0904/` (6 files) + `baselines/*-2026-09-04-*.md` (5 files); **do NOT touch `baseline/`** — different directory, holds the 08-28 update baselines and their pre-registered tripwires. I asked whether "erase" also meant the `DIAGNOSIS_LOG` entries (6 of the 8 in range are records of my own errors) — **unanswered, do not delete them without an answer.**
+**Next:** run the D+7 grab, then the consolidated diagnosis. Before writing it, read §3f and the retraction list above — items 1, 2 and 6 are all live traps for a reach diagnosis.
