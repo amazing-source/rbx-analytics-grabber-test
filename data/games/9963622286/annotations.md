@@ -241,7 +241,7 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"d3424976-706a-48da-bd35-4ea9615ac181","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":107649168646927}},"createdUtcTime":"2026-09-05T14:35:35.194Z"}`
 - `{"id":"ac580bb5-bc39-417f-9cb8-49ac7a3e9dbd","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":88952319467840}},"createdUtcTime":"2026-09-05T16:06:24.977Z"}`
 
-## annotationType=4 (77)
+## annotationType=4 (78)
 
 - `{"id":"d9849287-4432-48b8-b380-494c1b8b7314","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[83863392846847,125093355058936,100335228623034,136889309753366,111844810599351]}},"createdUtcTime":"2026-07-11T18:34:24.795Z"}`
 - `{"id":"3a1d57d5-3055-42af-8284-7042530e3247","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[83863392846847,125093355058936,100335228623034,136889309753366,135038790344261]}},"createdUtcTime":"2026-07-11T20:50:24.411Z"}`
@@ -320,6 +320,7 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"32388b10-9880-4fc3-92c7-08b1c43d8acc","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[121125222301147,139903369988597,123075218012356,82432033078529,126934645979142]}},"createdUtcTime":"2026-08-25T20:58:56.149Z"}`
 - `{"id":"b1aa52ec-f2cd-4f52-bc39-428338859333","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[76073404110122,121125222301147,126934645979142,139903369988597,123075218012356]}},"createdUtcTime":"2026-09-01T02:31:47.821Z"}`
 - `{"id":"1435eeae-e1c7-413f-8489-a0d711ae8b03","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[123075218012356,71338513815787,76073404110122,136121365928387,104574879146628]}},"createdUtcTime":"2026-09-06T22:08:54.415Z"}`
+- `{"id":"4a727387-c71c-420b-949a-59f3c4fe5faa","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[76073404110122,136121365928387,136972943459953,104574879146628,121109909808857]}},"createdUtcTime":"2026-09-10T23:30:18.563Z"}`
 
 ## annotationType=6 (1)
 

@@ -1,7 +1,7 @@
 {
   "universeId": "10030829154",
-  "startTime": "2026-08-27T00:00:00.000Z",
-  "endTime": "2026-09-10T00:00:00.000Z",
+  "startTime": "2026-08-15T00:00:00.000Z",
+  "endTime": "2026-09-12T00:00:00.000Z",
   "planSource": "seed",
   "discovered": {
     "__places": [
@@ -17,45 +17,41 @@
     "FunnelName": [
       "TutorialFunnel"
     ],
-    "FunnelStep": [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "11",
-      "12",
-      "13",
-      "14",
-      "15"
-    ],
     "PlaceVersion": [
       "10",
+      "102",
       "104",
       "105",
       "106",
       "107",
       "11",
+      "1698",
+      "1705",
+      "1706",
+      "1708",
       "1711",
       "1715",
       "1716",
       "1719",
       "2",
+      "210",
+      "212",
       "213",
       "214",
       "215",
       "216",
       "3",
       "4",
+      "439",
+      "440",
       "441",
       "442",
       "443",
       "444",
+      "5",
+      "68",
+      "7",
+      "70",
       "71",
       "72",
       "73",
@@ -79,96 +75,117 @@
       "2",
       "1618",
       "213",
+      "414",
       "34",
       "62",
-      "414",
       "104",
       "71",
       "8",
       "4",
       "339",
       "1294",
-      "441",
       "1708",
+      "441",
       "3",
       "1681",
       "1669",
       "1300",
       "1421",
-      "1360",
-      "1698",
-      "1679",
-      "1677",
       "1719",
-      "1716",
+      "1698",
       "372",
-      "1344",
-      "1715",
-      "147",
-      "433",
-      "428",
-      "50",
-      "439",
-      "1691",
-      "1590",
-      "157",
-      "205",
-      "382",
-      "437",
-      "1685",
-      "98",
-      "41",
-      "74",
+      "1360",
+      "1716",
+      "1679",
       "216",
+      "1677",
+      "157",
+      "147",
+      "1590",
+      "205",
+      "50",
       "444",
-      "434",
       "63",
-      "364",
-      "1683",
-      "188",
-      "215",
-      "5",
-      "1596",
+      "1344",
       "107",
-      "210",
-      "106",
-      "84",
-      "202",
-      "394",
-      "11",
-      "102",
-      "212",
-      "412",
-      "435",
-      "440",
-      "443",
-      "65",
-      "70",
-      "101",
-      "206",
-      "97",
-      "209",
-      "1607",
-      "1705",
-      "10",
+      "439",
+      "74",
+      "1715",
+      "382",
+      "41",
+      "1683",
+      "428",
       "68",
-      "99",
-      "64",
-      "67",
-      "73",
+      "433",
+      "1691",
+      "98",
+      "1685",
+      "215",
+      "188",
+      "443",
+      "434",
+      "364",
+      "437",
+      "202",
+      "210",
+      "412",
+      "11",
+      "1596",
+      "84",
+      "5",
+      "206",
+      "106",
+      "102",
+      "209",
+      "440",
       "139",
       "169",
+      "1705",
+      "73",
+      "101",
+      "10",
+      "65",
+      "97",
+      "64",
+      "70",
+      "99",
       "186",
+      "212",
+      "394",
+      "1607",
+      "67",
+      "435",
+      "1594",
+      "176",
       "402",
-      "7",
       "66",
       "100",
+      "1706",
+      "7",
+      "80",
       "207",
       "436",
-      "1706"
+      "1711"
+    ],
+    "FunnelStep": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15"
     ]
   },
-  "requested": 221,
+  "requested": 237,
   "attempts": [
     {
       "metric": null,
@@ -200,20 +217,33 @@
       "metric": null,
       "kind": "dimensions",
       "granularity": "",
-      "breakdown": "FunnelStep",
+      "breakdown": "CustomField1",
       "filter": "",
       "optional": true,
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 0,
       "error": null
     },
     {
       "metric": null,
       "kind": "dimensions",
       "granularity": "",
-      "breakdown": "CustomField1",
+      "breakdown": "CustomField2",
+      "filter": "",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 0,
+      "error": null
+    },
+    {
+      "metric": null,
+      "kind": "dimensions",
+      "granularity": "",
+      "breakdown": "CustomField3",
       "filter": "",
       "optional": true,
       "provenance": "observed",
@@ -232,20 +262,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 27,
-      "error": null
-    },
-    {
-      "metric": null,
-      "kind": "dimensions",
-      "granularity": "",
-      "breakdown": "CustomField2",
-      "filter": "",
-      "optional": true,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 0,
+      "points": 40,
       "error": null
     },
     {
@@ -271,7 +288,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 93,
+      "points": 97,
       "error": null
     },
     {
@@ -291,13 +308,13 @@
       "metric": null,
       "kind": "dimensions",
       "granularity": "",
-      "breakdown": "CustomField3",
+      "breakdown": "FunnelStep",
       "filter": "",
       "optional": true,
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 0,
+      "points": 15,
       "error": null
     },
     {
@@ -310,7 +327,7 @@
       "provenance": null,
       "status": 200,
       "ok": true,
-      "points": 1,
+      "points": 2,
       "error": null
     },
     {
@@ -334,9 +351,9 @@
       "filter": "",
       "optional": true,
       "provenance": null,
-      "status": 500,
-      "ok": false,
-      "points": 0,
+      "status": 200,
+      "ok": true,
+      "points": 74,
       "error": null
     },
     {
@@ -347,9 +364,9 @@
       "filter": "",
       "optional": true,
       "provenance": null,
-      "status": 500,
-      "ok": false,
-      "points": 0,
+      "status": 200,
+      "ok": true,
+      "points": 100,
       "error": null
     },
     {
@@ -360,9 +377,9 @@
       "filter": "",
       "optional": true,
       "provenance": null,
-      "status": 500,
-      "ok": false,
-      "points": 0,
+      "status": 200,
+      "ok": true,
+      "points": 100,
       "error": null
     },
     {
@@ -445,7 +462,7 @@
     },
     {
       "metric": null,
-      "kind": "reviews",
+      "kind": "placeVersions",
       "granularity": "",
       "breakdown": "",
       "filter": "",
@@ -453,7 +470,7 @@
       "provenance": null,
       "status": 200,
       "ok": true,
-      "points": 0,
+      "points": 100,
       "error": null
     },
     {
@@ -479,7 +496,7 @@
       "provenance": null,
       "status": 200,
       "ok": true,
-      "points": 30,
+      "points": 0,
       "error": null
     },
     {
@@ -510,20 +527,7 @@
     },
     {
       "metric": null,
-      "kind": "placeVersions",
-      "granularity": "",
-      "breakdown": "",
-      "filter": "",
-      "optional": true,
-      "provenance": null,
-      "status": 500,
-      "ok": false,
-      "points": 0,
-      "error": null
-    },
-    {
-      "metric": null,
-      "kind": "placeVersions",
+      "kind": "reviews",
       "granularity": "",
       "breakdown": "",
       "filter": "",
@@ -531,7 +535,7 @@
       "provenance": null,
       "status": 200,
       "ok": true,
-      "points": 100,
+      "points": 102,
       "error": null
     },
     {
@@ -557,7 +561,20 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 4,
+      "points": 7,
+      "error": null
+    },
+    {
+      "metric": null,
+      "kind": "placeVersions",
+      "granularity": "",
+      "breakdown": "",
+      "filter": "",
+      "optional": true,
+      "provenance": null,
+      "status": 200,
+      "ok": true,
+      "points": 100,
       "error": null
     },
     {
@@ -596,7 +613,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 8,
+      "points": 14,
       "error": null
     },
     {
@@ -622,7 +639,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 10,
+      "points": 21,
       "error": null
     },
     {
@@ -636,19 +653,6 @@
       "status": 200,
       "ok": true,
       "points": 1,
-      "error": null
-    },
-    {
-      "metric": null,
-      "kind": "annotations",
-      "granularity": "",
-      "breakdown": "",
-      "filter": "",
-      "optional": true,
-      "provenance": "proven",
-      "status": 200,
-      "ok": true,
-      "points": 0,
       "error": null
     },
     {
@@ -711,6 +715,19 @@
       "filter": "",
       "optional": true,
       "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 0,
+      "error": null
+    },
+    {
+      "metric": null,
+      "kind": "annotations",
+      "granularity": "",
+      "breakdown": "",
+      "filter": "",
+      "optional": true,
+      "provenance": "proven",
       "status": 400,
       "ok": false,
       "points": 0,
@@ -726,46 +743,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 14,
-      "error": null
-    },
-    {
-      "metric": "RFYQualifiedPTR",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "proven",
-      "status": 200,
-      "ok": true,
-      "points": 14,
-      "error": null
-    },
-    {
-      "metric": "RFYL7PlayDays",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 200,
-      "ok": true,
-      "points": 14,
-      "error": null
-    },
-    {
-      "metric": "UniqueUsersWithImpressions",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 200,
-      "ok": true,
-      "points": 14,
+      "points": 27,
       "error": null
     },
     {
@@ -778,7 +756,33 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 84,
+      "points": 162,
+      "error": null
+    },
+    {
+      "metric": "UniqueUsersWithImpressions",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "RFYL7PlayDays",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 27,
       "error": null
     },
     {
@@ -791,7 +795,20 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 12,
+      "points": 25,
+      "error": null
+    },
+    {
+      "metric": "RFYQualifiedPTR",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 27,
       "error": null
     },
     {
@@ -804,7 +821,20 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 7,
+      "points": 20,
+      "error": null
+    },
+    {
+      "metric": "Attribution7DPayerConversionRatio",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 20,
       "error": null
     },
     {
@@ -817,7 +847,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 7,
+      "points": 20,
       "error": null
     },
     {
@@ -834,45 +864,6 @@
       "error": null
     },
     {
-      "metric": "RFYDuration0To60",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 14,
-      "error": null
-    },
-    {
-      "metric": "Attribution7DPayerConversionRatio",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 200,
-      "ok": true,
-      "points": 7,
-      "error": null
-    },
-    {
-      "metric": "RFYDuration61To180",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 14,
-      "error": null
-    },
-    {
       "metric": "RFYPlayThroughRate",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
@@ -882,7 +873,20 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "RFYDuration0To60",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 27,
       "error": null
     },
     {
@@ -895,11 +899,11 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
       "error": null
     },
     {
-      "metric": "RFYD1RobuxSpend",
+      "metric": "RFYDuration61To180",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
       "breakdown": "",
@@ -908,7 +912,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
       "error": null
     },
     {
@@ -921,46 +925,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
-      "error": null
-    },
-    {
-      "metric": "RFYD2To7PlayDays",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 14,
-      "error": null
-    },
-    {
-      "metric": "RFYD1QualifiedPlaySessions",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 14,
-      "error": null
-    },
-    {
-      "metric": "RFYD2To7Playtime",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 14,
+      "points": 27,
       "error": null
     },
     {
@@ -973,7 +938,46 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "RFYD1QualifiedPlaySessions",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "RFYD1RobuxSpend",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "RFYD2To7PlayDays",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 27,
       "error": null
     },
     {
@@ -986,11 +990,11 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
       "error": null
     },
     {
-      "metric": "RFYD2To7SpendDays",
+      "metric": "RFYD2To7Playtime",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
       "breakdown": "",
@@ -999,33 +1003,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
-      "error": null
-    },
-    {
-      "metric": "RFYD2To7RobuxSpend",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 14,
-      "error": null
-    },
-    {
-      "metric": "RFYD8To28Playtime",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 14,
+      "points": 27,
       "error": null
     },
     {
@@ -1038,11 +1016,11 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
       "error": null
     },
     {
-      "metric": "RFYD8To28QualifiedPlaySessions",
+      "metric": "RFYD2To7RobuxSpend",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
       "breakdown": "",
@@ -1051,11 +1029,11 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
       "error": null
     },
     {
-      "metric": "RFYD8To28PlayDays",
+      "metric": "RFYD8To28Playtime",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
       "breakdown": "",
@@ -1064,7 +1042,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
       "error": null
     },
     {
@@ -1077,11 +1055,11 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
       "error": null
     },
     {
-      "metric": "RFYD8To28SpendDays",
+      "metric": "RFYD2To7SpendDays",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
       "breakdown": "",
@@ -1090,7 +1068,33 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "RFYD8To28PlayDays",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "RFYD8To28QualifiedPlaySessions",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 27,
       "error": null
     },
     {
@@ -1103,20 +1107,33 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "RFYD8To28SpendDays",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 27,
       "error": null
     },
     {
       "metric": "MonthlyActiveUsers",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "Country",
+      "breakdown": "AgeGroupV2",
       "filter": "",
       "optional": false,
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 2559,
+      "points": 189,
       "error": null
     },
     {
@@ -1129,7 +1146,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 650,
+      "points": 1350,
       "error": null
     },
     {
@@ -1142,33 +1159,33 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 39,
-      "error": null
-    },
-    {
-      "metric": "MonthlyActiveUsers",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "AgeGroupV2",
-      "filter": "",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 91,
+      "points": 81,
       "error": null
     },
     {
       "metric": "DailyActiveUsers",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "AgeGroupV2",
+      "breakdown": "Country",
       "filter": "",
       "optional": true,
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 91,
+      "points": 5472,
+      "error": null
+    },
+    {
+      "metric": "MonthlyActiveUsers",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "Country",
+      "filter": "",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 5472,
       "error": null
     },
     {
@@ -1181,7 +1198,33 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 39,
+      "points": 81,
+      "error": null
+    },
+    {
+      "metric": "DailyActiveUsers",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "Locale",
+      "filter": "",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 1350,
+      "error": null
+    },
+    {
+      "metric": "DailyActiveUsers",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "AgeGroupV2",
+      "filter": "",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 189,
       "error": null
     },
     {
@@ -1198,19 +1241,6 @@
       "error": null
     },
     {
-      "metric": "DailyActiveUsers",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "Locale",
-      "filter": "",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 200,
-      "ok": true,
-      "points": 650,
-      "error": null
-    },
-    {
       "metric": "Attribution30DRobuxPerUser",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_NONE",
@@ -1233,7 +1263,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 5,
+      "points": 6,
       "error": null
     },
     {
@@ -1247,19 +1277,6 @@
       "status": 200,
       "ok": true,
       "points": 6,
-      "error": null
-    },
-    {
-      "metric": "DailyActiveUsers",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "Country",
-      "filter": "",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 200,
-      "ok": true,
-      "points": 2559,
       "error": null
     },
     {
@@ -1285,7 +1302,33 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 5,
+      "points": 6,
+      "error": null
+    },
+    {
+      "metric": "Attribution7DPayerConversionRatio",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_NONE",
+      "breakdown": "AcquisitionSource",
+      "filter": "AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 6,
+      "error": null
+    },
+    {
+      "metric": "Attribution7DRobuxPerUser",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_NONE",
+      "breakdown": "AcquisitionSource",
+      "filter": "AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 6,
       "error": null
     },
     {
@@ -1302,26 +1345,13 @@
       "error": null
     },
     {
-      "metric": "Attribution7DPayerConversionRatio",
+      "metric": "EndToEndCVR",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_NONE",
       "breakdown": "AcquisitionSource",
-      "filter": "AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 200,
-      "ok": true,
-      "points": 5,
-      "error": null
-    },
-    {
-      "metric": "Attribution7DRobuxPerUser",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_NONE",
-      "breakdown": "AcquisitionSource",
-      "filter": "AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others",
-      "optional": true,
-      "provenance": "inferred",
+      "filter": "AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others,IsNewUser=New",
+      "optional": false,
+      "provenance": "observed",
       "status": 200,
       "ok": true,
       "points": 5,
@@ -1337,7 +1367,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 66,
+      "points": 132,
       "error": null
     },
     {
@@ -1350,33 +1380,20 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 12,
+      "points": 26,
       "error": null
     },
     {
-      "metric": "EndToEndCVR",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_NONE",
-      "breakdown": "AcquisitionSource",
-      "filter": "AcquisitionSource=HomeRecommendation/Search/Friends/CrossGame/SponsoredAds/PortalAds/Curation/Charts/SearchAds/Others,IsNewUser=New",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 5,
-      "error": null
-    },
-    {
-      "metric": "UniqueUsersWithImpressions",
+      "metric": "ForwardD1Retention",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "AcquisitionSource",
-      "filter": "IsNewUser=New",
+      "breakdown": "Platform",
+      "filter": "",
       "optional": false,
-      "provenance": "observed",
+      "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 70,
+      "points": 158,
       "error": null
     },
     {
@@ -1393,29 +1410,16 @@
       "error": null
     },
     {
-      "metric": "ForwardD7Retention",
+      "metric": "UniqueUsersWithImpressions",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
+      "breakdown": "AcquisitionSource",
+      "filter": "IsNewUser=New",
       "optional": false,
-      "provenance": "proven",
+      "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 6,
-      "error": null
-    },
-    {
-      "metric": "ForwardD1Retention",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "Platform",
-      "filter": "",
-      "optional": false,
-      "provenance": "proven",
-      "status": 200,
-      "ok": true,
-      "points": 74,
+      "points": 135,
       "error": null
     },
     {
@@ -1428,7 +1432,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 72,
+      "points": 160,
       "error": null
     },
     {
@@ -1445,6 +1449,19 @@
       "error": null
     },
     {
+      "metric": "ForwardD7Retention",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 20,
+      "error": null
+    },
+    {
       "metric": "DailyCohortRetention",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
@@ -1455,6 +1472,19 @@
       "status": 400,
       "ok": false,
       "points": 0,
+      "error": null
+    },
+    {
+      "metric": "DauMauStickiness",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 27,
       "error": null
     },
     {
@@ -1484,19 +1514,6 @@
       "error": null
     },
     {
-      "metric": "DauMauStickiness",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "proven",
-      "status": 200,
-      "ok": true,
-      "points": 13,
-      "error": null
-    },
-    {
       "metric": "L7AverageForwardD1Retention",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
@@ -1510,16 +1527,16 @@
       "error": null
     },
     {
-      "metric": "DailyActiveUsers",
+      "metric": "ForwardD7Retention",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
+      "breakdown": "Platform",
       "filter": "",
-      "optional": false,
-      "provenance": "proven",
+      "optional": true,
+      "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 121,
       "error": null
     },
     {
@@ -1532,20 +1549,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 13,
-      "error": null
-    },
-    {
-      "metric": "ForwardD7Retention",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "Platform",
-      "filter": "",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 200,
-      "ok": true,
-      "points": 37,
+      "points": 27,
       "error": null
     },
     {
@@ -1558,7 +1562,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 27,
       "error": null
     },
     {
@@ -1571,7 +1575,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 78,
+      "points": 164,
       "error": null
     },
     {
@@ -1597,7 +1601,46 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 79,
+      "points": 163,
+      "error": null
+    },
+    {
+      "metric": "DailyActiveUsers",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "Visits",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "Platform",
+      "filter": "",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 163,
+      "error": null
+    },
+    {
+      "metric": "AverageSessionLengthMinutes",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 27,
       "error": null
     },
     {
@@ -1610,46 +1653,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 13,
-      "error": null
-    },
-    {
-      "metric": "Visits",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "proven",
-      "status": 200,
-      "ok": true,
-      "points": 13,
-      "error": null
-    },
-    {
-      "metric": "Visits",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "Platform",
-      "filter": "",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 200,
-      "ok": true,
-      "points": 79,
-      "error": null
-    },
-    {
-      "metric": "AverageSessionLengthMinutes",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "proven",
-      "status": 200,
-      "ok": true,
-      "points": 13,
+      "points": 27,
       "error": null
     },
     {
@@ -1662,7 +1666,20 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "AverageSessionLengthMinutes",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "IsNewUser=Returning",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 27,
       "error": null
     },
     {
@@ -1670,32 +1687,6 @@
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
       "breakdown": "PlaceVersion",
-      "filter": "",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 400,
-      "ok": false,
-      "points": 0,
-      "error": null
-    },
-    {
-      "metric": "AverageSessionLengthMinutes",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "Platform",
-      "filter": "",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 200,
-      "ok": true,
-      "points": 79,
-      "error": null
-    },
-    {
-      "metric": "L7AveragePlayTimeMinutesPerDAU",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
       "filter": "",
       "optional": true,
       "provenance": "inferred",
@@ -1714,7 +1705,20 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "L7AveragePlayTimeMinutesPerDAU",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 400,
+      "ok": false,
+      "points": 0,
       "error": null
     },
     {
@@ -1740,20 +1744,33 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 27,
       "error": null
     },
     {
-      "metric": "UniqueUsersWithPlaySessions",
+      "metric": "Visits",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
       "breakdown": "",
-      "filter": "IsNewUser=New",
+      "filter": "",
       "optional": false,
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "AverageSessionLengthMinutes",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "Platform",
+      "filter": "",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 163,
       "error": null
     },
     {
@@ -1766,20 +1783,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 14,
-      "error": null
-    },
-    {
-      "metric": "AverageSessionLengthMinutes",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "IsNewUser=Returning",
-      "optional": false,
-      "provenance": "proven",
-      "status": 200,
-      "ok": true,
-      "points": 13,
+      "points": 27,
       "error": null
     },
     {
@@ -1793,6 +1797,58 @@
       "status": 400,
       "ok": false,
       "points": 0,
+      "error": null
+    },
+    {
+      "metric": "UniqueUsersWithPlaySessions",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "IsNewUser=New",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "PayingUsersCVR",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 26,
+      "error": null
+    },
+    {
+      "metric": "AverageRevenuePerPayingUser",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 26,
+      "error": null
+    },
+    {
+      "metric": "AverageRevenuePerUser",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 26,
       "error": null
     },
     {
@@ -1818,46 +1874,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 79,
-      "error": null
-    },
-    {
-      "metric": "AverageRevenuePerUser",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "proven",
-      "status": 200,
-      "ok": true,
-      "points": 13,
-      "error": null
-    },
-    {
-      "metric": "AverageRevenuePerPayingUser",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "proven",
-      "status": 200,
-      "ok": true,
-      "points": 13,
-      "error": null
-    },
-    {
-      "metric": "DailyRevenue",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": false,
-      "provenance": "proven",
-      "status": 200,
-      "ok": true,
-      "points": 13,
+      "points": 160,
       "error": null
     },
     {
@@ -1870,7 +1887,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 26,
       "error": null
     },
     {
@@ -1883,20 +1900,20 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 56,
+      "points": 115,
       "error": null
     },
     {
-      "metric": "PayingUsersCVR",
+      "metric": "DailyRevenue",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
+      "breakdown": "BalanceType",
       "filter": "",
       "optional": false,
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 52,
       "error": null
     },
     {
@@ -1929,13 +1946,13 @@
       "metric": "ItemMonetizationRevenue",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_HOUR",
-      "breakdown": "",
+      "breakdown": "ProductType",
       "filter": "",
       "optional": false,
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 199,
+      "points": 846,
       "error": null
     },
     {
@@ -1952,6 +1969,19 @@
       "error": null
     },
     {
+      "metric": "DailyRevenue",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 26,
+      "error": null
+    },
+    {
       "metric": "ErrorCount",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
@@ -1961,7 +1991,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 2,
+      "points": 3,
       "error": null
     },
     {
@@ -1974,33 +2004,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 4,
-      "error": null
-    },
-    {
-      "metric": "DailyRevenue",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "BalanceType",
-      "filter": "",
-      "optional": false,
-      "provenance": "proven",
-      "status": 200,
-      "ok": true,
-      "points": 26,
-      "error": null
-    },
-    {
-      "metric": "ItemMonetizationRevenue",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_HOUR",
-      "breakdown": "ProductType",
-      "filter": "",
-      "optional": false,
-      "provenance": "proven",
-      "status": 200,
-      "ok": true,
-      "points": 752,
+      "points": 6,
       "error": null
     },
     {
@@ -2013,7 +2017,20 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 26,
+      "error": null
+    },
+    {
+      "metric": "ItemMonetizationRevenue",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_HOUR",
+      "breakdown": "",
+      "filter": "",
+      "optional": false,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 227,
       "error": null
     },
     {
@@ -2026,20 +2043,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 13,
-      "error": null
-    },
-    {
-      "metric": "RSVPCount",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 200,
-      "ok": true,
-      "points": 13,
+      "points": 26,
       "error": null
     },
     {
@@ -2052,7 +2056,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 26,
       "error": null
     },
     {
@@ -2065,20 +2069,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 13,
-      "error": null
-    },
-    {
-      "metric": "PlayerFeedbackVotesCount",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 200,
-      "ok": true,
-      "points": 14,
+      "points": 26,
       "error": null
     },
     {
@@ -2091,7 +2082,20 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 26,
+      "error": null
+    },
+    {
+      "metric": "PlayerFeedbackVotesCount",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 27,
       "error": null
     },
     {
@@ -2104,7 +2108,72 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
+      "error": null
+    },
+    {
+      "metric": "RSVPCount",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 26,
+      "error": null
+    },
+    {
+      "metric": "AttributionD7RetentionRatio",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 19,
+      "error": null
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 8,
+      "error": null
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 8,
+      "error": null
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 5,
       "error": null
     },
     {
@@ -2117,11 +2186,11 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
       "error": null
     },
     {
-      "metric": "ClientCrashRate15m",
+      "metric": "ClientCrashCount",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
       "breakdown": "",
@@ -2143,7 +2212,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 7,
+      "points": 8,
       "error": null
     },
     {
@@ -2169,11 +2238,11 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 7,
+      "points": 8,
       "error": null
     },
     {
-      "metric": "OomUnexpectedExits",
+      "metric": "ClientCrashCount",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
       "breakdown": "",
@@ -2182,7 +2251,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 7,
+      "points": 5,
       "error": null
     },
     {
@@ -2196,6 +2265,45 @@
       "status": 200,
       "ok": true,
       "points": 8,
+      "error": null
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 8,
+      "error": null
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 8,
+      "error": null
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 5,
       "error": null
     },
     {
@@ -2222,6 +2330,32 @@
       "status": 200,
       "ok": true,
       "points": 0,
+      "error": null
+    },
+    {
+      "metric": "ServerCrashCount",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 3,
+      "error": null
+    },
+    {
+      "metric": "ServerCrashCount",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 1,
       "error": null
     },
     {
@@ -2239,6 +2373,58 @@
     },
     {
       "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "Platform",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 48,
+      "error": null
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "Platform",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 48,
+      "error": null
+    },
+    {
+      "metric": "ClientCrashRate15m",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "Platform",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 30,
+      "error": null
+    },
+    {
+      "metric": "ClientCrashCount",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "Platform",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 45,
+      "error": null
+    },
+    {
+      "metric": "ClientCrashCount",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
       "breakdown": "Platform",
@@ -2273,7 +2459,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 35,
+      "points": 24,
       "error": null
     },
     {
@@ -2286,7 +2472,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 29,
+      "points": 31,
       "error": null
     },
     {
@@ -2299,7 +2485,46 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 19,
+      "points": 28,
+      "error": null
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "Platform",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 26,
+      "error": null
+    },
+    {
+      "metric": "OomUnexpectedExits",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "Platform",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 11,
+      "error": null
+    },
+    {
+      "metric": "ServerCrashCount",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "CrashType",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 3,
       "error": null
     },
     {
@@ -2329,16 +2554,16 @@
       "error": null
     },
     {
-      "metric": "AttributionD7RetentionRatio",
+      "metric": "ServerCrashCount",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "",
+      "breakdown": "CrashType",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
       "optional": true,
-      "provenance": "inferred",
+      "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 6,
+      "points": 1,
       "error": null
     },
     {
@@ -2351,7 +2576,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 29,
       "error": null
     },
     {
@@ -2364,20 +2589,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 15,
-      "error": null
-    },
-    {
-      "metric": "MemoryUsageAvg",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 15,
+      "points": 29,
       "error": null
     },
     {
@@ -2390,7 +2602,33 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 29,
+      "error": null
+    },
+    {
+      "metric": "MemoryUsageAvg",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 28,
+      "error": null
+    },
+    {
+      "metric": "CpuTimeAvg",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 27,
       "error": null
     },
     {
@@ -2403,7 +2641,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 14,
+      "points": 27,
       "error": null
     },
     {
@@ -2416,7 +2654,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 90,
+      "points": 174,
       "error": null
     },
     {
@@ -2429,20 +2667,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 90,
-      "error": null
-    },
-    {
-      "metric": "CpuTimeAvg",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 14,
+      "points": 174,
       "error": null
     },
     {
@@ -2455,7 +2680,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 90,
+      "points": 174,
       "error": null
     },
     {
@@ -2468,7 +2693,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 90,
+      "points": 174,
       "error": null
     },
     {
@@ -2481,7 +2706,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 70,
+      "points": 135,
       "error": null
     },
     {
@@ -2494,7 +2719,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 75,
+      "points": 140,
       "error": null
     },
     {
@@ -2507,7 +2732,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 29,
       "error": null
     },
     {
@@ -2520,7 +2745,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 29,
       "error": null
     },
     {
@@ -2533,7 +2758,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 29,
       "error": null
     },
     {
@@ -2546,7 +2771,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 90,
+      "points": 174,
       "error": null
     },
     {
@@ -2563,16 +2788,16 @@
       "error": null
     },
     {
-      "metric": "ClientFpsAvg",
+      "metric": "ClientCpuTimeAvg",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
+      "breakdown": "ClientCpuTimeCategory",
       "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
       "optional": true,
-      "provenance": "inferred",
+      "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 15,
+      "points": 140,
       "error": null
     },
     {
@@ -2585,7 +2810,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 463,
+      "points": 500,
       "error": null
     },
     {
@@ -2598,7 +2823,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 2,
+      "points": 3,
       "error": null
     },
     {
@@ -2611,7 +2836,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 4,
+      "points": 6,
       "error": null
     },
     {
@@ -2628,6 +2853,19 @@
       "error": null
     },
     {
+      "metric": "ClientFpsAvg",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 200,
+      "ok": true,
+      "points": 29,
+      "error": null
+    },
+    {
       "metric": "ErrorCount",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_HALF_HOUR",
@@ -2637,7 +2875,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 37,
+      "points": 33,
       "error": null
     },
     {
@@ -2650,7 +2888,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 74,
+      "points": 66,
       "error": null
     },
     {
@@ -2663,7 +2901,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 0,
+      "points": 1,
       "error": null
     },
     {
@@ -2676,7 +2914,7 @@
       "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 0,
+      "points": 1,
       "error": null
     },
     {
@@ -2689,7 +2927,46 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 49,
+      "points": 34,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserChurnRate",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_NONE",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=TutorialFunnel",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 15,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserTotalCount",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_NONE",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=TutorialFunnel",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 15,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserTotalCount",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_NONE",
+      "breakdown": "",
+      "filter": "FunnelName=TutorialFunnel",
+      "optional": false,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 1,
       "error": null
     },
     {
@@ -2706,45 +2983,6 @@
       "error": null
     },
     {
-      "metric": "FunnelUserChurnRate",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_NONE",
-      "breakdown": "FunnelStep",
-      "filter": "FunnelName=TutorialFunnel",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 15,
-      "error": null
-    },
-    {
-      "metric": "FunnelUserTotalCount",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_NONE",
-      "breakdown": "FunnelStep",
-      "filter": "FunnelName=TutorialFunnel",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 15,
-      "error": null
-    },
-    {
-      "metric": "FunnelUserTotalCount",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_NONE",
-      "breakdown": "",
-      "filter": "FunnelName=TutorialFunnel",
-      "optional": false,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 1,
-      "error": null
-    },
-    {
       "metric": "FunnelUserOverallCompletionRate",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_NONE",
@@ -2755,19 +2993,6 @@
       "status": 200,
       "ok": true,
       "points": 1,
-      "error": null
-    },
-    {
-      "metric": "ClientCpuTimeAvg",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
-      "optional": false,
-      "provenance": "observed",
-      "status": 500,
-      "ok": false,
-      "points": 0,
       "error": null
     },
     {
@@ -2785,32 +3010,6 @@
     },
     {
       "metric": "FunnelUserStepCompletionRate",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "FunnelStep",
-      "filter": "FunnelName=TutorialFunnel",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 400,
-      "ok": false,
-      "points": 0,
-      "error": null
-    },
-    {
-      "metric": "FunnelUserOverallCompletionRate",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "",
-      "filter": "FunnelName=TutorialFunnel",
-      "optional": true,
-      "provenance": "inferred",
-      "status": 400,
-      "ok": false,
-      "points": 0,
-      "error": null
-    },
-    {
-      "metric": "FunnelUserTotalCount",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
       "breakdown": "FunnelStep",
@@ -2836,6 +3035,45 @@
       "error": null
     },
     {
+      "metric": "ClientCpuTimeAvg",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
+      "optional": false,
+      "provenance": "observed",
+      "status": 500,
+      "ok": false,
+      "points": 0,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserTotalCount",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=TutorialFunnel",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": null
+    },
+    {
+      "metric": "FunnelUserOverallCompletionRate",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_ONE_DAY",
+      "breakdown": "",
+      "filter": "FunnelName=TutorialFunnel",
+      "optional": true,
+      "provenance": "inferred",
+      "status": 400,
+      "ok": false,
+      "points": 0,
+      "error": null
+    },
+    {
       "metric": "FunnelCohortCompletionRate",
       "kind": "metric",
       "granularity": "METRIC_GRANULARITY_ONE_DAY",
@@ -2845,7 +3083,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 225,
+      "points": 420,
       "error": null
     },
     {
@@ -2858,46 +3096,7 @@
       "provenance": "inferred",
       "status": 200,
       "ok": true,
-      "points": 225,
-      "error": null
-    },
-    {
-      "metric": "ClientCpuTimeAvg",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_ONE_DAY",
-      "breakdown": "ClientCpuTimeCategory",
-      "filter": "Place=76865069793948/87388097381958/94401613935841/100407536317236/109025676702094/111157217779261/128451475320872/139617346573330",
-      "optional": true,
-      "provenance": "observed",
-      "status": 500,
-      "ok": false,
-      "points": 0,
-      "error": null
-    },
-    {
-      "metric": "FunnelStepOverallCompletionRate",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_NONE",
-      "breakdown": "",
-      "filter": "FunnelName=TutorialFunnel",
-      "optional": true,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 1,
-      "error": null
-    },
-    {
-      "metric": "FunnelStepChurnRate",
-      "kind": "metric",
-      "granularity": "METRIC_GRANULARITY_NONE",
-      "breakdown": "FunnelStep",
-      "filter": "FunnelName=TutorialFunnel",
-      "optional": true,
-      "provenance": "observed",
-      "status": 200,
-      "ok": true,
-      "points": 15,
+      "points": 420,
       "error": null
     },
     {
@@ -2923,7 +3122,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 24,
+      "points": 50,
       "error": null
     },
     {
@@ -2936,7 +3135,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 12,
+      "points": 38,
       "error": null
     },
     {
@@ -2975,7 +3174,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 26,
+      "points": 52,
       "error": null
     },
     {
@@ -2988,7 +3187,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 26,
+      "points": 52,
       "error": null
     },
     {
@@ -3001,20 +3200,33 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 26,
+      "points": 52,
       "error": null
     },
     {
-      "metric": "PayingUsers",
-      "kind": "benchmark",
-      "granularity": "",
-      "breakdown": "",
-      "filter": "",
+      "metric": "FunnelStepChurnRate",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_NONE",
+      "breakdown": "FunnelStep",
+      "filter": "FunnelName=TutorialFunnel",
       "optional": true,
-      "provenance": "proven",
+      "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 15,
+      "error": null
+    },
+    {
+      "metric": "FunnelStepOverallCompletionRate",
+      "kind": "metric",
+      "granularity": "METRIC_GRANULARITY_NONE",
+      "breakdown": "",
+      "filter": "FunnelName=TutorialFunnel",
+      "optional": true,
+      "provenance": "observed",
+      "status": 200,
+      "ok": true,
+      "points": 1,
       "error": null
     },
     {
@@ -3027,7 +3239,7 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 26,
       "error": null
     },
     {
@@ -3040,11 +3252,11 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 26,
       "error": null
     },
     {
-      "metric": "AverageSessionLengthMinutes",
+      "metric": "MonthlyActiveUsers",
       "kind": "benchmark",
       "granularity": "",
       "breakdown": "",
@@ -3057,7 +3269,7 @@
       "error": null
     },
     {
-      "metric": "Visits",
+      "metric": "AverageSessionLengthMinutes",
       "kind": "benchmark",
       "granularity": "",
       "breakdown": "",
@@ -3066,11 +3278,37 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 52,
+      "error": null
+    },
+    {
+      "metric": "PayingUsers",
+      "kind": "benchmark",
+      "granularity": "",
+      "breakdown": "",
+      "filter": "",
+      "optional": true,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 26,
       "error": null
     },
     {
       "metric": "AveragePlayTimeMinutesPerDAU",
+      "kind": "benchmark",
+      "granularity": "",
+      "breakdown": "",
+      "filter": "",
+      "optional": true,
+      "provenance": "proven",
+      "status": 200,
+      "ok": true,
+      "points": 52,
+      "error": null
+    },
+    {
+      "metric": "Visits",
       "kind": "benchmark",
       "granularity": "",
       "breakdown": "",
@@ -3109,19 +3347,6 @@
       "error": null
     },
     {
-      "metric": "MonthlyActiveUsers",
-      "kind": "benchmark",
-      "granularity": "",
-      "breakdown": "",
-      "filter": "",
-      "optional": true,
-      "provenance": "proven",
-      "status": 200,
-      "ok": true,
-      "points": 13,
-      "error": null
-    },
-    {
       "metric": "L7AveragePlayTimeMinutesPerDAU",
       "kind": "benchmark",
       "granularity": "",
@@ -3131,20 +3356,20 @@
       "provenance": "proven",
       "status": 200,
       "ok": true,
-      "points": 26,
+      "points": 52,
       "error": null
     },
     {
-      "metric": "TotalPlayTimeHours",
+      "metric": "RFYL7PlayDays",
       "kind": "benchmark",
       "granularity": "",
       "breakdown": "",
       "filter": "",
       "optional": true,
-      "provenance": "proven",
+      "provenance": "observed",
       "status": 200,
       "ok": true,
-      "points": 13,
+      "points": 52,
       "error": null
     },
     {
@@ -3161,13 +3386,13 @@
       "error": null
     },
     {
-      "metric": "RFYL7PlayDays",
+      "metric": "TotalPlayTimeHours",
       "kind": "benchmark",
       "granularity": "",
       "breakdown": "",
       "filter": "",
       "optional": true,
-      "provenance": "observed",
+      "provenance": "proven",
       "status": 200,
       "ok": true,
       "points": 26,

@@ -1,0 +1,139 @@
+Count,Severity,Type,First seen at,Message,,
+637693,Error,Client,Mon Aug 24 2026 21:47:15 GMT+0200 (heure d’été d’Europe centrale),Failed to load sound: Asset is not approved for the requester,rbxassetid://138118304933431,
+371059,Error,Server,Mon Aug 24 2026 22:07:10 GMT+0200 (heure d’été d’Europe centrale),Failed to load sound: Asset is not approved for the requester,rbxassetid://138118304933431,
+167949,Warning,Client,,Infinite yield possible on WaitForChild,Workspace.WorldModel.LimitedPet1:WaitForChild("Trigger")
+Workspace.WorldModel.LimitedPet2:WaitForChild("Trigger")
+Workspace.WorldModel.LimitedPet3:WaitForChild("Trigger")
+Workspace.WorldModel.LimitedPet4:WaitForChild("Trigger"),
+134947,Warning,Client,,"Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will not be played.","http://www.roblox.com/asset/?id=10921258489,<Player>
+http://www.roblox.com/asset/?id=11600206437,<Player>
+http://www.roblox.com/asset/?id=11600211410,<Player>
+http://www.roblox.com/asset/?id=507766388,<Player>
+rbxassetid://122150855457006,<Player>",
+85734,Error,Client,,MeshContentProvider failed to process asset because 'could not fetch',f25a15685ef8fb852cc8dd58962c9cfd
+https://assetdelivery.roblox.com/v1/asset?id=100789921862149
+https://assetdelivery.roblox.com/v1/asset?id=119982520066681
+https://assetdelivery.roblox.com/v1/asset?id=126002791035173
+https://assetdelivery.roblox.com/v1/asset?id=128028689998216
+https://assetdelivery.roblox.com/v1/asset?id=128685549811487
+https://assetdelivery.roblox.com/v1/asset?id=128870559949946
+https://assetdelivery.roblox.com/v1/asset?id=140723874689775
+https://assetdelivery.roblox.com/v1/asset?id=14373847985
+https://assetdelivery.roblox.com/v1/asset?id=72796256588656
+https://assetdelivery.roblox.com/v1/asset/?id=11116786655
+https://assetdelivery.roblox.com/v1/asset/?id=14915799288
+https://assetdelivery.roblox.com/v1/asset/?id=15439800454
+https://assetdelivery.roblox.com/v1/asset/?id=17773046519
+https://assetdelivery.roblox.com/v1/asset/?id=9340483251,
+54707,Error,Client,,Failed to load animation with sanitized ID. Animation failed to load,rbxassetid://105976820595498
+rbxassetid://107873168465083
+rbxassetid://10921062673
+rbxassetid://10921240218
+rbxassetid://10921242013
+rbxassetid://10921257536
+rbxassetid://10921258489
+rbxassetid://10921271391
+rbxassetid://10921272275
+rbxassetid://115157103323964
+rbxassetid://118182895138883
+rbxassetid://140596047262789,
+40275,Error,Client,Sat Aug 08 2026 13:09:35 GMT+0200 (heure d’été d’Europe centrale),Failed to load object. PBR textures may not be visible in game.,SurfaceAppearance
+Workspace.<Player>.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Cloudywithhayoota.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.lyraw15.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.<PlayerId>.BearRigs.BearRig_3.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.<PlayerId>.BearRigs.BearRig_6.Accessory (Ponytail).Handle.SurfaceAppearance
+Workspace.Rafts.10695371224.BearRigs.BearRig_6.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.11301849874.BearRigs.BearRig_3.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.1574897686.BearRigs.BearRig_6.Accessory (Ponytail).Handle.SurfaceAppearance
+Workspace.Rafts.5521871160.BearRigs.BearRig_3.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.7165800057.BearRigs.BearRig_4.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.8147224812.BearRigs.BearRig_3.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.rawr_nova2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.rerrrrrrrrrrr2531.Accessory (dark_fae).Handle.SurfaceAppearance,
+24084,Error,Server,Mon Jun 08 2026 18:59:35 GMT+0200 (heure d’été d’Europe centrale),TeleportService:All players in teleport request are already in progress or throttled.,,
+20907,Error,Client,,Failed to load sound: Timedout,rbxassetid://10066921516: HttpError
+rbxassetid://104164882152349: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://133664122932845: HttpError
+rbxassetid://138532985066732: HttpError
+rbxassetid://5410086218: HttpError,
+11700,Error,Client,,HSRDataContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=101525827401123
+https://assetdelivery.roblox.com/v1/asset?id=102857552680145
+https://assetdelivery.roblox.com/v1/asset?id=111282077204922
+https://assetdelivery.roblox.com/v1/asset?id=119436797952717
+https://assetdelivery.roblox.com/v1/asset?id=123803492296554
+https://assetdelivery.roblox.com/v1/asset?id=12567340000
+https://assetdelivery.roblox.com/v1/asset?id=126995201697064
+https://assetdelivery.roblox.com/v1/asset?id=13327142799
+https://assetdelivery.roblox.com/v1/asset?id=137500364636808
+https://assetdelivery.roblox.com/v1/asset?id=14558844265
+https://assetdelivery.roblox.com/v1/asset?id=14775694597
+https://assetdelivery.roblox.com/v1/asset?id=8980511746
+https://assetdelivery.roblox.com/v1/asset?id=9243860920
+https://assetdelivery.robloxapp.vnggames.com/v1/asset?id=8918108910
+https://assetdelivery.robloxapp.vnggames.com/v1/asset?id=9274850697,
+5100,Error,Client,,Failed to load sound: HTTP 429 (Too Many Requests),rbxasset://sounds/action_falling.mp3
+rbxassetid://104164882152349
+rbxassetid://106239090346339
+rbxassetid://108192570225558
+rbxassetid://120063078979133
+rbxassetid://124984738215587
+rbxassetid://125381282450800
+rbxassetid://138118304933431
+rbxassetid://99334339377211,
+2692,Error,Client,,Failed to load sound: NetFail,rbxassetid://104164882152349: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://133664122932845: HttpError
+rbxassetid://138118304933431: HttpError
+rbxassetid://138532985066732: HttpError
+rbxassetid://138690351078103: HttpError,
+2482,Error,Client,,Players.<Player>.PlayerScripts.UI.Trade:305: attempt to index nil with 'Name',"Script 'Players.<Player>.PlayerScripts.UI.Trade', Line 305 - function OnCloseTradeBtn",
+2379,Error,Client,,Failed to load sound: ServerProtocolError,rbxassetid://105393302099968: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://134764779929866: HttpError
+rbxassetid://138532985066732: HttpError
+rbxassetid://140045094283652: HttpError,
+2235,Error,Client,,Failed to load sound: DnsResolve,rbxassetid://104164882152349: HttpError
+rbxassetid://120063078979133: HttpError
+rbxassetid://124271857226514: HttpError
+rbxassetid://125381282450800: HttpError
+rbxassetid://140207837688369: HttpError
+rbxassetid://73627845587282: HttpError
+rbxassetid://95380304713409: HttpError,
+1019,Error,Client,,Failed to load sound: ConnectFail,rbxasset://sounds/action_falling.mp3: HttpError
+rbxassetid://10066921516: HttpError
+rbxassetid://104164882152349: HttpError
+rbxassetid://105393302099968: HttpError
+rbxassetid://124271857226514: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://129503972320937: HttpError
+rbxassetid://138118304933431: HttpError
+rbxassetid://73627845587282: HttpError,
+899,Error,Client,,Error in loading DateTimeLocaleConfig file of id-id (Unable to load rbxasset://configs/DateTimeLocaleConfigs/id-id.json),,
+834,Error,Client,,raiseTeleportInitFailedEvent: Teleport failed because A Http error has occurred. Please close the client and try again. (Failure),,
+726,Error,Client,Sun May 24 2026 08:16:00 GMT+0200 (heure d’été d’Europe centrale),Failed to load sound: Unable to download sound data,rbxassetid://124984738215587
+rbxassetid://171186876
+rbxassetid://5410086218,
+666,Error,Client,Mon Jun 08 2026 20:53:50 GMT+0200 (heure d’été d’Europe centrale),MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: Timedout,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+616,Error,Client,Tue Jun 09 2026 16:34:00 GMT+0200 (heure d’été d’Europe centrale),MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: DnsResolve,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+590,Error,Client,Mon Jun 08 2026 18:04:55 GMT+0200 (heure d’été d’Europe centrale),MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: ConnectFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+510,Warning,Server,,"DataStore request was added to queue. If request queue fills, further requests will be dropped. Try sending fewer requests.",Key = Player_<PlayerId>
+Key = Player_10210084987
+Key = Player_1132336596
+Key = Player_11407803891
+Key = Player_11572663504
+Key = Player_11618602860
+Key = Player_3362422312
+Key = Player_5603381868
+Key = Player_8157947404
+Key = Player_8218964619,
+476,Error,Client,,Failed to load sound: OutOfMemory,rbxasset://sounds/action_falling.mp3: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://133664122932845: HttpError
+rbxassetid://140245756477343: HttpError
+rbxassetid://171186876: HttpError,
+423,Error,Server,,DataStoreService: KeyThrottled: The request rate exceeds the allowed maximum for the key. API: UpdateAsync,GlobalDataStore,

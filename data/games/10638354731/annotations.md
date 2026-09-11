@@ -22,12 +22,13 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"ea8a34a6-96b7-4f8d-b2fc-c9dda24329cc","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[115738050969750,116821002818578,80854225251125,115039086102567,70795922266029]}},"createdUtcTime":"2026-09-05T19:28:37.895Z"}`
 - `{"id":"8149cc0e-2b5a-4d88-892e-369a80d1ea55","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[78537683572603,115815073777488,70795922266029,97894703725250,89764152326784]}},"createdUtcTime":"2026-09-08T19:43:09.712Z"}`
 
-## annotationType=8 (4)
+## annotationType=8 (5)
 
 - `{"id":"a64908a0-d014-4bd2-8912-8aec447eeae6","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":5407192803946137000,"eventName":"FIRST UPDATE","imageAssetId":134514492659322,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-08-28T18:00:24.994Z"}`
 - `{"id":"8fc128d0-11f1-4b71-aa01-c7a8507eb7a1","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":5407192803946137000,"eventName":"FIRST UPDATE","imageAssetId":134514492659322,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-08-31T19:00:24.994Z"}`
 - `{"id":"d7f8142c-5a9e-44b9-8c72-9cb09e9d3498","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":5407192803946137000,"eventName":"NEW UPDATE","imageAssetId":134514492659322,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-04T18:00:24.994Z"}`
 - `{"id":"895d9f1b-cd4e-4bbc-aa3a-c18cc2cdfc5a","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":5407192803946137000,"eventName":"NEW UPDATE","imageAssetId":134514492659322,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-09-07T19:00:24.994Z"}`
+- `{"id":"f936468d-a13b-4b7a-b6ff-4b9056a96325","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":306857135675933300,"eventName":"NEW UPDATE","imageAssetId":97899894306977,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-10T18:00:06.457Z"}`
 
 ## annotationType=10 (31)
 

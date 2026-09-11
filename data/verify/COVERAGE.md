@@ -892,3 +892,338 @@ file for this finding is
 Note the aggregate `ErrorCount` metric is unaffected — it chunks and holds ~56
 days in the corpus. It is only the **per-`MessageHash`** breakdown, and the
 dashboard export that carries the message text, that are limited to a day.
+
+## F30 — the Explore tab is a computed-metric DAG with user segmentation, and its breakdown is degenerate on cohort metrics (2026-09-11)
+
+The dashboard's **Explore** page does not use the flat
+`/metrics/resource` endpoint the grabber pulls. It posts to
+
+    POST https://apis.roblox.com/analytics-query-gateway/v1/dag/execute
+
+a **computed-metric DAG** — query nodes feeding arithmetic nodes feeding output
+nodes — and it accepts a family of **user-segmentation breakdowns we do not
+currently pull at all**. None of this is in `default-plan.ts`.
+
+### The shape, as captured (not invented)
+
+```json
+{ "graph": { "id": "computed_metric_computed_A", "name": "Computed Metric DAG",
+    "nodes": [
+      { "id": "query_A", "type": "NODE_TYPE_QUERY",
+        "queryConfig": { "metric": "DailyActiveUsers",
+          "filters":        [{ "dimension": "IsNewUser", "values": ["New"] }],
+          "breakdownSpecs": [{ "dimensionBreakdown": { "dimension": "UserSegmentationEngagementLevel" } }] } },
+      { "id": "output_main", "type": "NODE_TYPE_OUTPUT",
+        "outputConfig": { "input": "query_A", "alias": "computed_A" } } ] },
+  "context": { "resourceType": "RESOURCE_TYPE_UNIVERSE", "resourceId": "<id>",
+    "granularity": "METRIC_GRANULARITY_ONE_DAY",
+    "startTime": "...", "endTime": "..." } }
+```
+
+**Polling is re-POSTing the identical body.** It answers `{pending:true,
+operationId}` and the `operationId` is **content-addressed** — 21 identical
+requests in one capture all returned `dag-8a9c25eb60e9…`. There is no separate
+poll URL; `analytics-it-service/v1/watermarks/encode` is a telemetry watermark
+and polls nothing. Same async discipline as F22/F23: **an empty or pending
+answer is a measurement of the poll, not of the game.**
+
+First call in a session often 403s `XSRF token invalid`; the token comes back on
+the 403's `x-csrf-token` response header and the retry succeeds.
+
+### Vocabulary, read out of the dashboard's own JS bundle
+
+Not guessed — extracted from the shipped chunks by `probe-dag2.ts`:
+
+- `NODE_TYPE_`: QUERY, OUTPUT, ROLLING_WINDOW, CONSTANT, ADD, SUBTRACT,
+  MULTIPLY, DIVIDE, POWER, LOG, PERCENTILE, SERIES_AVG, SERIES_MAX, SERIES_MIN,
+  SERIES_SUM, ERR, POISONED, INVALID
+- `WINDOW_REDUCER_`: AVG, SUM, MIN, MAX, FIRST, LAST, COUNT
+- `WINDOW_AVG_MODE_`: WINDOW_SIZE, ACTUAL_COUNT
+- `RANK_DIRECTION_`: TOP, BOTTOM
+- `FILTER_OPERATION_`: EQUALS, NOT_EQUAL, CONTAINS, NOT_CONTAINS, GT, GTE, LT,
+  LTE, MATCH
+- `UserSegmentation*` dimensions (8): `AccountAge`, `AcquisitionSource`,
+  `ActivationStatus`, `EngagementLevel`, `PayerStatus`,
+  `PlatformActivationStatus`, `PlatformSpenderStatus`, `ReturnStatus`
+
+So the engine does server-side arithmetic across metrics, server-side rolling
+windows (the `L7Average*` metrics are this), and a server-side **top-N ranker**
+(`rank: {direction, n, orderByMetric, orderFilters}`, plus
+`excludeOtherSeries`), which we currently do client-side after pulling every
+series.
+
+`FILTER_OPERATION_EQUALS` is legal **here**. It is rejected on the Open Cloud
+`analytics-query-api` (see the Open Cloud section of `CLAUDE.md`) — the two
+surfaces do not share a filter enum, so do not carry one's rule to the other.
+
+### The trap: the segmentation breakdown is degenerate on cohort metrics
+
+Measured on 10638354731, `UserSegmentationEngagementLevel`, window 08-25→09-10,
+newest shared day. A volume's segments must SUM to the total; a rate's must
+WEIGHT-AVERAGE back to it, weighted by its own denominator:
+
+| metric | kind | total | reconciled | ratio | |
+|---|---|---|---|---|---|
+| `DailyActiveUsers` | volume | 45,775 | 45,731 | 0.9990 | ok |
+| `PayingUsers` | volume | 687 | 687 | 1.0000 | ok |
+| `DailyRevenue` | volume | 103,370 | 103,370 | 1.0000 | ok |
+| `TotalPlayTimeHours` | volume | 14,341.9 | 14,341.9 | 1.0000 | ok |
+| `AverageRevenuePerUser` | rate | 2.30305 | 2.30230 | 0.9997 | ok |
+| `PayingUsersCVR` | rate | 0.0153061 | 0.0152121 | 0.9939 | ok |
+| `AverageSessionLengthMinutes` | rate | 15.0345 | 14.8375 | 0.9869 | ok |
+| `AveragePlayTimeMinutesPerDAU` | rate | 18.7987 | 18.8168 | 1.0010 | ok |
+| `AverageRevenuePerPayingUser` | rate | 150.466 | 150.466 | 1.0000 | ok |
+| **`ForwardD1Retention`** | rate | 0.101059 | 0.264004 | **2.6124** | **BROKEN** |
+| **`ForwardD7Retention`** | rate | 0.00822513 | 0.285454 | **34.7051** | **BROKEN** |
+| **`DauMauStickiness`** | rate | 0.0134935 | 0.0147099 | **1.0901** | **BROKEN** |
+
+A second dimension was then measured, and it **narrows the claim**.
+Same metrics, same window, `UserSegmentationPayerStatus`:
+
+| metric | total | reconciled | ratio |
+|---|---|---|---|
+| every volume | — | — | 1.0000–1.0010 |
+| every non-cohort rate | — | — | 0.9979–1.0000 |
+| `ForwardD1Retention` | 0.101059 | 0.107223 | 1.0610 |
+| `ForwardD7Retention` | 0.00822513 | 0.00901582 | 1.0961 |
+| `DauMauStickiness` | 0.0134935 | 0.0137876 | 1.0218 |
+
+Under `PayerStatus` the retention segments are **not degenerate** — they are
+plausible and correctly ordered (`NeverPayer` 9.8%, `ActiveLowPayer` 28.9%,
+`ActiveMediumPayer` 37.2%, `ActiveHighPayer` 31.7%; D7 runs 0.76% → 10.2%).
+Payers retaining ~3x better than never-payers is a real and useful reading.
+
+So the honest split is:
+
+- **Volumes: exact** on both dimensions. Usable.
+- **Non-cohort rates** (ARPU, ARPPU, `PayingUsersCVR`, session length,
+  playtime/DAU): reconcile within 1.5% on both. Usable.
+- **`Forward*Retention` under `EngagementLevel`: degenerate and unusable.**
+  This one is certain — it returns a literal **Medium 1, Low 0, High 0** on
+  every day of the window (D7: Medium 1, High 1, Low 0.0024). The likely
+  mechanism is circularity: `EngagementLevel` is "days played in the last 7",
+  which is very nearly the same measurement as "did they come back", so the
+  join is ill-defined.
+- **`Forward*Retention` under `PayerStatus`: NOT settled either way.** It
+  reconciles 6–10% high, but **the weighting in that test is approximate** — a
+  retention rate’s denominator is its cohort (the users eligible to return),
+  not that day’s DAU, and DAU is what was used. The residual may be the test
+  rather than the data. **Do not quote a segmented retention number until it is
+  reconciled against the true cohort denominator.**
+- **`DauMauStickiness` is unresolved and is the dangerous one:** 9.0% out under
+  `EngagementLevel`, 2.2% under `PayerStatus`, with individually plausible and
+  correctly ordered segments in both. It would pass any eyeball check.
+
+Charted without reconciliation, the `EngagementLevel` retention series reads as
+"high-engagement players have 0% D1 retention" — a well-formed, entirely false
+finding of exactly the kind the `totalSeries()` rule and G9 exist to prevent.
+
+**The other six `UserSegmentation*` dimensions are UNTESTED.** Two of eight were
+measured. Do not assume the remaining six behave like either one.
+
+### Rules this sets
+
+1. **Never publish a segmented series without reconciling it first** — sum for a
+   volume, denominator-weighted average for a rate. `probe-dag3.ts` is the
+   implementation; a 2% band is the bar it uses.
+2. **Never reconcile a rate with a sum.** Doing so declares every healthy rate
+   broken; it was done once during this investigation and produced the wrong
+   call on ARPU, CVR and session length before the test was fixed.
+3. `RAQI_RESERVED_DIMENSION_VALUES_UNKNOWN` is a real returned segment (small,
+   and wild on rates — ARPU 36.40 against a 2.30 total). An `Inactive` segment
+   is also offered and returns null. Neither is a game fact; keep both out of a
+   chart and inside the reconciliation.
+4. **A reconciliation is only as good as its denominator.** Weighting a
+   retention rate by DAU is an approximation — the true weight is the cohort
+   eligible to return. A 2–10% residual under a *correct-looking* segmentation
+   may be the test, not the data; say so rather than calling it a defect.
+5. **Six of the eight `UserSegmentation*` dimensions have never been measured.**
+   `EngagementLevel` and `PayerStatus` behave differently from each other on the
+   same metrics, so there is no basis for generalising to the other six.
+   Reconcile each one before its first use.
+
+### Still open
+
+- The six untested dimensions above.
+- Whether the arithmetic nodes (`NODE_TYPE_DIVIDE` etc.) let a *correct*
+  segmented rate be computed server-side — e.g. segment-level `DailyRevenue`
+  divided by segment-level `DailyActiveUsers` — which would sidestep whatever
+  makes the served rate disagree. Not attempted.
+- `dag/execute` is not in `default-plan.ts` and nothing grabs it on a schedule.
+- Repro: `web/scripts/probe-explore.ts` (page recon + traffic),
+  `probe-dag2.ts` (bundle enum extraction), `probe-dag3.ts` (the
+  reconciliation; `--dim <UserSegmentation*>` selects the dimension).
+
+## F31 — `status-config` is Roblox telling us which of its own metrics are untrustworthy, and we do not read it (2026-09-11)
+
+    GET https://apis.roblox.com/analytics-query-gateway/v1/status-config
+
+An unauthenticated, unparameterised GET the Explore page makes on load. It
+returns `bannerConfigurations`, `chartWarningConfigurations` and
+`annotationConfigurations` — the last being **a list of metrics Roblox itself
+flags as affected, with a date window**. Captured 2026-09-11:
+
+| key | window | targets |
+|---|---|---|
+| `GenericDataIssue` | **2026-09-08 22:00 → 09-09 03:00** | `PeakConcurrentPlayers`, `AlertIncidentCount`, all 4 `ClientFps*`, all 8 `ClientMemoryUsage*` (14 metrics) |
+| `ErrorReportClean20260810` | 2026-08-10 23:00 → open | `ErrorCount` (dim `LogSource`) |
+| `OOMBotTrafficExcluded20260824` | 2026-08-24 21:00 → open | `OomUnexpectedExits` |
+| `QPlays202512` | 2025-12-10 → open | `RFYQualifiedPTR`, `RFYL7IntentionalCoplayDays`, `L7AverageRFYQualifiedPTR` |
+| `AgeGroupUpdate20251020` / `AgeCheck20260107` | 2025-10-20 / 2026-01-07 → open | **54 metrics** each (dim `AgeGroupV2`) incl. `DailyActiveUsers`, `DailyRevenue`, `ForwardD1Retention`, `AverageRevenuePerUser`, `PayingUsersCVR`, `Visits` |
+| `AgeGroupUpdate20260116` / `AgeCheck20260415` | 2026-01-16 / 2026-04-15 → open | 20 metrics each (dim `AgeGroup`) incl. every `CustomEvent*`, every `Economy*`, the realtime funnel metrics |
+
+**Why this matters more than it looks.**
+
+1. The `GenericDataIssue` window is **vendor confirmation of F28** — the
+   2026-09-08 client-perf collapse that hit all five games. F28 reasoned to
+   "instrument fault, not five incidents" from the cross-game pattern; this is
+   Roblox saying so directly, and it names `PeakConcurrentPlayers` too.
+2. `ErrorReportClean20260810` means **`ErrorCount` changed definition on
+   2026-08-10 and the change is still open.** Any error comparison spanning that
+   date is comparing two different measurements.
+3. The age-group entries mark definitional changes across **54 headline
+   metrics** — DAU, revenue, retention, CVR. Long-window comparisons cross them.
+
+This is a cheap, per-request-free way to know when NOT to trust a number, and it
+is currently unread. It should be fetched on every grab and written to
+`data/games/<id>/data-quality.md` alongside our own revision log.
+
+**Caveat, and it is load-bearing: the response captured here carried no
+universe scope.** It appears global rather than per-game, and it was read on one
+universe only. Confirm it varies (or does not) across universes before
+attributing a window to a specific game.
+
+## F32 — a corpus file is a RANGE aggregate, not a daily point, and the verify gate now fails on it (2026-09-11)
+
+`data/verify/9610561918/Unique users with plays, Source, 2026-06-12T00-00-00.000Z.csv`
+carries a header that reads like a single day:
+
+    Date,2026-06-12T00:00:00.000Z
+    Source,Series,Unique users with plays
+    Home Recommendation,Unique users with plays,1809344
+    Friends,Unique users with plays,443796
+    Other,...,355888   Sponsored Ads,...,134292   Search,...,76832
+
+**It is not a day.** Its five sources sum to **2,820,152**, against a headline
+`UniqueUsersWithPlaySessions` of **86,589** and `DailyActiveUsers` of **86,043**
+for 2026-06-12 — **32.6×** the number of people who played that day. A day's
+unique users cannot exceed that day's DAU. It is the dashboard's Source panel
+exported over a **range ending** 06-12, and the per-file header records only the
+range's end.
+
+**Why it surfaced today and not before.** The check used to **SKIP** with
+"breakdown not pulled" — the corpus held no `AcquisitionSource` breakdown for
+this metric. The 2026-09-11 grab of 9610561918 populated it, so the check began
+running and now reports three cells as failures. The gate moved
+**24 pass · 2 fail · 7 skip → 24 pass · 3 fail · 6 skip**, still exiting 1.
+
+**No number regressed.** Our daily values for 06-12 are present and coherent
+(Home 20,229, Friends 5,343, Search 1,410). The comparison is between two
+different quantities.
+
+**Two separate defects are stacked here, and only the first explains the FAIL:**
+
+1. **The corpus file is a range aggregate compared against a daily point.** No
+   grab can make this pass; the file would have to be re-exported per-day, or
+   the verifier taught that a `<metric>, <dimension>, <single-date>.csv` with no
+   range in its name is a range total.
+2. **Our breakdown for that day is genuinely incomplete** — the five sources we
+   hold sum to **31,173**, only **36%** of the 86,589 headline. That is a real
+   coverage gap in the `AcquisitionSource` breakdown for June, worth its own
+   look, but it is not what the verifier is reporting.
+
+**Also wrong: the failure message.** It prints `we hold nothing (in held window)`
+for cells we *do* hold. Whatever lookup it performs is not finding the series it
+then declares absent — the label spellings differ between the CSV
+(`Home Recommendation`) and our series key (`HomeRecommendation`). Fix the message
+before trusting it on any other file; "we hold nothing" currently cannot be
+distinguished from "we hold a different value".
+
+**Added to `KNOWN_OPEN`** (`verify-harness.test.ts`), which is the mechanism the
+repo already uses for a documented-open disagreement — the other two fails live
+there. It was briefly left out on the reasoning that adding it "redefines a
+gate"; that was wrong, and the cost was a red `npm test`, which is the one gate
+meant to be binary. The entry silences **only the range-vs-daily comparison**;
+the 36%-coverage defect above is recorded here and is not silenced by it.
+
+Gate state after this finding: **verify 24 / 3 / 6 exit 1** (all three documented),
+**audit-plan 180 / 0 exit 0**, **npm test 51 / 51 exit 0**.
+
+## F33 — `byBreakdown()` had no filter guard and returned a population SLICE as the breakdown (2026-09-11)
+
+`daily()` in `tools/lib.js` enforces the headline rule through `isHeadline()`: a
+`Place` filter still counts as the whole, a population filter (`IsNewUser`,
+`Platform`, `AgeGroup`) does not. **`byBreakdown()` enforced nothing.** It
+selected on granularity and on the breakdown dimension only, so any
+population-filtered series matching those two was returned as if it were the
+whole population.
+
+**Measured.** `UniqueUsersWithPlaySessions` broken down by `AcquisitionSource` at
+`ONE_DAY` exists on 9963622286 in exactly one form — `filters=IsNewUser:["New"]`.
+There is no unfiltered daily variant. So the unguarded helper returned the
+**new-user slice** and it read as catastrophic under-coverage:
+
+| game | sum(sources) / headline |
+|---|---|
+| Brainrot | **16.6% – 27.2%** |
+| Monkey | 42.2% – 63.7% |
+| Seal | 49.9% – 93.5% |
+| Knife Farm | 19.4% – 58.5% |
+
+Those are not coverage gaps. They are **the new-user share of the population**,
+correctly served, wrongly read — the slice-as-total error that `CLAUDE.md` calls
+the single most damaging this pipeline has made, reproduced in a helper written
+to avoid it.
+
+**Fixed.** `byBreakdown()` now takes the same view as `isHeadline()`: a breakdown
+series qualifies only if every filter is on `Place` or on the dimension being
+broken down. `{allowSlice:true}` opts back in deliberately. After the fix the
+call returns `null` for that metric — correct, because no whole-population daily
+variant exists — and `allowSlice` still returns the 7 new-user series.
+
+**The diagnosis of 2026-09-11 was checked against this and is unaffected.** It
+used `ForwardD1Retention` and `DailyActiveUsers` by `AcquisitionSource`; both
+carry **zero** population-filtered ONE_DAY series on all five games, and the
+splits are byte-identical before and after the fix.
+
+**The standing lesson:** the rule was written down, implemented once, and then
+not applied to the second reader of the same data. Any new accessor over
+`series.json` must state which of headline / slice it returns.
+
+## F34 — the dashboard's acquisition table is a CUMULATIVE NEW-USER funnel, and it carries five columns and three sources we never pull (2026-09-11)
+
+Ren supplied a screenshot of the table this repo has been comparing against. Its
+title is the whole finding: **"New Users Funnel (cumulative)"**, Become a
+Brainrot, 56-day window.
+
+| Source | Users with plays | Conversion | D7 ret. | 7D playtime/user | 30D payer conv. | 30D revenue/user |
+|---|---|---|---|---|---|---|
+| **Total** | 5,052,026 | 7.36% | 2.43% | 29.3 min | 0.72% | R$0.57 |
+| Home Recommendation | 3,158,844 | 6.01% | 2.49% | 28.7 min | 0.63% | 0.42 |
+| **Friends** | 1,029,280 | **36.39%** | 2.46% | 33.4 min | **1.06%** | 0.979 |
+| Other | 672,263 | 1.74% | 2.01% | 24.2 min | 0.65% | 0.611 |
+| Search | 202,026 | 2.17% | **2.86%** | **36.3 min** | 1.05% | **1.05** |
+| Charts | 1,564 | 0.44% | 2.18% | 37.8 min | 0.39% | 1.62 |
+| Teleport | 845 | n/a | 0.78% | 6.3 min | 0.39% | 0.0548 |
+| Sponsored Ads / Portal Ads / Featured by Roblox | 0 | — | — | — | — | — |
+
+**It confirms F32 directly.** "Cumulative" is why
+`Unique users with plays, Source, 2026-06-12…csv` holds 2,820,152 against an
+86,589 DAU — it is this table exported, a running total, not a day.
+
+**It also explains F33 from the other side.** "New Users" is why
+`UniqueUsersWithPlaySessions × AcquisitionSource` exists only as
+`IsNewUser=New`: that series **is** the daily version of this table. It was never
+incomplete.
+
+**What we do not pull and should.** Three sources absent from our dimension
+values entirely — **Teleport, Portal Ads, Featured by Roblox** — and five
+per-source columns: conversion rate, D7 retention, 7-day playtime per user, 30-day
+payer conversion, 30-day revenue per user.
+
+**The number worth acting on:** `Friends` converts at **36.39%** against
+HomeRecommendation's **6.01%** — six times — on 20% of new-user volume, and it
+carries the best 30-day payer conversion (1.06%). `Search` is the best on D7
+(2.86%), playtime (36.3 min) and revenue per user (R$1.05) but is only 4% of
+volume. This is a per-source quality ranking the grabber cannot currently
+produce, and it bears directly on where acquisition effort is worth spending.

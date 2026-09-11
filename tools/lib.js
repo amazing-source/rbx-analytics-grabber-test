@@ -39,9 +39,23 @@ function daily(id,metric,{gran="METRIC_GRANULARITY_ONE_DAY",dropFilled=true,drop
   return new Map([...out].sort((a,b)=>a[0]<b[0]?-1:1));
 }
 // breakdown: Map label -> Map date->value
-function byBreakdown(id,metric,dim,{gran="METRIC_GRANULARITY_ONE_DAY",dropFilled=true,dropPartial=true}={}){
+// A breakdown series is only the WHOLE population if its filters are limited to
+// Place (which scopes, not slices) or to the dimension being broken down. A
+// population filter — IsNewUser, Platform, AgeGroup — makes it a SLICE, and
+// returning one as if it were the breakdown is the slice-as-total error.
+// Measured 2026-09-11: UniqueUsersWithPlaySessions x AcquisitionSource at
+// ONE_DAY exists ONLY as IsNewUser=New, so the unguarded version returned the
+// new-user slice (17-60% of headline) as the whole. F33.
+// Place SCOPES (the whole Performance tab is Place-scoped) and FunnelName scopes
+// to one funnel — neither slices the population. IsNewUser / Platform / AgeGroup do.
+const SCOPE_DIMS=new Set(["Place","FunnelName"]);
+function isWholePopulation(s,dim){
+  return (s.filters||[]).every(f=>{ const d=f.dimension||f.name; return SCOPE_DIMS.has(d)||d===dim; });
+}
+function byBreakdown(id,metric,dim,{gran="METRIC_GRANULARITY_ONE_DAY",dropFilled=true,dropPartial=true,allowSlice=false}={}){
   const m=load(id).metrics[metric]; if(!m) return null;
-  const cands=(m.series||[]).filter(s=>s.granularity===gran && Object.keys(s.breakdown||{}).includes(dim));
+  const cands=(m.series||[]).filter(s=>s.granularity===gran && Object.keys(s.breakdown||{}).includes(dim)
+    && (allowSlice || isWholePopulation(s,dim)));
   if(!cands.length) return null;
   const out=new Map();
   for(const s of cands){
@@ -73,4 +87,4 @@ function pearson(x,y){ const n=Math.min(x.length,y.length); if(n<3)return null;
   const mx=mean(x.slice(0,n)),my=mean(y.slice(0,n)); let a=0,b=0,c=0;
   for(let i=0;i<n;i++){const dx=x[i]-mx,dy=y[i]-my;a+=dx*dy;b+=dx*dx;c+=dy*dy;}
   return b&&c?a/Math.sqrt(b*c):null; }
-module.exports={ROOT,GAMES,load,daily,byBreakdown,seriesOf,listMetrics,metricInfo,isHeadline,dow,fmt,tail,mean,pearson};
+module.exports={isWholePopulation,ROOT,GAMES,load,daily,byBreakdown,seriesOf,listMetrics,metricInfo,isHeadline,dow,fmt,tail,mean,pearson};

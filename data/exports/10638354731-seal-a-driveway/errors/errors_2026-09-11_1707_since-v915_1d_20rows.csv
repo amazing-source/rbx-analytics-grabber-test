@@ -1,0 +1,21 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+33,Error,Client,Fri Sep 11 2026 15:54:15 GMT+0200 (heure d’été d’Europe centrale),V915,Cannot require a RobloxScript module from a non RobloxScript context,"Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 135 - function registerSlab
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 356 - function pumpBuilds
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 974",
+4,Error,Client,Fri Sep 11 2026 15:34:20 GMT+0200 (heure d’été d’Europe centrale),V915,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'ReplicatedStorage.DrivewaySealer.ColorFX', Line 41",
+4,Error,Client,Fri Sep 11 2026 15:34:20 GMT+0200 (heure d’été d’Europe centrale),V915,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 974",
+3,Warning,Server,Fri Sep 11 2026 17:32:35 GMT+0200 (heure d’été d’Europe centrale),V915,[MapReach] Airport count failed for <Player>: 502: API Services rejected request with error. Error code: 0 Reason: An internal server error occurred.,,
+3,Error,Client,Fri Sep 11 2026 15:34:20 GMT+0200 (heure d’été d’Europe centrale),V915,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerScripts.SectionHelpClient', Line 222",
+1,Warning,Server,Fri Sep 11 2026 16:51:35 GMT+0200 (heure d’été d’Europe centrale),V915,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_112.Walkway but the server had only seen 0.40 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Client,Fri Sep 11 2026 14:24:40 GMT+0200 (heure d’été d’Europe centrale),V915,Script has run for over 30.231 seconds and may timeout,"Script 'ReplicatedStorage.SealerUI.Shell', Line 1700",
+1,Warning,Server,Fri Sep 11 2026 17:15:35 GMT+0200 (heure d’été d’Europe centrale),V915,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_114.Driveway but the server had only seen 0.37 coverage (needs 0.93) -- not paid and NOT recorded,,
+1,Warning,Server,Fri Sep 11 2026 17:32:40 GMT+0200 (heure d’été d’Europe centrale),V915,[UpgradeService] save failed for chikiziabrik22 after 3 tries: 502: API Services rejected request with error. Error code: 0 Reason: An internal server error occurred.,,
+1,Warning,Server,Fri Sep 11 2026 17:33:10 GMT+0200 (heure d’été d’Europe centrale),V915,[UpgradeService] save failed for cocalarumana after 3 tries: 502: API Services rejected request with error. Error code: 0 Reason: An internal server error occurred.,,
+1,Warning,Server,Fri Sep 11 2026 18:39:55 GMT+0200 (heure d’été d’Europe centrale),V915,"[MapReach] Eva19122016 counted to 1 but the mark did not save, so they may be counted again: 502: API Services rejected request with error. Error code: 0 Reason: An internal server error occurred.",,
+1,Error,Client,Fri Sep 11 2026 15:09:15 GMT+0200 (heure d’été d’Europe centrale),V915,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'ReplicatedStorage.DrivewaySealer.ColorFX', Line 29 - function trackMesh",
+1,Error,Client,Fri Sep 11 2026 15:09:15 GMT+0200 (heure d’été d’Europe centrale),V915,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerScripts.SealerUIClient', Line 246 - function hook",
+1,Error,Client,Fri Sep 11 2026 15:09:15 GMT+0200 (heure d’été d’Europe centrale),V915,ReplicatedStorage.DrivewaySealer.SoundKit:203: Script timeout: exhausted allowed execution time,"Script 'ReplicatedStorage.DrivewaySealer.SoundKit', Line 198 - function create
+    Script 'ReplicatedStorage.DrivewaySealer.SoundKit', Line 203 - function play
+    Script 'ReplicatedStorage.DrivewaySealer.Effects', Line 138 - function SetActive
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 1312",
+1,Warning,Server,Fri Sep 11 2026 16:03:35 GMT+0200 (heure d’été d’Europe centrale),V915,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_102.Walkway but the server had only seen 0.38 coverage (needs 0.93) -- not paid and NOT recorded,,

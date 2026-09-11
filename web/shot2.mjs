@@ -1,0 +1,11 @@
+import { chromium } from "playwright";
+import fs from "node:fs";
+const A="C:/Users/bfhdh/Desktop/rbx-analytics-grabber-test/tools/artifacts/out/";
+const SHELL=(b)=>`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>html{color-scheme:light}body{margin:0;font:14px system-ui}img{max-width:100%}</style></head><body>${b}</body></html>`;
+const b=await chromium.launch(); const p=await b.newPage({viewport:{width:1100,height:1150}});
+fs.writeFileSync(A+"_f.tmp.html", SHELL(fs.readFileSync(A+"waterslide.html","utf8")));
+await p.goto("file:///"+A+"_f.tmp.html"); await p.waitForTimeout(2200);
+await p.evaluate(()=>{const h=[...document.querySelectorAll("h2")].find(x=>x.textContent.trim()==="Funnel"); h&&h.scrollIntoView();});
+await p.waitForTimeout(600);
+await p.screenshot({path:A+"_shot-funnel.png"});
+await b.close(); console.log("ok");

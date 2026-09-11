@@ -1,6 +1,6 @@
 # Error signatures — universe 10399712766
 
-1577 distinct MessageHash signatures, 883,607 events in the captured window. Text comes from the async dimensions lookup and is null until that capture succeeds for a hash.
+1932 distinct MessageHash signatures, 884,083 events in the captured window. Text comes from the async dimensions lookup and is null until that capture succeeds for a hash.
 
 | # | Share | Events | MessageHash | Text |
 |---|---|---|---|---|
@@ -55,4 +55,4 @@
 | 49 | 0.1% | 1,260 | `-975920598288571809` | — |
 | 50 | 0.1% | 1,197 | `2087894323404501655` | — |
 
-_1527 further signature(s) in `metrics/ErrorCount.csv`._
+_1882 further signature(s) in `metrics/ErrorCount.csv`._

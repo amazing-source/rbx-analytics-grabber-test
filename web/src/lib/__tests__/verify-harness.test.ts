@@ -247,6 +247,29 @@ describe("corpus gate", () => {
     // cannot confirm. Resolve by re-exporting this chart with a later end time
     // and checking whether the dashboard then agrees with 3710.
     "Errors and warnings- Errors and warnings, 2026-08-07T08-00-00.000Z to 2026-08-08T08-00-00.000Z.csv",
+
+    // F32, added 2026-09-11. This file is NOT a daily point despite its header
+    // reading "Date,2026-06-12T00:00:00.000Z". Its five sources sum to
+    // 2,820,152 against a headline UniqueUsersWithPlaySessions of 86,589 and a
+    // DailyActiveUsers of 86,043 for that date — 32.6x the people who played
+    // that day, which a day cannot be. It is the dashboard Source panel
+    // exported over a RANGE ending 06-12; the export records only the range end.
+    // So the verifier compares a range aggregate against a daily value and no
+    // grab can make it pass.
+    //
+    // It surfaced on 2026-09-11 rather than earlier because it used to SKIP
+    // ("breakdown not pulled") — the corpus held no AcquisitionSource breakdown
+    // for this metric until that day's grab of 9610561918 populated one.
+    //
+    // LISTED HERE ONLY FOR THE RANGE-VS-DAILY COMPARISON. A second, real defect
+    // is documented in the same finding and is deliberately NOT silenced by it:
+    // our AcquisitionSource breakdown for 2026-06-12 sums to 31,173, just 36% of
+    // the 86,589 headline, so June coverage of that breakdown is genuinely
+    // incomplete. Resolve this entry by re-exporting the Source panel for a
+    // single day, or by teaching the verifier that a
+    // "<metric>, <dimension>, <single-date>.csv" with no range in its filename
+    // is a range total.
+    "Unique users with plays, Source, 2026-06-12T00-00-00.000Z.csv",
   ]);
 
   test("no corpus file disagrees with the dashboard except the known-open ones", async (t) => {

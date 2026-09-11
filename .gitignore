@@ -48,3 +48,10 @@ Thumbs.db
 /analysis/analytics.duckdb
 /analysis/__pycache__/
 __pycache__/
+
+# Live-board runtime state (npm run live + /live). Rewritten every 30s and
+# rebuilt from Roblox on the next poll, so it is a cache, not part of the
+# dataset. feedback.json is the ONE exception in spirit — it is the only local
+# record of reviews — but it is re-fetchable from the reviews API, and
+# committing a file that churns every minute would bury every real diff.
+/data/live/

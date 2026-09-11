@@ -27,11 +27,12 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 
 - `{"id":"3739b75a-0392-4ddc-9007-ee4f588164ab","annotationType":"ANNOTATION_TYPE_BENCHMARK_CHANGE","metadata":{"benchmarkChange":{"fromBenchmarkType":"GENRE","toBenchmarkType":"SIMILARITY"}},"createdUtcTime":"2026-09-03T00:00:00Z"}`
 
-## annotationType=8 (3)
+## annotationType=8 (4)
 
 - `{"id":"4616ec03-d640-491f-99a5-618a480d492b","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":6830638690952414000,"eventName":"NEW EVENT","imageAssetId":83400477487805,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-08-28T18:00:01.856Z"}`
 - `{"id":"e9894a00-90bd-4132-87ed-36a2ad369565","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":6830638690952414000,"eventName":"NEW EVENT","imageAssetId":83400477487805,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-08-30T18:00:01.856Z"}`
 - `{"id":"969cab02-1c91-411b-b211-be93a0405df3","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":5079414372019865000,"eventName":"NEW UPDATE","imageAssetId":102605718109389,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-04T19:00:03.777Z"}`
+- `{"id":"8f087eaa-9a82-4b52-9bda-cc633b8803aa","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":5079414372019865000,"eventName":"NEW UPDATE","imageAssetId":79053882055326,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-10T19:00:03.777Z"}`
 
 ## annotationType=10 (33)
 

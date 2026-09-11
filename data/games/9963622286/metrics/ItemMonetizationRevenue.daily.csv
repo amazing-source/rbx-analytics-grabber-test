@@ -69,7 +69,8 @@ date,series,value,agg,samples,partial
 2026-09-07,Total,43297,sum,24,
 2026-09-08,Total,28574,sum,24,
 2026-09-09,Total,29682,sum,24,
-2026-09-10,Total,49,sum,1,true
+2026-09-10,Total,42830,sum,24,
+2026-09-11,Total,18694,sum,16,true
 2026-04-02,ProductType: CommissionAvatar,0,sum,24,
 2026-04-03,ProductType: CommissionAvatar,0,sum,24,
 2026-04-04,ProductType: CommissionAvatar,0,sum,24,
@@ -231,7 +232,8 @@ date,series,value,agg,samples,partial
 2026-09-07,ProductType: CommissionAvatar,30,sum,24,
 2026-09-08,ProductType: CommissionAvatar,0,sum,24,
 2026-09-09,ProductType: CommissionAvatar,0,sum,24,
-2026-09-10,ProductType: CommissionAvatar,0,sum,1,true
+2026-09-10,ProductType: CommissionAvatar,70,sum,24,
+2026-09-11,ProductType: CommissionAvatar,0,sum,15,true
 2026-03-31,ProductType: DevProduct,42,sum,24,
 2026-04-01,ProductType: DevProduct,658,sum,24,
 2026-04-02,ProductType: DevProduct,5404,sum,24,
@@ -395,7 +397,8 @@ date,series,value,agg,samples,partial
 2026-09-07,ProductType: DevProduct,37309,sum,24,
 2026-09-08,ProductType: DevProduct,24771,sum,24,
 2026-09-09,ProductType: DevProduct,24523,sum,24,
-2026-09-10,ProductType: DevProduct,49,sum,1,true
+2026-09-10,ProductType: DevProduct,38872,sum,24,
+2026-09-11,ProductType: DevProduct,16902,sum,16,true
 2026-04-02,ProductType: GamePass,90,sum,24,
 2026-04-03,ProductType: GamePass,0,sum,24,
 2026-04-04,ProductType: GamePass,0,sum,24,
@@ -557,6 +560,8 @@ date,series,value,agg,samples,partial
 2026-09-07,ProductType: GamePass,5958,sum,24,
 2026-09-08,ProductType: GamePass,3803,sum,24,
 2026-09-09,ProductType: GamePass,5159,sum,24,
+2026-09-10,ProductType: GamePass,3888,sum,24,
+2026-09-11,ProductType: GamePass,1792,sum,15,true
 2026-04-03,ProductType: PrivateServer,0,sum,24,
 2026-04-04,ProductType: PrivateServer,0,sum,24,
 2026-04-05,ProductType: PrivateServer,0,sum,24,
@@ -717,4 +722,5 @@ date,series,value,agg,samples,partial
 2026-09-07,ProductType: PrivateServer,0,sum,24,
 2026-09-08,ProductType: PrivateServer,0,sum,24,
 2026-09-09,ProductType: PrivateServer,0,sum,24,
-2026-09-10,ProductType: PrivateServer,0,sum,1,true
+2026-09-10,ProductType: PrivateServer,0,sum,24,
+2026-09-11,ProductType: PrivateServer,0,sum,16,true

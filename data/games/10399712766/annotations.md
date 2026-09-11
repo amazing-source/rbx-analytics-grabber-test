@@ -18,7 +18,7 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"9a62bc87-19d1-4ce2-af4a-484d784d86ce","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":85491849994822}},"createdUtcTime":"2026-07-11T00:13:53.633Z"}`
 - `{"id":"068e08ca-dc3f-454e-8bf2-f0004bed72dc","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":110912293950290}},"createdUtcTime":"2026-07-18T17:07:00.786Z"}`
 
-## annotationType=4 (15)
+## annotationType=4 (16)
 
 - `{"id":"2131f7e8-1d00-4bfd-80a9-0f03587be6b4","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[82624923561699,112855240147736,121570379856903,95390454550043,86392109608785]}},"createdUtcTime":"2026-07-25T05:14:09.780Z"}`
 - `{"id":"19e7881f-a49d-48ed-a395-a9a03c8144ef","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[73325536593343,112855240147736,71294617738972,82624923561699,118151531981181]}},"createdUtcTime":"2026-08-13T21:35:44.336Z"}`
@@ -35,12 +35,13 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"35b74317-5315-4c72-b52f-d1461ba7354f","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[131912438594063,129803231296552,87206082429926,79489275661362,119852189675728]}},"createdUtcTime":"2026-09-06T21:37:47.880Z"}`
 - `{"id":"6805871d-74ec-4233-9dec-47253f76d87a","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[131912438594063,78442296374494,87206082429926,79489275661362,119852189675728]}},"createdUtcTime":"2026-09-06T22:11:20.257Z"}`
 - `{"id":"ab97c602-ca9a-45f9-97f5-3b402ba12502","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[87206082429926,79489275661362,119852189675728,129367823174100,131912438594063]}},"createdUtcTime":"2026-09-08T19:42:37.681Z"}`
+- `{"id":"c9bd955e-53ea-4932-ad23-00482994996a","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[73186706676517,114589771516583,133027167163442,79489275661362,119852189675728]}},"createdUtcTime":"2026-09-10T22:18:47.788Z"}`
 
 ## annotationType=6 (1)
 
 - `{"id":"52508f53-f03e-4ab8-8349-eb12b7203181","annotationType":"ANNOTATION_TYPE_BENCHMARK_CHANGE","metadata":{"benchmarkChange":{"fromBenchmarkType":"GENRE","toBenchmarkType":"SIMILARITY"}},"createdUtcTime":"2026-08-10T00:00:00Z"}`
 
-## annotationType=8 (9)
+## annotationType=8 (10)
 
 - `{"id":"e6081012-7bac-422f-8468-9ed307bf602c","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":6250990561797473000,"eventName":"ITEMS/TAILS + ADMIN ABUSE","imageAssetId":97850081784733,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-08-02T19:00:08.959Z"}`
 - `{"id":"8118ab53-7e20-4f66-98bf-c545e903c38c","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":6250990561797473000,"eventName":"ITEMS/TAILS + ADMIN ABUSE","imageAssetId":97850081784733,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-08-09T19:00:08.959Z"}`
@@ -51,6 +52,7 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"9b7437c3-f421-4dc1-a9ac-272fd5e1bcba","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":9215546922645980000,"eventName":"NEW UPDATE - AURAS","imageAssetId":85827668030661,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-04T18:00:29.968Z"}`
 - `{"id":"705428aa-4174-4252-b5b1-0fd08aa7cce6","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":4059163433772385000,"eventName":"x5 BONUS EVENT","imageAssetId":120284993734454,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-06T16:00:01.856Z"}`
 - `{"id":"031b7851-a4bd-4664-be5a-bc58bc0c7455","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":4059163433772385000,"eventName":"x5 BONUS EVENT","imageAssetId":120284993734454,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-09-06T17:00:01.856Z"}`
+- `{"id":"acbc1722-0ca2-4470-aed6-340ae422a03f","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":8318689003243177000,"eventName":"NEW UPDATE","imageAssetId":125256588379452,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-10T18:00:01.856Z"}`
 
 ## annotationType=10 (49)
 

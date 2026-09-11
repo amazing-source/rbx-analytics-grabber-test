@@ -1,0 +1,403 @@
+{
+ "brainrot": {
+  "verdict": {
+   "level": "good",
+   "label": "Bigger than the day it shipped"
+  },
+  "standfirst": "Seven days on from v608 the game is larger on every audience measure — concurrents +38%, DAU +23%, new players nearly doubled. The gain sits in the first three minutes and in the D2–7 return cohort. Two things are going the other way: the D8–28 cohort, and money.",
+  "shipped": [
+   "Weekly admin abuse, now scripted",
+   "New morphs — Stellar and Genesis",
+   "New Limited Brainrot, new <em>Exotic</em> rarity",
+   "New lucky block — Cosmic removed, 6 Ghost-mutation brainrots",
+   "<strong>Quest track for NEW players only</strong> — book UI, &ldquo;Limited Reward&rdquo;, 4-day timer"
+  ],
+  "creative": "7 thumbnail swaps since 10 Aug. Next-day play-through after a swap runs +5.7% against −0.1% on ordinary days — z = 1.33, indistinguishable from a normal day. Listing rejection per million impressions fell 61.7 → 50.7 (−17.8%) and qualified PTR rose 2.9%, so the listing is doing its job slightly better than before. Play-through itself is −4.9%, which on rising impressions (+17.2%) is the ordinary denominator effect.",
+  "errors": {
+   "total": "84 events in the first ~90 minutes of v612 — too young and too small to read",
+   "rows": [
+    [
+     "~40",
+     "<code>Player &lt;name&gt; disconnected during remote call to ReplicatedStorage.Events.Gift</code>",
+     "warning",
+     "Gifting. The message embeds a username, so one defect shreds across many rows and every count is a floor"
+    ],
+    [
+     "~6",
+     "<code>TradeButton is not a valid member of Frame &lt;name&gt;</code>",
+     "warning",
+     "Trade UI, same truncation"
+    ]
+   ]
+  },
+  "feedback": {
+   "n": 5,
+   "note": "Five comments since 3 Sep, three up and two down — too few to read as a signal. Net feedback votes rose 36 → 57.",
+   "quotes": [
+    [
+     "2026-09-05",
+     "Utilise 60 Robux j’ai pas eu mes trois tours",
+     "Paid 60 Robux, got no spins. One report, but it is a revenue path"
+    ]
+   ]
+  },
+  "hypotheses": [
+   {
+    "h": "The new-players-only quest track is what grew the game",
+    "conf": "likely",
+    "why": "The gain is precisely shaped like the feature. <strong>New-user DAU +89.8%</strong> (15,610 → 29,621) against returning +5.1% — almost all of it is the population the ladder is gated to. And the improvement is not in the first minute: bounce under 60s barely moved (−3.3%) while <strong>bounce at 60–180s fell 26.1%</strong>. Something now occupies minutes one to three, which is exactly what a task ladder does. D1 playtime +25.6%, D1 qualified sessions +10.7%.",
+    "against": "D1, play-through and bounce first departed on 3 Sep, a day before v608 went live at 12:17 on the 4th. Either the move began before the build or the departure date reads a day early.",
+    "fix": "Nothing to fix. The ladder runs on a 4-day timer, so the test is whether the gain survives the first cohorts expiring — readable from <strong>12 Sep</strong>. If it holds, make it permanent instead of a one-off."
+   },
+   {
+    "h": "The new players are not paying, and that is the whole money story",
+    "conf": "confirmed",
+    "why": "<strong>Paying users are flat — 744 before, 744 after</strong> — while DAU rose 23.4%. Mechanically that drops paying-user CVR (−12.5%) and ARPU (−35.6%) without a single player spending less by choice. ARPPU fell 24.4% on top, and RFY D2–7 Robux spend fell 44.9%.",
+    "against": "Revenue and ARPU only reach 9 Sep, two days short of D+7, so the newest cohort is not fully counted yet.",
+    "fix": "The quest track hands new players rewards; it does not introduce them to anything priced. Put a paid surface inside or immediately after the ladder — the Exotic limited is already there and already converts for veterans. Re-read paying users, not ARPU, in a week: ARPU will look bad purely because the denominator grew."
+   },
+   {
+    "h": "The D8–28 cohort is still decaying underneath the win",
+    "conf": "confirmed",
+    "why": "Everything D2–7 is up 20–36%. Everything <strong>D8–28 is down</strong> — play days −6.8%, playtime −15.1%, qualified sessions −12.8%. The update reached new and recent players and did nothing for the older cohort, which continues on the curve it was already on.",
+    "against": "MAU fell 19.1% over the same span, so part of the D8–28 fall is simply a smaller eligible pool.",
+    "fix": "D8–28 is the horizon Roblox re-weighted its recommender to in June, so this is the signal that governs distribution. Whatever comes after the 4-day ladder is the lever — a second, longer track aimed at players in week two."
+   }
+  ]
+ },
+ "waterslide": {
+  "verdict": {
+   "level": "watch",
+   "label": "Distribution withdrawn while the listing improved"
+  },
+  "standfirst": "The listing is converting better than it was on publish day and the first session is unchanged. What fell is how often Roblox shows the game: impressions −50.8%, and DAU follows almost exactly. The tutorial still loses a third of its starters at two shop screens.",
+  "shipped": [
+   "Admin abuse, now scripted",
+   "Performance and QoL bugs",
+   "<strong>Raft Ascension</strong> — a 200-Win roulette for five cosmetic raft mutations, explicitly no gameplay bonus",
+   "New pet icons, new main-screen offers in the last two worlds",
+   "New limited <strong>Autumn Harvest Egg</strong>, same price and same chances"
+  ],
+  "creative": "8 thumbnail swaps since 10 Aug, and the listing metrics are the healthiest of the five. Play-through <strong>+21.7%</strong>, qualified PTR <strong>+24.0%</strong>, impression→play CVR +7.0%, and listing rejection per million impressions fell <strong>84.7 → 56.1, −33.7%</strong>. Next-day play-through after a swap beats ordinary days at z = 2.47 — the only game where swapping is measurably working. Nothing here suggests a creative problem.",
+  "errors": {
+   "total": "One signature on the newest build matters",
+   "rows": [
+    [
+     "2",
+     "<code>PlayerScripts.UI.GoShop_Raft:102: attempt to index nil with ‘Get’</code><br><span class=\"tr\">RefreshList ← OnOpen ← GoShop.OnOpen ← UIMgr.Open</span>",
+     "critical",
+     "<strong>The raft shop fails to build its list when it opens.</strong> First seen V1721 on 11 Sep — two events only because the build is hours old"
+    ]
+   ]
+  },
+  "feedback": {
+   "n": 19,
+   "note": "Nineteen comments since 3 Sep, ten up and nine down; net votes fell 215 → 92. Two themes, and both appear in the studio’s own 10 Sep bug list.",
+   "quotes": [
+    [
+     "2026-09-04",
+     "the raft section is not scrolling upwards it's just glitching like there is a earthquake pls fix it",
+     "Raft shop UI"
+    ],
+    [
+     "2026-09-05",
+     "It won’t let me scroll to get a new raft so it is bad",
+     "Raft shop UI"
+    ],
+    [
+     "2026-09-07",
+     "why is everything i had gone, i grinded for hours on this game and now everything i had is gone",
+     "Progress loss"
+    ],
+    [
+     "2026-09-05",
+     "I BOUGHT SO MANY THINGS WITH ROBUX AND EVERYTHING DISAPEARED WTH THIS IS A SCAM",
+     "Progress loss, and paid content"
+    ],
+    [
+     "2026-09-07",
+     "играла несколбко часов, после чего игра зависла и весь прогресс удалился!",
+     "“played for several hours, then the game froze and all progress was deleted”"
+    ]
+   ]
+  },
+  "hypotheses": [
+   {
+    "h": "This is a reach cut, not a conversion problem",
+    "conf": "confirmed",
+    "why": "Every conversion measure improved: CVR +7.0%, play-through +21.7%, qualified PTR +24.0%, listing rejection −33.7%. The first session is flat — session length −0.6%, play minutes per DAU −0.6%, bounce under 60s −6.5%. Impressions fell <strong>50.8%</strong> and DAU fell 47.0%, which is the same number. Roblox stopped showing it; the game did not get worse at holding people.",
+    "against": "Concurrents on 11 Sep are only −9.5% against 4 Sep on matched slots, far milder than DAU. Unique reach shrank more than time-in-game did.",
+    "fix": "Nothing on the listing — it is the best-performing of the five. The lever is whatever earns distribution back, and the D8–28 signal below is the candidate."
+   },
+   {
+    "h": "D8–28 is the signal that would explain the reach cut",
+    "conf": "likely",
+    "why": "Roblox re-weighted its recommender to long-horizon play in June, and this game’s D8–28 block fell across the board: play days −18.2%, playtime −18.4%, qualified sessions −17.9%. D1 and D2–7 are flat to slightly up, so the weakness is specifically at the far horizon — the part that governs ranking.",
+    "against": "All five games in this portfolio show a D8–28 decline in the same window, which is a pattern more consistent with something platform-wide than with one game’s content.",
+    "fix": "Read D8–28 on the next grab across all five together. If it moves as a block again, it is not this game and no content change will fix it."
+   },
+   {
+    "h": "Two shop screens cost a third of the tutorial, and the raft shop is still throwing",
+    "conf": "confirmed",
+    "why": "The tutorial's worst steps are <code>Tutorial_Main_5_ToRaftShop</code> (13.3% churn) and <code>Tutorial_Main_10_BuyEgg</code> (14.3% churn) — both shop screens, together costing about a third of everyone who starts. The raft shop throws <code>GoShop_Raft:102: attempt to index nil with &lsquo;Get&rsquo;</code> inside <code>RefreshList</code>, called straight from <code>OnOpen</code>. <strong>This is on V1721, first seen 18:43 on 11 September — after the 10 September build that was meant to fix the raft UI.</strong> The scroll complaints and the throw are the same screen, and the fix did not land.",
+    "against": "Two events on a build a few hours old. The volume is small; the point is that it is still there after a fix aimed at it.",
+    "fix": "Make <code>RefreshList</code> tolerate a nil entry — the stack goes straight from <code>OnOpen</code>, so the list fails to build the moment the shop is opened. Then watch steps 5 and 10; both compound through every step below them."
+   },
+   {
+    "h": "The progress-loss reports all predate the fix aimed at them",
+    "conf": "confirmed",
+    "why": "Three players reported losing everything, one explicitly after Robux purchases. <strong>Those comments are dated 3–7 September.</strong> The 10 September build lists “some were complaining about not receiving cash at all sometimes” as a fix. So the complaints sit before the remedy, not after it.",
+    "against": "Nothing in this window measures whether the fix worked — it shipped a day ago and the feedback since is too thin to read.",
+    "fix": "Do not action this from these comments. Re-read feedback and paying users on <strong>17 September</strong>, a week after the fix. If fresh reports appear on builds from 10 September onward, it is live again and becomes a priority; if not, it is closed."
+   }
+  ]
+ },
+ "monkey": {
+  "verdict": {
+   "level": "fix",
+   "label": "The listing pulls better than ever; the game empties faster"
+  },
+  "standfirst": "The creative is doing its best work of the year — listing rejection down 46%, play-through up 14%. Everything after the click got worse: both bounce windows up about 20%, session duration down 23%, D1 down 17%. Players arrive better and leave sooner.",
+  "shipped": [
+   "New map — visuals only, no boosts",
+   "<strong>Aura system</strong> — auras with small boosts (% bananas, % cash, % speed) from cash and Robux crates, six rarities, separate stall, duplicates convert to dust"
+  ],
+  "creative": "12 thumbnail swaps since 10 Aug — the most in the pack, and it is working. Listing rejection per million impressions fell <strong>124.0 → 66.3, −46.5%</strong>, the largest improvement of the five; play-through +13.9% and qualified PTR +5.8%. The live thumbnail is a <em>LVL 1 → LVL 99999</em> pair: a small monkey beside a giant tearing down the Eiffel Tower. It sells escalation, and it sells it well.",
+  "errors": {
+   "total": "659 of 600,812 events in 7 days were introduced by v1246 — 0.11%",
+   "rows": [
+    [
+     "277",
+     "<code>Client.Modules.UI.CratesController:856: attempt to index nil with ‘CameraSubject’</code>",
+     "warning",
+     "The aura crate UI this update shipped. <code>CameraSubject</code> is nil before a character exists, so it fires early in a session — but it is far too small to move D1"
+    ],
+    [
+     "2,472",
+     "<code>EditableImage is not accessible. Go to the Security Tab in Experience Settings</code>",
+     "warning",
+     "Names its own one-toggle fix"
+    ]
+   ]
+  },
+  "feedback": {
+   "n": 4,
+   "note": "Only four comments since 3 Sep — two up, two down — and net votes fell 356 → 68. Both downvotes call the game pay-to-win.",
+   "quotes": [
+    [
+     "2026-09-10",
+     "horrible pay to win and horrible ai images and horrible ui",
+     "Pay-to-win, and the creative"
+    ],
+    [
+     "2026-09-04",
+     "delete this cuz its just so ptw that i dont understand why you made this game.",
+     "Pay-to-win"
+    ]
+   ]
+  },
+  "hypotheses": [
+   {
+    "h": "The game is stale and slow, and the thumbnail promises the opposite",
+    "conf": "likely",
+    "why": "Ren’s read, and the metrics now put numbers on both halves of it. The listing side is excellent — rejection −46.5%, play-through +13.9% — so the <em>LVL 1 → LVL 99999</em> promise is landing. The delivery side is the worst in the pack: <strong>bounce under 60s +20.5% and bounce at 60–180s +18.1%</strong>, session duration <strong>−23.2%</strong>, play minutes per DAU −8.0%, D1 −17.1%, D1 playtime −11.6%. Both bounce windows rising together means players are leaving throughout the opening, not stumbling on one screen. A promise-versus-delivery gap looks exactly like this and needs no defect to produce it.",
+    "against": "How a game feels is not measurable here. The metrics are consistent with the explanation rather than proof of it.",
+    "fix": "Pace, not patches. Bring the first real power step forward so the opening minutes show escalation, and shorten the gap between meaningful upgrades. v1251 already moves that way — cash per hit +20%, punch-speed upgrade cost −20%. Read it at D+7 on the two bounce windows and session duration specifically; those are the metrics that would move."
+   },
+   {
+    "h": "The crates are not why players say pay-to-win",
+    "conf": "confirmed",
+    "why": "Both downvotes name pay-to-win and it is tempting to pin that on the crate economy v1246 shipped. The crates did not convert: paying users fell <strong>80.4%</strong> and paying-user CVR 41.2%, while ARPPU only fell 9.4% — the few who still spend, spend nearly as much, and <strong>RFY D1 Robux spend actually rose 19.1%</strong>. A new paid surface that fails to add payers is not what created the perception.",
+    "against": "—",
+    "fix": "Do not pull the crates on this evidence. Pay-to-win perception here is the whole paid surface area, not the newest item on it."
+   },
+   {
+    "h": "No defect is visible to any instrument",
+    "conf": "likely",
+    "why": "v1246 introduced 0.11% of error volume and errors per player fell. D1 dropped on every platform and hardest on Computer and Console — the strongest devices, the inverse of a render regression. Listing rejection improved. Nothing points at a break.",
+    "against": "The D8–28 block is down 22–26%, which is real and is not explained by any of the above.",
+    "fix": "Judge the pacing by playing the first five minutes. This game has produced a confident wrong answer from thin evidence before, and the instruments are all saying the same thing."
+   }
+  ]
+ },
+ "verity": {
+  "verdict": {
+   "level": "watch",
+   "label": "The return loop is working; the top of the funnel is not"
+  },
+  "standfirst": "Everything about players who come back improved sharply — D2–7 playtime +45%, qualified sessions +38%, spend days +60%. Everything about getting players in the first place fell: impressions −54%, conversion −27%, D1 −23%. And more players are now bailing between one and three minutes.",
+  "shipped": [
+   "<strong>v684</strong> — alternative endings (best-friends ending <em>DELAYED, not live</em>); <strong>paid personality / skin shop</strong>, first skin free after 50 messages, others 99R; bugs and QoL",
+   "<strong>v689, shipped early on 8 Sep</strong> — daily rewards (D7, messages as rewards, unlock-all 399R); returning-player rewards after absences over 6 days; endings repeat restriction removed; <strong>like &amp; group reward</strong>; playtime-reward timer; Dreamity and Cruelty personalities at 99R"
+  ],
+  "creative": "12 thumbnail swaps since 10 Aug. Play-through is flat (−0.2%) and qualified PTR flat (−0.9%), but listing rejection <strong>rose 114.0 → 121.3, +6.4% — the highest absolute level of the five</strong>. More people dismiss this listing per impression than any other game in the portfolio, and the number is getting worse. This is the one game where creative is a live suspect.",
+  "errors": {
+   "total": "160 events in one day on v693 — all warnings, all from the AI layer",
+   "rows": [
+    [
+     "40",
+     "<code>Model returned no usable dialogue (attempt 1); body omitted</code>",
+     "serious",
+     "A message spent for no reply. This is the one AI signature that is rising — it was 0 in August and 7 on 8 Sep"
+    ],
+    [
+     "73",
+     "<code>Model repeated its own previous line</code> (attempts 1 and 2)",
+     "warning",
+     "Far below its August level, where the same signature ran 4,935 in a two-day export"
+    ],
+    [
+     "7",
+     "<code>[LikeReward] Player:IsInGroup failed because HTTP unknown error (SslConnectFail)</code>",
+     "serious",
+     "The like and group reward v689 just shipped, failing its own membership check"
+    ],
+    [
+     "6",
+     "<code>Reply was cut at max_tokens</code>",
+     "warning",
+     "Truncated replies"
+    ]
+   ]
+  },
+  "feedback": {
+   "n": 264,
+   "note": "264 comments since 3 Sep, 194 of them downvotes — by far the most feedback volume of the five, though net votes improved from −7.5 to +35. The one recurring product complaint is the message cap.",
+   "quotes": [
+    [
+     "2026-09-03",
+     "WHY DO WE NEED A MESSAGE LIMIT",
+     "The message cap, repeatedly"
+    ],
+    [
+     "2026-09-03",
+     "really? message limit?",
+     "Same"
+    ]
+   ]
+  },
+  "hypotheses": [
+   {
+    "h": "v689’s reward mechanics are working on returning players",
+    "conf": "likely",
+    "why": "v689 shipped daily rewards, returning-player rewards and a like/group reward on 8 Sep, and the D2–7 block moved hard in the right direction: <strong>play days +23.7%, playtime +45.2%, qualified sessions +38.3%, co-play days +23.6%</strong>. The money follows the same shape — <strong>D2–7 Robux spend +67.3% and D2–7 spend days +59.7%</strong>, with ARPPU up 10.9%. Players who come back now do more and spend more.",
+    "against": "v689 has had three days, and D2–7 is a trailing window, so part of this is still filling in. The personality shop from v684 is also a paid surface in the same window and is not separable.",
+    "fix": "Nothing to change. Re-read the D2–7 block on 15 Sep when v689 has a full week behind it — that is the first clean measurement of it."
+   },
+   {
+    "h": "The message cap is where the first session breaks",
+    "conf": "likely",
+    "why": "Bounce under 60s <em>improved</em> 8.0% while <strong>bounce at 60–180s rose 13.7%</strong>. Players are surviving the opening and then leaving in minutes one to three. The loudest repeated complaint in 264 comments is the message limit, and the whole of v689’s reward design exists to hand out more messages — the studio is already treating the cap as the constraint.",
+    "against": "The quoted complaints are from <strong>3 September, five days before v689</strong> shipped the daily and returning-player rewards that hand out more messages — so they describe the problem the studio has already acted on, not the state after it. Bounce is also scoped to RFY-organic traffic only, and impressions fell 54% across the window, so the population behind that rate changed too.",
+    "fix": "The 60–180s bounce rise is measured after v689 and is the part that still needs answering: the daily rewards help someone who returns tomorrow, not someone hitting the wall in their first three minutes. Re-read bounce at 60–180s on <strong>15 September</strong>, when v689 has a full week behind it."
+   },
+   {
+    "h": "The listing is being dismissed more, and it is the only game where that is true",
+    "conf": "likely",
+    "why": "Listing rejection per million impressions rose to <strong>121.3, the highest of the five and still climbing</strong>, while play-through stayed flat. Impression→play conversion fell 26.5% and new users fell 72.3% against returning down 43.0%: the shortfall is concentrated at the top of the funnel.",
+    "against": "Impressions fell 54% at the same time, so the audience being shown the listing changed. A rejection rate is per-impression and therefore reach-immune, but who is being shown the game is not controlled.",
+    "fix": "This is the one game worth a deliberate creative test. Judge it on rejection per million impressions, not on play-through — play-through moves with reach and will mislead."
+   }
+  ]
+ },
+ "seal": {
+  "verdict": {
+   "level": "watch",
+   "label": "The product improved on every measure; reach halved anyway"
+  },
+  "standfirst": "Both bounce windows fell by about a fifth, D1 playtime rose, qualified sessions rose, and the D2–7 return block is up double digits. Reach went the other way: impressions −57%, DAU −63%. Past the tutorial the game still stops — three quarters of players who buy an upgrade never finish ten jobs.",
+  "shipped": [
+   "<strong>Mobile UI rework</strong> — scaling, “lots of complaints”",
+   "Squeegee skin VFX from Rare upward",
+   "Performance and QoL bugs",
+   "<strong>Rebirth UI rework</strong>",
+   "<strong>Tutorial rework</strong> — clearer arrows to Refill Station and Upgrades, an arrow out at the end, one-time Quick Upgrades highlight with red dots, “You can buy a Sealcoat Rig!” hint at 250K",
+   "Refill teleport — <em>PAUSED, not live</em>"
+  ],
+  "creative": "12 thumbnail swaps since 10 Aug. Play-through rose <strong>18.7%</strong> and qualified PTR <strong>32.7%</strong> — the largest qualified-PTR gain of the five. Listing rejection per million impressions is flat (35.8 → 36.0) and is the <strong>best absolute level in the portfolio</strong> — this listing is dismissed less than any other game here. Players do still name the art unprompted: “ai generated”.",
+  "errors": {
+   "total": "57 events in one day on v915",
+   "rows": [
+    [
+     "~3",
+     "<code>[UpgradeService] save failed for &lt;player&gt; after 3 tries: 502</code>",
+     "critical",
+     "<strong>A save that failed three times is lost progress.</strong> The message embeds a username, so this count is a floor"
+    ],
+    [
+     "~3",
+     "<code>[MapReach] &lt;player&gt; counted to 1 but the mark did not save, so they may be counted again: 502</code>",
+     "serious",
+     "Progress marks not persisting"
+    ],
+    [
+     "11",
+     "<code>Script timeout: exhausted allowed execution time for the current resumption point</code>",
+     "serious",
+     "Server threads running out of time"
+    ]
+   ]
+  },
+  "feedback": {
+   "n": 51,
+   "note": "51 comments since 3 Sep, 37 of them downvotes, though net votes edged up 54 → 58. Progress loss and performance dominate, and Computer is over-represented at 26 of 51.",
+   "quotes": [
+    [
+     "2026-09-03",
+     "the game doesn't save my progress. i rebirth twice and originally when i rebirthed road 3 was unlocked but now[…]",
+     "Rebirth losing progress"
+    ],
+    [
+     "2026-09-03",
+     "I was halfway done with the driveway and it kicked me out of the game and we started my whole thing[…]",
+     "Session loss mid-job"
+    ],
+    [
+     "2026-09-11",
+     "I cant rebirth, stuck in a limbo now — There is no 56th driveway",
+     "The rebirth requirement, since fixed"
+    ],
+    [
+     "2026-09-03",
+     "extremely laggy",
+     "Computer"
+    ],
+    [
+     "2026-09-03",
+     "ai generated",
+     "The creative, unprompted"
+    ]
+   ]
+  },
+  "hypotheses": [
+   {
+    "h": "The tutorial rework worked, and the metrics agree from several directions",
+    "conf": "likely",
+    "why": "v914 reworked the tutorial — arrows to the Refill Station and Upgrades, an exit arrow, a Quick Upgrades highlight, a vehicle hint at 250K. <strong>Both bounce windows fell: under 60s −17.9%, 60–180s −20.0%.</strong> D1 playtime +7.6%, D1 qualified sessions +6.2%, session length +1.0%. The onboarding funnel now completes at 72.8%. Four independent measures of the opening all moved the same way.",
+    "against": "No A/B ran, and the mobile UI rework shipped in the same build and would move the same numbers.",
+    "fix": "Nothing to fix — repeat it. The equivalent leak on Waterslide sits at its two shop steps."
+   },
+   {
+    "h": "Progression is the wall, and it is far worse than onboarding ever was",
+    "conf": "confirmed",
+    "why": "The Progression funnel collapses where onboarding does not. <code>FirstUpgrade</code> holds at 87.5%, then <code>TenJobs</code> churns <strong>76.2%</strong> — three quarters of players who bought an upgrade never finish ten jobs — and <code>FirstTruck</code> churns a further 40.2%, ending at 9.2% end to end. The map funnel is worse: <code>EstateDistrict</code> churns 88.4% and the deep areas round to nothing.",
+    "against": "These are cohort rates over a window in which the game lost most of its audience, so the mix of players is not constant.",
+    "fix": "Ten jobs is too far for what it pays. Shorten the gap between the first upgrade and the next visible goal, or move a reward into it. This is the largest single structural loss on the game."
+   },
+   {
+    "h": "Saves are failing, and it costs the players who would have returned",
+    "conf": "likely",
+    "why": "<code>[UpgradeService] save failed for &lt;player&gt; after 3 tries: 502</code> and <code>[MapReach] … the mark did not save</code> are both on <strong>v915, exported today</strong> — this is current, not a leftover. Players reported losing progress on 3 September, including a road unlock lost across a rebirth, and the save layer is still failing a week later. The D2–7 block is up (play days +13.6%, playtime +16.9%), so the return loop is improving <em>despite</em> this, which makes the save failures a ceiling on a mechanic that is otherwise working.",
+    "against": "The counts are small — three or so each — but they embed usernames, so one defect shreds across many rows and every count is a floor. The export also caps at 25 signatures.",
+    "fix": "Retry with backoff past three attempts and queue the write; show a visible “saving failed” state rather than dropping it silently."
+   },
+   {
+    "h": "The rebirth block was a phantom road",
+    "conf": "confirmed",
+    "why": "The rebirth requirement counted <strong>56 driveways when only 55 existed</strong>, so players reached 55/56 and could not rebirth — “I cant rebirth, stuck in a limbo now. There is no 56th driveway.” The road was never meant to be a requirement and has been removed.",
+    "against": "—",
+    "fix": "Already fixed. Worth a regression check that the requirement derives from the road list rather than a hardcoded count, so adding or removing a road cannot strand players again."
+   }
+  ]
+ }
+}

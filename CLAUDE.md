@@ -63,20 +63,26 @@ the full spec; this file is the day-to-day reference.
 >   recovering; Seal is diluting through a +364% w/w scale-up. Retention, funnel
 >   step rates, errors per player and the monetization *rates* are what test them
 >   — see each `BASELINE.md`.
->   **The open blocker is still error message TEXT, now on three games.** The
->   `MessageHash` lookup 500s on every universe, so a dashboard export is the
->   only route to a message body. Needed: **Banana Monkey filtered to v1244**
->   (this game has *never* had an error export filed — `data/exports/10399712766-…`
->   has no `errors/` folder at all, and its v1244-introduced errors are rising
->   at flat 100% adoption: 30 → 128 → 1,308); **Seal filtered to v908 for
->   08-30** (which pre-existing signature is bursting); and confirmation that
->   Verity's library fix ships.
+>   **Error message TEXT is self-service since 2026-09-08 — it is NOT a blocker
+>   and must not be written up as one again.** The `MessageHash` lookup still
+>   500s on every universe, so a dashboard export stays the only route to a
+>   message body, but WE drive that export now:
+>   `npm run export:errors -- <universeId> [--version v1244] [--window 1h|1d|7d|28d] [--place <id>]`
+>   files it under `data/exports/<id>-<slug>/errors/` with the version band read
+>   out of the file rather than guessed. **Every game has exports filed** —
+>   measured 2026-09-11: Brainrot 19, Waterslide 14, Seal 11, Verity 10, Banana
+>   Monkey 6, Knife Farm 1. The earlier claim here that Monkey had "never had an
+>   error export filed" was true on 08-30 and is now false; it is what made a
+>   solved problem read as an open one at the top of every session.
+>   Always pass `--version` — the page defaults to last-1-day/all-versions,
+>   which is not a post-update window — and let the table's async refetch settle
+>   before the export click (the script waits 10s) or you re-download stale rows.
 > - **Three gates — run them before and after any change** (measured
->   2026-09-10, not copied):
->   `npm run verify -- ../data/verify/9610561918/` → 24 pass · **2 fail** · 7 skip
->   and **exits 1**. BOTH fails are documented and held in the test's
+>   **2026-09-11**, not copied):
+>   `npm run verify -- ../data/verify/9610561918/` → 24 pass · **3 fail** · 6 skip
+>   and **exits 1**. All three fails are documented and held in the test's
 >   `KNOWN_OPEN`, so `npm test` stays green while `verify` exits 1 — that is the
->   expected state, not a regression: (1) the disputed realtime-revenue hour
+>   expected state, not a regression. The THIRD fail arrived 2026-09-11 and is **F32** — a corpus file that is a range aggregate compared against a daily point; it is in `KNOWN_OPEN` for the range-vs-daily comparison only. The other two: (1) the disputed realtime-revenue hour
 >   2026-08-08T00:00, and (2) `ErrorCount` half-hour, where 144 of 147 cells
 >   match and the 3 that don't are all the 08:00 bucket at the export window's
 >   own edge — the CSV holds a partial bucket, our later read holds the settled

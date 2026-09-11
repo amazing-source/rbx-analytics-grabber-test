@@ -562,3 +562,62 @@ Ren also correctly predicted Search would be noisiest — own sd 3.32pp vs Home'
 **Open:** whether one thumbnail depicting a pothole drain-and-fill mechanic
 matches anything in the game. Not in the codebase I read; §5b says that judgement
 belongs to someone who plays. Asked, unanswered.
+
+## 2026-09-11 — D+7 diagnosis, five games, window 09-03/04 → 09-11
+
+Docs: `reports/2026-09-11/` (cover + five game docs). Requested by Ren as a
+diagnosis, so each doc carries a **separately labelled Interpretation section** —
+measurements and causal claims never share a sentence.
+
+**Claims delivered, with the test each rests on:**
+
+| Claim | Status | Test it rests on |
+|---|---|---|
+| All five games are on staggered decay curves; the window's declines **predate every update in it** | measured | Peak dates 07-25 → 08-28, each game's DAU as % of its own peak |
+| **Brainrot is the only game that improved against its own trajectory** — D1 +19.7%, session +4.3%, bounce −9.8% | likely | Residual vs own log-linear decay trend (+2.49 to +5.37 z); D1 up on **all four** acquisition sources incl. `Friends` |
+| Brainrot's gain **cannot be credited to v608** | stated as unresolved | First departure is 09-03; v608 published 09-04 12:17 |
+| **Monkey fell BELOW its own −8%/day decline on all 14 metrics tested**; engagement broke on the publish day, reach followed 2 days later | likely | Residuals −1.13 to −2.97, none positive; ordering 09-04 → 09-06 |
+| Monkey's cause is **global to the game; creative ruled out** | likely | D1 fell on `Friends` (−5.3%) and `Search` (−12.3%); `HomeRecommendation` fell hardest in effect size (−24.3%) |
+| **Verity is a conversion story, not a reach cut** — impressions −4.4%, CVR −25.8% | confirmed | Matched-weekday decomposition |
+| Verity: **revenue flat (+0.3%) on DAU −23.4%**, paying CVR +15.5% | confirmed | Matched-weekday |
+| **Seal's first session improved while distribution collapsed** | confirmed | Six funnel steps up (`Complete` +6.0pp); bounce −12.1%; D1 flat on every source |
+| Seal's reach cut is **not necessarily external** — D2–7 play days −19.0% | likely | RFY signal block; §3e says finish the test past D1 |
+| **Waterslide barely moved**; loss is conversion; step 5 lost 2pp and propagates | likely | Residuals within 1.5 sd except PTR; funnel steps 1–4 flat, 5–15 all −2.0 to −2.9pp |
+
+**Two instrument failures caught before publication, both recorded in the docs:**
+
+1. **A level baseline is useless on a decaying series.** The first "what moved
+   first" pass used a 08-19→08-30 level baseline and returned *every metric on
+   every game* as departing on 09-01, the first scan day — because the baseline
+   sits high on the decay curve. Replaced with a residual-against-own-trend fit.
+   Same failure mode as the Monkey bounce retraction of 2026-09-09.
+2. **The replacement instrument does not work on a freshly-peaked game.** Verity
+   (peak 08-23) and Seal (peak 08-28) leave 8 and 4 non-Saturday days to fit
+   against; the residual scale collapses and Seal returned z = 127, 38, 26.
+   **Not reported for those two games** — they are carried on the fit-free
+   matched-weekday comparison and make no trend-relative claim.
+
+3. **And it fails on a NON-MONOTONIC window, not just a short one.** Knife Farm
+   (since dropped from scope) fitted "flat" over 08-19→09-02 — +0.6%/day DAU —
+   and then returned residuals of −4.02, −3.71, −3.47 for the window, which
+   reads as "a stable game broke on 09-03". The fit window actually contains a
+   **trough (08-24, 14,879 DAU) and a spike (08-29, 45,666)**, and a straight
+   line through a V averages to flat. Not reported. **Plot the fit window before
+   trusting a trend fit** — "flat trend" and "rose then fell" are the same
+   coefficient.
+
+**One number corrected mid-analysis.** Verity's impressions read **+15.7%** on an
+unmatched pre/post window and **−4.4%** once both spans were weekday-matched
+(Sat·Sun·Mon·Tue·Wed each). The unmatched version would have supported "Roblox
+*increased* Verity's reach", which is false. Weekday matching is not a refinement
+here; it flips the sign.
+
+**Not claimed, deliberately:** no feature is attributed to any build except
+Monkey's auras (named by Roblox's own event annotation). The update specs were
+pasted in an earlier conversation and are not in the repo — the same gap that
+produced the 2026-09-08 spec-block retraction. Asked Ren to re-send.
+
+**Dropped:** Knife Farm — Ren: *"dead for a fortnight, i dont think it rly matters"*. Re-grabbed (corpus now current to 09-09) but not diagnosed.
+
+**Open:** v689 (Verity daily + group
+rewards) has two days and is not assessed; first clean read ~09-15.

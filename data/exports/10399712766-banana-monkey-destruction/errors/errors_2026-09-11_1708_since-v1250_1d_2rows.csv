@@ -1,0 +1,3 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+32,Error,Server,Fri Sep 11 2026 17:10:45 GMT+0200 (heure d’été d’Europe centrale),V1250,Game is not a valid member of ServerScriptService "ServerScriptService","Script 'Workspace.VaultEventRooms.VaultEventRoom2.Portal.ProximityPart.ProximityPrompt.EventTeleport', Line 3",
+2,Error,Server,Fri Sep 11 2026 17:24:45 GMT+0200 (heure d’été d’Europe centrale),V1250,Game is not a valid member of ServerScriptService "ServerScriptService","Script 'Workspace.VaultEventRooms.VaultEventRoom3.Portal.ProximityPart.ProximityPrompt.EventTeleport', Line 3",
