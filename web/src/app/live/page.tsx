@@ -14,11 +14,53 @@ type Sample = { t: string; v: Record<string, number> };
 type Review = { id: string; universeId: string; game: string; comment: string;
   createdUtc: string; assetVersion?: string | number | null; category?: string | null; seenAt: string };
 
+type MetricSpec = { key: string; metric: string; label: string; gloss: string;
+  kind: "int" | "robux" | "rate" | "pct" | "minutes" };
+type Point = { date: string; value: number };
+type Cell = { latest: Point; prev: Point | null; weekAgo: Point | null;
+  partialToday: Point | null; history: Point[] };
+type GameMetrics = { universeId: string; name: string;
+  cells: Record<string, Cell | null>; notes: Record<string, string> };
+type MetricSnap = { computedAt: string; games: GameMetrics[]; specs: MetricSpec[];
+  problems: string[]; refreshing?: boolean };
+
 const CCU_MS = 30_000;
 const FEED_MS = 60_000;
+// Cheap: the route answers from a disk cache. This poll only exists so a
+// background refresh landing shows up without a manual reload.
+const MET_MS = 60_000;
 
 const SERIES = ["#2F5D50", "#B4552B", "#4A6FA5", "#8A5B0C", "#7A3E6B", "#2F6E8F"];
 const nf = new Intl.NumberFormat("en-US");
+/** Two decimals, with trailing zeros dropped — via Number, not a regex.
+ *  A regex here is one lost backslash away from `/.?0+$/`, which matches ANY
+ *  character before the zeros and turned -0.10 into "-0." on this very page. */
+const trimZeros = (n: number) => String(Number(n.toFixed(2)));
+
+/** Format by KIND, because a rate and a Robux total are not the same number.
+ *  ARPDAU at 3dp keeps a real move visible; rounding it to 0.5 would hide one. */
+function fmtVal(v: number, kind: MetricSpec["kind"]) {
+  if (kind === "int") return nf.format(Math.round(v));
+  if (kind === "robux") return "R$ " + nf.format(Math.round(v));
+  if (kind === "pct") return trimZeros(v * 100) + "%";
+  if (kind === "minutes") return v.toFixed(1) + "m";
+  return v.toFixed(3);
+}
+
+/** A RATE moves in percentage POINTS; a volume moves in percent. Printing a
+ *  D1 of 15.5%→19.9% as "+28%" overstates it — it is +4.4pp. */
+function delta(now: number, then: number, kind: MetricSpec["kind"]) {
+  if (kind === "pct") {
+    const pp = (now - then) * 100;
+    return { text: (pp > 0 ? "+" : "") + trimZeros(pp) + "pp", dir: Math.sign(pp) };
+  }
+  if (!then) return { text: "—", dir: 0 };
+  const pc = ((now - then) / Math.abs(then)) * 100;
+  return { text: (pc > 0 ? "+" : "") + pc.toFixed(1) + "%", dir: Math.sign(pc) };
+}
+
+const dayLabel = (d: string) => (d ? d.slice(5) : "");
+
 const clock = (iso: string) => (iso ? new Date(iso).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "");
 /** The reviews API returns created_utc as epoch MILLISECONDS in a string. */
 function when(v: string) {
@@ -48,6 +90,8 @@ export default function LivePage() {
   const [ccuAt, setCcuAt] = useState<string>("");
   const [ccuErr, setCcuErr] = useState<string>("");
   const [feedAt, setFeedAt] = useState<string>("");
+  const [met, setMet] = useState<MetricSnap | null>(null);
+  const [metErr, setMetErr] = useState<string>("");
   const [paused, setPaused] = useState(false);
   const [filter, setFilter] = useState<string>("all");
   const firstFeed = useRef(true);
@@ -88,13 +132,23 @@ export default function LivePage() {
     } catch { /* leave the last good feed on screen */ }
   }, []);
 
-  useEffect(() => { pullCcu(); pullFeed(); }, [pullCcu, pullFeed]);
+  const pullMet = useCallback(async (force = false) => {
+    try {
+      const r = await fetch(`/api/live/metrics${force ? "?refresh=1" : ""}`, { cache: "no-store" });
+      const j = await r.json();
+      if (!r.ok) { setMetErr(j.error ?? `HTTP ${r.status}`); return; }
+      setMetErr(""); setMet(j);
+    } catch (e) { setMetErr((e as Error).message); }
+  }, []);
+
+  useEffect(() => { pullCcu(); pullFeed(); pullMet(); }, [pullCcu, pullFeed, pullMet]);
   useEffect(() => {
     if (paused) return;
     const a = window.setInterval(pullCcu, CCU_MS);
     const b = window.setInterval(pullFeed, FEED_MS);
-    return () => { window.clearInterval(a); window.clearInterval(b); };
-  }, [paused, pullCcu, pullFeed]);
+    const c = window.setInterval(() => pullMet(), MET_MS);
+    return () => { window.clearInterval(a); window.clearInterval(b); window.clearInterval(c); };
+  }, [paused, pullCcu, pullFeed, pullMet]);
 
   const total = rows.reduce((a, r) => a + r.playing, 0);
   const seriesFor = (u: string) => hist.map((s) => s.v[u]).filter((v) => typeof v === "number");
@@ -142,6 +196,79 @@ export default function LivePage() {
             );
           })}
         </div>
+      </section>
+
+      <section>
+        <div className="hd"><h2>Key metrics</h2>
+          <span className="muted">
+            {met?.refreshing ? "refreshing — 36 paced Open Cloud reads, ~80s"
+              : met ? `snapshot ${clock(met.computedAt)}` : "…"}
+          </span>
+          <button className="ghost" onClick={() => pullMet(true)} disabled={!!met?.refreshing}>Refresh</button>
+        </div>
+
+        {metErr && <p className="err" role="status">Metrics read failed — {metErr}.</p>}
+        {met?.problems?.map((x) => <p key={x} className="warn">{x}</p>)}
+
+        <p className="lagnote">
+          These are <b>settled daily figures, not live</b>. Roblox serves the behavioural
+          rung about two days behind, and D1 a day behind that because the cohort has to
+          mature — so each cell is stamped with the UTC day it is for. Today is never shown
+          here: a part-day differenced against whole ones reads as a collapse.
+          <b> CCU above is the live number.</b>
+        </p>
+
+        {!met ? <p className="muted empty">Building the first snapshot…</p> : (
+          <div className="tscroll">
+            <table className="mt">
+              <thead>
+                <tr>
+                  <th className="gcol">Game</th>
+                  {met.specs.map((sp) => (
+                    <th key={sp.key}><span className="mlab">{sp.label}</span>
+                      <span className="mgloss">{sp.gloss}</span></th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {met.games.map((g) => (
+                  <tr key={g.universeId}>
+                    <td className="gcol">{g.name}</td>
+                    {met.specs.map((sp) => {
+                      const c = g.cells[sp.key];
+                      if (!c) return (
+                        <td key={sp.key} className="na" title={g.notes[sp.key] || "not served"}>
+                          —<span className="mgloss">{g.notes[sp.key] ? "see note" : "not served"}</span></td>
+                      );
+                      const d1 = c.prev ? delta(c.latest.value, c.prev.value, sp.kind) : null;
+                      const d7 = c.weekAgo ? delta(c.latest.value, c.weekAgo.value, sp.kind) : null;
+                      return (
+                        <td key={sp.key}>
+                          <span className="mval">{fmtVal(c.latest.value, sp.kind)}</span>
+                          <span className="mdate">{dayLabel(c.latest.date)}</span>
+                          <span className="deltas">
+                            <span className={"dl " + (d1 ? (d1.dir > 0 ? "up" : d1.dir < 0 ? "dn" : "") : "")}
+                              title={c.prev ? `vs ${c.prev.date} (previous day)` : "previous day not served"}>
+                              d/d {d1 ? d1.text : "—"}</span>
+                            <span className={"dl " + (d7 ? (d7.dir > 0 ? "up" : d7.dir < 0 ? "dn" : "") : "")}
+                              title={c.weekAgo ? `vs ${c.weekAgo.date} — same weekday` : "same weekday not in the served window"}>
+                              w/w {d7 ? d7.text : "—"}</span>
+                          </span>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        <p className="muted foot">
+          d/d is the calendar day before. w/w is the <b>same weekday</b> a week earlier,
+          kept as its own comparison rather than folded into a matched-window mean.
+          Rates move in percentage points (pp), volumes in percent. Hover any delta for the
+          exact dates compared.
+        </p>
       </section>
 
       <section>
@@ -220,6 +347,32 @@ section{margin-bottom:46px}
 .sub{font-size:.78rem;margin:4px 0 8px;font-family:Archivo,sans-serif}
 .up{color:var(--ok);font-weight:600}.dn{color:var(--fix);font-weight:600}
 .meta{font-size:.7rem;color:var(--ink-3);margin:6px 0 0}
+.hd button.ghost{margin-left:auto;font-size:.66rem;padding:5px 10px}
+.hd button.ghost:disabled{opacity:.45;cursor:default}
+.warn{background:var(--surface-2);color:var(--ink-2);border-left:3px solid var(--fix);
+ border-radius:5px;padding:8px 13px;font-size:.82rem;margin:0 0 10px}
+.lagnote{background:var(--surface-2);border-radius:7px;padding:12px 16px;font-size:.88rem;
+ line-height:1.55;margin:0 0 16px;color:var(--ink-2)}
+.lagnote b{color:var(--ink)}
+.tscroll{overflow-x:auto;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+.mt{border-collapse:collapse;width:100%;min-width:780px}
+.mt th,.mt td{text-align:right;padding:10px 13px;border-bottom:1px solid var(--rule);vertical-align:top}
+.mt tbody tr:last-child td{border-bottom:none}
+.mt th{font-family:Archivo,sans-serif;background:var(--surface-2);position:sticky;top:0}
+.mt th .mlab{display:block;font-size:.78rem;font-weight:700}
+.mgloss{display:block;font-family:"IBM Plex Mono",monospace;font-size:.6rem;
+ color:var(--ink-3);font-weight:400;margin-top:2px}
+.mt .gcol{text-align:left;font-family:Archivo,sans-serif;font-size:.8rem;font-weight:600;
+ white-space:nowrap;position:sticky;left:0;background:var(--surface)}
+.mt th.gcol{background:var(--surface-2)}
+.mval{display:block;font-family:Archivo,sans-serif;font-size:1.02rem;font-weight:700;
+ font-variant-numeric:tabular-nums;line-height:1.2}
+.mdate{display:block;font-family:"IBM Plex Mono",monospace;font-size:.6rem;color:var(--ink-3);margin-top:1px}
+.deltas{display:flex;flex-direction:column;gap:1px;margin-top:5px}
+.dl{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--ink-3);cursor:help}
+.dl.up{color:var(--ok)}.dl.dn{color:var(--fix)}
+.mt td.na{color:var(--ink-3)}
+.foot{margin:12px 0 0;line-height:1.5;font-size:.8rem}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
 .empty{background:var(--surface-2);border-radius:7px;padding:16px 18px;font-size:.9rem}
 .empty code{font-family:"IBM Plex Mono",monospace;font-size:.85em}

@@ -160,7 +160,11 @@ type CloudResult =
   | { ok: true; status: number; body: unknown; points: number }
   | { ok: false; status: number; error: string };
 
-async function runQuery(
+/** Exported so the live board's metric snapshot reuses this exact loop rather
+ *  than growing a second client. The 429 backoff and the done:false poll are
+ *  the two things a hand-rolled probe always gets wrong, and a wrong one
+ *  reports a rate limit or an unfinished query as a game with no data. */
+export async function runQuery(
   universeId: string,
   query: CloudQuery,
   key: string,
