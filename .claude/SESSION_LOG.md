@@ -1150,3 +1150,23 @@ and now logs only >1%.
 
 **Wake:** **2026-09-11** — the D+7 post-update grab for 5 games, possibly 6 with Knife Farm. Ren also wants the 09-04 diagnosis set consolidated into ONE current document. Scope confirmed as `analysis/reports-0904/` (6 files) + `baselines/*-2026-09-04-*.md` (5 files); **do NOT touch `baseline/`** — different directory, holds the 08-28 update baselines and their pre-registered tripwires. I asked whether "erase" also meant the `DIAGNOSIS_LOG` entries (6 of the 8 in range are records of my own errors) — **unanswered, do not delete them without an answer.**
 **Next:** run the D+7 grab, then the consolidated diagnosis. Before writing it, read §3f and the retraction list above — items 1, 2 and 6 are all live traps for a reach diagnosis.
+
+## 2026-09-19 — week-after-11-Sep reads for five games, and the peer index
+
+**State:** branch `grabber-correctness` · 117 ahead of `main` · **1 commit unpushed** (`509a320`, from 09-11) · nothing committed this session · dirty: this session's `tools/r0919/`, `reports/2026-09-19/`, `web/scripts/explore-pull.ts`, docs, 18 exports; **not mine, pre-existing:** `web/scripts/live-feedback.ts`, `web/src/app/live/*`, `web/src/lib/live.ts`, 09-14 exports
+**Gates:** verify 24/3/6 (exit 1) · audit-plan 180 templates, 0 failures · test 51/51 — measured 2026-09-19 (light checkpoint; not re-run after the doc edits, no code in scope changed)
+**Landed:** browser grab of all five (09-03 → today + trailing), Explore pull, 18 error exports, reviews backfill; six artifacts (cover https://claude.ai/artifact/CzFkDtWS5tC4NMBmgoUANu); `tools/r0919/` pipeline; feedback mirror repaired (+1,795 rows, 0 removed)
+**Learned → routed:**
+- Peer index + which window answers which question + check the baseline week's calendar → `liveops-diagnosis` **§3g**
+- In-page Explore gives hourly CCU (540 pts/3 wks), D1×IsNewUser fails → `references/retrieval.md`
+- `feedback.csv` overwritten per grab → COVERAGE **F37**; export filenames count lines not signatures, cap 25 → **F38**
+- Diagnosis returns as last-section hypotheses; extension over Open Cloud; DB unreachable today → `CLAUDE.md`
+- Per-game week read, Ren proposed Verity's free messages → `HANDOFF.md` (Session 2026-09-19), `DIAGNOSIS_LOG.md`
+**Retracted:**
+1. *"Free messages (v689) cannibalised Verity's paid messaging"* — the 08 Sep payer step hit all five games (Verity −25%, mid-pack); Verity's revenue/player was ahead of peers on 08–09 Sep (1.26, 1.28); its break is reach from 13–14 Sep.
+2. *"Brainrot's payer fall is dilution plus a Labor-Day baseline"* (supported/high) — true only to 13 Sep; from 14 Sep Brainrot runs 0.63–0.77 of the portfolio.
+3. *"The 11 Sep new-world content did not lift Waterslide"* (weakened/low) — D1 and payer CVR beat the peers from the build weekend, against a mix shift that pushes both down → plausible/medium.
+4. *"Seal's dip closed by 16 Sep"* — only session length recovered; D1/CVR/D2–7 stay below the peers.
+**Open:** exporter still truncates feedback — fix `export-files.ts` to merge on review id (F37) + a test · 09-17/18 build specs not filed — ask Ren · the three-reviewer verification was skipped (usage) — every *supported/high* is single-reviewed
+**Wake:** **2026-09-21** — first clean behavioural day (09-19) for the 09-17/18 builds; whether Brainrot/Waterslide Home impressions hold. **~2026-09-27** — Verity per-item revenue 19→25 Sep vs 5→11 Sep (settles the free-messages cost); the first holiday-free matched week.
+**Next:** grab 2026-09-21, rerun `tools/r0919/build.js` + `peer-index.js` with the window moved one week, and grade the 09-17/18 builds.

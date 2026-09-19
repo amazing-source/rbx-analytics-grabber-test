@@ -1,0 +1,45 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+52,Warning,Client,Fri Sep 18 2026 03:10:05 GMT+0200 (heure d’été d’Europe centrale),V918,Current thread doesn't have permissions to access child CoreGui of class DataModel,"Script 'spawner', Line 1",
+52,Warning,Client,Fri Sep 18 2026 03:10:05 GMT+0200 (heure d’été d’Europe centrale),V918,Current thread doesn't have permissions to access child CoreGui of class DataModel,,
+39,Error,Server,Thu Sep 17 2026 19:19:00 GMT+0200 (heure d’été d’Europe centrale),V918,DataStoreService: InternalServerError: An internal server error occurred. API: UpdateAsync,RobotHelper_v1,
+39,Warning,Server,Thu Sep 17 2026 19:19:00 GMT+0200 (heure d’été d’Europe centrale),V918,[RobotHelper] Save failed: 502: API Services rejected request with error. Error code: 0 Reason: An internal server error occurred.,,
+7,Error,Server,Fri Sep 18 2026 05:11:30 GMT+0200 (heure d’été d’Europe centrale),V918,Error while sending. sender type: Security error message: Unsupported Luau version requested: 12 not in [3..9],,
+7,Error,Client,Thu Sep 17 2026 18:40:50 GMT+0200 (heure d’été d’Europe centrale),V918,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 976",
+5,Warning,Server,Thu Sep 17 2026 20:40:40 GMT+0200 (heure d’été d’Europe centrale),V918,[RobotHelper] Save failed: 502: API Services rejected request with error. Error code: 36 Reason: Service is unavailable.,,
+5,Error,Server,Thu Sep 17 2026 20:40:40 GMT+0200 (heure d’été d’Europe centrale),V918,DataStoreService: ServiceUnavailable: Service is unavailable. API: UpdateAsync,RobotHelper_v1,
+4,Error,Client,Thu Sep 17 2026 21:48:40 GMT+0200 (heure d’été d’Europe centrale),V918,EditableImage:WritePixelsBuffer expects position   size to be within EditableImage bounds,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceRenderer', Line 565 - function Paint
+    Script 'ReplicatedStorage.DrivewaySealer.ColorVisuals', Line 111 - function paintHook
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 553 - function SetDetail
+    Script 'ReplicatedStorage.DrivewaySealer.ColorVisuals', Line 58
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 397 - function updateDetail
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 408",
+2,Error,Client,Sat Sep 19 2026 10:15:25 GMT+0200 (heure d’été d’Europe centrale),V919,EditableImage:WritePixelsBuffer expects position   size to be within EditableImage bounds,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceRenderer', Line 565 - function Paint
+    Script 'ReplicatedStorage.DrivewaySealer.ColorVisuals', Line 111 - function paintHook
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 555 - function SetDetail
+    Script 'ReplicatedStorage.DrivewaySealer.ColorVisuals', Line 58
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 399 - function updateDetail
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 410",
+2,Error,Server,Fri Sep 18 2026 22:37:30 GMT+0200 (heure d’été d’Europe centrale),V918,Error while sending. sender type: Security error message: Unsupported Luau version requested: 12 not in [3..7],,
+2,Error,Client,Fri Sep 18 2026 16:49:00 GMT+0200 (heure d’été d’Europe centrale),V918,raiseTeleportInitFailedEvent: Teleport failed because <This text is not reviewed by UX because it is not displayed to users. Each client provides their own translation> This experience is unavailable to you as it is unrated. (Unauthorized),,
+2,Error,Client,Fri Sep 18 2026 18:35:05 GMT+0200 (heure d’été d’Europe centrale),V918,EditableImage:WritePixelsBuffer expects position   size to be within EditableImage bounds,"Script 'ReplicatedStorage.DrivewaySealer.ColorPaint', Line 237
+    Script 'ReplicatedStorage.DrivewaySealer.ColorVisuals', Line 114 - function paintHook
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 553 - function SetDetail
+    Script 'ReplicatedStorage.DrivewaySealer.ColorVisuals', Line 58
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 397 - function updateDetail
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 408",
+2,Error,Client,Fri Sep 18 2026 16:32:25 GMT+0200 (heure d’été d’Europe centrale),V918,WrapDefomer SkinningTransfer Error for 'Workspace.BGMEMET0.Accessory (1).Handle': "No valid targets with any UV coverage were found.",,
+1,Error,Client,Fri Sep 18 2026 23:39:00 GMT+0200 (heure d’été d’Europe centrale),V919,Unable to generate 'Workspace.Faithangeloxo.Head.MakeupDecal' due to some of the textures being unavailable. Change a TextureId property to retry.,,
+1,Error,Client,Fri Sep 18 2026 20:54:50 GMT+0200 (heure d’été d’Europe centrale),V918,RunService:fireRenderStepEarlyFunctions unexpected error while invoking callback: StarterPlayer.PlayerModule.CameraModule:557: Script timeout: exhausted allowed execution time,,
+1,Error,Client,Fri Sep 18 2026 13:26:25 GMT+0200 (heure d’été d’Europe centrale),V918,ReplicatedStorage.DrivewaySealer.SurfaceGrid:428: Script timeout: exhausted allowed execution time,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceGrid', Line 641 - function _stepRect
+    Script 'ReplicatedStorage.DrivewaySealer.SurfaceGrid', Line 428 - function Step
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 705 - function Step
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 1573",
+1,Error,Client,Thu Sep 17 2026 21:35:15 GMT+0200 (heure d’été d’Europe centrale),V918,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'ReplicatedStorage.SealerUI.Shell', Line 3291",
+1,Error,Client,Thu Sep 17 2026 23:50:40 GMT+0200 (heure d’été d’Europe centrale),V918,PromptSaveAvatar failed: HTTP 500 (Internal Server Error),,
+1,Error,Client,Thu Sep 17 2026 22:31:45 GMT+0200 (heure d’été d’Europe centrale),V918,Players.<Player>.PlayerScripts.DrivewayClient:1189: Script timeout: exhausted allowed execution time,"Script 'ReplicatedStorage.DrivewaySealer.Depot', Line 122 - function distanceToRefuel
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 1189",
+1,Error,Client,Fri Sep 18 2026 09:13:30 GMT+0200 (heure d’été d’Europe centrale),V918,MeshContentProvider failed to process 64589aaf1ea608063b2d3b6dd21e0085 because Error reading mesh data: unknown version,,
+1,Warning,Client,Sat Sep 19 2026 05:32:25 GMT+0200 (heure d’été d’Europe centrale),V918,[Shell] could not read the Helper price: MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: Timedout,,
+1,Warning,Server,Fri Sep 18 2026 04:53:00 GMT+0200 (heure d’été d’Europe centrale),V918,"[RobotHelper] Save failed: 502: API Services rejected request with error. Error code: 0 Reason: Too many requests, try again later.",,
+1,Error,Client,Fri Sep 18 2026 18:35:40 GMT+0200 (heure d’été d’Europe centrale),V918,MeshContentProvider failed to process https://assetdelivery.roblox.com/v1/asset/?id=74700685959663 because Error reading mesh data: offset is out of bounds while reading %d bytes,,
+1,Error,Client,Thu Sep 17 2026 21:35:15 GMT+0200 (heure d’été d’Europe centrale),V918,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'ReplicatedStorage.SealerUI.Shell', Line 2067",

@@ -78,7 +78,7 @@ the full spec; this file is the day-to-day reference.
 >   which is not a post-update window — and let the table's async refetch settle
 >   before the export click (the script waits 10s) or you re-download stale rows.
 > - **Three gates — run them before and after any change** (measured
->   **2026-09-11**, not copied):
+>   **2026-09-19**, not copied — unchanged since 2026-09-11):
 >   `npm run verify -- ../data/verify/9610561918/` → 24 pass · **3 fail** · 6 skip
 >   and **exits 1**. All three fails are documented and held in the test's
 >   `KNOWN_OPEN`, so `npm test` stays green while `verify` exits 1 — that is the
@@ -123,6 +123,14 @@ the full spec; this file is the day-to-day reference.
 
 
 ## Reports are DESCRIPTIVE as of 2026-09-09 — no diagnosis in a game doc
+
+> **Updated 2026-09-19 — diagnosis is back, but ONLY as the last section.** Ren asked for
+> "data analyst work" pages with the diagnosis "at the very bottom … as hypotheses", and
+> explicitly for error exports and feedback. So every section above the last stays descriptive
+> (the rule below still governs it); the final section carries hypotheses with evidence for and
+> against, status, confidence and the test that settles each. Every multi-game read now carries
+> the **peer index** (each game against the other four) — liveops-diagnosis §3g. Pipeline:
+> `tools/r0919/` (build.js → extras → peer-index.js → render.js / render-cover.js).
 
 Ren decided this after two diagnoses were retracted in one session. A game report
 carries **series, deltas, charts, availability and provenance**. It carries no
@@ -173,12 +181,17 @@ reached Roblox must not be lost to a database being down (it has been).
   The only part of `data/` that is committed.
 Offline path, no server or DB: `cd web && npm run ingest:file -- <raw.json>`.
 
+**`feedback.csv` is REWRITTEN from the latest grab, not merged (F37)** — a short trailing grab truncated
+Verity 458 → 53 rows on 2026-09-19. Every review survives in `data/raw/`; rebuild with
+`node tools/r0919/feedback-merge.js [--mirror-only]` before reading feedback after any short grab.
+
 ## Running the app — one command; check whether Supabase is alive
 `cd web && npm run dev` → http://localhost:3000. That is the whole procedure.
 Deps are installed and `web/.env.local` is already correct, so there is nothing
 to discover first: no run-skill to hunt for, no route listing, no API smoke test.
 
-**CORRECTED 2026-09-03: Supabase is LIVE on this machine.** `web/.env.local`
+**Measured 2026-09-19: the DB was unreachable** — `/api/games` answered 500 `TypeError: fetch failed`
+while `/api/ingest` still wrote the file mirror (the design working). **CORRECTED 2026-09-03: Supabase is LIVE on this machine.** `web/.env.local`
 points at a real project and `grab_templates` holds 1,000 rows. This file used
 to state flatly that Supabase was a deliberate placeholder
 (`https://placeholder.supabase.co`) with no project behind it, so that every
@@ -431,6 +444,8 @@ implementation and not the scheduler.
     npm run grab -- 9963622286 --lifetime
     npm run grab -- 9963622286 10030829154 --start 2026-01-01 --end 2026-09-04
     npm run grab -- --all --days 60
+
+**Ren, 2026-09-19: use the extension, not Open Cloud** (rate-limited — ask before an Open Cloud pull). For series the grab does not hold, `npm run explore-pull` runs the Explore engine in-page (hourly CCU included).
 
 **Prefer this over Open Cloud for dataset runs.** No 30-POST/min ceiling, and it
 is the only path returning feedback content, annotations, genre benchmarks,

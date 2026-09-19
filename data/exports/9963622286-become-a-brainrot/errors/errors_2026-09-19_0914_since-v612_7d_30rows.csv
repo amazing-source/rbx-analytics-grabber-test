@@ -1,0 +1,31 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+126759,Warning,Server,Sat Sep 12 2026 04:01:00 GMT+0200 (heure d’été d’Europe centrale),V612,[AnimalModule] Unknown trait: Ice,,
+4898,Error,Server,Fri Sep 11 2026 18:06:20 GMT+0200 (heure d’été d’Europe centrale),V612,Conetto Morsetto is not a valid member of Folder "ReplicatedStorage.Models.Animals","Script 'ServerScriptService.OnPlayerAdded', Line 1800",
+2892,Error,Server,Wed Sep 16 2026 00:07:45 GMT+0200 (heure d’été d’Europe centrale),V612,DataStoreService: AccessForbidden: Access forbidden. API: SetAsync,AscensionMachineData_v1
+CompanionQuestPlayers_v1
+FuseData_v2
+Money Data v1.12
+WeatherMachineData_v3,
+1957,Error,Server,Sat Sep 12 2026 17:15:05 GMT+0200 (heure d’été d’Europe centrale),V612,Vanish is not a valid member of Folder "ReplicatedStorage.Assets.VFX","Script 'ReplicatedStorage.Modules.UIFramework', Line 78 - function PlayEffect
+    Script 'ServerScriptService.OnPlayerAdded', Line 3085",
+1118,Warning,Client,Sun Sep 13 2026 00:58:30 GMT+0200 (heure d’été d’Europe centrale),V612,[AnimalModule] Unknown trait: Ice,,
+963,Warning,Server,Sat Sep 12 2026 15:01:10 GMT+0200 (heure d’été d’Europe centrale),V612,[WeatherMachineModule.saveState] <Player> ServerScriptService.Modules.WeatherMachineModule:725: DataStore flush failed,,
+714,Error,Server,Fri Sep 11 2026 18:05:10 GMT+0200 (heure d’été d’Europe centrale),V612,Player <Player> disconnected during remote call to ReplicatedStorage.Events.Gift,"Script 'ServerScriptService.OnPlayerAdded', Line 1498",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.25","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.12","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.27","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.24","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.4","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.16","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.19","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.18","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.22","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.8","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.29","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.9","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.13","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.31","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.20","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.17","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+680,Error,Server,Sun Sep 13 2026 20:09:10 GMT+0200 (heure d’été d’Europe centrale),V612,Value is not a valid member of Model "Workspace.Plots.<Player>.AnimalStands.28","Script 'ServerScriptService.OnPlayerAdded', Line 1216",
+569,Error,Server,Fri Sep 18 2026 18:02:45 GMT+0200 (heure d’été d’Europe centrale),V614,Conetto Morsetto is not a valid member of Folder "ReplicatedStorage.Models.Animals","Script 'ServerScriptService.OnPlayerAdded', Line 1831",

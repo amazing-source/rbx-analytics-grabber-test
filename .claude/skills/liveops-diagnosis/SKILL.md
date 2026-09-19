@@ -961,6 +961,41 @@ signals: they neither help nor hurt. Producers routinely fear paid traffic
 poisons the algorithm — say plainly that it does not. What it does is dilute
 blended averages, which is a reporting problem, not a ranking one.
 
+## 3g. The peer index — the co-movement test in numbers (2026-09-19)
+
+A week-over-week delta cannot see an effect that hits every game at once, and it will hand that
+effect to whatever build shipped the same day. Measured 2026-09-19: `PayingUsersCVR` stepped
+down from 09-07 to 09-08 on **all five** games (−18% to −39%), the comparison week held the US
+Labor Day weekend, and one analyst titled a hypothesis "free messages (v689, shipped 09-08)
+cannibalised paid messaging" — retracted the same day. Against the other four games Verity's
+revenue per player was *ahead* on 08–09 Sep (1.26, 1.28); its own break came 13–14 Sep, in reach.
+
+**Build it for every multi-game read** (`tools/r0919/peer-index.js`): divide each game's daily
+metric by its own pre-window mean, then divide by the **median of the other games'** same ratio.
+1.00 = moved exactly like the portfolio. The five-game median of the ratio is the **shared
+component** — calendar, platform or instrument — and no build explains it. Read the rate rows;
+for DAU/impressions the peers mix growing and decaying games, so a volume index says "moved
+differently", never "would have been". In one pass it moved four hypotheses on four games.
+
+**Which window answers which question — use all four, each for its own job:**
+
+| Question | Instrument |
+|---|---|
+| How big was the change? | same-weekday week-over-week, day paired with day |
+| Is the trend speeding up or slowing? | the same comparison one week further back |
+| Is it this game, or everyone? | the peer index |
+| When did it move? | the daily path from the publish (e.g. 11 → 19 Sep) — **timing only** |
+
+Never anchor on the publish day (half old build, and a weekday), and never average a long
+baseline on a decaying game (the mean sits high and every later day reads as a collapse).
+**Check the calendar of the baseline week** — a holiday there inflates monetization rates on
+every game, and only the peer index or a second, holiday-free baseline week exposes it.
+
+**Judge a shipped feature on its intended effect AND its cost, both against the peers.** Verity's
+free messages did their job (players running out 60.8% → 44.3%, message-limit complaints 7.8% →
+4.5% of reviews); pack buyers per 100 players fell 0.71 → 0.38, which is the expected trade and
+not yet attributable. Title a hypothesis as a question, never as a verdict, while it is confounded.
+
 ## 3d. Platform floors — "no data" usually means "too small"
 
 Roblox gates analytics behind size thresholds. Below them charts are empty, and

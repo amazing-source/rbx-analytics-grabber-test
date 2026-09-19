@@ -1,0 +1,317 @@
+{
+ "title": "+1 Banana Monkey Destruction",
+ "asOf": "2026-09-19",
+ "dek": "In the 11 Sep build's first full week (Sat 09-12 → Wed 09-16, all on v1251), DAU fell 58.7% and impressions 56.7% against the same weekdays a week earlier, after −71.2% and −59.0% the week before. D1, session length and first-play bounce held level or rose; client crash rate rose 28.8% and OOM exits per 1,000 DAU doubled.",
+ "summary": [
+  "**Reach and audience.** `DailyActiveUsers` averaged 29,695/day against 71,918 (−58.7%) and `UniqueUsersWithImpressions` 786,577 against 1,816,689 (−56.7%), Sat 09-12 → Wed 09-16 vs Sat 09-05 → Wed 09-09; the week before was −71.2% and −59.0%. Impressions carry 95% of this week's log change in DAU. DAU was 1.6% of its 975,727 peak on 09-17, below Brainrot's lowest recorded day (6.0% of peak).",
+  "**Concurrents.** The mean of hourly `ConcurrentPlayers` was 343 against 842 (−59.2%); same-weekday declines ran −47.6% to −69.7% on 09-12 → 09-18 after −56.9% to −79.6% on 09-05 → 09-11. Today 00:00–08:59 UTC averages 216 against 455 on Sat 09-12 (−52.5%).",
+  "**First session.** `ForwardD1Retention` 10.42% → 11.41% (+9.5%, 4 of 5 pairs up), still −12.3% below 08-29 → 09-02. The rise is in `HomeRecommendation` (+16.2%); `Friends` (−6.1%) and `Search` (−4.5%) did not rise, and D1 was already climbing on the 09-08 → 09-10 cohorts on v1246. `AverageSessionLengthMinutes` +1.5%, `RFYDuration0To60` +0.7%, onboarding funnel steps within ±0.1pp.",
+  "**Return loop.** `RFYD8To28PlayDays` −36.5% and `RFYD8To28Playtime` −39.0% (after −18.7% and −20.5%); `RFYD2To7PlayDays` −2.3%; `RFYD1CoplayDays` −19.9%.",
+  "**Money.** `DailyRevenue` −49.5% against DAU −58.7%, so `AverageRevenuePerUser` rose R$0.746 → R$0.968 (+29.8%). `PayingUsers` fell 954 → 335/day (−64.9%) and `PayingUsersCVR` 1.25% → 1.09% (−12.6%), while `AverageRevenuePerPayingUser` rose R$59.1 → R$88.7 (+50.3%, up on 5 of 5 weekday pairs). DevProduct revenue per DAU +38.3%, GamePass +13.3%.",
+  "**Technical.** `ClientCrashRate15m` 0.608% → 0.782% (+28.8%; +26.0% on the latest-read basis) on Phone (+33.5%), Tablet (+31.6%) and Console (+39.7%) but not Computer (−3.0%); the other four games' Phone series moved −30.5% to +16.7%. `OomUnexpectedExits` per 1,000 DAU 1.02 → 2.06, stepping on 09-12. The `ClientFpsP10` (+25.9%) and memory (+17.8%) rises in the standard tables come from Roblox's 09-08 telemetry fault; without that pair both are within ±5%.",
+  "**Errors and reviews.** Errors first seen in v1251 total 238 listed events and in v1252 29 (seven-day exports to 09-19); no signature group exceeds 125 events. The `AnimationTrack limit of 64 tracks` warning read 1.06 events per DAU in the one-day export to 09-08 and 5.08 in the one to 09-14. No written review has been filed since 09-10: 0 against 1.6 expected at the recent rate (P = 0.21).",
+  "**v1252 (09-17 17:35, no spec filed).** CCU read −49.6% and −53.6% on 09-17 and 09-18 against the same weekdays, inside this week's range; crash rate 0.708% and 0.785%. Behavioural metrics for its first full day (09-18) are served from about 09-20."
+ ],
+ "sections": {
+  "timeline": "**What ran in each window.** Wk −1 (Sat 09-05 → Wed 09-09) ran entirely on v1246, the AURAS update of 09-04 17:35 UTC; v1247–v1249 were saved on 09-05 and 09-07 but never published. The 11 Sep publish was two builds 25 minutes apart: v1250 at 15:08 and v1251 at 15:33. This week's window (Sat 09-12 → Wed 09-16) ran entirely on v1251, with the Banana Vault event live throughout (09-11 17:00 → 09-18 18:00) and the AURAS event ending 09-12 18:00. v1252 went live 09-17 17:35, 25 minutes before a `NEW UPDATE` event annotation; no spec is filed for it, so its contents are unknown.\n\n**What v1251 contains (spec 'UPD 11.09').** Two aura crates — a Mythic Aura Crate (120k cash or 1,500 dust, four possible auras) and a Robux-only Japanese Aura Crate on a two-week timer (x1 99R / x3 229R); the Banana Vault Rush event (endless vaults paying cash, event currency and a chance of a secret key; a secret vault opened with keys; an event shop with an Event Aura Lucky Block); and a progression adjustment (cash per hit +20%, punching-speed upgrade price −20%). The only errors listed as first seen in v1250 are 34 server errors from the Vault event portal script; none of them is listed under V1251.\n\n**Comparability.** Each window carries exactly one x5 BONUS hour, on its Sunday (09-06, 09-13). There is no ADMIN ABUSE annotation on this universe in either window. Place thumbnails changed four times in wk −1 and twice this week. Roblox shipped RCC 739 on 09-14 22:07 and the Windows/Mac 739 clients on 09-15 16:00. The deploy log (`ErrorCount` by `PlaceVersion`) dates v1250 and v1251 to 09-11 and v1252 to the 09-17 17:30 half-hour bucket, matching the place-version timestamps; its v1246 row starts at 09-09 and is left-censored.",
+  "reach": "**Volume.** `DailyActiveUsers` averaged 29,695/day this week against 71,918 on the same weekdays of wk −1 (−58.7%), after −71.2% the week before — an implied −11.9%/day against −16.3%/day. `UniqueUsersWithImpressions` fell 56.7% after 59.0%, so impressions did not slow; `EndToEndCVR` fell 9.0% after 32.5%. On a log basis, 95% of this week's DAU change is the impression change and 11% the conversion change. Two weeks on, DAU is −88.1% and impressions −82.2%.\n\n**Lifecycle position.** DAU was 1.6% of its 08-05 peak (975,727) on 09-17 — below the lowest non-Saturday level Brainrot has recorded (6.0% of peak, 09-03). At days 35–41 after its peak Monkey averaged 3.3% of peak; Brainrot at the same age averaged 31.4%.\n\n**Where impressions come from.** HomeRecommendation's share of impressions fell from 67.8% to 53.7% (volume −65.8%); ContinueToPlay (25.0% → 33.9%) and Search (5.9% → 11.5%, volume −15.3%) gained share. Home-surface conversion (Home DAU ÷ Home impressions) rose 4.02% → 4.58%; Search conversion fell 1.48% → 1.15%. `RFYUniqueNotInterestedUsersPerMillionImpressions` fell 93.7 → 79.1 (−15.5%). DAU fell in every acquisition source (HomeRecommendation −61.0%, Others −54.9%, Friends −53.6%, Search −33.8%) and in all top-15 countries (−50.6% to −63.5%, median −57.2%).\n\n**Ranking signals.** This week the short-horizon RFY signals held — `RFYPlayThroughRate` −4.1%, `RFYDuration0To60` +0.7%, `RFYD1Playtime` +3.5%, `RFYD1QualifiedPlaySessions` −0.4% — while the long-horizon ones fell: `RFYD8To28PlayDays` −36.5%, `RFYD8To28Playtime` −39.0%, `RFYD8To28QualifiedPlaySessions` −37.2%, co-play days −19.9% (D1) and −16.0% (D2–7). In the 7-day blocks, `RFYD2To7PlayDays` first fell (−24%) in 08-06 → 08-12, a block in which impressions were still rising (+17%); impressions have fallen in every block since 08-13 → 08-19.\n\n**Portfolio.** On the same windows Brainrot (+37.3%) and Waterslide (+71.1%) grew DAU; Monkey (−58.7%), Seal (−44.7%) and Verity (−40.2%) fell.",
+  "ccu": "**Size.** The mean of hourly `ConcurrentPlayers` was 343 this week against 842 in wk −1 (−59.2%); the daily maximum half-hour peak averaged 468 against 1,185 (−60.5%), and the daily `PeakConcurrentPlayers` series 452 against 1,097 (−58.8%). That daily series sums per-platform peaks, so it can read above the true half-hour peak. Against the same weekday seven days earlier, hourly-mean CCU ran −47.6% to −69.7% on 09-12 → 09-18, after −56.9% to −79.6% on 09-05 → 09-11.\n\n**Today.** Sat 09-19 00:00–08:59 UTC averaged 216 concurrents against 455 in the same hours of Sat 09-12 (−52.5%) and 1,467 on Sat 09-05; each of the nine hours is 39.6% to 59.5% below 09-12. 09-12 ran v1251 with the Banana Vault event live; today runs v1252 with that event ended. Neither Saturday carries an ADMIN ABUSE event. The hourly chart's final points on 09-19 (09:00 and 10:00) are a partial bucket and a carry-forward — read it to 08:00.\n\n**Publish hours and events.** On each publish day the evening held at least as well as on ordinary days: CCU in 18:00–22:59 divided by CCU in 10:00–14:59 was 1.097 (09-04), 1.011 (09-11) and 1.064 (09-17), against 0.893 ± 0.124 on 18 ordinary days (z +0.95 to +1.64). The x5 BONUS hour on Sunday 09-13 read +3.5% against its flanking hours, against −2.3% ± 11.0% on ordinary days (z +0.52).",
+  "retention": "**D1.** `ForwardD1Retention` averaged 11.41% on this week's cohorts against 10.42% in wk −1 (+9.5%, 4 of 5 pairs up, paired t +1.71) and 13.00% in wk −2 (−12.3% two weeks on). By day it bottomed at 9.68% and 9.38% on the 09-06 and 09-07 cohorts, then read 10.12%, 10.52% and 11.68% on 09-08, 09-09 and 09-10 — the last cohorts before v1250 — and 10.39% to 12.12% this week.\n\n**By source and platform.** The rise is in `HomeRecommendation` (9.67% → 11.24%, +16.2%, paired t +2.55, 4 of 5 pairs up). `Friends` (15.61% → 14.65%, −6.1%), `Search` (16.84% → 16.08%, −4.5%) and `Others` (−0.5%) did not rise; no source clears |t| 2.78. Against wk −2 every source is lower (−11.1% to −18.0%). Holding wk −1's source mix, changes in source rates account for +0.99pp and the mix shift for +0.17pp. By platform D1 rose on Phone (+10.1%), Console (+16.0%), Tablet (+5.2%) and Computer (+4.0%). The new-vs-returning split of D1 failed inside Roblox's Explore engine (ERROR_CODE_INTERNAL_ERROR) and is unavailable, not zero.\n\n**Beyond D1.** `ForwardD7Retention` has no this-week point (newest 09-10). The newest cohort with a day-2 read, Sat 09-05, kept 34.5% of its day-1 players into day 2 — in line with the other Saturday cohort (08-22, 32.4%) rather than the weekday cohorts (41–46%). At matched decay depth, in the bands from 5% to 50% of peak, Brainrot's D1 ranged 11.4–17.2% and Monkey's 9.4–13.7%; below 5% of peak there is no Brainrot control.",
+  "engagement": "**Session.** `AverageSessionLengthMinutes` 12.41 → 12.60 (+1.5%) and `AveragePlayTimeMinutesPerDAU` 16.31 → 16.35 (+0.2%), after −10.3% and −9.3% the week before; `SessionDurationSecondsAvg`, the Performance-tab series, read −4.5%. First-play bounce `RFYDuration0To60` 12.44% → 12.53% (+0.7%) and `RFYDuration61To180` −0.7%, after +21.7% and +16.8%. `RFYD1Playtime` 13.53 → 14.00 (+3.5%).\n\n**Mix.** Returning players were 38.3% of DAU in wk −2, 53.1% in wk −1 and 60.3% this week (Explore `IsNewUser`). Session length rose in both segments (new +3.3%, returning +1.1%); at wk −1's mix it would have risen 2.1%, and the mix change alone moves it −0.4%. By platform, session length rose on Computer (+14.7%) and Console (+5.0%) and was flat on Phone (+0.7%) and Tablet (−0.5%).\n\n**Where sessions end.** Across the `TotalSessionsEndedInBucket` windows the share of all sessions ending inside one minute rose from 7.3% (window from 08-12) to 8.0% (from 09-05) and 8.6% (09-16 → 09-19), and inside three minutes from 20.2% to 22.5%. The windows are inferred from capture times and overlap; none isolates this week.",
+  "money": "**Revenue.** `DailyRevenue` averaged R$28,212/day against R$55,847 (−49.5%), less than DAU (−58.7%), so `AverageRevenuePerUser` rose R$0.746 → R$0.968 (+29.8%; median weekday pair +26.9%, 3 of 5 pairs up; +21.6% against wk −2). The largest pair is Tue 09-08 → 09-15 (R$0.58 → R$1.45).\n\n**Numerators.** `PayingUsers` fell 954 → 335/day (−64.9%), faster than DAU, so `PayingUsersCVR` fell 1.25% → 1.09% (−12.6%; payers per 1k DAU up on 1 of 5 pairs). `AverageRevenuePerPayingUser` rose R$59.1 → R$88.7 (+50.3%, up on 5 of 5 pairs, median +32.9%) after +22.5% the week before. Per DAU, DevProduct revenue rose R$0.487 → R$0.673 (+38.3%) and GamePass R$0.257 → R$0.292 (+13.3%). RFY first-day spend: `RFYD1RobuxSpend` +43.9%, `RFYD1SpendDay` −4.9%.\n\n**Through 09-18.** Hourly `ItemMonetizationRevenue` per concurrent-player-hour: DevProduct R$1.75 → R$2.42 (+38.2%), GamePass R$0.93 → R$1.04 (+12.2%). On 09-17 and 09-18 (v1252) DevProduct read R$2.09 and R$2.10 per player-hour and GamePass R$1.39 and R$2.29. Revenue by individual product is not served, so no figure here isolates the new aura crates.",
+  "funnels": "`FUNNEL_TYPE_ONBOARDING` has three live steps — `Joined`, `Punched`, `Collected a Banana` — all inside the first minute of a first session. This week's cohorts completed `Punched` at 94.4% (94.4% in wk −1, +0.1pp) and `Collected a Banana` at 93.2% (93.3%, −0.1pp); step-to-step `Collected ÷ Punched` stayed between 98.4% and 99.0% on every cohort day of both weeks. The week before, both steps fell 1.6–1.8pp. The v1252 cohorts of 09-17 and 09-18 read 93.7% and 93.3% on `Punched`, 92.4% and 92.0% on `Collected a Banana`.\n\nSteps 4–7 (`Sold Bananas`, `Completed Tutorial (Part 1–3)`) fired on six or seven days in July and never since, so the instrumented funnel ends inside the first minute and does not reach the event, crates or progression v1251 changed. Capture age does not bias these steps: this week's cohorts were read 2.7–6.4 days after the cohort day, wk −1's 1.5–3.5 days.",
+  "technical": "**Crashes and memory exits.** `ClientCrashRate15m` averaged 0.782% this week against 0.608% (+28.8%); on the latest-read basis — Roblox has since re-served several wk −1 points a few percent higher — it is 0.622% → 0.784% (+26.0%). By day it read 0.551–0.645% on 09-05 → 09-09, 0.726% on 09-10, 0.767% on 09-11 and 0.754–0.841% through 09-16; 09-17 and 09-18 (v1252) read 0.708% and 0.785%. By platform: Phone +33.5%, Tablet +31.6%, Console +39.7%, Computer −3.0%. Phone crash rate on the other four games moved −30.5% (Brainrot), +14.3% (Waterslide), +16.7% (Verity) and −4.3% (Seal). `OomUnexpectedExits` per 1,000 DAU rose from 1.02 to 2.06, stepping on 09-12 (0.93–1.15 on 09-05 → 09-10, 1.37 on 09-11, 1.70–2.42 on 09-12 → 09-16); on the other four games the same ratio moved between −24.6% and +38.9%.\n\n**Frame rate, memory, CPU.** The standard tables show `ClientFpsP10` +25.9% and `ClientMemoryUsagePercentageAvg` +17.8%. Both come from wk −1's 09-08 point, Roblox's cross-universe telemetry fault (F28): with that pair dropped FPS p10 is +4.8% and memory −0.9%, and on the latest-read basis −0.3% and +0.3%. Memory % by platform shifts level on 09-09 — Computer and Console up, Tablet down — on Monkey, Verity, Seal and Brainrot at once, and data-quality.md records Roblox later re-serving Monkey's earlier Computer and Tablet points in the same directions (×1.32, ×0.89); the per-platform FPS and memory split tables therefore compare first reads taken on two bases. `ClientCpuTimeAvg` read 14.3–15.4 ms on 09-11 → 09-14 against 11.2–11.5 on 09-07 → 09-10, and 11.8–12.5 from 09-16; 09-15 is a second cross-universe fault (4.87 here). Server side: `ServerFrameRateP10` 58.85 → 59.28, `MemoryUsageAvg` 355 → 393 (+10.7%), `CpuTimeAvg` −11.5%.\n\n**Errors per player.** `ErrorCount` per DAU 7.83 → 8.18 (+4.5%, 4 pairs; 09-08 is not served). Client errors per DAU 7.05 → 8.14 (+15.5%); without the Sat 09-05 pair, which carried a one-day 402,560-event server spike, client errors per DAU rose 57.1% and server errors per 1,000 DAU 61.8% on three pairs.",
+  "errors": "**What the exports hold.** Seven exports bear on this window (inventory table). Each lists at most 25 signatures, so absence is never evidence; where `ErrorCount` is served for the same window, the unfiltered lists cover 99% (one day to 09-14) and 90% (seven days to 09-19) of it. The since-v1252 file's name says 2,277 rows: that is its line count, inflated by multi-line HTML error bodies. It holds 25 signatures totalling 29 events, every one first seen in V1252. 'Since vN' filters on first-seen version ≥ N, so the 09-19 since-v1251 file also carries 6 V1252 events.\n\n**What the 11 Sep and 17 Sep builds introduced.** v1250 (live 25 minutes): 34 server errors from `Workspace.VaultEventRooms…Portal` ('Game is not a valid member of ServerScriptService'); no V1251 row repeats it. v1251 (seven days to 09-19, 238 listed events): Vault leaderboard warnings (125, server); 'not enough memory' in `UIEffects` / `GameEffects` (78, client — all seven signatures share one first-seen second, 09-13 07:28 UTC, and the same count in the 09-14 and 09-19 exports); script timeouts in five UI and game controllers (20); scripts outside the game's own module tree (11); [Medal] API warnings (4). v1252 (seven days to 09-19): 29 events — [Medal] 504/520 warnings (19) and scripts outside the game's module tree (10).\n\n**What the whole game throws.** The two largest families in the seven-day list are the Event RSVP 404 warnings from `EventController` (44.1%) and `Failed to play animation. AnimationTrack limit of 64 tracks exceeded` (41.7%), both first seen in July/August builds. The AnimationTrack warning was 18.2% of the one-day list to 09-08 (v1246) and 54.2% of the one-day list to 09-14 (v1251) — 1.06 and 5.08 events per DAU; only these two single-day windows exist. The deploy log attributes 1,249,182 errors to v1251 over 09-11 → 09-17 (178,455/day) and 259,310 to v1252 over 09-17 → 09-19; per-build DAU is not served.",
+  "sentiment": "**Written reviews.** The merged review history holds 567 rows (07-11 → 09-10, 63 downvotes). None has been written since 09-10, none carries a v1250, v1251 or v1252 build number, and the live poll at 09-19 09:10 UTC returned none. Review volume has tracked audience size: 4.31 reviews per 100k DAU-days in the week to the 08-05 peak, 1.05 across 08-20 → 09-09. At that rate this week's 148,474 DAU-days would produce 1.6 reviews, and zero occurs with probability 0.21. The four reviews since 09-04 (all v1246) are two upvotes on Phone and Tablet and two downvotes on Computer, both naming pay-to-win.\n\n**Themes over the whole history** (explicit regex counts, table below): praise 213 rows (37.6%); inability to jump 33 (5.8%; 32 on Mobile; none since 09-04); admin-abuse and update promises 18; pay-to-win and prices 15 (9 on Computer); copy/clone 8; lag and performance 4. Downvote rate is 9.5% on Mobile (515 rows) and 26.9% on Computer (52 rows); by build it was 17.4% on v1223, 7.5% on v1228, 6.9% on v1241 and 6.7% on v1244.\n\n**Votes.** `PlayerFeedbackVotesCount` is served only as upvotes minus downvotes; it ran 2.16 net votes per 1,000 DAU this week against 2.57 (−16.0%) and 3.53 in wk −2.",
+  "method": "- **Two telemetry faults sit inside the comparison.** 09-08 (wk −1) is F28 — client FPS and memory collapse on all five universes; 09-15 (this week) is a second one on `ClientCpuTimeAvg` on four universes. The standard metric tables pair across both days; the technical extras drop those pairs.\n- **The corpus keeps the first settled read.** Roblox later re-served many wk −1 technical points — crash rate a few percent higher, per-platform FPS p10 about ×1.07–1.09 on Phone and Tablet, per-platform memory % ×0.89–1.32 (median re-served ÷ kept, data-quality.md revision rows since 08-29) — while this week's points were first read afterwards. The latest-read column in the technical extras corrects the headline series; the per-platform FPS and memory split tables are not corrected.\n- **Monkey is below any depth Brainrot has reached** (1.6% of peak against Brainrot's lowest 6.0%), so the matched-depth control covers only the bands down to 5%.\n- **Saturdays are clean here:** there is no ADMIN ABUSE annotation on this universe, and the one x5 BONUS hour per week falls on each window's Sunday.\n- `ForwardD1Retention` × `IsNewUser` failed inside Roblox and is reported as unavailable. `UsersJoinedFromNotifications` rises about 10 a day and never falls, so its +1.7% is not a daily volume. `ServerCrashCount` has one point (09-03); the API omits zero rows.\n- Error exports are capped at 25 signatures; counts are floors. Export windows are converted from Paris download times (UTC+2).\n- Some hourly `ItemMonetizationRevenue` 00:00 points were later re-served at up to ~24× (data-quality.md); the hourly day sums still match the daily `RevenueSource` series where both exist.\n- Written reviews: n = 0 on the 11 Sep and 17 Sep builds, n = 4 since 09-04; themes use the full 567-row history.",
+  "diagnosis": "One pattern dominates Monkey's week and it predates both builds: distribution keeps falling at roughly the same pace (impressions −56.7% after −59.0%) while the first-session metrics hold level. Against that backdrop the 11 Sep build can only be judged on the rungs it was built to move — event engagement, progression pace and crate spend — and on the technical rung, where the one Monkey-specific move of the week sits. The hypotheses are ranked by how much of the measured pattern each accounts for; each lists what it leaves unexplained. Previous retraction on this game (09-09): a bounce z-score against a window containing the peak read decay as a defect. Nothing below is scored against the peak; comparisons are weekday-matched, and Brainrot is used as a control only down to 5% of peak."
+ },
+ "quotes": [
+  {
+   "text": "horrible pay to win and horrible ai images and horrible ui",
+   "vote": "Downvote",
+   "device": "Computer",
+   "version": "1246",
+   "date": "2026-09-10"
+  },
+  {
+   "text": "delete this cuz its just so ptw that i dont understand why you made this game.",
+   "vote": "Downvote",
+   "device": "Computer",
+   "version": "1246",
+   "date": "2026-09-04"
+  },
+  {
+   "text": "has admin cada lunes alas 1 de la tarde",
+   "vote": "Upvote",
+   "device": "Phone",
+   "version": "1246",
+   "date": "2026-09-06"
+  },
+  {
+   "text": "10000000000/10 so good I love it so much",
+   "vote": "Upvote",
+   "device": "Phone",
+   "version": "1244",
+   "date": "2026-09-01"
+  },
+  {
+   "text": "make it save",
+   "vote": "Downvote",
+   "device": "Tablet",
+   "version": "1244",
+   "date": "2026-08-29"
+  },
+  {
+   "text": "He lied to us about an update and admin abuse that never arrived.",
+   "vote": "Downvote",
+   "device": "Phone",
+   "version": "1228",
+   "date": "2026-08-09"
+  },
+  {
+   "text": "Everyone can jump right? Well, I can’t. Which means I can’t jump out of holes.  This makes it really, really annoying.",
+   "vote": "Downvote",
+   "device": "Tablet",
+   "version": "1223",
+   "date": "2026-07-30"
+  }
+ ],
+ "hypotheses": [
+  {
+   "title": "Lifecycle distribution decline, decelerating, continues independent of the 11 Sep build",
+   "status": "supported",
+   "confidence": "high",
+   "claim": "The week's DAU and CCU fall is the continuation of a reach decline that began in mid-August; neither v1251 nor v1252 visibly started, stopped or bent it.",
+   "for": [
+    "Impressions −56.7% this week after −59.0%; on a log basis impressions carry 95% of the DAU change and conversion 11%.",
+    "Impressions have fallen in every 7-day block since 08-13 → 08-19 — four weeks before v1251.",
+    "The fall is uniform: all top-15 countries −50.6% to −63.5%; every acquisition source down (−33.8% to −61.0%).",
+    "CCU's same-weekday decline eased from −56.9%…−79.6% (09-05 → 09-11) to −47.6%…−69.7% (09-12 → 09-18), with no step at the 09-11 or 09-17 publishes (v1252 days −49.6%, −53.6%; today −52.5% vs Sat 09-12).",
+    "At days 35–41 after peak Monkey sat at 3.3% of peak where Brainrot sat at 31.4%; Monkey's curve is steeper than Brainrot's at every age in the lifecycle table."
+   ],
+   "against": [
+    "It describes the shape, not what sets the pace — why Monkey decays several times faster than Brainrot at the same age is not explained by this hypothesis.",
+    "Brainrot's weekly averages have stayed between 8.0% and 17.4% of peak since its day 42 (lowest single day 6.0%); Monkey is at 1.6% and still falling, so the control's floor does not transfer."
+   ],
+   "test": "Sat 09-19 → Mon 09-21 DAU against 09-12 → 09-14 (readable ~09-23). A same-weekday decline well under −50% means the curve is flattening; −60% or worse means it is not.",
+   "lever": "Distribution-side (content cadence that re-qualifies the game on Home, cross-promotion), not first-session fixes."
+  },
+  {
+   "title": "A smaller, better-matched Home audience lifts Home D1 and Home conversion",
+   "status": "plausible",
+   "confidence": "medium",
+   "claim": "As Roblox shows the game to fewer Home users, the ones still shown it are better matched, which raises Home-surface conversion and Home D1 while the other sources stay flat.",
+   "for": [
+    "Home impressions −65.8% while Home-surface conversion rose 4.02% → 4.58% and Home D1 9.67% → 11.24% (+16.2%).",
+    "Friends (−6.1%), Search (−4.5%) and Others (−0.5%) D1 did not rise — a game-side change would reach them too.",
+    "Listing rejections per million impressions fell 93.7 → 79.1 (−15.5%).",
+    "Returning share of DAU rose 38.3% → 53.1% → 60.3% over three weeks: the audience is concentrating."
+   ],
+   "against": [
+    "`RFYPlayThroughRate` fell 4.1% rather than rising, which a better-matched Home audience should lift.",
+    "Home D1's paired t is 2.55, short of the 2.78 needed at p < 0.05 over five pairs.",
+    "D1 × IsNewUser is unavailable, so a returning-heavy Home cohort cannot be separated from a better-matched one."
+   ],
+   "test": "Home D1 and Home-surface conversion against Home impression volume for the 09-19 → 09-21 cohorts (readable ~09-23): both rising again while Home impressions fall supports it; Home D1 falling back with impressions still falling weakens it.",
+   "lever": "None on the product side; it means the D1 rise should not be banked as a build win."
+  },
+  {
+   "title": "v1251 raised client crashes and memory exits on mobile and console",
+   "status": "plausible",
+   "confidence": "medium",
+   "claim": "Content shipped on 09-11 (new crates, the vault event, effects) raised the crash rate by about a quarter and doubled OOM exits per player on non-Computer devices.",
+   "for": [
+    "`ClientCrashRate15m` 0.608% → 0.782% (+26.0% on latest reads), sustained 09-11 → 09-18 including v1252 days (0.708%, 0.785%); Monkey's Phone rise (+33.5%) is twice the largest on the other four games (Verity +16.7%).",
+    "OOM exits per 1,000 DAU 1.02 → 2.06, stepping on 09-12, the first full v1251 day — the largest rise in the portfolio (next: Verity +38.9%).",
+    "v1251 introduced 'not enough memory' errors in `UIEffects` / `GameEffects` (78 events), and client CPU per frame read 14.3–15.4 ms on 09-11 → 09-14 against 11.2–11.5 on 09-07 → 09-10.",
+    "Computer, the platform with the most memory headroom, is the one platform whose crash rate did not rise (−3.0%)."
+   ],
+   "against": [
+    "The crash rate had already risen on 09-10 (0.726% against 0.645% on 09-09), the day before v1250.",
+    "The 'not enough memory' rows are one burst — a single first-seen second, unchanged count between the 09-14 and 09-19 exports — not a sustained signature.",
+    "No rate a crash should move fell: session length +1.5%, D1 +9.5%, funnel flat. The absolute change is about 0.17pp of sessions and one extra OOM exit per 1,000 DAU; survivorship could hide a cost, but none is measurable.",
+    "Client CPU returned to 11.8–12.5 ms from 09-16 while the crash rate stayed up."
+   ],
+   "test": "Crash rate and OOM per 1,000 DAU on v1252 through 09-21 (crash rate readable daily; OOM per DAU ~2 days later). Holding near 0.78% and 2 per 1,000 points at content shipped on 09-11 that v1252 kept; a return towards 0.61% and 1 per 1,000 points at something transient. The dashboard's crash breakdown by device model, or a version-filtered export on 'not enough memory', would localise it now.",
+   "lever": "A client memory and effects budget on mobile and console for the new crate and vault content."
+  },
+  {
+   "title": "The new aura crates raised spend per paying user",
+   "status": "plausible",
+   "confidence": "low",
+   "claim": "The two new crates — especially the Robux-only Japanese crate (99R / 229R, two-week timer) — raised what each payer spends, without adding payers.",
+   "for": [
+    "`AverageRevenuePerPayingUser` R$59.1 → R$88.7 (+50.3%), up on 5 of 5 weekday pairs (median +32.9%).",
+    "DevProduct revenue per DAU +38.3% and per player-hour +38.2%, against GamePass +13.3% and +12.2% — the rise sits in the product type crates are sold as.",
+    "`RFYD1RobuxSpend` +43.9% with `RFYD1SpendDay` −4.9%: first-day spenders spent more; there were not more of them.",
+    "The spend-per-payer rise is Monkey's own, not the portfolio's: ARPPU against the other four games 1.36–2.11 from 13 Sep against 0.95–1.18 on 08–12 Sep (*against the other four games, day by day from 08 Sep* (At a glance))."
+   ],
+   "against": [
+    "ARPPU was already rising the week before on v1246 (+22.5%) and has risen through the decline as the payer base shrank toward its heaviest spenders.",
+    "Payers fell faster than DAU (−64.9% against −58.7%; `PayingUsersCVR` −12.6%): the crates did not widen the paying base.",
+    "The mean leans on one pair (Tue 09-08 → 09-15, ARPPU R$59 → R$126). Earlier dev products (Nuke 299R; TNT, Super Punch and Laser Eyes punches) sell in the same product type, and revenue by individual product is not served.",
+    "Payers per day were 159–494 in the after-week (`PayingUsers`), so one or two heavy buyers move ARPPU; the 2.11 index day (15 Sep) is a single day."
+   ],
+   "test": "The Japanese crate's two-week timer runs out about 09-25: ARPPU and DevProduct revenue per DAU dropping with the timer supports it, holding weakens it (readable ~09-27). The dashboard's per-product sales page would settle it now.",
+   "lever": "Time-limited Robux crates as a recurring monetization beat, if the per-product numbers confirm it."
+  },
+  {
+   "title": "Reach is being withdrawn on the return-loop signals, not the first-session ones",
+   "status": "plausible",
+   "confidence": "low",
+   "claim": "Roblox is cutting Home reach in response to weak long-horizon signals (D2–7 and D8–28 play days, co-play), which fell first and keep falling, while first-session signals held.",
+   "for": [
+    "`RFYD2To7PlayDays` first fell (−24%) in 08-06 → 08-12, a block in which impressions were still rising (+17%); impressions turned down in the next block.",
+    "This week the short-horizon signals held (PTR −4.1%, bounce +0.7%, D1 playtime +3.5%) while `RFYD8To28PlayDays` fell 36.5% and `RFYD8To28Playtime` 39.0%.",
+    "At matched decay depth Brainrot's D2–7 play days were 0.36–0.47 against Monkey's 0.26–0.29 in every band where both exist."
+   ],
+   "against": [
+    "Signals and reach both fall with time; on Brainrot and Waterslide a symmetric lead-lag test found nothing leading the pullback (DIAGNOSIS_LOG, 09-03). The one block where D2–7 led is a single observation.",
+    "D8–28 signals average over players who joined 8–28 days earlier — the late-August cohorts — so they lag this week's reach rather than lead it.",
+    "Competitive displacement cannot be tested from one universe and stays open."
+   ],
+   "test": "The symmetric lead-lag test on Monkey's full RFY history (both directions, identical lag search), which has not been run for this game.",
+   "lever": "Return-loop mechanics (between-session reasons to come back), which is where Monkey trails Brainrot at every matched depth."
+  },
+  {
+   "title": "v1251 raised first-day retention",
+   "status": "weakened",
+   "confidence": "medium",
+   "claim": "The 11 Sep build lifted D1 from 10.42% to 11.41%.",
+   "for": [
+    "`ForwardD1Retention` +9.5% (4 of 5 pairs up) in the first full v1251 week, after −19.9% the week before.",
+    "D1 rose on all four main platforms (Phone +10.1%, Console +16.0%, Tablet +5.2%, Computer +4.0%)."
+   ],
+   "against": [
+    "D1 was already rising on the last three v1246 cohorts (10.12%, 10.52%, 11.68% on 09-08 → 09-10) from a 9.68% / 9.38% trough; this week's 11.41% is level with 09-10 and 12.3% below wk −2.",
+    "The rise is confined to HomeRecommendation; Friends and Search, which a build reaches as much as Home, fell.",
+    "Brainrot (+6.9%) and Waterslide (+10.3%) also had D1 up on the same windows."
+   ],
+   "test": "D1 by source for the v1252 cohorts 09-17 → 09-20 (readable 09-19 → 09-22): Friends and Search rising would restore a game-side reading."
+  },
+  {
+   "title": "The Banana Vault event and the progression change moved engagement",
+   "status": "weakened",
+   "confidence": "medium",
+   "claim": "v1251's event and its +20% cash per hit / −20% punch-speed price moved how long and how often players play.",
+   "for": [
+    "The week-on-week slide in first-session engagement stopped: `RFYD1Playtime` +3.5% and session length +1.5%, after −12.8% and −10.3%.",
+    "Session length rose inside both new (+3.3%) and returning (+1.1%) players; +2.1% at fixed mix."
+   ],
+   "against": [
+    "The moves are small: play minutes per DAU +0.2%, bounce +0.7%, `RFYD1QualifiedPlaySessions` −0.4%, onboarding funnel ±0.1pp.",
+    "Return-loop signals an event should feed fell: `RFYD2To7Playtime` −11.7%, `RFYD2To7QualifiedPlaySessions` −7.9%, co-play days −16% to −20%.",
+    "The 09-11 evening (event start 17:00) sat within ordinary-day variation (z +0.95); the x5 BONUS hour's bump was z +0.52.",
+    "Today's first nine hours after the event ended read −52.5% against Sat 09-12, in line with the prevailing weekly decline."
+   ],
+   "test": "The event ended 09-18 18:00. If it was holding engagement, session length and RFY D1 playtime for 09-19 → 09-21 fall below this week's 12.60 min and 14.00 (readable ~09-21 → 09-23)."
+  },
+  {
+   "title": "Shifts in who arrives account for this week's rate moves",
+   "status": "weakened",
+   "confidence": "medium",
+   "claim": "Source mix and the new-vs-returning mix, not player behaviour, moved session length and D1.",
+   "for": [
+    "Returning share of DAU rose to 60.3%; Search and Friends shares of DAU rose (2.3% → 3.6%, 11.0% → 12.4%)."
+   ],
+   "against": [
+    "Session length: the mix change alone moves it −0.4%; the within-segment change is +2.1%.",
+    "D1: the source-mix shift accounts for +0.17pp and source rates for +0.99pp."
+   ],
+   "test": "D1 × IsNewUser, which failed inside Roblox this week; re-pull it before crediting any rate to mix."
+  },
+  {
+   "title": "Thumbnail changes cost listing conversion",
+   "status": "weakened",
+   "confidence": "medium",
+   "claim": "The place-thumbnail changes (two this week, four the week before) lowered how well the listing converts.",
+   "for": [
+    "Search-surface conversion fell 1.48% → 1.15% (−21.9%)."
+   ],
+   "against": [
+    "Home-surface conversion rose 4.02% → 4.58%, and listing rejections per million impressions fell 15.5%.",
+    "Friends D1 (−6.1%) moved like the other non-Home sources; a creative change cannot reach Friends traffic.",
+    "Two swaps inside the window are too few for an event study against ordinary days."
+   ],
+   "test": "An event study of every thumbnail change since 08-14 against non-change days on `RFYUniqueNotInterestedUsersPerMillionImpressions`, the listing metric that impression volume cannot move."
+  },
+  {
+   "title": "The AnimationTrack-limit warnings rose with faster punching",
+   "status": "unresolved",
+   "confidence": "low",
+   "claim": "The cheaper punching-speed upgrade means faster punches, which hit Roblox's 64-track animation limit more often, so punch animations fail to play.",
+   "for": [
+    "AnimationTrack events per DAU 1.06 (one-day export to 09-08, v1246) → 5.08 (one-day export to 09-14, v1251); share of listed errors 18.2% → 54.2%.",
+    "Client errors per DAU +15.5% on four pairs (+57.1% without the 09-05 pair)."
+   ],
+   "against": [
+    "Only two single-day windows exist (n = 2), and the signature has fired since V1207 in July.",
+    "No engagement rate moved against it: session length +1.5%, the `Punched` step flat.",
+    "It is a warning; whether a skipped animation changes what a punch does is not visible in any metric."
+   ],
+   "test": "Two or more same-length (one-day) unfiltered exports on weekdays next week, and a read of the punch-animation path in a copy of the place to see whether hits depend on the animation."
+  },
+  {
+   "title": "v1252 (17 Sep, contents unknown) changed the game",
+   "status": "unresolved",
+   "confidence": "low",
+   "claim": "The 09-17 build moved concurrents, crashes or first sessions.",
+   "for": [
+    "Nothing measured so far departs from the v1251 week."
+   ],
+   "against": [
+    "CCU −49.6% and −53.6% on 09-17 / 09-18 against the same weekdays, inside this week's −47.6% to −69.7% range; today −52.5% against Sat 09-12.",
+    "The 09-17 evening held (ratio 1.064, z +1.37).",
+    "Crash rate 0.708% / 0.785%, level with v1251; errors first seen in v1252 total 29 listed events."
+   ],
+   "test": "DAU and revenue for 09-18 (~09-20), D1 for the 09-18 cohort (~09-20 → 09-21), and the first full v1252 week Sat 09-19 → Wed 09-23 (behavioural read ~09-25). The contents need a spec before anything can be attributed to them."
+  },
+  {
+   "title": "A platform-wide, seasonal or instrument cause",
+   "status": "ruled out",
+   "confidence": "high",
+   "claim": "A Roblox-wide change, rather than anything about Monkey, moved its DAU and crash rate this week.",
+   "for": [
+    "Two telemetry faults (09-08 FPS and memory, 09-15 client CPU) and a restatement of per-platform FPS and memory sit inside the window; they — not the game — produce the +25.9% FPS and +17.8% memory readings in the standard tables.",
+    "RCC 739 (09-14) and the 739 clients (09-15) shipped mid-window."
+   ],
+   "against": [
+    "Brainrot (+37.3%) and Waterslide (+71.1%) grew DAU on the same windows while Monkey, Seal and Verity fell.",
+    "The crash-rate rise survives the restatement (+26.0% on latest reads), began before the 739 releases, and on Phone is twice the largest rise among the other four games (+16.7%, Verity); Brainrot and Seal fell.",
+    "D1 rose on three games and fell on two."
+   ],
+   "test": "Settled for DAU and crash rate. Re-check any FPS or memory figure against data-quality.md before quoting it."
+  }
+ ],
+ "reads": [
+  {
+   "date": "2026-09-20",
+   "what": "DAU, revenue and payers for 09-18, the first full day on v1252 (the Banana Vault event was still live until 18:00)."
+  },
+  {
+   "date": "2026-09-20 → 21",
+   "what": "D1 by source for the 09-17 and 09-18 cohorts (v1252)."
+  },
+  {
+   "date": "2026-09-21",
+   "what": "DAU, session length and RFY D1 playtime for 09-19, the first day after the Banana Vault event ended — tests the event hypothesis."
+  },
+  {
+   "date": "2026-09-22 → 23",
+   "what": "Crash rate through 09-21 and OOM exits per 1,000 DAU through 09-21 on v1252 — tests the v1251 crash/memory hypothesis."
+  },
+  {
+   "date": "2026-09-23",
+   "what": "Sat 09-19 → Mon 09-21 DAU against 09-12 → 09-14 (is the decline flattening?) and Home D1 against Home impressions (audience-narrowing hypothesis)."
+  },
+  {
+   "date": "2026-09-25",
+   "what": "The first full clean v1252 week, Sat 09-19 → Wed 09-23, on behavioural metrics."
+  },
+  {
+   "date": "~2026-09-27",
+   "what": "ARPPU and DevProduct revenue per DAU after the Japanese Robux crate's two-week timer runs out (~09-25)."
+  }
+ ]
+}

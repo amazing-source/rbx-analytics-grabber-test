@@ -1,0 +1,43 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+6125,Error,Server,Thu Sep 17 2026 21:23:00 GMT+0200 (heure d’été d’Europe centrale),V695,AnalyticsService: You have sent too many events.,,
+4853,Warning,Server,Fri Sep 11 2026 18:02:50 GMT+0200 (heure d’été d’Europe centrale),V693,Model repeated its own previous line (attempt 1),,
+4023,Warning,Server,Fri Sep 11 2026 18:00:30 GMT+0200 (heure d’été d’Europe centrale),V693,Model returned no usable dialogue (attempt 1); body omitted,,
+1274,Warning,Server,Fri Sep 11 2026 18:01:20 GMT+0200 (heure d’été d’Europe centrale),V693,Model repeated its own previous line (attempt 2),,
+1175,Warning,Server,Wed Sep 16 2026 01:02:10 GMT+0200 (heure d’été d’Europe centrale),V695,ProfileStore DataStore API error: 502: API Services rejected request with error. Error code: 0 Reason: Access forbidden.,"Default; ,PLAYER_<PlayerId>)
+Default; ,PLAYER_10197902858)
+Default; ,PLAYER_10249736994)
+Default; ,PLAYER_10258125795)
+Default; ,PLAYER_10911234259)
+Default; ,PLAYER_10914061888)
+Default; ,PLAYER_11415194924)
+Default; ,PLAYER_11487322920)
+Default; ,PLAYER_11499160720)
+Default; ,PLAYER_11566834717)
+Default; ,PLAYER_11600279416)
+Default; ,PLAYER_11645866790)
+Default; ,PLAYER_11675052874)
+Default; ,PLAYER_3180131872)
+Default; ,PLAYER_3414474697)
+Default; ,PLAYER_6031919627)
+Default; ,PLAYER_7570081074)
+Default; ,PLAYER_7997805368)",
+543,Warning,Server,Fri Sep 11 2026 19:14:40 GMT+0200 (heure d’été d’Europe centrale),V693,DeepInfra network failure (attempt 1); raw error omitted,,
+442,Warning,Server,Fri Sep 11 2026 18:00:35 GMT+0200 (heure d’été d’Europe centrale),V693,Reply was cut at max_tokens (attempt 1),,
+410,Error,Client,Sun Sep 13 2026 10:43:40 GMT+0200 (heure d’été d’Europe centrale),V693,Not running script because past shutdown deadline (when calling anonymous function on line 369 in Players.<Player>.PlayerScripts.RbxCharacterSounds),,
+364,Warning,Client,Fri Sep 11 2026 19:18:00 GMT+0200 (heure d’été d’Europe centrale),V693,[LikeReward] Player:IsInGroup failed because HTTP unknown error (HttpError: DnsResolve),,
+105,Warning,Client,Fri Sep 11 2026 19:11:05 GMT+0200 (heure d’été d’Europe centrale),V693,[LikeReward] Player:IsInGroup failed because HTTP unknown error (HttpError: Timedout),,
+105,Warning,Server,Sat Sep 12 2026 04:10:10 GMT+0200 (heure d’été d’Europe centrale),V693,Model echoed the player's message (attempt 1),,
+100,Warning,Client,Wed Sep 16 2026 16:02:30 GMT+0200 (heure d’été d’Europe centrale),V695,Clamped specified Density value of 0 to 0.0001. Acceptable range is 0.0001 to 100,,
+86,Error,Client,Sun Sep 13 2026 10:43:40 GMT+0200 (heure d’été d’Europe centrale),V693,Not running script because past shutdown deadline (when calling anonymous function on line 66 in ReplicatedStorage.Packages.SessionManager.Networker.NetworkerClient),,
+59,Warning,Client,Fri Sep 11 2026 21:22:20 GMT+0200 (heure d’été d’Europe centrale),V693,[LikeReward] Player:IsInGroup failed because HTTP unknown error (HttpError: ConnectFail),,
+45,Warning,Server,Sat Sep 12 2026 09:03:20 GMT+0200 (heure d’été d’Europe centrale),V693,Reply was cut at max_tokens (attempt 2),,
+39,Warning,Client,Fri Sep 11 2026 18:04:00 GMT+0200 (heure d’été d’Europe centrale),V693,[LikeReward] Player:IsInGroup failed because HTTP unknown error (HttpError: SslConnectFail),,
+34,Error,Server,Wed Sep 16 2026 00:10:00 GMT+0200 (heure d’été d’Europe centrale),V695,TeleportService:Not allowed,,
+32,Error,Client,Thu Sep 17 2026 23:07:50 GMT+0200 (heure d’été d’Europe centrale),V695,WrapDefomer SkinningTransfer Error for 'Workspace.Juda0741.Accessory (RightShoeAccessory).Handle': "Could not find nearest triangle in cage-to-mesh projection.",,
+24,Warning,Server,Wed Sep 16 2026 01:10:15 GMT+0200 (heure d’été d’Europe centrale),V695,Badge 73298239407144 ownership check failed: UserHasBadgeAsync:,,
+22,Error,Client,Thu Sep 17 2026 20:12:55 GMT+0200 (heure d’été d’Europe centrale),V695,raiseTeleportInitFailedEvent: Teleport failed because <This text is not reviewed by UX because it is not displayed to users. Each client provides their own translation> This experience is unavailable to you as it is unrated. (Unauthorized),,
+20,Error,Client,Sun Sep 13 2026 11:27:00 GMT+0200 (heure d’été d’Europe centrale),V693,Not running script because past shutdown deadline (when calling anonymous function on line 48 in ReplicatedStorage.Shared.Services.ArrivalClient),,
+19,Warning,Client,Sat Sep 12 2026 11:03:00 GMT+0200 (heure d’été d’Europe centrale),V693,[LikeReward] Player:IsInGroup failed because HTTP unknown error (HttpError: NetFail),,
+15,Error,Server,Thu Sep 17 2026 12:56:40 GMT+0200 (heure d’été d’Europe centrale),V695,Error while sending. sender type: Security error message: Unsupported Luau version requested: 12 not in [3..11],,
+15,Warning,Server,Wed Sep 16 2026 01:09:10 GMT+0200 (heure d’été d’Europe centrale),V695,Ending rejoin failed: Not allowed,,
+13,Warning,Server,Wed Sep 16 2026 01:02:00 GMT+0200 (heure d’été d’Europe centrale),V695,Badge 3067779682561852 ownership check failed: UserHasBadgeAsync:,,

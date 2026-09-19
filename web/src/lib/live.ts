@@ -31,13 +31,35 @@ export type Review = {
   seenAt: string;
 };
 
+/** One game's outcome in a poller pass. `truncated` means the gap since the last
+ *  pass was longer than the page budget, so older reviews were NOT backfilled. */
+export type PollGame = {
+  universeId: string; game: string; status: number; pages: number;
+  returned: number; truncated: boolean; error?: string;
+};
+/** The poller's heartbeat. Written on EVERY pass, including one that found
+ *  nothing new — the review log's own freshness cannot tell "no new reviews"
+ *  apart from "nobody is polling", and the board once said "updated" for two
+ *  days with the poller stopped because it only knew when the tab re-read the log. */
+export type FeedPoll = { at: string; every: number; games: PollGame[] };
+
 async function liveDir() {
   const d = path.join(await resolveDataDir(), "live");
   await fs.mkdir(d, { recursive: true });
   return d;
 }
 const FEED = "feedback.json";
+const POLL = "feedback-poll.json";
 const CCU  = "ccu-history.json";
+
+/** created_utc arrives as epoch MILLISECONDS in a string. The first pass on
+ *  2026-09-11 stored it raw, and a raw "1789…" string sorts below every ISO date,
+ *  so normalise on the way in AND on read. */
+function isoTime(v: string): string {
+  const d = /^[0-9]+$/.test(v) ? new Date(Number(v)) : new Date(v);
+  return Number.isNaN(d.getTime()) ? v : d.toISOString();
+}
+const normalise = (r: Review): Review => ({ ...r, createdUtc: isoTime(String(r.createdUtc ?? "")) });
 
 async function readJson<T>(file: string, fallback: T): Promise<T> {
   try { return JSON.parse(await fs.readFile(path.join(await liveDir(), file), "utf8")) as T; }
@@ -76,15 +98,27 @@ export const ccuHistory = () => readJson<{ t: string; v: Record<string, number> 
 export async function addReviews(incoming: Review[]): Promise<Review[]> {
   const log = await readJson<Review[]>(FEED, []);
   const seen = new Set(log.map(r => r.id));
-  const fresh = incoming.filter(r => r.id && !seen.has(r.id));
+  const fresh = incoming.filter(r => r.id && !seen.has(r.id)).map(normalise);
   if (!fresh.length) return [];
-  const merged = [...fresh, ...log]
+  const merged = [...fresh, ...log.map(normalise)]
     .sort((a, b) => (a.createdUtc < b.createdUtc ? 1 : -1))
     .slice(0, 2000);
   await writeJson(FEED, merged);
   return fresh;
 }
-export const feedbackLog = () => readJson<Review[]>(FEED, []);
+export const feedbackLog = async () => (await readJson<Review[]>(FEED, []))
+  .map(normalise)
+  .sort((a, b) => (a.createdUtc < b.createdUtc ? 1 : -1));
+
+/** Ids already logged, per game — the poller pages back until it meets one. */
+export async function knownReviewIds(): Promise<Record<string, string[]>> {
+  const out: Record<string, string[]> = {};
+  for (const r of await readJson<Review[]>(FEED, [])) (out[r.universeId] ??= []).push(r.id);
+  return out;
+}
+
+export const lastPoll = () => readJson<FeedPoll | null>(POLL, null);
+export const recordPoll = (p: FeedPoll) => writeJson(POLL, p);
 
 /** True on the first run for a game, so a cold start does not fire 200 alerts. */
 export async function isFirstSightOf(universeId: string): Promise<boolean> {

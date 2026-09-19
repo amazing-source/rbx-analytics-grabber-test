@@ -1,0 +1,5255 @@
+{
+ "universe": "10030829154",
+ "bundles": 27,
+ "fromLive": 0,
+ "n": 409,
+ "span": [
+  "2026-05-15",
+  "2026-09-19"
+ ],
+ "byVersion": {
+  "1304": {
+   "up": 1,
+   "down": 0,
+   "n": 1,
+   "first": "2026-05-15",
+   "last": "2026-05-15"
+  },
+  "1360": {
+   "up": 2,
+   "down": 1,
+   "n": 3,
+   "first": "2026-05-21",
+   "last": "2026-05-22"
+  },
+  "1421": {
+   "up": 9,
+   "down": 3,
+   "n": 12,
+   "first": "2026-05-23",
+   "last": "2026-05-28"
+  },
+  "1590": {
+   "up": 1,
+   "down": 0,
+   "n": 1,
+   "first": "2026-05-28",
+   "last": "2026-05-28"
+  },
+  "1596": {
+   "up": 4,
+   "down": 3,
+   "n": 7,
+   "first": "2026-05-29",
+   "last": "2026-05-31"
+  },
+  "1607": {
+   "up": 3,
+   "down": 2,
+   "n": 5,
+   "first": "2026-06-01",
+   "last": "2026-06-01"
+  },
+  "1618": {
+   "up": 11,
+   "down": 3,
+   "n": 14,
+   "first": "2026-06-02",
+   "last": "2026-06-08"
+  },
+  "1669": {
+   "up": 3,
+   "down": 1,
+   "n": 4,
+   "first": "2026-06-09",
+   "last": "2026-06-09"
+  },
+  "1677": {
+   "up": 22,
+   "down": 7,
+   "n": 29,
+   "first": "2026-06-12",
+   "last": "2026-06-27"
+  },
+  "1679": {
+   "up": 74,
+   "down": 46,
+   "n": 120,
+   "first": "2026-06-30",
+   "last": "2026-07-24"
+  },
+  "1681": {
+   "up": 17,
+   "down": 10,
+   "n": 27,
+   "first": "2026-07-24",
+   "last": "2026-07-28"
+  },
+  "1683": {
+   "up": 18,
+   "down": 4,
+   "n": 22,
+   "first": "2026-07-28",
+   "last": "2026-07-31"
+  },
+  "1685": {
+   "up": 29,
+   "down": 5,
+   "n": 34,
+   "first": "2026-07-31",
+   "last": "2026-08-07"
+  },
+  "1691": {
+   "up": 8,
+   "down": 7,
+   "n": 15,
+   "first": "2026-08-08",
+   "last": "2026-08-13"
+  },
+  "1698": {
+   "up": 24,
+   "down": 18,
+   "n": 42,
+   "first": "2026-08-14",
+   "last": "2026-08-21"
+  },
+  "1705": {
+   "up": 6,
+   "down": 4,
+   "n": 10,
+   "first": "2026-08-21",
+   "last": "2026-08-22"
+  },
+  "1706": {
+   "up": 1,
+   "down": 6,
+   "n": 7,
+   "first": "2026-08-22",
+   "last": "2026-08-23"
+  },
+  "1708": {
+   "up": 5,
+   "down": 2,
+   "n": 7,
+   "first": "2026-08-23",
+   "last": "2026-08-24"
+  },
+  "1711": {
+   "up": 4,
+   "down": 2,
+   "n": 6,
+   "first": "2026-08-25",
+   "last": "2026-08-28"
+  },
+  "1715": {
+   "up": 0,
+   "down": 1,
+   "n": 1,
+   "first": "2026-08-28",
+   "last": "2026-08-28"
+  },
+  "1716": {
+   "up": 5,
+   "down": 9,
+   "n": 14,
+   "first": "2026-08-29",
+   "last": "2026-09-04"
+  },
+  "1719": {
+   "up": 9,
+   "down": 7,
+   "n": 16,
+   "first": "2026-09-05",
+   "last": "2026-09-11"
+  },
+  "1721": {
+   "up": 2,
+   "down": 2,
+   "n": 4,
+   "first": "2026-09-12",
+   "last": "2026-09-13"
+  },
+  "1722": {
+   "up": 3,
+   "down": 3,
+   "n": 6,
+   "first": "2026-09-15",
+   "last": "2026-09-17"
+  },
+  "1723": {
+   "up": 2,
+   "down": 0,
+   "n": 2,
+   "first": "2026-09-18",
+   "last": "2026-09-19"
+  }
+ },
+ "byDay": {
+  "2026-05-15": {
+   "up": 1,
+   "down": 0,
+   "n": 1
+  },
+  "2026-05-21": {
+   "up": 0,
+   "down": 1,
+   "n": 1
+  },
+  "2026-05-22": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-05-23": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-05-24": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-05-26": {
+   "up": 2,
+   "down": 3,
+   "n": 5
+  },
+  "2026-05-27": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-05-28": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-05-29": {
+   "up": 0,
+   "down": 1,
+   "n": 1
+  },
+  "2026-05-30": {
+   "up": 3,
+   "down": 0,
+   "n": 3
+  },
+  "2026-05-31": {
+   "up": 1,
+   "down": 2,
+   "n": 3
+  },
+  "2026-06-01": {
+   "up": 3,
+   "down": 2,
+   "n": 5
+  },
+  "2026-06-02": {
+   "up": 0,
+   "down": 1,
+   "n": 1
+  },
+  "2026-06-03": {
+   "up": 3,
+   "down": 1,
+   "n": 4
+  },
+  "2026-06-04": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-06-05": {
+   "up": 1,
+   "down": 0,
+   "n": 1
+  },
+  "2026-06-06": {
+   "up": 2,
+   "down": 1,
+   "n": 3
+  },
+  "2026-06-07": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-06-08": {
+   "up": 1,
+   "down": 0,
+   "n": 1
+  },
+  "2026-06-09": {
+   "up": 3,
+   "down": 1,
+   "n": 4
+  },
+  "2026-06-12": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-06-13": {
+   "up": 3,
+   "down": 0,
+   "n": 3
+  },
+  "2026-06-15": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-06-16": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-06-17": {
+   "up": 0,
+   "down": 1,
+   "n": 1
+  },
+  "2026-06-18": {
+   "up": 1,
+   "down": 2,
+   "n": 3
+  },
+  "2026-06-20": {
+   "up": 1,
+   "down": 1,
+   "n": 2
+  },
+  "2026-06-21": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-06-22": {
+   "up": 1,
+   "down": 0,
+   "n": 1
+  },
+  "2026-06-23": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-06-24": {
+   "up": 3,
+   "down": 0,
+   "n": 3
+  },
+  "2026-06-26": {
+   "up": 1,
+   "down": 2,
+   "n": 3
+  },
+  "2026-06-27": {
+   "up": 2,
+   "down": 1,
+   "n": 3
+  },
+  "2026-06-30": {
+   "up": 1,
+   "down": 2,
+   "n": 3
+  },
+  "2026-07-01": {
+   "up": 1,
+   "down": 0,
+   "n": 1
+  },
+  "2026-07-02": {
+   "up": 1,
+   "down": 0,
+   "n": 1
+  },
+  "2026-07-03": {
+   "up": 3,
+   "down": 1,
+   "n": 4
+  },
+  "2026-07-04": {
+   "up": 2,
+   "down": 5,
+   "n": 7
+  },
+  "2026-07-05": {
+   "up": 8,
+   "down": 2,
+   "n": 10
+  },
+  "2026-07-06": {
+   "up": 1,
+   "down": 0,
+   "n": 1
+  },
+  "2026-07-07": {
+   "up": 3,
+   "down": 3,
+   "n": 6
+  },
+  "2026-07-08": {
+   "up": 5,
+   "down": 0,
+   "n": 5
+  },
+  "2026-07-09": {
+   "up": 2,
+   "down": 1,
+   "n": 3
+  },
+  "2026-07-10": {
+   "up": 1,
+   "down": 2,
+   "n": 3
+  },
+  "2026-07-11": {
+   "up": 2,
+   "down": 1,
+   "n": 3
+  },
+  "2026-07-12": {
+   "up": 3,
+   "down": 1,
+   "n": 4
+  },
+  "2026-07-13": {
+   "up": 3,
+   "down": 2,
+   "n": 5
+  },
+  "2026-07-14": {
+   "up": 5,
+   "down": 1,
+   "n": 6
+  },
+  "2026-07-15": {
+   "up": 0,
+   "down": 1,
+   "n": 1
+  },
+  "2026-07-16": {
+   "up": 3,
+   "down": 0,
+   "n": 3
+  },
+  "2026-07-17": {
+   "up": 1,
+   "down": 3,
+   "n": 4
+  },
+  "2026-07-18": {
+   "up": 4,
+   "down": 3,
+   "n": 7
+  },
+  "2026-07-19": {
+   "up": 7,
+   "down": 1,
+   "n": 8
+  },
+  "2026-07-20": {
+   "up": 7,
+   "down": 3,
+   "n": 10
+  },
+  "2026-07-21": {
+   "up": 2,
+   "down": 4,
+   "n": 6
+  },
+  "2026-07-22": {
+   "up": 4,
+   "down": 6,
+   "n": 10
+  },
+  "2026-07-23": {
+   "up": 3,
+   "down": 0,
+   "n": 3
+  },
+  "2026-07-24": {
+   "up": 4,
+   "down": 4,
+   "n": 8
+  },
+  "2026-07-25": {
+   "up": 2,
+   "down": 5,
+   "n": 7
+  },
+  "2026-07-26": {
+   "up": 6,
+   "down": 0,
+   "n": 6
+  },
+  "2026-07-27": {
+   "up": 6,
+   "down": 3,
+   "n": 9
+  },
+  "2026-07-28": {
+   "up": 3,
+   "down": 2,
+   "n": 5
+  },
+  "2026-07-29": {
+   "up": 5,
+   "down": 3,
+   "n": 8
+  },
+  "2026-07-30": {
+   "up": 6,
+   "down": 1,
+   "n": 7
+  },
+  "2026-07-31": {
+   "up": 6,
+   "down": 0,
+   "n": 6
+  },
+  "2026-08-01": {
+   "up": 3,
+   "down": 2,
+   "n": 5
+  },
+  "2026-08-02": {
+   "up": 7,
+   "down": 1,
+   "n": 8
+  },
+  "2026-08-03": {
+   "up": 3,
+   "down": 0,
+   "n": 3
+  },
+  "2026-08-04": {
+   "up": 5,
+   "down": 0,
+   "n": 5
+  },
+  "2026-08-05": {
+   "up": 3,
+   "down": 0,
+   "n": 3
+  },
+  "2026-08-06": {
+   "up": 5,
+   "down": 0,
+   "n": 5
+  },
+  "2026-08-07": {
+   "up": 2,
+   "down": 2,
+   "n": 4
+  },
+  "2026-08-08": {
+   "up": 0,
+   "down": 1,
+   "n": 1
+  },
+  "2026-08-09": {
+   "up": 3,
+   "down": 3,
+   "n": 6
+  },
+  "2026-08-10": {
+   "up": 1,
+   "down": 0,
+   "n": 1
+  },
+  "2026-08-11": {
+   "up": 1,
+   "down": 1,
+   "n": 2
+  },
+  "2026-08-13": {
+   "up": 3,
+   "down": 2,
+   "n": 5
+  },
+  "2026-08-14": {
+   "up": 1,
+   "down": 0,
+   "n": 1
+  },
+  "2026-08-15": {
+   "up": 3,
+   "down": 1,
+   "n": 4
+  },
+  "2026-08-16": {
+   "up": 2,
+   "down": 2,
+   "n": 4
+  },
+  "2026-08-17": {
+   "up": 2,
+   "down": 4,
+   "n": 6
+  },
+  "2026-08-18": {
+   "up": 4,
+   "down": 3,
+   "n": 7
+  },
+  "2026-08-19": {
+   "up": 5,
+   "down": 4,
+   "n": 9
+  },
+  "2026-08-20": {
+   "up": 5,
+   "down": 3,
+   "n": 8
+  },
+  "2026-08-21": {
+   "up": 5,
+   "down": 3,
+   "n": 8
+  },
+  "2026-08-22": {
+   "up": 3,
+   "down": 3,
+   "n": 6
+  },
+  "2026-08-23": {
+   "up": 1,
+   "down": 6,
+   "n": 7
+  },
+  "2026-08-24": {
+   "up": 5,
+   "down": 1,
+   "n": 6
+  },
+  "2026-08-25": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-08-26": {
+   "up": 0,
+   "down": 2,
+   "n": 2
+  },
+  "2026-08-27": {
+   "up": 1,
+   "down": 0,
+   "n": 1
+  },
+  "2026-08-28": {
+   "up": 1,
+   "down": 1,
+   "n": 2
+  },
+  "2026-08-29": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-08-30": {
+   "up": 1,
+   "down": 2,
+   "n": 3
+  },
+  "2026-08-31": {
+   "up": 0,
+   "down": 1,
+   "n": 1
+  },
+  "2026-09-01": {
+   "up": 1,
+   "down": 2,
+   "n": 3
+  },
+  "2026-09-02": {
+   "up": 0,
+   "down": 2,
+   "n": 2
+  },
+  "2026-09-03": {
+   "up": 1,
+   "down": 1,
+   "n": 2
+  },
+  "2026-09-04": {
+   "up": 0,
+   "down": 1,
+   "n": 1
+  },
+  "2026-09-05": {
+   "up": 1,
+   "down": 2,
+   "n": 3
+  },
+  "2026-09-06": {
+   "up": 4,
+   "down": 0,
+   "n": 4
+  },
+  "2026-09-07": {
+   "up": 0,
+   "down": 2,
+   "n": 2
+  },
+  "2026-09-08": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-09-09": {
+   "up": 1,
+   "down": 1,
+   "n": 2
+  },
+  "2026-09-10": {
+   "up": 1,
+   "down": 1,
+   "n": 2
+  },
+  "2026-09-11": {
+   "up": 0,
+   "down": 1,
+   "n": 1
+  },
+  "2026-09-12": {
+   "up": 2,
+   "down": 1,
+   "n": 3
+  },
+  "2026-09-13": {
+   "up": 0,
+   "down": 1,
+   "n": 1
+  },
+  "2026-09-15": {
+   "up": 1,
+   "down": 2,
+   "n": 3
+  },
+  "2026-09-16": {
+   "up": 2,
+   "down": 0,
+   "n": 2
+  },
+  "2026-09-17": {
+   "up": 0,
+   "down": 1,
+   "n": 1
+  },
+  "2026-09-18": {
+   "up": 1,
+   "down": 0,
+   "n": 1
+  },
+  "2026-09-19": {
+   "up": 1,
+   "down": 0,
+   "n": 1
+  }
+ },
+ "rows": [
+  {
+   "id": "231a9909-db5c-4021-a577-d1437f2c1974",
+   "t": "2026-05-15T21:09:40.423Z",
+   "d": "2026-05-15",
+   "v": 1304,
+   "cat": "Upvote",
+   "comment": "I love this game. It is awesome when I was gonna give it a like it was giving me a present. I was so happy thank you so much. Whoever made this game is awesome and I love Roblox and I love this game. Thank you so much. Bye you're welcome.",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "f528e918-97de-42a9-9fef-ec4403dfb7ea",
+   "t": "2026-05-21T22:06:27.819Z",
+   "d": "2026-05-21",
+   "v": 1360,
+   "cat": "Downvote",
+   "comment": "está súper bug tu juego apenas subis hasta arriba del tobogán por arte de magia atraviesas todo y ya q no terminaste la carrera pierdes todas las monedas",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "3bd42e6c-6cf4-4077-9d9b-1f5d5e992113",
+   "t": "2026-05-22T07:41:59.418Z",
+   "d": "2026-05-22",
+   "v": 1360,
+   "cat": "Upvote",
+   "comment": "bagus buat yang gabut",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "2d4458ff-511a-4a27-9a62-6b444ba7f372",
+   "t": "2026-05-22T20:31:14.991Z",
+   "d": "2026-05-22",
+   "v": 1360,
+   "cat": "Upvote",
+   "comment": "Please balance the trails, it goes from millions of cash to trillions in one trail at world 2",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "a76d9f14-2754-4eec-b5bb-2cdf69b6ecac",
+   "t": "2026-05-23T12:20:43.060Z",
+   "d": "2026-05-23",
+   "v": 1421,
+   "cat": "Upvote",
+   "comment": "j'aime ce jeu",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "700b482b-2047-4916-82a0-8e12a6751033",
+   "t": "2026-05-23T16:52:55.854Z",
+   "d": "2026-05-23",
+   "v": 1421,
+   "cat": "Upvote",
+   "comment": "I really this game because this game allow me to",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "26a15eea-0f5c-4d10-95ca-97e38d72afcb",
+   "t": "2026-05-24T11:18:38.665Z",
+   "d": "2026-05-24",
+   "v": 1421,
+   "cat": "Upvote",
+   "comment": "Best game ever",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "5e757295-d351-40af-b9e8-8f55bdd6e45c",
+   "t": "2026-05-24T16:17:21.584Z",
+   "d": "2026-05-24",
+   "v": 1421,
+   "cat": "Upvote",
+   "comment": "tôi thấy rất hay",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2ac00508-db38-493a-bb4c-d801b12c5b52",
+   "t": "2026-05-26T04:58:58.310Z",
+   "d": "2026-05-26",
+   "v": 1421,
+   "cat": "Upvote",
+   "comment": "maybe you should give new people a free pet",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "fc18bde3-75d2-49b8-9a76-e797a717c296",
+   "t": "2026-05-26T05:29:06.935Z",
+   "d": "2026-05-26",
+   "v": 1421,
+   "cat": "Downvote",
+   "comment": "スライドが酔う。気持ち悪い。吐きそう。",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "38a7a1d7-8ee1-4d45-97bb-8f8e5d18ed6f",
+   "t": "2026-05-26T06:18:53.439Z",
+   "d": "2026-05-26",
+   "v": 1421,
+   "cat": "Upvote",
+   "comment": "ขอโค้ดหน่อย",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "24e5f9c1-6cd1-46de-afa8-2b06f4e11b96",
+   "t": "2026-05-26T08:10:31.656Z",
+   "d": "2026-05-26",
+   "v": 1421,
+   "cat": "Downvote",
+   "comment": "game plagiat ga ada ide",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "aace5839-8de9-4b1d-a17c-8d7e913963e7",
+   "t": "2026-05-26T15:55:04.668Z",
+   "d": "2026-05-26",
+   "v": 1421,
+   "cat": "Downvote",
+   "comment": "you stole my Robux. i bought more slots for pets and now it is reset.",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "e5eb1185-69ec-4d96-afdf-0ee035b6a8ae",
+   "t": "2026-05-27T10:48:37.801Z",
+   "d": "2026-05-27",
+   "v": 1421,
+   "cat": "Upvote",
+   "comment": "Hello. I would like to add an idea. Please add a option to block trading. I saw that option in other games. I ask for this cuz of abusing this trade and people are spamming it with no trade pets. Thank you!",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "bb29c168-8a6d-439d-abcf-ad6d02131b98",
+   "t": "2026-05-27T18:17:41.845Z",
+   "d": "2026-05-27",
+   "v": 1421,
+   "cat": "Upvote",
+   "comment": "hegeg3hh3hey3y",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "fddfbdc0-d9bb-48e6-9f27-6119b2f92de9",
+   "t": "2026-05-28T00:45:07.662Z",
+   "d": "2026-05-28",
+   "v": 1421,
+   "cat": "Upvote",
+   "comment": "güzel eğlenceli 👍🏼",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "eaca7398-2b8a-48e6-93ce-a75e7a781c5a",
+   "t": "2026-05-28T18:26:17.796Z",
+   "d": "2026-05-28",
+   "v": 1590,
+   "cat": "Upvote",
+   "comment": "Mir gefällt alles an dem Spiel",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "0c0191a9-521e-497e-b62a-5695d5361f03",
+   "t": "2026-05-29T23:02:11.795Z",
+   "d": "2026-05-29",
+   "v": 1596,
+   "cat": "Downvote",
+   "comment": "Can you help me pet equip I paid for went away? @Joer241",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "066573b2-b5a7-42ce-89b0-94a5d06e10c2",
+   "t": "2026-05-30T11:50:55.303Z",
+   "d": "2026-05-30",
+   "v": 1596,
+   "cat": "Upvote",
+   "comment": "он мне нравится",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2ab7217d-6e2d-4535-bb0b-0e7d9e8379ff",
+   "t": "2026-05-30T14:50:42.673Z",
+   "d": "2026-05-30",
+   "v": 1596,
+   "cat": "Upvote",
+   "comment": "creador podría haber un automático para subir y ganar las victorias, digo así nos ahorramos de subir cada rato",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "03daff39-f79c-4ef2-aae0-56691a6356e7",
+   "t": "2026-05-30T14:56:07.798Z",
+   "d": "2026-05-30",
+   "v": 1596,
+   "cat": "Upvote",
+   "comment": "guzel oyun",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "853d46b7-2c35-44c1-8326-c26bc6b07b6f",
+   "t": "2026-05-31T07:26:40.775Z",
+   "d": "2026-05-31",
+   "v": 1596,
+   "cat": "Downvote",
+   "comment": "Why can't I buy at the dance shop? It's strange, I can't scroll. How does the system work?",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "32f1f02b-b6fc-4afe-8010-478a92f3bf64",
+   "t": "2026-05-31T11:13:43.646Z",
+   "d": "2026-05-31",
+   "v": 1596,
+   "cat": "Downvote",
+   "comment": "垃圾桶🚮游戏和太多骗子",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "913e8ff1-693d-4633-a05e-4236cc39233a",
+   "t": "2026-05-31T14:21:30.523Z",
+   "d": "2026-05-31",
+   "v": 1596,
+   "cat": "Upvote",
+   "comment": "No gamepasses in your face, lots of free stuff, beautiful areas, good stuff. Keep it up!",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "7ad88f26-8a20-4b5d-8d08-5ceb646fe212",
+   "t": "2026-06-01T10:12:54.425Z",
+   "d": "2026-06-01",
+   "v": 1607,
+   "cat": "Upvote",
+   "comment": "permainan yang sangatttttt fantastissssss 👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍☺️☺️☺️☺️☺️☺️☺️☺️☺️☺️☺️☺️☺️☺️☺️☺️😚😚😚😚😚😚",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "4faa73e7-fca6-4b66-9ea4-c99063505fb1",
+   "t": "2026-06-01T11:10:35.753Z",
+   "d": "2026-06-01",
+   "v": 1607,
+   "cat": "Upvote",
+   "comment": "This game is very exciting and fun",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "c48a60bd-118b-4c20-b916-2d7af54e41c8",
+   "t": "2026-06-01T12:16:32.985Z",
+   "d": "2026-06-01",
+   "v": 1607,
+   "cat": "Upvote",
+   "comment": "very good game",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "569640a3-7914-4fd8-bd71-7f3e946f4ce7",
+   "t": "2026-06-01T19:43:07.166Z",
+   "d": "2026-06-01",
+   "v": 1607,
+   "cat": "Downvote",
+   "comment": "Your game glitched, kicked me out because of a client server error, and removed so much of my progress and took me back a few water tubes. It also kept glitching me into the ground. Severely disappointed",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "fb32ade3-f7d4-4875-8f07-ae9c9d85dcba",
+   "t": "2026-06-01T21:03:07.785Z",
+   "d": "2026-06-01",
+   "v": 1607,
+   "cat": "Downvote",
+   "comment": "колаьаьалал",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "88b5fc67-a09d-44cb-a0b5-9b2ca14ae5eb",
+   "t": "2026-06-02T14:58:13.597Z",
+   "d": "2026-06-02",
+   "v": 1618,
+   "cat": "Downvote",
+   "comment": "Still not fixed, I am giving up soon.",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "5b9fe994-5480-4d61-a140-2868a48f3d79",
+   "t": "2026-06-03T07:04:25.769Z",
+   "d": "2026-06-03",
+   "v": 1618,
+   "cat": "Upvote",
+   "comment": "Nice game i love it",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "631fc9b6-370e-4b9f-b067-d76135765d71",
+   "t": "2026-06-03T11:02:37.657Z",
+   "d": "2026-06-03",
+   "v": 1618,
+   "cat": "Upvote",
+   "comment": "往往是去玩誒誒誒看是惡惡",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "12a328dd-6e7c-4f20-bfae-ef835db44f38",
+   "t": "2026-06-03T14:29:20.231Z",
+   "d": "2026-06-03",
+   "v": 1618,
+   "cat": "Upvote",
+   "comment": "Buenísimo se les quiere 💜",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "fc6cc2ef-763a-4694-8190-95775846e7d9",
+   "t": "2026-06-03T22:36:13.035Z",
+   "d": "2026-06-03",
+   "v": 1618,
+   "cat": "Downvote",
+   "comment": "oyunda günlük hediyelerden iksirlere dokunup alıyoruz hemen aktifleşiyor biz istediğimiz zaman da  kullanamıyoruz yüzmeye başlayınca ufak bir hızlanma geliyor alıyoruz on saniyelik karelerin peşindeki suda yüzmek için şişme balonlar dört tane bir tane olsun hep bunlar çok saçma.",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "75f7263f-ddcc-4b29-a043-f4d9edb2334e",
+   "t": "2026-06-04T17:00:34.815Z",
+   "d": "2026-06-04",
+   "v": 1618,
+   "cat": "Upvote",
+   "comment": "legal adora",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "3fbb926f-f898-4fdc-8087-409db2e23fd4",
+   "t": "2026-06-04T21:23:39.045Z",
+   "d": "2026-06-04",
+   "v": 1618,
+   "cat": "Upvote",
+   "comment": "Suena juego",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "a1a2b6f7-c6a1-41ac-a786-36ff736aee94",
+   "t": "2026-06-05T01:30:35.751Z",
+   "d": "2026-06-05",
+   "v": 1618,
+   "cat": "Upvote",
+   "comment": "BryceBeck",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "c89a416c-c66e-4e66-aefd-254d0fce8524",
+   "t": "2026-06-06T05:16:56.289Z",
+   "d": "2026-06-06",
+   "v": 1618,
+   "cat": "Downvote",
+   "comment": "dave store cannot scroll",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "1f9a410c-dd73-472c-8384-3c594096c602",
+   "t": "2026-06-06T08:27:18.822Z",
+   "d": "2026-06-06",
+   "v": 1618,
+   "cat": "Upvote",
+   "comment": "ini luar biasa",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "af9b80fa-bf72-45fe-a396-e34371c86238",
+   "t": "2026-06-06T09:34:04.065Z",
+   "d": "2026-06-06",
+   "v": 1618,
+   "cat": "Upvote",
+   "comment": "Muy buenoo",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "a246270c-d70b-422b-bb6d-6aecfe26eefe",
+   "t": "2026-06-07T09:59:50.301Z",
+   "d": "2026-06-07",
+   "v": 1618,
+   "cat": "Upvote",
+   "comment": "ini sangat menarik",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "726e0d7c-2a2b-475c-8c38-2c40c0838f01",
+   "t": "2026-06-07T15:58:40.421Z",
+   "d": "2026-06-07",
+   "v": 1618,
+   "cat": "Upvote",
+   "comment": "guyurjcgfycrhtgrdh",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "41f20825-ba36-47b1-a723-0c1de0c41785",
+   "t": "2026-06-08T13:42:25.995Z",
+   "d": "2026-06-08",
+   "v": 1618,
+   "cat": "Upvote",
+   "comment": "mã 1245677",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "150adf42-2ed5-49ad-9bf9-a907f899f7ff",
+   "t": "2026-06-09T11:15:21.793Z",
+   "d": "2026-06-09",
+   "v": 1669,
+   "cat": "Upvote",
+   "comment": "эта игра очень интересная",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "4d42bcaf-c123-497c-b567-a07860f4f9b9",
+   "t": "2026-06-09T14:15:04.641Z",
+   "d": "2026-06-09",
+   "v": 1669,
+   "cat": "Upvote",
+   "comment": "sg HD ggvcdds . 😭😭😭😭😭🫶🏻🫶🏻🫶🏻🫶🏻🫶🏻👍🏻👍🏻👍🏻👍🏻👍🏻",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "a9bbabc4-13c2-4307-ac2c-7daca18a7806",
+   "t": "2026-06-09T16:07:04.728Z",
+   "d": "2026-06-09",
+   "v": 1669,
+   "cat": "Upvote",
+   "comment": "jogo muito bom e barato as coisas",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2480d301-5824-460a-96a2-c7c0fabfebf1",
+   "t": "2026-06-09T20:47:46.973Z",
+   "d": "2026-06-09",
+   "v": 1669,
+   "cat": "Downvote",
+   "comment": "It's been a long time since you said you would refund me. Please take care of this.",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "2c41c4f5-b5d2-4eb9-bf91-1d55a65e3f49",
+   "t": "2026-06-12T00:10:29.010Z",
+   "d": "2026-06-12",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "um jogo muito lega",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "85a38611-017a-4487-a7d8-a750828698a5",
+   "t": "2026-06-12T16:42:12.181Z",
+   "d": "2026-06-12",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "can you please remove the extra options like if someone do not want to premiumly pay...kind of option which occupy a large space in the gameplay",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "b57078d0-2cf8-417a-b904-f3569d2c39b7",
+   "t": "2026-06-13T07:21:46.774Z",
+   "d": "2026-06-13",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "Me encantan los toboganes y más este juego que te permite deslizarte desde lo más altooooooo :D",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "d5407181-88a1-45be-b732-d0d13f825eb5",
+   "t": "2026-06-13T07:42:05.059Z",
+   "d": "2026-06-13",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "игра очень затягивает",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "e9467147-adb0-4298-b01e-d9dfec227e60",
+   "t": "2026-06-13T13:41:45.644Z",
+   "d": "2026-06-13",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "sangat seru",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "b9a575a6-5bf0-4e98-a235-c8b5a6aa75d0",
+   "t": "2026-06-15T01:55:48.089Z",
+   "d": "2026-06-15",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "game yang sangat ramah untuk di mainkan anak-anak maupun orang dewasa, karena mudah sekali di pahami dah di mengerti cara bermain nya juga gampang banget 💯🔥",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "0988f374-b53e-43b4-b950-db51a1d37e1d",
+   "t": "2026-06-15T04:32:04.931Z",
+   "d": "2026-06-15",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "keren&Baguss",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "4e4aa830-e432-4e21-819d-84d07074b9b0",
+   "t": "2026-06-16T08:28:38.856Z",
+   "d": "2026-06-16",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "mau minta kode",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "eafc5d7a-518d-45be-9cfb-9ddcc67af8f1",
+   "t": "2026-06-16T17:04:32.197Z",
+   "d": "2026-06-16",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "лвосивтыьыдч",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "dafce727-493e-4e83-b6c5-f04a6468b03d",
+   "t": "2026-06-17T20:16:22.674Z",
+   "d": "2026-06-17",
+   "v": 1677,
+   "cat": "Downvote",
+   "comment": "they said that in15 mins we'll get a free egg and im playing for 23 mins and im at 8 mins? well thats a scam game, it should be deleted.",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "e5c0e6a0-573d-499f-8e77-2b821980487d",
+   "t": "2026-06-18T14:57:35.177Z",
+   "d": "2026-06-18",
+   "v": 1677,
+   "cat": "Downvote",
+   "comment": "I bought VIP but my VIP friend wont work some how, i keep on buying the friend thing to help u but its never the VIP one",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "7132e43a-76cc-4bb5-bf32-4a96146571ba",
+   "t": "2026-06-18T20:48:37.445Z",
+   "d": "2026-06-18",
+   "v": 1677,
+   "cat": "Downvote",
+   "comment": "Really boring",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "602a48db-2130-4e54-b346-d049f40fa545",
+   "t": "2026-06-18T22:51:01.986Z",
+   "d": "2026-06-18",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "Es buen juego, pero deberían dejar intercambiar todas las mascotas aunque sean “exclusivas” ya es decisión de uno intercambiarlas para ayudar a los demás, solo da el limite pero son las más bajas y así no podemos ayudar",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "28e10d99-504e-4f9a-9cea-2bcb0e2a08cf",
+   "t": "2026-06-20T08:20:43.206Z",
+   "d": "2026-06-20",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "saya sangat suka",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "4a1454d5-79f7-4606-9df4-ce51f5a12b4a",
+   "t": "2026-06-20T16:48:13.418Z",
+   "d": "2026-06-20",
+   "v": 1677,
+   "cat": "Downvote",
+   "comment": "no me gusta el juego me saca cada 1 minuto",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "fcfacab4-7325-4b5b-ab42-41105bc6b143",
+   "t": "2026-06-21T00:19:13.078Z",
+   "d": "2026-06-21",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "muito bom, mas as coisas são mto caras",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "c6d407b0-62ea-4802-922f-dabf7d9c660b",
+   "t": "2026-06-21T18:10:59.029Z",
+   "d": "2026-06-21",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "mamtapppppppppp",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "b32f4aea-d5b1-4ada-b66b-e3255da509bd",
+   "t": "2026-06-22T17:46:42.161Z",
+   "d": "2026-06-22",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "sangat best boleh main sama kawan",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "fa8a54ee-43c3-4ecc-bc03-25a3f06b1d0f",
+   "t": "2026-06-23T04:13:09.227Z",
+   "d": "2026-06-23",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "I like this game, especially since a lot of the stuff in the Roblox stuff is really cheap and the slides and that are fun!\n\nThe only thing that's missing is a way to auto-delete pets as they are hatching but other than that this is an awesome waterslide game!",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "57acdc05-940a-4ea0-a449-64aed6eb834c",
+   "t": "2026-06-23T16:19:50.297Z",
+   "d": "2026-06-23",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "i like this game sonmuch",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "b04a3b34-4818-447d-9412-e3117520f4bb",
+   "t": "2026-06-24T12:44:24.307Z",
+   "d": "2026-06-24",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "can you please add turn off trades its very annoyin when noobs spam trade you, cant play or enjoy the game when they do this",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "74fb374a-e422-4dc6-9775-3980f4705a1f",
+   "t": "2026-06-24T15:10:20.750Z",
+   "d": "2026-06-24",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "Incroyable",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "94967c6c-7ac9-4547-af6d-53cf99021830",
+   "t": "2026-06-24T18:18:47.920Z",
+   "d": "2026-06-24",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "good place",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "dfa12431-a5e1-4876-823d-0be1051873f2",
+   "t": "2026-06-26T06:17:14.515Z",
+   "d": "2026-06-26",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "Bddbjdejejeieururj",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "8de4558c-e434-4e19-9020-98c9e08b8caa",
+   "t": "2026-06-26T16:18:25.330Z",
+   "d": "2026-06-26",
+   "v": 1677,
+   "cat": "Downvote",
+   "comment": "game apa ini admin abuse nya lama banget",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "c2dda9f1-4b04-4fc8-b6f7-9a70dfa70ddb",
+   "t": "2026-06-26T16:53:48.928Z",
+   "d": "2026-06-26",
+   "v": 1677,
+   "cat": "Downvote",
+   "comment": "There’s a lot of players waiting you to update the game but no admin showed up",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "55a97a1c-1cee-4c49-9b46-3fcd5103e513",
+   "t": "2026-06-27T08:49:17.961Z",
+   "d": "2026-06-27",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "굳이 튜브 한단계씩 올라가지말고 살수있는 튜브로 바로 넘어갈수있게",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "a5bb7839-0cc6-40b7-929c-6b25f9111df2",
+   "t": "2026-06-27T13:49:17.031Z",
+   "d": "2026-06-27",
+   "v": 1677,
+   "cat": "Downvote",
+   "comment": "I’m was on the ice world but all of a sudden I was only making a couple hundred thousand with the forklift and three pets with x125%",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "956a53c8-7b73-427a-a151-ae86a527b48a",
+   "t": "2026-06-27T17:41:34.341Z",
+   "d": "2026-06-27",
+   "v": 1677,
+   "cat": "Upvote",
+   "comment": "Он лучший🥰🥰🥰🥰🥰🥰🥰🥰",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "0e935ff1-4eeb-4c51-83a8-d391dd732b3f",
+   "t": "2026-06-30T13:10:56.231Z",
+   "d": "2026-06-30",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "okey madre madre",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "43a4817e-5e7a-4abc-95a7-89bbd099acca",
+   "t": "2026-06-30T15:36:13.076Z",
+   "d": "2026-06-30",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "segera di update buat dunia gurun tolong playernya di kurangi",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "6440d389-fa69-44c4-a6e3-c075302a4be6",
+   "t": "2026-06-30T18:33:51.899Z",
+   "d": "2026-06-30",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "stop using ai",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "296d2e69-bd6c-4854-a1db-d4ed0b2d01a4",
+   "t": "2026-07-01T03:27:35.817Z",
+   "d": "2026-07-01",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "updatenya cepatin",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "c81fce72-ee81-4e2e-8ff8-33459a2ca2d7",
+   "t": "2026-07-02T00:04:45.678Z",
+   "d": "2026-07-02",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Очень интересно играть",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "0e465077-707a-4b61-8085-e4bdae51f5f5",
+   "t": "2026-07-03T15:35:20.413Z",
+   "d": "2026-07-03",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Sabes esta bien el juego es divertido y no te aburres, solo que necesitas muchas victorias para pasar al mundo de hielo, haci que lo demás todo bien",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "ff0b6143-482e-4d10-b7f5-f0e0267edaea",
+   "t": "2026-07-03T17:11:37.837Z",
+   "d": "2026-07-03",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "Take your admin abuse seriously.",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "eee9d426-cb0f-422a-83d5-4057de1de29d",
+   "t": "2026-07-03T19:05:58.897Z",
+   "d": "2026-07-03",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "make people surf up please (plzzzz)",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "8b8b04d1-c0f6-4cf0-ae97-83feb9369f68",
+   "t": "2026-07-03T22:12:38.474Z",
+   "d": "2026-07-03",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "классная играаа",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "90353bf6-e120-47bd-a2a9-f7bbac300d3d",
+   "t": "2026-07-04T00:05:15.934Z",
+   "d": "2026-07-04",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "auto play, no skill game",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "66e94022-6f8f-4d57-8813-5ac3b5ee6c94",
+   "t": "2026-07-04T04:42:57.346Z",
+   "d": "2026-07-04",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "saya main tiba tiba keluar",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "0be6d3e2-d224-403d-b951-0197d6ea8bdd",
+   "t": "2026-07-04T05:42:50.819Z",
+   "d": "2026-07-04",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "sửa lỗi về vấn đề này hộ mik với ạ : mik bơi lên đỉnh rồi nhưng mà lúc vào cái chỗ mà cái điệu nhảy ăn mừng khi trượt xong ý thì lần 1 vẫn bt nhưng lần 2 mik ấn lối ra thì mình thấy mik bị rơi xuống khoảng không và mất hết 300k công sức mik ngồi đợi cho lên đến đỉnh và mik vẫn chưa lấy đc cúp nữa buồn =(((",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "e380b854-927e-4ace-9b3b-86d927734c7b",
+   "t": "2026-07-04T10:48:47.687Z",
+   "d": "2026-07-04",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "отличная идея",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "f085c68c-cacc-4cf3-8c22-a9cc88a7b782",
+   "t": "2026-07-04T11:35:46.923Z",
+   "d": "2026-07-04",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "hay vui hay",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "83e4d81e-f8cf-49c8-83b0-7c6ce5a6e099",
+   "t": "2026-07-04T13:55:18.481Z",
+   "d": "2026-07-04",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "when opening the dance shop i always fall out of the map and in mobile the dance shop won't let me scroll down to buy the next one..",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "e2c8ff2d-20c7-4e38-a92a-ff121f2330b2",
+   "t": "2026-07-04T19:57:10.635Z",
+   "d": "2026-07-04",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "muy aburrido",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "dcf5e0e7-0b2b-42a0-9fbe-c35158a4d5a4",
+   "t": "2026-07-05T06:12:17.922Z",
+   "d": "2026-07-05",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "muy bueno me encanta 😍😍😊😍😊😊",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "056d426b-c334-4594-a001-b314b529d07f",
+   "t": "2026-07-05T09:14:24.555Z",
+   "d": "2026-07-05",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "bagus banget",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "1e3c9de1-deb0-4fbd-83a1-214d710b6010",
+   "t": "2026-07-05T12:10:24.809Z",
+   "d": "2026-07-05",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "очень нравится игра",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "5f62e78b-ab36-4784-94ed-d42bdfdb6640",
+   "t": "2026-07-05T13:01:06.205Z",
+   "d": "2026-07-05",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "te4rsdgfhjkl;kjhgfcxdfcbjl",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "41dd456b-eb04-4ef4-aa7a-294b6a0ab685",
+   "t": "2026-07-05T16:02:44.786Z",
+   "d": "2026-07-05",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Он прекрасный",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2fb5700d-ad0d-46e4-ad7d-75241f21a33d",
+   "t": "2026-07-05T16:04:03.221Z",
+   "d": "2026-07-05",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "เพาะสนุกมากกกกก",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "679205db-b3ce-41c7-99c2-1195279fe10d",
+   "t": "2026-07-05T17:33:41.681Z",
+   "d": "2026-07-05",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "整人模擬器啊???寵物合成之後等於0，那我抽幹嘛?合成幹嘛?修一下吧",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "c8226978-c6eb-42d4-8b5f-ae843b4dde30",
+   "t": "2026-07-05T17:47:04.114Z",
+   "d": "2026-07-05",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "hola, la verdad no se que paso si yo tenia el mundo tres, otras balsas y mascotas mejores, solor entre y pum se desapareció todo, lo mundos, mis victorias, mis monedas... todo.",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "204b2ea9-51ac-4217-9990-e9c107b73f50",
+   "t": "2026-07-05T19:05:54.865Z",
+   "d": "2026-07-05",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Bin in der letzten Welt und bis jetzt hat alles super funktioniert aber jetzt kriege ich statt SX nur noch Trillionen obwohl ich gute pets habe und mir Pässe gekauft habe. Jetzt macht das Spiel kein pass mehr und das Geld ist jetzt auch weg",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "a5a1dffc-ba54-42c7-b9d0-83cafb76ec83",
+   "t": "2026-07-05T20:37:32.240Z",
+   "d": "2026-07-05",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "very very good",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "6811b15a-e3c7-4a5e-826c-3d223b9d5995",
+   "t": "2026-07-06T01:04:24.625Z",
+   "d": "2026-07-06",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Aku sudah beli vip tapi kenapa tidak bisa di gunakan",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "24cb10bb-de9f-4aea-a1c2-eb40e01c3745",
+   "t": "2026-07-07T04:12:34.116Z",
+   "d": "2026-07-07",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "jogo bugado",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "c51c9dab-22ba-495e-a60c-852454105c38",
+   "t": "2026-07-07T05:30:06.448Z",
+   "d": "2026-07-07",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "SO COOL! :00",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "072f40e9-62f7-44ff-9f57-d9cc1f8de945",
+   "t": "2026-07-07T16:32:23.248Z",
+   "d": "2026-07-07",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "There is a big jump from purchasing the rafts in the billions to trillions it makes the game feel like for ever",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "50635727-fb19-42a2-bd6a-45f82082e4ba",
+   "t": "2026-07-07T16:53:58.143Z",
+   "d": "2026-07-07",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "una porquería de juego le di varias oportunidades y nada la verdad es que tienen que mejorar, en cómo vas mejorando porque yo tenía una balsa súper buena y mascotas buenas y nada de plata generaba",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "8a42b019-20b9-4966-a211-5fbf4a2f7017",
+   "t": "2026-07-07T17:39:29.388Z",
+   "d": "2026-07-07",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "крутаяя игра",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "9e47cae0-23c7-4817-8b8b-c5dc9b0cb6e8",
+   "t": "2026-07-07T19:12:32.306Z",
+   "d": "2026-07-07",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "kenapa tiba tiba punya saya ke reset? padahal saya sudah menghabiskan banyak robux disini. Dasar game aneh",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "c458a999-0199-40a9-8f61-2133760fe48b",
+   "t": "2026-07-08T01:36:33.973Z",
+   "d": "2026-07-08",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "it’s not bad",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "fb12259b-f3cc-45fe-8ffe-e95d85e3754d",
+   "t": "2026-07-08T09:50:34.780Z",
+   "d": "2026-07-08",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "класссссссссссс",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "88e438f8-3039-4f53-8afc-1eb9127b5840",
+   "t": "2026-07-08T12:24:52.780Z",
+   "d": "2026-07-08",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "GOOD GAME!!!",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "304d94ea-e431-4d2e-94d7-eb7b4dee5268",
+   "t": "2026-07-08T17:25:33.714Z",
+   "d": "2026-07-08",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "szerintem az jó ötlet lenne ha például lehenetne több állatot magadnál tartani nem ./3 hanem például ./5 stb.",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "df07071c-b0ce-427d-9a43-91179c57cb90",
+   "t": "2026-07-08T21:46:35.764Z",
+   "d": "2026-07-08",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Good game to play",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2f3630b9-da2f-4931-9c83-d052983b93ad",
+   "t": "2026-07-09T00:23:40.538Z",
+   "d": "2026-07-09",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Todo me encanta, lo unico q los amigos q tengo en la balsa no me gusta q se vean los nombre, o si se ven q no se vea en grande como se ve el nombre de jugador",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "3506a1ca-8caa-4751-821f-ceeffe838b49",
+   "t": "2026-07-09T02:03:43.858Z",
+   "d": "2026-07-09",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "This game literally scams you. Why didn’t I get my speed potion or anything from the spins and rewards???",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "47b8600b-713b-4453-bf8c-2b6b75c9b057",
+   "t": "2026-07-09T08:38:50.541Z",
+   "d": "2026-07-09",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "seruuu banget",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "079b04f9-c2e2-412c-a7a3-99e0ce4f1ecf",
+   "t": "2026-07-10T01:40:03.022Z",
+   "d": "2026-07-10",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "koin nya bug , saya sudah di tingkat Paling atas tetapi sama seperti di level 4",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "fac7895c-1bfa-45d1-89b6-3ca272a1433d",
+   "t": "2026-07-10T16:00:32.270Z",
+   "d": "2026-07-10",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Game rất hay                                               lỗi💩.",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "12bd6b94-8dc9-421a-8baf-8d76defa184e",
+   "t": "2026-07-10T16:20:04.997Z",
+   "d": "2026-07-10",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "fake admin abuse scam scam",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "7ec085de-6870-4380-a61c-e54fa46702c9",
+   "t": "2026-07-11T12:28:33.552Z",
+   "d": "2026-07-11",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "хотелось бы получить код для подарка от игры",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "382a610d-66cf-4b42-b455-8e435e070405",
+   "t": "2026-07-11T15:00:55.931Z",
+   "d": "2026-07-11",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "tôi muốn nhà sáng tạo ặng tôi VIP thì tôi sẽ ủng hộ nhiệt tình ạc tôi tên MaclarenNTC mong phản hoif ạ😊",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "f90db859-c98b-4036-8b93-b924caefbe8b",
+   "t": "2026-07-11T18:25:15.754Z",
+   "d": "2026-07-11",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "Cadê meu vip. Wheres My VIP",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "04e51e77-f7fd-4600-a2d3-6ccad07a1f73",
+   "t": "2026-07-12T03:33:53.720Z",
+   "d": "2026-07-12",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "bem daora pra se distrair",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "4d0672f7-6a78-45ad-89c9-66b148cd42a0",
+   "t": "2026-07-12T05:07:13.220Z",
+   "d": "2026-07-12",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "bug 2x coin",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "649484e7-68ec-4d33-857d-3611cce5819e",
+   "t": "2026-07-12T08:57:25.643Z",
+   "d": "2026-07-12",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "このげーむが好きです",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2dd65e24-c3ac-4505-8ded-a5ece3147eeb",
+   "t": "2026-07-12T16:05:04.125Z",
+   "d": "2026-07-12",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "gostei de jogar esse jogo",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "58e5349a-728e-4d58-abec-2f227d7cb4d1",
+   "t": "2026-07-13T02:56:18.057Z",
+   "d": "2026-07-13",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Oh my Goodness, Desain Warna Peliharaan dalam game ini beneran indah",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "43745014-5256-4182-814f-308a925db096",
+   "t": "2026-07-13T03:16:08.442Z",
+   "d": "2026-07-13",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "мне понравилась это игра потому что она интересная полезная и развлекательная игра я хочу чтоб больше было таких игр спасибо автору за такую чудесную игру",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "8953b192-393e-455e-a254-0e2e9755ff80",
+   "t": "2026-07-13T07:56:08.810Z",
+   "d": "2026-07-13",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "bagus sekali",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "e2a6b51d-5eb8-4d21-beb2-9e4c8ab3001f",
+   "t": "2026-07-13T12:29:05.728Z",
+   "d": "2026-07-13",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "i can't go to world 2",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "3d5d31dc-92c7-40eb-839b-fad492d3ccaa",
+   "t": "2026-07-13T22:23:38.128Z",
+   "d": "2026-07-13",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "Honestly it has quite the bugs like the top not loading and falling through the map and potions not appearing in inventory when claimed, besides that, cool game :)",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "419efbf2-fc7c-4c69-b2d2-375d81107f70",
+   "t": "2026-07-14T02:20:21.589Z",
+   "d": "2026-07-14",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "muito bom esse jogo,viciante",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "57a8e20f-97f0-4ccd-952f-62791832929e",
+   "t": "2026-07-14T14:29:31.311Z",
+   "d": "2026-07-14",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "ruim até demais",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "99f3c0ac-0c05-4064-9ef1-0c63086895dc",
+   "t": "2026-07-14T16:19:46.493Z",
+   "d": "2026-07-14",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "msnsnjdjddhdj",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2ea89d5a-6baa-4539-b7ff-a48fbec02a7f",
+   "t": "2026-07-14T21:22:30.235Z",
+   "d": "2026-07-14",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "CCU MONEY does not work. In game shop says like game for code, I liked & favorite it. But only code I see is CCU MONEY & that says invalid code.",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "1585822b-c24e-40b6-b014-456e7817bd66",
+   "t": "2026-07-14T21:44:03.454Z",
+   "d": "2026-07-14",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "hello, the winning dance shop has some issues. The scroll is error and I can't scroll down to buy new dances at all. pls fix, ty",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "c7ee9e15-0fea-4941-8e0a-addeb6e8a31c",
+   "t": "2026-07-14T23:19:46.275Z",
+   "d": "2026-07-14",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "jogo muito bom",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "b39021a4-ca59-4971-8fd1-a5fe7f1550f7",
+   "t": "2026-07-15T14:37:21.069Z",
+   "d": "2026-07-15",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "Estoy en el último mundo y no me da el dinero que se supone q debo de ganar",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "e5b7196f-048f-44b0-999e-5b1753a4bbfa",
+   "t": "2026-07-16T06:20:40.360Z",
+   "d": "2026-07-16",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "thấy hay và vui",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "8a87b126-bd5d-4b5b-bce3-16261bca3810",
+   "t": "2026-07-16T19:48:59.774Z",
+   "d": "2026-07-16",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "ice world doesnt load up for me",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "d9aff500-5234-4edd-8954-b3ed8eb4bad0",
+   "t": "2026-07-16T22:42:48.144Z",
+   "d": "2026-07-16",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "this experience the best",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "338b12e2-3fba-4a58-82ed-7d95be9af6e2",
+   "t": "2026-07-17T13:05:46.924Z",
+   "d": "2026-07-17",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "Horrible game never playing again because I keep falling  through the floor at the end of the ride",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "777a8eab-2e29-4e15-877c-c7576b859c87",
+   "t": "2026-07-17T16:12:21.604Z",
+   "d": "2026-07-17",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "ADMIN ABUSE IS 12 MINUTES LATE",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "621a93ae-290a-4a62-b540-41e2f2a80f98",
+   "t": "2026-07-17T16:21:15.480Z",
+   "d": "2026-07-17",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "Where is the admin abuse?",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "51a4b2ed-7aea-442e-b112-dea5935d8be8",
+   "t": "2026-07-17T20:09:23.777Z",
+   "d": "2026-07-17",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "интересно играть",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "a8b1d528-3fe9-450f-8df6-f9f51e9508d2",
+   "t": "2026-07-18T02:25:28.899Z",
+   "d": "2026-07-18",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "assalamualaikum",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "fd7cd2f9-b818-4b5e-b197-9ff82d744b6e",
+   "t": "2026-07-18T03:53:41.589Z",
+   "d": "2026-07-18",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "Cash grab",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "030e86b4-9121-43b9-bea9-656236ba83d2",
+   "t": "2026-07-18T12:54:53.772Z",
+   "d": "2026-07-18",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "This is game so much good , I like it , really ☺️",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "a7dad61a-040d-4e99-a097-e9ac95230978",
+   "t": "2026-07-18T13:07:55.071Z",
+   "d": "2026-07-18",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "i like this game , this game so good",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "158fef5a-4c16-4046-bbad-66c2b140095d",
+   "t": "2026-07-18T19:17:05.987Z",
+   "d": "2026-07-18",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "eu sem querer excluir o meu pet e não consegui pegá-lo de volta fiquei muito triste e eu queria saber como pegaria o pet de volta",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "95c7161d-c740-4780-8532-266d0db6152f",
+   "t": "2026-07-18T19:57:05.620Z",
+   "d": "2026-07-18",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Good luck to you",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "18f04ab8-c5a2-4a21-90a1-75229d57ad6f",
+   "t": "2026-07-18T22:36:54.845Z",
+   "d": "2026-07-18",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "i brought vip, and the girl didn’t slide with me. they stole my robux",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "8b87e162-b124-47b3-817a-148e85ba9607",
+   "t": "2026-07-19T02:17:09.094Z",
+   "d": "2026-07-19",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Fun game like thks",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "36abae86-9adf-4001-8e6c-b1a1ad9a74ca",
+   "t": "2026-07-19T06:31:12.352Z",
+   "d": "2026-07-19",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "seru,menyenangkan tapi kalo bisa sih di tambahin ya orangnya biar bannya penuh sama orang",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "78335609-2ed1-49b6-bc15-88c0d2039a23",
+   "t": "2026-07-19T07:53:54.204Z",
+   "d": "2026-07-19",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "por me parece un juego extremadamente divertido 😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀👍🏻🫪😃😃 67",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "76b15741-6b7e-4665-a1b5-777c5a8093fe",
+   "t": "2026-07-19T15:32:26.641Z",
+   "d": "2026-07-19",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "me encantó 😍",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "ad542f21-3628-4d5c-b2b2-d94f8e1d97c2",
+   "t": "2026-07-19T16:17:48.881Z",
+   "d": "2026-07-19",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "класс игра прикольная",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "486b3ecc-66db-4019-85a5-34aefdae3023",
+   "t": "2026-07-19T16:34:20.825Z",
+   "d": "2026-07-19",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Имба, хорош режим",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "f1b22a1e-d74a-47a2-ba9c-46e99c585cbd",
+   "t": "2026-07-19T21:34:29.411Z",
+   "d": "2026-07-19",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "Didn't give me what it said I would get by buying premium",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "0230e392-8cad-44ba-8c18-5641edf3875e",
+   "t": "2026-07-19T22:00:24.843Z",
+   "d": "2026-07-19",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "класссссссс",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "ddbdb6b2-aacd-4295-b624-87582d47245a",
+   "t": "2026-07-20T00:01:38.719Z",
+   "d": "2026-07-20",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "cool, interesting and very pretty place😊",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "b638bcf4-e65c-4526-a851-5a6d5fd01583",
+   "t": "2026-07-20T04:24:11.687Z",
+   "d": "2026-07-20",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "어제 2월드 까지는 수영 할때마다 많이 벌렸는데 3월도 열고 하니깐 갑자기 100k 800k 이렇게 벌림 어제는 5B 100B 벌렸는데 근데 이거 이해 못하면 똥 멍청이임 ㅉㅉ",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "0a5b0868-08c9-48d4-a5a1-bb78f606945e",
+   "t": "2026-07-20T07:20:34.915Z",
+   "d": "2026-07-20",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Hey, you seriously need to add an off option for trading. On the last map, players cannot stop sending me trade requests though i keep declining them. So please, add an off option, i am not gonna trade.",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "5ec98331-658e-4027-8484-be1968c70a2e",
+   "t": "2026-07-20T09:05:03.937Z",
+   "d": "2026-07-20",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "I was playing on this game for almost 3 hours and I had left to buy Robux but when I joined back I found that my progress didn’t save. I was on world 4 but when I joined back I was on world 2 again which left me heavily disappointed because I already have spent Robux in the game as well and it didn’t save it. When I joined back I was expecting to spend more Robux on the game because I enjoyed but this ruined my experience and I hope that the admin can fix this.",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2c6ce4f1-e3a2-4e3f-8f01-c79dd2703d2d",
+   "t": "2026-07-20T16:24:22.758Z",
+   "d": "2026-07-20",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "muy bueno",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "fc80afa8-6fff-40f6-84d8-7f8286e19d43",
+   "t": "2026-07-20T16:33:31.342Z",
+   "d": "2026-07-20",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Es muy chulo",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "d9f523eb-66b4-427d-9938-0faf681846fd",
+   "t": "2026-07-20T16:58:46.417Z",
+   "d": "2026-07-20",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "the dances shop is broken, it doesn't let me scroll down to buy the dances, it blocks at like the fourth dance and doesn't go down further than that so I can't buy the 50k wins dance and so on, hope u fix that have a good day :)",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "bc8c933d-e646-4a84-a1d6-565297e9ef66",
+   "t": "2026-07-20T17:48:13.682Z",
+   "d": "2026-07-20",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "марррррррр",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "c04e2cf5-5866-4295-9f2a-ba3e78f8deb2",
+   "t": "2026-07-20T18:57:30.567Z",
+   "d": "2026-07-20",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "Could be fun and popular but since you can’t turn off trades, lots of people abusing trade requests to grief you. Had to stop playing.",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "8afc2be8-1eca-46f2-a945-e793e0793c98",
+   "t": "2026-07-20T22:39:46.496Z",
+   "d": "2026-07-20",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Muito bom o jogo pera raros gostei muito",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "f159754f-64b8-4d76-ad01-c81a1930b533",
+   "t": "2026-07-21T02:19:45.491Z",
+   "d": "2026-07-21",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "porque esta fallando, en vez de darme q de monedas volvio a darme trillones, ese error deberían arreglarlo",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "42215b4d-0c4b-4e8f-b499-56d6417fcefb",
+   "t": "2026-07-21T05:05:13.486Z",
+   "d": "2026-07-21",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "めちゃ楽しいからに決まってるじゃ無いですか。",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "3bb2ad3b-00dc-4408-a06a-df7e8c9e319b",
+   "t": "2026-07-21T06:59:19.681Z",
+   "d": "2026-07-21",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "terlalu ngeleg atU terlalu banyak player di gurun dan divice saya tida kuat",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "c3b87653-e25b-466d-9480-b166e74fda21",
+   "t": "2026-07-21T20:02:53.984Z",
+   "d": "2026-07-21",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "мне понравилось играть",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "af753575-776e-45c8-8470-13ab8ab0bc54",
+   "t": "2026-07-21T23:11:43.676Z",
+   "d": "2026-07-21",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "6790wgee1hiwr3leuek",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "ae43eac2-daf2-4724-a79a-596afc995aa9",
+   "t": "2026-07-21T23:20:14.680Z",
+   "d": "2026-07-21",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "scam, i bought VIP and couldn’t even go to the VIP slide.",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "9c7a9a96-5b44-4f11-abb1-c9a77fd0ff74",
+   "t": "2026-07-22T00:06:51.861Z",
+   "d": "2026-07-22",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "less p2w and less glitches",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "0f146fda-efdb-4edd-96c6-0ef0a4e4f337",
+   "t": "2026-07-22T05:21:12.428Z",
+   "d": "2026-07-22",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "I did not got recharge",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "26f095fc-00a4-45b3-b43d-b485d1ec90ba",
+   "t": "2026-07-22T10:44:51.661Z",
+   "d": "2026-07-22",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "я бы хотела чтобы ходь бы были бы животные каторые доют 99900",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "cf96c14b-7c01-450f-baae-bb54ea108986",
+   "t": "2026-07-22T11:00:38.842Z",
+   "d": "2026-07-22",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Мне очень нравится игра очень интересная но хотелось бы чтоб было больше удачи но игра так класс и красивая хочу матрас с великами спасибо за игру",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "2af37afb-fb80-4f46-88e2-8989136e1c71",
+   "t": "2026-07-22T12:30:26.031Z",
+   "d": "2026-07-22",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "YOU OWE MY 1 RBX BQCK 😭",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "593a67c2-2ebc-4d18-90af-426df10e8119",
+   "t": "2026-07-22T13:40:40.175Z",
+   "d": "2026-07-22",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "Нормально",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "04a4e61e-fe79-42d0-a96e-1f0be2a4a30e",
+   "t": "2026-07-22T14:05:46.801Z",
+   "d": "2026-07-22",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "trượt xuống hơi lâu nhma vui",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "63852811-8735-470d-bb3c-49eb43de0b35",
+   "t": "2026-07-22T19:03:21.028Z",
+   "d": "2026-07-22",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "This is the best game ever",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "7376027e-eeb3-42c2-9421-cccbe8372b84",
+   "t": "2026-07-22T20:52:52.994Z",
+   "d": "2026-07-22",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "I won and some thinge  happened and make me fall without playing and !! Whhhyyy i played so hard",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "6d5c38ee-a2e7-42d4-97cc-9007aad4aa6c",
+   "t": "2026-07-22T21:11:55.341Z",
+   "d": "2026-07-22",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "arreglen el botón de los emotes no podemos comprar más emotes no deja bajar más arregle eso por favor 🙏",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "5264aada-0d4e-4f52-a20a-13aeec38a9fa",
+   "t": "2026-07-23T13:25:42.542Z",
+   "d": "2026-07-23",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "this game is so fun I love this game 😀",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "f1e378fc-0e18-442a-8784-b4b5d89e4145",
+   "t": "2026-07-23T19:10:46.723Z",
+   "d": "2026-07-23",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "очень крутая и затягивающая игра",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "03974b91-0b90-4253-a3a0-cd4cec4a6447",
+   "t": "2026-07-23T23:29:56.692Z",
+   "d": "2026-07-23",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "nienteehwhwjw",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "7b1880c0-2e76-42e5-aec6-dc165fa4ab48",
+   "t": "2026-07-24T07:55:54.152Z",
+   "d": "2026-07-24",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "game còn nhiều lỗi lắm 🫪",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "700e4149-f30d-487d-a2ee-3195df450af9",
+   "t": "2026-07-24T10:54:28.359Z",
+   "d": "2026-07-24",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "game hay và rất tuyệt vời",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "b97bafec-5322-4ab4-8ea8-c39143c77471",
+   "t": "2026-07-24T15:22:09.942Z",
+   "d": "2026-07-24",
+   "v": 1679,
+   "cat": "Upvote",
+   "comment": "This game is amazing but the things i think you should add is eggs with the pets you have to buy so everyone can get them and you should add a free play mode so you can slide the waterslide without having to grind money but this game is amazing <3 :)",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "6878edfe-3c89-41d3-b849-9cfd7bc051e3",
+   "t": "2026-07-24T15:51:52.445Z",
+   "d": "2026-07-24",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "Здравствуйте разработчик Roblox пожалуйста меня не надо банить просто эта девочка она обижала мою подругу Карину она не хочет с ней дружить но я люблю Карину так что я не могу пожалуйста не баньте меня",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "8bb76439-da46-41c5-b46c-46639f367025",
+   "t": "2026-07-24T15:59:33.609Z",
+   "d": "2026-07-24",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "The crafting thing is rigged this game is kaka",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "aac60272-a879-48f5-98ab-53f3ce7971fe",
+   "t": "2026-07-24T17:19:58.224Z",
+   "d": "2026-07-24",
+   "v": 1679,
+   "cat": "Downvote",
+   "comment": "I think i stopped having money from the pets after i got to the last world because the money i got from it suddenly decreased a lot when i didnt even do anything. It had been a couple of days from the day it did and i think thats an error but now its meaningless playing the game since it doesnt give the enough money to upgrade anything",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "f652ed20-2c58-4b5d-bc30-4f06d7ec8c54",
+   "t": "2026-07-24T19:45:29.583Z",
+   "d": "2026-07-24",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "очень круто",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "e145edda-60d2-49ba-a9a6-2b1076160e28",
+   "t": "2026-07-24T20:52:41.031Z",
+   "d": "2026-07-24",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "Está chido el juego 👍🏻",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "70f9f4d6-9c7b-4744-8bd7-6e6371ec9d52",
+   "t": "2026-07-25T09:40:52.300Z",
+   "d": "2026-07-25",
+   "v": 1681,
+   "cat": "Downvote",
+   "comment": "cannot scroll down the dances category when you try to buy",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "cce61af8-beea-4f4d-94ce-b441280dea44",
+   "t": "2026-07-25T12:03:00.163Z",
+   "d": "2026-07-25",
+   "v": 1681,
+   "cat": "Downvote",
+   "comment": "wyświetla się żeby dodać do ulubionych i nie da się tego usunąć na telefonie",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "d035b640-939d-4196-8d79-f3219872540f",
+   "t": "2026-07-25T13:45:00.570Z",
+   "d": "2026-07-25",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "It’s good",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "eabf629d-3438-4194-9f21-1b52ae593746",
+   "t": "2026-07-25T13:48:28.664Z",
+   "d": "2026-07-25",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "Very nice what would recommend are codes to get money",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "07be1451-4ced-4242-b2e3-e82f20a1b5b3",
+   "t": "2026-07-25T13:49:47.166Z",
+   "d": "2026-07-25",
+   "v": 1681,
+   "cat": "Downvote",
+   "comment": "When I reached the top that took me 30 minutes and I went to the dance shop and I went out of it and I flew through the platform and die lost all my wins",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "301a0a25-bbb9-423e-a6a4-47c51d5593fc",
+   "t": "2026-07-25T18:36:43.736Z",
+   "d": "2026-07-25",
+   "v": 1681,
+   "cat": "Downvote",
+   "comment": "Events and updates aren't rolled out when you say they'll be",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "7b5aef1d-abc3-467c-968c-388c97ae41cd",
+   "t": "2026-07-25T20:55:41.816Z",
+   "d": "2026-07-25",
+   "v": 1681,
+   "cat": "Downvote",
+   "comment": "Claimed pets from reward but wasn't able to use as they didn't show in the pets box 😞",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "3691702e-9882-4df6-a126-f73797bd30fa",
+   "t": "2026-07-26T01:00:46.721Z",
+   "d": "2026-07-26",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "me gusto mucho 😊",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "710c3dec-c626-41f3-9959-3f1187b88dce",
+   "t": "2026-07-26T08:02:09.681Z",
+   "d": "2026-07-26",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "There has been a bug about the crocodile pet picture in the tree egg where it's the same thing as cuckoo, please fix the bug or it will be confusing.",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "4a2efc41-38d0-4660-aef1-5e51270323c2",
+   "t": "2026-07-26T16:51:56.386Z",
+   "d": "2026-07-26",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "Hii ur game is soo fun it should deserve 200000000m ppl from the whole world to play it oo and I'm on the forest world so ooooooooo ooooooooo  funnn!!",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "aa557ab0-9c62-47a7-bff8-f31547ec018a",
+   "t": "2026-07-26T19:20:40.673Z",
+   "d": "2026-07-26",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "me gustaría que los regalos por conectividad se actualizara en automático , para no estar saliendo cada hora .",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "cfd3f653-0a46-4f80-9a1f-06bd855cf770",
+   "t": "2026-07-26T21:12:50.011Z",
+   "d": "2026-07-26",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "Ich mag die se Spiele",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "f0ad6e84-388f-4a2b-96ee-dd62d14f2437",
+   "t": "2026-07-26T23:25:59.958Z",
+   "d": "2026-07-26",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "So good I wish I had codes though",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "ed8912be-4d2b-469a-9a6e-506bab598159",
+   "t": "2026-07-27T00:07:53.397Z",
+   "d": "2026-07-27",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "супер игра",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "73bfd3a8-28b4-419c-8d57-eb104fbfc7c6",
+   "t": "2026-07-27T07:50:10.907Z",
+   "d": "2026-07-27",
+   "v": 1681,
+   "cat": "Downvote",
+   "comment": "DID NOT give me my win THAT I wonnnnnnnn 😡😡😡😡😡😡😡",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "1e7f495a-c956-4224-9908-a7e448e8e360",
+   "t": "2026-07-27T09:41:49.662Z",
+   "d": "2026-07-27",
+   "v": 1681,
+   "cat": "Downvote",
+   "comment": "Hab die Kiste von Tag 7 nicht bekommen",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "8cc7ff1a-2240-441c-b818-05d718731b4a",
+   "t": "2026-07-27T09:57:28.280Z",
+   "d": "2026-07-27",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "он очень интересный и прикольный",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "5f39091c-59b1-43aa-84d2-7827dd95941c",
+   "t": "2026-07-27T10:02:54.531Z",
+   "d": "2026-07-27",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "Jgjxtxgxflfhk",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "d83b64e3-7798-4e0b-bf96-4c61ccd8d9e1",
+   "t": "2026-07-27T10:24:33.636Z",
+   "d": "2026-07-27",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "The game is very good, but in the dance shop it won't let me scroll down any further. Every time I try, it sends me back to the top and I can't buy any dances.",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "e0a05bf8-8485-480d-a774-f152f2bd4d14",
+   "t": "2026-07-27T17:03:57.316Z",
+   "d": "2026-07-27",
+   "v": 1681,
+   "cat": "Downvote",
+   "comment": "i bought the 29 robux game pass and never received it. i would either like a refund, my game pass, or the option nobody wants i sue. i worked hard for my money to get that robux. if i do not get a refund or my game pass in the next 24 hours i will go beast mode.                                                                                                           sincerely, Lyla.",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "fb9288be-bb01-4833-abe2-b65b001ea04d",
+   "t": "2026-07-27T17:36:19.064Z",
+   "d": "2026-07-27",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "me encanta ponerle la opción de deslisada automática en la configuración",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "a19f71a8-873e-4938-a92a-d72653c0e2c0",
+   "t": "2026-07-27T19:38:25.662Z",
+   "d": "2026-07-27",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "jojojojojojojjoj",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "c14c3b03-eba8-43c4-ae52-db70b843e91a",
+   "t": "2026-07-28T00:17:48.220Z",
+   "d": "2026-07-28",
+   "v": 1681,
+   "cat": "Downvote",
+   "comment": "horrível, decepcionante. eu fiquei mais de meia hora naquela \"água\" nadando pra no final quando eu fui conseguir chegar eu simplesmente abro o negócio de danças que vocês mesmos nos proporcionam e eu saio do mapa. fazendo eu de PALHAÇA E TONTA, EU FIQUEI MEIA HORA NESSA PALHAÇADA E DEPOIS EU SAIO DO MAPA E NÃO GANHO O DINHEIRO DO JOGO. NÃO GOSTEI. MELHORE, MELHORE. MUUUITO. JOGO HORRÍVEL",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "ea374f97-a6d3-4ce5-9d44-a747f780e970",
+   "t": "2026-07-28T02:50:41.893Z",
+   "d": "2026-07-28",
+   "v": 1681,
+   "cat": "Upvote",
+   "comment": "нужен код для игры",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "4fe5a4db-109a-47a3-b2ed-a931d0cfd88f",
+   "t": "2026-07-28T10:14:53.211Z",
+   "d": "2026-07-28",
+   "v": 1681,
+   "cat": "Downvote",
+   "comment": "Hey! I don't think this is similar to ride highest roller coaster and slide! I dislike it because that is so sloppy.",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "20ae77b8-32a5-4aab-9b2f-743824b68de8",
+   "t": "2026-07-28T18:45:02.946Z",
+   "d": "2026-07-28",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "sjisjsjsxmm",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "666b5208-eb4e-4c68-bebc-f76a21705b62",
+   "t": "2026-07-28T19:48:04.730Z",
+   "d": "2026-07-28",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "e bellissimo sto gioco",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "490a4dcc-f2ef-42e8-a6e3-eb77b4f4c907",
+   "t": "2026-07-29T00:25:53.424Z",
+   "d": "2026-07-29",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "I love the game AND I got a good pet",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "d7403831-0263-4411-b78c-f9edf0b6bd0f",
+   "t": "2026-07-29T08:19:51.983Z",
+   "d": "2026-07-29",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "Pls can i have secret pet",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "947f2e31-1387-4f45-98e3-49ad6ef9cffd",
+   "t": "2026-07-29T11:12:55.649Z",
+   "d": "2026-07-29",
+   "v": 1683,
+   "cat": "Downvote",
+   "comment": "لالالالالالا🤮🤮🤮🤮🤢💢",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "6f562871-8364-492b-befa-6370bf6e96ac",
+   "t": "2026-07-29T14:11:00.758Z",
+   "d": "2026-07-29",
+   "v": 1683,
+   "cat": "Downvote",
+   "comment": "This game is horrible I played for almost an hour to get the last reward but it would not let me have it then restarted again and again pleasee fix this problem and the I will rate it",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "f89627d7-9779-4d28-8d67-4ecc83c1da7a",
+   "t": "2026-07-29T15:56:09.951Z",
+   "d": "2026-07-29",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "oyunda botumu çıkarıp bir başkasının botuna inemiyorum yani oyun bozuk gibi Lütfen buna dair bir açıklama yapın açıklama kısmına please",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "9a44a780-9593-42a2-9da7-0f0a7a0b4294",
+   "t": "2026-07-29T17:10:09.005Z",
+   "d": "2026-07-29",
+   "v": 1683,
+   "cat": "Downvote",
+   "comment": "I do not like this game because in the ice world it’s very hard to get 25 or 10t and this is  very unfair because the 10t goes too slow and it’s hard to make that much money just for one raft and if you do make good money and you have enough for the second raft you also have to pay for the first even though you will not need it and then you have to work all over again this is very annoying and frustrating to do and kinda of a waste of my time. Maybe when you improve this game I will play it",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "5a31635a-92a3-44fb-b0c2-0a5cf83d040c",
+   "t": "2026-07-29T18:27:42.939Z",
+   "d": "2026-07-29",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "😉😉😉thanks you",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "4d23dc49-069c-469f-8d60-f41d58121a4d",
+   "t": "2026-07-29T19:31:32.060Z",
+   "d": "2026-07-29",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "GRACIAS PORESTE JUEGO TAN BONITO",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "727da6e0-125c-423b-b27c-d825c49b9dfa",
+   "t": "2026-07-30T01:12:59.397Z",
+   "d": "2026-07-30",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "I like this game it's a really addicting game, but there is one thing that needs to be fixed- trades. Whenever people ask me to trade with people, I'd accept. We'd give our chosen pets, but then when both of us accept they'll take their pets away and we're not able to quickly cancel and the trade or should I say, scam, goes through... I'm sorry but I think this should be fixed so that people don't get scammed, like able to quickly cancel or exit the trade.",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "2eee6ec1-2a18-4b36-a9cb-97f2c28b2c1c",
+   "t": "2026-07-30T03:19:13.239Z",
+   "d": "2026-07-30",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "I love the game",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "20a450f9-b824-4302-ae91-d58e9f53269f",
+   "t": "2026-07-30T06:01:23.626Z",
+   "d": "2026-07-30",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "dame los códigos",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "76b20e03-26ae-4136-810e-28eca27881bf",
+   "t": "2026-07-30T13:04:41.807Z",
+   "d": "2026-07-30",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "67676767676767",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "4483faea-7848-4ddf-bcc0-bab655b97b0f",
+   "t": "2026-07-30T15:46:26.623Z",
+   "d": "2026-07-30",
+   "v": 1683,
+   "cat": "Downvote",
+   "comment": "New worlds",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "d16ad3e2-8465-4c8b-8c71-e737dae160fd",
+   "t": "2026-07-30T18:54:18.986Z",
+   "d": "2026-07-30",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "love this game",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "d1069e13-a5a9-435c-96c6-cf436ca46174",
+   "t": "2026-07-30T19:32:06.193Z",
+   "d": "2026-07-30",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "Incroyable",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "37cdc80c-4cdd-4383-8be3-5d344f28eb02",
+   "t": "2026-07-31T04:19:07.376Z",
+   "d": "2026-07-31",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "Good and it’s a good way of a competing",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "1fedb054-020e-4e17-a302-69b5b374f341",
+   "t": "2026-07-31T07:44:52.008Z",
+   "d": "2026-07-31",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "бкклвдажкзазвдвд",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "74d8cf67-aecd-4a9e-bb3d-afe125d0bc07",
+   "t": "2026-07-31T09:52:06.189Z",
+   "d": "2026-07-31",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "so fun and super cute I HAVE MANY FIRend to enjoy here",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "59292529-7985-49c0-afcc-ce9889a01a3a",
+   "t": "2026-07-31T15:21:34.362Z",
+   "d": "2026-07-31",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "хочу огг подарок",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "6a407fd9-e457-4cd1-8805-7090717b3633",
+   "t": "2026-07-31T16:37:53.135Z",
+   "d": "2026-07-31",
+   "v": 1683,
+   "cat": "Upvote",
+   "comment": "hola muy buen juego 😊",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "0a1dd756-907f-490d-b387-918e13dd0818",
+   "t": "2026-07-31T19:30:34.063Z",
+   "d": "2026-07-31",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "It’s amazing and good!",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "21cb985e-755c-431d-a103-64cdc4b51c07",
+   "t": "2026-08-01T05:16:18.465Z",
+   "d": "2026-08-01",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "in phone, are impossible equipo the bunny dance, jazz dance and more",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "c690243e-a225-4434-941f-e74c45760b01",
+   "t": "2026-08-01T11:10:33.624Z",
+   "d": "2026-08-01",
+   "v": 1685,
+   "cat": "Downvote",
+   "comment": "Плейс мне нртавится, а то, чтто разрабо ктучик обеощает уже 3 недели новуюарт это конечно пзор",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "037270fc-7144-4d2f-a5f7-24ee7d92a39f",
+   "t": "2026-08-01T14:20:35.881Z",
+   "d": "2026-08-01",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "The code isn’t valid",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "aa75ad2c-69ec-4fdb-98cc-429ee72d4c6c",
+   "t": "2026-08-01T15:39:46.328Z",
+   "d": "2026-08-01",
+   "v": 1685,
+   "cat": "Downvote",
+   "comment": "o jogo era legal as código não funcionam não vem mapa novo perdeu a graça vocês não dão incentivo para continuar esta massa te chato um tédio",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "7eb457ad-fba1-4146-8dd0-49d013614b80",
+   "t": "2026-08-01T16:28:45.144Z",
+   "d": "2026-08-01",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "Super!! Polecam",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "0f2eee67-cf65-4f56-9f82-e7f2149f4476",
+   "t": "2026-08-02T00:56:51.064Z",
+   "d": "2026-08-02",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "ليه أنا بطيئه سرعوني بليز 🫠",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "aff5d2a3-f1af-42e2-96b7-36491166dcd6",
+   "t": "2026-08-02T11:37:26.638Z",
+   "d": "2026-08-02",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "mi piace un sacco",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "5dc864b7-33a4-4393-86a7-7993ae088f0f",
+   "t": "2026-08-02T12:21:18.750Z",
+   "d": "2026-08-02",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "bellissimo gioco",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "04f713b4-cd42-416c-9f8c-8b7860f886a6",
+   "t": "2026-08-02T12:47:09.265Z",
+   "d": "2026-08-02",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "wajna gra gram w nią ciągle 😛",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "4367c5c6-0490-4113-b9b2-9da385d8e62c",
+   "t": "2026-08-02T14:05:50.552Z",
+   "d": "2026-08-02",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "wessam503mw",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "4463b004-6e9c-405b-b15e-6eb9b2d6e396",
+   "t": "2026-08-02T20:17:43.466Z",
+   "d": "2026-08-02",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "0000000000",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "5b230be0-2dcf-4ac0-8e5f-968215e84797",
+   "t": "2026-08-02T21:11:28.689Z",
+   "d": "2026-08-02",
+   "v": 1685,
+   "cat": "Downvote",
+   "comment": "не выдают награды за время, перезаходила много раз, ничего не помогает",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "6263e018-324d-4f41-aedb-bcf90933e2cc",
+   "t": "2026-08-02T22:24:29.705Z",
+   "d": "2026-08-02",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "GOOD GAME",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "6c036a23-d697-4370-8cc6-1688081fce46",
+   "t": "2026-08-03T07:16:00.797Z",
+   "d": "2026-08-03",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "I like this game",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "ab506471-6e45-46ee-8944-b509dbb63845",
+   "t": "2026-08-03T08:50:59.777Z",
+   "d": "2026-08-03",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "6767676767",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "0c79f36d-0280-4fb2-b6f3-1e88ae879cbc",
+   "t": "2026-08-03T18:23:42.468Z",
+   "d": "2026-08-03",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "me encanto",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "dc4119e0-6ca9-4afa-be46-b6a6ad10e089",
+   "t": "2026-08-04T00:00:32.627Z",
+   "d": "2026-08-04",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "I love this game",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "9250ba50-038c-4632-9782-8ea17e1f459f",
+   "t": "2026-08-04T14:31:28.771Z",
+   "d": "2026-08-04",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "tôi thấy game rất hay",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "11cc99ff-cd70-4c45-b6a3-0e349a284ff6",
+   "t": "2026-08-04T17:44:09.826Z",
+   "d": "2026-08-04",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "очень понравилась игра",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "1d79ea76-ad23-40c0-8584-7b870421771d",
+   "t": "2026-08-04T19:00:05.467Z",
+   "d": "2026-08-04",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "ich möchte bitte der beste von alle sein",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "f26ca65d-7cef-4808-aa34-920d405881ad",
+   "t": "2026-08-04T23:32:45.538Z",
+   "d": "2026-08-04",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "es muy muy buen juego lo amooo",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "c9538e7d-77f2-4512-8d1b-99381127f896",
+   "t": "2026-08-05T01:45:42.678Z",
+   "d": "2026-08-05",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "esse jogo é muito viciante",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2086e192-18eb-4db4-a6ce-c9d5b3aa5af1",
+   "t": "2026-08-05T10:12:55.726Z",
+   "d": "2026-08-05",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "The game is very interesting and addictive.",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "23d8c137-7c10-4ebe-81de-94d94c5022ec",
+   "t": "2026-08-05T18:47:34.386Z",
+   "d": "2026-08-05",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "se laguea un poco pero me encanta",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "c5289704-9bd5-4ff5-a29b-4865bd369c86",
+   "t": "2026-08-06T00:33:46.604Z",
+   "d": "2026-08-06",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "I love how I can improve my level and the slide idea",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "7c006df8-0007-446e-8c86-61b551300c25",
+   "t": "2026-08-06T02:15:16.566Z",
+   "d": "2026-08-06",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "Cho xin cái mã",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "d1c61482-1b87-4f50-a9bb-ae01228e8dd5",
+   "t": "2026-08-06T03:07:58.686Z",
+   "d": "2026-08-06",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "está muy lindo",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "09966a3d-e247-4b0e-bbad-c6e7c9d880b0",
+   "t": "2026-08-06T15:12:18.657Z",
+   "d": "2026-08-06",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "super gra mega mi sie pba",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "84d21ea2-7c17-41a3-a0b5-adc5b193231d",
+   "t": "2026-08-06T21:50:04.177Z",
+   "d": "2026-08-06",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "沒有挺好玩的不需要改",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "fc069785-94f2-4689-bac5-115cca313522",
+   "t": "2026-08-07T00:18:08.834Z",
+   "d": "2026-08-07",
+   "v": 1685,
+   "cat": "Downvote",
+   "comment": "se traba todo no se puede jugar haci dame 1.000 robux",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "6db332e3-71e8-4060-a7b2-c8908838e294",
+   "t": "2026-08-07T09:24:17.128Z",
+   "d": "2026-08-07",
+   "v": 1685,
+   "cat": "Downvote",
+   "comment": "Lên đến đích mà tôi lại rơi xuống",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "4bb914a7-b627-4a7a-a386-e2d451f545a7",
+   "t": "2026-08-07T19:39:57.315Z",
+   "d": "2026-08-07",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "no le puedo dar like al juego aparece error",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "fef06805-c2ff-4462-bc87-f5e47a431a2f",
+   "t": "2026-08-07T22:56:01.101Z",
+   "d": "2026-08-07",
+   "v": 1685,
+   "cat": "Upvote",
+   "comment": "esta bueno pero el problema es que cuando quiero dar click a algunos botones, no me deja y tengo que spamear",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "b3118559-708b-4282-832b-53808b9361dd",
+   "t": "2026-08-08T16:21:34.031Z",
+   "d": "2026-08-08",
+   "v": 1691,
+   "cat": "Downvote",
+   "comment": "It's a very raw game. There is a lot of advertising so that everyone buys something for robux. I reached the top, went in just to see what kind of dance I could buy, in the end I just fell down and died. Logically, they didn't give me any money, I wonder why I got there. It's a terrible game, I'll never go back in my life.",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2022bb20-b4cb-4e35-bb87-da32a8653253",
+   "t": "2026-08-09T02:07:20.354Z",
+   "d": "2026-08-09",
+   "v": 1691,
+   "cat": "Upvote",
+   "comment": "me gusta esta juego",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "7042a68b-b252-46a5-856e-448f1f71ea35",
+   "t": "2026-08-09T02:56:56.058Z",
+   "d": "2026-08-09",
+   "v": 1691,
+   "cat": "Downvote",
+   "comment": "El juego se me bugeo horrible y no me deja comprar ni una balsa",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "e3742d72-0684-4656-8b0e-504c1888cacf",
+   "t": "2026-08-09T04:19:44.867Z",
+   "d": "2026-08-09",
+   "v": 1691,
+   "cat": "Downvote",
+   "comment": "my panda pet gone????????????????????????????????????????????",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "50a265e7-c1e2-428d-9043-76b088b45683",
+   "t": "2026-08-09T05:59:39.946Z",
+   "d": "2026-08-09",
+   "v": 1691,
+   "cat": "Downvote",
+   "comment": "New update is completely broken, no group update either.",
+   "os": "OSX",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "b486ba44-dafe-439c-9caa-cacfaea4f3c4",
+   "t": "2026-08-09T12:09:23.673Z",
+   "d": "2026-08-09",
+   "v": 1691,
+   "cat": "Upvote",
+   "comment": "too high prices a the egg 500k for an egg and another friend 750k plz lower prices thanks",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "04b832c6-a715-4290-a047-1191bdea3008",
+   "t": "2026-08-09T14:24:28.892Z",
+   "d": "2026-08-09",
+   "v": 1691,
+   "cat": "Upvote",
+   "comment": "그룹가입하게 해주세요 아니면 아이템 얻게해주세요",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2343dbba-9162-4d85-b728-63ea7a310e83",
+   "t": "2026-08-10T17:37:36.053Z",
+   "d": "2026-08-10",
+   "v": 1691,
+   "cat": "Upvote",
+   "comment": "Добавить  улучшения для усталости. так-то всё прекрасно. Мне это игра по 1+) зашла",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "8e79a426-f750-4bb6-9e86-4776dcf44a7a",
+   "t": "2026-08-11T10:07:14.696Z",
+   "d": "2026-08-11",
+   "v": 1691,
+   "cat": "Upvote",
+   "comment": "Google guy",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "279cb400-6c87-4d1d-ac74-5b8090ad8adf",
+   "t": "2026-08-11T18:08:40.279Z",
+   "d": "2026-08-11",
+   "v": 1691,
+   "cat": "Downvote",
+   "comment": "code didn't work",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "ccf921a4-d35b-4571-b0a3-2535261129a0",
+   "t": "2026-08-13T05:36:20.406Z",
+   "d": "2026-08-13",
+   "v": 1691,
+   "cat": "Downvote",
+   "comment": "Money function is bugged and not updating after a slide. Takes forever just to get money.",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "296fb460-45ed-43cb-a0db-c3e4e8b8bcf2",
+   "t": "2026-08-13T08:40:43.049Z",
+   "d": "2026-08-13",
+   "v": 1691,
+   "cat": "Upvote",
+   "comment": "I just spent over 100 robux and my game got reset bro fix your game you scammed me",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "6fd488c6-f50d-4d15-ad34-6c90da2b6a1a",
+   "t": "2026-08-13T17:49:54.041Z",
+   "d": "2026-08-13",
+   "v": 1691,
+   "cat": "Upvote",
+   "comment": "yo digo q pongan mundo 2",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "4a671843-611c-45bf-b875-97b896e52ed3",
+   "t": "2026-08-13T21:14:10.361Z",
+   "d": "2026-08-13",
+   "v": 1691,
+   "cat": "Downvote",
+   "comment": "Just another one of those shovelware games with the cramped HUD and baby-looking vibe.",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "0be5d3ae-eb2a-41c4-b540-e484c097f16a",
+   "t": "2026-08-13T22:31:45.335Z",
+   "d": "2026-08-13",
+   "v": 1691,
+   "cat": "Upvote",
+   "comment": "ieieiriririrkdkkfyekxtwua",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "d71faebb-c7ea-4145-8cfa-ed4dcbda252b",
+   "t": "2026-08-14T21:38:13.976Z",
+   "d": "2026-08-14",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "When I went in to the emot shop at the top I glitched through the floor and lost 700,000 coins",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "cfe5bf84-f42f-42c1-bf4e-c90c6a523e97",
+   "t": "2026-08-15T00:17:19.510Z",
+   "d": "2026-08-15",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "Se bugueo la tienda de bailes, que asco",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2a311009-12d4-4082-8ece-48bfb47ce9ae",
+   "t": "2026-08-15T00:40:34.457Z",
+   "d": "2026-08-15",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "eu amei o jogo vc poderia deixar mas fácil hehe te amo muito kkk",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "d7225d3e-379a-4d7a-8614-1c686efeb01a",
+   "t": "2026-08-15T09:35:41.993Z",
+   "d": "2026-08-15",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "So funnnnnnn 🥳",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "ad9c8e0d-f784-4b1f-89af-8942d4fcc6b2",
+   "t": "2026-08-15T10:32:19.692Z",
+   "d": "2026-08-15",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "Mega gra bardzo fajnie dopracowana",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "ff1088a2-d01c-4d79-84e7-95eb133b9b38",
+   "t": "2026-08-16T05:17:06.458Z",
+   "d": "2026-08-16",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "No funcionan bien los barcos",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "1f3b67af-6dff-425f-9763-e4f68856c534",
+   "t": "2026-08-16T19:13:51.574Z",
+   "d": "2026-08-16",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "Make more worlds rapidly because the game gets repetitive and boring after sone time. make the grind harder and add more exciting things to the game and add new worlds that are more challenging. WE NEED NORE WORLDS",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "ed496a7c-9461-4814-8b6b-5d306453c165",
+   "t": "2026-08-16T23:13:08.417Z",
+   "d": "2026-08-16",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "muy buen juego",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "153ea48e-6d97-4387-a6be-b54cce8e71d1",
+   "t": "2026-08-16T23:22:13.780Z",
+   "d": "2026-08-16",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "kksndndkp b",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "c9b56f82-1196-4333-9b63-07c3b5d1448a",
+   "t": "2026-08-17T06:45:01.489Z",
+   "d": "2026-08-17",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "çok güzel bir oyun aman keşke hani o yüzmek için bı hız şeyi gibi olsa daha iyi olurduu",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "afd01a17-30e2-4550-983c-003d538050c0",
+   "t": "2026-08-17T08:08:38.107Z",
+   "d": "2026-08-17",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "Amo el juego, te lo juro por Dios. Pero a la vez me enoja xq cuando estoy jugando normal derepente desaparece  tobogán y todo, terminando cayéndome, al igual cuando llegó a la sima se desaparece de la nada y cuando bajó también, no puedo jugar si. En verdad amo el juego me gusta, pero odio ese pequeño detalle, que siempre cada minuto  tengo que estár saliendo por culpa de ese lag. Talvez pienses que es mi teléfono  mi Internet, pero no yo también o pensé y no, no era. Así porfavor soluciona eso",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "8593ed03-484d-4672-8fdf-0558bc9f9821",
+   "t": "2026-08-17T16:10:13.363Z",
+   "d": "2026-08-17",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "bro i got scammed multiple times for my best pets yall gotta fix ur damn trading system because if i accept i cant unaccept im not gonna be playing this anymore",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "7363a49c-d6f6-46fa-8e04-ff6f86bba1c5",
+   "t": "2026-08-17T19:29:27.564Z",
+   "d": "2026-08-17",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "ai slop. be better.",
+   "os": "OSX",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "61e3b18e-533b-466e-acc1-b79a5c15c30d",
+   "t": "2026-08-17T21:59:29.746Z",
+   "d": "2026-08-17",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "hajajj. ı thik nthsi game is amaznig",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "ca8a82c3-d9f3-4969-b785-7d6ad3b2873d",
+   "t": "2026-08-17T22:55:41.699Z",
+   "d": "2026-08-17",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "I was playing and making lots of money then all of asudden i stoped making nearly as much money games glitched fix it pls",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "c9bd25fa-91f8-4bc2-af6b-a70f450ebf15",
+   "t": "2026-08-18T02:33:56.681Z",
+   "d": "2026-08-18",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "Good game very fun to play",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "6d5a28e9-01f1-4174-9fde-e0b8621ddb44",
+   "t": "2026-08-18T02:55:29.136Z",
+   "d": "2026-08-18",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "You scammer I got to the top and it flung me off",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "e9effaab-baee-4749-b302-550a1c2c31da",
+   "t": "2026-08-18T03:29:52.951Z",
+   "d": "2026-08-18",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "Vote negativo porque se me trava el juego, nado en el aire, me deslizo fuera del flotador, me deslizo en el aire, me caigo cuando llego al cima quedandome volando en el aire y el juego me debe más de 90B de monedas y de 10K de trofeos en el mundo 2 y tengo muy buena internet, espero que lo lean y gracias por la modestias.",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "b3aeeeb0-ccfa-4251-99ce-1f2188b520ac",
+   "t": "2026-08-18T06:17:54.851Z",
+   "d": "2026-08-18",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "add a best reward like the daily rewards the best thats what i want you to improve in the rewrd things THANKS🌸",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "1f98ed9d-e6f3-4305-8510-9dda6851dcb1",
+   "t": "2026-08-18T12:45:01.547Z",
+   "d": "2026-08-18",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "Jeu amusant et passionnant",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "d73e953c-762f-4330-91c2-f7d4737f697b",
+   "t": "2026-08-18T19:15:13.935Z",
+   "d": "2026-08-18",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "The best game",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "e1385a58-d5f7-4642-a42c-101ab3e39664",
+   "t": "2026-08-18T21:22:44.150Z",
+   "d": "2026-08-18",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "cuando llegas a la meta y entras a la tienda de bailes el juego te saca del mundo y pierdes tu dinero y el progreso es super malo el juego por ese bug.",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "6a38d3b6-06d6-4c35-9048-bd30d57c792a",
+   "t": "2026-08-19T01:53:30.895Z",
+   "d": "2026-08-19",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "aaaaaaaaaaaaaa",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "9cab027f-e08b-46ce-97fb-6c1a5d6ecedb",
+   "t": "2026-08-19T02:49:25.542Z",
+   "d": "2026-08-19",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "Muito bom",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "eea365c4-c13e-4cae-b954-f7c874f87632",
+   "t": "2026-08-19T05:48:25.138Z",
+   "d": "2026-08-19",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "very good very nice i love the game",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "5c2e52a6-0eab-4c36-8103-6f0b80f10a4c",
+   "t": "2026-08-19T08:24:27.579Z",
+   "d": "2026-08-19",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "Put option to turn off TRADE. PEOPLE KEEP SPAMMING TRADE ONLY TO CANCEL. it's frustrating!",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "2febde86-3419-4e54-b15f-c9ae0947da05",
+   "t": "2026-08-19T08:46:53.500Z",
+   "d": "2026-08-19",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "Ce jeu est trop bien",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "77283c13-60c5-4229-82ef-68c638899cd9",
+   "t": "2026-08-19T09:36:54.001Z",
+   "d": "2026-08-19",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "Turn off or on trade. Kids keeps on spamming it, which blocks my screen.",
+   "os": "OSX",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "7163d750-5cd8-43d6-9393-d159723194f7",
+   "t": "2026-08-19T11:52:17.415Z",
+   "d": "2026-08-19",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "crea un nuevo mundo pls",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "8c7d26ea-b2ac-40f6-8bab-792967720392",
+   "t": "2026-08-19T18:57:09.410Z",
+   "d": "2026-08-19",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "It makes my Brine sick when l go down the slide couse on how windy it is what l love is the things gowing down the slide l am just thinking fix the windy ness off it then l will like it more",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "890cb356-0d27-47b0-9a93-1c7fe1cca71a",
+   "t": "2026-08-19T19:32:37.747Z",
+   "d": "2026-08-19",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "Very repetitive and its very bad.",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "50dd3b3b-3b17-4bbd-b8f5-1694d39c6476",
+   "t": "2026-08-20T03:55:08.668Z",
+   "d": "2026-08-20",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "Es que tengo un problema mis monedas del juego se reinician y eso me impide avanzar más un tu juego y quiero que eso por favor ya no suceda",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "baa17492-1d64-402d-b5a4-4b0608d4c96c",
+   "t": "2026-08-20T04:18:49.841Z",
+   "d": "2026-08-20",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "Me encanta el juego",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "650629e8-92cf-4794-b3cb-fd93977bb9e5",
+   "t": "2026-08-20T09:41:17.013Z",
+   "d": "2026-08-20",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "Игра интересная, в ней развиваешься и получаешь призы. Мне нравится!",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "5590c54b-2818-45ed-a9b3-ab5b8f54dc4b",
+   "t": "2026-08-20T09:48:45.848Z",
+   "d": "2026-08-20",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "Soo good 😊",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "d701df2e-40d7-4686-93aa-39b4804ce928",
+   "t": "2026-08-20T16:51:16.525Z",
+   "d": "2026-08-20",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "Hi how are you I think that they should add more trails and more boats and more maps me and my friends love this game give us updates please this game is a banger 5⭐️⭐️⭐️⭐️⭐️",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "646b37d2-175c-4bad-a496-699ab31bf02e",
+   "t": "2026-08-20T17:24:51.690Z",
+   "d": "2026-08-20",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "Ok so i bought something in the game and it was the sea dragon king I think. it was a pet uhm but I never got it?? when I literally payed for it. I left and rejoined and it still wasn't in my inventory.",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "1dfe6371-41d7-4187-a4b4-977f6b306b87",
+   "t": "2026-08-20T18:07:09.561Z",
+   "d": "2026-08-20",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "estuvo muy aburrido",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "58daff47-72a1-49c5-9491-421f772247e0",
+   "t": "2026-08-20T23:44:26.775Z",
+   "d": "2026-08-20",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "j'aime trop continue comme ça ❤️☺️",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "e56ba56e-f6fb-4440-9403-f243a3c9c01a",
+   "t": "2026-08-21T03:18:29.106Z",
+   "d": "2026-08-21",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "this game is so so so good",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2fc3d434-5f19-4635-b4c7-753967f8ff2d",
+   "t": "2026-08-21T03:22:53.487Z",
+   "d": "2026-08-21",
+   "v": 1698,
+   "cat": "Downvote",
+   "comment": "Your making the favorite thing to big in on phone",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "20731e41-3860-47dc-bd93-6b27c00d772f",
+   "t": "2026-08-21T04:59:38.051Z",
+   "d": "2026-08-21",
+   "v": 1698,
+   "cat": "Upvote",
+   "comment": "面白いし楽しいから。",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "7bfe9a23-8450-4021-baf4-8bf92cff30f4",
+   "t": "2026-08-21T17:48:25.743Z",
+   "d": "2026-08-21",
+   "v": 1705,
+   "cat": "Downvote",
+   "comment": "Game randomly reset while playing, I lost all of my potions, lost my timed rewards, claimed a pet, and it didn’t show up when it reset. Bugging",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "96255ac1-06da-49a9-bb25-c43711f64328",
+   "t": "2026-08-21T18:06:52.125Z",
+   "d": "2026-08-21",
+   "v": 1705,
+   "cat": "Upvote",
+   "comment": "wann kann ich mein besseres Boot kaufen? Außer das Beste das klappt ja nicht Mals und das ist so eine verarsche. Also lösch dieses Spiel",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "e28bb824-ddca-4364-bce1-6b1af8f2a04e",
+   "t": "2026-08-21T20:30:36.742Z",
+   "d": "2026-08-21",
+   "v": 1705,
+   "cat": "Upvote",
+   "comment": "I love it it's so good and amazing ❤️",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "e99c9166-377f-4814-b4c0-73eedcd5e4f7",
+   "t": "2026-08-21T20:30:46.846Z",
+   "d": "2026-08-21",
+   "v": 1705,
+   "cat": "Upvote",
+   "comment": "Pablo wbdu",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "d6a21670-a931-47f6-b3f6-5c2d07aff2bb",
+   "t": "2026-08-21T22:53:30.966Z",
+   "d": "2026-08-21",
+   "v": 1705,
+   "cat": "Downvote",
+   "comment": "Fix the scroll on dance purchases, fun game but the scroll on the dance purchases don’t work. Frustrating as heck.",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "3f794de9-d285-40b2-b4ba-cf5a01537655",
+   "t": "2026-08-22T11:34:13.210Z",
+   "d": "2026-08-22",
+   "v": 1705,
+   "cat": "Downvote",
+   "comment": "Mi si è baggato e se esco e rientro non si risolve niente",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "304f9dc6-48c2-44a5-a73c-2b3b16e84332",
+   "t": "2026-08-22T11:48:17.318Z",
+   "d": "2026-08-22",
+   "v": 1705,
+   "cat": "Upvote",
+   "comment": "This game is fun, but the problem is is that when I go to buy new rafts, I can’t scroll down further than the teacups raft, which means I’m stuck with that raft. It also means that I can’t scroll up either, it’s like when I try to scroll down that single page just moves along with it. For some reason, the problem doesn’t happen with the trails. Please fix this.",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "ee368c5d-d149-488b-a348-5b1e9afc31af",
+   "t": "2026-08-22T11:48:52.299Z",
+   "d": "2026-08-22",
+   "v": 1705,
+   "cat": "Upvote",
+   "comment": "нравится просто и все вот",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "4c0d6c6c-a16d-4943-8820-626041062f09",
+   "t": "2026-08-22T12:42:46.719Z",
+   "d": "2026-08-22",
+   "v": 1705,
+   "cat": "Downvote",
+   "comment": "Esse jogo como você tenta comprar um novo barco quando você abaixa você não consegue você tem que ficar mesmo lugar é chato",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "da1bbbeb-7023-496c-97ff-1e2a308d7eef",
+   "t": "2026-08-22T15:52:24.606Z",
+   "d": "2026-08-22",
+   "v": 1705,
+   "cat": "Upvote",
+   "comment": "eewrwerfwrw",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "c62b2461-5997-4c74-aad1-9377ef5ab186",
+   "t": "2026-08-22T22:30:29.014Z",
+   "d": "2026-08-22",
+   "v": 1706,
+   "cat": "Downvote",
+   "comment": "It won’t let me scroll up on the raft choice menu",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "791346ea-235d-4209-8ef1-01f2e551fbbd",
+   "t": "2026-08-23T00:55:07.932Z",
+   "d": "2026-08-23",
+   "v": 1706,
+   "cat": "Downvote",
+   "comment": "ngebug gk bisa ganti balon nya",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "7c6c69f7-2557-4cf8-8f78-7d61cc24b6ad",
+   "t": "2026-08-23T01:16:40.597Z",
+   "d": "2026-08-23",
+   "v": 1706,
+   "cat": "Downvote",
+   "comment": "I'm now only stuck at tutorial and can't get out I already bought it's given me and yet Im still stuck at tutorial fix this or else I'm not playing anymore",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "b5b97000-2a8f-43a2-8e3b-38f6065f85a0",
+   "t": "2026-08-23T06:57:10.024Z",
+   "d": "2026-08-23",
+   "v": 1706,
+   "cat": "Downvote",
+   "comment": "갑자기 다 재설정 되있어요 제발 고쳐주세요",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "d25ad2e6-a839-4b54-945f-c97b4e871778",
+   "t": "2026-08-23T08:05:38.040Z",
+   "d": "2026-08-23",
+   "v": 1706,
+   "cat": "Downvote",
+   "comment": "no deja comprar y/o equipar otra balza para terminar el tutorial y no puedo avanzar mal diseñadola mecánica del juego",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "36c3b4fd-d20f-4492-9479-955118a070f6",
+   "t": "2026-08-23T09:10:54.927Z",
+   "d": "2026-08-23",
+   "v": 1706,
+   "cat": "Upvote",
+   "comment": "because i want to take the code but isnt working",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "7bcb3999-e852-406d-b643-a55cfa7452d4",
+   "t": "2026-08-23T09:35:53.220Z",
+   "d": "2026-08-23",
+   "v": 1706,
+   "cat": "Downvote",
+   "comment": "아니 튜토리얼이 있는지 몰라서 모르고 뗏목 이미 사서 게임 튜토리얼을 못 끝내요 할꺼면 튜토리얼 할껀지 안할껀지 말이라도 해주면 좋겠어요",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "f089b0c2-4eb4-4f66-8ad7-e2e5bbd2d1f9",
+   "t": "2026-08-23T14:13:10.435Z",
+   "d": "2026-08-23",
+   "v": 1708,
+   "cat": "Downvote",
+   "comment": "Does not even let me scroll down",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "cce1b55a-43b2-427f-b6f6-c7175f79364e",
+   "t": "2026-08-24T03:35:06.007Z",
+   "d": "2026-08-24",
+   "v": 1708,
+   "cat": "Upvote",
+   "comment": "PLEASE ADD REBIRTHS my friend and I finished the game and we want to rebirth or a new world but if your already working on one we are ready!",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "db5721a6-2200-49b6-aadc-03f58f5232aa",
+   "t": "2026-08-24T05:12:09.261Z",
+   "d": "2026-08-24",
+   "v": 1708,
+   "cat": "Upvote",
+   "comment": "I love the fact that I can get to go on the slide and I pets :)) love you’re game :)) thanks so much for your kind game 🩷",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "7a33a100-37be-4b54-85bf-276474d00bb5",
+   "t": "2026-08-24T11:59:26.935Z",
+   "d": "2026-08-24",
+   "v": 1708,
+   "cat": "Upvote",
+   "comment": "он мне нравится и ещё там много красивеньких животных и ватрушек (водных)",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "a3f604d9-b3b0-4c60-bb31-deead55153bd",
+   "t": "2026-08-24T13:16:27.120Z",
+   "d": "2026-08-24",
+   "v": 1708,
+   "cat": "Upvote",
+   "comment": "Amazing game love it",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "f38175ab-1018-47cd-97f0-cfb2003618c8",
+   "t": "2026-08-24T18:28:06.860Z",
+   "d": "2026-08-24",
+   "v": 1708,
+   "cat": "Downvote",
+   "comment": "Can’t turn off trade requests so you keep getting pop ups from ppl wanting to trade",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "bd08bfc2-fe22-457e-9be9-770fa8199059",
+   "t": "2026-08-24T22:35:18.661Z",
+   "d": "2026-08-24",
+   "v": 1708,
+   "cat": "Upvote",
+   "comment": "I can't scroll down in the shop please fix that or I will never play this again",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "65b7110c-c7d0-49e3-a89c-1cbf3e5150be",
+   "t": "2026-08-25T04:51:13.603Z",
+   "d": "2026-08-25",
+   "v": 1711,
+   "cat": "Upvote",
+   "comment": "game nya gampang",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "caa14059-50f7-461d-ab6d-b0bfcb342306",
+   "t": "2026-08-25T10:02:14.352Z",
+   "d": "2026-08-25",
+   "v": 1711,
+   "cat": "Upvote",
+   "comment": "cho tôi mã đi",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "5ff35441-5937-437d-a018-fd9a979efdaa",
+   "t": "2026-08-26T08:11:11.401Z",
+   "d": "2026-08-26",
+   "v": 1711,
+   "cat": "Downvote",
+   "comment": "ya no puedo recibir mi dinero",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "a97bb507-7a40-4ae1-9ac3-5f7cb7d93fce",
+   "t": "2026-08-26T14:07:37.386Z",
+   "d": "2026-08-26",
+   "v": 1711,
+   "cat": "Downvote",
+   "comment": "In the first World when you are on top, and go on dances and close that you will fall from the map and when you respawn you will be under the floor, and because we dont have a respawn button you have to go out the game.",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "a1ea8068-dc84-407f-9b80-51eb73f880d3",
+   "t": "2026-08-27T17:41:15.785Z",
+   "d": "2026-08-27",
+   "v": 1711,
+   "cat": "Upvote",
+   "comment": "Es muy divertido, pero deseo que se puedan subir personajes del servidor en el que estés jugando...🫶🏻",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "ee94a241-e177-44e3-9a51-93c452a1fff1",
+   "t": "2026-08-28T11:38:23.850Z",
+   "d": "2026-08-28",
+   "v": 1711,
+   "cat": "Upvote",
+   "comment": "It’s super fun but it’s quite repetitive",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "774c8553-b4ce-46e7-859a-ecd25ce390b0",
+   "t": "2026-08-28T20:56:43.563Z",
+   "d": "2026-08-28",
+   "v": 1715,
+   "cat": "Downvote",
+   "comment": "не работает магазин плотов",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "ad3205a7-b122-40a4-9eac-a444f20a36cd",
+   "t": "2026-08-29T10:22:57.605Z",
+   "d": "2026-08-29",
+   "v": 1716,
+   "cat": "Upvote",
+   "comment": "hsusbdusvxudud",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "1c6d1d82-e14c-4589-8610-158d60f5d575",
+   "t": "2026-08-29T22:40:15.531Z",
+   "d": "2026-08-29",
+   "v": 1716,
+   "cat": "Upvote",
+   "comment": "eu adorei pq eu amo piscina e tobogã",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "b4b9f9ac-bba1-49dc-a7a8-dc9475e6e513",
+   "t": "2026-08-30T14:51:41.578Z",
+   "d": "2026-08-30",
+   "v": 1716,
+   "cat": "Downvote",
+   "comment": "doesn't let me move and yes im playing on PC",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "9dd1dd3a-9bd5-4789-8016-0652b9fc3d53",
+   "t": "2026-08-30T17:45:56.135Z",
+   "d": "2026-08-30",
+   "v": 1716,
+   "cat": "Upvote",
+   "comment": "Faça mais mundos pfvr",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "4e5b17da-4609-402c-bce6-6572fe339000",
+   "t": "2026-08-30T18:54:08.213Z",
+   "d": "2026-08-30",
+   "v": 1716,
+   "cat": "Downvote",
+   "comment": "I had a bug while playing. After each ride, I don't get any money; it doesn't count. I get money from the wheel and from the gift, but after I ride, I don't get any! I've logged in several times every day and nothing's changed! I couldn't find support to report this.",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "1aad6912-d6ad-4bca-a92b-d23481648256",
+   "t": "2026-08-31T06:44:38.599Z",
+   "d": "2026-08-31",
+   "v": 1716,
+   "cat": "Downvote",
+   "comment": "The rafting place is so terrible and bad for mobile & Ipad, it can’t scroll down",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "8cddf8bc-b784-4fd5-98b7-9ac4516fd5a3",
+   "t": "2026-09-01T06:08:39.413Z",
+   "d": "2026-09-01",
+   "v": 1716,
+   "cat": "Upvote",
+   "comment": "make the final two worlds more difficult, will come back to check for more worlds. love this game",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "f6ad92e1-739f-4b4a-8da1-9fdadeb0c20e",
+   "t": "2026-09-01T13:28:48.017Z",
+   "d": "2026-09-01",
+   "v": 1716,
+   "cat": "Downvote",
+   "comment": "the world „desert” isn’t working, when i teleport there i don’t have money, pets etc.",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "ae74ca37-5243-45d7-9c49-a080c0d91f89",
+   "t": "2026-09-01T21:19:08.425Z",
+   "d": "2026-09-01",
+   "v": 1716,
+   "cat": "Downvote",
+   "comment": "The raft menu is insanely buggy. I couldn't get past the tea cup cause it would scroll up instantly.",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "4448d5fa-9702-449b-b473-fceb8b8d93b5",
+   "t": "2026-09-02T02:44:58.754Z",
+   "d": "2026-09-02",
+   "v": 1716,
+   "cat": "Downvote",
+   "comment": "es el peor juego que vi me gastó 1000 robux más de eso ahora tengo 1 robux lo ODIO 😡😡😡😡😡😡",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "35054dec-b675-4db7-9799-0ecfa54aba95",
+   "t": "2026-09-02T03:14:42.396Z",
+   "d": "2026-09-02",
+   "v": 1716,
+   "cat": "Downvote",
+   "comment": "Buying slide menu is broken",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "10e9e5b1-3688-4586-acfa-9b0a7047944d",
+   "t": "2026-09-03T05:31:10.854Z",
+   "d": "2026-09-03",
+   "v": 1716,
+   "cat": "Downvote",
+   "comment": "đang mua bè thì nó cứ quay lại",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "e9adab43-65dc-459b-8dd9-15c0d1d61cfc",
+   "t": "2026-09-03T23:41:19.835Z",
+   "d": "2026-09-03",
+   "v": 1716,
+   "cat": "Upvote",
+   "comment": "I’m ubjust yyb",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "3fa37943-daf2-4312-a699-37e7178d7804",
+   "t": "2026-09-04T07:42:09.630Z",
+   "d": "2026-09-04",
+   "v": 1716,
+   "cat": "Downvote",
+   "comment": "the raft section is not scrolling upwards it's just glitching like there is a earthquake pls fix it",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "4c138398-db4b-4a07-9431-62eecc7f1639",
+   "t": "2026-09-05T12:28:36.906Z",
+   "d": "2026-09-05",
+   "v": 1719,
+   "cat": "Upvote",
+   "comment": "Cuz this is my fave game",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "85bb80f9-697a-4d75-b426-9ac7c4b22dff",
+   "t": "2026-09-05T14:52:04.815Z",
+   "d": "2026-09-05",
+   "v": 1719,
+   "cat": "Downvote",
+   "comment": "It won’t let me scroll to get a new raft so it is bad",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "f831dba8-d51b-47de-8cc9-790c52e833f7",
+   "t": "2026-09-05T17:05:21.966Z",
+   "d": "2026-09-05",
+   "v": 1719,
+   "cat": "Downvote",
+   "comment": "I BOUGHT SO MANY THINGS WITH ROBUX AND EVERYTHING DISAPEARED WTH THIS IS A SCAM",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "235ecbb8-cd35-4774-bc60-47de804c975d",
+   "t": "2026-09-06T11:36:08.460Z",
+   "d": "2026-09-06",
+   "v": 1719,
+   "cat": "Upvote",
+   "comment": "因為這個遊戲🎮很好玩！👍🏻👍🏻👍🏻👍🏻👍🏻👍🏻👍🏻👍🏻👍🏻👍🏻",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "7d671320-0038-4de2-b7b5-d35260005799",
+   "t": "2026-09-06T12:41:46.365Z",
+   "d": "2026-09-06",
+   "v": 1719,
+   "cat": "Upvote",
+   "comment": "i really love this game, this might be weird but it's very relaxing for me",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "572e40d0-f9d8-4fc5-9706-ee41c449760f",
+   "t": "2026-09-06T20:11:48.608Z",
+   "d": "2026-09-06",
+   "v": 1719,
+   "cat": "Upvote",
+   "comment": "I need to more code",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "c8fe5911-363b-4958-9a99-2332e30168b4",
+   "t": "2026-09-06T21:14:52.521Z",
+   "d": "2026-09-06",
+   "v": 1719,
+   "cat": "Upvote",
+   "comment": "Super chido me encanto uwu🫰🏿",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "047bc1b5-f610-4523-9253-a148a7edaf89",
+   "t": "2026-09-07T16:22:08.139Z",
+   "d": "2026-09-07",
+   "v": 1719,
+   "cat": "Downvote",
+   "comment": "why is everything i had gone, i grinded for hours on this game and now everything i had is gone. it really upsets me on how everything i grinded for is gone...",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "81922bab-b5c6-4706-9bb7-77efa762ecb5",
+   "t": "2026-09-07T17:21:14.151Z",
+   "d": "2026-09-07",
+   "v": 1719,
+   "cat": "Downvote",
+   "comment": "играла несколбко часов, после чего игра зависла и весь прогресс удалился!",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "00e6098f-f60b-4ca1-a75a-8331490a4bc3",
+   "t": "2026-09-08T13:19:45.752Z",
+   "d": "2026-09-08",
+   "v": 1719,
+   "cat": "Upvote",
+   "comment": "eu amei este jogo, ele é um jogo que te tira do tédio",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "60b7aff6-0fd6-44bf-a87c-d9a378aa4d74",
+   "t": "2026-09-08T18:47:09.576Z",
+   "d": "2026-09-08",
+   "v": 1719,
+   "cat": "Upvote",
+   "comment": "bgjhhj. jyjyv",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "cbf2406a-0b48-48c3-adff-1351ecf561e4",
+   "t": "2026-09-09T14:04:45.941Z",
+   "d": "2026-09-09",
+   "v": 1719,
+   "cat": "Upvote",
+   "comment": "pleaseeee add kpop songs to it",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "4298a40f-4a2b-4a4b-ab71-c6c2ce98ebad",
+   "t": "2026-09-09T15:37:11.786Z",
+   "d": "2026-09-09",
+   "v": 1719,
+   "cat": "Downvote",
+   "comment": "When you buy rafts you need to scroll up or down when I do it it goes back to start XX",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "0430826f-1a62-4d1b-8c7e-ee594a2d6809",
+   "t": "2026-09-10T03:27:48.308Z",
+   "d": "2026-09-10",
+   "v": 1719,
+   "cat": "Downvote",
+   "comment": "hard to scroll down on the raft section of the shop on my iphone",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "d94d790e-fb0f-47a8-bb1c-c26098c2a347",
+   "t": "2026-09-10T20:55:33.706Z",
+   "d": "2026-09-10",
+   "v": 1719,
+   "cat": "Upvote",
+   "comment": "tis a gud gem 4 sur 🫃🏻👍🏻",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "0b63f089-5faa-4adf-b4b0-c3213f6434c2",
+   "t": "2026-09-11T00:02:02.834Z",
+   "d": "2026-09-11",
+   "v": 1719,
+   "cat": "Downvote",
+   "comment": "Awful I couldn't even scroll down to buy a raft horrible and so many things for a small map",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "6193f2bc-6d91-4885-b777-67c9ce10e19e",
+   "t": "2026-09-12T00:05:23.140Z",
+   "d": "2026-09-12",
+   "v": 1721,
+   "cat": "Downvote",
+   "comment": "i bought vip and its GONE! i have to wait a month to get robux and its WASED! never playing again peried",
+   "os": "Windows",
+   "device": "Computer",
+   "src": "grab"
+  },
+  {
+   "id": "df400335-fbbd-458d-8ff1-8f7b3646b33b",
+   "t": "2026-09-12T12:42:52.116Z",
+   "d": "2026-09-12",
+   "v": 1721,
+   "cat": "Upvote",
+   "comment": "i can’t access the dances on mobile, i can get down to the bunny one but all the ones below that i can’t scroll to💔",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "6a7c1a0e-4598-46a8-b470-27d5990bd001",
+   "t": "2026-09-12T13:37:29.527Z",
+   "d": "2026-09-12",
+   "v": 1721,
+   "cat": "Upvote",
+   "comment": "nice game! can you add more slides in the starting area though?",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "865c909d-8325-4b35-ba6d-d1a1700d84ba",
+   "t": "2026-09-13T19:38:43.499Z",
+   "d": "2026-09-13",
+   "v": 1721,
+   "cat": "Downvote",
+   "comment": "se bugea demasiado",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "6b134bb5-85e7-491a-8b58-d563d3933f12",
+   "t": "2026-09-15T13:52:21.515Z",
+   "d": "2026-09-15",
+   "v": 1722,
+   "cat": "Upvote",
+   "comment": "Best game ever",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "3f15d86f-bf25-40b2-8368-6f2c1e94cf97",
+   "t": "2026-09-15T19:08:30.994Z",
+   "d": "2026-09-15",
+   "v": 1722,
+   "cat": "Downvote",
+   "comment": "literally took away a lot of my progress :( booo!",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "988e0b35-a066-45be-811c-c7b77bb36451",
+   "t": "2026-09-15T23:46:44.074Z",
+   "d": "2026-09-15",
+   "v": 1722,
+   "cat": "Downvote",
+   "comment": "es que me meto al juego y hay veces en las que me quita mis cosas, se supone que ya tengo hasta el mundo 3 y la nave de galaxias, y de repente cuando quiero volver a jugar no tengo nada",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "c96316dc-f591-4c5d-924b-743440003337",
+   "t": "2026-09-16T21:02:35.427Z",
+   "d": "2026-09-16",
+   "v": 1722,
+   "cat": "Upvote",
+   "comment": "я гулять и короче там летела и где-то бабахнуло",
+   "os": "Android",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "ab2a80a5-ad67-4c7e-ae0b-8587339db4b4",
+   "t": "2026-09-16T21:25:07.245Z",
+   "d": "2026-09-16",
+   "v": 1722,
+   "cat": "Upvote",
+   "comment": "めちゃくちゃおもしろい",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "11ab626d-7d53-46a5-a31a-01fe72606bb9",
+   "t": "2026-09-17T05:23:19.171Z",
+   "d": "2026-09-17",
+   "v": 1722,
+   "cat": "Downvote",
+   "comment": "Jogo bugado, eu voltei pra primeira fase lha sendo q eu já tinha zerado o bglh",
+   "os": "iOS",
+   "device": "Phone",
+   "src": "grab"
+  },
+  {
+   "id": "2bf0e115-3928-454c-87c6-ae85a0973664",
+   "t": "2026-09-18T14:48:59.179Z",
+   "d": "2026-09-18",
+   "v": 1723,
+   "cat": "Upvote",
+   "comment": "Give me a code",
+   "os": "iOS",
+   "device": "Tablet",
+   "src": "grab"
+  },
+  {
+   "id": "a8edc0b9-68cf-49ca-9a29-a862934e8cc1",
+   "t": "2026-09-19T00:19:43.960Z",
+   "d": "2026-09-19",
+   "v": 1723,
+   "cat": "Upvote",
+   "comment": "めちゃくちゃおもしろい",
+   "os": "Android",
+   "device": "Tablet",
+   "src": "grab"
+  }
+ ]
+}

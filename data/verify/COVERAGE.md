@@ -1227,3 +1227,135 @@ carries the best 30-day payer conversion (1.06%). `Search` is the best on D7
 (2.86%), playtime (36.3 min) and revenue per user (R$1.05) but is only 4% of
 volume. This is a per-source quality ranking the grabber cannot currently
 produce, and it bears directly on where acquisition effort is worth spending.
+
+---
+
+## F35 — `FunnelCohortCompletionRate` drifts upward for weeks, and the freeze policy bakes the drift into the series shape
+
+Measured 2026-09-14 on 10638354731, from the revision log of that day's grab
+(every frozen cell re-served in one query, so the comparison is same-source).
+
+A funnel cohort keeps accumulating completions after its day ends. The frozen
+corpus keeps the **first** read, which is taken 1–4 days later depending on when
+we happened to grab — so **each day in the series is frozen at a different
+maturity, and the day-to-day shape is partly a record of our grab schedule.**
+
+The drift scales with **how late in the player's life the step sits**:
+
+| Funnel / step | when the player reaches it | median drift, first read → today |
+|---|---|---|
+| `FUNNEL_TYPE_ONBOARDING` / DrivewaySealed | session 1 | **+1.9%** |
+| `FUNNEL_TYPE_ONBOARDING` / ReachedDriveway | session 1 | +2.7% |
+| `FUNNEL_TYPE_ONBOARDING` / Complete | session 1 | +3.2% |
+| `Progression` / FirstUpgrade | session 1 | +5.2% |
+| `FUNNEL_TYPE_ONBOARDING` / PouredOut | session 1 | +6.1% |
+| `FUNNEL_TYPE_ONBOARDING` / FirstPass | session 1 | +7.6% |
+| `Progression` / FirstRebirth | days | +24.3% |
+| `Progression` / SecondArea | days | +27.0% |
+| `MapReach 2` / EstateDistrict | days | +27.8% |
+| `Progression` / TenJobs | days | +32.2% |
+| `Progression` / FirstTruck | days | +43.5% |
+| `MapReach 2` / RetailPark | days | **+138.1%** |
+| `MapReach 2` / Airport | days | **+193.7%** |
+| `MapReach 2` / ParkingGarage | days | **+300.0%** |
+
+**Settlement is slow — days, not hours.** Remaining rise on the Progression deep
+steps, by the age the cell was first read at: 1d **+29.0%**, 2d +28.4%,
+3d +27.7%, 4d **+24.3%**. A cell four days old still has a quarter of its value
+to come, so "wait two days" is not enough for these.
+
+**Consequences.**
+1. **Within-session steps are safe to quote at 1–2 days.** The 2026-09-11 report's
+   Onboarding claims (`Complete` +6.0pp, `FirstPass` +3.4pp, `DrivewaySealed`
+   +2.3pp, `PouredOut` +1.5pp) sit in the +1.9–7.6% band and are **not**
+   contaminated — checked, they stand.
+2. **Multi-day steps must never be quoted off the frozen series at all**, and a
+   `MapReach` step least of all. The "Airport at 0.2% completion" figure carried
+   in `reports/2026-09-11/seal.md` is a floor on an instrument that drifts +194%.
+3. **The fix is a single fresh pull of the whole window**, not a frozen merge:
+   one query today measures every day at a known, monotonic age. The freeze
+   policy is right for settled point metrics and actively wrong here.
+
+**Unexplained, and it is not the drift.** On 2026-09-11 every Seal Progression
+step reads ~5× normal (TenJobs **96.78%** vs a ~19% baseline, FirstTruck 30.24%
+vs ~7.6%) and 09-12 reads ~0.6× normal — adjacent days, both first-read in the
+same query. No maturity model produces that pair: 09-11 is the **older** cell and
+should read modestly higher, not 8× higher than 09-12. The same
+09-11-up / 09-12-down oscillation appears on **all five** universes — including
+10030829154, which published nothing that day — and reproduces on Open Cloud, so
+it is in Roblox's data and not in our parser. Both cells are unreadable; re-read
+once they are ~7 days old. Candidate (not established): all four publishing games
+shipped mid-day UTC and Seal earliest at 11:10, and the distortion is ordered the
+same way — but Waterslide bumped without a publish, so the candidate does not
+cover the whole effect.
+
+**Not yet encoded as a test.**
+
+## F36 — one bad `ClientCpuTimeCategory` poisons the `ClientCpuTimeAvg` headline
+
+Measured 2026-09-14 on 10638354731. `ClientCpuTimeAvg`'s headline equals the sum
+of its five `ClientCpuTimeCategory` series. On 2026-09-13 the headline read
+**52.35 ms** against ~4 ms either side; **49.02 ms of it is the `Scripts`
+category alone**, whose own 21-day range is 0.48–3.57. Animation (0.63),
+Miscellaneous (1.65), Networking (0.32) and Physics (0.72) were all flat.
+
+**It is contradicted by every metric that would have to move with it.** Same day:
+`ClientFpsAvg` 52.67, `ClientFpsP10` 43.65, memory 24.27%, `OomUnexpectedExits`
+16, and `ClientCrashRate15m` **fell** to 0.416% — its best in the window. 49 ms
+of script time per frame cannot coexist with a 19 ms frame budget being met at
+the 10th percentile.
+
+**Seal only.** Same day, `Scripts` on the other four universes: 10399712766 2.82,
+9963622286 5.15, 10565445771 1.12, 10030829154 1.50 — all flat. So it is not a
+platform-wide instrument day (contrast the rule in `CLAUDE.md` about a technical
+metric collapsing on every unrelated universe at once).
+
+**Read the categories before quoting the headline.** The pre/post table in
+`tools/upd-read.js` reported `CpuAvg +515%` for this publish; the entire delta is
+this one cell, and reporting it would have been a fabricated performance
+regression. Because the metric is a **mean**, a small number of clients with
+pathological script CPU can move it while `ClientFpsP10` — a percentile, and
+robust — does not. That is a live alternative to "bad cell" and the two are not
+separable with what we hold: no CPU percentile is served. Worth noting only that
+the same game's error export carries 2 × 2,008 events of
+`CoreGui.15904.Loadstring.loadstring` (injected executor scripts) first seen
+2026-09-12 11:30 — a candidate, not a finding.
+
+Reverted 09-14 (3.92). **Not yet encoded as a test.**
+
+## F37 — `feedback.csv` is REWRITTEN from the latest grab, so a short grab truncates the review history (2026-09-19)
+
+Measured 2026-09-19. A 09-03 → today browser grab wrote full-window reviews; a
+trailing 09-16 → today grab nine minutes later (the F27 habit) then **replaced**
+`data/games/<id>/feedback.csv` with only its own window:
+
+| universe | rows after the long grab | after the trailing grab | merged history (all raw bundles) |
+|---|---|---|---|
+| 10565445771 Verity | 458 | 53 | 2,587 |
+| 10638354731 Seal | 67 | 5 | 391 |
+| 10030829154 Waterslide | 31 | 5 | 409 |
+
+**Cause.** `exportToFiles()` in `web/src/lib/export-files.ts` writes
+`feedbackCsv(r.feedback)` / `feedbackMd(r.feedback)` from the current parse only —
+metrics merge into `series.json`, feedback does not. The reviews request is
+windowed (`startTime`/`endTime` on the reviews URL), so the file holds whatever the
+last grab's window was. Same shape for `place-versions.csv`, which is harmless only
+because that call is not windowed.
+
+**Nothing was lost** — every review is still in `data/raw/` (committed). Recovered
+with `node tools/r0919/feedback-merge.js --mirror-only`, which unions every raw
+bundle plus `data/live/feedback.json` on review id and rewrites the mirror in the
+exporter's own format (strictly additive against git: +1,795 rows, 0 removed).
+**The exporter itself is NOT fixed yet** — the next short grab truncates again.
+Fix: merge with the existing file on review id (the CSV does not carry the id, so
+key on `created_utc + comment + asset_version`, or add an `id` column). **Not yet
+encoded as a test.**
+
+## F38 — error-export filenames count CSV LINES, not signatures; every export is capped at 25 (2026-09-19)
+
+`export-errors.ts` names a file `…_<n>rows.csv` from `csv.split("\n").length - 1`. The `Message` column
+carries multi-line stack traces, so `errors_2026-09-19_0916_since-v1252_7d_2277rows.csv` is **25 signatures /
+29 events**, not 2,277 rows. All 18 exports of 2026-09-19 held exactly 25 signatures (Seal since-v919: 5) —
+the dashboard's cap. Parse the CSV before quoting a row count; the true counts are in
+`data/exports/INDEX.md` (2026-09-19 section). The `First seen at` column is written in the downloader's
+local time (CEST), not UTC. **Not fixed; not encoded as a test.**

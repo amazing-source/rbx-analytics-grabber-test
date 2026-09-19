@@ -1,14 +1,14 @@
 # Player feedback
 
-- Entries: **2251** (2026-08-15 → 2026-09-11)
+- Entries: **2587** (2026-08-04 → 2026-09-19)
 - Full text with the version each landed on: `feedback.csv` (`asset_version` column).
 
 ## By category
 
 | Category | Count |
 |---|---|
-| Downvote | 1646 |
-| Upvote | 605 |
+| Downvote | 1818 |
+| Upvote | 769 |
 
 ## By place version
 
@@ -16,6 +16,9 @@ Cross-reference `place-versions.md` — a category clustering on one version dat
 
 | Version | Feedback count |
 |---|---|
+| v696 | 9 |
+| v695 | 52 |
+| v693 | 133 |
 | v692 | 24 |
 | v690 | 18 |
 | v689 | 1 |
@@ -28,4 +31,12 @@ Cross-reference `place-versions.md` — a category clustering on one version dat
 | v645 | 134 |
 | v639 | 41 |
 | v619 | 38 |
-| v615 | 71 |
+| v615 | 79 |
+| v609 | 117 |
+| v586 | 4 |
+| v556 | 1 |
+| v545 | 5 |
+| v514 | 2 |
+| v481 | 1 |
+| v471 | 2 |
+| v466 | 2 |

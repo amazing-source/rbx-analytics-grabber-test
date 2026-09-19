@@ -1,0 +1,105 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+7492188,Warning,Client,Tue Aug 11 2026 06:56:05 GMT+0200 (heure d’été d’Europe centrale),V488,"ContextActionService could not find the function passed in, doing nothing.",,
+1578110,Warning,Client,Thu Aug 13 2026 16:30:15 GMT+0200 (heure d’été d’Europe centrale),V639,"Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will not be played.","http://www.roblox.com/asset/?id=10921258489,<Player>
+http://www.roblox.com/asset/?id=10921259953,<Player>
+http://www.roblox.com/asset/?id=14366558676,SelfAvatar
+http://www.roblox.com/asset/?id=16738333171,SelfAvatar
+http://www.roblox.com/asset/?id=17172918855,SelfAvatar
+http://www.roblox.com/asset/?id=507765000,<Player>
+http://www.roblox.com/asset/?id=507766388,<Player>",
+29997,Error,Client,Wed Aug 12 2026 18:41:00 GMT+0200 (heure d’été d’Europe centrale),V582,MeshContentProvider failed to process asset because 'could not fetch',d39427ca71a04fc0e5cebbd5061b4266
+https://assetdelivery.roblox.com/v1/asset?id=100704429122577
+https://assetdelivery.roblox.com/v1/asset?id=111828881390986
+https://assetdelivery.roblox.com/v1/asset?id=120643645508800
+https://assetdelivery.roblox.com/v1/asset?id=130088535501633
+https://assetdelivery.roblox.com/v1/asset?id=15309229961
+https://assetdelivery.roblox.com/v1/asset?id=15821472307
+https://assetdelivery.roblox.com/v1/asset?id=306662845
+https://assetdelivery.roblox.com/v1/asset/?id=125567658846960
+https://assetdelivery.roblox.com/v1/asset/?id=13326667008
+https://assetdelivery.roblox.com/v1/asset/?id=8650168398,
+20486,Error,Client,Wed Aug 12 2026 18:57:25 GMT+0200 (heure d’été d’Europe centrale),V582,Failed to load object. PBR textures may not be visible in game.,Workspace.<Player>.Accessory (DW3).Handle.SurfaceAppearance
+Workspace.dogarren26.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Ghosthud18.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Lnj4l1.LowerTorso.SurfaceAppearance
+Workspace.Lovecarme_5.Accessory (ʚ y2k fur boots brown).Handle.SurfaceAppearance
+Workspace.Mewee144.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Nathythetommo123.Accessory (RightShoeAccessory).Handle.SurfaceAppearance
+Workspace.NightlyPainter009.Head.SurfaceAppearance
+Workspace.nixxie79.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Realblue49.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Sabsavage4.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.ttvjosh149.Accessory (dark_fae).Handle.SurfaceAppearance,
+17075,Warning,Server,Sat Aug 15 2026 08:35:10 GMT+0200 (heure d’été d’Europe centrale),V791,[TruckServer] a rig was 5.15 studs into the ground -- lifted out,,
+13526,Error,Client,Wed Aug 12 2026 18:41:00 GMT+0200 (heure d’été d’Europe centrale),V582,Failed to load animation with sanitized ID. Animation failed to load,rbxassetid://10921061530
+rbxassetid://10921248039
+rbxassetid://10921272275
+rbxassetid://124419804298310
+rbxassetid://13830572947
+rbxassetid://14618196485
+rbxassetid://18537376492
+rbxassetid://507766666
+rbxassetid://89394075596712,
+9085,Error,Client,Wed Aug 12 2026 19:35:55 GMT+0200 (heure d’été d’Europe centrale),V582,Failed to load sound: Timedout,rbxasset://sounds/action_falling.ogg: HttpError
+rbxassetid://121062914999809: HttpError
+rbxassetid://122209060222267: HttpError
+rbxassetid://138901430543017: HttpError
+rbxassetid://71482635231754: HttpError
+rbxassetid://9117210574: HttpError
+rbxassetid://9120564419: HttpError,
+8390,Error,Client,Mon Sep 14 2026 20:22:25 GMT+0200 (heure d’été d’Europe centrale),V915,EditableImage is not accessible. Go to the Security Tab in Experience Settings to enable this API.,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceRenderer', Line 565 - function Paint
+    Script 'ReplicatedStorage.DrivewaySealer.ColorVisuals', Line 111 - function paintHook
+    Script 'ReplicatedStorage.DrivewayRace.RaceSurface', Line 363 - function Render
+    Script 'Players.<Player>.PlayerScripts.DrivewayRaceClient', Line 293",
+8313,Warning,Server,Sun Aug 09 2026 08:17:45 GMT+0200 (heure d’été d’Europe centrale),V345,"DataStore request was added to queue. If request queue fills, further requests will be dropped. Try sending fewer requests.",Key = 1166529495
+Key = d_EstateDistrict
+Key = d_Neighbourhood,
+5427,Warning,Server,Sat Aug 15 2026 16:21:40 GMT+0200 (heure d’été d’Europe centrale),V825,[TruckServer] a rig was 5.16 studs into the ground -- lifted out,,
+4883,Error,Client,Wed Aug 12 2026 19:25:15 GMT+0200 (heure d’été d’Europe centrale),V582,HSRDataContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=102602962399133
+https://assetdelivery.roblox.com/v1/asset?id=10654093805
+https://assetdelivery.roblox.com/v1/asset?id=108480536846563
+https://assetdelivery.roblox.com/v1/asset?id=10870749602
+https://assetdelivery.roblox.com/v1/asset?id=111282077204922
+https://assetdelivery.roblox.com/v1/asset?id=124073388578650
+https://assetdelivery.roblox.com/v1/asset?id=127217110153939
+https://assetdelivery.roblox.com/v1/asset?id=131463052116243
+https://assetdelivery.roblox.com/v1/asset?id=13336731575
+https://assetdelivery.roblox.com/v1/asset?id=78064172893397,
+4781,Warning,Server,Sat Aug 15 2026 08:42:40 GMT+0200 (heure d’été d’Europe centrale),V791,[TruckServer] a rig was 5.14 studs into the ground -- lifted out,,
+4362,Error,Client,Wed Aug 12 2026 22:40:40 GMT+0200 (heure d’été d’Europe centrale),V591,Failed to load sound: DnsResolve,rbxasset://sounds/action_falling.ogg: HttpError
+rbxassetid://10066921516: HttpError
+rbxassetid://105224765745546: HttpError
+rbxassetid://125536723574585: HttpError
+rbxassetid://1347153667: HttpError
+rbxassetid://138901430543017: HttpError
+rbxassetid://87047730068459: HttpError
+rbxassetid://9126175714: HttpError,
+3483,Error,Client,Wed Aug 12 2026 19:06:40 GMT+0200 (heure d’été d’Europe centrale),V582,Failed to load sound: NetFail,rbxassetid://125536723574585: HttpError
+rbxassetid://138901430543017: HttpError
+rbxassetid://74354585591493: HttpError
+rbxassetid://87494453896821: HttpError
+rbxassetid://9112831284: HttpError
+rbxassetid://9113846675: HttpError
+rbxassetid://9114519460: HttpError
+rbxassetid://9117210574: HttpError
+rbxassetid://9120502487: HttpError,
+2620,Warning,Client,Wed Aug 12 2026 18:32:15 GMT+0200 (heure d’été d’Europe centrale),V582,Native code generation of script =ReplicatedStorage.DrivewaySealer.SurfaceGrid failed:  Native code generation is not supported on this device.,,
+2542,Error,Client,Wed Aug 12 2026 23:44:40 GMT+0200 (heure d’été d’Europe centrale),V594,Failed to load sound: ConnectFail,rbxassetid://105224765745546: HttpError
+rbxassetid://122209060222267: HttpError
+rbxassetid://125536723574585: HttpError
+rbxassetid://138901430543017: HttpError,
+2116,Error,Client,Tue Sep 15 2026 19:31:50 GMT+0200 (heure d’été d’Europe centrale),V915,exception while signaling: mutex lock failed: Invalid argument,,
+1996,Warning,Server,Sat Aug 15 2026 05:33:10 GMT+0200 (heure d’été d’Europe centrale),V791,[TruckServer] a rig was 5.18 studs into the ground -- lifted out,,
+1865,Warning,Server,Sat Aug 15 2026 19:06:55 GMT+0200 (heure d’été d’Europe centrale),V791,[TruckServer] a rig was 5.19 studs into the ground -- lifted out,,
+1636,Warning,Server,Sat Aug 15 2026 18:35:15 GMT+0200 (heure d’été d’Europe centrale),V825,[TruckServer] a rig was 5.17 studs into the ground -- lifted out,,
+1619,Error,Server,Tue Aug 18 2026 01:17:50 GMT+0200 (heure d’été d’Europe centrale),V892,"DataStoreService: TooManyRequests: Too many requests, try again later. API: SetAsync",MapReach_v2
+SealerLB_Earned_v1
+SealerProfiles_v1,
+1533,Warning,Client,Wed Aug 12 2026 19:53:50 GMT+0200 (heure d’été d’Europe centrale),V582,Infinite yield possible on WaitForChild,CoreGui.RobloxGui:WaitForChild("Modules")
+Players.<Player>.PlayerGui:WaitForChild("GroupReward")
+Workspace.GroupReward:WaitForChild("InteractionPart"),
+1467,Error,Server,Tue Aug 18 2026 01:17:10 GMT+0200 (heure d’été d’Europe centrale),V892,"DataStoreService: TooManyRequests: Too many requests, try again later. API: GetAsync",AsphaltColorEntitlements_v1
+Grants_v1
+MapReach_v2,
+1348,Warning,Server,Sat Aug 15 2026 14:39:55 GMT+0200 (heure d’été d’Europe centrale),V825,[TruckServer] a rig was 5.20 studs into the ground -- lifted out,,
+1069,Error,Server,Wed Aug 19 2026 23:08:35 GMT+0200 (heure d’été d’Europe centrale),V901,DataStoreService: AccessForbidden: Access forbidden. API: GetAsync,Grants_v1,

@@ -1,0 +1,325 @@
+{
+ "title": "Seal A Driveway",
+ "asOf": "2026-09-19",
+ "dek": "In the week of the 11 Sep build (v915), DAU fell 44.7% and mean concurrents 50.8% on matched weekdays, slower than the 68.6% and 67.9% of the week before. Per-player engagement fell with them on Seal alone — session length −7.6% on all five day pairs — and was back at the week-earlier level on 16 and 17 Sep.",
+ "summary": [
+  "`DailyActiveUsers` 84,631 → 46,815 a day (−44.7%) and `UniqueUsersWithImpressions` 1,475,788 → 898,967 (−39.1%), Sat 09-12 → Wed 09-16 against the same weekdays a week earlier; the week before, the same comparison read −68.6% and −51.2%. Reach is 84% of the log-change in DAU and DAU per impression 16%.",
+  "Mean `ConcurrentPlayers` 1,188 → 584 (−50.8%) across the five days. The week-on-week gap narrowed day by day, from −61.0% on Sat 09-12 to −24.1% on Wed 09-16, then −6.0% on Fri 09-18 and −3.4% for 00:00–08:59 UTC today against the same hours last Saturday.",
+  "`AverageSessionLengthMinutes` 15.47 → 14.29 (−7.6%) and `AveragePlayTimeMinutesPerDAU` 20.08 → 18.01 (−10.3%), lower on 5 of 5 day pairs (paired t −3.5 and −3.7). Seal is the only one of the five games whose session length fell this week. On Wed 09-16 and Thu 09-17 both were within 1% of the week before.",
+  "`ForwardD1Retention` 10.12% → 9.26% (−8.5%), lower on 3 of 5 pairs (paired t −1.6). By source: HomeRecommendation −5.3%, Friends −5.6%, Search −10.1%, Others −14.0%; only Others is lower on all five pairs.",
+  "New players were 56.8% → 57.2% of DAU. Session length fell for new (−6.3%) and returning players (−7.6%), and re-weighting the after-window to the before-window mix changes it by −0.1%.",
+  "`DailyRevenue` R$225,645 → R$114,304 a day (−49.3%): DAU is 87% of the log-change, `PayingUsersCVR` 1.79% → 1.62% (−9.4%, 4 of 5 pairs) 15%, and ARPPU rose 3.7% to R$149.8.",
+  "Funnels read at matched cohort age: onboarding `Complete` 73.85% → 72.50% (−1.36 pp); `Progression` `TenJobs` 21.83% → 19.93% (−1.90 pp), with each later step's step-to-step rate within 2.0 pp; `MapReach 2` Airport 0.28% → 0.23% of starters.",
+  "`PlayerFeedbackVotesCount` went from 30–112 a day (04 → 10 Sep) to 205 on 09-11 and 357–408 on 09-12/13. Errors per DAU 36.8 → 38.2 (+4.0%), crash rate −1.6%, and signatures first seen at v915 or later are 0.11% of the listed 7-day error volume."
+ ],
+ "sections": {
+  "timeline": "**v915** went live on **Fri 11 Sep 11:10 UTC** with the spec block *Update 10.09*: bug fixes for FPS, the airport driveway and mobile UI; a rewrite of ‘a core part of the AI code’; an invite-friend bonus (+15% cash on work earnings while an invited friend plays); a like-and-group reward (50k cash + 1 instant refill); and four sealer colours, two of them for Robux (29R and 49R). Roblox's `NEW UPDATE` event ran 09-10 18:00 → 09-13 16:55, opening about 17 hours before the build. All five portfolio games published on 11 Sep.\n\nv916 (09-11 18:31) and v917 (09-15 12:50) were saved but not published. **v918** went live on Thu 17 Sep 15:56 and **v919** on Fri 18 Sep 15:41. **No spec was filed for either.** What the data shows about them: a new `NEW UPDATE` event from 09-17 19:00; the experience title reading `[NEW MAP🛢️]` instead of `[RELEASE 🛢️]` in the 09-19 grab (the previous grab was 09-14 16:48); error text first seen at v918 that names a `RobotHelper` DataStore and a ‘Helper price’ lookup; and step 5 of the `MapReach 2` funnel labelled NewZone rather than ParkingGarage in the latest pull.\n\nOld servers kept running after each publish: v914 still threw errors until 09-14 (about 8.5% of all errors 09-11 → 09-14), and v918 was still throwing in the latest half-hour bucket (09-19 09:00), 17 hours after v919 went live. No thumbnail or icon change is annotated after 09-08 19:43, so none falls inside the after-window.",
+  "reach": "Reach fell again, more slowly. Impressions (`UniqueUsersWithImpressions`) were −39.1% on matched weekdays against −51.2% the week before, and DAU per impression −9.2% against −35.7%. Over the five days reach is 84% of the log-change in DAU and conversion 16% (the week before: 62% and 38%). By pair, reach is the whole of the Saturday fall (impressions −56.4%, DAU per impression +0.2%) and about two-thirds of Tuesday's and Wednesday's.\n\nBy source, HomeRecommendation impressions fell 42.2% and its DAU 47.4%; Search impressions fell only 16.1% while Search DAU fell 37.1%; Friends impressions −51.5% and Friends DAU −49.9%. `Others` impressions stepped down between 09-10 and 09-11 on all five games (−31.9% to −71.9%) — the day all five published — while `Others` DAU did not step. DAU fell in each of the top 15 countries, from −11.0% (RU) to −52.6% (CA).\n\nHome-ranking signals moved much less than reach. Of 17 RFY signals, 10 are within ±5% or moved favourably; `RFYPlayThroughRate` rose 21.1% as impressions shrank. The seven that moved unfavourably by more than 5% are the two co-play signals (D1 −9.7%, D2–7 −15.5%), the four spend signals (−8.6% to −15.7%) and not-interested users per million impressions (+7.9%). `RFYD8To28PlayDays` is served only from 09-12 and reads 0.284 → 0.212 by 09-17. Seal's DAU averaged 8.8% of its 28 Aug peak this week and was 5.6% on 09-17; Brainrot, the portfolio's measured floor, averaged 12.4% of its own peak and grew 37.3%.",
+  "ccu": "Mean concurrents (`ConcurrentPlayers`, hourly) averaged 584 across Sat 09-12 → Wed 09-16 against 1,188 a week earlier (−50.8%); the week before had fallen 67.9%. The week-on-week gap narrowed through the window — −61.0% Sat, −48.4% Sun, −61.1% Mon, −37.0% Tue, −24.1% Wed — then read −32.8% on Thu 09-17 (the v918 day) and −6.0% on Fri 09-18 (the v919 day).\n\nToday, 00:00–08:59 UTC, averages 573 against 593 at the same hours last Saturday (−3.4%) and 1,586 the Saturday before. All three Saturdays fall inside a `NEW UPDATE` event window; no ADMIN ABUSE event is annotated on this game. Hours from 09:00 had not closed at the pull and are not compared.\n\nIn the three hours after v915 went live, CCU climbed 69.3% over the four hours before, against a 42.1% climb at the same clock hours on 17 ordinary days (sd 7.7 pp, z +3.5). The v918 and v919 publish hours were within the ordinary range (z +0.75 and −0.64). Daily `PeakConcurrentPlayers` fell 53.0%, and peak concurrents per DAU fell 14.7%.",
+  "retention": "`ForwardD1Retention` averaged 9.26% against 10.12% (−8.5%), after −3.5% the week before. The move is uneven across days: Sun 09-13 read 8.08% against 10.71%, while the Monday and Wednesday pairs were higher than a week earlier. Three of five pairs are lower and the paired t is −1.6, short of what five pairs need. The newest settled day, 09-16, read 10.37% against 10.11%.\n\nBy source (effect size first): Others −14.0%, Search −10.1%, Friends −5.6%, HomeRecommendation −5.3%. Only Others is lower on all five pairs (paired t −4.5). Against the binomial floor, HomeRecommendation (z −4.1), Search (−3.3) and Others (−6.4) clear it and Friends (−1.7) does not. By platform: Computer −11.1%, Tablet −10.4%, Phone −6.7%. D1 by `IsNewUser` failed inside Roblox's Explore engine and is unavailable; `ForwardD7Retention` has no settled day in the after-window (newest 09-10).\n\nThe new-player share of DAU moved 56.8% → 57.2%. Against a straight line through 08-29 → 09-10, the after-window D1 sits 4.4% below the line (z −1.2), returning-player session length 1.4% below a line that was already falling 0.15 min a day, and new-player session length 5.6% below its flat line (z −3.4).",
+  "engagement": "`AverageSessionLengthMinutes` 15.47 → 14.29 (−7.6%) and `AveragePlayTimeMinutesPerDAU` 20.08 → 18.01 (−10.3%), both lower on all five pairs (paired t −3.5 and −3.7); the week before they had moved +0.7% and +0.4%. Day by day, session length first read low on the publish day, 09-11 (14.04 min against 15.12 on Fri 09-04 and 15.03 on 09-10), stayed below its week-earlier pair through 09-15, and read 15.14 and 14.94 on 09-16 and 09-17 — within 1% of 09-09 and 09-10. Session length fell on every platform: Computer −5.0%, Phone −7.2%, Tablet −8.7%.\n\nBy player type, returning-player session length had been sliding since 08-29 (18.6 → 17.4 by 09-07), read 17.44 → 17.04 → 16.67 → 15.98 across 09-08 → 09-11, and has held at 15.6–16.4 since. New-player session length read 11.89–13.11 on 09-11 → 09-15, against 12.99–14.49 on the same weekdays a week earlier, and 14.19 and 13.69 on 09-16/17.\n\nFirst-play signals moved little: `RFYDuration0To60` +2.7% (higher on 3 of 5 pairs), `RFYDuration61To180` −3.1%, `RFYD1Playtime` −4.2%. The session survival curve for 09-16 → 09-19 (13.3% of sessions under 1 minute, 38.1% under 3 minutes) matches 09-05 → 09-07 (13.0%, 37.7%). Co-play fell: `RFYD1CoplayDays` 0.093 → 0.084, and down every day from 0.096 on 09-13 to 0.069 on 09-17; Friends went from 10.7% to 9.8% of DAU.",
+  "money": "Revenue (`DailyRevenue`) R$225,645 → R$114,304 a day (−49.3%, after −60.7%). In the three-term split, DAU is 87% of the log-change, paying-user conversion 15%, and ARPPU −5% (it rose 3.7%, to R$149.8). `PayingUsers` 1,563 → 770 (−50.8%) against DAU −44.7%, so `PayingUsersCVR` 1.79% → 1.62% (−9.4%, lower on 4 of 5 pairs, t −2.6), after +26.2% the week before. ARPDAU (`AverageRevenuePerUser`) R$2.582 → R$2.425 (−6.1%).\n\nAt matched size the comparison depends on the weekday: at about 45K DAU, Wed 09-09 and Thu 09-10 had 687 and 636 payers against 622 on Tue 09-15; at 58–60K, Tue 09-08's 924 payers compare with 1,072 and 1,023 on the event weekend of 09-12/13. GamePass is 65.3% of revenue (67.0% before) and DevProduct 34.5% (32.9%); no item-level series exists for the four new sealer colours. First-day spend for RFY-organic players fell: `RFYD1SpendDay` −14.3% (5 of 5 pairs) and `RFYD1RobuxSpend` −15.7%. On 09-16 and 09-17, `PayingUsersCVR` read +2.5% and +27.0% against the week before.",
+  "funnels": "The standard step tables above use each cohort's first read, and those reads were taken at different ages: before-window cohorts at 0.5–2.5 days old, after-window cohorts at 2.4–5.4 days old, and the 09-12 cohort in a 09-14 16:48 capture that is internally impossible — 51 of 158 cohort points in it read more than 0.5 pp above their own later value (09-11 `TenJobs` 96.8% there, 19.0% when read again on 09-19). The matched-age table below leaves that capture out and interpolates each before-window cohort to the age at which its same-weekday after-window cohort was read.\n\nAt matched age, onboarding (`FUNNEL_TYPE_ONBOARDING`) is close to flat: `ReachedDriveway` −0.14 pp, `PouredOut` −0.51 pp, `DrivewaySealed` −1.40 pp, `Complete` 73.85% → 72.50% (−1.36 pp, lower on 4 of 5 pairs). `Progression` loses players at `TenJobs`: 21.83% → 19.93% (−1.90 pp, −8.7%), with its step-to-step rate from `FirstUpgrade` 24.8% → 22.7%; the step-to-step rates after it held (`FirstRebirth` 81.0% → 80.3%, `SecondArea` 95.2% → 95.3%, `FirstTruck` 63.7% → 61.7%). `MapReach 2`: `EstateDistrict` 13.04% → 11.72%, `RetailPark` 1.55% → 1.33%, `Airport` 0.28% → 0.23%.\n\nThe spec's airport-driveway item is measurable only in counts. Of players whose map funnel started 09-03 → 09-15, 2,009 reached the Airport and 184 of them (9.2%) reached step 5; for 09-16 → 09-19 starters, 108 and 15 (13.9%), z +1.4. Windows spanning August read 11.5–14.0% on the same ratio. Step 5 is labelled NewZone only in the latest pull, so the 09-16 → 09-19 figure straddles v918.",
+  "technical": "The standard technical table pairs Tue 09-15 with Tue 09-08, the day Roblox telemetry collapsed FPS and memory on all five games at once (F28); that one pair accounts for its +11.7% FPS p10 and +37.0% memory %. With it removed (and the Seal-only 52.3 ms reading on 09-13 removed from client CPU time): client FPS p10 46.80 → 43.69 (−6.7%), average FPS 61.67 → 53.46 (−13.3%), client memory % 20.72% → 23.82% (+15.0%) while client memory in bytes fell 13.5%, crash rate 0.50% → 0.47% (−5.5%), OOM exits per DAU −9.0%. Server frame rate p10 is flat at 59.95.\n\nThose moves sit on a level shift on **09-09, two days before v915**, with no Seal build published between 09-04 and 09-11: average FPS 63.9 (05–07 Sep) → 53.6 (09–10 Sep) → 53.8 (12–18 Sep), memory % 19.9% → 24.4% → 23.6%. The other four games moved −1.0% to −6.5% on FPS over the same days, against Seal's −16.1%. Within Seal, Computer moved most (FPS p10 46.7 → 38.6, memory % 15.4% → 25.7%), then Phone (FPS p10 46.9 → 43.6), and Tablet least (50.9 → 49.3). Over 12–18 Sep Computer FPS p10 read 41.1 and Phone 44.3; neither is back at its 05–07 level.",
+  "errors": "`ErrorCount` per DAU was 36.8 → 38.2 (+4.0%). Client errors are the bulk of the volume (09-12: 1,673,208 client against 20,138 server). Server errors per DAU read 0.26–0.35 on every day 09-12 → 09-17 and 0.83 on the v915 publish day. In the unfiltered 7-day export, one warning first seen at v488 (`ContextActionService could not find the function passed in`) is 81.3% of the listed total and an animation-track-limit warning (v639) another 17.1%.\n\nSignatures first seen at v915 or later total 10,506 events in that export, 0.11% of the listed volume. The largest are an EditableImage-not-accessible error on the race-surface render path (8,390, client, first seen 09-14 18:22 UTC) and an engine-level mutex error with no game script in its trace (2,116, first seen 09-15 17:31, the day the Windows and Mac 739 clients were released). Below them: upgrade saves failing after three tries on DataStore 502s (306), oversized unreliable remote payloads (280, split by byte count), a `RobotHelper` DataStore save failing (89, new at v918), client script timeouts (61), MapReach funnel-mark read/save failures (33), and coverage-shortfall warnings — a finished surface not paid or recorded when the server had seen only 0.01–0.08 coverage (31, on Neighbourhood and EstateDistrict surfaces; the message embeds the value, so this is a floor). The table pairs each class with the rate that would move if it mattered.\n\nInside the before-window, server errors reached 72,724 and 329,833 in the 16:00 and 16:30 half-hours of Sat 09-05, and five comments about lost progress arrived between 16:34 and 16:38 that afternoon.",
+  "sentiment": "Written comments have thinned out: 225 on builds up to v901, 114 on v908, 36 on v914, 14 on v915 and 2 so far on v918–919. The downvote rate read 80% (v908) → 69% (v914) → 64% (v915); both v919 comments are upvotes. On v915, AI art or a listing that does not match the game appears in 3 of 14 comments, rebirth and pacing in 3, performance in 2, the paywall in 2 and a surface that will not finish in 1. A lost save or purchase appears in 1 of 14 (an unlimited-sealer item bought before release that no longer applies), against 7 of 36 on v914 (six rows, one a duplicate, between 16:34 and 16:38 on 09-05). No v915 comment names the airport; one v914 comment on 09-09 did.\n\nBy device, performance language stays on Computer: 2 of 6 Computer comments on v915 and 0 of 8 Mobile (Phone + Tablet); 3 of 21 and 0 of 15 on v914; 9 of 42 and 6 of 72 on v908. `PlayerFeedbackVotesCount`, a separate series from written comments, went from 0.47–1.34 votes per 1k DAU on 04 → 10 Sep to 4.47 on 09-11 and 4.10–6.78 on every day since; written comments did not rise with it.",
+  "method": "- **Window.** Sat 09-12 → Wed 09-16 against Sat 09-05 → Wed 09-09, paired by weekday. Both windows begin the day after a publish that came with a `NEW UPDATE` event (v914 with 09-04 18:00 → 09-07 19:00; v915 with 09-10 18:00 → 09-13 16:55). The before-window's Monday was inside its event and the after-window's Monday was not.\n- **Instrument faults removed.** 09-08 is the portfolio-wide telemetry fault (F28): every FPS, memory and CPU comparison is re-run without that pair. `ErrorCount` for 09-08 is only a partial read and is missing. Client CPU time on 09-13 (52.3 ms, Seal only) is excluded; the 09-15 client-CPU dip appears on all five games.\n- **Funnels at matched age.** Cohort completion keeps rising for a week or more, so steps are compared at equal cohort age using every raw capture; the 09-14 16:48 capture is excluded as non-monotone. The standard step tables above are first reads and are kept for provenance.\n- **CCU.** `ConcurrentPlayers` hourly buckets that had not closed at the 09:12 UTC pull are dropped; today is compared on hours 00–08 only.\n- **Feedback.** The corpus `feedback.csv` is truncated by today's short grab; all comment counts use the merged file (391 rows). Build = the version the player was on when writing.\n- **Error exports** are capped at their top rows; counts on messages that embed a surface, a value or a byte count are floors, and absence is not evidence.\n- `PlayerFeedbackVotesCount` is labelled net (up − down) in this pipeline and no up/down split is served.\n- `TotalSessionsEndedInBucket` is read as a survival curve — inferred from its shape, not documented.\n- The trend lines in the retention section are descriptive extrapolations over 13 post-peak days; they are not forecasts.",
+  "diagnosis": "Two different things moved on Seal this week and they need separate explanations. The volume fall — DAU, concurrents, revenue — is mostly reach, and it slowed sharply by 18–19 Sep. The per-player fall — session length, playtime, payer conversion, and more weakly D1 — is specific to Seal among the five games, is not a change in who arrived, begins on the v915 publish day, and had closed by 16–17 Sep without another build. The hypotheses below take each candidate in turn, most explanatory first; the ones marked ruled out or weakened are results, not omissions."
+ },
+ "quotes": [
+  {
+   "text": "pls otimaze your game",
+   "vote": "Downvote",
+   "device": "Computer",
+   "version": "915",
+   "date": "2026-09-11"
+  },
+  {
+   "text": "I bought the unlimited seal thingy in the pre stages and now with the release I don’t have it unlimited anymore",
+   "vote": "Downvote",
+   "device": "Phone",
+   "version": "915",
+   "date": "2026-09-11"
+  },
+  {
+   "text": "Please add a refill thing in the middle of the past, having to go back all the way to the start is so boring",
+   "vote": "Upvote",
+   "device": "Computer",
+   "version": "915",
+   "date": "2026-09-13"
+  },
+  {
+   "text": "good and satisfying game but i despise that every single one of the thumbnails are ai and that the ai generated descriptions dont allign with the actual mechanic (eg. saying that an area will stay sealed after rebirthing when it actually doesnt stay sealed and resets)",
+   "vote": "Downvote",
+   "device": "Computer",
+   "version": "915",
+   "date": "2026-09-13"
+  },
+  {
+   "text": "It’s hard to tell where to spread in the game unlike the video.",
+   "vote": "Downvote",
+   "device": "Phone",
+   "version": "915",
+   "date": "2026-09-14"
+  },
+  {
+   "text": "game was fun untill it forced me to rebirth spent 2-3 hours trying to get a truck js to either have to pay robux or spend another 3 hours to get the truck",
+   "vote": "Downvote",
+   "device": "Computer",
+   "version": "915",
+   "date": "2026-09-16"
+  },
+  {
+   "text": "The road on approach to the airport can't be sealed",
+   "vote": "Downvote",
+   "device": "Computer",
+   "version": "914",
+   "date": "2026-09-09"
+  },
+  {
+   "text": "this update is better",
+   "vote": "Upvote",
+   "device": "Phone",
+   "version": "919",
+   "date": "2026-09-19"
+  }
+ ],
+ "hypotheses": [
+  {
+   "title": "Reach kept falling on a post-peak curve, and the fall is slowing",
+   "status": "supported",
+   "confidence": "high",
+   "claim": "Most of this week's volume loss is the continued withdrawal of distribution after the 28 Aug peak, now decelerating; it does not need v915 to explain it.",
+   "for": [
+    "Reach is 84% of the log-change in DAU (impressions −39.1%, DAU per impression −9.2%); on the Saturday pair it is 100%.",
+    "Every volume series slowed: DAU −68.6% → −44.7%, impressions −51.2% → −39.1%, mean CCU −67.9% → −50.8%; CCU week-on-week read −6.0% on 09-18 and −3.4% for 00–08 UTC today.",
+    "Ranking signals moved far less than reach: 10 of 17 RFY signals are within ±5% or favourable, and `RFYPlayThroughRate` rose 21.1% as impressions shrank.",
+    "The fall is broad: every acquisition source lost DAU (−35.5% to −49.9%) and every one of the top 15 countries did (−11.0% to −52.6%).",
+    "Seal is 19 days past its peak at 8.8% of it this week; the two other games still falling (Banana Monkey −58.7%, Verity −40.2%) are also on post-peak curves."
+   ],
+   "against": [
+    "It does not explain the per-player rates: session length −7.6% and playtime −10.3% on 5 of 5 pairs, which reach alone cannot move.",
+    "Seven signals did fall by more than 5% (co-play days, the four spend signals, not-interested per million impressions), so the clean ‘every signal flat’ signature of an external reach cut does not hold.",
+    "Competitive displacement and Roblox-side ranking changes cannot be tested from one universe; they stay unresolved inside this hypothesis."
+   ],
+   "test": "Week-on-week DAU and CCU for Sat 09-19 → Wed 09-23 (DAU served ~09-25). A fall within about ±15% would say the curve has flattened near 5–6% of peak, the depth at which Brainrot stopped falling.",
+   "lever": "Reach levers — content cadence, creative, re-engagement notifications — sized against a game now at 5–6% of its peak, not a code fix."
+  },
+  {
+   "title": "A Seal-only engagement dip in the five days after v915 went live, session length back by 16 Sep",
+   "status": "plausible",
+   "confidence": "medium",
+   "claim": "Something specific to Seal shortened sessions and lowered payer conversion from 11 to 15 Sep; the v915 publish is the timing candidate, but the dip reversed without another publish and no mechanism is identified.",
+   "for": [
+    "Session length −7.6% and playtime per DAU −10.3% on 5 of 5 pairs (paired t −3.5 and −3.7), after +0.7% and +0.4% the week before.",
+    "The day-by-day drop begins on 09-11, the publish day (14.04 min against 15.12 a week earlier), and every day through 09-15 is below its pair.",
+    "Seal is the only one of the five games whose session length fell (the others +0.4% to +13.7%), and it ranks last of five on playtime per DAU, D1 and first-play bounce.",
+    "Not composition: new-player share 56.8% → 57.2%; re-weighting to last week's mix changes session length by −0.1%; new (−6.3%) and returning (−7.6%) sessions both fell, on every platform.",
+    "Matched-age funnels lose players at `TenJobs` (step-to-step 24.8% → 22.7%), the first step that takes sustained play rather than the tutorial, while onboarding holds within 1.4 pp.",
+    "`PayingUsersCVR` −9.4% (t −2.6) and `RFYD1SpendDay` −14.3% (5 of 5 pairs) move with it.",
+    "The dip is Seal's alone: session length against the other four games 0.93 on 11 Sep, 0.86–0.93 on 12–15 Sep, back to 0.97 on 16 Sep (*against the other four games, day by day from 08 Sep* (At a glance))."
+   ],
+   "against": [
+    "It closed without a build: session length −0.2% and −0.6% on 09-16/17, playtime −0.1% and +0.5%, D1 +2.6% on 09-16; nothing was published between 09-11 and 09-17 (v917 was saved, not published).",
+    "Returning players' session length had been sliding since 08-29 (18.6 → 17.4 by 09-07) and its steepest drop runs 09-08 → 09-11, partly before the publish; in the after-window it sits only 1.4% below its pre-publish line.",
+    "D1 is weak support: 3 of 5 pairs lower, paired t −1.6, with the Monday and Wednesday pairs up.",
+    "No logged defect fits: v915+ signatures are 0.11% of error volume, and the largest (8,390) first appears on 09-14, three days into the dip, and does not stop when the dip does.",
+    "The v915 publish drew a stronger-than-usual CCU climb (+69.3% against +42.1%, z +3.5), so the build did not visibly repel players on the day.",
+    "It did not fully close against the portfolio: D1 index 0.81–0.89 on 11–16 Sep, impression→play CVR 0.72 and 0.66 on 16–17 Sep, and `RFYD2To7PlayDays` 0.84 and 0.81 on 16–17 Sep stay below the other games after session length recovers (*against the other four games, day by day from 08 Sep* (At a glance))."
+   ],
+   "test": "Session length and D1 for 09-19 → 09-23 (served ~09-21 → 09-25) against both earlier weeks: holding at the 09-16/17 level (about 15 min) would confirm the dip was transient. A matched-age `TenJobs` step-to-step for cohorts 09-16 → 09-19 back near 24.8% (readable ~09-23). A hands-on session on v919 through the first ten jobs would show whether anything in that stretch still slows play.",
+   "lever": "First-session pacing on the core loop up to ten jobs, measured by `TenJobs` step-to-step and session length."
+  },
+  {
+   "title": "A Seal-only client performance shift on 09-09 costs players, Computer most",
+   "status": "unresolved",
+   "confidence": "low",
+   "claim": "Client FPS fell and memory % rose on Seal alone on 09-09, with no Seal publish, and the spec's FPS item in v915 did not bring the level back; part of the returning-player slide may belong to this shift rather than to v915.",
+   "for": [
+    "Average FPS 63.9 → 53.6 and memory % 19.9% → 24.4% between 05–07 and 09–10 Sep; the other four games moved −1.0% to −6.5% on FPS against Seal's −16.1%.",
+    "Computer moved most (FPS p10 46.7 → 38.6, memory % 15.4% → 25.7%) — the device class that carries the lag reviews (2 of 6 Computer comments on v915, 9 of 42 on v908, against 0 of 8 and 6 of 72 on Mobile).",
+    "Returning-player playtime per DAU fell 24.48 → 23.39 → 22.32 across 09-08 → 09-10, before v915.",
+    "The level did not return after v915: average FPS 53.8 over 12–18 Sep, Computer FPS p10 41.1 against 46.7."
+   ],
+   "against": [
+    "D1 (10.11%, 9.93%) and all-player session length (15.17, 15.03) on 09-09 and 09-10 were at their usual levels.",
+    "It lands the day after the portfolio-wide telemetry fault and alongside the engine 738 releases, and client memory in bytes fell 15.6% while memory % rose — an odd pair for a real regression — so a change in how the metric reads for this game cannot be excluded.",
+    "Crash rate by platform over 12–18 Sep is back near its 05–07 level; per-player performance averages lose the players a regression drives away, so they cannot size its cost."
+   ],
+   "test": "A profile of v919 on a mid-range Windows client against the ~64 FPS average of 05–07 Sep, and `ClientFpsAvg` by platform for 09-19 onward (served ~09-20).",
+   "lever": "A client render and memory budget on Computer, measured by Computer `ClientFpsP10` and Computer D1."
+  },
+  {
+   "title": "The like-and-group reward shipped and is being used",
+   "status": "supported",
+   "confidence": "high",
+   "claim": "The v915 reward for liking the game shows up as a step in feedback votes on the publish day.",
+   "for": [
+    "`PlayerFeedbackVotesCount` per 1k DAU read 0.47–1.34 on 04 → 10 Sep, 4.47 on 09-11 and 4.10–6.78 on every day since; raw votes 205 on 09-11 and 357–408 on 09-12/13.",
+    "The step lands on the publish day and has held for a week."
+   ],
+   "against": [
+    "The series is labelled net (up − down) and no split is served, so ‘more upvotes’ cannot be told from ‘fewer downvotes’.",
+    "Written comments did not rise (1–3 a day), and votes are not a Home-ranking signal, so no reach effect is expected or visible."
+   ],
+   "test": "The dashboard's up/down vote split for 04 → 18 Sep; any vote or rating trend read across 11 Sep is not like-for-like."
+  },
+  {
+   "title": "v918/v919 (the ‘NEW MAP’ builds) steadied concurrents",
+   "status": "unresolved",
+   "confidence": "low",
+   "claim": "The two builds at the right edge, with a new event and a title that now advertises a new map, may be why the week-on-week CCU fall shrank to −6.0% on 18 Sep and −3.4% this morning.",
+   "for": [
+    "CCU week-on-week went −32.8% (Thu 09-17) → −6.0% (Fri 09-18) → −3.4% (Sat 09-19, 00–08 UTC).",
+    "The title reads `[NEW MAP🛢️]` in the 09-19 grab, a new `NEW UPDATE` event started 09-17 19:00, and the funnel's step 5 is now labelled NewZone."
+   ],
+   "against": [
+    "The deceleration was already under way with no publish (−37.0% on Tue 09-15, −24.1% on Wed 09-16).",
+    "Neither publish hour departed from ordinary days (z +0.75 and −0.64), and 09-17 was the lowest mean-CCU day of the window (403).",
+    "The week-earlier Friday and Saturday were also inside an event; no spec exists for either build; v918 was live alone for under 24 hours, so the two cannot be separated on daily metrics."
+   ],
+   "test": "DAU, Home and Search impressions and D1 for 09-18/19 (served 09-20/21), then the matched week 09-19 → 09-23 (~09-25). A Search-impression rise after the title change would be the most direct sign.",
+   "lever": "If it holds: content cadence as a reach lever, measured by impressions and CCU week-on-week."
+  },
+  {
+   "title": "The airport-driveway item in v915 unblocked late progression",
+   "status": "unresolved",
+   "confidence": "low",
+   "claim": "If the server-side coverage blocker at the airport was fixed, more players who reach the Airport should go on to the next map step.",
+   "for": [
+    "Airport → step 5 read 13.9% (15 of 108) for funnel starts 09-16 → 09-19 against 9.2% (184 of 2,009) for 09-03 → 09-15 (z +1.4).",
+    "No v915 comment names the airport (0 of 14); v908 and v914 each had one."
+   ],
+   "against": [
+    "The numbers are tiny and the difference is not significant; the 09-16 → 09-19 window straddles v918, which relabelled step 5 NewZone, so it is not a clean read of v915.",
+    "Coverage-shortfall warnings are still logged at v915, at 0.01–0.08 coverage on Neighbourhood and EstateDistrict surfaces.",
+    "At matched age the share of starters reaching the Airport went 0.28% → 0.23%, and August windows already read 11.5–14.0% on Airport → step 5, before any fix."
+   ],
+   "test": "Airport → step 5 for cohorts 09-19 → 09-25 read at 7+ days (from ~09-26), against the August 11.5–14.0%; an error export filtered to v919 searched for Airport coverage rows.",
+   "lever": "If the blocker persists: the server's coverage threshold on airport surfaces, measured by Airport → step 5."
+  },
+  {
+   "title": "The new Robux sealer colours lifted spend",
+   "status": "unresolved",
+   "confidence": "low",
+   "claim": "The two paid colours (29R, 49R) added to what payers spend.",
+   "for": [
+    "ARPPU +3.7% (R$144.4 → R$149.8); DevProduct share of revenue 32.9% → 34.5%."
+   ],
+   "against": [
+    "ARPPU was higher on only 3 of 5 pairs (t +1.0); payer conversion fell 9.4% and first-day spend 14.3–15.7% over the same days.",
+    "No item-level revenue series exists, so the colours cannot be isolated from the rest of the shop."
+   ],
+   "test": "A dashboard monetization export by product for the two colour products since 09-11."
+  },
+  {
+   "title": "The invite-friend bonus raised Friends traffic and co-play",
+   "status": "weakened",
+   "confidence": "medium",
+   "claim": "A +15% cash bonus while an invited friend plays should raise Friends arrivals and the share of days played with a friend.",
+   "for": [
+    "Nothing measurable in aggregate. The bonus pays only when an invited friend joins and invites are not instrumented, so an effect on a small group would not show in these series."
+   ],
+   "against": [
+    "Friends DAU −49.9% against total −44.7%, Friends share of DAU 10.7% → 9.8%, and Friends new users lower on every weekday pair.",
+    "`RFYD1CoplayDays` −9.7%, falling every day from 0.096 on 09-13 to 0.069 on 09-17; `RFYD2To7CoplayDays` −15.5%.",
+    "D1 for Friends arrivals −5.6%, in line with the other sources."
+   ],
+   "test": "An in-game event for invite sent and invited friend joined, or a count of bonus-bar displays; a hands-on check that the bar appears when a friend joins."
+  },
+  {
+   "title": "Errors introduced by v915, v918 or v919 are costing players",
+   "status": "weakened",
+   "confidence": "medium",
+   "claim": "A defect logged in the new builds explains the week's rate moves.",
+   "for": [
+    "New classes did appear: an EditableImage-not-accessible error on the race-surface render path (8,390), upgrade-save failures after three DataStore retries (306), a new `RobotHelper` DataStore failure at v918 (89)."
+   ],
+   "against": [
+    "Signatures first seen at v915 or later are 0.11% of the listed 7-day volume; errors per DAU +4.0%; server errors per DAU unchanged (0.26–0.35); crash rate −1.6% (−5.5% with the fault day removed).",
+    "The largest new signature first appears on 09-14, three days after the engagement dip began, and continues after it ended.",
+    "No v915 comment reports a lost save; one reports a purchase from before release that no longer applies (1 of 14 match the lost-save-or-purchase pattern)."
+   ],
+   "test": "A since-v919 7-day export on 09-25, checking whether any top row points at a surface whose rate is moving; silent defects stay possible and are tested through the funnels, not the export."
+  },
+  {
+   "title": "The before-window was distorted by the 09-05 save incident",
+   "status": "weakened",
+   "confidence": "low",
+   "claim": "The Sat 09-05 server-error burst and lost-progress reports make the before-window an unfair baseline.",
+   "for": [
+    "Server errors reached 72,724 and 329,833 in the 16:00 and 16:30 half-hours of 09-05, against 941–1,755 per half-hour in the two hours before, and five lost-progress comments arrived 16:34 → 16:38."
+   ],
+   "against": [
+    "That day's D1 (11.13%) and session length (15.03) sit within the before-window's range, and the Saturday pair's session drop is the same size as the others'.",
+    "Any damage would lower the before-window and shrink this week's measured falls; it cannot create them."
+   ],
+   "test": "Already settled by the per-pair table; no further read needed."
+  },
+  {
+   "title": "A change in who arrived (new vs returning, source, country) explains the rate drops",
+   "status": "ruled out",
+   "confidence": "high",
+   "claim": "The per-player rates fell because the mix of players changed, not because the game held them less.",
+   "for": [
+    "Source shares did shift: HomeRecommendation 64.0% → 61.0% of DAU, Others 18.2% → 21.3%."
+   ],
+   "against": [
+    "New-player share 56.8% → 57.2%; re-weighting to last week's mix changes session length by −0.1% and playtime by −0.2%.",
+    "Session length fell for new and returning players and on every platform; D1 is lower on Home, Search and Others, the three sources with enough volume to read.",
+    "DAU fell in all 15 top countries (−11.0% to −52.6%), so no single region carries the move."
+   ],
+   "test": "Settled by the mix and source tables."
+  },
+  {
+   "title": "A platform-wide or seasonal shock this week",
+   "status": "ruled out",
+   "confidence": "high",
+   "claim": "Roblox-wide demand or an instrument change moved every game the same way this week.",
+   "for": [
+    "Three platform-wide items exist and were set aside: the 09-08 telemetry fault (FPS/memory on all five), the 09-15 client-CPU dip (all five), and the 09-11 `Others`-impression step (all five — though all five also published that day)."
+   ],
+   "against": [
+    "Two of the five games grew this week (Brainrot DAU +37.3%, Waterslide +71.1%) while three shrank.",
+    "Seal is the only game whose session length fell, and D1 fell only on Seal and Verity."
+   ],
+   "test": "Settled by the five-game table; re-run on the next matched week."
+  },
+  {
+   "title": "A thumbnail or listing change moved this week's numbers",
+   "status": "ruled out",
+   "confidence": "medium",
+   "claim": "A creative swap inside the window cut conversion or retention.",
+   "for": [
+    "Players still name the AI art: 3 of 14 v915 comments, 5 of 36 on v914 — a brand item, separate from this week's movement, and the reach version of this theory was already tested and killed on 09-10."
+   ],
+   "against": [
+    "No thumbnail or icon change is annotated after 09-08 19:43, so none falls inside the after-window; the title change to `[NEW MAP🛢️]` comes after it.",
+    "`RFYPlayThroughRate` rose 21.1%, and the per-player falls include players who never see a listing (returning players' session length −7.6%)."
+   ],
+   "test": "None needed for this window; the D1-by-source method stays the test for any future creative question."
+  }
+ ],
+ "reads": [
+  {
+   "date": "2026-09-20",
+   "what": "Client FPS, memory and crash rate for 09-19, the first full day with v919 live (still mixed with v918 servers)."
+  },
+  {
+   "date": "2026-09-21",
+   "what": "DAU, revenue, session length and RFY signals for 09-19, the first behavioural day after v919 — whether session length held at the 09-16/17 level (H2) and whether DAU kept the slower slope (H1)."
+  },
+  {
+   "date": "2026-09-22",
+   "what": "D1 for the 09-19 cohort; Home and Search impressions for 09-18/19 against the title change (H5)."
+  },
+  {
+   "date": "2026-09-25",
+   "what": "Full matched week Sat 09-19 → Wed 09-23 against 09-12 → 09-16: DAU, CCU, D1 by source, session length, `PayingUsersCVR`; since-v919 7-day error export."
+  },
+  {
+   "date": "2026-09-26",
+   "what": "Funnel cohorts 09-19 → 09-23 at 3+ days' age: `TenJobs` step-to-step against 24.8% (H2) and Airport → step 5 (NewZone) against August's 11.5–14.0% (H6)."
+  }
+ ]
+}

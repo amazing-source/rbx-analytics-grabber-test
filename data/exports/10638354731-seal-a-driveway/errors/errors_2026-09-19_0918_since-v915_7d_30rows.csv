@@ -1,0 +1,31 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+8390,Error,Client,Mon Sep 14 2026 20:22:25 GMT+0200 (heure d’été d’Europe centrale),V915,EditableImage is not accessible. Go to the Security Tab in Experience Settings to enable this API.,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceRenderer', Line 565 - function Paint
+    Script 'ReplicatedStorage.DrivewaySealer.ColorVisuals', Line 111 - function paintHook
+    Script 'ReplicatedStorage.DrivewayRace.RaceSurface', Line 363 - function Render
+    Script 'Players.<Player>.PlayerScripts.DrivewayRaceClient', Line 293",
+2116,Error,Client,Tue Sep 15 2026 19:31:50 GMT+0200 (heure d’été d’Europe centrale),V915,exception while signaling: mutex lock failed: Invalid argument,,
+170,Warning,Server,Wed Sep 16 2026 00:14:00 GMT+0200 (heure d’été d’Europe centrale),V915,"[UpgradeService] save failed for <Player> after 3 tries: 502: API Services rejected request with error. Error code: 0 Reason: Too many requests, try again later.",,
+136,Warning,Server,Wed Sep 16 2026 00:08:35 GMT+0200 (heure d’été d’Europe centrale),V915,[UpgradeService] save failed for <Player> after 3 tries: 502: API Services rejected request with error. Error code: 0 Reason: Access forbidden.,,
+60,Warning,Server,Tue Sep 15 2026 05:18:50 GMT+0200 (heure d’été d’Europe centrale),V915,Unreliable Event dropped as its payload is too large. Consider reducing the total size of the arguments. Payload went over by: 290 bytes,,
+52,Warning,Client,Fri Sep 18 2026 03:10:05 GMT+0200 (heure d’été d’Europe centrale),V918,Current thread doesn't have permissions to access child CoreGui of class DataModel,"Script 'spawner', Line 1",
+52,Warning,Client,Fri Sep 18 2026 03:10:05 GMT+0200 (heure d’été d’Europe centrale),V918,Current thread doesn't have permissions to access child CoreGui of class DataModel,,
+39,Error,Server,Thu Sep 17 2026 19:19:00 GMT+0200 (heure d’été d’Europe centrale),V918,DataStoreService: InternalServerError: An internal server error occurred. API: UpdateAsync,RobotHelper_v1,
+39,Warning,Server,Thu Sep 17 2026 19:19:00 GMT+0200 (heure d’été d’Europe centrale),V918,[RobotHelper] Save failed: 502: API Services rejected request with error. Error code: 0 Reason: An internal server error occurred.,,
+38,Warning,Server,Tue Sep 15 2026 05:18:50 GMT+0200 (heure d’été d’Europe centrale),V915,Unreliable Event dropped as its payload is too large. Consider reducing the total size of the arguments. Payload went over by: 474 bytes,,
+37,Warning,Server,Tue Sep 15 2026 05:18:50 GMT+0200 (heure d’été d’Europe centrale),V915,Unreliable Event dropped as its payload is too large. Consider reducing the total size of the arguments. Payload went over by: 658 bytes,,
+33,Error,Server,Thu Sep 17 2026 03:54:45 GMT+0200 (heure d’été d’Europe centrale),V915,Error while sending. sender type: Security error message: Unsupported Luau version requested: 12 not in [3..11],,
+33,Warning,Server,Wed Sep 16 2026 00:09:55 GMT+0200 (heure d’été d’Europe centrale),V915,"[MapReach] could not read <Player>'s mark, not counting yet: 502: API Services rejected request with error. Error code: 0 Reason: Access forbidden.",,
+30,Warning,Server,Tue Sep 15 2026 10:27:15 GMT+0200 (heure d’été d’Europe centrale),V915,Unreliable Event dropped as its payload is too large. Consider reducing the total size of the arguments. Payload went over by: 934 bytes,,
+28,Error,Client,Fri Sep 11 2026 15:34:20 GMT+0200 (heure d’été d’Europe centrale),V915,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'ReplicatedStorage.DrivewaySealer.ColorFX', Line 41",
+25,Warning,Server,Tue Sep 15 2026 10:27:15 GMT+0200 (heure d’été d’Europe centrale),V915,Unreliable Event dropped as its payload is too large. Consider reducing the total size of the arguments. Payload went over by: 842 bytes,,
+25,Warning,Server,Tue Sep 15 2026 10:27:15 GMT+0200 (heure d’été d’Europe centrale),V915,Unreliable Event dropped as its payload is too large. Consider reducing the total size of the arguments. Payload went over by: 1026 bytes,,
+25,Warning,Server,Tue Sep 15 2026 10:27:15 GMT+0200 (heure d’été d’Europe centrale),V915,Unreliable Event dropped as its payload is too large. Consider reducing the total size of the arguments. Payload went over by: 1210 bytes,,
+21,Error,Server,Thu Sep 17 2026 02:54:25 GMT+0200 (heure d’été d’Europe centrale),V915,Error while sending. sender type: Security error message: Unsupported Luau version requested: 12 not in [3..6],,
+21,Error,Client,Fri Sep 11 2026 15:54:15 GMT+0200 (heure d’été d’Europe centrale),V915,Cannot require a RobloxScript module from a non RobloxScript context,"Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 135 - function registerSlab
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 356 - function pumpBuilds
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 974",
+20,Warning,Server,Tue Sep 15 2026 10:27:15 GMT+0200 (heure d’été d’Europe centrale),V915,Unreliable Event dropped as its payload is too large. Consider reducing the total size of the arguments. Payload went over by: 566 bytes,,
+20,Warning,Server,Tue Sep 15 2026 10:27:15 GMT+0200 (heure d’été d’Europe centrale),V915,Unreliable Event dropped as its payload is too large. Consider reducing the total size of the arguments. Payload went over by: 1118 bytes,,
+20,Error,Client,Fri Sep 11 2026 15:34:20 GMT+0200 (heure d’été d’Europe centrale),V915,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 974",
+16,Warning,Server,Sun Sep 13 2026 21:09:00 GMT+0200 (heure d’été d’Europe centrale),V915,[DrivewayServer] <Player> finished Workspace.Neighbourhood.Pavement.Lot_104.Walkway but the server had only seen 0.01 coverage (needs 0.93) -- not paid and NOT recorded,,
+15,Warning,Server,Mon Sep 14 2026 17:16:40 GMT+0200 (heure d’été d’Europe centrale),V915,[DrivewayServer] <Player> finished Workspace.EstateDistrict.Driveways.Drive_Meridian but the server had only seen 0.08 coverage (needs 0.93) -- not paid and NOT recorded,,

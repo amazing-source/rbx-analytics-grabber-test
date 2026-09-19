@@ -8,7 +8,7 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"f7bb4709-abfd-4e5c-b833-bb0251d9befc","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":106407831867356}},"createdUtcTime":"2026-05-13T11:14:53.964Z"}`
 - `{"id":"7963df36-d42d-4409-9d1e-e05bae9da68d","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":137906009345731}},"createdUtcTime":"2026-06-16T17:17:41.669Z"}`
 
-## annotationType=4 (33)
+## annotationType=4 (34)
 
 - `{"id":"c600d6ba-f7df-46fa-bb91-3dd7d6d1c180","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[121196655437034,139154189580660,122503216907785,76056142276708]}},"createdUtcTime":"2026-07-16T15:34:18.467Z"}`
 - `{"id":"a6adabff-9d70-41d0-8bcf-5333cb1ca807","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[122503216907785,76056142276708,121196655437034,113997819074128,139154189580660]}},"createdUtcTime":"2026-07-16T15:34:26.467Z"}`
@@ -43,12 +43,13 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"b74f1107-a4e0-4593-aafc-e7d7e77d53d1","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[137443526566350,131689197492155,139862018568595,104143501946197,80359448859387]}},"createdUtcTime":"2026-09-05T19:32:57.026Z"}`
 - `{"id":"185ff71a-3f83-49c8-ab29-4382005c13a4","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[109356060415190,137443526566350,89671447016784,71836489559736,80359448859387]}},"createdUtcTime":"2026-09-06T21:41:22.278Z"}`
 - `{"id":"67af3ff9-9320-434c-84c6-0a339c056a62","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[73428835392289,85182145392662,72148412867672,119722293010948,137443526566350]}},"createdUtcTime":"2026-09-08T19:44:23.486Z"}`
+- `{"id":"edbbcc79-9747-4849-811c-34600ef73b85","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[85182145392662,135871429447649,83642244018578,136791184576403,80769899094965]}},"createdUtcTime":"2026-09-13T22:01:30.184Z"}`
 
 ## annotationType=6 (1)
 
 - `{"id":"4c827f10-02f2-4671-9028-44fb46459012","annotationType":"ANNOTATION_TYPE_BENCHMARK_CHANGE","metadata":{"benchmarkChange":{"fromBenchmarkType":"GENRE","toBenchmarkType":"SIMILARITY"}},"createdUtcTime":"2026-05-31T00:00:00Z"}`
 
-## annotationType=8 (34)
+## annotationType=8 (39)
 
 - `{"id":"6bed09c6-dc0c-4fa4-9959-065aec969b1b","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":1894372257078313700,"eventName":"NEW UPDATE + ADMIN ABUSE","imageAssetId":84035720199454,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-07-17T16:00:59.137Z"}`
 - `{"id":"0ab13ff1-bbf2-4caf-a6a5-90b063883a01","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":2925804323885679000,"eventName":"X2 EVENT!","imageAssetId":112907560433024,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-07-24T16:00:59.137Z"}`
@@ -84,8 +85,13 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"5aac2fe3-f6b4-44d0-a14b-6259b796a34b","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":7331234516536788000,"eventName":"ADMIN ABUSE","imageAssetId":133989180335169,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-05T17:00:42.676Z"}`
 - `{"id":"d095dbcb-2710-4aa5-9b00-28c1182a9d27","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":7331234516536788000,"eventName":"ADMIN ABUSE","imageAssetId":133989180335169,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-09-05T18:00:42.676Z"}`
 - `{"id":"dc8c5c26-57ad-450c-b2c6-cf5d3ef88430","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":5309141744502310000,"eventName":"NEW UPDATE","imageAssetId":90996299491617,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-09-07T17:00:29.968Z"}`
+- `{"id":"02c9aedb-be55-4659-86b0-aa6df9f82242","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":8954521320083817000,"eventName":"NEW WORLD","imageAssetId":112691641962324,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-11T19:00:43.009Z"}`
+- `{"id":"fd502f66-a55d-4a70-9d21-a320091e2b4b","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":7331234516536788000,"eventName":"ADMIN ABUSE","imageAssetId":133989180335169,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-12T17:00:42.676Z"}`
+- `{"id":"85739650-2546-465a-a00f-bbfa25fbe949","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":7331234516536788000,"eventName":"ADMIN ABUSE","imageAssetId":133989180335169,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-09-12T18:00:42.676Z"}`
+- `{"id":"83327613-8057-473b-a36b-fb96f3eba28b","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":8954521320083817000,"eventName":"NEW WORLD","imageAssetId":112691641962324,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-09-15T18:00:43.009Z"}`
+- `{"id":"2d16088a-c2c9-4ae3-b7ad-26a1985eaf34","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":5309141744502310000,"eventName":"NEW UPDATE","imageAssetId":90996299491617,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-17T18:00:29.968Z"}`
 
-## annotationType=10 (92)
+## annotationType=10 (95)
 
 - `{"id":"ccd35f3c-7458-493b-908d-8703ff93e814","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":730}},"createdUtcTime":"2026-07-15T16:55:50.725Z"}`
 - `{"id":"384414c6-f52e-4927-b269-60645af8def2","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":730}},"createdUtcTime":"2026-07-15T17:08:19.492Z"}`
@@ -179,6 +185,9 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"29f7b13a-a483-404c-a100-1a2851c4fee6","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":738}},"createdUtcTime":"2026-09-09T16:47:36.304Z"}`
 - `{"id":"390d21b0-c464-49a3-be1f-7343300a8f5c","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":738}},"createdUtcTime":"2026-09-09T18:19:11.651Z"}`
 - `{"id":"2c423c5b-0d32-4c7b-82f6-a4f711c9950a","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":738}},"createdUtcTime":"2026-09-09T22:30:35.962Z"}`
+- `{"id":"18b864a2-890d-4282-98e1-1556ae5f6b90","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":739}},"createdUtcTime":"2026-09-14T22:07:23.930Z"}`
+- `{"id":"113bce0f-58bb-44df-9079-78bcaa963e16","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":739}},"createdUtcTime":"2026-09-15T16:00:31.269Z"}`
+- `{"id":"866b392f-1bb0-46da-8c00-1cb1eafc211a","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":739}},"createdUtcTime":"2026-09-15T16:00:59.013Z"}`
 
 ## annotationType=11 (1)
 

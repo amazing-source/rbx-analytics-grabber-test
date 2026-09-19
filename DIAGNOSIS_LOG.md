@@ -621,3 +621,47 @@ produced the 2026-09-08 spec-block retraction. Asked Ren to re-send.
 
 **Open:** v689 (Verity daily + group
 rewards) has two days and is not assessed; first clean read ~09-15.
+
+## 2026-09-19 — week after the 11 Sep builds, five games (hypotheses at the bottom of each page)
+
+Docs: `reports/2026-09-19/` (build: `tools/r0919/`). Cover https://claude.ai/artifact/CzFkDtWS5tC4NMBmgoUANu.
+Window Sat 09-12 → Wed 09-16 vs Sat 09-05 → Wed 09-09, weekday-paired. Ren asked for data-analyst
+pages with the diagnosis as **hypotheses at the very bottom**. One analyst per game; the planned
+three-reviewer verification was **skipped to save usage** (Ren's call) — only a manual spot-check ran
+(headline figures vs the builder, causal-language leak scan, F36 CPU cell, the cross-game CVR step).
+
+**Top claims delivered (status as shipped):**
+
+| Game | Claim | Status |
+|---|---|---|
+| Portfolio | `PayingUsersCVR` stepped down 09-07 → 09-08 on all five games; the PRE window holds the US Labor Day weekend | measured |
+| Brainrot | DAU +37.3% is a Home reach expansion weighted to Russian-speaking players, beginning 09-08 — before v612 | supported / high (one analyst) |
+| Brainrot | ARPDAU −31% is dilution + the holiday baseline, not fewer payers | supported / high (one analyst) |
+| Waterslide | DAU +71.1% is mostly a Home reach step from Mon 09-14; new-world content weakened as the cause | supported / medium |
+| Monkey | Decelerating lifecycle decline independent of v1251 | supported / high |
+| Verity | Reach cut + the portfolio-wide 09-08 payer step; v689 free messages cannibalising paid is plausible / low | supported / medium |
+| Seal | Post-peak reach decline, slowing; a Seal-only engagement dip after v915 closed by 09-16 | supported / high; plausible / medium |
+
+**Not verified by a second pass** — treat every *supported / high* above as reviewed once. The 09-17/18
+builds are graded on nothing behavioural; first clean day 09-19 lands ~09-21. Pipeline defect found
+on the way: F37 (feedback.csv truncated by a short grab).
+
+**Correction, same day — Verity's "free messages cannibalised paid messaging" (H3, plausible/low) → WEAKENED.**
+Ren (who proposed the free messages) asked whether they had become a disadvantage. Measured against the
+other four games (each normalised to its own 01–07 Sep mean; `tools/r0919/extras/verity-peer-index.js`):
+the 08 Sep payer step was portfolio-wide and Verity's was mid-pack (−25% vs −18% to −39%); Verity's
+ARPDAU ran *ahead* of the peers on 8–9 Sep (1.26, 1.28); the Verity-specific break starts 13–14 Sep in
+reach (impressions index 0.45, DAU 0.35 by 16 Sep). The intended effect is visible: ran-out share
+60.8% → 44.3%, message-limit complaints 7.8% → 4.5% of reviews. **Failure mode: a mechanism hypothesis
+titled as a verdict ("cannibalised") while the evidence was confounded with a portfolio-wide step —
+the co-movement test existed in the same page's cross-game table and was not applied to it.**
+
+**Peer index added to all five pages, same day** (`tools/r0919/peer-index.js`: each game ÷ its own 01–07 Sep
+mean, ÷ the median of the other four). It moved four hypotheses: Brainrot's "payer fall = dilution + Labor
+Day" supported/high → plausible/medium (shared only to 13 Sep; from 14 Sep Brainrot runs 0.63–0.77 of the
+portfolio, the day NEW UPDATE and WORLD 3 events ended); Waterslide's "new world lifted the game"
+weakened/low → plausible/medium (D1 1.13–1.16 and payer CVR 1.15–1.42 vs peers from the build weekend,
+against a mix shift that would push both down); Monkey's aura-crate spend rise confirmed game-specific but
+n = 159–494 payers/day; Seal's session dip is Seal-only but D1/CVR/D2–7 stay below the portfolio after it.
+The shared component: five-game median `PayingUsersCVR` 0.61–0.87 of its 01–07 Sep level through 17 Sep.
+**Make the peer index a standard table on every multi-game read** — it is the co-movement test in numbers.

@@ -1,0 +1,97 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+485498,Warning,Client,Tue Jul 14 2026 20:22:15 GMT+0200 (heure d’été d’Europe centrale),V1207,"Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will not be played.","http://www.roblox.com/asset/?id=125750702,<Player>
+rbxassetid://107978352216866,SelfAvatar
+rbxassetid://130705236924680,SelfAvatar
+rbxassetid://140494141874583,SelfAvatar
+rbxassetid://71716147557925,SelfAvatar
+rbxassetid://72054005986528,SelfAvatar",
+336188,Warning,Client,Sun Aug 09 2026 21:50:20 GMT+0200 (heure d’été d’Europe centrale),V1228,[EventController]: PromptRsvpToEventAsync failed: Error getting event details: HTTP 404 (Not Found),,
+111616,Warning,Client,Sun Aug 09 2026 21:51:05 GMT+0200 (heure d’été d’Europe centrale),V1228,[EventController]: GetEventRsvpStatusAsync failed: Error getting event details: HTTP 404 (Not Found),,
+74333,Error,Client,Tue Jul 14 2026 01:24:30 GMT+0200 (heure d’été d’Europe centrale),V1197,Failed to load sound: Timedout,rbxasset://sounds/action_falling.ogg: HttpError
+rbxassetid://121621005771265: HttpError
+rbxassetid://127173621896842: HttpError
+rbxassetid://135595810064855: HttpError
+rbxassetid://142376088: HttpError
+rbxassetid://1838859930: HttpError
+rbxassetid://92645655303493: HttpError,
+51625,Warning,Client,Sun Aug 09 2026 21:51:05 GMT+0200 (heure d’été d’Europe centrale),V1228,[EventController]: GetEventRsvpStatusAsync failed: Error getting event details: HTTP 404,,
+19388,Error,Client,Tue Jul 14 2026 01:20:05 GMT+0200 (heure d’été d’Europe centrale),V1197,Failed to load animation with sanitized ID. Animation failed to load,rbxassetid://107978352216866
+rbxassetid://125750702
+rbxassetid://130705236924680
+rbxassetid://140494141874583
+rbxassetid://180435792
+rbxassetid://71716147557925
+rbxassetid://96380221214355
+rbxassetid://96547749584113,
+18098,Warning,Client,Tue Jul 14 2026 00:34:00 GMT+0200 (heure d’été d’Europe centrale),V1197,A new version of TopbarPlus (nil) is available: https://devforum.roblox.com/t/topbarplus/1017485,,
+14590,Warning,Client,Sun Aug 09 2026 21:55:05 GMT+0200 (heure d’été d’Europe centrale),V1228,[EventController]: PromptRsvpToEventAsync failed: Error getting event details: HTTP 404,,
+11112,Error,Client,Tue Jul 14 2026 01:20:05 GMT+0200 (heure d’été d’Europe centrale),V1197,MeshContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=10067420472
+https://assetdelivery.roblox.com/v1/asset?id=103622994018140
+https://assetdelivery.roblox.com/v1/asset?id=104007152067337
+https://assetdelivery.roblox.com/v1/asset?id=14817213017
+https://assetdelivery.roblox.com/v1/asset?id=279174886
+https://assetdelivery.roblox.com/v1/asset?id=2907183829
+https://assetdelivery.roblox.com/v1/asset?id=319354652
+https://assetdelivery.roblox.com/v1/asset?id=3302576131
+https://assetdelivery.roblox.com/v1/asset?id=87018896412880
+https://assetdelivery.roblox.com/v1/asset?id=94446300223012
+https://assetdelivery.roblox.com/v1/asset/?id=14101706206,
+8839,Error,Client,Tue Jul 14 2026 20:07:30 GMT+0200 (heure d’été d’Europe centrale),V1197,Failed to load sound: DnsResolve,rbxassetid://10066921516: HttpError
+rbxassetid://10128760939: HttpError
+rbxassetid://120187986578883: HttpError
+rbxassetid://130019340816873: HttpError
+rbxassetid://137273815815490: HttpError
+rbxassetid://1839336300: HttpError
+rbxassetid://6875009415: HttpError
+rbxassetid://8363346672: HttpError
+rbxassetid://84300908491063: HttpError
+rbxassetid://88535829892144: HttpError,
+7989,Warning,Client,Tue Jun 30 2026 06:24:35 GMT+0200 (heure d’été d’Europe centrale),V178,Infinite yield possible on WaitForChild,Players.<Player>.PlayerGui:WaitForChild("MenuHUD")
+Players.<Player>.PlayerGui:WaitForChild("TouchGui"),
+5591,Error,Client,Tue Jul 14 2026 13:13:35 GMT+0200 (heure d’été d’Europe centrale),V1197,Failed to load sound: ConnectFail,rbxassetid://10066931761: HttpError
+rbxassetid://10128760939: HttpError
+rbxassetid://103516326607012: HttpError
+rbxassetid://104644728934074: HttpError
+rbxassetid://120187986578883: HttpError
+rbxassetid://123035172998288: HttpError
+rbxassetid://124504100732967: HttpError
+rbxassetid://130019340816873: HttpError
+rbxassetid://139731037802687: HttpError
+rbxassetid://92645655303493: HttpError
+rbxassetid://93905971910427: HttpError,
+4865,Error,Client,Tue Jul 14 2026 01:11:00 GMT+0200 (heure d’été d’Europe centrale),V1197,Failed to load sound: NetFail,rbxassetid://103516326607012: HttpError
+rbxassetid://104644728934074: HttpError
+rbxassetid://121621005771265: HttpError
+rbxassetid://127173621896842: HttpError
+rbxassetid://137273815815490: HttpError
+rbxassetid://1838859930: HttpError
+rbxassetid://1839336300: HttpError
+rbxassetid://6161421479: HttpError,
+3041,Warning,Client,Tue Jul 14 2026 01:22:10 GMT+0200 (heure d’été d’Europe centrale),V1197,A new version of TopbarPlus (الإصدار3.4.0) is available: https://devforum.roblox.com/t/topbarplus/1017485,,
+2183,Warning,Client,Tue Jul 14 2026 13:45:35 GMT+0200 (heure d’été d’Europe centrale),V1197,A new version of TopbarPlus (wwersji3.4.0) is available: https://devforum.roblox.com/t/topbarplus/1017485,,
+1985,Error,Client,Thu Jul 16 2026 21:55:25 GMT+0200 (heure d’été d’Europe centrale),V1207,Failed to load sound: HTTP 429 (Too Many Requests),rbxasset://sounds/action_falling.ogg
+rbxassetid://10066931761
+rbxassetid://103516326607012
+rbxassetid://123035172998288
+rbxassetid://134583420216867
+rbxassetid://15675032796
+rbxassetid://17582299860
+rbxassetid://3165700530
+rbxassetid://341542294,
+1433,Warning,Server,Fri Sep 04 2026 19:35:50 GMT+0200 (heure d’été d’Europe centrale),V1246,"[Medal] API error: 404  {""httpStatusCode"":404,""errorId"":1,""errorMessage"":""The requested entity could not be found"",""additionalInfo"":[]}",,
+1306,Error,Client,Tue Jul 14 2026 08:57:45 GMT+0200 (heure d’été d’Europe centrale),V1197,Failed to load sound: ServerProtocolError,rbxassetid://121621005771265: HttpError
+rbxassetid://127173621896842: HttpError
+rbxassetid://1838859930: HttpError,
+1213,Error,Client,Wed Jul 15 2026 03:02:20 GMT+0200 (heure d’été d’Europe centrale),V1207,Failed to load sound: SslConnectFail,rbxasset://sounds/action_falling.ogg: HttpError
+rbxassetid://10066921516: HttpError
+rbxassetid://10066931761: HttpError
+rbxassetid://10128760939: HttpError
+rbxassetid://103516326607012: HttpError
+rbxassetid://130019340816873: HttpError
+rbxassetid://77102785070258: HttpError,
+1037,Warning,Client,Tue Jul 14 2026 05:05:25 GMT+0200 (heure d’été d’Europe centrale),V1197,A new version of TopbarPlus (phiênbản3.4.0) is available: https://devforum.roblox.com/t/topbarplus/1017485,,
+846,Error,Server,Tue Aug 04 2026 00:47:05 GMT+0200 (heure d’été d’Europe centrale),V1228,"DataStoreService: TooManyRequests: Too many requests, try again later. API: SetAsync",Leaderboard,
+791,Error,Client,Tue Jul 14 2026 15:59:00 GMT+0200 (heure d’été d’Europe centrale),V1197,Error in loading DateTimeLocaleConfig file of id-id (Unable to load rbxasset://configs/DateTimeLocaleConfigs/id-id.json),,
+683,Error,Client,Thu Jul 16 2026 00:23:05 GMT+0200 (heure d’été d’Europe centrale),V1207,raiseTeleportInitFailedEvent: Teleport failed because A Http error has occurred. Please close the client and try again. (Failure),,
+640,Warning,Server,Sat Sep 05 2026 20:05:25 GMT+0200 (heure d’été d’Europe centrale),V1246,[Medal] API error: 503  no healthy upstream,,
+634,Warning,Client,Tue Jul 14 2026 01:11:10 GMT+0200 (heure d’été d’Europe centrale),V1197,A new version of TopbarPlus (v3.4.0版) is available: https://devforum.roblox.com/t/topbarplus/1017485,,

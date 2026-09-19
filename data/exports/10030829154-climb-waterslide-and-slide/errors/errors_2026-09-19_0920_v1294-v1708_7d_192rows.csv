@@ -1,0 +1,193 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+5452494,Error,Client,Sun Jun 07 2026 10:28:50 GMT+0200 (heure d’été d’Europe centrale),V1618,Failed to load sound: Asset is not approved for the requester,rbxassetid://138118304933431,
+3208738,Error,Server,Mon Aug 24 2026 21:49:25 GMT+0200 (heure d’été d’Europe centrale),V1708,Failed to load sound: Asset is not approved for the requester,rbxassetid://138118304933431,
+1455156,Warning,Client,,V1304,Infinite yield possible on WaitForChild,ReplicatedStorage:WaitForChild("ToolScripts")
+Workspace.WorldModel.AutumnEgg:WaitForChild("Trigger")
+Workspace.WorldModel.LimitedPet4:WaitForChild("Trigger"),
+846116,Warning,Client,,V1304,"Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will not be played.","http://www.roblox.com/asset/?id=10921258489,<Player>
+http://www.roblox.com/asset/?id=507765000,<Player>
+http://www.roblox.com/asset/?id=507766388,<Player>
+rbxassetid://102357151005774,<Player>",
+557032,Error,Client,,V1304,MeshContentProvider failed to process asset because 'could not fetch',d863be7bf2bf3e4f39881b7594573f42
+https://assetdelivery.roblox.com/v1/asset?id=100976207962831
+https://assetdelivery.roblox.com/v1/asset?id=101188245683822
+https://assetdelivery.roblox.com/v1/asset?id=101405432948450
+https://assetdelivery.roblox.com/v1/asset?id=101498550847127
+https://assetdelivery.roblox.com/v1/asset?id=101590811131165
+https://assetdelivery.roblox.com/v1/asset?id=105019813837274
+https://assetdelivery.roblox.com/v1/asset?id=105427467861710
+https://assetdelivery.roblox.com/v1/asset?id=105549188411609
+https://assetdelivery.roblox.com/v1/asset?id=106933249011784
+https://assetdelivery.roblox.com/v1/asset?id=107353959892637
+https://assetdelivery.roblox.com/v1/asset?id=113407090305714
+https://assetdelivery.roblox.com/v1/asset?id=114531787914075
+https://assetdelivery.roblox.com/v1/asset?id=11457885608
+https://assetdelivery.roblox.com/v1/asset?id=115395018022780
+https://assetdelivery.roblox.com/v1/asset?id=116298399301174
+https://assetdelivery.roblox.com/v1/asset?id=118465555749823
+https://assetdelivery.roblox.com/v1/asset?id=119982520066681
+https://assetdelivery.roblox.com/v1/asset?id=126085540683004
+https://assetdelivery.roblox.com/v1/asset?id=135666596145480
+https://assetdelivery.roblox.com/v1/asset?id=16496211008
+https://assetdelivery.roblox.com/v1/asset?id=18774112785
+https://assetdelivery.roblox.com/v1/asset?id=264715302
+https://assetdelivery.roblox.com/v1/asset?id=72635551300271
+https://assetdelivery.roblox.com/v1/asset?id=84425592837117
+https://assetdelivery.roblox.com/v1/asset?id=94219855397169
+https://assetdelivery.roblox.com/v1/asset?id=97959591802047
+https://assetdelivery.roblox.com/v1/asset?id=99661453930355
+https://assetdelivery.roblox.com/v1/asset/?id=10725526074
+https://assetdelivery.roblox.com/v1/asset/?id=11571898723
+https://assetdelivery.roblox.com/v1/asset/?id=118273551418167
+https://assetdelivery.roblox.com/v1/asset/?id=123480233606534
+https://assetdelivery.roblox.com/v1/asset/?id=123861558109248
+https://assetdelivery.roblox.com/v1/asset/?id=124074887241653
+https://assetdelivery.roblox.com/v1/asset/?id=138717622694088
+https://assetdelivery.roblox.com/v1/asset/?id=14915799290
+https://assetdelivery.roblox.com/v1/asset/?id=14915799303
+https://assetdelivery.roblox.com/v1/asset/?id=14915799407
+https://assetdelivery.roblox.com/v1/asset/?id=14915799424
+https://assetdelivery.roblox.com/v1/asset/?id=18148864182
+https://assetdelivery.roblox.com/v1/asset/?id=18148864239
+https://assetdelivery.roblox.com/v1/asset/?id=18148864451
+https://assetdelivery.roblox.com/v1/asset/?id=3941085397
+https://assetdelivery.roblox.com/v1/asset/?id=4586707183
+https://assetdelivery.roblox.com/v1/asset/?id=6568378035
+https://assetdelivery.roblox.com/v1/asset/?id=6937034645
+https://assetdelivery.roblox.com/v1/asset/?id=8917447037
+https://assetdelivery.roblox.com/v1/asset/?id=9284072921
+https://assetdelivery.roblox.com/v1/asset/?id=9341572666
+https://assetdelivery.robloxapp.vnggames.com/v1/asset/?id=11402532474,
+349913,Error,Client,,V1304,Failed to load object. PBR textures may not be visible in game.,layy_v7.Accessory (dark_fae).Handle.SurfaceAppearance
+SurfaceAppearance
+Workspace.<Player>.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.<Player>.Accessory (RightShoeAccessory).Handle.SurfaceAppearance
+Workspace.AngelHell_09.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.audisya10.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.baby1134649.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.BabyScarlettRose13.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.botak_plenger759.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Ch3rry_bl0ss0m554.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Cookie_Skye28.Head.SurfaceAppearance
+Workspace.DiorScarlett.Accessory (RightShoeAccessory).Handle.SurfaceAppearance
+Workspace.emo123go2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.erick005064.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.evillynvili.Head.SurfaceAppearance
+Workspace.Khanhv_23102019.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Lele_fsil.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Lynn06635.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.matchapictacio15.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.molyynox.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.N1C0Lv6.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.oijfh_1.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.11289221661.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.11356828643.BearRigs.BearRig_2.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rafts.11421007786.BearRigs.BearRig_4.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.Rumi2k180.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.shhsjdjdjwj.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.sixtoreyreyers123.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.SOFIA1263138.Accessory (dark_fae).Handle.SurfaceAppearance
+Workspace.vyjsjsjsj.Accessory (dark_fae).Handle.SurfaceAppearance,
+331540,Error,Client,,V1304,Failed to load animation with sanitized ID. Animation failed to load,rbxassetid://102230531775783
+rbxassetid://102439035841579
+rbxassetid://106477209076115
+rbxassetid://10921242013
+rbxassetid://10921258489
+rbxassetid://10921259953
+rbxassetid://10921263860
+rbxassetid://10921272275
+rbxassetid://123924173853550
+rbxassetid://127399411210331
+rbxassetid://16738333171
+rbxassetid://17173014241
+rbxassetid://507766666
+rbxassetid://79557001390874
+rbxassetid://99736601500473,
+271049,Error,Client,,V1304,Failed to load sound: Timedout,rbxassetid://105393302099968: HttpError
+rbxassetid://106239090346339: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://133664122932845: HttpError
+rbxassetid://138532985066732: HttpError
+rbxassetid://5410086218: HttpError,
+159143,Error,Server,,V1294,TeleportService:All players in teleport request are already in progress or throttled.,,
+51952,Error,Client,,V1304,HSRDataContentProvider failed to process asset because 'could not fetch',https://assetdelivery.roblox.com/v1/asset?id=100706232547983
+https://assetdelivery.roblox.com/v1/asset?id=100896560660471
+https://assetdelivery.roblox.com/v1/asset?id=101103282753095
+https://assetdelivery.roblox.com/v1/asset?id=103791864137548
+https://assetdelivery.roblox.com/v1/asset?id=106159241538925
+https://assetdelivery.roblox.com/v1/asset?id=111942947050093
+https://assetdelivery.roblox.com/v1/asset?id=11583679438
+https://assetdelivery.roblox.com/v1/asset?id=12723041743
+https://assetdelivery.roblox.com/v1/asset?id=12852453256
+https://assetdelivery.roblox.com/v1/asset?id=132492883078723
+https://assetdelivery.roblox.com/v1/asset?id=72077481047752
+https://assetdelivery.roblox.com/v1/asset?id=8918430959
+https://assetdelivery.roblox.com/v1/asset?id=90895642859208
+https://assetdelivery.roblox.com/v1/asset?id=9175552032
+https://assetdelivery.roblox.com/v1/asset?id=9223948026
+https://assetdelivery.robloxapp.vnggames.com/v1/asset?id=8918108910,
+44992,Error,Client,,V1304,Failed to load sound: ServerProtocolError,rbxassetid://124984738215587: HttpError
+rbxassetid://133761848795389: HttpError
+rbxassetid://138690351078103: HttpError
+rbxassetid://140245756477343: HttpError,
+40436,Error,Client,,V1304,Failed to load sound: NetFail,rbxassetid://105393302099968: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://133664122932845: HttpError
+rbxassetid://138118304933431: HttpError
+rbxassetid://138690351078103: HttpError
+rbxassetid://140494750798924: HttpError
+rbxassetid://99334339377211: HttpError,
+32369,Error,Client,,V1304,Failed to load sound: DnsResolve,rbxasset://sounds/action_falling.mp3: HttpError
+rbxassetid://10066921516: HttpError
+rbxassetid://104164882152349: HttpError
+rbxassetid://105393302099968: HttpError
+rbxassetid://124596590737636: HttpError
+rbxassetid://125381282450800: HttpError
+rbxassetid://138118304933431: HttpError
+rbxassetid://171186876: HttpError
+rbxassetid://5410086218: HttpError,
+19959,Error,Client,,V1304,Failed to load sound: HTTP 429 (Too Many Requests),rbxassetid://10066921516
+rbxassetid://104164882152349
+rbxassetid://106239090346339
+rbxassetid://124271857226514
+rbxassetid://124596590737636
+rbxassetid://125381282450800
+rbxassetid://135428907715078
+rbxassetid://138118304933431,
+15125,Error,Client,,V1304,Failed to load sound: ConnectFail,rbxassetid://105393302099968: HttpError
+rbxassetid://106239090346339: HttpError
+rbxassetid://124271857226514: HttpError
+rbxassetid://124984738215587: HttpError
+rbxassetid://129503972320937: HttpError
+rbxassetid://133664122932845: HttpError
+rbxassetid://136971463594943: HttpError
+rbxassetid://138118304933431: HttpError
+rbxassetid://138532985066732: HttpError
+rbxassetid://14621507602: HttpError
+rbxassetid://171186876: HttpError,
+14383,Error,Client,,V1304,Error in loading DateTimeLocaleConfig file of id-id (Unable to load rbxasset://configs/DateTimeLocaleConfigs/id-id.json),,
+14002,Error,Server,,V1304,DataStoreService: KeyThrottled: The request rate exceeds the allowed maximum for the key. API: UpdateAsync,GlobalDataStore,
+13697,Error,Client,,V1304,Players.<Player>.PlayerScripts.UI.Trade:305: attempt to index nil with 'Name',"Script 'Players.<Player>.PlayerScripts.UI.Trade', Line 305 - function OnCloseTradeBtn",
+9018,Error,Client,,V1300,Failed to load sound: Unable to download sound data,rbxasset://sounds/action_jump_land.mp3
+rbxassetid://124984738215587
+rbxassetid://133664122932845
+rbxassetid://133761848795389
+rbxassetid://171186876,
+8301,Error,Client,,V1304,raiseTeleportInitFailedEvent: Teleport failed because A Http error has occurred. Please close the client and try again. (Failure),,
+6908,Error,Client,,V1300,Failed to load sound: OutOfMemory,rbxasset://sounds/action_falling.mp3: HttpError
+rbxasset://sounds/action_falling.ogg: HttpError
+rbxassetid://133664122932845: HttpError
+rbxassetid://133761848795389: HttpError
+rbxassetid://139117624240827: HttpError
+rbxassetid://171186876: HttpError,
+5495,Error,Client,,V1304,Error in loading DateTimeLocaleConfig file of vi-vn (Unable to load rbxasset://configs/DateTimeLocaleConfigs/vi-vn.json),,
+5132,Error,Client,Mon Jun 08 2026 19:09:30 GMT+0200 (heure d’été d’Europe centrale),V1669,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: DnsResolve,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+4481,Error,Client,,V1300,Failed to load sound: SslConnectFail,rbxasset://sounds/action_falling.mp3: HttpError
+rbxassetid://105393302099968: HttpError
+rbxassetid://106239090346339: HttpError
+rbxassetid://124596590737636: HttpError
+rbxassetid://125381282450800: HttpError
+rbxassetid://138118304933431: HttpError,
+4476,Error,Client,Mon Jun 08 2026 18:04:55 GMT+0200 (heure d’été d’Europe centrale),V1669,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: ConnectFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 125 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",

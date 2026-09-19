@@ -1,0 +1,66 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+1690,Error,Client,Thu Sep 17 2026 20:20:10 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: DnsResolve,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+1263,Error,Client,Thu Sep 17 2026 21:48:10 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: Timedout,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+922,Error,Client,Thu Sep 17 2026 20:27:35 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: Timedout,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 152 - function setSpeedDisplay
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 317",
+921,Error,Client,Thu Sep 17 2026 20:45:10 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: ConnectFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+741,Error,Client,Thu Sep 17 2026 20:20:10 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: DnsResolve,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.WorldPriceMgr', Line 23 - function onPriceLabelAdded",
+541,Error,Client,Thu Sep 17 2026 21:02:30 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: NetFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+537,Error,Client,Thu Sep 17 2026 21:48:10 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: Timedout,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.WorldPriceMgr', Line 23 - function onPriceLabelAdded",
+414,Error,Client,Thu Sep 17 2026 20:45:10 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: ConnectFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.WorldPriceMgr', Line 23 - function onPriceLabelAdded",
+238,Error,Client,Thu Sep 17 2026 20:27:20 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: Timedout,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.Common.Shop', Line 119 - function UpdateBuyButtonPrice
+    Script 'Players.<Player>.PlayerScripts.UI.Common.Shop', Line 248",
+188,Error,Client,Thu Sep 17 2026 21:02:30 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: NetFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.WorldPriceMgr', Line 23 - function onPriceLabelAdded",
+157,Error,Client,Fri Sep 18 2026 04:49:50 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: TlsVerificationFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+148,Error,Client,Thu Sep 17 2026 20:20:40 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: DnsResolve,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 152 - function setSpeedDisplay
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 317",
+139,Error,Client,Thu Sep 17 2026 20:21:55 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: ConnectFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 152 - function setSpeedDisplay
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 317",
+138,Error,Client,Thu Sep 17 2026 22:27:25 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: Timedout,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Trail', Line 122 - function setBonusOrPriceDisplay
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Trail', Line 400 - function RefreshList
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Trail', Line 447 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop', Line 79 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.UIMgr', Line 78 - function Open",
+116,Error,Client,Fri Sep 18 2026 00:03:55 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: SslConnectFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+109,Error,Client,Fri Sep 18 2026 04:49:50 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: TlsVerificationFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.WorldPriceMgr', Line 23 - function onPriceLabelAdded",
+89,Error,Client,Fri Sep 18 2026 19:31:15 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed with status code: 503,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+74,Error,Client,Thu Sep 17 2026 20:49:25 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: DnsResolve,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.Common.Shop', Line 119 - function UpdateBuyButtonPrice
+    Script 'Players.<Player>.PlayerScripts.UI.Common.Shop', Line 248",
+74,Error,Client,Fri Sep 18 2026 06:46:10 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: NetFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 152 - function setSpeedDisplay
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Raft', Line 317",
+61,Error,Client,Fri Sep 18 2026 05:25:30 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: ServerProtocolError,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.HUD', Line 110",
+52,Error,Client,Thu Sep 17 2026 22:26:15 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: SslConnectFail,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.WorldPriceMgr', Line 23 - function onPriceLabelAdded",
+48,Error,Client,Fri Sep 18 2026 04:37:10 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: Timedout,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.Common.Shop', Line 119 - function UpdateBuyButtonPrice
+    Script 'Players.<Player>.PlayerScripts.UI.Common.Shop', Line 158",
+37,Error,Client,Fri Sep 18 2026 19:31:15 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed with status code: 503,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.WorldPriceMgr', Line 23 - function onPriceLabelAdded",
+34,Error,Client,Thu Sep 17 2026 20:20:40 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: DnsResolve,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Trail', Line 122 - function setBonusOrPriceDisplay
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Trail', Line 400 - function RefreshList
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop_Trail', Line 447 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.UI.GoShop', Line 79 - function OnOpen
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.UIMgr', Line 78 - function Open",
+33,Error,Client,Fri Sep 18 2026 05:25:30 GMT+0200 (heure d’été d’Europe centrale),V1723,MarketplaceService::getProductInfo - GetDeveloperProductInfo failed: HTTP request failed: ServerProtocolError,"Script 'Players.<Player>.PlayerScripts.Manager.Common.ProductMgr', Line 133 - function GetProductPrice
+    Script 'Players.<Player>.PlayerScripts.Manager.Common.WorldPriceMgr', Line 23 - function onPriceLabelAdded",

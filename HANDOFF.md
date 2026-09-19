@@ -1043,3 +1043,23 @@ this version" tripwire cannot be evaluated on either.
 days**, `Steal An Egg` **1,355,686 = 16.7%** of it (was 917K / 12.2% on 08-25).
 The board grew while the portfolio did not, which rules out seasonality for the
 current deficits. See `data/platform/`.
+
+## Session 2026-09-19 — the week after the 11 Sep builds, five games
+
+Pages: cover https://claude.ai/artifact/CzFkDtWS5tC4NMBmgoUANu (links to all five). Sources and
+numbers: `reports/2026-09-19/` (data/<slug>.json, extras-<slug>.json, content/<slug>.json).
+Window Sat 09-12 → Wed 09-16 vs Sat 09-05 → Wed 09-09, weekday-paired. Every game published Fri 09-11.
+
+| Game | DAU (wk before) | What the peer index adds |
+|---|---|---|
+| Waterslide `10030829154` | +71.1% (−34.4%) | D1 1.13–1.16 and payer CVR 1.15–1.42 vs peers from the build weekend; the volume turn predates the build |
+| Brainrot `9963622286` | +37.3% (−4.4%) | reach rise from 09-08 (before v612); payer CVR shared to 13 Sep, 0.63–0.77 of peers from 14 Sep (events ended that day) |
+| Seal `10638354731` | −44.7% (−68.6%) | session dip Seal-only, back by 16 Sep; D1/CVR/D2–7 still below peers after |
+| Banana Monkey `10399712766` | −58.7% (−71.2%) | ARPPU 1.36–2.11 vs peers from 13 Sep (aura crates?), on 159–494 payers/day |
+| Verity `10565445771` | −40.2% (−23.4%) | revenue/player ahead of peers 08–09 Sep; break is reach from 13–14 Sep (impressions 0.45 by 16 Sep) |
+
+**Verity's free messages (v689, 09-08) were Ren's proposal.** They did what they were for (ran-out
+60.8% → 44.3%, limit complaints 7.8% → 4.5% of reviews); the "cannibalised paid" hypothesis was
+retracted to *weakened*. Settle with per-item revenue for 19 → 25 Sep (~27 Sep).
+Open: the 09-17/18 builds (Waterslide v1723, Monkey v1252, Seal v918/v919, Verity v696, Brainrot v614)
+have no filed specs and no clean behavioural day until ~09-21.

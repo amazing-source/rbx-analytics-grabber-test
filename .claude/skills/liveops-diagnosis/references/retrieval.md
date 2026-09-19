@@ -161,6 +161,16 @@ often; Seal holds **5 days** because it was added recently. So it is not "only
 the 1d window" — it is 1 day per grab, compounding. **Another reason to grab
 daily.**
 
+### Hourly CCU without Open Cloud — the in-page Explore engine (2026-09-19)
+
+Ren prefers the extension path (Open Cloud is 30 POST/min). `npm run explore-pull` (web/scripts/explore-pull.ts)
+issues `dag/execute` from inside the logged-in create.roblox.com page and writes raw JSON. Measured on all five
+games, 08-28 → 09-20 in one request each: `ConcurrentPlayers` @ `ONE_HOUR` → 540 points, `PeakConcurrentPlayers`
+@ `HALF_HOUR` → 1,076 points, **no Place filter needed**, no 24h clamp. Drop the final bucket (carry-forward).
+Splits that work: `DailyActiveUsers` × `IsNewUser`/`Platform`/`AcquisitionSource`, session and CVR × `Platform`.
+**`ForwardD1Retention` × `IsNewUser` fails on every game** (`ERROR_CODE_INTERNAL_ERROR`, success:false) — report
+as unavailable. The profile is single-use: chain browser jobs (grab → reviews → Explore → exports) serially.
+
 ## Funnel endpoint — failure modes and quotas
 
 **Two failure modes of the funnel endpoint itself, both measured 2026-08-23:**

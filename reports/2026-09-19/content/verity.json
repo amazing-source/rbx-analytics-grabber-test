@@ -1,0 +1,339 @@
+{
+ "title": "Verity Companion [AI]",
+ "asOf": "2026-09-19",
+ "dek": "In the week of the 11 Sep build (Sat 12 → Wed 16 Sep against the same weekdays a week earlier) Verity lost 40% of its daily players and 57% of its revenue, both steeper than the week before (−23% and +0.3%). This time the player loss sits mostly in reach (impressions −34%), and payer conversion fell by a third — its first step, on 8 Sep, happened on all five games the same day.",
+ "summary": [
+  "**Audience.** `DailyActiveUsers` 347,397 → 207,708 (−40.2%; the week before −23.4%). Mean concurrents across the day (hourly `ConcurrentPlayers`) 3,118 → 1,798 (−42.3%; week before −20.1%). On 16 and 17 Sep DAU stood at 9.0% and 7.3% of the 23 Aug peak (1,281,398) — inside the 7–11% band where Brainrot settled, and still falling.",
+  "**Reach carried this week's loss.** Players arriving = impressions × conversion: `UniqueUsersWithImpressions` −34.0% (week before −4.4%) and `EndToEndCVR` −10.4% (week before −25.8%), so impressions are ~79% of the drop this week against 13% the week before. Home-recommendation impressions fell 65% in one day on Wed 16 Sep (3.25M → 1.15M), the day after v695 and the largest Tuesday→Wednesday fall among the five games.",
+  "**Revenue split into its factors.** `DailyRevenue` R$216,710 → R$93,825 a day (−56.7%) = audience −51.4 log-points, payer conversion −44.4, spend per payer +12.1. `PayingUsers` 3,491 → 1,340 a day (−61.6%) while `AverageRevenuePerPayingUser` rose R$63.07 → R$68.34 (+8.4%).",
+  "**Payer conversion stepped down on Tue 8 Sep on all five games** (`PayingUsersCVR` Monday→Tuesday −18% to −40%; Verity −24.9%, the others' range around it). The same pair a week earlier rose on all five. 8 Sep is the day v689 (free-message rewards) shipped on Verity and the day after the US/Canada Labor Day holiday. Measured against each game's own week of 29 Aug, Verity ran 26–33% above the other four's median on 5–7 Sep and 5–17% below it on weekdays since 9 Sep.",
+  "**Hook held its pace.** `ForwardD1Retention` 11.83% → 11.03% (−6.8%; week before −6.5%), with every acquisition source down by the same 6–7% — `Friends` −7.1%, `Search` −6.4%. `AverageSessionLengthMinutes` +0.4%; first-play bounce `RFYDuration0To60` improved (16.4% → 15.1%) and `RFYPlayThroughRate` rose (1.46% → 1.68%).",
+  "**The 11 Sep build shows up in the ending funnels.** `EndingOthers` Wall Reached 49.2% → 59.6% (+10.4pp) and `Ending` Hold Started 81.8% → 85.1%, both stepping on the 11 Sep cohort. Early-session steps slipped: `Session` 5 Minutes −4.4pp, onboarding `Day 4 Reached` −3.1pp. Reviews from 12 Sep describe a new ending in which Verity walks through a wall and the gate stays locked.",
+  "**Technical: flat once the 8 Sep telemetry fault is removed**, except client crash rate `ClientCrashRate15m` 0.280% → 0.318% (+13%), which stepped on 10 Sep, before v693. New log lines: AI-reply retries from v693 (10,742 in 7 days) and `AnalyticsService: You have sent too many events` from v695 (6,125, from 17 Sep).",
+  "**Sentiment is not comparable across 11 Sep.** The written-review downvote rate went 74–75% (v684, v688) → 39% (v693) and `PlayerFeedbackVotesCount` from −28…+56 a day to +573…+2,180, starting the day v693 first logged the `[LikeReward]` code path. Among downvotes alone the leading themes are scary/creepy (37%), \"it knows about me\" (14%) and message limits (10%); none of 430 reviews mentions lag, FPS or crashes."
+ ],
+ "sections": {
+  "timeline": "Three builds went live at or inside the window: **v693** (Fri 11 Sep 15:55 UTC, the build this week is named after), **v695** (Tue 15 Sep 13:13, mid-window) and **v696** (Fri 18 Sep 14:38, after it). None has a spec on file, so their contents are unknown and nothing on this page attributes a feature to them. What the error exports do show is which code paths first logged on each (table below): v693 is the first build to log the `[LikeReward]` group check and a family of AI-reply retry warnings; v695 is the first to log `AnalyticsService: You have sent too many events` and a ProfileStore `Access forbidden` error.\n\nThe PRE window is itself three builds: v688 (6 Sep), **v689/v690 (8 Sep 10:07/10:47)** — the spec block *Update 10.09*, shipped early: a D7 daily-reward track paying messages (unlock-all 399R), returning-player message rewards, repeatable endings, a like + group reward of 50 messages plus the Mischievous skin (a personality v684 had put in the paid shop), a playtime-reward timer and two 99R personalities — and v691/v692 (9 Sep). \"Before\" is therefore not one build, and the days right after v684 (4–7 Sep) open it.\n\nNon-build events touch every window: a `NEW UPDATE` experience event ran 10 Sep 19:00 → 14 Sep 19:00 (covering POST's Saturday and Sunday) and another started 18 Sep 19:00; Mon 7 Sep was Labor Day in the US and Canada (the PRE Monday); Roblox served a faulty client FPS/memory reading on 8 Sep on all five games; engine releases RCC 738 (8–9 Sep) and RCC 739 (14–15 Sep); ten thumbnail swaps since 31 Aug.",
+  "reach": "Players arriving is the product of two factors and both fell this week: impressions (`UniqueUsersWithImpressions`) −34.0% and impression→play conversion (`EndToEndCVR`) −10.4%. Their product (−40.9%) tracks measured players-with-plays (−40.3%). The week before the split ran the other way — impressions −4.4%, conversion −25.8%. On this portfolio impressions and conversion usually move in opposite directions; this week both fell.\n\nHome recommendation, about three quarters of impressions, fell −37.9%; Search impressions fell only −6.8% while Search DAU fell −32.6% (DAU per Search impression 4.31% → 3.12%). Home's largest single-day fall in the window is Wed 16 Sep, 3.25M → 1.15M (−64.6%), the day after v695; on that Tuesday→Wednesday the other four games' Home impressions moved −9% to −42%, and Verity's own two previous Tuesday→Wednesday steps were −25.5% each.\n\nRecommendation signals (Roblox ranks on these): `RFYPlayThroughRate` +15.2% and first-play bounce `RFYDuration0To60` −8.3% moved the favourable way; `RFYD1Playtime` −1.6% and `RFYD1QualifiedPlaySessions` −1.2% held; `RFYD2To7PlayDays` −8.3%; `RFYD8To28PlayDays` fell on every day since it was first served (0.879 on 4 Sep → 0.176 on 17 Sep; −63.9% POST vs PRE); the spend-day signals fell 24–36%. Listing rejections per million impressions rose 111 → 144, inside the 90–225 range they covered in August. The 13 thumbnail swaps since 16 Aug look like ordinary days on PTR (z +0.7) and on rejections (z +0.2); impressions after swap days averaged −14.8% against +5.0% on other days (z −1.8).\n\nAudience mix: new players −42.3% (week before −30.9%) and returning players −36.3% (week before −8.9%), so the returning share rose from 39.1% to 41.5%. Country: Mexico +8.4% and Chile +20.7% while the US fell −46.7% and the Philippines −56.1%; the US+GB+CA+AU group lost 3.7 points of DAU share. `MonthlyActiveUsers` +4.1% (a trailing 30-day count), `DauMauStickiness` 3.16% → 1.79%. Across the portfolio, Brainrot (+37.3%) and Waterslide (+71.1%) grew this week while Monkey (−58.7%), Seal (−44.7%) and Verity fell.",
+  "ccu": "Mean concurrents across the day (hourly `ConcurrentPlayers`) fell 3,118 → 1,798 (−42.3%) against −20.1% the week before; the daily peak `PeakConcurrentPlayers` fell −37.9%. Every day from 8 Sep reads 39–67% below the same weekday a week earlier, except Tue 15 Sep (−17.8%, the v695 publish day, when Home impressions rose 20.7% on the day).\n\n**Today (Sat 19 Sep, partial).** Over the nine finished UTC hours 00:00–09:00, concurrents averaged 1,275 against 2,200 in the same hours of Sat 12 Sep (−42.0%) and 4,632 on Sat 5 Sep (−72.5%) — the same rate as the week. The in-progress 09:00 hour is excluded. All three Saturdays sit inside a `NEW UPDATE` event, so the comparison is event-matched; v696 (18 Sep 14:38) is live for all of today's hours.\n\n**Publish hours.** For every publish since 6 Sep, the change from the two hours before to hours +1 → +4 (each against the same clock slots a week earlier) falls inside what ordinary days show at the same clock time (|z| ≤ 1.4, table). No publish in the window moved concurrents at its hour beyond an ordinary day.",
+  "retention": "`ForwardD1Retention` 11.83% → 11.03% (−6.8%); the week before it fell −6.5%, so the pace is unchanged. By weekday it is uneven: Sun −16.9% and Wed −16.1%, Tue −2.7%, Mon +10.7% (against the Labor Day Monday cohort). By acquisition source the effect size is the same everywhere — Home −6.0%, Others −6.8%, `Friends` −7.1%, `Search` −6.4%. Each move is within that source's own week-to-week variation (z −0.6 to −1.1) while clearing the binomial floor (z −3.5 to −11.0) on sample size alone. By platform: Phone −5.3%, Tablet −6.6%, Computer −6.8%, Console −19.1% (4,377 DAU); VR and TV are too small to read. Across the portfolio, D1 rose this week on Brainrot, Waterslide and Monkey and fell on Verity and Seal.\n\nD1 split by new vs returning is **unavailable**: the Explore query failed inside Roblox on every game (an error, not a zero). `ForwardD7Retention` is served only up to the 10 Sep cohort, so the POST week has no D7 yet; for the week of 5 Sep D7 read 0.50–0.99% against 0.51–1.25% the week before.\n\nReturn loop: returning players fell −36.3% after −8.9%. Divided by the average daily arrivals of the week before, returning players rose from 0.474 to 0.584 — a ratio that drifts up whenever inflow shrinks, so it is context rather than a return rate. `RFYD2To7PlayDays` −8.3%; `RFYL7PlayDays` 1.251 → 1.230 (−1.7%).",
+  "engagement": "`AverageSessionLengthMinutes` 8.56 → 8.59 (+0.4%) and `SessionDurationSecondsAvg` −1.8%; `AveragePlayTimeMinutesPerDAU` 12.66 → 12.31 (−2.8%). Split by new vs returning (Explore): new players' playtime −4.6% (13.93 → 13.29 min) and returning +1.7%; session length new +0.1%, returning +3.1%. By platform, session length moved less than 1% on Phone, Tablet and Computer.\n\nSession-end buckets (`TotalSessionsEndedInBucket`, window aggregates): sessions ending inside a minute were 8.5–8.7% in the early-September windows and 9.3% in 16 → 19 Sep; inside three minutes 23.5–24.4% → 25.4% (that window includes the partial 19th).\n\nFirst-play recommender signals: bounce <60s 16.44% → 15.08% (−8.3%), 61–180s +1.8%, `RFYD1Playtime` −1.6%, `RFYD1QualifiedPlaySessions` −1.2%, `RFYD1CoplayDays` +3.0%.",
+  "money": "`DailyRevenue` fell from R$216,710 to R$93,825 a day (−56.7%) after a flat week (+0.3%). Split exactly into its factors: audience −51.4 log-points, payer conversion −44.4, spend per payer +12.1. `PayingUsers` 3,491 → 1,340 a day (−61.6%) against DAU −40.2%; `AverageRevenuePerPayingUser` R$63.07 → R$68.34 (+8.4%); `AverageRevenuePerUser` R$0.594 → R$0.430 (−27.5%). Conversion fell by a similar amount on every platform (Computer −34.1%, Tablet −31.5%, Phone −35.3%, Console −36.3%) and revenue per player fell on both product types (DevProduct −26.2%, GamePass −28.0%).\n\n**Dating the conversion fall.** Daily `PayingUsersCVR` ran 0.73–0.92% in the week of 29 Aug and 0.97–1.15% on 4–7 Sep (the days after v684 added the paid personality shop), then read 0.80% on Tue 8 Sep and 0.64–0.68% on 9–11 Sep. This week it read 0.72% and 0.81% on Sat/Sun (inside the `NEW UPDATE` event) and 0.48–0.65% Monday to Thursday. The 8 Sep step appears on all five games the same day (Monday→Tuesday −18% to −40%; Verity −24.9%), where the same pair a week earlier rose on all five (+0.9% to +18.3%); only Verity published that day. Indexed to each game's own week of 29 Aug, Verity sat 26–33% above the median of the other four on 5–7 Sep, +14.6% on 8 Sep, and 5–17% below it on the weekdays since 9 Sep; on Sat/Sun 12–13 Sep it was +2.4% and +13.6%. At matched audience size (~317K DAU): 2,948 payers on Wed 2 Sep (before v684), 3,370 on Mon 7 Sep (v684/v688, Labor Day), 2,281 on Sat 12 Sep (v693).\n\n**Message packs.** Over query windows, the share of `Session`-funnel players who ran out of messages was 60.8% on 5–7 Sep (before v689), 57.4% on 6–9 Sep and 44.3% on 16–19 Sep (54.0% on 1–4 Sep); purchases per ran-out player 1.17% → 1.11% → 0.85%; pack buyers per 100 players 0.71 → 0.64 → 0.38. In the daily cohorts, pack purchases per ran-out player were 1.06–1.31% on 5–9 Sep and 0.63–1.09% on 11–16 Sep, lowest on 11, 14 and 15 Sep. The 16–19 Sep window overlaps the days from 17 Sep on which v695 servers log `AnalyticsService: You have sent too many events`, so its funnel counts may be low on both sides of each ratio. Against the week before v684 (same weekdays), developer-product revenue per player this week is +9.5% and game-pass revenue per player −22.4%. Which catalogue items are passes and which are products is not held in this data.",
+  "funnels": "Nine FunnelNames, each read on its own. Two reads of the same cohorts are shown. The corpus keeps each cohort's first read, and the POST cohorts were first read later in their life (3.4 days on average) than the PRE cohorts (1.1 days) — which favours POST on any step that keeps filling in. The 19 Sep grab re-served every cohort from 3 Sep in one capture, which favours PRE instead. Unless marked, every step below moves the same way under both.\n\n**Endings rose, stepping on the 11 Sep cohort.** `EndingOthers` Wall Reached 49.2% → 59.6% (+10.4pp; +8.7pp on the 19 Sep read), with Wall Reached → Completed unchanged at 40.1%; `Ending` Hold Started 81.8% → 85.1%; onboarding `Ending Completed` 8.6% → 11.0%. By cohort day these sit flat through 10 Sep and change from 11 Sep; the 11 Sep cohort itself is an outlier on several funnels at once (onboarding Ending Completed 20.3%, EndingOthers Completed 50.8%, Messages 50 Sent 15.2%).\n\n**Early-session and story-day steps slipped.** `Session` 5 Minutes 62.8% → 58.5% (−4.4pp; −1.4pp on the 19 Sep read) and 10 Minutes −3.6pp; `Messages` 10 Sent −2.9pp; onboarding Day 3 / 4 / 5 Reached −2.6 / −3.1 / −1.6pp (−3.1 / −4.1 / −3.0pp on the 19 Sep read). On weekdays the `Session` 5-minute step reads about 65% on 7–10 Sep and 56–59% on 11 and 14–16 Sep. The first hand-offs hold: Joined → Box Opened 98.1%, First Message Sent → First Reply Received 99.7%, `Conversation` Delivered 98.7%.\n\n**Purchase funnels.** `MessagePack` Prompt Opened 12.8% → 11.6% of players who ran out, Purchased 1.18% → 0.83% (prompt → purchase 9.2% → 7.1%); `Notebook` prompt → purchase 14.3% → 10.5% on small counts.\n\nFrom 17 Sep the v695 servers log `AnalyticsService: You have sent too many events`, so funnel events on those servers may be dropped; cohort rates from 17 Sep carry that risk and are not used for any comparison here.",
+  "technical": "With the 8 Sep Roblox telemetry fault taken out (it collapsed client FPS and memory readings on all five games and the corpus keeps that first read), `ClientFpsP10` reads 43.04 → 43.06, `ClientFpsAvg` −1.0%, `ClientMemoryUsagePercentageAvg` flat and `ServerFrameRateP10` flat at 59.9. The +18% FPS figures in the headline table are that fault. `ClientCpuTimeAvg` has two outlying days of its own (4.2 ms on 15 Sep, 17.2 ms on 16 Sep); its median moved +4.6%.\n\n`ClientCrashRate15m` (crashes per ended session) 0.280% → 0.318% (+13.3%; median +15.6%). By day it steps from about 0.30% to 0.34% on Thu 10 Sep — a day before v693 — and 18 Sep reads 0.279%. By platform: Computer +18%, Console +42% (small), Phone +17%, Tablet −1%. `OomUnexpectedExits` per 1,000 DAU 0.331 → 0.460 (+39%); that series undercounts by design and is directional only. On the other four games crash rate fell on two and rose on two this week. None of the 430 reviews since 4 Sep mentions lag, FPS, freezing or crashing.",
+  "errors": "Errors per player (`ErrorCount` ÷ DAU) fell this week: client 3.57 → 3.43 (−4.0%), server 2.37 → 2.08 (−12.2%), after the server side rose +159% the week before. The unfiltered 7-day export is led by two signatures that predate every build here — AI replies rejected by Roblox's text filter (`Generated dialogue was rejected by filtering`, 43.9% of the export) and the 64-animation-track limit (33.0%) — at shares close to the 8 Sep export's (41.7%, 29.2%).\n\nWhat the 11 Sep and later builds introduced, each sized against the rate that would move if it mattered (table):\n\n- **v693, AI-reply retries** — `Model repeated its own previous line`, `Model returned no usable dialogue`, `Reply was cut at max_tokens`, `Model echoed the player's message`: 10,742 in 7 days (9.5 per 1,000 DAU-days), plus 543 `DeepInfra network failure`. The conversation surface held: `Conversation` Delivered 98.8% → 98.7%, session length +0.4%; `Messages` 5 Sent 82.2% → 80.4%.\n- **v693, `[LikeReward] Player:IsInGroup failed`** — 586 events across five HTTP error types on the like + group reward's group check. One review on 14 Sep describes the claim button still asking to join the group after joining.\n- **v695, `ProfileStore DataStore API error: 502 … Access forbidden`** — 1,175 on player save/load. The only v695 D1 cohort served so far (16 Sep) read 10.1% against 12.1% a week earlier; Sun 13 Sep, before v695, read −16.9% too, so one day cannot separate it.\n- **v695, `AnalyticsService: You have sent too many events`** — 6,125, first seen 17 Sep: the analytics event budget that the funnels depend on.\n- **v695, ending teleports refused** — `Ending rejoin failed: Not allowed` and related, 60 events.\n- **v696 (one day)** — only per-player filter rejections, 65 events.\n\nStanding signatures on paid or progression surfaces: `[MessageSpend] … infinite messages are active` (61,820 in 7 days, first seen v684 — messages sent while an unlimited-messages entitlement is on), `[BestFriends] Shared.WorldStates.dark missing` (16,518, v684) and `Monetize:PromptProductPurchase() called with prompt in progress` (17,721). Every count is a floor: exports cap at 25 rows and per-player messages split into many rows.",
+  "sentiment": "430 reviews with comments since 4 Sep, from the merged history (`feedback.csv` is truncated by today's short grab). The written downvote rate was 73–75% on v680–v688, 65% on v689–v692, **39% on v693** and 42% on v695. On the day v693 went live the all-votes series `PlayerFeedbackVotesCount` (up minus down) moved from a −28 … +56 daily range to +690, then +2,180 on Sat 12 Sep and +573 to +1,758 since; reviews per 100K DAU went from 5–11 to 10–18. v693 is the first build to log the `[LikeReward]` code path and the v689 spec rewards liking the game, so votes and the review mix after 11 Sep are not comparable with those before. Downvotes alone are the steadier read.\n\nAmong downvotes (171 before v693, 79 from v693): scary/creepy 33% → 37%; \"it knows about me\" (country, local time, account age, device) 22% → 14%; message limits, waiting or paying 12% → 10%; blocked progression 6% → 5%; boring/repetitive 5% → 9%. Across all reviews the blocked-progression theme peaks on v693 (12 of 133): players describe a new or \"nice\" ending in which Verity leads them to a locked gate or door, passes through the wall and cannot be followed, and ask where the key is. Requests for a reset/restart peak on v689–v692 (12%).\n\nBy device, with Phone and Tablet grouped as Mobile: Mobile reviews mention scary/creepy about twice as often as Computer (28% vs 13%); Computer reviews mention blocked progression (13% vs 5%) and boredom (11% vs 2%) more often. Performance language is absent on both (0 of 354 Mobile, 0 of 76 Computer).",
+  "method": "- **\"Before\" is several builds.** PRE (5–9 Sep) opens with the three days right after v684 (paid personality shop), then v688, then v689/v690 on 8 Sep and v691/v692 on 9 Sep. A before/after delta on this page is a comparison of weeks, not of two builds.\n- **Calendar.** Mon 7 Sep (the PRE Monday) was Labor Day in the US and Canada; the POST Monday was a normal school day. Every Monday pair carries that.\n- **8 Sep telemetry fault.** Client FPS and memory on 8 Sep are Roblox's faulty first read (F28, all five games). Technical rates are also shown with the 8/15 Sep pair dropped and as medians.\n- **Rewarded likes.** From 11 Sep a like can be rewarded in-game, so `PlayerFeedbackVotesCount` and the written-review downvote rate are not comparable across that date; downvote-only theme shares are used instead.\n- **Funnels are read twice** (first read vs the 19 Sep single capture): under the corpus's first-read policy the two weeks' cohorts were read at different ages. Cohorts from 17 Sep carry the v695 analytics-throttle risk.\n- **Window aggregates.** The message-pack and session-bucket tables come from NONE-granularity queries whose windows (taken from each raw request body) differ in length and weekday mix; read them as ranges.\n- **Hourly CCU** comes from the Explore engine; each hourly label is the end of its hour (publish spikes land one label later than in the half-hour series, and at the 09:12 UTC pull the newest label was 10:00). Today is compared on finished hours only.\n- **Unavailable, not zero:** D1 by new vs returning (Explore query failed inside Roblox), D7 for the POST week (served to the 10 Sep cohort), `RFYD8To28*` before 4 Sep, revenue by country, and the item catalogue behind DevProduct vs GamePass. `UsersJoinedFromNotifications` is served as a weekly-constant value (365 → 846 → 992).\n- **Specs.** v693, v695 and v696 have no spec filed; no feature is attributed to them. Contents referenced for v684 and v689 come from `data/updates/10565445771-verity-companion.md`.\n- **Themes** are literal keyword regexes (appendix); non-English reviews are only partly covered.",
+  "diagnosis": "Three separate things moved this week and they do not share one explanation. The audience shrank faster (DAU −40% after −23%), and this time it is mostly reach — Home recommendation, including a one-day −65% on 16 Sep — while first-session quality signals held or improved. Payer conversion fell by a third, and the first step of that fall (8 Sep) happened on all five games at once, which points outside Verity; what is Verity's own is the loss of the lift it had after v684. And the 11 Sep build coincides with changes the data can date — endings reached more often, a burst of rewarded likes — none of which sits in the rates that moved DAU or revenue. The hypotheses are ordered by how much of the measured pattern each explains; each says what it leaves unexplained and what would settle it."
+ },
+ "quotes": [
+  {
+   "text": "The message cap is irritating to work with, I don’t want to have to play and wait for so long just so my messages can refill. Horrible gameplay experience just from that it takes me out of the enjoyment",
+   "vote": "Downvote",
+   "device": "Tablet",
+   "version": "688",
+   "date": "2026-09-07"
+  },
+  {
+   "text": "Too scary fro kids playing roblox! >:(",
+   "vote": "Downvote",
+   "device": "Phone",
+   "version": "684",
+   "date": "2026-09-05"
+  },
+  {
+   "text": "Final ending doesn't even work. Verity phases into the wall and the doors don't unlock so I can't follow him.",
+   "vote": "Downvote",
+   "device": "Computer",
+   "version": "693",
+   "date": "2026-09-13"
+  },
+  {
+   "text": "The free gift is it glitched because e8 joined the community I liked the game bu it didn’t give it me and when I press the claim button it still says join the group sorry",
+   "vote": "Downvote",
+   "device": "Tablet",
+   "version": "693",
+   "date": "2026-09-14"
+  },
+  {
+   "text": "Literally just keeps repeating the same words and there’s like nothing to do. It’s pretty boring and not creepy anymore (which stinks, cause I wanted to get scared).",
+   "vote": "Downvote",
+   "device": "Tablet",
+   "version": "693",
+   "date": "2026-09-13"
+  },
+  {
+   "text": "since there is a message limit and it takes like a minute to gain a message thingy i always end up getting the ending where verity kills me for \"staying silent\"because it literally takes too long to gain a message thing he thinks im being silent",
+   "vote": "Downvote",
+   "device": "Computer",
+   "version": "695",
+   "date": "2026-09-16"
+  },
+  {
+   "text": "I love this game. But everyday can you give us 300 messages. Also for when we have lower than 5 messages can you make us wait for only 25 seconds? I know it seems like little but it feels like a long time! Everything else is perfect and I’ll continue playing itI! IF YOU CHANGE IT THANK YOU SOO MUCH! I LOVE THIS GAME!!!",
+   "vote": "Upvote",
+   "device": "Tablet",
+   "version": "695",
+   "date": "2026-09-16"
+  },
+  {
+   "text": "Please make it less creepy because it knew when I made my account which is uncomfortable",
+   "vote": "Downvote",
+   "device": "Tablet",
+   "version": "696",
+   "date": "2026-09-18"
+  }
+ ],
+ "hypotheses": [
+  {
+   "title": "Reach: Home recommendation is sending far fewer players, on top of the post-peak decay",
+   "status": "supported",
+   "confidence": "medium",
+   "claim": "Most of this week's player loss is Roblox showing the game to fewer people on Home — a decay that steepened into a step on 16 Sep — not the game converting or keeping players worse.",
+   "for": [
+    "Impressions are ~79% of the log drop in arriving players this week (−34.0%), against 13% the week before; Home recommendation impressions −37.9%.",
+    "Home impressions fell 3.25M → 1.15M on Wed 16 Sep (−64.6%), the largest Tuesday→Wednesday fall of the five games (others −9% to −42%) and larger than Verity's own previous two (−25.5% each); 17 Sep stayed at 1.02M.",
+    "First-session quality held or improved while reach fell: `RFYPlayThroughRate` +15.2%, bounce <60s −8.3%, `RFYD1Playtime` −1.6%, session length +0.4%, D1 −6.8% at the same pace as the week before (−6.5%).",
+    "DAU is at 9.0% (16 Sep) and 7.3% (17 Sep) of the 23 Aug peak, four weeks after it — the 7–11% band where Brainrot settled; mean CCU −42.3% and today's finished hours −42.0% against last Saturday, the same rate."
+   ],
+   "against": [
+    "It is not platform-wide: Brainrot (+37.3%) and Waterslide (+71.1%) grew in the same week, so something specific to Verity's ranking changed.",
+    "A smooth decay does not accelerate by itself; the weekly DAU rate went from −23.4% to −40.2%, and 16 Sep is a step.",
+    "Impression→play conversion also fell (−10.4%) while impressions fell, which a pure reach cut usually does not produce (conversion normally rises as reach narrows).",
+    "Roblox says reach cuts typically follow a fall in per-user signals; `RFYD8To28PlayDays` did fall — see H2 — so 'reach first' is not established."
+   ],
+   "test": "Home impressions for 18–20 Sep (served 20–22 Sep): back near 2.5–3M on weekdays points to a one-off ranking move on 16 Sep; staying near 1M while PTR, bounce and D1 hold points to a sustained cut not explained by first-session signals.",
+   "lever": "Reach levers — cadence of events and content beats, creative testing, and the return-loop signals Roblox ranks on — rather than a first-session fix."
+  },
+  {
+   "title": "A platform- or calendar-wide monetization shift on 8 Sep (the day after Labor Day)",
+   "status": "supported",
+   "confidence": "medium",
+   "claim": "The first step of Verity's payer-conversion fall is shared with the whole portfolio and comes from outside the game.",
+   "for": [
+    "`PayingUsersCVR` fell Monday→Tuesday on all five games on 7→8 Sep (−18.2% to −39.7%; Verity −24.9%), while the same pair a week earlier rose on all five (+0.9% to +18.3%).",
+    "Four of the five shipped nothing on their root place that day; `AverageRevenuePerUser` fell −12% to −45% on the same pair.",
+    "8 Sep is the first weekday after the US/Canada Labor Day long weekend (Mon 7 Sep); the US is Verity's largest market (27.7% of DAU this week).",
+    "The shared level persisted: this week Brainrot's payer conversion is −31.8% while its DAU rose +37.3%."
+   ],
+   "against": [
+    "Which outside factor it is — school calendar or a Roblox purchase-flow or payout change — cannot be identified from these five games; no Roblox announcement for 8 Sep is on file.",
+    "The size differs by game (Seal −18%, Monkey −40%), and Waterslide and Seal recovered most of it this week (−3.3%, −9.4%) while Verity and Brainrot did not (−34.1%, −31.8%).",
+    "On Verity the step coincides to the day with v689, so the two cannot be separated by date alone — only by the peer comparison."
+   ],
+   "test": "Payer conversion on the same weekdays over the next two weeks on all five games (Mon 21 Sep readable 23 Sep): a shared, persistent level shift confirms it; a Verity-only recovery or further fall separates Verity from it.",
+   "lever": "None on the game side for the shared part; grade Verity's monetization builds against the portfolio median, not against 4–7 Sep."
+  },
+  {
+   "title": "The free messages (v689) cost pack sales",
+   "status": "weakened",
+   "confidence": "medium",
+   "claim": "Against the other four games, Verity’s revenue per player held up in the days after v689; the Verity-specific losses begin on 13–14 Sep with the reach cut, not on 8 Sep — so the free messages are not what emptied revenue, and whether they trimmed pack sales at the margin is not yet separable.",
+   "for": [
+    "Pack buyers per 100 players fell 0.71 → 0.38 and purchases per ran-out player 1.17% → 0.85% (money: *Running out of messages, and buying more*), the expected trade-off when fewer players hit the wall.",
+    "Paying-user CVR ran below the peers on 14–15 Sep (index 0.65 and 0.67, *against the other four games, day by day from 08 Sep* (At a glance))."
+   ],
+   "against": [
+    "The 8 Sep payer-rate step hit all five games the same day and Verity’s was mid-pack: −25% against Brainrot −26%, Waterslide −23%, Monkey −39%, Seal −18% (`PayingUsersCVR`, 7 → 8 Sep). None of the others shipped free messages.",
+    "Relative to the peers, Verity’s ARPDAU was *higher* on 8–9 Sep (index 1.26, 1.28) and ARPPU 1.17–1.24: payers converted slightly less (0.90) but spent more.",
+    "The Verity-specific break comes 13–14 Sep and sits in reach: impressions index 0.92 → 0.45 and DAU 0.63 → 0.35 by 16 Sep — five to six days after v689, beside v693 (11 Sep) and v695 (15 Sep).",
+    "The intended effect shows: players running out of messages 60.8% → 44.3%; reviews about message limits or waiting 7.8% → 4.5% of all reviews (about 23 downvotes in 1–7 Sep against 9 in 11–19 Sep); `RFYD2To7PlayDays` ran ahead of the peers on 8–10 Sep (index 1.10–1.16).",
+    "The pack-funnel windows mix v689, v693 and v695’s analytics throttle (from 17 Sep), so the pack-buyer fall cannot be pinned on v689."
+   ],
+   "test": "Per-item revenue from the dashboard (packs, the unlimited pass, personalities) for a clean week 19 → 25 Sep against 5 → 11 Sep on the same weekdays, read together with D1 and D2–7 play days — the trade is judged on revenue per player AND retention, not pack buyers alone. Readable ~27 Sep.",
+   "lever": "If a pack-level cost shows up, tune the size of the free grants against pack pricing rather than removing them — the scarcity complaints they removed were the top message theme before 8 Sep."
+  },
+  {
+   "title": "The 28-day recommendation signal fell ahead of the reach cut",
+   "status": "plausible",
+   "confidence": "low",
+   "claim": "Roblox's long-horizon ranking input, play days in days 8–28, fell every day for two weeks before and during the impression cut, so the cut may be the recommender's response to it.",
+   "for": [
+    "`RFYD8To28PlayDays` fell on every day from 0.879 (4 Sep) to 0.176 (17 Sep), −63.9% POST vs PRE, before Home impressions dropped on 12–17 Sep.",
+    "`RFYD2To7PlayDays` −8.3%, `RFYD2To7CoplayDays` −19.4% and the spend-day signals −24% to −36% also fell; Roblox states impression declines typically follow falls in play-day signals."
+   ],
+   "against": [
+    "The series starts on 4 Sep, so there is no baseline to call the fall unusual.",
+    "It fell on Brainrot (−32.4%) and Monkey (−36.5%) this week too, and Brainrot's impressions rose +29.2% — the same signal fall did not bring a reach cut there.",
+    "If the signal on date d covers players who joined 8–28 days earlier, the 4 → 17 Sep dates move its window across the 18–25 Aug surge arrivals, so the fall may be who arrived rather than a change in the game.",
+    "PTR and bounce, also ranking signals, improved."
+   ],
+   "test": "Whether `RFYD8To28PlayDays` stabilises once its window has passed the surge cohorts (from about 22 Sep) and whether Home impressions follow it.",
+   "lever": "Return-loop mechanics that bring players back after the first week."
+  },
+  {
+   "title": "The 11 Sep build changed the endings, and one new ending cannot be finished",
+   "status": "supported",
+   "confidence": "medium",
+   "claim": "v693 changed the ending paths — more players reach the endings — and players report that the new 'nice' ending stops at a locked gate; this touches a late-story minority and does not account for the DAU or revenue moves.",
+   "for": [
+    "`EndingOthers` Wall Reached 49.2% → 59.6% (+10.4pp, +8.7pp on the 19 Sep read), `Ending` Hold Started 81.8% → 85.1%, onboarding Ending Completed 8.6% → 11.0%, all flat through 10 Sep and changing from the 11 Sep cohort.",
+    "Reviews from 12 Sep describe a new or 'nice' ending where Verity spares the player, leads them to a locked gate, passes through the wall and cannot be followed; the blocked-progression theme is 12 of 133 reviews on v693 against 2–7% on earlier builds.",
+    "v684's spec lists a best-friends ending, DELAYED, in which Verity leads the player to a building and locks the doors; `[BestFriends]` warnings have logged since v684 (16,518 in 7 days)."
+   ],
+   "against": [
+    "v693 has no spec, so its contents are inferred from logs, funnels and reviews.",
+    "Wall Reached → Completed is unchanged at 40.1%, so the extra players reaching the wall finish at the old rate.",
+    "Endings are reached by a minority (EndingOthers entry about 32–38 per 100 players), and the complaints are 12 reviews; on v695 only 1 of 52 matched."
+   ],
+   "test": "Confirmation of v693's contents from the developer, then the ending funnels by day on the next build; the gate reports should stop if the ending is fixed.",
+   "lever": "Finish the ending path end-to-end (a progression-completion fix), measured on `EndingOthers` Completed."
+  },
+  {
+   "title": "Rewarded likes changed the vote and review mix, not opinion",
+   "status": "supported",
+   "confidence": "medium",
+   "claim": "The halving of the downvote rate from 11 Sep reflects an in-game reward for liking the game, so it is not evidence that players like v693 more.",
+   "for": [
+    "`PlayerFeedbackVotesCount` moved from −28 … +56 a day to +690 on 11 Sep and +2,180 on 12 Sep, the day v693 first logged the `[LikeReward]` code path.",
+    "Reviews per 100K DAU rose from 5–11 to 10–18, and upvotes with a comment held or rose while downvotes with a comment fell.",
+    "Among downvotes alone, theme shares barely moved (scary 33% → 37%, message limits 12% → 10%); reviews after 11 Sep ask for the 'free gift'."
+   ],
+   "against": [
+    "The v689 spec dates the like reward to 8 Sep, and votes did not move on 8–10 Sep (−26, −12, +35) — so either it went live with v693 or it changed then; which is unknown.",
+    "Very short comments are only mildly more common on v693 (20% vs 14–17%)."
+   ],
+   "test": "The developer's date for when the like prompt went live; the vote series should settle back once most returning players have claimed the reward.",
+   "lever": "Read sentiment from downvote themes and review text while the reward runs."
+  },
+  {
+   "title": "An early-session change from 11 Sep",
+   "status": "unresolved",
+   "confidence": "low",
+   "claim": "Something from v693 onward shortened the first minutes of play for new players.",
+   "for": [
+    "`Session` 5 Minutes reads about 65% on weekdays 7–10 Sep and 56–59% on 11 and 14–16 Sep; `Messages` 10 Sent −2.9pp; onboarding Day 3–5 Reached −1.6 to −4.1pp under both reads.",
+    "New players' playtime −4.6%; D1 of the Sun 13 and Wed 16 Sep cohorts −16.9% and −16.1% on the same weekday a week earlier."
+   ],
+   "against": [
+    "Roblox's own session length is flat (+0.4%) and bounce improved (−8.3%); D1 fell at the same pace as the week before.",
+    "On the 19 Sep read the Session 5-minute fall shrinks to −1.4pp because the PRE cohorts were revised down.",
+    "The Session funnel is custom logging and v693 changed logging code paths, so an instrumentation change is not excluded."
+   ],
+   "test": "D1 for the 17–19 Sep cohorts (readable 20–22 Sep) against the same weekdays, and the Session funnel against Roblox's session-end buckets on a clean week.",
+   "lever": "If it holds, the first-session pacing (message budget and first story beats) for new players."
+  },
+  {
+   "title": "The mid-window build v695 (15 Sep) and the 16 Sep reach drop",
+   "status": "unresolved",
+   "confidence": "low",
+   "claim": "Something in v695 lowered Verity's ranking, visible as the 16 Sep Home drop.",
+   "for": [
+    "The 65% one-day Home fall landed the day after v695 (15 Sep 13:13); DAU 208,036 → 115,548 and revenue R$67,171 → R$46,541 on 15 → 16 Sep.",
+    "v695 is the first build to log a ProfileStore `Access forbidden` error (1,175) and the analytics throttle (6,125), and the 16 Sep D1 cohort read 10.1% against 12.1% a week earlier."
+   ],
+   "against": [
+    "The publish hour itself looked ordinary (concurrents z +0.9), and the publish day had higher Home impressions (+20.7%) and DAU than the day before.",
+    "The 15 Sep cohort's D1 (11.5%) equals 14 Sep's; ranking responds to per-user signals over days, and one day of D1 is not enough to separate the ProfileStore error from the weekday dip seen on 13 Sep.",
+    "Home impressions fell on all five games that Tuesday→Wednesday (−9% to −42%)."
+   ],
+   "test": "D1 for the 17 and 18 Sep cohorts (readable 20–21 Sep) and a since-v695 error export at 7 days to size the ProfileStore error; Home impressions for 18–20 Sep.",
+   "lever": "If the ProfileStore error touches saves, fixing data access is the lever; otherwise none from this build."
+  },
+  {
+   "title": "Worse traffic: new-player mix, sources or countries",
+   "status": "weakened",
+   "confidence": "medium",
+   "claim": "The rate moves come from a lower-quality audience rather than the game.",
+   "for": [
+    "Country mix shifted towards Mexico, Brazil, Argentina and Chile (+3.8 points of DAU share) and away from the US, UK, Canada and Australia (−3.7 points), a direction that would lower revenue per player (revenue by country is not held).",
+    "New players' playtime fell (−4.6%) while returning players' rose (+1.7%)."
+   ],
+   "against": [
+    "D1 fell by the same 6–7% on every source, including `Friends` (−7.1%), who arrive by invitation and never see the listing, and `Search` (−6.4%), who looked the game up.",
+    "The returning share rose (39.1% → 41.5%), which usually lifts rates; payer conversion still fell on every platform by a similar amount."
+   ],
+   "test": "Revenue per player by country from the dashboard; it would show how much of the ARPDAU fall the country shift could carry.",
+   "lever": "—"
+  },
+  {
+   "title": "A technical regression from v692–v695",
+   "status": "weakened",
+   "confidence": "medium",
+   "claim": "Crashes, performance or new errors cost players or purchases this week.",
+   "for": [
+    "`ClientCrashRate15m` +13.3% (0.280% → 0.318%), `OomUnexpectedExits` per 1,000 DAU +39%; v693 added AI-reply retries (10,742 in 7 days) and v695 a ProfileStore `Access forbidden` error (1,175)."
+   ],
+   "against": [
+    "The crash-rate step is dated 10 Sep, before v693, and is 0.04 points of ended sessions; FPS, memory and server frame rate are flat once the 8 Sep fault is removed.",
+    "The surfaces the new errors sit on held: `Conversation` Delivered 98.8% → 98.7%, session length +0.4%; errors per player fell (client −4.0%, server −12.2%).",
+    "None of 430 reviews mentions lag, FPS, freezing or crashing, on Mobile or Computer."
+   ],
+   "test": "Crash rate by platform for the next week, and a since-v695 export sized against v695 cohorts' D1.",
+   "lever": "—"
+  },
+  {
+   "title": "The listing or thumbnails lost appeal",
+   "status": "weakened",
+   "confidence": "medium",
+   "claim": "Players seeing the game on Home were less willing to try it.",
+   "for": [
+    "Listing rejections per million impressions rose 111 → 144 (+29.7%); impressions after thumbnail-swap days averaged −14.8% against +5.0% on other days (z −1.8)."
+   ],
+   "against": [
+    "`RFYPlayThroughRate` rose +15.2% and first-play bounce fell −8.3% — the opposite of an appeal loss.",
+    "Swap days look like ordinary days on PTR (z +0.7) and rejections (z +0.2); rejections stay inside their August range (90–225).",
+    "D1 fell equally on `Friends`, who never see the thumbnail."
+   ],
+   "test": "An A/B of the current thumbnail set against an earlier one under Roblox's thumbnail testing, read on PTR at matched impressions.",
+   "lever": "—"
+  },
+  {
+   "title": "Competitive displacement or a Roblox-side change to Home",
+   "status": "unresolved",
+   "confidence": "low",
+   "claim": "Other experiences out-ranked Verity on Home, or Roblox changed how Home allocates, independent of Verity's own signals.",
+   "for": [
+    "Home impressions fell hardest (−37.9%, −64.6% on 16 Sep) while Search impressions held (−6.8%) and first-session signals improved — the pattern Roblox describes for relative competitive performance.",
+    "Engine release RCC 739 landed 14–15 Sep."
+   ],
+   "against": [
+    "Two of the five portfolio games gained Home reach this week, so there was no uniform Home contraction.",
+    "No test for competition exists with one universe; no dated Home change for mid-September is on file."
+   ],
+   "test": "Home impressions of an unrelated game in the same genre over the same dates, or a Roblox announcement; neither is held.",
+   "lever": "—"
+  },
+  {
+   "title": "v696 (18 Sep) changed something — early read only",
+   "status": "unresolved",
+   "confidence": "low",
+   "claim": "The 18 Sep build moved concurrents, errors or sentiment in its first hours.",
+   "for": [
+    "No early series has moved in its favour yet; nothing behavioural is served for it."
+   ],
+   "against": [
+    "Today's finished hours are −42.0% against last Saturday, the same rate as the whole week; the publish hour looked ordinary (z −0.6).",
+    "The since-v696 export holds only per-player filter rejections (65 events in about a day); 9 reviews so far."
+   ],
+   "test": "First clean behavioural day is Sat 19 Sep, served about 21 Sep; D1 for that cohort about 22 Sep.",
+   "lever": "—"
+  }
+ ],
+ "reads": [
+  {
+   "date": "2026-09-20",
+   "what": "DAU, revenue and payer conversion for Fri 18 Sep (v696 publish day, mixed); D1 for the 17 Sep cohort (second full v695 day)."
+  },
+  {
+   "date": "2026-09-21",
+   "what": "DAU, revenue and payer conversion for Sat 19 Sep — the first clean v696 day; D1 for the 18 Sep cohort; Home impressions for 19 Sep (does the 16 Sep level hold?)."
+  },
+  {
+   "date": "2026-09-22",
+   "what": "D1 for the 19 Sep cohort (first clean v696 cohort); `RFYD8To28PlayDays` as its window starts to pass the 18–25 Aug surge arrivals."
+  },
+  {
+   "date": "2026-09-23",
+   "what": "Payer conversion for Mon 21 Sep on all five games — whether the 8 Sep portfolio step persists into a third week and where Verity sits against the median."
+  },
+  {
+   "date": "2026-09-25",
+   "what": "D7 for the 12–16 Sep cohorts starts to land; a since-v695 and since-v696 error export at 7 days."
+  },
+  {
+   "date": "2026-09-26",
+   "what": "A clean 7-day message-pack window (19 → 25 Sep) against 12 → 18 Sep: ran-out share, purchases per ran-out player, pack buyers per 100 players."
+  }
+ ]
+}

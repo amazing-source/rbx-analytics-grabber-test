@@ -1,0 +1,315 @@
+{
+ "title": "Become a Brainrot",
+ "asOf": "2026-09-19",
+ "dek": "Sat 09-12 → Wed 09-16 against the same weekdays a week earlier: DAU +37.3% and session length +13.7%, with new users +113% and Russia +145% — a rise that began on Tue 09-08, three days before v612 — while paying users were flat outside the Labor Day pair and GamePass Robux fell 53% from 09-12.",
+ "summary": [
+  "**Audience.** `DailyActiveUsers` 100,053 → 137,386 a day (+37.3% on 5 matched pairs; the week before was −4.4%). New users (Explore `IsNewUser`) 21,694 → 46,145 (+112.7%), returning 78,371 → 92,353 (+17.8%). Weekday DAU went from 7.0–8.0% of the 28 Jun peak (1,108,306) on 09-07 → 09-09 to 10.3–11.4% on 09-14 → 09-16.",
+  "**Where it came from.** `HomeRecommendation` carries 78% of the added DAU; Home impressions (`UniqueUsersWithImpressions`) 676,744 → 1,120,129 (+65.5%). Russia (`Country`=RU) 10,022 → 24,554 (+145%) is 39% of the added DAU; its share of DAU stepped from 6.9% on Mon 09-07 to 15.5% on Tue 09-08 and was 24.6% on 09-17. No other portfolio game shows the step. Search DAU −4.9%.",
+  "**Engagement and retention.** `AverageSessionLengthMinutes` 10.68 → 12.14 (+13.7%), up for new (+8.6%) and returning (+10.2%) players. `ForwardD1Retention` 17.3% → 18.5% (+6.9%; +19.7% the week before), up on `Friends` (+10.7%, z 2.8) and `Search` (+7.4%) as well as `HomeRecommendation` (+2.3%). RFY bounce under 60s 13.2% → 12.0%.",
+  "**Concurrents.** Mean half-hour CCU on the Sun → Wed pairs +63.4%; daily `PeakConcurrentPlayers` +33.4%. Today (Sat 09-19, partial) runs +15.0% above Sat 09-12 across the same UTC half-hours 00:00 → 08:30, ahead in every slot.",
+  "**Money.** `DailyRevenue` R$49,982 → 47,056 a day (−5.9%); `PayingUsers` 1,022 → 969 (−5.2%) and `PayingUsersCVR` 1.00% → 0.68% (−31.8%). Without the Mon 09-07/09-14 pair (09-07 was US Labor Day) revenue is +0.6% and paying users +0.3% on DAU +37.7%. The payer rate fell on all five portfolio games this week.",
+  "**GamePass.** GamePass Robux (`DailyRevenue` × `RevenueSource`) 6,062 → 2,839 a day (−53.2%) while DevProduct held (+0.7%). GamePass was below its prior-week weekday on all six days 09-12 → 09-17 (−44% to −64%) after being above it on 09-09 → 09-11; per 1,000 DAU it is at its lowest week since June (17.3).",
+  "**Technical.** `ClientCrashRate15m` 2.33% → 1.45% (−37.8%), on Phone and Tablet only (Mobile −41.5%, Computer +16.3%), in two steps: 09-08 and from 09-11. The charted FPS and memory moves include an instrument-fault day: without the 09-08 pair `ClientFpsP10` is −5.0% and memory % −5.4%. Errors per DAU +5.0%.",
+  "**Funnels and the 18 Sep build.** Onboarding flat (`FirstMorph` 99.3–99.6%); `Rebirth1` −1.1pp on first read, −1.7pp on a same-day re-read. v614 (published 09-18 15:22 UTC, no spec filed) has one day of technical data: no crash or CCU departure, and 1,019 errors first seen at v614 — about 0.03% of what it emits."
+ ],
+ "sections": {
+  "timeline": "Two builds went live on Fri 09-11: **v610** at 15:36 UTC and **v612** at 15:51 UTC (v611 saved, not published). The filed spec *Update 11.09* lists six items: scripted weekly admin abuse; a fix for long loading; a new weather mutation with its weather event and an index tab; a reward pet for collecting the new mutation (+70% cash, +30% speed); the companion-quest reward changed from a pet to an **Autocollect pass + 1 stellar brainrot**; and a new treadmill (+20M, price 70Qa). v613 (09-15 12:46) was saved, not published. **v614** was published 09-18 15:22 UTC (v615 saved, not published). **No spec is filed for v614, so its contents are unknown**; a `NEW EVENT` listing started at 18:00 the same day.\n\nThe deploy log from `ErrorCount` by `PlaceVersion` agrees on both: v612 first throws on 09-11 and v614 in the 15:00 half-hour of 09-18. It shows v608 first on 09-09, five days after its 09-04 publish, so this method does not date v608 — read it as \"on or before\".\n\nBoth comparison windows carry the same event calendar: one admin-abuse Saturday, one `NEW UPDATE` listing and one Saturday icon rotation each. Icons changed on each of the last 8 Saturdays and on no other day. The `WORLD 3` listing that opened 08-14 closed 09-14 16:00. In the day-by-day table, Russia, new-user DAU and Home impressions are already up week-on-week on 09-08 → 09-10, and GamePass Robux turns down on 09-12.",
+  "reach": "`UniqueUsersWithImpressions` rose 29.2% (1,518,533 → 1,961,659 a day) and `Visits` 35.8%. The rise is in `HomeRecommendation` impressions (+65.5%); `ContinueToPlay` (+0.8%) and `Search` (−3.4%) were flat, and the `Charts` surface went from 16 to 2,172 impressions a day. Conversion rose with the volume: `EndToEndCVR` 5.57% → 6.09% (+9.3%) and `RFYPlayThroughRate` 1.73% → 1.92% (+10.5%), while Home DAU per Home impression went 9.26% → 8.20%. Listing rejections per million impressions were flat (−2.5%).\n\nBy source, HomeRecommendation DAU +46.6% carries 78% of the added players, Friends +21.9%, Others +37.2%, Search −4.9%. By country, Russia added 14,532 DAU a day (39% of the increase), Indonesia 3,745 and Vietnam 3,063; the US lost 2,772 (−13.0%; −3.0% without the Labor Day Monday). Russia's share of Brainrot's DAU stepped from 6.9% to 15.5% between Mon 09-07 and Tue 09-08 and was 24.6% on 09-17; on the other four games it stayed between 1% and 6%. By platform, Phone +48.6%, Console +39.6%, Tablet +22.6%, Computer +9.3%.\n\n`MonthlyActiveUsers` kept falling (−8.1%) — a trailing 30-day count still dropping late-August days — so `DauMauStickiness` rose 50%. Thumbnail changes were tested against the base rate of ordinary days: the day after a change is indistinguishable on `EndToEndCVR` (z −0.04), `RFYPlayThroughRate` (z −0.26) and listing rejections (z +0.22). Icon changes cannot be tested the same way: they happen only on admin-abuse Saturdays.",
+  "ccu": "On matched weekdays the mean of the 48 half-hour peaks rose on every pair: +28.9% on Saturday and +47.0% to +82.3% Sunday → Wednesday (+63.4% on the Sun → Wed pairs; Saturday, the admin-abuse day, is kept out of the trend row). The daily `PeakConcurrentPlayers` in the chart moved +33.4%, and peak CCU per 1,000 DAU was flat (+2.1%). Thu 09-17 ran +36.3% and Fri 09-18 +20.2% on their prior-week weekdays.\n\nThe Saturday admin-abuse hour still multiplies concurrents for one hour — 5,902 at 15:00 on 09-12 against 2,905 at 14:00 — but its multiple over the preceding hour has shrunk from 3.28× (08-22) to 2.01× (09-12) as the base rose. The two hours after each publish followed the ordinary-day curve: z 1.19 after v612 and 0.29 after v614.\n\n**Today (Sat 09-19) is a partial day.** Across the 17 half-hours 00:00 → 08:30 UTC it averages 2,299 against 2,000 on Sat 09-12 (+15.0%) and 1,311 on Sat 09-05 (+75.4%), ahead of 09-12 in every slot; the 15:00 admin-abuse hour had not happened at the pull. In the hourly chart, the 09-19 points at 09:00 and 10:00 UTC were not complete when the Explore series was pulled (09:10 UTC) and are not readings.",
+  "retention": "`ForwardD1Retention` averaged 18.5% against 17.3% (+6.9%), after +19.7% the week before; the newest settled cohort (09-16) is 19.9%. The rise is on every acquisition source, including the two that do not arrive through the listing: `Friends` +10.7% (z 2.8 against its own week-on-week variation) and `Search` +7.4% (z 1.6); `Others` +9.4%; `HomeRecommendation`, which carried most of the new traffic, +2.3% (z 0.5). By platform class, Mobile +7.5% and Computer +6.1%; Console −2.9%. **D1 by `IsNewUser` is unavailable**: the Explore engine answered that the breakdown is not supported for `ForwardD1Retention` — a missing split, not a zero.\n\n`ForwardD7Retention` reaches only the 09-10 cohort, so the after week has no D7 yet; the before-week cohorts averaged 2.06% against 1.59% a week earlier, with 09-05 and 09-06 at 2.54% and 2.57%. Among the Home ranking signals, `RFYD2To7PlayDays` rose 0.378 → 0.450 (+19.2%) and `RFYD2To7Playtime` +32.2%; `RFYD8To28PlayDays` fell 0.557 → 0.376 (−32.4%) after rising 0.390 → 0.557 the week before — back to its late-August level. `RFYL7PlayDays` 1.373 → 1.445 (+5.3%). The weekly signal table shows play-through, bounce and D1 playtime improving in the 09-05 → 09-09 week, one week before Home impressions rose.",
+  "engagement": "`AverageSessionLengthMinutes` 10.68 → 12.14 (+13.7%), `AveragePlayTimeMinutesPerDAU` 16.22 → 18.32 (+13.0%), and the technical-tab `SessionDurationSecondsAvg` 642 → 729 s (+13.6%); `TotalPlayTimeHours` +55.1%. Session length climbed on every day from 09-07 (10.46) to 09-11 (11.78), before the publish, and reached 12.46 on 09-16. New players' sessions rose 8.6% and returning players' 10.2%; reconstructing the blend, the within-group change is worth +9.8% and the shift toward new players (21.7% → 33.3% of DAU) +4.0%. By platform, sessions rose most on Phone (+15.5%) and Tablet (+15.2%) and least on Computer (+3.7%).\n\nFirst-play signals on RFY traffic: bounce under 60s 13.2% → 12.0% (−9.3%), 61–180s 16.9% → 14.2% (−15.8%), `RFYD1Playtime` 15.5 → 17.6 min (+13.6%), `RFYD1QualifiedPlaySessions` +5.4%, `RFYD1CoplayDays` +25.4%.",
+  "money": "`DailyRevenue` averaged R$47,056 a day against R$49,982 (−5.9%). `AverageRevenuePerUser` (ARPDAU) fell 0.476 → 0.329 (−31.0%): `PayingUsersCVR` 1.00% → 0.68% (−31.8%) with `AverageRevenuePerPayingUser` flat (47.2 → 48.5, +2.8%). The count behind the rate: `PayingUsers` 1,022 → 969 (−5.2%). The Monday pair sets Mon 09-14 against US Labor Day (09-07, when US DAU was 24,085 against 12,711 on 09-14); without it, paying users are +0.3% and revenue +0.6% on DAU +37.7%, and the after-week payer rate equals the 'added players paid nothing' case to within 0.003pp. At matched size and weekday — Mon–Wed 14–16 Sep against Mon–Wed 24–26 Aug, both 114–127K DAU — the game had 647 payers a day against 846 (−23.5%), with Russia at 20% of DAU against 6%.\n\nBy source, **DevProduct held (R$43,914 → 44,217, +0.7%) and GamePass halved (R$6,062 → 2,839, −53.2%)**, taking GamePass from 13.2% to 6.7% of revenue. GamePass was above its prior-week weekday on 09-09, 09-10 and 09-11 and below it on all six days from 09-12 to 09-17. Per 1,000 DAU, DevProduct fell 26.0% and GamePass 65.8%; the 09-14 → 09-17 GamePass level (17.3 per 1k DAU) is the lowest week since June. The Explore split shows the payer rate down on every platform (Phone −40.7%, Tablet −23.6%, Computer −25.1%, Console −8.7%). RFY-organic day-1 spend fell (`RFYD1SpendDay` −45.8%, `RFYD1RobuxSpend` −42.6%) while `RFYD2To7RobuxSpend` rose 23.8%. Revenue at the `USO18Rate` balance fell 20.9%.\n\n`PayingUsersCVR` fell on all five portfolio games this week (−3.3% to −34.1%) and dropped from Mon 09-07 to Tue 09-08 on all five. Waterslide, whose DAU also rose (+71.1%, new users +98%), added 57.2% more paying users and 34.0% more GamePass Robux; on the other four games GamePass moved within 16 points of DevProduct, on Brainrot 54 points below it. The *Item revenue by product type* table above is built from an hourly roll-up that double-counts some days (09-07, 09-09 and 09-10 read exactly twice the daily GamePass figure); read the `DailyRevenue` source split instead.",
+  "funnels": "Two funnels are instrumented and charted separately: `BaseUpgrades` (20 steps) and `PlayerProgression` (7). On the first read, as charted, onboarding held (`OnboardingComplete` 100%, `FirstUpgrade` and `FirstMorph` 99.3%), BaseUpgrade 2–17 rose 0.3 to 1.1pp, BaseUpgrade 18–20 fell 0.4 to 0.8pp, and the rebirth steps fell 0.1 to 1.1pp (`Rebirth1` 47.9% → 46.8%).\n\n**The two windows were read at different cohort ages.** The before-week cohorts were first read at 1.5–3.5 days old and the after-week cohorts at 2.7–6.4 days, and multi-day steps keep rising as a cohort ages. Re-reading every day on 09-19 flips the gap (before 10–14 days, after 3–7 days). The two reads bracket the matched-age change: `Rebirth1` −1.1 to −1.7pp, `Rebirth2` −0.5 to −2.0pp, `Rebirth4` −0.1 to −2.2pp, `BaseUpgrade20` −0.8 to −4.4pp, `BaseUpgrade5` +0.2 to +0.9pp, `FirstMorph` 0 to −0.3pp. Step to step, `FirstMorph → Rebirth1` fell 1.0pp while `Rebirth1 → Rebirth2` and `Rebirth2 → Rebirth3` rose.\n\nThe charted spike on the 09-11 cohort and dip on 09-12 mostly disappear on re-read (Rebirth1 09-12: 42.6% → 50.5%; BaseUpgrade20 09-11: 57.0% → 45.9%). `FirstMorph` read 97.9% for the Sat 09-12 cohort at first read, against 99.3–99.7% on every other day; re-read on 09-19 it is 99.5%.",
+  "technical": "`ClientCrashRate15m` 2.33% → 1.45% (−37.8%); per 1,000 DAU, client crashes −40.6% and OOM exits −24.6%. The fall is on mobile only — Mobile 2.53% → 1.48% (−41.5%), Computer 1.90% → 2.21% (+16.3%), Console +10.1% — and it came in two steps: Phone and Tablet both dropped on Tue 09-08 (Tablet 4.72% → 3.56%) and again from 09-11 (Tablet 3.58% → 2.92% → 2.54% → 2.25%). On the other four games the crash rate moved +12%, +29%, +13% and −2%. Server side, `ServerFrameRateP10` held at 59.7–59.8, server memory −16.4%, server CPU −5.7%, and there were 2 server crashes on the one day pair both windows have.\n\n**Two instrument-fault days sit inside the pairs.** On 09-08 client FPS and memory fell 75–90% on four of the five games at once (COVERAGE.md F28), and on 09-15 client CPU time fell 32–68% on all five. The charted deltas include those pairs; without them `ClientFpsP10` is −5.0% (charted +15.7%), `ClientFpsAvg` −7.3%, `ClientMemoryUsagePercentageAvg` −5.4% (charted +14.4%) and `ClientCpuTimeAvg` −0.2% (charted −15.1%).\n\n`ErrorCount` has no 09-08 point, so it runs on 4 pairs: +35.0% in volume, +5.0% per DAU. Client events per DAU +14.1%. Server events per DAU −55.4%, a figure set by the one-day server spike on Sat 09-05 (1.68M); without the Saturday pair, server events per DAU are +4.2% (3 pairs).",
+  "errors": "Three dashboard exports were pulled on 09-19 at 09:13–09:14 CEST (07:13 UTC). Each list is capped at roughly 25 signatures, so a signature's absence is never evidence.\n\n- **All versions, last 7 days:** 25 signatures, 27.07M events. Two client messages first seen at V404 and V499 are 76.5% of the list (`trying to set locked parent!` 48.5%, `Failed to load sound: Asset is not approved for the requester` 28.0%); the composition is close to the 09-08 export's. One row first seen at the last three builds is in it: `[AnimalModule] Unknown trait: Ice` (server, first seen V612 on 09-12 02:01 UTC), 126,759 events, about 0.13 per DAU per day.\n- **First seen at v612 or later, 7 days:** 30 rows. Besides the Ice trait (plus 1,118 client-side), a family of 17 rows at exactly 680 events each (`Value is not a valid member of Model \"Workspace.Plots.<Player>.AnimalStands.N\"`, first seen 09-13 18:09 UTC, 11,560 in total); `DataStoreService: AccessForbidden` on `SetAsync` for the keys AscensionMachineData_v1, CompanionQuestPlayers_v1, FuseData_v2, Money Data v1.12 and WeatherMachineData_v3 (2,892, first seen 09-15 22:07 UTC); `Vanish is not a valid member of Folder \"ReplicatedStorage.Assets.VFX\"` (1,957); and `[WeatherMachineModule.saveState] DataStore flush failed` (963). Two further families — `Conetto Morsetto is not a valid member of Folder \"ReplicatedStorage.Models.Animals\"` (4,898) and the Gift-remote disconnect — carry a line number that moved between builds; both appear in the 09-10 since-v608 export.\n- **First seen at v614, 1 day:** 1,019 events in 25 rows: the moved-line Conetto Morsetto message again (569), an avatar-accessory skinning error naming a player's accessory (268), and Gift/Trade disconnects shredded one row per player. The deploy log attributes 3.56M errors to v614 over the same span, so text first seen at v614 is about 0.03% of what the build emits.\n\nEach new signature is scored against the rate on its surface in the diagnosis (H7).",
+  "sentiment": "Written reviews are thin: **9 since 09-04** (1 on v607, 4 on v608, 4 on v612) and none after 09-14 04:47 UTC; the live review poll at 09-19 09:10 UTC returned no new rows for this game. v612 drew 3 downvotes and 1 upvote. Its four texts: a Russian-language *\"it used to be much better, bring everything back\"*, *\"Because you reaset my work\"*, a Spanish request to fix being unable to climb onto the admin base during admin abuse, and *\"Mal juego\"*. One of the four is in Cyrillic, against 3% of reviews all-time.\n\nThe all-time base (672 reviews since 01 Apr) runs 49% downvotes; 13% mention bugs, 6% admin abuse, 6% treadmills or speed, and about 4% each loading, lost progress and Robux. At n = 9 the week's theme mix cannot be told apart from that base. `PlayerFeedbackVotesCount` (up minus down; the corpus has no separate up and down counts after 08-06) rose from 47.8 to 61.4 a day, which is −10.4% per 1,000 DAU.",
+  "method": "- **Peak corrected.** This read uses the full-history corpus peak, 1,108,306 DAU on 28 Jun. The 11 Sep documents used 25 Jul (776,393) from a shorter history, so '% of peak' here is lower than last week's for the same days.\n- **US Labor Day (Mon 09-07) is inside the before window.** It lifts US DAU, paying users and revenue that day; the numerators table (under Reach) and the money tables show each figure with and without the Monday pair.\n- **Instrument faults:** 09-08 client FPS and memory (F28) and 09-15 client CPU, both portfolio-wide; see the technical table. `ErrorCount` has no 09-08 point.\n- **Funnel cohort age** differs between the windows, and the corpus keeps each cohort's first settled read; the two-read table brackets the matched-age change.\n- **Revenue by product type:** the `ItemMonetizationRevenue` hourly roll-up double-counts some days; revenue by source is read from `DailyRevenue` × `RevenueSource`.\n- **CCU:** tables use `PeakConcurrentPlayers` at half-hour (Open Cloud, UTC, bucket start, pulled 09:01 UTC), with the partial 09:00 and carried-forward 09:30 buckets dropped. Saturday is kept out of CCU trend rows (admin abuse).\n- **Explore splits** reconcile to the headline within ~3%; D1 × `IsNewUser` returned a Roblox-side 'not supported' error and is reported as unavailable.\n- **Country** is `DailyActiveUsers` × `Country`; impressions have no country split, so the Russian weighting of the Home expansion is read from DAU only.\n- **Window:** 09-17 is outside the fixed after-window, which is shared with games that published that day; Brainrot did not publish on 09-17, and it appears in the day-by-day tables.\n- **Error units:** `ErrorCount`'s unit is not documented by Roblox, so per-DAU error figures are events per player by assumption. The error exports are capped lists.\n- **Feedback:** 9 reviews since 09-04; themes are counted with set regexes over the whole 672-review history (patterns in `tools/r0919/extras/brainrot.js`).",
+  "diagnosis": "Three things happened in the 11 Sep build's week, and they have different origins. The audience grew — but the growth started on Tue 09-08, three days before v612, came in through Home recommendations and is weighted to Russia and to new players, so the build's timing cannot explain its start. Engagement kept rising on a ramp that also predates the build. And money split in two: the payer rate fell by almost exactly what the extra players dilute it by, while one revenue stream, GamePass, stepped down on the first full day of v612 with DevProduct flat.\n\nEvery angle in the brief is taken below; the ones marked ruled out are results, not omissions. The first open question that needs a dashboard look rather than more waiting is H3 — per-pass sales."
+ },
+ "quotes": [
+  {
+   "text": "раньше было на много лучше  верните всё",
+   "vote": "Downvote",
+   "device": "Phone",
+   "version": "612",
+   "date": "2026-09-12"
+  },
+  {
+   "text": "Because you reaset my work",
+   "vote": "Downvote",
+   "device": "Phone",
+   "version": "612",
+   "date": "2026-09-12"
+  },
+  {
+   "text": "cuando son los admin abuse y ponen la base de administrador no puedo subir por favor arreglen lo es mi juego favorito 🙂",
+   "vote": "Upvote",
+   "device": "Tablet",
+   "version": "612",
+   "date": "2026-09-13"
+  },
+  {
+   "text": "Utilise 60 Robux j’ai pas eu mes trois tours",
+   "vote": "Downvote",
+   "device": "Phone",
+   "version": "608",
+   "date": "2026-09-05"
+  },
+  {
+   "text": "Can you add new treadmils",
+   "vote": "Downvote",
+   "device": "Tablet",
+   "version": "608",
+   "date": "2026-09-04"
+  },
+  {
+   "text": "Game takes too long load or join",
+   "vote": "Downvote",
+   "device": "Phone",
+   "version": "607",
+   "date": "2026-09-02"
+  }
+ ],
+ "hypotheses": [
+  {
+   "title": "A Home-recommendation reach expansion, weighted to Russian-speaking players, began on 08 Sep — before v612",
+   "status": "supported",
+   "confidence": "high",
+   "claim": "The week's DAU gain is a Home reach expansion that started three days before the 11 Sep publish and is concentrated in Russia and in new players; v612 did not start it. Why Roblox widened reach toward Russia is not answered by any series we hold.",
+   "for": [
+    "Russia's share of DAU stepped 6.9% → 15.5% from Mon 09-07 to Tue 09-08 (5,844 → 11,992) and was 24.6% on 09-17; on the other four games it stayed at 1–6%.",
+    "New-user DAU was +66% w/w on 09-08 and +140% on 09-10; Home impressions +57% on 09-08 and +104% on 09-10 — all before v612 at 09-11 15:51 UTC.",
+    "HomeRecommendation carries 78% of the added DAU; Search DAU fell 4.9% and Search impressions 3.4%, so the new players were not looking the game up by name.",
+    "Roblox documents that impressions follow the ranking signals; RFY play-through (1.53% → 1.73%), bounce <60s (14.7% → 13.2%) and D1 playtime (13.65 → 15.52 min) improved in the 09-05 → 09-09 week, one week before Home impressions rose (676,744 → 1,120,129).",
+    "The added traffic did not dilute retention: Home D1 held (+2.3%) while Home DAU rose 46.6%."
+   ],
+   "against": [
+    "Nothing in the data explains the Russian weighting on 09-08: no Brainrot publish that day (v609 saved, not published, 15:33), the NEW UPDATE listing ended at 14:00, RCC 738 shipped at 22:36.",
+    "Impressions have no country split, so the regional weighting is read from DAU only.",
+    "v612 may have extended it: new-user DAU stayed +44% to +153% w/w on every day 09-12 → 09-17.",
+    "Regional ranking changes and competitors are invisible from one universe."
+   ],
+   "test": "Ask whether a Russian-language creator video, a localisation change or a promotion landed around 07–08 Sep. Then follow Russia's DAU share and Home impressions to 09-21: if Russia falls back toward 7% while Home impressions hold, the expansion was not regional.",
+   "lever": "Reach now rides on the ranking signals that preceded it (first-session playtime, bounce, D2–7 play days) — the class of lever is protecting those in the next builds; if the Russian cohort retains worse than the rest, localised onboarding."
+  },
+  {
+   "title": "The fall in payer rate and ARPDAU is dilution plus a Labor-Day baseline, not fewer payers",
+   "status": "plausible",
+   "confidence": "medium",
+   "claim": "Through 13 Sep the payer-rate and ARPDAU fall is the portfolio-wide 08 Sep step plus the Labor Day baseline; from 14 Sep Brainrot falls well below the rest of the portfolio, and dilution by the new players is one candidate for that part, not an established cause.",
+   "for": [
+    "Without the Mon 09-07 (US Labor Day) pair, PayingUsers 1,045 → 1,048 (+0.3%) and revenue +0.6% on DAU +37.7%.",
+    "The after-week payer rate (0.732%) equals the 'added players paid nothing' case (0.729%).",
+    "ARPPU held (47.2 → 48.5, +2.8%); ARPDAU is the payer rate times ARPPU.",
+    "PayingUsersCVR stepped down from Mon 09-07 to Tue 09-08 on all five games (−18% to −40%) and fell on all five this week.",
+    "The US fell 13.0% (−3.0% without Monday) while Russia rose 145%.",
+    "Against the other four games (*against the other four games, day by day from 08 Sep* (At a glance)), Brainrot's `PayingUsersCVR` moved with the portfolio on 08–13 Sep (index 0.97–1.15): the first half of the fall is shared, not Brainrot's."
+   ],
+   "against": [
+    "At matched size and weekday (Mon–Wed 14–16 Sep vs 24–26 Aug, 114–127K DAU) payers are 23.5% lower (647 vs 846 a day): fewer payers per player than three weeks ago, not only the same payers spread thinner.",
+    "Payers are not split by country or new/returning in anything pulled, so 'the added players pay nothing' is arithmetic, not an observed per-segment rate.",
+    "Waterslide grew DAU 71% with new users +98% and still added 57% more payers — dilution is not automatic.",
+    "RFY-organic day-1 spend fell: RFYD1SpendDay −45.8%, RFYD1RobuxSpend −42.6%; spend days are a secondary ranking signal.",
+    "From Mon 14 Sep Brainrot's `PayingUsersCVR` runs 0.70, 0.65, 0.77, 0.63 of the portfolio's and ARPDAU 0.50–0.68 — a Brainrot-specific fall on top of the shared step, on the same days its DAU index rose 3.41 → 5.68 (*against the other four games, day by day from 08 Sep* (At a glance)).",
+    "14 Sep is also the day the `NEW UPDATE` event ended (14:00 UTC) and the `WORLD 3` event ended (16:00 UTC) — an event with purchasables closing is a second candidate for a game-specific payer drop from that date, untested."
+   ],
+   "test": "Pull PayingUsers (or revenue) by Country and by IsNewUser in Explore for 09-05 → 09-17 (readable now). If Russia and new players convert near zero and the rest hold their rate, dilution is the whole story and the matched-DAU gap is mix. Payers per day by `IsNewUser` (Explore) for 12–17 Sep: returning payers flat with new players adding none supports dilution; returning payers down from 14 Sep points at the events ending or at v612.",
+   "lever": "None on the store if it holds. If Russian players do not pay, regional pricing is an experiment to run, not a known fix (Roblox publishes no lift for it)."
+  },
+  {
+   "title": "v612 cut GamePass sales — a pass handed out as a quest reward, or a free boost pet, substituting for paid passes",
+   "status": "plausible",
+   "confidence": "medium",
+   "claim": "GamePass Robux halved from the first full day of v612 while DevProduct held; the build's reward changes are the candidate.",
+   "for": [
+    "GamePass Robux was above its prior-week weekday on 09-09, 09-10 and 09-11 (+28% to +58%) and below it on all six days 09-12 → 09-17 (−44% to −64%).",
+    "DevProduct held (+0.7%) on the same pairs and was above its prior-week weekday on 3 of those 6 days; GamePass share of revenue 13.2% → 6.7%.",
+    "GamePass per 1,000 DAU in 09-14 → 09-17 (17.3) is the lowest week since June (27.0–59.4 in every earlier week).",
+    "On the other four games GamePass moved within 16 points of DevProduct this week; on Brainrot it is 54 points below.",
+    "*Update 11.09* changes the companion-quest reward to an 'Autocollect pass + 1 stellar brainrot' and adds a free reward pet with +70% cash and +30% speed — both hand out what passes usually sell."
+   ],
+   "against": [
+    "No per-pass breakdown was pulled, so which pass fell is not observed, and the spec does not say whether 'Autocollect' is also sold as a GamePass.",
+    "The shift toward Russian and new players could lower pass purchases too — though it was already under way on 09-09 → 09-11, when GamePass was up week-on-week.",
+    "A pass price change or removal in v612 would look identical and is not in the spec.",
+    "GamePass was 13.2% of revenue in the before week (R$6,062 a day), so even a full explanation of it leaves most of the money picture to H2."
+   ],
+   "test": "Creator Dashboard → Monetization → Passes, sales per pass by day, 09-04 → 09-18 (readable now). If the drop sits in the Autocollect pass or a cash/speed pass and starts 09-11/12, it holds.",
+   "lever": "The reward class: give the pass as a time-limited trial or swap it for a non-pass reward; guardrail D1 and RFYD2To7PlayDays, since the quest also pays players to come back."
+  },
+  {
+   "title": "Engagement kept climbing on a ramp that predates v612",
+   "status": "plausible",
+   "confidence": "medium",
+   "claim": "Longer sessions and higher D1 are within-player gains that began before the 11 Sep build (with v608's new-player quest live) and continued through it; v612's content may have added to them.",
+   "for": [
+    "Session length rose every day 09-07 → 09-11 before the publish (10.46 → 11.78 min) and reached 12.46 on 09-16, with no step at 09-11.",
+    "Within-group change +9.8% against a mix effect of +4.0%; new +8.6%, returning +10.2%.",
+    "D1 rose on Friends (+10.7%, z 2.8) and Search (+7.4%), which do not arrive through the listing; D1 growth slowed from +19.7% to +6.9%.",
+    "RFY first-session signals improved for a second week (bounce <60s 13.2% → 12.0%, D1 playtime +13.6%)."
+   ],
+   "against": [
+    "v608's new-player quest (4-day timer) and v612's content (weather mutation, reward pet, treadmill) are both live in the after week and cannot be separated.",
+    "Session length by country was not pulled; if Russian players play longer, part of the within-group rise is country mix.",
+    "Home D1 rose only 2.3%."
+   ],
+   "test": "Explore AverageSessionLengthMinutes × Country for 09-01 → 09-17 (readable now): if the rise holds inside the US and other non-Russian countries, it is within-player."
+  },
+  {
+   "title": "v612's loading fix lowered the mobile crash rate",
+   "status": "plausible",
+   "confidence": "low",
+   "claim": "The second step down in mobile crash rate, from 09-11, lines up with the build's 'long loading' item; the first step, on 09-08, does not line up with any build.",
+   "for": [
+    "Phone 1.70% → 1.48% → 1.31% and Tablet 3.58% → 2.92% → 2.54% over 09-10 → 09-12, the publish day and the day after.",
+    "Item 2 of Update 11.09 is a performance fix for long loading; the 09-02 review 'Game takes too long load or join' is on record.",
+    "Brainrot is the only portfolio game whose crash rate fell this week (the others +12%, +29%, +13%, −2%)."
+   ],
+   "against": [
+    "A first step of similar size came on 09-08 (Tablet 4.72% → 3.56%) with no Brainrot build — the day Russia's share jumped, so the device and country mix changed then.",
+    "Computer's crash rate rose 16.3%.",
+    "Crash rate by country or by new/returning is not available, so mix is not controlled."
+   ],
+   "test": "ClientCrashRate15m × Platform for returning players only (Explore IsNewUser filter), 09-01 → 09-18: a step at 09-11 among returning mobile players would hold it."
+  },
+  {
+   "title": "Deep progression softened slightly for the after-week cohorts",
+   "status": "unresolved",
+   "confidence": "low",
+   "claim": "Rebirth1 and the last BaseUpgrade steps sit 1–2pp lower at matched cohort age, with onboarding flat.",
+   "for": [
+    "Both reads put Rebirth1 lower (−1.1pp first read, −1.7pp same-day re-read); Rebirth2 −0.5 to −2.0pp; BaseUpgrade20 −0.8 to −4.4pp.",
+    "FirstMorph → Rebirth1 −1.0pp while onboarding (OnboardingComplete, FirstUpgrade, FirstMorph) is flat — the shape a progression change makes, not worse first sessions."
+   ],
+   "against": [
+    "The move is small against Rebirth1's own day-to-day range (42.6–49.1% on first read inside the after week).",
+    "The cohorts changed composition (new users 21.7% → 33.3% of DAU, Russia 10.6% → 18.2%), and no funnel split by country exists.",
+    "Later rungs rose (Rebirth1 → Rebirth2 +0.9pp, Rebirth2 → Rebirth3 +0.8pp), and a faster treadmill and a speed pet would push rebirths up rather than down."
+   ],
+   "test": "Re-read the 09-12 → 09-16 cohorts on ~09-23 (7–11 days old) against 09-05 → 09-09 read at the same age; a gap under 1pp is noise."
+  },
+  {
+   "title": "A signature first seen at v612 or v614 is costing players",
+   "status": "weakened",
+   "confidence": "medium",
+   "claim": "None of the new error text sits on a surface whose rate moved the wrong way; the save-path signature from 09-15 is the one still to score.",
+   "for": [
+    "`[AnimalModule] Unknown trait: Ice` (126,759 server + 1,118 client in 7 days, first seen 09-12 02:01 UTC) is the only new row in the top 25; it names the new weather mutation's trait — the same class as `Unknown trait: RAINBOW` from v587, still 39,374 a week.",
+    "`DataStoreService: AccessForbidden` on `SetAsync` for five save keys including Money Data v1.12 and CompanionQuestPlayers_v1 (2,892 from 09-15 22:07 UTC) is on the save path.",
+    "The plot-stand `Value` family (17 rows × 680 = 11,560 from 09-13 18:09 UTC) is on the base stands.",
+    "One v612 review reads 'Because you reaset my work' (09-12)."
+   ],
+   "against": [
+    "The rates on those surfaces did not move the wrong way: session length +13.7%, D1 +6.9%, DevProduct Robux flat; D1 of the 09-16 cohort, the first after the AccessForbidden start, is 19.9% — the same as 09-09.",
+    "The 'reset my work' review (09-12 23:11 UTC) predates both the AccessForbidden text (09-15) and the stand family (09-13).",
+    "Conetto Morsetto and the Gift disconnect are older messages with moved line numbers; text first seen at v614 is ~0.03% of its errors.",
+    "Per DAU, errors rose 5.0% — client +14.1%, server +4.2% without the Saturday pair."
+   ],
+   "test": "D1 of the 09-16 → 09-18 cohorts (readable 09-18 → 09-20) and a narrow export of the AccessForbidden message by day: failed saves at a meaningful share of players would show in those cohorts' D1 and D2–7 play days and in lost-progress reviews.",
+   "lever": "If it holds, the save-path class (DataStore access by key), checked before the next build."
+  },
+  {
+   "title": "v614 (18 Sep) broke something",
+   "status": "unresolved",
+   "confidence": "low",
+   "claim": "One day in, nothing on the readable rung departs; behaviour is not readable yet and the build's contents are unknown.",
+   "for": [
+    "No spec is filed for v614, and a NEW EVENT listing started at 18:00 the same day, so a change of unknown size shipped."
+   ],
+   "against": [
+    "Fri 09-18 mean CCU +20.2% on Fri 09-11 (both publish days); the two hours after the publish followed the ordinary-day curve (z 0.29).",
+    "Today 00:00 → 08:30 UTC runs +15.0% above Sat 09-12, ahead in every half-hour.",
+    "Crash rate 1.52% on 09-18 against 1.80% on 09-11.",
+    "1,019 events first seen at v614 in a day — ~0.03% of the 3.56M errors the deploy log attributes to it; ErrorCount 4.42M on 09-18 against 3.67M on 09-11 (per DAU not served yet)."
+   ],
+   "test": "The first clean behavioural day is 09-19, served ~09-21: DAU, D1 of the 09-19 cohort, session length, PayingUsers and GamePass Robux against 09-12."
+  },
+  {
+   "title": "Creative or the event calendar produced the week's growth",
+   "status": "ruled out",
+   "confidence": "medium",
+   "claim": "Icon rotations, thumbnail changes, admin abuse and the NEW UPDATE listing were present in both windows and do not separate the weeks.",
+   "for": [
+    "Eight icon changes on Sat 09-12 and a NEW UPDATE listing 09-11 → 09-14 sit in the after window."
+   ],
+   "against": [
+    "Icons changed on each of the last 8 Saturdays and on no other day — present in both windows.",
+    "The day after a thumbnail change is indistinguishable from other days (z −0.04 EndToEndCVR, −0.26 play-through, +0.22 listing rejections).",
+    "Both windows had one admin abuse and one NEW UPDATE listing; the Saturday pair was the smallest DAU gain (+17.6%) and Tuesday the largest (+63.9%), and the admin-abuse multiple shrank (2.81× → 2.01×).",
+    "Friends D1 rose 10.7%, and Friends traffic never sees a thumbnail."
+   ],
+   "test": "Only a weekday icon change with a matched weekday control would isolate the icon; this week's question does not need it."
+  },
+  {
+   "title": "Everyone moved: platform, season or engine",
+   "status": "ruled out",
+   "confidence": "medium",
+   "claim": "A platform-wide or seasonal shift would move the portfolio's audience together; DAU did not. The payer rate did, and that part sits in H2.",
+   "for": [
+    "PayingUsersCVR fell on all five games and stepped down 09-07 → 09-08 on all five (Labor Day weekend in the before window).",
+    "RCC 738 (09-08/09) and RCC 739 (09-14) fall inside the span."
+   ],
+   "against": [
+    "DAU on the same pairs: Brainrot +37.3% and Waterslide +71.1%, but Monkey −58.7%, Verity −40.2%, Seal −44.7%.",
+    "Russia's share stepped only on Brainrot.",
+    "The crash rate fell only on Brainrot."
+   ],
+   "test": "Settled for DAU. For the payer rate, the portfolio-wide 09-08 step is the control H2 uses."
+  },
+  {
+   "title": "The charted client-performance moves are real",
+   "status": "ruled out",
+   "confidence": "high",
+   "claim": "The charted FPS, memory and CPU deltas come from instrument-fault days inside the pairs.",
+   "for": [
+    "As charted: ClientFpsP10 +15.7%, ClientMemoryUsagePercentageAvg +14.4%, ClientCpuTimeAvg −15.1%."
+   ],
+   "against": [
+    "On 09-08 FPS and memory fell 75–90% on four of five games at once (F28); on 09-15 client CPU fell 32–68% on all five.",
+    "Without those pairs: FPS p10 −5.0%, FPS avg −7.3%, memory % −5.4%, client CPU −0.2%."
+   ],
+   "test": "Settled; the corrected figures are in the technical table."
+  },
+  {
+   "title": "Lifecycle decay continued underneath",
+   "status": "ruled out",
+   "confidence": "medium",
+   "claim": "This week the game is not on its decay curve: weekday DAU rose off its floor.",
+   "for": [
+    "MAU −8.1%, after a long slide from the 28 Jun peak (1,108,306)."
+   ],
+   "against": [
+    "Weekday DAU was 7.0–8.0% of peak on 09-07 → 09-09 and 10.3–11.4% on 09-14 → 09-16; the low was 6.0% on 09-03.",
+    "MAU is a trailing 30-day count still dropping late-August days.",
+    "D7 of the before-week cohorts rose to 2.06% from 1.59%."
+   ],
+   "test": "Whether the gain holds once the reach expansion settles: DAU % of peak and the new-user share through 09-26."
+  }
+ ],
+ "reads": [
+  {
+   "date": "2026-09-19",
+   "what": "Now, in the dashboard: per-pass sales 09-04 → 09-18 (Monetization → Passes) — settles H3."
+  },
+  {
+   "date": "2026-09-19",
+   "what": "Now, in Explore: PayingUsers and AverageSessionLengthMinutes by Country and IsNewUser — settles H2, tests H4."
+  },
+  {
+   "date": "2026-09-20",
+   "what": "Revenue by source and DAU by country for Fri 09-18, the v614 publish day."
+  },
+  {
+   "date": "2026-09-21",
+   "what": "First clean behavioural day after v614 (09-19): DAU, D1 of the 09-19 cohort, session length, payers, GamePass Robux; D7 of the 09-12 cohort (first after-week D7)."
+  },
+  {
+   "date": "2026-09-23",
+   "what": "Funnel re-read of the 09-12 → 09-16 cohorts at 7–11 days old against 09-05 → 09-09 at the same age (H6)."
+  },
+  {
+   "date": "2026-09-26",
+   "what": "The v614 week (Sat 09-19 → Wed 09-23) against this one, matched weekday; Russia's DAU share and Home impressions (H1)."
+  }
+ ]
+}

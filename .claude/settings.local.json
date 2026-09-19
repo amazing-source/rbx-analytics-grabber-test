@@ -97,7 +97,8 @@
       "Bash(awk 'NR>1{printf \"%7.1fMB %s\\\\n\", $5/1048576, $9}')",
       "Bash(rm -rf /c/rbxtest)",
       "Bash(git clone *)",
-      "Bash(awk '{print length, $0}')"
+      "Bash(awk '{print length, $0}')",
+      "PowerShell(Get-CimInstance *)"
     ],
     "defaultMode": "bypassPermissions"
   },

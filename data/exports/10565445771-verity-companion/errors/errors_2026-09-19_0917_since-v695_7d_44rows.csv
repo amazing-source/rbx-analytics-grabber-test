@@ -1,0 +1,45 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+6125,Error,Server,Thu Sep 17 2026 21:23:00 GMT+0200 (heure d’été d’Europe centrale),V695,AnalyticsService: You have sent too many events.,,
+1175,Warning,Server,Wed Sep 16 2026 01:02:10 GMT+0200 (heure d’été d’Europe centrale),V695,ProfileStore DataStore API error: 502: API Services rejected request with error. Error code: 0 Reason: Access forbidden.,"Default; ,PLAYER_<PlayerId>)
+Default; ,PLAYER_10197902858)
+Default; ,PLAYER_10249736994)
+Default; ,PLAYER_10258125795)
+Default; ,PLAYER_10911234259)
+Default; ,PLAYER_10914061888)
+Default; ,PLAYER_11415194924)
+Default; ,PLAYER_11487322920)
+Default; ,PLAYER_11499160720)
+Default; ,PLAYER_11566834717)
+Default; ,PLAYER_11600279416)
+Default; ,PLAYER_11645866790)
+Default; ,PLAYER_11675052874)
+Default; ,PLAYER_3180131872)
+Default; ,PLAYER_3414474697)
+Default; ,PLAYER_6031919627)
+Default; ,PLAYER_7570081074)
+Default; ,PLAYER_7997805368)",
+100,Warning,Client,Wed Sep 16 2026 16:02:30 GMT+0200 (heure d’été d’Europe centrale),V695,Clamped specified Density value of 0 to 0.0001. Acceptable range is 0.0001 to 100,,
+34,Error,Server,Wed Sep 16 2026 00:10:00 GMT+0200 (heure d’été d’Europe centrale),V695,TeleportService:Not allowed,,
+32,Error,Client,Thu Sep 17 2026 23:07:50 GMT+0200 (heure d’été d’Europe centrale),V695,WrapDefomer SkinningTransfer Error for 'Workspace.Juda0741.Accessory (RightShoeAccessory).Handle': "Could not find nearest triangle in cage-to-mesh projection.",,
+24,Warning,Server,Wed Sep 16 2026 01:10:15 GMT+0200 (heure d’été d’Europe centrale),V695,Badge 73298239407144 ownership check failed: UserHasBadgeAsync:,,
+22,Error,Client,Thu Sep 17 2026 20:12:55 GMT+0200 (heure d’été d’Europe centrale),V695,raiseTeleportInitFailedEvent: Teleport failed because <This text is not reviewed by UX because it is not displayed to users. Each client provides their own translation> This experience is unavailable to you as it is unrated. (Unauthorized),,
+15,Error,Server,Thu Sep 17 2026 12:56:40 GMT+0200 (heure d’été d’Europe centrale),V695,Error while sending. sender type: Security error message: Unsupported Luau version requested: 12 not in [3..11],,
+15,Warning,Server,Wed Sep 16 2026 01:09:10 GMT+0200 (heure d’été d’Europe centrale),V695,Ending rejoin failed: Not allowed,,
+13,Warning,Server,Wed Sep 16 2026 01:02:00 GMT+0200 (heure d’été d’Europe centrale),V695,Badge 3067779682561852 ownership check failed: UserHasBadgeAsync:,,
+11,Error,Server,Thu Sep 17 2026 01:51:05 GMT+0200 (heure d’été d’Europe centrale),V695,TeleportService:Teleport is not allowed while this experience is shutting down.,,
+7,Warning,Server,Thu Sep 17 2026 12:19:50 GMT+0200 (heure d’été d’Europe centrale),V695,Generated dialogue was rejected by filtering for UN<PlayerId>,,
+7,Warning,Server,Fri Sep 18 2026 04:13:45 GMT+0200 (heure d’été d’Europe centrale),V695,Generated dialogue was rejected by filtering for Annamongus15,,
+7,Error,Server,Thu Sep 17 2026 19:58:00 GMT+0200 (heure d’été d’Europe centrale),V695,Error while sending. sender type: Security error message: Unsupported Luau version requested: 12 not in [3..9],,
+7,Error,Server,Thu Sep 17 2026 09:00:30 GMT+0200 (heure d’été d’Europe centrale),V695,Error while sending. sender type: Security error message: Unsupported Luau version requested: 12 not in [3..6],,
+6,Warning,Server,Wed Sep 16 2026 01:02:30 GMT+0200 (heure d’été d’Europe centrale),V695,Generated dialogue was rejected by filtering for sofia_nose89,,
+6,Warning,Client,Wed Sep 16 2026 02:02:25 GMT+0200 (heure d’été d’Europe centrale),V695,value of type nil cannot be converted to a number,"Script 'LocalScript', Line 194
+    Script 'LocalScript', Line 206
+    Script 'LocalScript', Line 4",
+5,Error,Server,Tue Sep 15 2026 22:43:05 GMT+0200 (heure d’été d’Europe centrale),V695,Error while sending. sender type: Security error message: Unsupported Luau version requested: 11 not in [3..6],,
+5,Warning,Server,Wed Sep 16 2026 04:12:50 GMT+0200 (heure d’été d’Europe centrale),V695,Generated dialogue was rejected by filtering for floppa4302,,
+4,Warning,Server,Wed Sep 16 2026 06:00:30 GMT+0200 (heure d’été d’Europe centrale),V695,[MessageSpend] BabyCece1105 (2606062370): message was not deducted — reason: infinite messages are active,,
+4,Warning,Server,Wed Sep 16 2026 08:20:30 GMT+0200 (heure d’été d’Europe centrale),V695,Generated dialogue was rejected by filtering for Quencatalino,,
+4,Warning,Server,Sat Sep 19 2026 08:26:30 GMT+0200 (heure d’été d’Europe centrale),V696,Generated dialogue was rejected by filtering for Tana_0202love,,
+4,Warning,Server,Fri Sep 18 2026 12:28:05 GMT+0200 (heure d’été d’Europe centrale),V695,Generated dialogue was rejected by filtering for 31plaspri41,,
+4,Warning,Server,Fri Sep 18 2026 03:07:25 GMT+0200 (heure d’été d’Europe centrale),V695,Generated dialogue was rejected by filtering for Camycase172,,
+4,Warning,Server,Thu Sep 17 2026 23:08:40 GMT+0200 (heure d’été d’Europe centrale),V695,Generated dialogue was rejected by filtering for Ladybug310929,,

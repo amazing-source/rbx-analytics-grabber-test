@@ -13,6 +13,9 @@ type CcuRow = { universeId: string; name: string; playing: number; visits: numbe
 type Sample = { t: string; v: Record<string, number> };
 type Review = { id: string; universeId: string; game: string; comment: string;
   createdUtc: string; assetVersion?: string | number | null; category?: string | null; seenAt: string };
+type PollGame = { universeId: string; game: string; status: number; pages: number;
+  returned: number; truncated: boolean; error?: string };
+type FeedPoll = { at: string; every: number; games: PollGame[] };
 
 type MetricSpec = { key: string; metric: string; label: string; gloss: string;
   kind: "int" | "robux" | "rate" | "pct" | "minutes" };
@@ -61,6 +64,13 @@ function delta(now: number, then: number, kind: MetricSpec["kind"]) {
 
 const dayLabel = (d: string) => (d ? d.slice(5) : "");
 
+function ago(ms: number) {
+  const m = Math.round(ms / 60_000);
+  if (m < 90) return `${m} min`;
+  const h = Math.round(m / 60);
+  return h < 48 ? `${h} h` : `${Math.round(h / 24)} days`;
+}
+
 const clock = (iso: string) => (iso ? new Date(iso).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "");
 /** The reviews API returns created_utc as epoch MILLISECONDS in a string. */
 function when(v: string) {
@@ -89,7 +99,9 @@ export default function LivePage() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [ccuAt, setCcuAt] = useState<string>("");
   const [ccuErr, setCcuErr] = useState<string>("");
-  const [feedAt, setFeedAt] = useState<string>("");
+  const [poll, setPoll] = useState<FeedPoll | null>(null);
+  const [feedErr, setFeedErr] = useState<string>("");
+  const [now, setNow] = useState(() => Date.now());
   const [met, setMet] = useState<MetricSnap | null>(null);
   const [metErr, setMetErr] = useState<string>("");
   const [paused, setPaused] = useState(false);
@@ -128,8 +140,13 @@ export default function LivePage() {
         }
       }
       setReviews(next);
-      setFeedAt(new Date().toISOString());
-    } catch { /* leave the last good feed on screen */ }
+      // The poller's own heartbeat — NOT the time this tab re-read the log.
+      // Stamping the tab's read as "updated" is what showed a feed as refreshed
+      // every 60s for two days while nothing was polling Roblox.
+      setPoll(j.poll ?? null);
+      setFeedErr("");
+    } catch (e) { setFeedErr((e as Error).message); /* leave the last good feed on screen */ }
+    setNow(Date.now());
   }, []);
 
   const pullMet = useCallback(async (force = false) => {
@@ -153,7 +170,11 @@ export default function LivePage() {
   const total = rows.reduce((a, r) => a + r.playing, 0);
   const seriesFor = (u: string) => hist.map((s) => s.v[u]).filter((v) => typeof v === "number");
   const shown = filter === "all" ? reviews : reviews.filter((r) => r.universeId === filter);
-  const feedStale = feedAt ? Date.now() - Date.parse(feedAt) > 5 * 60_000 : true;
+  // Stale once three poll intervals pass with no heartbeat (10 min floor).
+  const pollAge = poll ? now - Date.parse(poll.at) : Infinity;
+  const feedStale = !poll || pollAge > Math.max(10 * 60_000, 3 * poll.every * 1000);
+  const pollFaults = poll?.games.filter((g) => g.error || g.truncated) ?? [];
+  const newest = reviews[0]?.createdUtc;
 
   return (
     <main className="wrap">
@@ -274,10 +295,28 @@ export default function LivePage() {
       <section>
         <div className="hd"><h2>Player reviews</h2>
           <span className="muted">
-            {feedStale
-              ? "feed idle — start it with npm run live"
-              : `updated ${clock(feedAt)} · every 60s`}
+            {poll ? `last poll of Roblox ${feedStale ? when(poll.at) : clock(poll.at)} · every ${poll.every}s`
+              : "no poll on record"}
+            {newest ? ` · newest review ${when(newest)}` : ""}
           </span></div>
+
+        {feedErr && <p className="err" role="status">Could not read the review log — {feedErr}. Showing the last good read.</p>}
+        {feedStale && (
+          <p className="err" role="status">
+            Review feed is not running
+            {poll ? <> — nothing has polled Roblox since <b>{when(poll.at)}</b> ({ago(pollAge)} ago)</>
+              : newest ? <> — no poll on record, and the newest logged review is from <b>{when(newest)}</b></> : null}.
+            Reviews written after that are not below. Start it with <code>npm run live</code> in a
+            second terminal; the first pass pages back and fills the gap.
+          </p>
+        )}
+        {!feedStale && pollFaults.map((g) => (
+          <p key={g.universeId} className="warn">
+            {g.game}: {g.error
+              ? `last poll failed (HTTP ${g.status || "—"})${g.status === 401 || g.status === 403 ? " — the grab profile's Roblox session has lapsed; run npm run grab:login" : ""}. Its reviews are not updating.`
+              : "the gap since the previous poll was longer than the page budget — older reviews in it were not backfilled."}
+          </p>
+        ))}
 
         <div className="filters">
           <button className={filter === "all" ? "on" : ""} onClick={() => setFilter("all")}>All</button>

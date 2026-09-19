@@ -1,0 +1,55 @@
+{
+ "title": "Two games grew, three kept falling",
+ "asOf": "2026-09-19",
+ "dek": "In the week after the Fri 11 Sep builds (Sat 09-12 → Wed 09-16, each day against the same weekday a week earlier), Waterslide's DAU rose 71.1% and Brainrot's 37.3%, while Verity (−40.2%), Seal (−44.7%) and Banana Monkey (−58.7%) kept falling. Verity's fall was steeper than the week before; Seal's and Monkey's were slower.",
+ "summary": [
+  "**Waterslide** — `DailyActiveUsers` +71.1% (week before −34.4%), daily peak CCU +88.5%, impressions +22.3%, `DailyRevenue` +47.9% (week before −43.8%). New users +97.8%, returning +26.7% (Explore).",
+  "**Brainrot** — `DailyActiveUsers` +37.3% (week before −4.4%), impressions +29.2%, session length +13.7%, D1 +6.9%; `DailyRevenue` −5.9% with ARPDAU −31.0% and `PayingUsersCVR` −31.8%. New users +112.7%, returning +17.8%.",
+  "**Seal** — `DailyActiveUsers` −44.7% (week before −68.6%), impressions −39.1%, D1 −8.5%, session length −7.6%, `DailyRevenue` −49.3%. New and returning users fell alike (−44.1% / −45.1%).",
+  "**Banana Monkey** — `DailyActiveUsers` −58.7% (week before −71.2%), impressions −56.7%, `DailyRevenue` −49.5%; D1 +9.5% and ARPDAU +29.8%. DAU on 09-17 was 1.6% of its 05 Aug peak.",
+  "**Verity** — `DailyActiveUsers` −40.2% (week before −23.4%), impressions −34.0%, `DailyRevenue` −56.7% (week before +0.3%), `PayingUsersCVR` −34.1%, `RFYD8To28PlayDays` −63.9%."
+ ],
+ "games": {
+  "waterslide": {
+   "short": "Waterslide",
+   "line": "DAU **+71.1%**, peak CCU +88.5%, revenue +47.9% after a −34.4% week; most of the gain landed from Mon 09-14."
+  },
+  "brainrot": {
+   "short": "Brainrot",
+   "line": "DAU **+37.3%** and session +13.7%, new users +112.7%; ARPDAU −31.0%, with the payer rate moving like the portfolio to 13 Sep and falling below it from 14 Sep."
+  },
+  "seal": {
+   "short": "Seal",
+   "line": "DAU **−44.7%**, slower than −68.6% the week before; session length −7.6%, back to the week-earlier level on 16–17 Sep."
+  },
+  "monkey": {
+   "short": "Banana Monkey",
+   "line": "DAU **−58.7%**, slower than −71.2%; D1 +9.5%, crash rate +28.8%; 1.6% of peak DAU."
+  },
+  "verity": {
+   "short": "Verity",
+   "line": "DAU **−40.2%** and revenue **−56.7%**, both steeper than the week before; impressions −34.0%."
+  }
+ },
+ "sections": {
+  "table": "Read the rate columns (CVR, D1, session, ARPDAU, crash rate) as like-for-like; DAU, CCU, impressions and revenue are volumes and move with audience size. The chart puts each game on its own peak, so a fall from 20% to 10% of peak and one from 3% to 1.5% are the same halving.",
+  "cross": "**One step moved on all five games on the same day.** `PayingUsersCVR` fell from Mon 09-07 to Tue 09-08 on every game: Brainrot 1.10% → 0.81%, Waterslide 2.87% → 2.20%, Banana Monkey 1.65% → 1.00%, Verity 1.06% → 0.80%, Seal 1.94% → 1.59%. 09-05 → 09-07 was the US Labor Day weekend, and those three days sit inside this week's comparison baseline (Sat 09-05 → Wed 09-09), so every game's payer-rate and ARPDAU deltas are measured against a holiday-inflated first half of the baseline. Each game page states which of its rate moves carry that.\n\n**It did not bounce back.** Taking each game against its own 01–07 Sep level, the five-game median `PayingUsersCVR` sat at 0.61–0.87 of that level every day from 08 to 17 Sep, ARPDAU at 0.61–0.90, and impression→play CVR at 0.73–0.88 (table below). Part of that is the holiday-inflated reference; the rest is a shared move that no single build explains. Every game page now carries the same index for its own game against the other four — the way to tell a game-specific move from this shared one.\n\n**The direction split by game, not by date.** Waterslide and Brainrot grew in both new and returning users (new +97.8% and +112.7%); Seal, Verity and Banana Monkey fell in both (new −44.1%, −42.3%, −65.0%). Impressions moved the same way as DAU on all five (+22.3%, +29.2% against −39.1%, −34.0%, −56.7%).\n\n**Decay depth, newest settled day (09-17), as a share of each game's own peak DAU:** Brainrot 11.0%, Waterslide 18.9%, Verity 7.3%, Seal 5.6%, Banana Monkey 1.6%. Brainrot was the measured floor at ~10–12% on 09-11 and is at 11.0% after a +37.3% week.\n\n**The 28-day return signal fell on four games.** `RFYD8To28PlayDays`: Brainrot −32.4%, Waterslide −17.4%, Banana Monkey −36.5%, Verity −63.9% (Seal not served for enough pairs).",
+  "reads": "Behavioural metrics lag about two days, so the 17–18 Sep builds (Waterslide v1723, Banana Monkey v1252, Seal v918/v919, Verity v696, Brainrot v614) have no clean behavioural day yet. What is readable now for them — CCU to the hour, crash rate, errors and the errors they introduced — is on each game page. Their contents are not in `data/updates/`; sending the specs would let the next read name what each build changed.",
+  "method": "- Window: Sat 09-12 → Wed 09-16 (the 11 Sep builds' week, publish days excluded) against Sat 09-05 → Wed 09-09, each day paired with its own weekday; \"week before\" is 09-05 → 09-09 against 08-29 → 09-02. A metric uses only the day pairs both weeks have.\n- Sources: browser grab of 2026-09-19 (all five games, 09-03 → today, plus a 09-16 → today trailing grab), Explore pulls in the logged-in page (hourly `ConcurrentPlayers`, `IsNewUser` / `Platform` / `AcquisitionSource` splits), 18 dashboard error exports via Playwright, player reviews merged across every raw bundle, and a deploy log from `ErrorCount` by `PlaceVersion`.\n- `ForwardD1Retention` by `IsNewUser` failed inside Roblox's Explore engine on every game — reported as unavailable, not zero.\n- `feedback.csv` is rewritten from the latest grab only, so the short trailing grab truncated it (Verity 458 → 53 rows). The reviews used here are the full merged history rebuilt from the raw bundles; the defect is recorded as F37 in `data/verify/COVERAGE.md`.\n- The per-game hypotheses were written by one analyst each and spot-checked; the planned three-reviewer verification was skipped to save usage, so treat any hypothesis marked below *supported / high* as reviewed once.",
+  "diagnosis": "- **The 08 Sep payer-rate step is portfolio-wide, not five build effects.** Evidence: same day, all five games, including Banana Monkey and Brainrot whose PRE-window builds shipped 09-04. It persisted: the five-game median stayed at 0.61–0.87 of the 01–07 Sep level through 17 Sep. Test: the next matched week (19 → 23 Sep), whose baseline carries no holiday.\n- **The growth on Waterslide and Brainrot is a reach increase on each game, not a portfolio tide.** Evidence: the other three games' impressions fell in the same days; on Brainrot the rise began Tue 09-08, three days before v612; on Waterslide most of it landed from Mon 09-14. Test: Home impressions on 09-19 → 09-21 — whether each level holds.\n- **Decay continues underneath on Seal, Verity and Banana Monkey, at different speeds.** Seal and Monkey slowed (−68.6% → −44.7%, −71.2% → −58.7%); Verity sped up (−23.4% → −40.2%). Test: next week's matched-weekday DAU.\n- **No build this week shows a technical break across the portfolio.** Crash-rate moves were game-specific (Brainrot −37.8%, Monkey +28.8%, Verity +13.3%, Waterslide +11.8%, Seal −1.6%) and each game page sizes its own error exports against its rates.\n- **The 17–18 Sep builds are not yet assessable** on anything but CCU and errors; see Reads due."
+ },
+ "reads": [
+  {
+   "date": "2026-09-20",
+   "what": "DAU, revenue and payers for Fri 09-18 on all five (the publish day of Brainrot v614, Verity v696 and Seal v919; first full day for Waterslide v1723, Monkey v1252, Seal v918)."
+  },
+  {
+   "date": "2026-09-21",
+   "what": "First clean behavioural day for the 09-18 builds (09-19); D1 for the 09-18 cohorts; whether Waterslide's and Brainrot's Home impressions hold."
+  },
+  {
+   "date": "2026-09-26",
+   "what": "Next matched-weekday week (Sat 09-19 → Wed 09-23) — the first week whose baseline carries no US holiday."
+  }
+ ]
+}

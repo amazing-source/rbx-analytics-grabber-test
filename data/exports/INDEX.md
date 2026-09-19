@@ -197,3 +197,28 @@ Verity (`10565445771`):
 
 Deleted on filing: 12 byte-identical re-downloads of files already under
 `data/exports/` (md5-matched before removal).
+
+## Added 2026-09-19 — the week-of-11-Sep reads (Playwright, `npm run export:errors`)
+
+Pulled for the 09-19 post-update reads (`reports/2026-09-19/`). `v<lo>-v<hi>_7d` = unfiltered last 7 days (the band is the First-seen-version range); `since-vN` = errors **first seen** at build N, not every error N throws. Waterslide was exported with `--place 139617346573330` (root only). Note the `First seen at` column is written in the downloader's local time (CEST), not UTC.
+
+| filed as | game | filter | signatures | events |
+|---|---|---|---|---|
+| `10030829154/errors/errors_2026-09-19_0920_since-v1721_7d_57rows.csv` | Waterslide (root place) | since-v1721_7d | 25 | 18,248 |
+| `10030829154/errors/errors_2026-09-19_0920_v1294-v1708_7d_192rows.csv` | Waterslide (root place) | v1294-v1708_7d | 25 | 12,921,907 |
+| `10030829154/errors/errors_2026-09-19_0921_since-v1722_7d_54rows.csv` | Waterslide (root place) | since-v1722_7d | 25 | 9,344 |
+| `10030829154/errors/errors_2026-09-19_0922_since-v1723_7d_65rows.csv` | Waterslide (root place) | since-v1723_7d | 25 | 8,764 |
+| `10399712766/errors/errors_2026-09-19_0915_since-v1251_7d_143rows.csv` | Banana Monkey | since-v1251_7d | 25 | 244 |
+| `10399712766/errors/errors_2026-09-19_0915_v178-v1246_7d_96rows.csv` | Banana Monkey | v178-v1246_7d | 25 | 1,165,524 |
+| `10399712766/errors/errors_2026-09-19_0916_since-v1252_7d_2277rows.csv` | Banana Monkey | since-v1252_7d | 25 | 29 |
+| `10565445771/errors/errors_2026-09-19_0916_since-v693_7d_42rows.csv` | Verity | since-v693_7d | 25 | 19,942 |
+| `10565445771/errors/errors_2026-09-19_0916_v446-v684_7d_129rows.csv` | Verity | v446-v684_7d | 25 | 4,220,770 |
+| `10565445771/errors/errors_2026-09-19_0917_since-v695_7d_44rows.csv` | Verity | since-v695_7d | 25 | 7,640 |
+| `10565445771/errors/errors_2026-09-19_0917_since-v696_1d_25rows.csv` | Verity | since-v696_1d | 25 | 65 |
+| `10638354731/errors/errors_2026-09-19_0918_since-v915_7d_30rows.csv` | Seal | since-v915_7d | 25 | 11,461 |
+| `10638354731/errors/errors_2026-09-19_0918_v345-v915_7d_104rows.csv` | Seal | v345-v915_7d | 25 | 9,219,917 |
+| `10638354731/errors/errors_2026-09-19_0919_since-v918_7d_44rows.csv` | Seal | since-v918_7d | 25 | 231 |
+| `10638354731/errors/errors_2026-09-19_0919_since-v919_1d_17rows.csv` | Seal | since-v919_1d | 5 | 6 |
+| `9963622286/errors/errors_2026-09-19_0913_v404-v612_7d_106rows.csv` | Brainrot | v404-v612_7d | 25 | 27,073,522 |
+| `9963622286/errors/errors_2026-09-19_0914_since-v612_7d_30rows.csv` | Brainrot | since-v612_7d | 25 | 151,430 |
+| `9963622286/errors/errors_2026-09-19_0914_since-v614_1d_26rows.csv` | Brainrot | since-v614_1d | 25 | 1,019 |

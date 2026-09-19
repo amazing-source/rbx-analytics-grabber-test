@@ -1,7 +1,7 @@
 # Universe 10565445771 — metric summary
 
 - Genre: **adventure**
-- Exported: 2026-09-11T16:15:42.460Z
+- Exported: 2026-09-19T09:09:20.989Z
 - Metrics captured: 94
 - Data fresh through: **2026-08-30**
 
@@ -13,73 +13,73 @@ Excursions in metrics where high is bad, found by comparing each point to the se
 
 | Metric | When | Peak | Typical | vs typical | Nearby publish |
 |---|---|---|---|---|---|
-| "Not Interested" Rate | 2026-08-09 | **530.1** | 122.7 | 4× | v609 published 12h into the day |
+| "Not Interested" Rate | 2026-08-09 | **530.1** | 126.7 | 4× | v609 published 12h into the day |
 
 ## Discovery
 
 | Metric | Kind | Latest | As of | Δ | vs genre | Series | Notes |
 |---|---|---|---|---|---|---|---|
-| "Not Interested" Rate | rate | 121.3 | 2026-09-10 | ▼ 2.2% | — | 1 | — |
+| "Not Interested" Rate | rate | 127.1 | 2026-09-17 | ▲ 4.8% ⚠ | — | 1 | — |
 | Attributed 30d Robux/User | rate | R$ 0.16 | 2026-08-04 | — | — | 7 | — |
-| Attributed 7d Conversion | rate | 0.93% | 2026-09-03 | ▲ 15.2% | — | 7 | — |
-| Attributed 7d Playtime | rate | 16.9 min | 2026-09-03 | ▲ 8.6% | — | 7 | — |
-| Attributed 7d Robux/User | rate | R$ 0.52 | 2026-09-03 | ▼ 2.2% ⚠ | — | 7 | — |
-| Attributed D1 Retention | rate | 11.7% | 2026-09-08 | ▼ 8.3% ⚠ | — | 1 | — |
-| Attributed D7 Retention | rate | 0.54% | 2026-09-02 | ▼ 19.4% ⚠ | — | 7 | — |
-| End-to-End Conversion | rate | 4.85% | 2026-09-10 | ▼ 26.7% ⚠ | — | 5 | — |
-| Event RSVPs | volume | 21.7K | 2026-09-09 | ▲ 185.6% | — | 1 | 110.3/1k DAU, DAU ▼ 38.4% over same span |
-| Feedback Votes | volume | 35 | 2026-09-10 | ▲ 169.2% | — | 1 | 0.2/1k DAU, DAU ▼ 54.1% over same span |
-| Impressions (unique users) | volume | 2.7M | 2026-09-10 | ▼ 42.0% ⚠ | — | 17 | 16.8K/1k DAU, DAU ▼ 54.1% over same span |
-| Joins from Notifications | volume | 846 | 2026-09-09 | ▲ 131.8% | — | 1 | 4.3/1k DAU, DAU ▼ 38.4% over same span |
-| RFY Play Days (L7) | rate | 1.3 | 2026-09-10 | ▲ 4.5% | below genre median | 1 | — |
-| RFY Qualified PTR | rate | 1.27% | 2026-09-10 | ▼ 10.5% ⚠ | — | 1 | — |
+| Attributed 7d Conversion | rate | 0.95% | 2026-09-07 | ▲ 30.4% | — | 7 | — |
+| Attributed 7d Playtime | rate | 15.7 min | 2026-09-07 | ▲ 1.6% | — | 7 | — |
+| Attributed 7d Robux/User | rate | R$ 0.56 | 2026-09-07 | ▲ 37.6% | — | 7 | — |
+| Attributed D1 Retention | rate | 13.0% | 2026-09-12 | ▼ 6.6% ⚠ | — | 1 | — |
+| Attributed D7 Retention | rate | 0.93% | 2026-09-06 | ▼ 23.9% ⚠ | — | 7 | — |
+| End-to-End Conversion | rate | 4.38% | 2026-09-17 | ▼ 9.7% ⚠ | — | 5 | — |
+| Event RSVPs | volume | 37.8K | 2026-09-17 | ▲ 0.0% | — | 1 | 404.7/1k DAU, DAU ▼ 42.8% over same span |
+| Feedback Votes | volume | 676 | 2026-09-18 | ▼ 2.0% ⚠ | — | 1 | — |
+| Impressions (unique users) | volume | 1.7M | 2026-09-17 | ▼ 37.2% ⚠ | — | 19 | 18.4K/1k DAU, DAU ▼ 42.8% over same span |
+| Joins from Notifications | volume | 992 | 2026-09-17 | ▼ 0.0% | — | 1 | 10.6/1k DAU, DAU ▼ 42.8% over same span |
+| RFY Play Days (L7) | rate | 1.3 | 2026-09-17 | ▼ 1.3% | below similar games median | 1 | — |
+| RFY Qualified PTR | rate | 1.24% | 2026-09-17 | ▼ 2.1% ⚠ | — | 1 | — |
 
 ## Retention
 
 | Metric | Kind | Latest | As of | Δ | vs genre | Series | Notes |
 |---|---|---|---|---|---|---|---|
 | Cohort Retention | rate | — | — | — | — | 10 | breakdown only (10 series) |
-| Day 1 Retention | rate | 12.1% | 2026-09-09 | ▼ 6.9% ⚠ | below genre median | 18 | — |
+| Day 1 Retention | rate | 10.1% | 2026-09-16 | ▼ 16.1% ⚠ | below similar games median | 18 | — |
 | Day 1 Retention (7-day avg) | rate | 13.7% | 2026-08-28 | ▼ 24.2% ⚠ | — | 9 | — |
-| Day 30 Retention | rate | 0.00% | 2026-08-03 | — | below genre median | 1 | — |
-| Day 7 Retention | rate | 0.51% | 2026-09-03 | ▼ 24.0% ⚠ | below genre median | 8 | — |
-| Stickiness (DAU/MAU) | rate | 1.43% | 2026-09-10 | ▼ 59.7% ⚠ | — | 1 | — |
+| Day 30 Retention | rate | 0.00% | 2026-08-03 | — | below similar games median | 1 | — |
+| Day 7 Retention | rate | 0.50% | 2026-09-10 | ▼ 3.6% ⚠ | below similar games median | 8 | — |
+| Stickiness (DAU/MAU) | rate | 0.88% | 2026-09-17 | ▼ 38.5% ⚠ | — | 1 | — |
 
 ## Monetization
 
 | Metric | Kind | Latest | As of | Δ | vs genre | Series | Notes |
 |---|---|---|---|---|---|---|---|
-| ARPDAU | rate | R$ 0.45 | 2026-09-09 | ▼ 11.9% ⚠ | above genre median | 1 | — |
-| ARPPU | rate | R$ 65.69 | 2026-09-09 | ▲ 17.9% | above genre median | 1 | — |
-| Daily Revenue | volume | R$ 88.3K | 2026-09-09 | ▼ 46.2% ⚠ | — | 7 | R$ 449.6/1k DAU, DAU ▼ 38.4% over same span |
+| ARPDAU | rate | R$ 0.47 | 2026-09-17 | ▲ 10.7% | above similar games median | 1 | — |
+| ARPPU | rate | R$ 72.01 | 2026-09-17 | ▲ 14.0% | above similar games median | 1 | — |
+| Daily Revenue | volume | R$ 44K | 2026-09-17 | ▼ 35.3% ⚠ | — | 7 | R$ 470.7/1k DAU, DAU ▼ 42.8% over same span |
 | Daily Revenue (7-day avg) | volume | R$ 299.7K | 2026-08-29 | ▼ 40.0% ⚠ | — | 1 | R$ 493.8/1k DAU, DAU ▼ 47.3% over same span |
-| Event ARPDAU | rate | R$ 0.54 | 2026-09-09 | ▲ 17.4% | — | 1 | — |
-| Event Revenue | volume | R$ 254.8K | 2026-09-09 | ▲ 2.8% | — | 1 | R$ 1.3K/1k DAU, DAU ▼ 38.4% over same span |
-| Item Revenue | volume | R$ 61.8K | 2026-09-10 | ▼ 66.2% ⚠ | — | 4 | R$ 377.9/1k DAU, DAU ▼ 54.1% over same span |
-| Payer Conversion | rate | 0.68% | 2026-09-09 | ▼ 25.3% ⚠ | above genre median | 8 | — |
-| Paying Users | volume | 1.3K | 2026-09-09 | ▼ 54.4% ⚠ | — | 1 | 6.8/1k DAU, DAU ▼ 38.4% over same span |
-| Potential Extra Earnings | volume | 54.3 | 2026-09-06 | ▼ 94.4% ⚠ | — | 1 | 0.1/1k DAU, DAU ▲ 924.4% over same span; Δ spans 25d |
+| Event ARPDAU | rate | R$ 0.52 | 2026-09-17 | ▲ 4.2% | — | 1 | — |
+| Event Revenue | volume | R$ 204.4K | 2026-09-17 | ▲ 6.2% | — | 1 | R$ 2.2K/1k DAU, DAU ▼ 42.8% over same span |
+| Item Revenue | volume | R$ 53.7K | 2026-09-18 | ▼ 42.8% ⚠ | — | 4 | — |
+| Payer Conversion | rate | 0.65% | 2026-09-17 | ▼ 2.9% ⚠ | above similar games median | 8 | — |
+| Paying Users | volume | 611 | 2026-09-17 | ▼ 43.3% ⚠ | — | 1 | 6.5/1k DAU, DAU ▼ 42.8% over same span |
+| Potential Extra Earnings | volume | 15.5 | 2026-09-16 | ▼ 97.0% ⚠ | — | 1 | 0.1/1k DAU, DAU ▼ 86.3% over same span; Δ spans 23d |
 
 ## Engagement
 
 | Metric | Kind | Latest | As of | Δ | vs genre | Series | Notes |
 |---|---|---|---|---|---|---|---|
 | Avg Session Duration | rate | 7m 47s | 2026-09-01 | ▲ 5.2% | — | 8 | — |
-| Avg Session Length | rate | 8.3 min | 2026-09-10 | ▼ 4.1% ⚠ | below genre median | 10 | — |
+| Avg Session Length | rate | 8.2 min | 2026-09-17 | ▼ 2.2% ⚠ | below similar games median | 10 | — |
 | Concurrent Players | volume | 5.1K | 2026-09-03 | ▲ 15.4% | — | 1 | 14.2/1k DAU, DAU ▼ 11.7% over same span |
-| Daily Active Users | volume | 163.5K | 2026-09-10 | ▼ 54.1% ⚠ | — | 320 | — |
+| Daily Active Users | volume | 93.5K | 2026-09-17 | ▼ 42.8% ⚠ | — | 320 | — |
 | DAU (7-day avg) | volume | 680.7K | 2026-08-29 | ▼ 23.1% ⚠ | — | 1 | 1.1K/1k DAU, DAU ▼ 47.3% over same span |
-| Event DAU | volume | 477.3K | 2026-09-09 | ▼ 10.9% ⚠ | — | 1 | 2.4K/1k DAU, DAU ▼ 38.4% over same span |
-| Event Playtime | rate | 12.6 min | 2026-09-09 | ▲ 3.1% | — | 1 | — |
-| Monthly Active Users | volume | 11.4M | 2026-09-10 | ▲ 14.0% | — | 296 | 69.9K/1k DAU, DAU ▼ 54.1% over same span |
+| Event DAU | volume | 390.3K | 2026-09-17 | ▲ 4.7% | — | 1 | 4.2K/1k DAU, DAU ▼ 42.8% over same span |
+| Event Playtime | rate | 12.5 min | 2026-09-17 | ▲ 2.2% | — | 1 | — |
+| Monthly Active Users | volume | 10.6M | 2026-09-17 | ▼ 7.0% ⚠ | — | 296 | 113.8K/1k DAU, DAU ▼ 42.8% over same span |
 | Peak Concurrent | volume | 5.7K | 2026-09-01 | ▼ 20.9% ⚠ | — | 9 | 12.9/1k DAU, DAU ▼ 35.0% over same span |
-| Playtime per Player | rate | 11.5 min | 2026-09-10 | ▼ 6.6% ⚠ | below genre median | 1 | — |
-| Playtime/Player (7-day avg) | rate | 12.2 min | 2026-08-29 | ▼ 16.7% ⚠ | below genre median | 1 | — |
+| Playtime per Player | rate | 11.2 min | 2026-09-17 | ▼ 2.8% ⚠ | below similar games median | 1 | — |
+| Playtime/Player (7-day avg) | rate | 12.2 min | 2026-08-29 | ▼ 16.7% ⚠ | below similar games median | 1 | — |
 | Sessions Ended | volume | — | — | — | — | 61 | breakdown only (61 series) |
-| Total Playtime | volume | 31.4K h | 2026-09-10 | ▼ 57.1% ⚠ | — | 1 | 192.2 h/1k DAU, DAU ▼ 54.1% over same span |
-| Unique Players | volume | 162.4K | 2026-09-10 | ▼ 54.8% ⚠ | — | 15 | 993.3/1k DAU, DAU ▼ 54.1% over same span |
+| Total Playtime | volume | 17.5K h | 2026-09-17 | ▼ 44.4% ⚠ | — | 1 | 186.8 h/1k DAU, DAU ▼ 42.8% over same span |
+| Unique Players | volume | 94.7K | 2026-09-17 | ▼ 41.7% ⚠ | — | 16 | 1K/1k DAU, DAU ▼ 42.8% over same span |
 | Unique Players (7-day avg) | volume | — | — | — | — | 7 | breakdown only (7 series) |
-| Visits | volume | 226K | 2026-09-10 | ▼ 55.3% ⚠ | — | 8 | 1.4K/1k DAU, DAU ▼ 54.1% over same span |
+| Visits | volume | 128.4K | 2026-09-17 | ▼ 43.2% ⚠ | — | 8 | 1.4K/1k DAU, DAU ▼ 42.8% over same span |
 
 ## Funnel
 
@@ -100,20 +100,20 @@ Excursions in metrics where high is bad, found by comparing each point to the se
 
 | Metric | Kind | Latest | As of | Δ | vs genre | Series | Notes |
 |---|---|---|---|---|---|---|---|
-| Avg Client Memory | rate | 979 MB | 2026-09-10 | ▲ 2.4% ⚠ | — | 7 | shown: Place=74542317333958 |
+| Avg Client Memory | rate | 987 MB | 2026-09-18 | ▲ 1.4% | — | 7 | shown: Place=74542317333958 |
 | Avg FPS | rate | 52 fps | 2026-09-01 | ▼ 1.2% | — | 2 | — |
 | Avg Memory | rate | 234.3 MB | 2026-09-01 | ▲ 12.1% ⚠ | — | 16 | — |
-| Client CPU Time | rate | 7.8 | 2026-09-10 | ▼ 2.6% | — | 6 | shown: Place=74542317333958 |
-| CPU Core Utilization | rate | 9.29% | 2026-09-10 | ▼ 2.2% | — | 1 | shown: Place=74542317333958 |
-| Crash Count | volume | 758 | 2026-09-10 | ▼ 49.7% | — | 7 | shown: Place=74542317333958; 4.6/1k DAU, DAU ▼ 54.1% over same span |
+| Client CPU Time | rate | 7.6 | 2026-09-18 | ▼ 6.5% | — | 6 | shown: Place=74542317333958 |
+| CPU Core Utilization | rate | 10.1% | 2026-09-18 | ▼ 1.0% | — | 1 | shown: Place=74542317333958 |
+| Crash Count | volume | 451 | 2026-09-18 | ▼ 52.8% | — | 7 | shown: Place=74542317333958 |
 | Crash Rate (15m) | rate | 0.28% | 2026-09-01 | ▲ 4.3% ⚠ | — | 8 | ⚠ not statistically significant: Platform: TV · Place=74542317333958 |
-| FPS (10th pct) | rate | 43 fps | 2026-09-10 | ▲ 1.9% | — | 7 | shown: Place=74542317333958 |
-| Memory Used % | rate | 21.4% | 2026-09-10 | ▲ 1.7% | — | 7 | shown: Place=74542317333958 |
-| Out-of-Memory Exits | volume | 83 | 2026-09-10 | ▼ 26.5% | — | 5 | shown: Place=74542317333958; 0.5/1k DAU, DAU ▼ 54.1% over same span |
-| Script Errors | volume | 624.5K | 2026-09-10 | ▼ 65.6% | — | 1715 | 3.8K/1k DAU, DAU ▼ 48.7% over same span |
-| Server CPU Time | rate | 0.9 | 2026-09-10 | ▲ 0.1% | — | 6 | shown: Place=74542317333958 |
-| Server Crashes | volume | 2 | 2026-09-07 | ▼ 77.8% | — | 4 | shown: Place=74542317333958; 0/1k DAU, DAU ▼ 12.6% over same span |
-| Server FPS (10th pct) | rate | 60 fps | 2026-09-10 | ▼ 0.0% | — | 1 | shown: Place=74542317333958 |
+| FPS (10th pct) | rate | 44 fps | 2026-09-18 | ▲ 1.7% | — | 7 | shown: Place=74542317333958 |
+| Memory Used % | rate | 21.8% | 2026-09-18 | ▲ 1.4% | — | 7 | shown: Place=74542317333958 |
+| Out-of-Memory Exits | volume | 61 | 2026-09-18 | ▼ 36.5% | — | 5 | shown: Place=74542317333958 |
+| Script Errors | volume | 427.7K | 2026-09-18 | ▼ 38.8% | — | 2162 | — |
+| Server CPU Time | rate | 0.9 | 2026-09-18 | ▼ 1.9% | — | 6 | shown: Place=74542317333958 |
+| Server Crashes | volume | 0 | 2026-09-13 | — | — | 4 | shown: Place=74542317333958; 0/1k DAU |
+| Server FPS (10th pct) | rate | 60 fps | 2026-09-18 | ▼ 0.1% | — | 1 | shown: Place=74542317333958 |
 
 ## Other
 
@@ -123,26 +123,26 @@ Excursions in metrics where high is bad, found by comparing each point to the se
 | Attribution1 D Robux Per User | volume | — | — | — | — | 6 | breakdown only (6 series) |
 | Attribution30 D Payer Conversion Ratio | rate | — | — | — | — | 6 | breakdown only (6 series) |
 | D1 Retention | rate | 13.3% | 2026-09-01 | ▼ 6.8% ⚠ | — | 1 | — |
-| RFY Duration0 To60 | rate | 14.7% | 2026-09-10 | ▼ 7.6% ⚠ | — | 1 | — |
-| RFY Duration61 To180 | rate | 13.7% | 2026-09-10 | ▲ 9.9% | — | 1 | — |
-| RFY Play Through Rate | rate | 1.77% | 2026-09-10 | ▼ 10.3% ⚠ | — | 1 | — |
-| RFYD1 Coplay Days | volume | 0.1 | 2026-09-10 | ▲ 28.0% | — | 1 | 0/1k DAU, DAU ▼ 54.1% over same span |
-| RFYD1 Playtime | volume | 12.8 | 2026-09-10 | ▼ 3.6% ⚠ | — | 1 | 0.1/1k DAU, DAU ▼ 54.1% over same span |
-| RFYD1 Qualified Play Sessions | volume | 1.2 | 2026-09-10 | ▼ 1.5% | — | 1 | 0/1k DAU, DAU ▼ 54.1% over same span |
-| RFYD1 Robux Spend | volume | R$ 0.61 | 2026-09-10 | ▼ 11.7% ⚠ | — | 1 | R$ 0.00/1k DAU, DAU ▼ 54.1% over same span |
-| RFYD1 Spend Day | volume | 0 | 2026-09-10 | ▼ 26.1% ⚠ | — | 1 | 0/1k DAU, DAU ▼ 54.1% over same span |
-| RFYD2 To7 Coplay Days | volume | 0 | 2026-09-10 | ▲ 31.8% | — | 1 | 0/1k DAU, DAU ▼ 54.1% over same span |
-| RFYD2 To7 Play Days | volume | 0.3 | 2026-09-10 | ▲ 26.3% | — | 1 | 0/1k DAU, DAU ▼ 54.1% over same span |
-| RFYD2 To7 Playtime | volume | 3.4 | 2026-09-10 | ▲ 45.1% | — | 1 | 0/1k DAU, DAU ▼ 54.1% over same span |
-| RFYD2 To7 Qualified Play Sessions | volume | 0.3 | 2026-09-10 | ▲ 40.5% | — | 1 | 0/1k DAU, DAU ▼ 54.1% over same span |
-| RFYD2 To7 Robux Spend | volume | R$ 0.24 | 2026-09-10 | ▲ 63.5% | — | 1 | R$ 0.00/1k DAU, DAU ▼ 54.1% over same span |
-| RFYD2 To7 Spend Days | volume | 0 | 2026-09-10 | ▲ 69.3% | — | 1 | 0/1k DAU, DAU ▼ 54.1% over same span |
-| RFYD8 To28 Coplay Days | volume | 0.1 | 2026-09-10 | — | — | 1 | 0/1k DAU |
-| RFYD8 To28 Play Days | volume | 0.5 | 2026-09-10 | — | — | 1 | 0/1k DAU |
-| RFYD8 To28 Playtime | volume | 4.1 | 2026-09-10 | — | — | 1 | 0/1k DAU |
-| RFYD8 To28 Qualified Play Sessions | volume | 0.4 | 2026-09-10 | — | — | 1 | 0/1k DAU |
-| RFYD8 To28 Robux Spend | volume | R$ 1.23 | 2026-09-10 | — | — | 1 | R$ 0.01/1k DAU |
-| RFYD8 To28 Spend Days | volume | 0 | 2026-09-10 | — | — | 1 | 0/1k DAU |
+| RFY Duration0 To60 | rate | 14.4% | 2026-09-17 | ▼ 2.3% ⚠ | — | 1 | — |
+| RFY Duration61 To180 | rate | 13.4% | 2026-09-17 | ▼ 2.4% ⚠ | — | 1 | — |
+| RFY Play Through Rate | rate | 1.72% | 2026-09-17 | ▼ 2.9% ⚠ | — | 1 | — |
+| RFYD1 Coplay Days | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD1 Playtime | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD1 Qualified Play Sessions | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD1 Robux Spend | volume | R$ 0.00 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD1 Spend Day | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD2 To7 Coplay Days | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD2 To7 Play Days | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD2 To7 Playtime | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD2 To7 Qualified Play Sessions | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD2 To7 Robux Spend | volume | R$ 0.00 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD2 To7 Spend Days | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD8 To28 Coplay Days | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD8 To28 Play Days | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD8 To28 Playtime | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD8 To28 Qualified Play Sessions | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD8 To28 Robux Spend | volume | R$ 0.00 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
+| RFYD8 To28 Spend Days | volume | 0 | 2026-09-18 | ▼ 100.0% ⚠ | — | 1 | — |
 
 ## Files
 

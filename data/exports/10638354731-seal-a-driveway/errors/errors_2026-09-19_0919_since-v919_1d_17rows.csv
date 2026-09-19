@@ -1,0 +1,18 @@
+Count,Severity,Type,First seen at,First seen version,Message,,
+2,Error,Client,Sat Sep 19 2026 10:15:25 GMT+0200 (heure d’été d’Europe centrale),V919,EditableImage:WritePixelsBuffer expects position   size to be within EditableImage bounds,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceRenderer', Line 565 - function Paint
+    Script 'ReplicatedStorage.DrivewaySealer.ColorVisuals', Line 111 - function paintHook
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 555 - function SetDetail
+    Script 'ReplicatedStorage.DrivewaySealer.ColorVisuals', Line 58
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 399 - function updateDetail
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 410",
+1,Error,Client,Fri Sep 18 2026 23:39:00 GMT+0200 (heure d’été d’Europe centrale),V919,Unable to generate 'Workspace.Faithangeloxo.Head.MakeupDecal' due to some of the textures being unavailable. Change a TextureId property to retry.,,
+1,Error,Client,Sat Sep 19 2026 10:35:15 GMT+0200 (heure d’été d’Europe centrale),V919,EditableImage:WritePixelsBuffer expects position   size to be within EditableImage bounds,"Script 'ReplicatedStorage.DrivewaySealer.SurfaceRenderer', Line 565 - function Paint
+    Script 'ReplicatedStorage.DrivewaySealer.ColorVisuals', Line 111 - function paintHook
+    Script 'ReplicatedStorage.DrivewaySealer.DrivewaySurface', Line 555 - function SetDetail
+    Script 'ReplicatedStorage.DrivewaySealer.ColorVisuals', Line 58
+    Script 'ReplicatedStorage.DrivewaySealer.ColorVisuals', Line 72 - function setHook
+    Script 'ReplicatedStorage.DrivewaySealer.SlabTint', Line 161",
+1,Error,Client,Sat Sep 19 2026 11:05:00 GMT+0200 (heure d’été d’Europe centrale),V919,Script timeout: exhausted allowed execution time for the current resumption point,"Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 978",
+1,Error,Client,Fri Sep 18 2026 22:41:35 GMT+0200 (heure d’été d’Europe centrale),V919,ReplicatedStorage.DrivewaySealer.RigController:1010: Script timeout: exhausted allowed execution time,"Script 'ReplicatedStorage.DrivewaySealer.RigController', Line 174 - function _mine
+    Script 'ReplicatedStorage.DrivewaySealer.RigController', Line 1010 - function Update
+    Script 'Players.<Player>.PlayerScripts.DrivewayClient', Line 1053",

@@ -1,20 +1,32 @@
 import { NextResponse } from "next/server";
-import { addReviews, feedbackLog, isFirstSightOf, type Review } from "@/lib/live";
+import {
+  addReviews, feedbackLog, isFirstSightOf, knownReviewIds, lastPoll, recordPoll,
+  type PollGame, type Review,
+} from "@/lib/live";
 import { readConfig } from "@/lib/opencloud";
 import { webhookFor } from "@/lib/notify";
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
-  return NextResponse.json({ reviews: (await feedbackLog()).slice(0, 300) });
+export async function GET(req: Request) {
+  // The poller asks for this before each pass so it knows how far back to page.
+  if (new URL(req.url).searchParams.get("known") === "1")
+    return NextResponse.json({ known: await knownReviewIds() });
+  return NextResponse.json({ reviews: (await feedbackLog()).slice(0, 300), poll: await lastPoll() });
 }
 
 /** The in-browser poller POSTs here; this route dedups and alerts. */
 export async function POST(req: Request) {
-  let body: { reviews?: Review[] };
+  let body: { reviews?: Review[]; poll?: { every?: number; games?: PollGame[] } };
   try { body = await req.json(); } catch { return NextResponse.json({ error: "bad json" }, { status: 400 }); }
+
+  // Heartbeat first, and on every pass — a pass that found nothing new is still
+  // proof the feed is running, which the log's own dates cannot show.
+  const every = Number(body.poll?.every) || 180;
+  if (body.poll) await recordPoll({ at: new Date().toISOString(), every, games: body.poll.games ?? [] });
+
   const incoming = body.reviews ?? [];
-  if (!incoming.length) return NextResponse.json({ added: 0, alerted: 0 });
+  if (!incoming.length) return NextResponse.json({ added: 0, alerted: 0, backfilled: 0 });
 
   // A cold start would otherwise fire an alert for every historical review.
   const coldStart = new Set<string>();
@@ -22,7 +34,12 @@ export async function POST(req: Request) {
     if (await isFirstSightOf(u)) coldStart.add(u);
 
   const fresh = await addReviews(incoming);
-  const alertable = fresh.filter(r => !coldStart.has(r.universeId));
+  // After a gap the poller pages back and backfills — days of reviews that are
+  // new to the log but not new. Only a review written within a few poll
+  // intervals is announced; the rest are logged silently.
+  const since = Date.now() - Math.max(15 * 60_000, 3 * every * 1000);
+  const recent = fresh.filter(r => Date.parse(r.createdUtc) >= since);
+  const alertable = recent.filter(r => !coldStart.has(r.universeId));
 
   let alerted = 0;
   if (alertable.length) {
@@ -46,5 +63,7 @@ export async function POST(req: Request) {
       } catch { /* a webhook failure must never lose the stored review */ }
     }
   }
-  return NextResponse.json({ added: fresh.length, alerted, coldStart: [...coldStart] });
+  return NextResponse.json({
+    added: fresh.length, alerted, backfilled: fresh.length - recent.length, coldStart: [...coldStart],
+  });
 }

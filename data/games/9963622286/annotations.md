@@ -2,7 +2,7 @@
 
 Native Roblox annotations, by annotationType. This is the authoritative platform-side signal — cross-reference incident dates here BEFORE attributing a spike to a deploy or to Roblox. A type absent from this file returned no rows in the grabbed window.
 
-## annotationType=1 (236)
+## annotationType=1 (244)
 
 - `{"id":"0d121d3f-b154-474c-8abc-287b9c706d52","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":83769432623316}},"createdUtcTime":"2026-07-11T11:23:30.616Z"}`
 - `{"id":"66baa38b-2b29-4243-b916-19fd9c696567","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":111086336945056}},"createdUtcTime":"2026-07-11T11:33:02.099Z"}`
@@ -240,8 +240,16 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"224cc49c-5c8a-459b-b1b7-d68e1b6f57f7","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":80607987641612}},"createdUtcTime":"2026-09-05T14:35:06.430Z"}`
 - `{"id":"d3424976-706a-48da-bd35-4ea9615ac181","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":107649168646927}},"createdUtcTime":"2026-09-05T14:35:35.194Z"}`
 - `{"id":"ac580bb5-bc39-417f-9cb8-49ac7a3e9dbd","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":88952319467840}},"createdUtcTime":"2026-09-05T16:06:24.977Z"}`
+- `{"id":"4a73c803-4dc1-42a7-b225-1563965ba99c","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":113364012755467}},"createdUtcTime":"2026-09-12T10:04:13.691Z"}`
+- `{"id":"ce9bc2e4-49b7-480d-b517-5da12abfe2ba","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":95310977035033}},"createdUtcTime":"2026-09-12T10:04:38.649Z"}`
+- `{"id":"b11771cf-d156-4da2-8013-8c2a33407eea","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":85350710978285}},"createdUtcTime":"2026-09-12T11:33:51.146Z"}`
+- `{"id":"13fd6a61-5d87-48b4-a9a7-85ac2b254403","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":113295104678855}},"createdUtcTime":"2026-09-12T12:01:36.115Z"}`
+- `{"id":"85a5e666-f182-4055-b37c-d5e95ddad0f9","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":96931178415339}},"createdUtcTime":"2026-09-12T13:02:53.126Z"}`
+- `{"id":"5add8b57-f7ec-48b0-9f38-23dc5ffd7e23","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":87798924219248}},"createdUtcTime":"2026-09-12T13:03:12.959Z"}`
+- `{"id":"d178a7ee-abb5-49ad-8524-bd6c33f994fb","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":80376178567864}},"createdUtcTime":"2026-09-12T13:03:29.683Z"}`
+- `{"id":"b86bfc30-ecc1-41bc-9372-cb4e1a3252bb","annotationType":"ANNOTATION_TYPE_PLACE_ICON","metadata":{"placeIcon":{"iconAssetId":138343057607113}},"createdUtcTime":"2026-09-12T15:53:49.230Z"}`
 
-## annotationType=4 (78)
+## annotationType=4 (80)
 
 - `{"id":"d9849287-4432-48b8-b380-494c1b8b7314","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[83863392846847,125093355058936,100335228623034,136889309753366,111844810599351]}},"createdUtcTime":"2026-07-11T18:34:24.795Z"}`
 - `{"id":"3a1d57d5-3055-42af-8284-7042530e3247","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[83863392846847,125093355058936,100335228623034,136889309753366,135038790344261]}},"createdUtcTime":"2026-07-11T20:50:24.411Z"}`
@@ -321,6 +329,8 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"b1aa52ec-f2cd-4f52-bc39-428338859333","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[76073404110122,121125222301147,126934645979142,139903369988597,123075218012356]}},"createdUtcTime":"2026-09-01T02:31:47.821Z"}`
 - `{"id":"1435eeae-e1c7-413f-8489-a0d711ae8b03","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[123075218012356,71338513815787,76073404110122,136121365928387,104574879146628]}},"createdUtcTime":"2026-09-06T22:08:54.415Z"}`
 - `{"id":"4a727387-c71c-420b-949a-59f3c4fe5faa","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[76073404110122,136121365928387,136972943459953,104574879146628,121109909808857]}},"createdUtcTime":"2026-09-10T23:30:18.563Z"}`
+- `{"id":"79f530db-cd3a-4e4c-a924-199e0ca9f2d4","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[121109909808857,76073404110122,136121365928387,103540975991434,136972943459953]}},"createdUtcTime":"2026-09-13T21:42:55.532Z"}`
+- `{"id":"d0d95ce9-22ae-41a7-a709-1d31fe656b2c","annotationType":"ANNOTATION_TYPE_PLACE_THUMBNAIL","metadata":{"placeThumbnail":{"thumbnailAssetId":0,"thumbnailAssetIds":[71356578170800,83629886217640,92163058009343,136121365928387,103540975991434]}},"createdUtcTime":"2026-09-13T22:03:42.314Z"}`
 
 ## annotationType=6 (1)
 
@@ -330,7 +340,7 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 
 - `{"id":"60fa7756-9700-4acb-9077-700269182f1e","annotationType":"ANNOTATION_TYPE_FUNNEL_STEP_NAME_CHANGE","metadata":{"funnelStepNameChange":{"minStep":2}},"createdUtcTime":"2026-06-28T00:00:00Z"}`
 
-## annotationType=8 (52)
+## annotationType=8 (58)
 
 - `{"id":"b6baf3e1-d209-4954-9a27-08a21b3c8909","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":8413813523058132000,"eventName":"ADMIN ABUSE + WORLD 2","imageAssetId":133514599114706,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-07-11T15:00:05.459Z"}`
 - `{"id":"f859d718-c319-44a7-8461-be14173c015a","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":8413813523058132000,"eventName":"ADMIN ABUSE + WORLD 2","imageAssetId":133514599114706,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-07-11T16:00:05.459Z"}`
@@ -384,8 +394,14 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"25117550-247c-4f82-a34f-bdd40fdf4abc","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":6987893949503505000,"eventName":"ADMIN ABUSE ","imageAssetId":123520082648715,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-05T15:00:03.676Z"}`
 - `{"id":"22995631-4bc4-4386-8cc2-0840187980cf","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":6987893949503505000,"eventName":"ADMIN ABUSE ","imageAssetId":123520082648715,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-09-05T16:00:03.676Z"}`
 - `{"id":"deeb06d0-87b5-43de-be5b-659936939b83","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":3721728325891261000,"eventName":"NEW UPDATE","imageAssetId":112943882177611,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-09-08T14:00:47.265Z"}`
+- `{"id":"c32d0aa1-ba50-45f2-a2ce-839791af2ef6","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":3721728325891261000,"eventName":"NEW UPDATE","imageAssetId":112943882177611,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-11T18:00:47.265Z"}`
+- `{"id":"c141e92b-4281-44ac-91d1-8528c0892411","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":6987893949503505000,"eventName":"ADMIN ABUSE ","imageAssetId":123520082648715,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-12T15:00:03.676Z"}`
+- `{"id":"1684b3da-7abd-4d4b-9e28-89ae43c5a1f7","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":6987893949503505000,"eventName":"ADMIN ABUSE ","imageAssetId":123520082648715,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-09-12T16:00:03.676Z"}`
+- `{"id":"feef5548-85bf-482e-b22c-153cf6ee64e0","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":3721728325891261000,"eventName":"NEW UPDATE","imageAssetId":112943882177611,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-09-14T14:00:47.265Z"}`
+- `{"id":"a384ce47-8dc5-4b98-8985-9ef4a1132017","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":3416719294690624000,"eventName":"WORLD 3","imageAssetId":86160916704495,"eventStateType":"EVENT_STATE_TYPE_EVENT_END"}},"createdUtcTime":"2026-09-14T16:00:29.796Z"}`
+- `{"id":"9542dade-628e-4d58-8f58-191473658ad2","annotationType":"ANNOTATION_TYPE_EXPERIENCE_EVENT_STATE","metadata":{"experienceEventState":{"eventId":8569284550113494000,"eventName":"NEW EVENT","imageAssetId":93606350889877,"eventStateType":"EVENT_STATE_TYPE_EVENT_START"}},"createdUtcTime":"2026-09-18T18:00:26.220Z"}`
 
-## annotationType=10 (108)
+## annotationType=10 (111)
 
 - `{"id":"44587831-ade9-4a9f-9c1e-6ced8ab5f796","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":730}},"createdUtcTime":"2026-07-13T22:33:33.028Z"}`
 - `{"id":"47e44986-304d-428d-af10-9056b95319e7","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":730}},"createdUtcTime":"2026-07-14T22:14:33.758Z"}`
@@ -495,6 +511,9 @@ Native Roblox annotations, by annotationType. This is the authoritative platform
 - `{"id":"29f7b13a-a483-404c-a100-1a2851c4fee6","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":738}},"createdUtcTime":"2026-09-09T16:47:36.304Z"}`
 - `{"id":"390d21b0-c464-49a3-be1f-7343300a8f5c","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":738}},"createdUtcTime":"2026-09-09T18:19:11.651Z"}`
 - `{"id":"2c423c5b-0d32-4c7b-82f6-a4f711c9950a","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":738}},"createdUtcTime":"2026-09-09T22:30:35.962Z"}`
+- `{"id":"18b864a2-890d-4282-98e1-1556ae5f6b90","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_RCC","releaseMajorVersion":739}},"createdUtcTime":"2026-09-14T22:07:23.930Z"}`
+- `{"id":"113bce0f-58bb-44df-9079-78bcaa963e16","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_WINDOWS_PLAYER","releaseMajorVersion":739}},"createdUtcTime":"2026-09-15T16:00:31.269Z"}`
+- `{"id":"866b392f-1bb0-46da-8c00-1cb1eafc211a","annotationType":"ANNOTATION_TYPE_ENGINE_RELEASE","metadata":{"engineRelease":{"platform":"ENGINE_RELEASE_PLATFORM_MAC_PLAYER","releaseMajorVersion":739}},"createdUtcTime":"2026-09-15T16:00:59.013Z"}`
 
 ## annotationType=11 (1)
 

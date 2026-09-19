@@ -1,0 +1,5073 @@
+{
+ "generatedAt": "2026-09-19T09:53:26.569Z",
+ "tables": [
+  {
+   "section": "money",
+   "title": "Revenue split into audience size, payer conversion and spend per payer",
+   "columns": [
+    "Factor",
+    "Aug 29→Sep 2",
+    "Sep 5→9",
+    "Sep 12→16",
+    "Δ week before",
+    "Δ this week",
+    "Log-points week before",
+    "Log-points this week"
+   ],
+   "rows": [
+    [
+     "Revenue per day (R$)",
+     "R$215,982",
+     "R$216,710",
+     "R$93,825",
+     "+0.3%",
+     "−56.7%",
+     "+0.3",
+     "−83.7"
+    ],
+    [
+     "DAU (mean)",
+     "453,610",
+     "347,397",
+     "207,708",
+     "−23.4%",
+     "−40.2%",
+     "−26.7",
+     "−51.4"
+    ],
+    [
+     "Paying-user conversion (payers ÷ DAU)",
+     "0.809%",
+     "1.005%",
+     "0.645%",
+     "+24.2%",
+     "−35.8%",
+     "+21.7",
+     "−44.4"
+    ],
+    [
+     "ARPPU (R$ per payer)",
+     "58.84",
+     "62.07",
+     "70.04",
+     "+5.5%",
+     "+12.8%",
+     "+5.3",
+     "+12.1"
+    ],
+    [
+     "Paying users per day (numerator)",
+     "3,671",
+     "3,491",
+     "1,340",
+     "−4.9%",
+     "−61.6%",
+     "",
+     ""
+    ],
+    [
+     "ARPDAU (R$, = conversion × ARPPU)",
+     "0.476",
+     "0.624",
+     "0.452",
+     "+31.0%",
+     "−27.6%",
+     "",
+     ""
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "note": "Revenue = DAU × (payers ÷ DAU) × (R$ ÷ payer) holds exactly on window sums, so the three log-point figures add up to the revenue line. Conversion here is Σpayers ÷ ΣDAU, which differs slightly from the mean of the daily `PayingUsersCVR`.",
+   "source": "`DailyRevenue`, `DailyActiveUsers`, `PayingUsers` headline ONE_DAY, sums over the five weekday-paired days (all 5/5 present); log-points = 100 × ln(after ÷ before)."
+  },
+  {
+   "section": "reach",
+   "title": "Is it Verity or everyone? The same window on all five games",
+   "columns": [
+    "Metric (Δ this week)",
+    "Become a Brainrot",
+    "Climb Waterslide and Slide",
+    "Banana Monkey Destruction",
+    "Verity Companion",
+    "Seal A Driveway"
+   ],
+   "rows": [
+    [
+     "DAU",
+     "+37.3%",
+     "+71.1%",
+     "−58.7%",
+     "−40.2%",
+     "−44.7%"
+    ],
+    [
+     "Peak CCU",
+     "+33.4%",
+     "+88.5%",
+     "−58.8%",
+     "−37.9%",
+     "−53.0%"
+    ],
+    [
+     "Impressions",
+     "+29.2%",
+     "+22.3%",
+     "−56.7%",
+     "−34.0%",
+     "−39.1%"
+    ],
+    [
+     "Impr→play CVR",
+     "+9.3%",
+     "+40.2%",
+     "−9.0%",
+     "−10.4%",
+     "−11.2%"
+    ],
+    [
+     "D1",
+     "+6.9%",
+     "+10.3%",
+     "+9.5%",
+     "−6.8%",
+     "−8.5%"
+    ],
+    [
+     "Session length",
+     "+13.7%",
+     "+3.3%",
+     "+1.5%",
+     "+0.4%",
+     "−7.6%"
+    ],
+    [
+     "Revenue",
+     "−5.9%",
+     "+47.9%",
+     "−49.5%",
+     "−56.7%",
+     "−49.3%"
+    ],
+    [
+     "ARPDAU",
+     "−31.0%",
+     "−8.7%",
+     "+29.8%",
+     "−27.5%",
+     "−6.1%"
+    ],
+    [
+     "Payer CVR",
+     "−31.8%",
+     "−3.3%",
+     "−12.6%",
+     "−34.1%",
+     "−9.4%"
+    ],
+    [
+     "RFY D2–7 play days",
+     "+19.2%",
+     "−2.0%",
+     "−2.3%",
+     "−8.3%",
+     "−3.5%"
+    ],
+    [
+     "RFY D8–28 play days",
+     "−32.4%",
+     "−17.4%",
+     "−36.5%",
+     "−63.9%",
+     "—"
+    ],
+    [
+     "Crash rate",
+     "−37.8%",
+     "+11.8%",
+     "+28.8%",
+     "+13.3%",
+     "−1.6%"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "note": "Same paired weekdays on every game. Where Verity moves with the other four, the cause is less likely to be Verity-specific; where it moves alone, it is.",
+   "source": "`reports/2026-09-19/data/portfolio.json` (built by tools/r0919/build.js), Δ = POST ÷ PRE − 1 on paired days."
+  },
+  {
+   "section": "reach",
+   "title": "Where each game sits on its own curve: DAU as a share of its own peak",
+   "columns": [
+    "Game",
+    "Peak DAU",
+    "Wed 26 Aug",
+    "Wed 2 Sep",
+    "Wed 9 Sep",
+    "Wed 16 Sep",
+    "Thu 17 Sep",
+    "DAU Wed 9 → Wed 16 Sep"
+   ],
+   "rows": [
+    [
+     "Become a Brainrot",
+     "1,108,306 on 06-28",
+     "11.2%",
+     "7.4%",
+     "8.0%",
+     "10.6%",
+     "11.0%",
+     "+31.9%"
+    ],
+    [
+     "Climb Waterslide and Slide",
+     "688,061 on 08-02",
+     "21.1%",
+     "19.8%",
+     "11.9%",
+     "26.0%",
+     "18.9%",
+     "+117.9%"
+    ],
+    [
+     "Banana Monkey Destruction",
+     "975,727 on 08-05",
+     "25.9%",
+     "15.2%",
+     "4.1%",
+     "1.9%",
+     "1.6%",
+     "−52.8%"
+    ],
+    [
+     "Verity Companion",
+     "1,281,398 on 08-23",
+     "38.4%",
+     "24.9%",
+     "15.3%",
+     "9.0%",
+     "7.3%",
+     "−41.1%"
+    ],
+    [
+     "Seal A Driveway",
+     "533,776 on 08-28",
+     "68.5%",
+     "22.0%",
+     "8.4%",
+     "6.4%",
+     "5.6%",
+     "−24.1%"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "note": "Same weekday in every column. Brainrot is the portfolio's measured floor: it settled at 7–11% of its peak and is rising this week. Monkey went through that level.",
+   "source": "`reports/2026-09-19/data/portfolio.json` (`pctOfPeak`, `dauRun`, `peak` — headline `DailyActiveUsers`, peak over full history)."
+  },
+  {
+   "section": "timeline",
+   "title": "Builds, what is known about their contents, and the log lines they introduced",
+   "columns": [
+    "Build",
+    "Published (UTC)",
+    "Contents",
+    "Signatures first seen at this build (error exports)",
+    "Reviews on this build"
+   ],
+   "rows": [
+    [
+     "v684",
+     "2026-09-04 19:40",
+     "Spec `Update 04.09`: alternative endings (best-friends ending marked DELAYED), paid personality/skin shop, first skin free after 50 messages",
+     "`[MessageSpend] … infinite messages are active` (61,820 in the last 7 days); `[BestFriends] Shared.WorldStates.dark missing` (16,518)",
+     "89 · 74% down"
+    ],
+    [
+     "v688",
+     "2026-09-06 12:44",
+     "No spec filed",
+     "`[Client] /cmdr chat command missing` (93,266 in the 09-08 export)",
+     "63 · 75% down"
+    ],
+    [
+     "v689 / v690",
+     "2026-09-08 10:07 / 2026-09-08 10:47",
+     "Spec `Update 10.09`, shipped early: D7 daily-reward track paying messages (unlock-all 399R); returning-player rewards; endings repeatable; like + group reward (50 messages + Mischievous skin); playtime-reward timer; Dreamity and Cruelty personalities at 99R",
+     "none filed at v689/v690 (no since-v689 export exists)",
+     "1 · 100% down / 18 · 72% down"
+    ],
+    [
+     "v691 / v692",
+     "2026-09-09 13:39 / 2026-09-09 13:46",
+     "No spec filed",
+     "`Error fetching MarketplaceService receipts … DnsResolve` (2,576 on the 09-10 export); `ProfileStore … Too many requests` (42)",
+     "24 · 58% down"
+    ],
+    [
+     "**v693** (the 11 Sep build)",
+     "2026-09-11 15:55",
+     "No spec filed — contents unknown",
+     "`[LikeReward] Player:IsInGroup failed …` (586 across five HTTP error types); AI-reply retry warnings: `Model repeated its own previous line` (6,127), `Model returned no usable dialogue` (4,023), `DeepInfra network failure` (543), `Reply was cut at max_tokens` (487)",
+     "133 · 39% down"
+    ],
+    [
+     "v694",
+     "2026-09-11 20:30",
+     "Saved, not published",
+     "—",
+     "—"
+    ],
+    [
+     "v695",
+     "2026-09-15 13:13",
+     "No spec filed — contents unknown",
+     "`AnalyticsService: You have sent too many events.` (6,125, first seen 09-17); `ProfileStore DataStore API error: 502 … Access forbidden` (1,175); `Ending rejoin failed: Not allowed` (15)",
+     "52 · 42% down"
+    ],
+    [
+     "v696",
+     "2026-09-18 14:38",
+     "No spec filed — contents unknown",
+     "only per-player `Generated dialogue was rejected by filtering` rows (65 events, 1 day)",
+     "9 · 56% down"
+    ]
+   ],
+   "numeric": [],
+   "note": "A signature first seen at a build proves that code path ran on that build; it does not list the build's features. Counts are from row-capped exports, so they are floors.",
+   "source": "`data/updates/10565445771-verity-companion.md`; `place-versions.csv`; exports `errors_2026-09-19_*` (7-day / 1-day windows), `errors_2026-09-10_1434_since-v692`, `errors_2026-09-08_1449_v446-v688`; review counts from `feedback-10565445771.json`."
+  },
+  {
+   "section": "timeline",
+   "title": "Non-build events inside the comparison windows",
+   "columns": [
+    "When (UTC)",
+    "What",
+    "Where it lands"
+   ],
+   "rows": [
+    [
+     "2026-09-04 19:00 → (no END row)",
+     "`NEW UPDATE` experience event starts, 40 min before v684",
+     "PRIOR/PRE boundary"
+    ],
+    [
+     "2026-09-07 (Mon)",
+     "Labor Day in the US and Canada — the PRE Monday (09-07) is a public holiday; the POST Monday (09-14) is not",
+     "PRE Monday pair"
+    ],
+    [
+     "2026-09-08",
+     "Roblox telemetry fault on `ClientFpsP10` / client memory on all five games (F28); first read kept in the corpus",
+     "PRE Tuesday pair (technical)"
+    ],
+    [
+     "2026-09-08 22:36 / 09-09 16:47",
+     "Engine `RCC 738`",
+     "PRE"
+    ],
+    [
+     "2026-09-10 19:00 → 09-14 19:00",
+     "`NEW UPDATE` experience event (START and END rows)",
+     "covers Sat 09-12 and Sun 09-13 of POST"
+    ],
+    [
+     "2026-09-14 22:07",
+     "Engine `RCC 739`",
+     "POST"
+    ],
+    [
+     "2026-09-18 19:00 → (running)",
+     "`NEW UPDATE` experience event starts",
+     "after POST; covers today"
+    ],
+    [
+     "08-31 ×2, 09-01, 09-02, 09-06, 09-08, 09-12, 09-14, 09-16, 09-17",
+     "Place thumbnail set changed (10 swaps since 08-31)",
+     "every window"
+    ]
+   ],
+   "numeric": [],
+   "note": "Anything here can move a metric on its own date without a build being involved.",
+   "source": "`annotations.md` (EXPERIENCE_EVENT_STATE, ENGINE_RELEASE, PLACE_THUMBNAIL); `DIAGNOSIS_LOG.md` 2026-09-09 (F28); public-holiday calendar."
+  },
+  {
+   "section": "reach",
+   "title": "Players arriving = impressions × conversion",
+   "columns": [
+    "Factor",
+    "Δ week before",
+    "Δ this week",
+    "Share week before",
+    "Share this week"
+   ],
+   "rows": [
+    [
+     "Impressions (unique users) `UniqueUsersWithImpressions`",
+     "−4.4%",
+     "−34.0%",
+     "13%",
+     "79%"
+    ],
+    [
+     "Impression→play conversion `EndToEndCVR`",
+     "−25.8%",
+     "−10.4%",
+     "87%",
+     "21%"
+    ],
+    [
+     "Product of the two",
+     "−29.0%",
+     "−40.9%",
+     "100%",
+     "100%"
+    ],
+    [
+     "Measured `UniqueUsersWithPlaySessions`",
+     "−23.3%",
+     "−40.3%",
+     "",
+     ""
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "note": "Both factors fell together this week; the week before, conversion carried the fall with impressions nearly flat. The product tracks measured players-with-plays within a few points.",
+   "source": "Paired weekday means of the headline ONE_DAY series; share = ln(1+Δfactor) ÷ ln(1+Δproduct)."
+  },
+  {
+   "section": "reach",
+   "title": "Reach and players by acquisition source",
+   "columns": [
+    "Source",
+    "Impr. before",
+    "Impr. after",
+    "Δ impr.",
+    "DAU before",
+    "DAU after",
+    "Δ DAU",
+    "DAU ÷ impr. before",
+    "DAU ÷ impr. after"
+   ],
+   "rows": [
+    [
+     "HomeRecommendation",
+     "4,132,513",
+     "2,566,410",
+     "−37.9%",
+     "239,354",
+     "141,087",
+     "−41.1%",
+     "5.79%",
+     "5.50%"
+    ],
+    [
+     "Search",
+     "456,222",
+     "425,212",
+     "−6.8%",
+     "19,654",
+     "13,256",
+     "−32.6%",
+     "4.31%",
+     "3.12%"
+    ],
+    [
+     "Friends",
+     "94,625",
+     "51,107",
+     "−46.0%",
+     "40,001",
+     "22,457",
+     "−43.9%",
+     "42.27%",
+     "43.94%"
+    ],
+    [
+     "Others",
+     "42,755",
+     "7,154",
+     "−83.3%",
+     "48,160",
+     "31,935",
+     "−33.7%",
+     "—",
+     "—"
+    ],
+    [
+     "ContinueToPlay",
+     "1,026,507",
+     "706,149",
+     "−31.2%",
+     "—",
+     "—",
+     "—",
+     "—",
+     "—"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "note": "Search impressions barely moved while Search DAU fell a third. `Others` DAU exceeds its impressions (players arrive through surfaces that are not counted as impressions), so no ratio is shown; `ContinueToPlay` has impressions but no DAU source of its own.",
+   "source": "`UniqueUsersWithImpressions` and `DailyActiveUsers` by `AcquisitionSource`, ONE_DAY, paired weekday means (5/5)."
+  },
+  {
+   "section": "reach",
+   "title": "Recommendation (RFY) signals by day, 3 → 17 Sep",
+   "columns": [
+    "Day",
+    "Impr.",
+    "PTR",
+    "Not-interested /M",
+    "Bounce <60s",
+    "D1 playtime",
+    "D1 qual. sess.",
+    "D2–7 play days",
+    "D8–28 play days",
+    "D1 spend days"
+   ],
+   "rows": [
+    [
+     "Thu 09-03",
+     "4,720,124",
+     "1.97%",
+     "124",
+     "15.9%",
+     "13.3",
+     "1.21",
+     "0.223",
+     "—",
+     "0.0090"
+    ],
+    [
+     "Fri 09-04",
+     "7,187,456",
+     "1.57%",
+     "104",
+     "16.0%",
+     "14.0",
+     "1.28",
+     "0.233",
+     "0.879",
+     "0.0100"
+    ],
+    [
+     "Sat 09-05",
+     "7,268,108",
+     "1.38%",
+     "105",
+     "17.2%",
+     "14.7",
+     "1.32",
+     "0.214",
+     "0.620",
+     "0.0124"
+    ],
+    [
+     "Sun 09-06",
+     "6,099,960",
+     "1.60%",
+     "109",
+     "17.0%",
+     "14.0",
+     "1.28",
+     "0.260",
+     "0.790",
+     "0.0111"
+    ],
+    [
+     "Mon 09-07",
+     "5,186,387",
+     "1.42%",
+     "105",
+     "16.8%",
+     "13.3",
+     "1.24",
+     "0.255",
+     "0.705",
+     "0.0105"
+    ],
+    [
+     "Tue 09-08",
+     "4,597,730",
+     "1.40%",
+     "114",
+     "15.4%",
+     "13.3",
+     "1.23",
+     "0.278",
+     "0.618",
+     "0.0080"
+    ],
+    [
+     "Wed 09-09",
+     "3,607,316",
+     "1.49%",
+     "123",
+     "15.7%",
+     "12.9",
+     "1.20",
+     "0.284",
+     "0.609",
+     "0.0074"
+    ],
+    [
+     "Thu 09-10",
+     "2,738,884",
+     "1.77%",
+     "121",
+     "14.7%",
+     "12.8",
+     "1.19",
+     "0.282",
+     "0.475",
+     "0.0066"
+    ],
+    [
+     "Fri 09-11",
+     "3,124,244",
+     "1.96%",
+     "127",
+     "15.3%",
+     "12.8",
+     "1.20",
+     "0.238",
+     "0.405",
+     "0.0057"
+    ],
+    [
+     "Sat 09-12",
+     "4,541,966",
+     "1.88%",
+     "131",
+     "15.1%",
+     "13.7",
+     "1.26",
+     "0.208",
+     "0.294",
+     "0.0066"
+    ],
+    [
+     "Sun 09-13",
+     "3,641,615",
+     "1.31%",
+     "138",
+     "16.5%",
+     "14.3",
+     "1.31",
+     "0.219",
+     "0.262",
+     "0.0094"
+    ],
+    [
+     "Mon 09-14",
+     "3,465,727",
+     "1.64%",
+     "150",
+     "14.2%",
+     "13.6",
+     "1.23",
+     "0.237",
+     "0.238",
+     "0.0045"
+    ],
+    [
+     "Tue 09-15",
+     "4,052,511",
+     "1.75%",
+     "137",
+     "14.8%",
+     "12.6",
+     "1.19",
+     "0.261",
+     "0.232",
+     "0.0041"
+    ],
+    [
+     "Wed 09-16",
+     "1,949,634",
+     "1.82%",
+     "164",
+     "14.8%",
+     "12.8",
+     "1.20",
+     "0.258",
+     "0.181",
+     "0.0068"
+    ],
+    [
+     "Thu 09-17",
+     "1,719,334",
+     "1.72%",
+     "127",
+     "14.4%",
+     "12.9",
+     "1.20",
+     "0.263",
+     "0.176",
+     "0.0067"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "note": "Roblox says impression cuts typically follow a fall in these per-user signals. `RFYD8To28PlayDays` is first served on 09-04 and falls on every day after; the other quality signals sit inside their earlier range.",
+   "source": "Headline ONE_DAY RFY series from the corpus (settled days only)."
+  },
+  {
+   "section": "reach",
+   "title": "Impressions by surface, by day",
+   "columns": [
+    "Day",
+    "Home recommendation",
+    "Δ vs day before",
+    "Δ vs same weekday −7d",
+    "Search",
+    "Continue to play",
+    "Friends"
+   ],
+   "rows": [
+    [
+     "Sat 09-05",
+     "5,713,164",
+     "−4.2%",
+     "−12.9%",
+     "632,467",
+     "1,414,940",
+     "163,112"
+    ],
+    [
+     "Sun 09-06",
+     "4,532,109",
+     "−20.7%",
+     "−11.6%",
+     "563,701",
+     "1,251,218",
+     "122,096"
+    ],
+    [
+     "Mon 09-07",
+     "4,005,938",
+     "−11.6%",
+     "+14.2%",
+     "454,060",
+     "982,243",
+     "84,975"
+    ],
+    [
+     "Tue 09-08",
+     "3,673,866",
+     "−8.3%",
+     "−2.1%",
+     "329,111",
+     "781,621",
+     "57,422"
+    ],
+    [
+     "Wed 09-09",
+     "2,737,489",
+     "−25.5%",
+     "−2.1%",
+     "301,771",
+     "702,515",
+     "45,519"
+    ],
+    [
+     "Thu 09-10",
+     "1,899,611",
+     "−30.6%",
+     "−49.2%",
+     "340,640",
+     "643,212",
+     "35,968"
+    ],
+    [
+     "Fri 09-11",
+     "2,199,470",
+     "+15.8%",
+     "−63.1%",
+     "375,170",
+     "679,277",
+     "46,699"
+    ],
+    [
+     "Sat 09-12",
+     "3,329,249",
+     "+51.4%",
+     "−41.7%",
+     "544,670",
+     "920,631",
+     "82,719"
+    ],
+    [
+     "Sun 09-13",
+     "2,406,084",
+     "−27.7%",
+     "−46.9%",
+     "596,111",
+     "844,546",
+     "62,154"
+    ],
+    [
+     "Mon 09-14",
+     "2,694,581",
+     "+12.0%",
+     "−32.7%",
+     "336,472",
+     "562,362",
+     "39,938"
+    ],
+    [
+     "Tue 09-15",
+     "3,251,900",
+     "+20.7%",
+     "−11.5%",
+     "315,548",
+     "654,419",
+     "45,998"
+    ],
+    [
+     "Wed 09-16",
+     "1,150,235",
+     "−64.6%",
+     "−58.0%",
+     "333,259",
+     "548,786",
+     "24,724"
+    ],
+    [
+     "Thu 09-17",
+     "1,021,700",
+     "−11.2%",
+     "−46.2%",
+     "297,731",
+     "470,637",
+     "19,728"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "note": "Home carries three quarters of impressions. Its largest one-day fall in the window is Wed 16 Sep (−65% on the day before), the day after v695; Search holds at 0.30–0.60M throughout.",
+   "source": "`UniqueUsersWithImpressions` by `AcquisitionSource`, ONE_DAY (corpus)."
+  },
+  {
+   "section": "reach",
+   "title": "Home impressions, Tuesday → Wednesday, all five games",
+   "columns": [
+    "Game",
+    "Tue 15 Sep",
+    "Wed 16 Sep",
+    "Δ 15 → 16 Sep",
+    "Δ 8 → 9 Sep",
+    "Δ 1 → 2 Sep"
+   ],
+   "rows": [
+    [
+     "Verity Companion",
+     "3,251,900",
+     "1,150,235",
+     "−64.6%",
+     "−25.5%",
+     "−25.5%"
+    ],
+    [
+     "Become a Brainrot",
+     "1,169,638",
+     "1,065,198",
+     "−8.9%",
+     "+18.7%",
+     "+51.1%"
+    ],
+    [
+     "Climb Waterslide and Slide",
+     "4,216,229",
+     "2,881,732",
+     "−31.7%",
+     "−4.8%",
+     "+23.9%"
+    ],
+    [
+     "Banana Monkey Destruction",
+     "383,925",
+     "224,626",
+     "−41.5%",
+     "−16.7%",
+     "−12.8%"
+    ],
+    [
+     "Seal A Driveway",
+     "678,334",
+     "496,687",
+     "−26.8%",
+     "−26.8%",
+     "−5.7%"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "note": "Tuesday to Wednesday is usually down on these games; the question is whether 16 Sep was unusual for Verity against its own earlier Tuesdays and against the others.",
+   "source": "`UniqueUsersWithImpressions` `AcquisitionSource=HomeRecommendation`, ONE_DAY, each game's data file."
+  },
+  {
+   "section": "reach",
+   "title": "Thumbnail swaps against the base rate of ordinary days",
+   "columns": [
+    "Series",
+    "Swap days",
+    "Mean change, swap days",
+    "Other days",
+    "Mean change, other days",
+    "sd, other days",
+    "z"
+   ],
+   "rows": [
+    [
+     "RFY play-through rate",
+     "13",
+     "+1.3%",
+     "19",
+     "−3.6%",
+     "+28.6%",
+     "+0.7"
+    ],
+    [
+     "Not-interested per M impressions",
+     "13",
+     "−1.1%",
+     "19",
+     "−2.6%",
+     "+26.3%",
+     "+0.2"
+    ],
+    [
+     "Impressions",
+     "13",
+     "−14.8%",
+     "19",
+     "+5.0%",
+     "+53.5%",
+     "−1.8"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "note": "Change = day after the swap vs day before (the swap day itself is mixed). A swap effect has to beat what ordinary days do; |z| under 2 is indistinguishable.",
+   "source": "Swap dates from `annotations.md` `ANNOTATION_TYPE_PLACE_THUMBNAIL` (08-16 → 09-16); headline ONE_DAY series; z = (mean_swap − mean_other) ÷ (sd_other ÷ √n_swap)."
+  },
+  {
+   "section": "reach",
+   "title": "New players, returning players, and returning players per recent arrival",
+   "columns": [
+    "Day",
+    "New DAU",
+    "Returning DAU",
+    "Returning share",
+    "New DAU, mean of prior 7 days",
+    "Returning ÷ that mean"
+   ],
+   "rows": [
+    [
+     "Sat 09-05",
+     "337,342",
+     "202,598",
+     "37.5%",
+     "307,477",
+     "0.659"
+    ],
+    [
+     "Sun 09-06",
+     "260,280",
+     "178,093",
+     "40.6%",
+     "293,662",
+     "0.606"
+    ],
+    [
+     "Mon 09-07",
+     "193,414",
+     "126,136",
+     "39.5%",
+     "280,588",
+     "0.450"
+    ],
+    [
+     "Tue 09-08",
+     "151,173",
+     "89,765",
+     "37.3%",
+     "275,225",
+     "0.326"
+    ],
+    [
+     "Wed 09-09",
+     "114,333",
+     "82,909",
+     "42.0%",
+     "251,564",
+     "0.330"
+    ],
+    [
+     "Thu 09-10",
+     "86,433",
+     "75,254",
+     "46.5%",
+     "239,993",
+     "0.314"
+    ],
+    [
+     "Fri 09-11",
+     "113,976",
+     "83,639",
+     "42.3%",
+     "218,345",
+     "0.383"
+    ],
+    [
+     "Sat 09-12",
+     "195,882",
+     "120,880",
+     "38.2%",
+     "179,564",
+     "0.673"
+    ],
+    [
+     "Sun 09-13",
+     "108,649",
+     "113,285",
+     "51.0%",
+     "159,356",
+     "0.711"
+    ],
+    [
+     "Mon 09-14",
+     "115,049",
+     "63,880",
+     "35.7%",
+     "137,694",
+     "0.464"
+    ],
+    [
+     "Tue 09-15",
+     "136,528",
+     "71,753",
+     "34.5%",
+     "126,499",
+     "0.567"
+    ],
+    [
+     "Wed 09-16",
+     "53,283",
+     "63,004",
+     "54.2%",
+     "124,407",
+     "0.506"
+    ],
+    [
+     "Thu 09-17",
+     "45,840",
+     "48,263",
+     "51.3%",
+     "115,686",
+     "0.417"
+    ],
+    [
+     "**Mean Sep 5→9**",
+     "211,308",
+     "135,900",
+     "39.1%",
+     "",
+     "0.474"
+    ],
+    [
+     "**Mean Sep 12→16**",
+     "121,878",
+     "86,560",
+     "41.5%",
+     "",
+     "0.584"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "note": "The last column divides the day's returning players by the average daily arrivals of the week before it. It is a rough return rate with a known bias: returning players also come from older, larger cohorts, so the ratio drifts up whenever the inflow is shrinking.",
+   "source": "Explore (`dag/execute`) `DailyActiveUsers` by `IsNewUser`, pulled 2026-09-19 09:12 UTC; the pull starts 08-29, so the ratio exists from 09-05."
+  },
+  {
+   "section": "reach",
+   "title": "Country mix of DAU",
+   "columns": [
+    "Country",
+    "DAU before",
+    "DAU after",
+    "Δ",
+    "Share before",
+    "Share after",
+    "Δ share"
+   ],
+   "rows": [
+    [
+     "US",
+     "108,077",
+     "57,618",
+     "−46.7%",
+     "31.1%",
+     "27.7%",
+     "−3.4pp"
+    ],
+    [
+     "PH",
+     "41,205",
+     "18,081",
+     "−56.1%",
+     "11.9%",
+     "8.7%",
+     "−3.2pp"
+    ],
+    [
+     "GB",
+     "19,374",
+     "11,590",
+     "−40.2%",
+     "5.6%",
+     "5.6%",
+     "+0.0pp"
+    ],
+    [
+     "MX",
+     "8,344",
+     "9,044",
+     "+8.4%",
+     "2.4%",
+     "4.4%",
+     "+2.0pp"
+    ],
+    [
+     "ID",
+     "15,355",
+     "7,682",
+     "−50.0%",
+     "4.4%",
+     "3.7%",
+     "−0.7pp"
+    ],
+    [
+     "BR",
+     "8,689",
+     "6,858",
+     "−21.1%",
+     "2.5%",
+     "3.3%",
+     "+0.8pp"
+    ],
+    [
+     "MY",
+     "9,346",
+     "5,573",
+     "−40.4%",
+     "2.7%",
+     "2.7%",
+     "−0.0pp"
+    ],
+    [
+     "IN",
+     "10,697",
+     "5,559",
+     "−48.0%",
+     "3.1%",
+     "2.7%",
+     "−0.4pp"
+    ],
+    [
+     "RU",
+     "7,467",
+     "5,480",
+     "−26.6%",
+     "2.1%",
+     "2.6%",
+     "+0.5pp"
+    ],
+    [
+     "CA",
+     "8,477",
+     "5,070",
+     "−40.2%",
+     "2.4%",
+     "2.4%",
+     "+0.0pp"
+    ],
+    [
+     "AU",
+     "9,313",
+     "4,783",
+     "−48.6%",
+     "2.7%",
+     "2.3%",
+     "−0.4pp"
+    ],
+    [
+     "DE",
+     "6,750",
+     "4,590",
+     "−32.0%",
+     "1.9%",
+     "2.2%",
+     "+0.3pp"
+    ],
+    [
+     "PL",
+     "4,059",
+     "3,029",
+     "−25.4%",
+     "1.2%",
+     "1.5%",
+     "+0.3pp"
+    ],
+    [
+     "AR",
+     "3,241",
+     "2,939",
+     "−9.3%",
+     "0.9%",
+     "1.4%",
+     "+0.5pp"
+    ],
+    [
+     "CL",
+     "2,040",
+     "2,462",
+     "+20.7%",
+     "0.6%",
+     "1.2%",
+     "+0.6pp"
+    ],
+    [
+     "**US + GB + CA + AU**",
+     "145,241",
+     "79,060",
+     "−45.6%",
+     "41.8%",
+     "38.1%",
+     "−3.7pp"
+    ],
+    [
+     "**MX + BR + AR + CL**",
+     "22,313",
+     "21,303",
+     "−4.5%",
+     "6.4%",
+     "10.3%",
+     "+3.8pp"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "note": "Mexico and Chile grew while every other large market shrank. The English-speaking group lost 3.6 points of share. Revenue by country is not held, so the mix effect on ARPDAU cannot be priced.",
+   "source": "`DailyActiveUsers` by `Country`, ONE_DAY, top 15 by post volume, paired weekday means; shares are of headline DAU."
+  },
+  {
+   "section": "ccu",
+   "title": "Average concurrent players per day (hourly series), same weekday",
+   "columns": [
+    "Day",
+    "Mean CCU",
+    "Same weekday −7d",
+    "Δ",
+    "Daily peak `PeakConcurrentPlayers`"
+   ],
+   "rows": [
+    [
+     "Sat 08-29",
+     "5,387",
+     "—",
+     "—",
+     "7,504"
+    ],
+    [
+     "Sun 08-30",
+     "4,578",
+     "—",
+     "—",
+     "5,861"
+    ],
+    [
+     "Mon 08-31",
+     "2,998",
+     "—",
+     "—",
+     "4,202"
+    ],
+    [
+     "Tue 09-01",
+     "3,854",
+     "—",
+     "—",
+     "5,623"
+    ],
+    [
+     "Wed 09-02",
+     "2,700",
+     "—",
+     "—",
+     "4,018"
+    ],
+    [
+     "Thu 09-03",
+     "3,131",
+     "—",
+     "—",
+     "5,493"
+    ],
+    [
+     "Fri 09-04",
+     "5,022",
+     "—",
+     "—",
+     "8,269"
+    ],
+    [
+     "Sat 09-05",
+     "5,132",
+     "5,387",
+     "−4.7%",
+     "7,245"
+    ],
+    [
+     "Sun 09-06",
+     "3,984",
+     "4,578",
+     "−13.0%",
+     "5,114"
+    ],
+    [
+     "Mon 09-07",
+     "2,733",
+     "2,998",
+     "−8.8%",
+     "3,660"
+    ],
+    [
+     "Tue 09-08",
+     "2,098",
+     "3,854",
+     "−45.6%",
+     "2,557"
+    ],
+    [
+     "Wed 09-09",
+     "1,642",
+     "2,700",
+     "−39.2%",
+     "2,428"
+    ],
+    [
+     "Thu 09-10",
+     "1,298",
+     "3,131",
+     "−58.5%",
+     "1,603"
+    ],
+    [
+     "Fri 09-11",
+     "1,680",
+     "5,022",
+     "−66.5%",
+     "2,812"
+    ],
+    [
+     "Sat 09-12",
+     "2,841",
+     "5,132",
+     "−44.6%",
+     "3,726"
+    ],
+    [
+     "Sun 09-13",
+     "1,952",
+     "3,984",
+     "−51.0%",
+     "2,475"
+    ],
+    [
+     "Mon 09-14",
+     "1,573",
+     "2,733",
+     "−42.4%",
+     "2,589"
+    ],
+    [
+     "Tue 09-15",
+     "1,725",
+     "2,098",
+     "−17.8%",
+     "2,970"
+    ],
+    [
+     "Wed 09-16",
+     "898",
+     "1,642",
+     "−45.3%",
+     "1,288"
+    ],
+    [
+     "Thu 09-17",
+     "729",
+     "1,298",
+     "−43.9%",
+     "1,012"
+    ],
+    [
+     "Fri 09-18",
+     "933",
+     "1,680",
+     "−44.5%",
+     "1,722"
+    ],
+    [
+     "**Sep 12→16 vs Sep 5→9**",
+     "1,798",
+     "3,118",
+     "−42.3%",
+     ""
+    ],
+    [
+     "**Sep 5→9 vs Aug 29→Sep 2**",
+     "3,118",
+     "3,904",
+     "−20.1%",
+     ""
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "note": "The daily mean is the size of the game across the whole day; the daily peak is a maximum (and a sum of per-platform peaks). Only complete 24-hour days are shown.",
+   "source": "Explore `ConcurrentPlayers` ONE_HOUR (label = end of the hour), mean of 24 hourly values per UTC day; peak from the corpus ONE_DAY series."
+  },
+  {
+   "section": "ccu",
+   "title": "Today (Sat 19 Sep, partial) against the same hours of the last two Saturdays",
+   "columns": [
+    "UTC hour",
+    "Sat 19 Sep",
+    "Sat 12 Sep",
+    "Δ vs 12 Sep",
+    "Sat 5 Sep",
+    "Δ vs 5 Sep"
+   ],
+   "rows": [
+    [
+     "00:00–01:00",
+     "1,260",
+     "2,169",
+     "−41.9%",
+     "4,528",
+     "−72.2%"
+    ],
+    [
+     "01:00–02:00",
+     "1,293",
+     "2,211",
+     "−41.5%",
+     "4,392",
+     "−70.6%"
+    ],
+    [
+     "02:00–03:00",
+     "1,306",
+     "2,196",
+     "−40.5%",
+     "4,364",
+     "−70.1%"
+    ],
+    [
+     "03:00–04:00",
+     "1,232",
+     "1,989",
+     "−38.1%",
+     "4,265",
+     "−71.1%"
+    ],
+    [
+     "04:00–05:00",
+     "1,091",
+     "2,043",
+     "−46.6%",
+     "4,220",
+     "−74.2%"
+    ],
+    [
+     "05:00–06:00",
+     "1,126",
+     "1,980",
+     "−43.2%",
+     "4,618",
+     "−75.6%"
+    ],
+    [
+     "06:00–07:00",
+     "1,355",
+     "2,319",
+     "−41.6%",
+     "4,783",
+     "−71.7%"
+    ],
+    [
+     "07:00–08:00",
+     "1,384",
+     "2,490",
+     "−44.4%",
+     "5,189",
+     "−73.3%"
+    ],
+    [
+     "08:00–09:00",
+     "1,434",
+     "2,406",
+     "−40.4%",
+     "5,331",
+     "−73.1%"
+    ],
+    [
+     "**Mean 00:00–09:00**",
+     "1,275",
+     "2,200",
+     "−42.0%",
+     "4,632",
+     "−72.5%"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "note": "Only hours that had finished when the data was pulled (09:12 UTC) are compared; the in-progress 09:00 hour and the carry-forward bucket after it are dropped. All three Saturdays sit inside a `NEW UPDATE` event (09-04, 09-10 and 09-18 starts).",
+   "source": "Explore `ConcurrentPlayers` ONE_HOUR, pulled 2026-09-19 09:12 UTC; hourly label = end of the hour."
+  },
+  {
+   "section": "ccu",
+   "title": "Concurrents around each publish, against ordinary days at the same clock time",
+   "columns": [
+    "Build",
+    "Published (UTC)",
+    "2h before vs −7d",
+    "+1h→+4h vs −7d",
+    "After ÷ before, vs −7d",
+    "Ordinary days",
+    "Same statistic, ordinary days (mean)",
+    "z"
+   ],
+   "rows": [
+    [
+     "v688",
+     "09-06 12:44",
+     "−10.6%",
+     "−17.7%",
+     "−8.0%",
+     "8",
+     "−0.7%",
+     "−0.4"
+    ],
+    [
+     "v689",
+     "09-08 10:07",
+     "−58.9%",
+     "−52.8%",
+     "+14.9%",
+     "8",
+     "+2.8%",
+     "+1.4"
+    ],
+    [
+     "v691",
+     "09-09 13:39",
+     "−51.0%",
+     "−33.1%",
+     "+36.5%",
+     "8",
+     "+2.0%",
+     "+1.1"
+    ],
+    [
+     "v693",
+     "09-11 15:55",
+     "−70.9%",
+     "−65.6%",
+     "+18.6%",
+     "8",
+     "+8.3%",
+     "+0.4"
+    ],
+    [
+     "v695",
+     "09-15 13:13",
+     "−27.7%",
+     "−7.3%",
+     "+28.2%",
+     "8",
+     "+2.5%",
+     "+0.9"
+    ],
+    [
+     "v696",
+     "09-18 14:38",
+     "−42.9%",
+     "−47.9%",
+     "−8.7%",
+     "8",
+     "+6.8%",
+     "−0.6"
+    ]
+   ],
+   "numeric": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "note": "Half-hour peak CCU. The publish half-hour itself (server restarts double-count players) is skipped, and a publish less than 2h after the previous one (v690, v692) is folded into it. The ordinary-day column runs the identical calculation at the same clock time on every non-publish day 09-05 → 09-18.",
+   "source": "Explore `PeakConcurrentPlayers` HALF_HOUR (final and in-progress buckets dropped); publish times from `place-versions.csv`."
+  },
+  {
+   "section": "retention",
+   "title": "D1 by acquisition source: effect size and confidence kept apart",
+   "columns": [
+    "Source",
+    "DAU after",
+    "D1 before",
+    "D1 after",
+    "Effect (relative)",
+    "Δ pp",
+    "Own w/w sd",
+    "z vs own sd",
+    "z vs binomial"
+   ],
+   "rows": [
+    [
+     "HomeRecommendation",
+     "141,087",
+     "12.71%",
+     "11.95%",
+     "−6.0%",
+     "−0.76pp",
+     "+2.97pp",
+     "−0.6",
+     "−11.0"
+    ],
+    [
+     "Others",
+     "31,935",
+     "9.80%",
+     "9.13%",
+     "−6.8%",
+     "−0.67pp",
+     "+1.39pp",
+     "−1.1",
+     "−5.2"
+    ],
+    [
+     "Friends",
+     "22,457",
+     "9.68%",
+     "8.99%",
+     "−7.1%",
+     "−0.69pp",
+     "+1.44pp",
+     "−1.1",
+     "−4.5"
+    ],
+    [
+     "Search",
+     "13,256",
+     "12.35%",
+     "11.56%",
+     "−6.4%",
+     "−0.79pp",
+     "+2.79pp",
+     "−0.6",
+     "−3.5"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "note": "`Friends` arrive by invitation and never see the thumbnail; `Search` looked the game up by name. Relative change is the effect size; the two z columns are confidence and grow with volume.",
+   "source": "`ForwardD1Retention` by `AcquisitionSource` (corpus, ONE_DAY), 5 paired weekdays. Own sd = sd of same-weekday differences on 08-22→09-11; z vs own sd = mean paired Δ ÷ (sd ÷ √5). Binomial floor uses n ≈ segment DAU × that day's new-user share (Explore), because new users by segment are not held — an approximation."
+  },
+  {
+   "section": "retention",
+   "title": "D1 by platform: each platform against its own previous week",
+   "columns": [
+    "Platform",
+    "DAU after",
+    "D1 before",
+    "D1 after",
+    "Effect (relative)",
+    "Δ pp",
+    "Own w/w sd",
+    "z vs own sd",
+    "z vs binomial"
+   ],
+   "rows": [
+    [
+     "Phone",
+     "101,280",
+     "11.80%",
+     "11.17%",
+     "−5.3%",
+     "−0.63pp",
+     "+2.53pp",
+     "−0.6",
+     "−7.9"
+    ],
+    [
+     "Tablet",
+     "78,712",
+     "12.55%",
+     "11.73%",
+     "−6.6%",
+     "−0.82pp",
+     "+2.31pp",
+     "−0.8",
+     "−9.0"
+    ],
+    [
+     "Computer",
+     "25,446",
+     "10.72%",
+     "9.99%",
+     "−6.8%",
+     "−0.73pp",
+     "+1.86pp",
+     "−0.9",
+     "−4.8"
+    ],
+    [
+     "Console",
+     "4,377",
+     "8.96%",
+     "7.25%",
+     "−19.1%",
+     "−1.71pp",
+     "+2.20pp",
+     "−1.7",
+     "−5.2"
+    ],
+    [
+     "VR",
+     "234",
+     "6.79%",
+     "7.05%",
+     "+3.8%",
+     "+0.26pp",
+     "+2.71pp",
+     "+0.2",
+     "+0.2"
+    ],
+    [
+     "TV",
+     "32",
+     "28.10%",
+     "12.19%",
+     "−56.6%",
+     "−15.91pp",
+     "+12.06pp",
+     "−3.0",
+     "−2.9"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "note": "Levels differ across platforms (different players choose each device); only the within-platform change is read. VR and TV carry a few hundred and a few dozen players a day.",
+   "source": "`ForwardD1Retention` by `Platform` (corpus, ONE_DAY), 5 paired weekdays. Own sd = sd of same-weekday differences on 08-22→09-11; z vs own sd = mean paired Δ ÷ (sd ÷ √5). Binomial floor uses n ≈ segment DAU × that day's new-user share (Explore), because new users by segment are not held — an approximation."
+  },
+  {
+   "section": "retention",
+   "title": "D1 and D7 by cohort day, three weeks side by side",
+   "columns": [
+    "Weekday",
+    "Week of 29 Aug",
+    "Week of 5 Sep",
+    "Week of 12 Sep",
+    "Δ last column vs middle",
+    "D7, week of 29 Aug",
+    "D7, week of 5 Sep"
+   ],
+   "rows": [
+    [
+     "Sat",
+     "08-29 · 13.8%",
+     "09-05 · 13.9%",
+     "09-12 · 12.9%",
+     "−7.4%",
+     "1.25%",
+     "0.99%"
+    ],
+    [
+     "Sun",
+     "08-30 · 10.5%",
+     "09-06 · 11.0%",
+     "09-13 · 9.1%",
+     "−16.9%",
+     "1.21%",
+     "0.93%"
+    ],
+    [
+     "Mon",
+     "08-31 · 13.3%",
+     "09-07 · 10.4%",
+     "09-14 · 11.5%",
+     "+10.7%",
+     "0.74%",
+     "0.50%"
+    ],
+    [
+     "Tue",
+     "09-01 · 12.8%",
+     "09-08 · 11.8%",
+     "09-15 · 11.5%",
+     "−2.7%",
+     "0.58%",
+     "0.56%"
+    ],
+    [
+     "Wed",
+     "09-02 · 13.0%",
+     "09-09 · 12.1%",
+     "09-16 · 10.1%",
+     "−16.1%",
+     "0.54%",
+     "0.50%"
+    ],
+    [
+     "Thu",
+     "09-03 · 14.9%",
+     "09-10 · 12.6%",
+     "09-17 · —",
+     "—",
+     "0.51%",
+     "0.50%"
+    ],
+    [
+     "Fri",
+     "09-04 · 16.5%",
+     "09-11 · 14.7%",
+     "09-18 · —",
+     "—",
+     "0.58%",
+     "—"
+    ]
+   ],
+   "numeric": [
+    4,
+    5,
+    6
+   ],
+   "note": "Mon 07 Sep is Labor Day (US/Canada); the Mon 14 Sep comparison is against a holiday cohort. D1 for 17 Sep onward and D7 for 11 Sep onward are not served yet.",
+   "source": "`ForwardD1Retention`, `ForwardD7Retention` headline ONE_DAY, settled points."
+  },
+  {
+   "section": "engagement",
+   "title": "How long sessions last, by query window",
+   "columns": [
+    "Window",
+    "Sessions ended",
+    "< 1 min",
+    "< 3 min",
+    "< 10 min",
+    "≥ 30 min"
+   ],
+   "rows": [
+    [
+     "09-01 → 09-04",
+     "17,008,879",
+     "8.7%",
+     "24.4%",
+     "62.7%",
+     "0.3%"
+    ],
+    [
+     "09-05 → 09-07",
+     "14,014,024",
+     "8.5%",
+     "23.5%",
+     "61.1%",
+     "0.3%"
+    ],
+    [
+     "09-06 → 09-09",
+     "10,291,293",
+     "8.7%",
+     "24.1%",
+     "62.2%",
+     "0.3%"
+    ],
+    [
+     "09-03 → 09-19 (19th partial)",
+     "57,655,806",
+     "8.7%",
+     "24.1%",
+     "62.2%",
+     "0.3%"
+    ],
+    [
+     "09-16 → 09-19 (19th partial)",
+     "2,096,474",
+     "9.3%",
+     "25.4%",
+     "63.6%",
+     "0.3%"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "note": "Window aggregates, not daily. The 16→19 Sep window includes the partial 19th, whose newest sessions are still running and cannot have ended long.",
+   "source": "`TotalSessionsEndedInBucket` by `SessionTimeBucket` at NONE, window taken from each raw capture's request body (`data/raw/10565445771-*.json`)."
+  },
+  {
+   "section": "engagement",
+   "title": "Playtime per player and session length, new vs returning",
+   "columns": [
+    "Segment",
+    "Play min/DAU Aug 29→Sep 2",
+    "Sep 5→9",
+    "Sep 12→16",
+    "Δ week before",
+    "Δ this week",
+    "Session min before",
+    "Session min after",
+    "Δ session"
+   ],
+   "rows": [
+    [
+     "New",
+     "13.52",
+     "13.93",
+     "13.29",
+     "+3.0%",
+     "−4.6%",
+     "9.27",
+     "9.28",
+     "+0.1%"
+    ],
+    [
+     "Returning",
+     "9.68",
+     "10.67",
+     "10.85",
+     "+10.2%",
+     "+1.7%",
+     "7.40",
+     "7.63",
+     "+3.1%"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "note": "Splitting by new vs returning removes the mix effect from the headline. The first column is back-computed from the week-before change.",
+   "source": "Explore `AveragePlayTimeMinutesPerDAU` and `AverageSessionLengthMinutes` by `IsNewUser`, paired weekday means."
+  },
+  {
+   "section": "money",
+   "title": "Payer conversion fell on Tuesday 8 Sep on all five games",
+   "columns": [
+    "Game",
+    "`PayingUsersCVR` Mon 31 Aug → Tue 1 Sep",
+    "Mon 7 → Tue 8 Sep",
+    "Mon 14 → Tue 15 Sep",
+    "`AverageRevenuePerUser` Mon 7 → Tue 8 Sep",
+    "Root-place publish on 8 Sep"
+   ],
+   "rows": [
+    [
+     "Verity Companion",
+     "+16.0%",
+     "−24.9%",
+     "−5.1%",
+     "−21.8%",
+     "v689, v690"
+    ],
+    [
+     "Become a Brainrot",
+     "+0.9%",
+     "−26.2%",
+     "−14.9%",
+     "−27.5%",
+     "none"
+    ],
+    [
+     "Climb Waterslide and Slide",
+     "+5.2%",
+     "−23.2%",
+     "−19.5%",
+     "−27.1%",
+     "none"
+    ],
+    [
+     "Banana Monkey Destruction",
+     "+7.8%",
+     "−39.7%",
+     "+6.5%",
+     "−45.3%",
+     "none"
+    ],
+    [
+     "Seal A Driveway",
+     "+18.3%",
+     "−18.2%",
+     "−13.0%",
+     "−11.7%",
+     "none"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "note": "The same Monday→Tuesday step, three weeks running. It rose on every game the first week and fell on every game on 7→8 Sep, the day after the US/Canada Labor Day holiday. Only Verity published that day.",
+   "source": "`PayingUsersCVR`, `AverageRevenuePerUser` headline ONE_DAY for each universe (reports/2026-09-19/data/<slug>.json); publishes from each `place-versions.csv`."
+  },
+  {
+   "section": "money",
+   "title": "Payer conversion as a multiple of each game's own week of 29 Aug",
+   "columns": [
+    "Day",
+    "Verity",
+    "Brainrot",
+    "Waterslide",
+    "Monkey",
+    "Seal",
+    "Median of the other four",
+    "Verity vs that median"
+   ],
+   "rows": [
+    [
+     "Sat 09-05",
+     "1.58",
+     "1.28",
+     "0.95",
+     "1.21",
+     "1.69",
+     "1.25",
+     "+26.2%"
+    ],
+    [
+     "Sun 09-06",
+     "1.33",
+     "1.06",
+     "0.93",
+     "0.67",
+     "1.50",
+     "1.00",
+     "+33.2%"
+    ],
+    [
+     "Mon 09-07",
+     "1.37",
+     "1.14",
+     "0.98",
+     "0.91",
+     "1.39",
+     "1.06",
+     "+29.3%"
+    ],
+    [
+     "Tue 09-08",
+     "0.89",
+     "0.84",
+     "0.72",
+     "0.51",
+     "0.96",
+     "0.78",
+     "+14.6%"
+    ],
+    [
+     "Wed 09-09",
+     "0.75",
+     "0.86",
+     "0.72",
+     "0.60",
+     "0.96",
+     "0.79",
+     "−5.4%"
+    ],
+    [
+     "Thu 09-10",
+     "0.75",
+     "0.87",
+     "0.78",
+     "0.70",
+     "0.86",
+     "0.82",
+     "−8.7%"
+    ],
+    [
+     "Fri 09-11",
+     "0.66",
+     "0.69",
+     "0.95",
+     "0.58",
+     "0.90",
+     "0.79",
+     "−17.2%"
+    ],
+    [
+     "Sat 09-12",
+     "0.99",
+     "0.95",
+     "0.93",
+     "0.98",
+     "1.60",
+     "0.96",
+     "+2.4%"
+    ],
+    [
+     "Sun 09-13",
+     "1.03",
+     "0.89",
+     "0.92",
+     "0.64",
+     "1.32",
+     "0.91",
+     "+13.6%"
+    ],
+    [
+     "Mon 09-14",
+     "0.66",
+     "0.60",
+     "0.84",
+     "0.60",
+     "1.14",
+     "0.72",
+     "−8.5%"
+    ],
+    [
+     "Tue 09-15",
+     "0.54",
+     "0.50",
+     "0.64",
+     "0.59",
+     "0.84",
+     "0.62",
+     "−12.7%"
+    ],
+    [
+     "Wed 09-16",
+     "0.66",
+     "0.59",
+     "0.83",
+     "0.58",
+     "0.98",
+     "0.71",
+     "−7.6%"
+    ],
+    [
+     "Thu 09-17",
+     "0.73",
+     "0.59",
+     "0.83",
+     "0.81",
+     "1.10",
+     "0.82",
+     "−10.7%"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "note": "1.00 = the same weekday in the week of 29 Aug (29 Aug → 4 Sep). Verity ran well above the other four from 5 to 7 Sep (the week after v684), fell with them on 8 Sep, and sits near them from 12 Sep.",
+   "source": "`PayingUsersCVR` headline ONE_DAY per game; each day divided by the same weekday of 29 Aug → 4 Sep; median of Brainrot, Waterslide, Monkey, Seal."
+  },
+  {
+   "section": "money",
+   "title": "Payers at matched audience size",
+   "columns": [
+    "Day",
+    "Build live",
+    "DAU",
+    "Paying users",
+    "Payer CVR",
+    "ARPPU (R$)"
+   ],
+   "rows": [
+    [
+     "Wed 09-02",
+     "before v684",
+     "318,696",
+     "2,948",
+     "0.916%",
+     "55.7"
+    ],
+    [
+     "Mon 09-07",
+     "v684 / v688",
+     "317,673",
+     "3,370",
+     "1.061%",
+     "62.9"
+    ],
+    [
+     "Sat 09-12",
+     "v693",
+     "316,082",
+     "2,281",
+     "0.717%",
+     "75.3"
+    ],
+    [
+     "Mon 08-31",
+     "before v684",
+     "363,428",
+     "2,800",
+     "0.772%",
+     "55.7"
+    ],
+    [
+     "Sun 09-06",
+     "v684 / v688",
+     "440,531",
+     "4,615",
+     "1.048%",
+     "60.0"
+    ],
+    [
+     "Tue 09-08",
+     "v689 → v692",
+     "238,679",
+     "1,902",
+     "0.797%",
+     "65.4"
+    ],
+    [
+     "Sun 09-13",
+     "v693",
+     "220,907",
+     "1,805",
+     "0.814%",
+     "70.0"
+    ],
+    [
+     "Tue 09-15",
+     "v695",
+     "208,036",
+     "1,004",
+     "0.482%",
+     "66.9"
+    ],
+    [
+     "Wed 09-09",
+     "v689 → v692",
+     "196,339",
+     "1,344",
+     "0.684%",
+     "65.7"
+    ],
+    [
+     "Fri 09-11",
+     "v693",
+     "197,088",
+     "1,255",
+     "0.638%",
+     "75.2"
+    ],
+    [
+     "Thu 09-10",
+     "v689 → v692",
+     "163,485",
+     "1,077",
+     "0.669%",
+     "63.2"
+    ],
+    [
+     "Mon 09-14",
+     "v693",
+     "177,968",
+     "907",
+     "0.508%",
+     "63.1"
+    ]
+   ],
+   "numeric": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "note": "Grouped by similar DAU: ~317K (rows 1–3), ~360–440K (4–5), ~200–240K (6–8), ~160–200K (9–12). Weekdays differ within each group, so read each group as a range, not a paired test.",
+   "source": "`DailyActiveUsers`, `PayingUsers`, `PayingUsersCVR`, `AverageRevenuePerPayingUser` headline ONE_DAY."
+  },
+  {
+   "section": "money",
+   "title": "Developer-product and game-pass revenue per player, by build era",
+   "columns": [
+    "Era",
+    "Days",
+    "DevProduct R$ per DAU",
+    "GamePass R$ per DAU",
+    "GamePass share"
+   ],
+   "rows": [
+    [
+     "Aug 29 → Sep 3 (before v684)",
+     "6",
+     "0.195",
+     "0.286",
+     "59.5%"
+    ],
+    [
+     "Sep 4 → 7 (v684 / v688)",
+     "4",
+     "0.308",
+     "0.338",
+     "52.4%"
+    ],
+    [
+     "Sep 8 → 10 (v689 → v692)",
+     "3",
+     "0.221",
+     "0.249",
+     "53.0%"
+    ],
+    [
+     "Sep 11 → 14 (v693)",
+     "4",
+     "0.239",
+     "0.254",
+     "51.4%"
+    ],
+    [
+     "Sep 15 → 17 (v695)",
+     "3",
+     "0.191",
+     "0.187",
+     "49.4%"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "note": "Both product types rose after v684 and both fell from 8 Sep. Which items are passes and which are products is not held, so this cannot isolate message packs from personalities.",
+   "source": "`DailyRevenue` by `RevenueSource` (DevProduct, GamePass) ONE_DAY, summed per era and divided by summed `DailyActiveUsers`. Eras are calendar days, not weekday-matched."
+  },
+  {
+   "section": "money",
+   "title": "Revenue per player by product type, weekday-paired",
+   "columns": [
+    "Product type",
+    "R$/DAU Aug 29→Sep 2",
+    "Sep 5→9",
+    "Sep 12→16",
+    "Δ week before",
+    "Δ this week",
+    "Δ vs Aug 29→Sep 2"
+   ],
+   "rows": [
+    [
+     "DevProduct",
+     "0.195",
+     "0.289",
+     "0.214",
+     "+48.3%",
+     "−26.2%",
+     "+9.5%"
+    ],
+    [
+     "GamePass",
+     "0.282",
+     "0.304",
+     "0.219",
+     "+7.9%",
+     "−28.0%",
+     "−22.4%"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "note": "Same five weekdays in each week. The last column compares this week with the week before v684 shipped.",
+   "source": "`DailyRevenue` by `RevenueSource` ÷ headline `DailyActiveUsers`, per day, paired weekday means (5/5)."
+  },
+  {
+   "section": "money",
+   "title": "Running out of messages, and buying more, by query window",
+   "columns": [
+    "Window",
+    "Players in `Session` funnel",
+    "Ran out ÷ players",
+    "Opened pack prompt ÷ ran out",
+    "Bought ÷ opened prompt",
+    "Bought ÷ ran out",
+    "Pack buyers per 100 players",
+    "Reached 50 sent ÷ sent 1",
+    "Notebook buyers per 100 players"
+   ],
+   "rows": [
+    [
+     "09-01 → 09-04",
+     "1,149,439",
+     "54.0%",
+     "12.7%",
+     "9.1%",
+     "1.16%",
+     "0.63",
+     "8.5%",
+     "0.065"
+    ],
+    [
+     "09-05 → 09-07",
+     "1,185,325",
+     "60.8%",
+     "11.9%",
+     "9.8%",
+     "1.17%",
+     "0.71",
+     "9.1%",
+     "0.081"
+    ],
+    [
+     "09-06 → 09-09",
+     "883,179",
+     "57.4%",
+     "11.6%",
+     "9.6%",
+     "1.11%",
+     "0.64",
+     "8.9%",
+     "0.078"
+    ],
+    [
+     "09-03 → 09-19 (19th partial)",
+     "3,850,045",
+     "53.2%",
+     "11.9%",
+     "8.8%",
+     "1.05%",
+     "0.56",
+     "10.7%",
+     "0.070"
+    ],
+    [
+     "09-16 → 09-19 (19th partial)",
+     "225,562",
+     "44.3%",
+     "11.6%",
+     "7.3%",
+     "0.85%",
+     "0.38",
+     "8.7%",
+     "0.058"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "note": "Unique users per funnel step over each query window. The 5→7 Sep window is entirely before v689 (8 Sep); 6→9 Sep holds two v689 days; 16→19 Sep is after v693 and v695. Window lengths and weekday mix differ.",
+   "source": "`FunnelUserTotalCount` at NONE with one `FunnelName` filter and `FunnelStep` breakdown, from the request bodies in `data/raw/10565445771-*.json` (windows are the queries' own startTime→endTime)."
+  },
+  {
+   "section": "money",
+   "title": "Daily payer conversion beside the message-pack funnel",
+   "columns": [
+    "Cohort day",
+    "Paying users",
+    "Payer CVR",
+    "Pack prompt opened (of ran out)",
+    "Pack bought (of ran out)",
+    "Bought ÷ prompt"
+   ],
+   "rows": [
+    [
+     "Sat 08-29",
+     "4,412",
+     "0.727%",
+     "15.3%",
+     "1.00%",
+     "6.5%"
+    ],
+    [
+     "Sun 08-30",
+     "4,226",
+     "0.789%",
+     "12.7%",
+     "0.99%",
+     "7.8%"
+    ],
+    [
+     "Mon 08-31",
+     "2,800",
+     "0.772%",
+     "12.3%",
+     "0.92%",
+     "7.5%"
+    ],
+    [
+     "Tue 09-01",
+     "3,968",
+     "0.896%",
+     "15.1%",
+     "1.37%",
+     "9.1%"
+    ],
+    [
+     "Wed 09-02",
+     "2,948",
+     "0.916%",
+     "14.4%",
+     "1.31%",
+     "9.1%"
+    ],
+    [
+     "Thu 09-03",
+     "3,175",
+     "0.892%",
+     "14.5%",
+     "1.25%",
+     "8.6%"
+    ],
+    [
+     "Fri 09-04",
+     "5,131",
+     "0.971%",
+     "14.1%",
+     "1.26%",
+     "9.0%"
+    ],
+    [
+     "Sat 09-05",
+     "6,226",
+     "1.145%",
+     "11.9%",
+     "1.20%",
+     "10.1%"
+    ],
+    [
+     "Sun 09-06",
+     "4,615",
+     "1.048%",
+     "10.9%",
+     "1.06%",
+     "9.8%"
+    ],
+    [
+     "Mon 09-07",
+     "3,370",
+     "1.061%",
+     "13.8%",
+     "1.31%",
+     "9.4%"
+    ],
+    [
+     "Tue 09-08",
+     "1,902",
+     "0.797%",
+     "13.5%",
+     "1.15%",
+     "8.5%"
+    ],
+    [
+     "Wed 09-09",
+     "1,344",
+     "0.684%",
+     "14.0%",
+     "1.16%",
+     "8.3%"
+    ],
+    [
+     "Thu 09-10",
+     "1,077",
+     "0.669%",
+     "14.6%",
+     "0.97%",
+     "6.7%"
+    ],
+    [
+     "Fri 09-11",
+     "1,255",
+     "0.638%",
+     "11.2%",
+     "0.69%",
+     "6.1%"
+    ],
+    [
+     "Sat 09-12",
+     "2,281",
+     "0.717%",
+     "13.0%",
+     "1.09%",
+     "8.3%"
+    ],
+    [
+     "Sun 09-13",
+     "1,805",
+     "0.814%",
+     "11.4%",
+     "0.99%",
+     "8.6%"
+    ],
+    [
+     "Mon 09-14",
+     "907",
+     "0.508%",
+     "11.4%",
+     "0.63%",
+     "5.5%"
+    ],
+    [
+     "Tue 09-15",
+     "1,004",
+     "0.482%",
+     "10.7%",
+     "0.63%",
+     "5.8%"
+    ],
+    [
+     "Wed 09-16",
+     "701",
+     "0.601%",
+     "11.3%",
+     "0.84%",
+     "7.4%"
+    ],
+    [
+     "Thu 09-17",
+     "611",
+     "0.650%",
+     "10.8%",
+     "0.81%",
+     "7.5%"
+    ],
+    [
+     "Fri 09-18",
+     "—",
+     "—",
+     "12.7%",
+     "0.91%",
+     "7.1%"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "note": "Payer CVR counts every purchase (packs, personalities, passes); the pack funnel counts only players who ran out of messages. First-read cohort values.",
+   "source": "`PayingUsers`, `PayingUsersCVR` headline ONE_DAY; `FunnelCohortCompletionRate` `FunnelName=MessagePack` ONE_DAY."
+  },
+  {
+   "section": "funnels",
+   "title": "How old each cohort was when it was first read",
+   "columns": [
+    "PRE cohort",
+    "First read (UTC)",
+    "Age (days after the cohort day ended)",
+    "POST cohort",
+    "First read (UTC)",
+    "Age"
+   ],
+   "rows": [
+    [
+     "Sat 09-05",
+     "09-08 12:42",
+     "2.5",
+     "Sat 09-12",
+     "09-14 16:52",
+     "1.7"
+    ],
+    [
+     "Sun 09-06",
+     "09-08 12:42",
+     "1.5",
+     "Sun 09-13",
+     "09-19 09:03",
+     "5.4"
+    ],
+    [
+     "Mon 09-07",
+     "09-08 12:42",
+     "0.5",
+     "Mon 09-14",
+     "09-19 09:03",
+     "4.4"
+    ],
+    [
+     "Tue 09-08",
+     "09-09 12:08",
+     "0.5",
+     "Tue 09-15",
+     "09-19 09:03",
+     "3.4"
+    ],
+    [
+     "Wed 09-09",
+     "09-10 14:22",
+     "0.6",
+     "Wed 09-16",
+     "09-19 09:03",
+     "2.4"
+    ],
+    [
+     "**Mean**",
+     "",
+     "1.1",
+     "",
+     "",
+     "3.4"
+    ]
+   ],
+   "numeric": [
+    2,
+    5
+   ],
+   "note": "The corpus keeps the first read of each cohort day. The POST cohorts were read older than the PRE ones, so any upward drift from maturing favours POST: a step that still reads lower in POST is not a maturity artefact.",
+   "source": "`captured_at` column of `data/games/10565445771/metrics/FunnelCohortCompletionRate.csv` (ONE_DAY rows)."
+  },
+  {
+   "section": "funnels",
+   "title": "Every step that moved by half a point or more, under two reads of the same cohorts",
+   "columns": [
+    "Funnel",
+    "Step",
+    "Before (first read)",
+    "After (first read)",
+    "Δ first read",
+    "Before (09-19 read)",
+    "After (09-19 read)",
+    "Δ 09-19 read",
+    "Direction"
+   ],
+   "rows": [
+    [
+     "Session",
+     "1 Minute",
+     "89.5%",
+     "87.9%",
+     "−1.6pp",
+     "87.7%",
+     "87.4%",
+     "−0.3pp",
+     "same"
+    ],
+    [
+     "Session",
+     "5 Minutes",
+     "62.8%",
+     "58.5%",
+     "−4.4pp",
+     "58.5%",
+     "57.1%",
+     "−1.4pp",
+     "same"
+    ],
+    [
+     "Session",
+     "10 Minutes",
+     "40.1%",
+     "36.5%",
+     "−3.6pp",
+     "36.3%",
+     "35.3%",
+     "−1.0pp",
+     "same"
+    ],
+    [
+     "Session",
+     "20 Minutes",
+     "12.0%",
+     "10.4%",
+     "−1.6pp",
+     "10.9%",
+     "10.1%",
+     "−0.8pp",
+     "same"
+    ],
+    [
+     "Session",
+     "30 Minutes",
+     "2.9%",
+     "2.2%",
+     "−0.7pp",
+     "2.8%",
+     "2.1%",
+     "−0.7pp",
+     "same"
+    ],
+    [
+     "Messages",
+     "5 Sent",
+     "82.2%",
+     "80.4%",
+     "−1.8pp",
+     "82.2%",
+     "80.4%",
+     "−1.8pp",
+     "same"
+    ],
+    [
+     "Messages",
+     "10 Sent",
+     "70.8%",
+     "67.9%",
+     "−2.9pp",
+     "71.2%",
+     "68.2%",
+     "−3.0pp",
+     "same"
+    ],
+    [
+     "Messages",
+     "25 Sent",
+     "45.4%",
+     "44.0%",
+     "−1.4pp",
+     "47.0%",
+     "44.3%",
+     "−2.8pp",
+     "same"
+    ],
+    [
+     "Messages",
+     "50 Sent",
+     "9.0%",
+     "9.8%",
+     "+0.8pp",
+     "10.9%",
+     "10.4%",
+     "−0.5pp",
+     "flips"
+    ],
+    [
+     "FollowMe",
+     "Arrived",
+     "58.1%",
+     "57.6%",
+     "−0.4pp",
+     "54.1%",
+     "57.6%",
+     "+3.5pp",
+     "flips"
+    ],
+    [
+     "Ending",
+     "Hold Started",
+     "81.8%",
+     "85.1%",
+     "+3.3pp",
+     "84.7%",
+     "87.5%",
+     "+2.8pp",
+     "same"
+    ],
+    [
+     "Ending",
+     "Completed",
+     "80.9%",
+     "83.4%",
+     "+2.5pp",
+     "84.1%",
+     "86.3%",
+     "+2.2pp",
+     "same"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "First Message Sent",
+     "91.9%",
+     "90.5%",
+     "−1.4pp",
+     "91.9%",
+     "90.5%",
+     "−1.4pp",
+     "same"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "First Reply Received",
+     "91.8%",
+     "90.3%",
+     "−1.5pp",
+     "91.8%",
+     "90.3%",
+     "−1.5pp",
+     "same"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "Day 2 Reached",
+     "87.8%",
+     "86.2%",
+     "−1.6pp",
+     "87.8%",
+     "86.2%",
+     "−1.6pp",
+     "same"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "Day 3 Reached",
+     "73.2%",
+     "70.6%",
+     "−2.6pp",
+     "73.5%",
+     "70.3%",
+     "−3.1pp",
+     "same"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "Day 4 Reached",
+     "59.1%",
+     "55.9%",
+     "−3.1pp",
+     "59.9%",
+     "55.8%",
+     "−4.1pp",
+     "same"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "Day 5 Reached",
+     "43.9%",
+     "42.3%",
+     "−1.6pp",
+     "45.5%",
+     "42.5%",
+     "−3.0pp",
+     "same"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "Ending Completed",
+     "8.6%",
+     "11.0%",
+     "+2.4pp",
+     "9.8%",
+     "11.1%",
+     "+1.3pp",
+     "same"
+    ],
+    [
+     "EndingOthers",
+     "Wall Reached",
+     "49.2%",
+     "59.6%",
+     "+10.4pp",
+     "51.0%",
+     "59.7%",
+     "+8.7pp",
+     "same"
+    ],
+    [
+     "EndingOthers",
+     "Completed",
+     "19.7%",
+     "23.9%",
+     "+4.2pp",
+     "21.7%",
+     "24.5%",
+     "+2.8pp",
+     "same"
+    ],
+    [
+     "MessagePack",
+     "Prompt Opened",
+     "12.8%",
+     "11.6%",
+     "−1.2pp",
+     "11.8%",
+     "11.4%",
+     "−0.4pp",
+     "same"
+    ]
+   ],
+   "numeric": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "note": "First read: each cohort as first captured (POST older at capture, favouring POST). 09-19 read: every cohort as served by one grab on 19 Sep 09:03 (PRE a week older, favouring PRE). A move that points the same way under both is not a maturity artefact.",
+   "source": "`FunnelCohortCompletionRate` ONE_DAY per FunnelName; 09-19 values from the `revision` rows of `data-quality.md` (points re-served within 1% keep the first read)."
+  },
+  {
+   "section": "funnels",
+   "title": "Step-to-step conversion (share of players at the previous step who reach the next)",
+   "columns": [
+    "Funnel",
+    "Transition",
+    "Before",
+    "After",
+    "Δ this week",
+    "Δ week before"
+   ],
+   "rows": [
+    [
+     "Session",
+     "Joined → 1 Minute",
+     "89.5%",
+     "87.9%",
+     "−1.6pp",
+     "−1.0pp"
+    ],
+    [
+     "Session",
+     "1 Minute → 5 Minutes",
+     "70.2%",
+     "66.5%",
+     "−3.7pp",
+     "+1.0pp"
+    ],
+    [
+     "Session",
+     "5 Minutes → 10 Minutes",
+     "63.8%",
+     "62.4%",
+     "−1.3pp",
+     "+1.8pp"
+    ],
+    [
+     "Session",
+     "10 Minutes → 20 Minutes",
+     "30.1%",
+     "28.5%",
+     "−1.6pp",
+     "+1.6pp"
+    ],
+    [
+     "Session",
+     "20 Minutes → 30 Minutes",
+     "24.3%",
+     "21.0%",
+     "−3.3pp",
+     "−0.3pp"
+    ],
+    [
+     "Messages",
+     "1 Sent → 5 Sent",
+     "82.2%",
+     "80.4%",
+     "−1.8pp",
+     "+2.0pp"
+    ],
+    [
+     "Messages",
+     "5 Sent → 10 Sent",
+     "86.1%",
+     "84.5%",
+     "−1.6pp",
+     "+1.9pp"
+    ],
+    [
+     "Messages",
+     "10 Sent → 25 Sent",
+     "64.1%",
+     "64.8%",
+     "+0.6pp",
+     "−0.9pp"
+    ],
+    [
+     "Messages",
+     "25 Sent → 50 Sent",
+     "19.9%",
+     "22.2%",
+     "+2.4pp",
+     "+1.9pp"
+    ],
+    [
+     "Messages",
+     "50 Sent → 100 Sent",
+     "8.9%",
+     "8.9%",
+     "+0.0pp",
+     "−1.2pp"
+    ],
+    [
+     "Conversation",
+     "Submitted → Accepted",
+     "99.5%",
+     "99.3%",
+     "−0.1pp",
+     "−0.1pp"
+    ],
+    [
+     "Conversation",
+     "Accepted → Delivered",
+     "99.3%",
+     "99.4%",
+     "+0.0pp",
+     "+0.3pp"
+    ],
+    [
+     "FollowMe",
+     "Asked → Set Off",
+     "99.6%",
+     "99.5%",
+     "−0.1pp",
+     "+0.0pp"
+    ],
+    [
+     "FollowMe",
+     "Set Off → Arrived",
+     "58.3%",
+     "57.9%",
+     "−0.4pp",
+     "+1.1pp"
+    ],
+    [
+     "Ending",
+     "Box Appeared → Hold Started",
+     "81.8%",
+     "85.1%",
+     "+3.3pp",
+     "+0.3pp"
+    ],
+    [
+     "Ending",
+     "Hold Started → Completed",
+     "98.9%",
+     "98.0%",
+     "−0.9pp",
+     "+0.3pp"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "Joined → Box Opened",
+     "98.5%",
+     "98.1%",
+     "−0.4pp",
+     "−0.4pp"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "Box Opened → First Message Sent",
+     "93.3%",
+     "92.3%",
+     "−1.0pp",
+     "+0.5pp"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "First Message Sent → First Reply Received",
+     "99.8%",
+     "99.7%",
+     "−0.1pp",
+     "+0.1pp"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "First Reply Received → Day 2 Reached",
+     "95.6%",
+     "95.4%",
+     "−0.2pp",
+     "−0.6pp"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "Day 2 Reached → Day 3 Reached",
+     "83.4%",
+     "82.0%",
+     "−1.4pp",
+     "+2.3pp"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "Day 3 Reached → Day 4 Reached",
+     "80.7%",
+     "79.2%",
+     "−1.5pp",
+     "+3.2pp"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "Day 4 Reached → Day 5 Reached",
+     "74.2%",
+     "75.6%",
+     "+1.4pp",
+     "+0.2pp"
+    ],
+    [
+     "FUNNEL_TYPE_ONBOARDING",
+     "Day 5 Reached → Ending Completed",
+     "19.5%",
+     "26.0%",
+     "+6.5pp",
+     "−2.3pp"
+    ],
+    [
+     "EndingOthers",
+     "Wall Armed → Wall Reached",
+     "49.2%",
+     "59.6%",
+     "+10.4pp",
+     "+0.2pp"
+    ],
+    [
+     "EndingOthers",
+     "Wall Reached → Completed",
+     "40.1%",
+     "40.1%",
+     "+0.0pp",
+     "−7.2pp"
+    ],
+    [
+     "Notebook",
+     "Opened → Pitch Shown",
+     "100.0%",
+     "100.0%",
+     "−0.0pp",
+     "+0.0pp"
+    ],
+    [
+     "Notebook",
+     "Pitch Shown → Prompt Opened",
+     "2.0%",
+     "1.9%",
+     "−0.1pp",
+     "−0.0pp"
+    ],
+    [
+     "Notebook",
+     "Prompt Opened → Purchased",
+     "14.3%",
+     "10.5%",
+     "−3.8pp",
+     "+3.4pp"
+    ],
+    [
+     "MessagePack",
+     "Ran Out → Prompt Opened",
+     "12.8%",
+     "11.6%",
+     "−1.2pp",
+     "−1.1pp"
+    ],
+    [
+     "MessagePack",
+     "Prompt Opened → Purchased",
+     "9.2%",
+     "7.1%",
+     "−2.1pp",
+     "+1.2pp"
+    ]
+   ],
+   "numeric": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "note": "Cumulative step rates compound; this table isolates each hand-off. First-read cohort values.",
+   "source": "`FunnelCohortCompletionRate` ONE_DAY; conditional = step rate ÷ previous step rate per cohort day, paired weekday means."
+  },
+  {
+   "section": "funnels",
+   "title": "Ending, session and message steps by cohort day, around the 11 Sep publish",
+   "columns": [
+    "Cohort day",
+    "EndingOthers: Wall Reached",
+    "EndingOthers: Completed",
+    "Ending: Hold Started",
+    "Ending: Completed",
+    "Onboarding: Ending Completed",
+    "Session: 5 Minutes",
+    "Session: 10 Minutes",
+    "Messages: 50 Sent"
+   ],
+   "rows": [
+    [
+     "Sat 09-05",
+     "50.9%",
+     "21.3%",
+     "85.8%",
+     "85.3%",
+     "10.2%",
+     "59.8%",
+     "37.6%",
+     "10.5%"
+    ],
+    [
+     "Sun 09-06",
+     "49.0%",
+     "19.5%",
+     "83.4%",
+     "82.7%",
+     "9.2%",
+     "58.1%",
+     "35.5%",
+     "9.3%"
+    ],
+    [
+     "Mon 09-07",
+     "48.7%",
+     "19.2%",
+     "78.8%",
+     "77.6%",
+     "7.5%",
+     "65.3%",
+     "41.5%",
+     "7.4%"
+    ],
+    [
+     "Tue 09-08 (v689 10:07)",
+     "48.6%",
+     "19.1%",
+     "80.0%",
+     "78.8%",
+     "7.8%",
+     "65.7%",
+     "42.9%",
+     "8.9%"
+    ],
+    [
+     "Wed 09-09",
+     "48.8%",
+     "19.5%",
+     "81.0%",
+     "80.3%",
+     "8.2%",
+     "65.3%",
+     "43.2%",
+     "9.2%"
+    ],
+    [
+     "Thu 09-10",
+     "47.9%",
+     "19.4%",
+     "78.7%",
+     "77.9%",
+     "7.5%",
+     "64.5%",
+     "42.3%",
+     "8.6%"
+    ],
+    [
+     "Fri 09-11 (v693 15:55)",
+     "66.4%",
+     "50.8%",
+     "75.9%",
+     "75.1%",
+     "20.3%",
+     "57.7%",
+     "35.5%",
+     "15.2%"
+    ],
+    [
+     "Sat 09-12",
+     "59.1%",
+     "22.0%",
+     "81.1%",
+     "77.6%",
+     "10.3%",
+     "64.8%",
+     "41.7%",
+     "7.7%"
+    ],
+    [
+     "Sun 09-13",
+     "59.4%",
+     "24.7%",
+     "86.2%",
+     "86.2%",
+     "11.2%",
+     "56.9%",
+     "35.3%",
+     "11.6%"
+    ],
+    [
+     "Mon 09-14",
+     "60.3%",
+     "25.0%",
+     "84.4%",
+     "84.4%",
+     "11.1%",
+     "58.6%",
+     "36.9%",
+     "10.6%"
+    ],
+    [
+     "Tue 09-15 (v695 13:13)",
+     "60.4%",
+     "24.6%",
+     "86.6%",
+     "83.9%",
+     "11.5%",
+     "56.4%",
+     "34.7%",
+     "9.8%"
+    ],
+    [
+     "Wed 09-16",
+     "58.7%",
+     "23.1%",
+     "87.3%",
+     "85.1%",
+     "10.8%",
+     "55.6%",
+     "33.9%",
+     "9.4%"
+    ],
+    [
+     "Thu 09-17",
+     "56.9%",
+     "21.1%",
+     "83.8%",
+     "83.4%",
+     "10.7%",
+     "55.4%",
+     "33.7%",
+     "9.6%"
+    ],
+    [
+     "Fri 09-18 (v696 14:38)",
+     "55.0%",
+     "19.2%",
+     "81.3%",
+     "79.3%",
+     "9.7%",
+     "62.1%",
+     "40.4%",
+     "8.4%"
+    ],
+    [
+     "**Mean 5 → 10 Sep**",
+     "49.0%",
+     "19.7%",
+     "81.3%",
+     "80.4%",
+     "8.4%",
+     "63.1%",
+     "40.5%",
+     "9.0%"
+    ],
+    [
+     "**Mean 12 → 16 Sep**",
+     "59.6%",
+     "23.9%",
+     "85.1%",
+     "83.4%",
+     "11.0%",
+     "58.5%",
+     "36.5%",
+     "9.8%"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "note": "Each column is one FunnelName's cumulative completion rate for players who started that day. The means are calendar-day means (not weekday-paired). From 17 Sep the v695 servers log `AnalyticsService: You have sent too many events`, so funnel events on those servers may be dropped.",
+   "source": "`FunnelCohortCompletionRate` ONE_DAY, first-read cohort values."
+  },
+  {
+   "section": "funnels",
+   "title": "Players entering each funnel per 100 players in the Session funnel, by query window",
+   "columns": [
+    "Window",
+    "Session players",
+    "Onboarding",
+    "Messages",
+    "Conversation",
+    "FollowMe",
+    "Ending",
+    "EndingOthers",
+    "Notebook",
+    "MessagePack"
+   ],
+   "rows": [
+    [
+     "09-01 → 09-04",
+     "1,149,439",
+     "77.9",
+     "66.6",
+     "219.6",
+     "107.0",
+     "1.1",
+     "32.8",
+     "26.5",
+     "54.0"
+    ],
+    [
+     "09-05 → 09-07",
+     "1,185,325",
+     "72.6",
+     "63.3",
+     "231.9",
+     "109.3",
+     "1.4",
+     "34.5",
+     "27.6",
+     "60.8"
+    ],
+    [
+     "09-06 → 09-09",
+     "883,179",
+     "73.2",
+     "63.6",
+     "230.9",
+     "107.5",
+     "1.4",
+     "33.8",
+     "26.7",
+     "57.4"
+    ],
+    [
+     "09-03 → 09-19 (19th partial)",
+     "3,850,045",
+     "68.0",
+     "58.5",
+     "246.5",
+     "115.1",
+     "0.9",
+     "32.4",
+     "25.7",
+     "53.2"
+    ],
+    [
+     "09-16 → 09-19 (19th partial)",
+     "225,562",
+     "80.5",
+     "67.1",
+     "212.4",
+     "104.2",
+     "0.4",
+     "37.5",
+     "24.7",
+     "44.3"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "note": "Entry to each funnel = its first step's unique users. Onboarding entry approximates the share of players who are new in the window.",
+   "source": "`FunnelUserTotalCount` at NONE per FunnelName, windows from the raw request bodies."
+  },
+  {
+   "section": "technical",
+   "title": "Technical rates with the 8 Sep telemetry fault taken out",
+   "columns": [
+    "Metric",
+    "Before (5 pairs)",
+    "After (5 pairs)",
+    "Δ (5 pairs)",
+    "Before (4 pairs)",
+    "After (4 pairs)",
+    "Δ (8/15 Sep pair dropped)",
+    "Median before",
+    "Median after",
+    "Δ median"
+   ],
+   "rows": [
+    [
+     "Client crash rate (15m)",
+     "0.280%",
+     "0.318%",
+     "+13.3%",
+     "0.275%",
+     "0.314%",
+     "+14.1%",
+     "0.276%",
+     "0.319%",
+     "+15.6%"
+    ],
+    [
+     "Client FPS p10",
+     "36.37",
+     "43.05",
+     "+18.4%",
+     "43.04",
+     "43.06",
+     "+0.1%",
+     "42.66",
+     "43.02",
+     "+0.9%"
+    ],
+    [
+     "Client FPS avg",
+     "43.63",
+     "51.36",
+     "+17.7%",
+     "51.80",
+     "51.29",
+     "−1.0%",
+     "52.40",
+     "51.58",
+     "−1.6%"
+    ],
+    [
+     "Client memory %",
+     "17.8%",
+     "21.2%",
+     "+19.1%",
+     "21.2%",
+     "21.2%",
+     "+0.1%",
+     "20.8%",
+     "21.3%",
+     "+2.1%"
+    ],
+    [
+     "Client CPU ms/frame",
+     "7.96",
+     "9.28",
+     "+16.6%",
+     "8.06",
+     "10.55",
+     "+30.8%",
+     "8.07",
+     "8.45",
+     "+4.6%"
+    ],
+    [
+     "Server frame rate p10",
+     "59.91",
+     "59.41",
+     "−0.8%",
+     "59.91",
+     "59.28",
+     "−1.0%",
+     "59.92",
+     "59.90",
+     "−0.0%"
+    ],
+    [
+     "OOM exits per 1k DAU",
+     "0.331",
+     "0.460",
+     "+38.9%",
+     "0.339",
+     "0.461",
+     "+35.7%",
+     "0.335",
+     "0.457",
+     "+36.4%"
+    ],
+    [
+     "Client crashes per 1k DAU",
+     "4.11",
+     "4.65",
+     "+13.3%",
+     "4.05",
+     "4.64",
+     "+14.5%",
+     "4.17",
+     "4.69",
+     "+12.4%"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "note": "On 8 Sep Roblox served a collapsed client FPS and memory reading on all five games (F28), and the corpus keeps that first read. Dropping the Tue 8 / Tue 15 Sep pair removes it; FPS and memory then read flat. Client CPU has two outlying days of its own (4.2 ms on 15 Sep, 17.2 ms on 16 Sep, against 6.9–9.0 on every other day since 29 Aug), so read its median.",
+   "source": "Headline ONE_DAY (Place-filtered) series; per-1k-DAU rows from build.js derived series; F28 in `DIAGNOSIS_LOG.md` 2026-09-09."
+  },
+  {
+   "section": "technical",
+   "title": "Client crash rate by day",
+   "columns": [
+    "Day",
+    "Crash rate",
+    "Same weekday −7d",
+    "Δ",
+    "Client crashes",
+    "DAU"
+   ],
+   "rows": [
+    [
+     "Sat 08-29",
+     "0.286%",
+     "0.316%",
+     "−9.8%",
+     "2,570",
+     "606,962"
+    ],
+    [
+     "Sun 08-30",
+     "0.266%",
+     "0.245%",
+     "+8.7%",
+     "2,093",
+     "535,950"
+    ],
+    [
+     "Mon 08-31",
+     "0.306%",
+     "0.255%",
+     "+20.2%",
+     "1,591",
+     "363,428"
+    ],
+    [
+     "Tue 09-01",
+     "0.281%",
+     "0.275%",
+     "+2.2%",
+     "1,758",
+     "443,014"
+    ],
+    [
+     "Wed 09-02",
+     "0.280%",
+     "0.300%",
+     "−6.7%",
+     "1,287",
+     "318,696"
+    ],
+    [
+     "Thu 09-03",
+     "0.304%",
+     "0.279%",
+     "+8.9%",
+     "1,508",
+     "356,036"
+    ],
+    [
+     "Fri 09-04",
+     "0.294%",
+     "0.315%",
+     "−6.8%",
+     "2,311",
+     "528,419"
+    ],
+    [
+     "Sat 09-05",
+     "0.276%",
+     "0.286%",
+     "−3.2%",
+     "2,312",
+     "543,761"
+    ],
+    [
+     "Sun 09-06",
+     "0.258%",
+     "0.266%",
+     "−3.0%",
+     "1,704",
+     "440,531"
+    ],
+    [
+     "Mon 09-07",
+     "0.266%",
+     "0.306%",
+     "−13.0%",
+     "1,248",
+     "317,673"
+    ],
+    [
+     "Tue 09-08",
+     "0.303%",
+     "0.281%",
+     "+7.9%",
+     "1,030",
+     "238,679"
+    ],
+    [
+     "Wed 09-09",
+     "0.298%",
+     "0.280%",
+     "+6.6%",
+     "819",
+     "196,339"
+    ],
+    [
+     "Thu 09-10",
+     "0.344%",
+     "0.304%",
+     "+12.9%",
+     "758",
+     "163,485"
+    ],
+    [
+     "Fri 09-11",
+     "0.344%",
+     "0.294%",
+     "+17.1%",
+     "956",
+     "197,088"
+    ],
+    [
+     "Sat 09-12",
+     "0.319%",
+     "0.276%",
+     "+15.6%",
+     "1,532",
+     "316,082"
+    ],
+    [
+     "Sun 09-13",
+     "0.274%",
+     "0.258%",
+     "+6.0%",
+     "959",
+     "220,907"
+    ],
+    [
+     "Mon 09-14",
+     "0.348%",
+     "0.266%",
+     "+30.5%",
+     "868",
+     "177,968"
+    ],
+    [
+     "Tue 09-15",
+     "0.335%",
+     "0.303%",
+     "+10.5%",
+     "975",
+     "208,036"
+    ],
+    [
+     "Wed 09-16",
+     "0.313%",
+     "0.298%",
+     "+5.1%",
+     "521",
+     "115,548"
+    ],
+    [
+     "Thu 09-17",
+     "0.331%",
+     "0.344%",
+     "−3.7%",
+     "435",
+     "93,474"
+    ],
+    [
+     "Fri 09-18",
+     "0.279%",
+     "0.344%",
+     "−19.0%",
+     "451",
+     "—"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "note": "Crash rate = crashes ÷ ended sessions. The step up is dated 10 Sep (v692 live, before v693), and 18 Sep returns to the August level.",
+   "source": "`ClientCrashRate15m`, `ClientCrashCount` headline ONE_DAY; `DailyActiveUsers`."
+  },
+  {
+   "section": "errors",
+   "title": "Errors per player, client vs server",
+   "columns": [
+    "Log source",
+    "Per DAU Aug 29→Sep 2",
+    "Per DAU Sep 5→9",
+    "Per DAU Sep 12→16",
+    "Δ week before",
+    "Δ this week",
+    "Pairs",
+    "Errors per day after"
+   ],
+   "rows": [
+    [
+     "Client",
+     "3.02",
+     "3.57",
+     "3.43",
+     "+18.1%",
+     "−4.0%",
+     "4/5",
+     "726,066"
+    ],
+    [
+     "Server",
+     "0.91",
+     "2.37",
+     "2.08",
+     "+159.3%",
+     "−12.2%",
+     "4/5",
+     "437,734"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "note": "Per DAU: raw volume follows the audience. 8 Sep has no settled ErrorCount point, so its pair drops out. The unit of `ErrorCount` (occurrence, player or server) is not documented.",
+   "source": "`ErrorCount` by `LogSource`, ONE_DAY (corpus), divided by headline `DailyActiveUsers`, paired weekday means."
+  },
+  {
+   "section": "errors",
+   "title": "New and relevant signatures, sized against the rate each one would move",
+   "columns": [
+    "Signature",
+    "First seen",
+    "Type",
+    "Events (7-day export)",
+    "Per 1k DAU-days",
+    "Surface",
+    "Rate that would move",
+    "That rate, before → after"
+   ],
+   "rows": [
+    [
+     "`AnalyticsService: You have sent too many events.`",
+     "v695",
+     "Server",
+     "6,125",
+     "5.41",
+     "Custom analytics / funnel event logging",
+     "Funnel event counts on and after 17 Sep",
+     "first seen 17 Sep, after the POST window — funnel cohorts from 17 Sep may undercount"
+    ],
+    [
+     "AI reply retries: `Model repeated its own previous line` (attempts 1+2), `Model returned no usable dialogue`, `Reply was cut at max_tokens`, `Model echoed the player's message`",
+     "v693",
+     "Server",
+     "10,742",
+     "9.49",
+     "The conversation itself (every message)",
+     "`Conversation` Submitted→Delivered; `Messages` 5 Sent; session length",
+     "Delivered 98.8% → 98.7%; 5 Sent 82.2% → 80.4%; session +0.4%"
+    ],
+    [
+     "`DeepInfra network failure (attempt 1)`",
+     "v693",
+     "Server",
+     "543",
+     "0.48",
+     "AI backend reachability",
+     "same as above",
+     "same as above"
+    ],
+    [
+     "`ProfileStore DataStore API error: 502 … Access forbidden`",
+     "v695",
+     "Server",
+     "1,175",
+     "1.04",
+     "Player save / load",
+     "D1 of v695 cohorts (16 Sep onward)",
+     "16 Sep D1 10.1% vs 9 Sep 12.1% (one day)"
+    ],
+    [
+     "`[LikeReward] Player:IsInGroup failed because HTTP unknown error` (5 variants)",
+     "v693",
+     "Client",
+     "586",
+     "0.52",
+     "Like + group reward claim",
+     "`PlayerFeedbackVotesCount`; reviews asking for the gift",
+     "votes (up − down) per day: 6 (4→10 Sep) → 1,131 (12→18 Sep)"
+    ],
+    [
+     "`Ending rejoin failed: Not allowed`, `TeleportService:Not allowed`, teleport during shutdown",
+     "v695",
+     "Server",
+     "60",
+     "0.05",
+     "Teleport after an ending",
+     "`EndingOthers` Completed",
+     "19.7% → 23.9%"
+    ],
+    [
+     "`Badge … ownership check failed`",
+     "v695",
+     "Server",
+     "37",
+     "0.03",
+     "Badges",
+     "none",
+     "—"
+    ],
+    [
+     "`Unsupported Luau version requested`",
+     "v695",
+     "Server",
+     "34",
+     "0.03",
+     "Engine messaging (RCC 739 landed 14–15 Sep)",
+     "none",
+     "—"
+    ],
+    [
+     "`Not running script because past shutdown deadline`",
+     "v693",
+     "Client",
+     "516",
+     "0.46",
+     "Server shutdown on publish",
+     "none",
+     "—"
+    ],
+    [
+     "standing: `[MessageSpend] … infinite messages are active`",
+     "v684",
+     "Server",
+     "61,820",
+     "54.61",
+     "Message spending when unlimited messages are on",
+     "`MessagePack` Ran Out share",
+     "see Monetization"
+    ],
+    [
+     "standing: `[BestFriends] Shared.WorldStates.dark missing`",
+     "v684",
+     "Client",
+     "16,518",
+     "14.59",
+     "An ending path (best-friends)",
+     "`EndingOthers` / `Ending` completion",
+     "EndingOthers Completed 19.7% → 23.9%"
+    ],
+    [
+     "standing: `Monetize:PromptProductPurchase() called with prompt in progress, aborting`",
+     "v454",
+     "Client",
+     "17,721",
+     "15.65",
+     "A purchase prompt (second prompt while one is open)",
+     "`MessagePack` Purchased",
+     "1.18% → 0.83% of ran-out players"
+    ]
+   ],
+   "numeric": [
+    3,
+    4
+   ],
+   "note": "Ranked by surface, not volume. Counts are floors (exports are capped at 25 rows and per-player messages split into many rows). Per-1k uses the six served DAU days 12→17 Sep; the export's 7 days reach into 18–19 Sep, so it overstates slightly.",
+   "source": "`errors_2026-09-19_0916_since-v693_7d`, `…_0917_since-v695_7d`, `…_0916_v446-v684_7d` (unfiltered) under `data/exports/10565445771-verity-companion/errors/`; rates from data/verity.json."
+  },
+  {
+   "section": "errors",
+   "title": "Standing signatures: share of the unfiltered export, 8 Sep vs 19 Sep",
+   "columns": [
+    "Signature",
+    "First seen",
+    "Type",
+    "Share on 8 Sep export",
+    "Share on 19 Sep 7-day export"
+   ],
+   "rows": [
+    [
+     "`Generated dialogue was rejected by filtering for <Player>`",
+     "V446",
+     "Server",
+     "41.7%",
+     "43.9%"
+    ],
+    [
+     "`Failed to play animation. AnimationTrack limit of 64 tracks exceeded, new animations will `",
+     "V454",
+     "Client",
+     "29.2%",
+     "33.0%"
+    ],
+    [
+     "`Failed to load sound: Timedout`",
+     "V454",
+     "Client",
+     "3.7%",
+     "3.6%"
+    ],
+    [
+     "`A new version of TopbarPlus (nil) is available: https://devforum.roblox.com/t/topbarplus/1`",
+     "V454",
+     "Client",
+     "2.0%",
+     "2.8%"
+    ],
+    [
+     "`MeshContentProvider failed to process asset because 'could not fetch'`",
+     "V454",
+     "Client",
+     "3.0%",
+     "2.7%"
+    ],
+    [
+     "`Failed to load object. PBR textures may not be visible in game.`",
+     "V454",
+     "Client",
+     "2.4%",
+     "2.6%"
+    ],
+    [
+     "`Failed to load animation with sanitized ID. Animation failed to load`",
+     "V454",
+     "Client",
+     "2.3%",
+     "1.9%"
+    ],
+    [
+     "`[MessageSpend] <Player> (<PlayerId>): message was not deducted — reason: infinite messages`",
+     "V684",
+     "Server",
+     "1.5%",
+     "1.5%"
+    ],
+    [
+     "`Not running script because past shutdown deadline (when calling anonymous function on line`",
+     "V664",
+     "Client",
+     "—",
+     "1.1%"
+    ],
+    [
+     "`[DayMusicClient] No non-repeating soundtrack is available for Day 1`",
+     "V454",
+     "Client",
+     "0.8%",
+     "0.8%"
+    ],
+    [
+     "`[DayMusicClient] Morning Mood could not be loaded`",
+     "V454",
+     "Client",
+     "0.8%",
+     "0.7%"
+    ],
+    [
+     "`Failed to load sound: NetFail`",
+     "V454",
+     "Client",
+     "0.6%",
+     "0.6%"
+    ]
+   ],
+   "numeric": [
+    3,
+    4
+   ],
+   "note": "Shares: the two exports cover different windows. The largest two — the text-filter rejection of AI replies and the 64-track animation limit — predate every build in this report.",
+   "source": "`errors_2026-09-08_1449_v446-v688_154rows.csv` (window not recorded) and `errors_2026-09-19_0916_v446-v684_7d_129rows.csv`; share = count ÷ file total of the top-25 rows."
+  },
+  {
+   "section": "sentiment",
+   "title": "What players wrote about, by the build they reviewed",
+   "columns": [
+    "Theme",
+    "v680",
+    "v684",
+    "v688",
+    "v689–v692",
+    "v693",
+    "v695",
+    "v696",
+    "All since 4 Sep"
+   ],
+   "rows": [
+    [
+     "Reviews",
+     "41",
+     "89",
+     "63",
+     "43",
+     "133",
+     "52",
+     "9",
+     "430"
+    ],
+    [
+     "Downvote rate",
+     "73%",
+     "74%",
+     "75%",
+     "65%",
+     "39%",
+     "42%",
+     "56%",
+     "58%"
+    ],
+    [
+     "Dates",
+     "09-04→09-04",
+     "09-04→09-06",
+     "09-06→09-08",
+     "09-08→09-11",
+     "09-11→09-15",
+     "09-15→09-18",
+     "09-18→09-19",
+     "09-04→09-19"
+    ],
+    [
+     "Scary / creepy",
+     "10 (24%)",
+     "27 (30%)",
+     "18 (29%)",
+     "9 (21%)",
+     "29 (22%)",
+     "13 (25%)",
+     "2 (22%)",
+     "108 (25%)"
+    ],
+    [
+     "It knows about me (location, time, account, device)",
+     "10 (24%)",
+     "16 (18%)",
+     "13 (21%)",
+     "4 (9%)",
+     "10 (8%)",
+     "2 (4%)",
+     "1 (11%)",
+     "56 (13%)"
+    ],
+    [
+     "Messages: limit, waiting or paying",
+     "6 (15%)",
+     "9 (10%)",
+     "9 (14%)",
+     "4 (9%)",
+     "7 (5%)",
+     "6 (12%)",
+     "1 (11%)",
+     "42 (10%)"
+    ],
+    [
+     "Blocked progression: key, gate, door, ending does not finish",
+     "1 (2%)",
+     "5 (6%)",
+     "4 (6%)",
+     "3 (7%)",
+     "12 (9%)",
+     "1 (2%)",
+     "0 (0%)",
+     "26 (6%)"
+    ],
+    [
+     "Wants a reset / restart",
+     "0 (0%)",
+     "4 (4%)",
+     "3 (5%)",
+     "5 (12%)",
+     "1 (1%)",
+     "1 (2%)",
+     "0 (0%)",
+     "14 (3%)"
+    ],
+    [
+     "Against AI use",
+     "1 (2%)",
+     "1 (1%)",
+     "0 (0%)",
+     "4 (9%)",
+     "0 (0%)",
+     "1 (2%)",
+     "1 (11%)",
+     "8 (2%)"
+    ],
+    [
+     "Boring / repetitive",
+     "1 (2%)",
+     "1 (1%)",
+     "4 (6%)",
+     "3 (7%)",
+     "5 (4%)",
+     "2 (4%)",
+     "0 (0%)",
+     "16 (4%)"
+    ],
+    [
+     "Free gift / like + group reward",
+     "0 (0%)",
+     "0 (0%)",
+     "0 (0%)",
+     "0 (0%)",
+     "3 (2%)",
+     "2 (4%)",
+     "0 (0%)",
+     "5 (1%)"
+    ],
+    [
+     "Bug / broken (generic)",
+     "0 (0%)",
+     "2 (2%)",
+     "1 (2%)",
+     "0 (0%)",
+     "5 (4%)",
+     "1 (2%)",
+     "0 (0%)",
+     "9 (2%)"
+    ],
+    [
+     "Performance (lag, fps, freeze, crash)",
+     "0 (0%)",
+     "0 (0%)",
+     "0 (0%)",
+     "0 (0%)",
+     "0 (0%)",
+     "0 (0%)",
+     "0 (0%)",
+     "0 (0%)"
+    ],
+    [
+     "Language / translation",
+     "0 (0%)",
+     "1 (1%)",
+     "0 (0%)",
+     "0 (0%)",
+     "2 (2%)",
+     "2 (4%)",
+     "0 (0%)",
+     "5 (1%)"
+    ],
+    [
+     "Very short comment (3 words or fewer)",
+     "6 (15%)",
+     "15 (17%)",
+     "11 (17%)",
+     "6 (14%)",
+     "27 (20%)",
+     "14 (27%)",
+     "0 (0%)",
+     "79 (18%)"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "note": "Every review since 4 Sep has a comment (430). A review can match several themes. Themes are keyword regexes (listed in the appendix), so they count mentions, not sentiment strength; non-English comments are only partly covered.",
+   "source": "`reports/2026-09-19/data/feedback-10565445771.json` (merged review history — `feedback.csv` is truncated by the short trailing grab); build = the review's `asset_version`."
+  },
+  {
+   "section": "sentiment",
+   "title": "Themes by device class, all reviews since 4 Sep",
+   "columns": [
+    "Theme",
+    "Mobile (Phone + Tablet)",
+    "Computer"
+   ],
+   "rows": [
+    [
+     "Reviews",
+     "354",
+     "76"
+    ],
+    [
+     "Downvote rate",
+     "56%",
+     "68%"
+    ],
+    [
+     "Scary / creepy",
+     "98 (28%)",
+     "10 (13%)"
+    ],
+    [
+     "It knows about me (location, time, account, device)",
+     "50 (14%)",
+     "6 (8%)"
+    ],
+    [
+     "Messages: limit, waiting or paying",
+     "33 (9%)",
+     "9 (12%)"
+    ],
+    [
+     "Blocked progression: key, gate, door, ending does not finish",
+     "16 (5%)",
+     "10 (13%)"
+    ],
+    [
+     "Wants a reset / restart",
+     "10 (3%)",
+     "4 (5%)"
+    ],
+    [
+     "Against AI use",
+     "5 (1%)",
+     "3 (4%)"
+    ],
+    [
+     "Boring / repetitive",
+     "8 (2%)",
+     "8 (11%)"
+    ],
+    [
+     "Free gift / like + group reward",
+     "4 (1%)",
+     "1 (1%)"
+    ],
+    [
+     "Bug / broken (generic)",
+     "8 (2%)",
+     "1 (1%)"
+    ],
+    [
+     "Performance (lag, fps, freeze, crash)",
+     "0 (0%)",
+     "0 (0%)"
+    ],
+    [
+     "Language / translation",
+     "3 (1%)",
+     "2 (3%)"
+    ]
+   ],
+   "numeric": [
+    1,
+    2
+   ],
+   "note": "Phone and Tablet are grouped as one platform class. Compare the rates within a row, not the counts.",
+   "source": "Same file; `device` column."
+  },
+  {
+   "section": "sentiment",
+   "title": "Themes among downvotes only, before and from the 11 Sep build",
+   "columns": [
+    "Theme",
+    "v680 → v692 (4 → 11 Sep)",
+    "v693 → v696 (11 → 19 Sep)"
+   ],
+   "rows": [
+    [
+     "Downvotes with a comment",
+     "171",
+     "79"
+    ],
+    [
+     "Scary / creepy",
+     "56 (33%)",
+     "29 (37%)"
+    ],
+    [
+     "It knows about me (location, time, account, device)",
+     "37 (22%)",
+     "11 (14%)"
+    ],
+    [
+     "Messages: limit, waiting or paying",
+     "20 (12%)",
+     "8 (10%)"
+    ],
+    [
+     "Blocked progression: key, gate, door, ending does not finish",
+     "10 (6%)",
+     "4 (5%)"
+    ],
+    [
+     "Wants a reset / restart",
+     "7 (4%)",
+     "1 (1%)"
+    ],
+    [
+     "Against AI use",
+     "6 (4%)",
+     "2 (3%)"
+    ],
+    [
+     "Boring / repetitive",
+     "8 (5%)",
+     "7 (9%)"
+    ],
+    [
+     "Free gift / like + group reward",
+     "0 (0%)",
+     "2 (3%)"
+    ],
+    [
+     "Bug / broken (generic)",
+     "3 (2%)",
+     "4 (5%)"
+    ],
+    [
+     "Performance (lag, fps, freeze, crash)",
+     "0 (0%)",
+     "0 (0%)"
+    ],
+    [
+     "Language / translation",
+     "0 (0%)",
+     "2 (3%)"
+    ]
+   ],
+   "numeric": [
+    1,
+    2
+   ],
+   "note": "Restricting to downvotes removes any effect of extra upvotes on the shares. Small n on the right-hand side.",
+   "source": "Same file; `category` = Downvote; build from `asset_version`."
+  },
+  {
+   "section": "sentiment",
+   "title": "Written reviews and the vote-count series, by day",
+   "columns": [
+    "Day",
+    "Up (with comment)",
+    "Down (with comment)",
+    "Downvote rate",
+    "`PlayerFeedbackVotesCount` (up − down, all votes)",
+    "DAU",
+    "Reviews per 100K DAU"
+   ],
+   "rows": [
+    [
+     "Fri 09-04",
+     "13",
+     "42",
+     "76%",
+     "-28",
+     "528,419",
+     "10.4"
+    ],
+    [
+     "Sat 09-05",
+     "16",
+     "42",
+     "72%",
+     "56",
+     "543,761",
+     "10.7"
+    ],
+    [
+     "Sun 09-06",
+     "13",
+     "37",
+     "74%",
+     "38",
+     "440,531",
+     "11.3"
+    ],
+    [
+     "Mon 09-07",
+     "7",
+     "20",
+     "74%",
+     "-23",
+     "317,673",
+     "8.5"
+    ],
+    [
+     "Tue 09-08",
+     "5",
+     "11",
+     "69%",
+     "-26",
+     "238,679",
+     "6.7"
+    ],
+    [
+     "Wed 09-09",
+     "2",
+     "8",
+     "80%",
+     "-12",
+     "196,339",
+     "5.1"
+    ],
+    [
+     "Thu 09-10",
+     "6",
+     "8",
+     "57%",
+     "35",
+     "163,485",
+     "8.6"
+    ],
+    [
+     "Fri 09-11",
+     "10",
+     "7",
+     "41%",
+     "690",
+     "197,088",
+     "8.6"
+    ],
+    [
+     "Sat 09-12",
+     "31",
+     "22",
+     "42%",
+     "2,180",
+     "316,082",
+     "16.8"
+    ],
+    [
+     "Sun 09-13",
+     "24",
+     "11",
+     "31%",
+     "1,758",
+     "220,907",
+     "15.8"
+    ],
+    [
+     "Mon 09-14",
+     "13",
+     "8",
+     "38%",
+     "941",
+     "177,968",
+     "11.8"
+    ],
+    [
+     "Tue 09-15",
+     "9",
+     "12",
+     "57%",
+     "1,103",
+     "208,036",
+     "10.1"
+    ],
+    [
+     "Wed 09-16",
+     "11",
+     "10",
+     "48%",
+     "683",
+     "115,548",
+     "18.2"
+    ],
+    [
+     "Thu 09-17",
+     "10",
+     "6",
+     "38%",
+     "573",
+     "93,474",
+     "17.1"
+    ],
+    [
+     "Fri 09-18",
+     "8",
+     "5",
+     "38%",
+     "676",
+     "—",
+     "—"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "note": "The vote series counts every thumbs-up and thumbs-down, most without a comment. It turns from near zero to +690 on 11 Sep (v693 published 15:55) and stays in the hundreds; the written-review downvote rate halves on the same day. Reviews per 100K DAU shows how many players wrote one.",
+   "source": "`byDay` of the merged review file; `PlayerFeedbackVotesCount` headline ONE_DAY."
+  },
+  {
+   "section": "appendix",
+   "title": "Theme regexes used in the sentiment tables",
+   "columns": [
+    "Theme",
+    "Regex (case-insensitive)"
+   ],
+   "rows": [
+    [
+     "Scary / creepy",
+     "`scar[eyi]|creep|terrif|nightmare|frighten|horror|miedo|asust|assust|medo|seram|น่ากลัว|무서|страш|chills`"
+    ],
+    [
+     "It knows about me (location, time, account, device)",
+     "`\\b(it|he|verity|game|they|ai|bot)\\b[^.?!]{0,20}\\b(knows?|knew|learned)\\b|location|address|where (i|we) live|my country|what country|\\bdox|hack(ed|ing|s)?\\b|track(ing)? (my|me)|spy|stalk|password|personal (info|life|information|data)|private info|when (i|we) (made|created|joined)|account (was )?(made|created)|what time it (is|was)|la hora|dados pessoais|area code|lo sabe|weiß wo`"
+    ],
+    [
+     "Messages: limit, waiting or paying",
+     "`(messag|meseg|mensag|mensaj|meggag|meessag|\\bwords?\\b|\\bchats?\\b|\\btexts?\\b)[^.?!]{0,40}(limit|infinite|unlimit|refill|cooldown|wait|pay|robux|max|cap\\b)|(limit|infinite|unlimit|\\binf\\b|more|max|pay for|give) [^.?!]{0,20}(messag|meseg|mensag|mensaj|meggag|meessag|words|chats?|texts)|paywall|cash grab|refill|cooldown|pay to talk|l[ií]mite|limity|message (limit|cap|countdown)|coutdowm|countdown is t`"
+    ],
+    [
+     "Blocked progression: key, gate, door, ending does not finish",
+     "`(?<!low-)\\bkey\\b|gate|door|locked|\\block\\b|stuck|can'?t (get|go) (in|past|inside)|couldn'?t get in|through the wall|into the wall|phases? into|ending (doesn'?t|does not|dont|didn'?t|wont|won'?t) work|new ending doesn|nice ending|cave|green building|mountain|llave|ключ|鑰匙|noche 5|day 5|vanish|disappear`"
+    ],
+    [
+     "Wants a reset / restart",
+     "`reset|restart|start over|reiniciar|redo|recome`"
+    ],
+    [
+     "Against AI use",
+     "`(don'?t|dont|stop|no) (use|using) ai|ai slop|\\bslop\\b|lazy|ai thumbnail|chatgpt|using ai|it'?s ai|and it'?s ai|\\bai as well\\b`"
+    ],
+    [
+     "Boring / repetitive",
+     "`boring|bored|repetit|same (words|thing|ending)|nothing to do|\\bborder\\b|aburr|mid\\b`"
+    ],
+    [
+     "Free gift / like + group reward",
+     "`gift|reward|reword|joined the (group|community)|like and joined|they promise`"
+    ],
+    [
+     "Bug / broken (generic)",
+     "`\\bbug|glitch|broken|doesn'?t work|dont work|don'?t work|won'?t work|not working|\\berror\\b|buttons? (wont|won'?t|don'?t|dont)`"
+    ],
+    [
+     "Performance (lag, fps, freeze, crash)",
+     "`\\blag|fps|frame ?rate|freez|stutter|crash|unplayable`"
+    ],
+    [
+     "Language / translation",
+     "`spanish|español|espanol|translat|idioma|subt[ií]tulo|日本語|русском|in english|habla en ingles|language`"
+    ]
+   ],
+   "numeric": [],
+   "note": "Applied to the `comment` text of each review. Counting is literal; a sarcastic mention counts the same as a sincere one.",
+   "source": "tools/r0919/extras/verity.js"
+  },
+  {
+   "section": "appendix",
+   "title": "Series caveats specific to this game",
+   "columns": [
+    "Series",
+    "Caveat"
+   ],
+   "rows": [
+    [
+     "UsersJoinedFromNotifications",
+     "Served as a value that stays constant for about a week (365 → 846 → 992) rather than a daily count; its Δ compares two weekly figures."
+    ],
+    [
+     "PlayerFeedbackVotesCount",
+     "Up-votes minus down-votes. A like can be rewarded in-game (spec v689; the `[LikeReward]` code path is first logged at v693, 11 Sep), so votes cast after 11 Sep are not comparable with votes cast before it."
+    ],
+    [
+     "ForwardD1Retention × IsNewUser",
+     "The Explore query failed inside Roblox (`ERROR_CODE_INTERNAL_ERROR`) on every game — unavailable, not zero."
+    ],
+    [
+     "ClientFpsP10, client memory on 8 Sep",
+     "Roblox telemetry fault on all five games (F28); first read kept in the corpus, correct values re-served on 19 Sep for some series."
+    ],
+    [
+     "RFYD8To28PlayDays / Playtime / QualifiedPlaySessions",
+     "First served on 4 Sep, so there is no week-before comparison."
+    ],
+    [
+     "ForwardD7Retention",
+     "Newest settled cohort is 10 Sep; the POST week has no D7 yet."
+    ],
+    [
+     "ConcurrentPlayers ONE_HOUR (Explore)",
+     "Each label is the END of its hour: publish spikes appear one label later than in the half-hour series, and at 09:12 UTC the newest label was 10:00. The in-progress hour and the carry-forward bucket after it are dropped."
+    ]
+   ],
+   "numeric": [],
+   "note": "",
+   "source": "Checked against the corpus and the Explore pull for this report."
+  },
+  {
+   "id": "peer-index",
+   "section": "glance",
+   "title": "Verity against the other four games, day by day from 08 Sep",
+   "columns": [
+    "Metric",
+    "09-08",
+    "09-09",
+    "09-10",
+    "09-11",
+    "09-12",
+    "09-13",
+    "09-14",
+    "09-15",
+    "09-16",
+    "09-17"
+   ],
+   "rows": [
+    [
+     "Impression→play CVR",
+     "0.75",
+     "0.76",
+     "0.80",
+     "0.82",
+     "0.88",
+     "0.75",
+     "0.66",
+     "0.71",
+     "0.75",
+     "0.73"
+    ],
+    [
+     "D1 retention",
+     "0.95",
+     "0.93",
+     "0.95",
+     "1.01",
+     "0.93",
+     "0.80",
+     "0.82",
+     "0.89",
+     "0.69",
+     "—"
+    ],
+    [
+     "Session length",
+     "0.99",
+     "0.99",
+     "0.98",
+     "1.03",
+     "1.01",
+     "0.97",
+     "1.05",
+     "1.01",
+     "0.93",
+     "0.93"
+    ],
+    [
+     "RFY D2–7 play days",
+     "1.10",
+     "1.16",
+     "1.13",
+     "1.02",
+     "0.93",
+     "0.96",
+     "1.04",
+     "1.08",
+     "1.01",
+     "1.01"
+    ],
+    [
+     "Paying-user CVR",
+     "1.02",
+     "0.90",
+     "0.92",
+     "0.84",
+     "0.78",
+     "0.90",
+     "0.65",
+     "0.67",
+     "0.88",
+     "0.86"
+    ],
+    [
+     "ARPDAU",
+     "1.26",
+     "1.28",
+     "0.90",
+     "1.11",
+     "1.09",
+     "1.10",
+     "0.64",
+     "0.77",
+     "0.84",
+     "1.00"
+    ],
+    [
+     "ARPPU",
+     "1.17",
+     "1.24",
+     "0.99",
+     "1.39",
+     "1.37",
+     "1.24",
+     "1.11",
+     "1.10",
+     "1.19",
+     "1.32"
+    ],
+    [
+     "Crash rate",
+     "1.10",
+     "0.95",
+     "1.03",
+     "1.03",
+     "1.04",
+     "1.01",
+     "1.11",
+     "1.03",
+     "1.00",
+     "1.02"
+    ],
+    [
+     "Impressions",
+     "1.27",
+     "1.14",
+     "1.06",
+     "1.08",
+     "1.14",
+     "0.92",
+     "0.90",
+     "0.80",
+     "0.45",
+     "0.53"
+    ],
+    [
+     "DAU",
+     "1.00",
+     "0.88",
+     "0.86",
+     "0.81",
+     "0.87",
+     "0.63",
+     "0.54",
+     "0.56",
+     "0.35",
+     "0.33"
+    ]
+   ],
+   "numeric": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+   ],
+   "note": "1.00 = this game moved exactly like the rest of the portfolio that day; below 1 = worse, above 1 = better (for crash rate, above 1 = more crashes). Each game is first divided by its own 01–07 Sep mean, so shared calendar or platform effects — the 08 Sep payer step, the Labor Day weekend — cancel. Rates are the reliable rows; for DAU and impressions the peers mix growing and decaying games, so read those rows as 'moved differently from the portfolio', not as a counterfactual.",
+   "source": "`run` series in reports/2026-09-19/data/<slug>.json (settled ONE_DAY headline). Index = (this game ÷ its own 01–07 Sep mean) ÷ median over the other four games of the same ratio. tools/r0919/peer-index.js"
+  }
+ ]
+}
